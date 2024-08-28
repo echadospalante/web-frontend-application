@@ -10,7 +10,7 @@ RUN npm i
 
 COPY . .
 
-RUN npm run build
+RUN npm run build --force
 
 FROM nginx:alpine
 
