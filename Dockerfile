@@ -2,14 +2,9 @@
 FROM node:20.9.0-alpine AS build
 
 WORKDIR /app
-
-COPY package.json .
-COPY package-lock.json .
-
-RUN npm i 
-
 COPY . .
 
+RUN npm i 
 RUN npm run build
 
 FROM nginx:alpine

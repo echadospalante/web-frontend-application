@@ -1,14 +1,14 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
+import { Fragment } from "react";
+import ReactDOM from "react-dom/client";
 
-import App from './App.tsx';
-import './index.css';
-import './assets/css/style.css';
+import App from "./App";
+import "./app/config/locales/i18n";
+import * as serviceWorker from "./serviceWorker";
 
-import 'preline';
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <Fragment>
     <App />
-  </StrictMode>,
+  </Fragment>
 );
+
+serviceWorker.unregister();
