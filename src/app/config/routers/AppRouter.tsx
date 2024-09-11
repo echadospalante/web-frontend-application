@@ -52,69 +52,9 @@ const AppRouter = () => {
             <Route path="ingresa" element={<LoginPage />} />
           </Route>
 
-          <Route path="declaracion-interes" element={<PublicRoute />}>
-            <Route path="" element={<DeclarationsInitialPage />} />
-            <Route path="crear" element={<DeclarationCreatePage />} />
-
-            <Route path="consultar" element={<DeclarationCreatePage />} />
-          </Route>
-
-          <Route
-            path="terminos-condiciones"
-            element={<TermsAndConditionsPage />}
-          />
-
           <Route path="registro" element={<PrivateRoute />}>
             <Route path="caracterizacion" element={<RegisterStepsPage />} />
             <Route path="bienvenida" element={<WelcomePage />} />
-          </Route>
-
-          <Route path="principal" element={<PrivateRoute />}>
-            {/* <Route path="" element={<PrincipalIndexPage />} /> */}
-            <Route path="" element={<Navigate to="comercial" />} />
-
-            <Route path="comercial" element={<CommercialLayoutPage />}>
-              <Route path="" element={<CommercialInitialPage />} />
-              <Route path="cotizaciones" element={<CommercialQuotesPage />} />
-              <Route path="calendario" element={<QuotesCalenderPage />} />
-              <Route path="asesores" element={<QuotesAdvisorsPage />} />
-              <Route path="areas" element={<QuoteAreasPage />} />
-
-              <Route path="*" element={<Commercial404Page />} />
-            </Route>
-
-            <Route path="cuenta" element={<AccountLayoutPage />}>
-              <Route
-                path="colaboradores"
-                element={<AccountCollaboratorsPage />}
-              />
-              <Route path="facturacion" element={<AccountBillingPage />} />
-            </Route>
-
-            <Route path="preferencias" element={<PreferencesLayoutPage />}>
-              <Route
-                path="lenguaje-localizacion"
-                element={<PreferencesLangLocalePage />}
-              />
-              <Route path="tema" element={<PreferencesThemePage />} />
-              <Route
-                path="alertas-notificaciones"
-                element={<PreferencesNotificationsPage />}
-              />
-            </Route>
-          </Route>
-
-          <Route path="administracion" element={<PrivateRoute />}>
-            <Route path="" element={<Navigate to="actividad" />} />
-
-            <Route path="actividad" element={<ActivityLayoutPage />}>
-              <Route path="" element={<ActivityDashboardPage />} />
-            </Route>
-
-            <Route path="general" element={<GeneralLayoutPage />}>
-              <Route path="usuarios" element={<AdminUsersPage />} />
-              <Route path="cotizaciones" element={<AdminQuotesPage />} />
-            </Route>
           </Route>
 
           <Route path="/*" element={<Navigate to="" />} />

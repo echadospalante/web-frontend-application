@@ -17,7 +17,7 @@ import RecommendedInfo from "../../../../components/card/RecommendedInfo";
 const CommercialInitialPage = () => {
   //meta title
   document.title =
-    "Saas Dashboard | Skote - Vite React Admin & Dashboard Template";
+    "Saas Dashboard | Echadospa'lante - Vite React Admin & Dashboard Template";
 
   return (
     <React.Fragment>

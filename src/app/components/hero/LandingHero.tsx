@@ -20,11 +20,11 @@ const LandingHero = () => {
             <Col lg="5">
               <div className="text-white-50">
                 <h1 className="text-white fw-semibold mb-3 hero-title">
-                  Skote - Ico Landing for a cryptocurrency business
+                  Echados pa'lante
                 </h1>
                 <p className="font-size-14">
-                  It will be as simple as occidental in fact to an English
-                  person, it will seem like simplified as a skeptical Cambridge
+                  El lugar en donde emprendedores y empresas se encuentran para
+                  hacer grandes negocios.
                 </p>
 
                 <div className="d-flex flex-wrap gap-2 mt-4">
@@ -40,7 +40,10 @@ const LandingHero = () => {
             <Col lg="5" md="8" sm="10" className="ms-lg-auto">
               <Card className="overflow-hidden mb-0 mt-5 mt-lg-0">
                 <CardHeader className="text-center">
-                  <h5 className="mb-0">ICO Countdown time</h5>
+                  <h5 className="mb-0">
+                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    Cumque, at.
+                  </h5>
                 </CardHeader>
                 <CardBody>
                   <div className="text-center">
@@ -58,9 +61,13 @@ const LandingHero = () => {
                     </div>
 
                     <div className="mt-5">
-                      <h4 className="font-weight-semibold">1 ETH = 2235 SKT</h4>
+                      <h4 className="font-weight-semibold">
+                        Lorem ipsum dolor sit amet
+                      </h4>
                       <div className="clearfix mt-4">
-                        <h5 className="float-end font-size-14">5234.43</h5>
+                        <h5 className="float-end font-size-14">
+                          Lorem, ipsum.
+                        </h5>
                       </div>
                       <div className="progress p-1 progress-xl softcap-progress">
                         <div

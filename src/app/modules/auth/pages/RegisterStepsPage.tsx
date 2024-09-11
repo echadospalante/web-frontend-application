@@ -28,7 +28,7 @@ import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
 const RegisterStepsPage = () => {
   //meta title
   document.title =
-    "KYC Application | Skote - Vite React Admin & Dashboard Template";
+    "KYC Application | Echadospa'lante - Vite React Admin & Dashboard Template";
 
   const [modal, setModal] = useState(false);
   const [activeTab, setActiveTab] = useState(1);

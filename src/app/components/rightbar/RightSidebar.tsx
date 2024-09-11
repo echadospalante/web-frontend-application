@@ -694,7 +694,7 @@ const RightSidebar = () => {
 
               <div className="mb-2">
                 <Link
-                  to="//skote-v-light.react.themesbrand.com"
+                  to="//Echadospa'lante-v-light.react.themesbrand.com"
                   target="_blank"
                 >
                   <img
@@ -706,7 +706,10 @@ const RightSidebar = () => {
               </div>
 
               <div className="mb-2">
-                <Link to="//skote-v-dark.react.themesbrand.com" target="_blank">
+                <Link
+                  to="//Echadospa'lante-v-dark.react.themesbrand.com"
+                  target="_blank"
+                >
                   <img
                     src="/images/layouts/layout-2.jpg"
                     className="img-fluid img-thumbnail"
@@ -716,7 +719,10 @@ const RightSidebar = () => {
               </div>
 
               <div className="mb-2">
-                <Link to="//skote-v-rtl.react.themesbrand.com" target="_blank">
+                <Link
+                  to="//Echadospa'lante-v-rtl.react.themesbrand.com"
+                  target="_blank"
+                >
                   <img
                     src="/images/layouts/layout-3.jpg"
                     className="img-fluid img-thumbnail"
@@ -726,7 +732,7 @@ const RightSidebar = () => {
               </div>
 
               <Link
-                to="//1.envato.market/skotereact"
+                to="//1.envato.market/Echadospa'lantereact"
                 className="btn btn-primary btn-block mt-3"
                 target="_blank"
               >

@@ -74,11 +74,6 @@ const LandingNavbar = () => {
             <NavLink to="#team">Team</NavLink>
           </li>
           <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-            <NavLink to="/declaracion-interes">
-              Manifestación de Interés
-            </NavLink>
-          </li>
-          <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
             <NavLink to="#faqs">FAQs</NavLink>
           </li>
         </ul>

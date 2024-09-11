@@ -8,12 +8,16 @@ class AuthenticationApi {
 
   public static loginUser(oauth2Token: string): Promise<LoginResponse> {
     return axios
-      .get<LoginResponse>(`${this.BASE_URL}/login`, {
-        headers: {
-          withCredentials: true,
-          Authorization: `Bearer ${oauth2Token}`,
-        },
-      })
+      .post<LoginResponse>(
+        `${this.BASE_URL}/login`,
+        {},
+        {
+          headers: {
+            withCredentials: true,
+            authorization: `Bearer ${oauth2Token}`,
+          },
+        }
+      )
       .then(({ data }) => data);
   }
 

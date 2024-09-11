@@ -38,7 +38,7 @@ const recentAddedJobsData = [
   {
     logo: "/images/logos/7s-logo-small.png",
     jobTitle: "NodeJs Developer",
-    company: "Skote Themes, Louisiana",
+    company: "Echadospa'lante Themes, Louisiana",
     postedTime: "2",
     postedText: "hrs ago",
   },
@@ -52,7 +52,7 @@ const recentAddedJobsData = [
   {
     logo: "/images/logos/7s-logo-small.png",
     jobTitle: "Marketing Director",
-    company: "Skote Technology, Dominica",
+    company: "Echadospa'lante Technology, Dominica",
     postedTime: "1",
     postedText: "days ago",
   },

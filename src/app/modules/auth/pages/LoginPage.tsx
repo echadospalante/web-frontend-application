@@ -11,7 +11,8 @@ const LoginPage = () => {
   const { loginUser } = useLogin();
 
   //meta title
-  document.title = "Login 2 | Skote - Vite React Admin & Dashboard Template";
+  document.title =
+    "Login 2 | Echadospa'lante - Vite React Admin & Dashboard Template";
 
   // Form validation
 
@@ -57,6 +58,7 @@ const LoginPage = () => {
                     <GoogleLogin
                       onSuccess={(credentialResponse) => {
                         if (!credentialResponse.credential) return;
+                        console.log({ TOKEN: credentialResponse.credential });
                         loginUser(credentialResponse.credential);
                       }}
                       onError={() => {
