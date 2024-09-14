@@ -796,7 +796,7 @@ const Navbar = ({ leftMenuOpen, menuOpen }: HorizontalLayoutNavbarProps) => {
                           {t("Login")}
                         </Link>
                         <Link to="#" className="dropdown-item">
-                          {t("Login 2")}
+                          {t("Login")}
                         </Link>
                         <Link to="#" className="dropdown-item">
                           {t("Register")}

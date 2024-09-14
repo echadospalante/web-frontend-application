@@ -12,7 +12,7 @@ const LoginPage = () => {
 
   //meta title
   document.title =
-    "Login 2 | Echadospa'lante - Vite React Admin & Dashboard Template";
+    "Login | Echadospa'lante - Vite React Admin & Dashboard Template";
 
   // Form validation
 
