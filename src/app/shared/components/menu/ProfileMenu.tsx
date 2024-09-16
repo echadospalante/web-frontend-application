@@ -42,12 +42,11 @@ export const ProfileMenu = () => {
         >
           <img
             className="rounded-circle header-profile-user"
-            src={auth.picture}
+            src={auth.picture || ""}
             alt="Profile picture"
           />
           <span className="d-none d-xl-inline-block ms-2 me-1">
-            {/* {email?.split("@")[0]} */}
-            echadospalante
+            {auth.email?.split("@")[0]}
           </span>
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
         </DropdownToggle>

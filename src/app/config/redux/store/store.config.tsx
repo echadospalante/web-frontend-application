@@ -9,12 +9,14 @@ import quotesReducer, { QuotesState } from "../reducers/quotes.reducer";
 import userInterfaceReducer, {
   UserInterfaceState,
 } from "../reducers/user-interface.reducer";
+import registerReducer, { RegisterState } from "../reducers/register.reducer";
 
 export interface GlobalState {
   authentication: AuthenticationState;
   userInterface: UserInterfaceState;
   maps: QuotesState;
   layout: LayoutState;
+  register: RegisterState;
 }
 
 const reducer = combineReducers({
@@ -22,6 +24,7 @@ const reducer = combineReducers({
   userInterface: userInterfaceReducer,
   layout: layoutReducer,
   quotes: quotesReducer,
+  register: registerReducer,
 });
 
 const store = configureStore({

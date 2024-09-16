@@ -1,18 +1,14 @@
-import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../../config/redux/reducers/auth.reducer";
 import {
-  loginUser,
-  selectAuthentication,
-} from "../../../config/redux/reducers/auth.reducer";
+  setGlobalAlert,
+  SeverityLevel,
+} from "../../../config/redux/reducers/user-interface.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import {
   loginWithCredentialsMiddleware,
   refreshAuthOnReloadMiddleware,
 } from "../api/middleware/authentication.middleware";
-import { useNavigate } from "react-router-dom";
-import {
-  setGlobalAlert,
-  SeverityLevel,
-} from "../../../config/redux/reducers/user-interface.reducer";
 
 const useLogin = () => {
   const dispatch = useAppDispatch();

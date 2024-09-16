@@ -1,11 +1,24 @@
+import type { SVGProps } from "react";
 import { Fragment } from "react";
 
-import { Link } from "react-router-dom";
-import { Card, CardBody, Col, Container, Row } from "reactstrap";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
+import { useRegister, useRegisterPreferences } from "../hooks/useRegister";
 
 import UserPreferencesForm from "../../../shared/components/forms/UserPreferencesForm";
 
 const SelectPreferencesPage = () => {
+  const { preferencesIds } = useRegisterPreferences();
+  const { submitRegister } = useRegister();
+  const navigate = useNavigate();
+
+  const handleSendRegister = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    submitRegister().then(() => navigate("/registro/exito"));
+  };
+
   return (
     <Fragment>
       <div className="account-pages my-5 pt-sm-5">
@@ -39,7 +52,7 @@ const SelectPreferencesPage = () => {
 
                       <div className="p-2 mt-4">
                         <h4 className="text-center">
-                          A continuación, selecciona máximo 10 categorías de
+                          A continuación, selecciona entre 3 y 10 categorías de
                           emprendimientos que son de tu interés:
                         </h4>
 
@@ -52,13 +65,18 @@ const SelectPreferencesPage = () => {
                           >
                             Anterior
                           </Link>
-                          <Link
-                            to="/registro/exito"
+
+                          <Button
+                            disabled={
+                              preferencesIds.length < 3 ||
+                              preferencesIds.length > 10
+                            }
+                            onClick={handleSendRegister}
                             className="btn btn-success mx-1"
                           >
                             <i className="bx bx-rocket me-1"></i>
                             Finalizar
-                          </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -78,8 +96,6 @@ const SelectPreferencesPage = () => {
     </Fragment>
   );
 };
-
-import type { SVGProps } from "react";
 
 export function Preferences(props: SVGProps<SVGSVGElement>) {
   return (

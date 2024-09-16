@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { LoginResponse } from "../../domain/Login";
 import env from "../../../../../environment/environment";
+import { UserRegisterInfo } from "../../../../config/redux/reducers/register.reducer";
 
 class AuthenticationApi {
   private static readonly BASE_URL = `${env.API_URL}/api/v1/auth`;
@@ -25,6 +26,19 @@ class AuthenticationApi {
     return axios
       .get<LoginResponse>(`${this.BASE_URL}/refresh`, { withCredentials: true })
       .then(({ data }) => data);
+  }
+
+  static createUserRegister(userInfo: UserRegisterInfo) {
+    // return axios
+    //   .post<void>(`${this.BASE_URL}/register`, userInfo, {
+    //     withCredentials: true,
+    //   })
+    //   .then(({ data }) => data);
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    });
   }
 }
 

@@ -139,71 +139,48 @@ const AdminSidebarContent = () => {
             </Link>
 
             <li>
-              <Link to="/administracion/general/usuarios">
+              <Link to="/administracion/usuarios">
                 <i className="mdi mdi-account-group-outline"></i>
                 <span>{t("Users")}</span>
               </Link>
             </li>
 
-            <li>
-              <Link to="/administracion/general/cotizaciones">
-                <i className="bx bx-rocket"></i>
-                <span>{t("Quotes")}</span>
-              </Link>
-            </li>
+            <hr className="w-75 mx-auto" />
 
             <li>
-              <Link to="/administracion/general/reportes">
+              <Link to="/administracion/emprendimientos">
                 <i className="bx bx-bar-chart-square"></i>
-                <span>{t("Reports")}</span>
-              </Link>
-            </li>
-          </ul>
-
-          <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">Facturación</li>
-
-            <li>
-              <Link to="/administracion/facturacion/actual">
-                <i className="mdi mdi-tray-full"></i>
-                <span>{t("Current Month")}</span>
+                <span>Emprendimientos</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/administracion/facturacion/historico">
-                <i className="mdi mdi-file-cabinet"></i>
-                <span>{t("Historical")}</span>
-              </Link>
-            </li>
-          </ul>
-
-          <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">Configuraciones</li>
-
-            <li>
-              <Link to="/administracion/facturacion/actual">
-                <i className="mdi mdi-tray-full"></i>
-                <span>{t("Pricing")}</span>
+              <Link to="/administracion/eventos">
+                <i className="bx bx-bar-chart-square"></i>
+                <span>Eventos</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/administracion/facturacion/historico">
-                <i className="mdi mdi-file-cabinet"></i>
-
-                <span>{t("Rates And Limits")}</span>
+              <Link to="/administracion/publicaciones">
+                <i className="bx bx-bar-chart-square"></i>
+                <span>Publicaciones</span>
               </Link>
             </li>
-          </ul>
-
-          <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">Ayuda</li>
 
             <li>
-              <Link to="/administracion/ayuda/soporte">
-                <i className="bx bx-support"></i>
-                <span>{t("Support")}</span>
+              <Link to="/administracion/noticias">
+                <i className="bx bx-bar-chart-square"></i>
+                <span>Noticias</span>
+              </Link>
+            </li>
+
+            <hr className="w-75 mx-auto" />
+
+            <li>
+              <Link to="/administracion/metricas">
+                <i className="bx bx-bar-chart-square"></i>
+                <span>Métricas</span>
               </Link>
             </li>
           </ul>

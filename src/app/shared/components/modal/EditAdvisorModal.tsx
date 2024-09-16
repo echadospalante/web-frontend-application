@@ -14,7 +14,6 @@ import * as Yup from "yup";
 
 import { QuoteAdvisor } from "../../../modules/principal/commercial/domain/advisor";
 import useQuoteAdvisors from "../../../modules/principal/commercial/hooks/useQuoteAdvisors";
-import countryCodes from "../../data/geo/country-codes";
 
 type EditAdvisorModalProps = {
   show: boolean;
@@ -161,7 +160,7 @@ const EditAdvisorModal = ({
                       : false
                   }
                 >
-                  {countryCodes.map((country) => (
+                  {[{ code: "1", phoneCode: "57", name: "" }].map((country) => (
                     <option
                       key={country.code}
                       value={parseInt(country.phoneCode)}

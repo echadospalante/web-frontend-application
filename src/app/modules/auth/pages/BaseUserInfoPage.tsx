@@ -1,11 +1,15 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { SVGProps } from "react";
 import { Fragment } from "react";
 
-import { Link } from "react-router-dom";
-import { Card, CardBody, Col, Container, Row } from "reactstrap";
-import RegisterUserForm from "../../../shared/components/forms/RegisterUserForm";
+import { Link, useNavigate } from "react-router-dom";
+import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
+import UserRegisterForm from "../../../shared/components/forms/UserRegisterForm";
+import { useRegister } from "../hooks/useRegister";
 
 const BaseUserInfoPage = () => {
+  const { userInfo } = useRegister();
+  const navigate = useNavigate();
+
   return (
     <Fragment>
       <div className="account-pages my-5 pt-sm-5">
@@ -45,7 +49,7 @@ const BaseUserInfoPage = () => {
                         </h4>
 
                         <Row className="mt-4">
-                          <RegisterUserForm />
+                          <UserRegisterForm />
                         </Row>
 
                         <div className="mt-4 text-center">
@@ -55,12 +59,13 @@ const BaseUserInfoPage = () => {
                           >
                             Anterior
                           </Link>
-                          <Link
-                            to="/registro/preferencias"
+                          <Button
+                            disabled={!userInfo}
+                            onClick={() => navigate("/registro/preferencias")}
                             className="btn btn-success mx-1"
                           >
                             Siguiente
-                          </Link>
+                          </Button>
                         </div>
                       </div>
                     </div>
@@ -81,8 +86,6 @@ const BaseUserInfoPage = () => {
     </Fragment>
   );
 };
-
-import type { SVGProps } from "react";
 
 export function IdCard(props: SVGProps<SVGSVGElement>) {
   return (
