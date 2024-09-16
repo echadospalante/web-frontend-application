@@ -8,6 +8,7 @@ export enum AppRole {
 export interface Role {
   id: string;
   name: AppRole;
+  label: string;
   createdAt: Date;
   updatedAt: Date;
 }

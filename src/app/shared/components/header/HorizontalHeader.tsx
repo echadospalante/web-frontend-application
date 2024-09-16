@@ -10,6 +10,7 @@ import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
 import LanguageDropdown from "../dropdown/LanguageDropdown";
 import NotificationDropdown from "../dropdown/NotificationDropdown";
 import ProfileMenu from "../menu/ProfileMenu";
+import { AppRole } from "../../../modules/auth/domain/Role";
 
 type HeaderProps = {
   toggleLeftmenu: (arg0: boolean) => void;
@@ -197,19 +198,18 @@ const Header = (props: HeaderProps) => {
                   isDisabled={false}
                   value={{
                     label: activeRole?.label,
-                    value: activeRole?.value,
+                    value: activeRole?.name,
                   }}
                   isMulti={false}
                   isSearchable={false}
                   onChange={(selected) => {
                     if (!selected) return;
-                    setActiveRole();
+                    setActiveRole(selected.value);
                   }}
-                  options={[
-                    { label: "Administrador", value: Role.ROLE_ADMIN },
-                    { label: "Usuario", value: Role.ROLE_USER },
-                    { label: "Moderador", value: Role.ROLE_MODERATOR },
-                  ]}
+                  options={roles.map((role) => ({
+                    label: role.label,
+                    value: role.name,
+                  }))}
                 ></Select>
               </div>
             )}

@@ -139,7 +139,7 @@ const AdminSidebarContent = () => {
             </Link>
 
             <li>
-              <Link to="/administracion/usuarios">
+              <Link to="/administracion/general/usuarios">
                 <i className="mdi mdi-account-group-outline"></i>
                 <span>{t("Users")}</span>
               </Link>

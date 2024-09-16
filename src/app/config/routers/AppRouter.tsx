@@ -26,6 +26,8 @@ import PublicRoute from "./PublicRoute";
 import BaseUserInfoPage from "../../modules/auth/pages/BaseUserInfoPage";
 import CelebrationPage from "../../modules/auth/pages/CelebrationPage";
 import SelectPreferencesPage from "../../modules/auth/pages/SelectPreferencesPage";
+import AdminUsersPage from "../../modules/admin/general/pages/AdminUsersPage";
+import GeneralLayoutPage from "../../modules/admin/general/GeneralLayoutPage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -93,6 +95,15 @@ const AppRouter = () => {
                 path="alertas-notificaciones"
                 element={<PreferencesNotificationsPage />}
               />
+            </Route>
+          </Route>
+
+          <Route
+            path="administracion"
+            element={<PrivateRoute allRequiredRoles={[AppRole.ADMIN]} />}
+          >
+            <Route path="general" element={<GeneralLayoutPage />}>
+              <Route path="usuarios" element={<AdminUsersPage />} />
             </Route>
           </Route>
 
