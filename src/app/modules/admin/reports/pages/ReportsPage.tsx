@@ -3,8 +3,8 @@ import { Fragment } from "react";
 
 import { ToastContainer } from "react-toastify";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import AccountBillingTable from "../../../../components/table/AccountBillingTable";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import AccountBillingTable from "../../../../shared/components/table/AccountBillingTable";
 
 const ReportsPage = () => {
   document.title = "Reportes | Administración";

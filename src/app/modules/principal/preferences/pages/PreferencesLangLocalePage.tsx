@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import Select from "react-select";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 
 import counties from "./all";
 

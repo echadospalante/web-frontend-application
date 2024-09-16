@@ -8,8 +8,8 @@ import {
   changeTopBarTheme,
   selectLayout,
   toggleRightSidebar,
-} from "../../config/redux/reducers/layout.reducer";
-import { useAppDispatch } from "../../config/redux/store/store.config";
+} from "../../../config/redux/reducers/layout.reducer";
+import { useAppDispatch } from "../../../config/redux/store/store.config";
 import Footer from "../footer/HorizontalFooter";
 import HorizontalHeader from "../header/HorizontalHeader";
 import RightSidebar from "../rightbar/RightSidebar";

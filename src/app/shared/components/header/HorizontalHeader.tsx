@@ -6,11 +6,10 @@ import { useTranslation } from "react-i18next";
 import Select from "react-select";
 import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
 
+import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
 import LanguageDropdown from "../dropdown/LanguageDropdown";
 import NotificationDropdown from "../dropdown/NotificationDropdown";
 import ProfileMenu from "../menu/ProfileMenu";
-import useAuthentication from "../../modules/auth/hooks/useAuthentication";
-import { Role } from "../../modules/auth/domain/Role";
 
 type HeaderProps = {
   toggleLeftmenu: (arg0: boolean) => void;
@@ -24,7 +23,7 @@ const Header = (props: HeaderProps) => {
   const [isSearch, setSearch] = useState(false);
   const [socialDrp, setsocialDrp] = useState(false);
   const { t } = useTranslation();
-  const { activeRole, roles, setActiveRole } = useAuthentication();
+  const { activeRole, roles = [], setActiveRole } = useAuthentication();
 
   return (
     <React.Fragment>
@@ -204,10 +203,7 @@ const Header = (props: HeaderProps) => {
                   isSearchable={false}
                   onChange={(selected) => {
                     if (!selected) return;
-                    setActiveRole({
-                      label: selected.label,
-                      value: selected.value,
-                    });
+                    setActiveRole();
                   }}
                   options={[
                     { label: "Administrador", value: Role.ROLE_ADMIN },

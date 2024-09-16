@@ -8,9 +8,8 @@ import {
   DropdownMenu,
   DropdownToggle,
 } from "reactstrap";
-
-import i18n from "../../config/locales/i18n";
-import languages from "../../config/locales/languages";
+import i18n from "../../../config/locales/i18n";
+import languages from "../../../config/locales/languages";
 
 const LanguageDropdown = () => {
   // Declare a new state variable, which we'll call "menu"

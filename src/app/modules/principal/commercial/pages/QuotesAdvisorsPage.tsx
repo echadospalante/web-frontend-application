@@ -5,10 +5,10 @@ import { ToastContainer } from "react-toastify";
 
 import { TabContent, TabPane } from "reactstrap";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import CreateQuoteAdvisorForm from "../../../../components/forms/CreateQuoteAdvisorForm";
-import QuoteAdvisorsTable from "../../../../components/table/QuoteAdvisorsTable";
-import QuoteAdvisorsTabs from "../../../../components/tabs/QuoteAdvisorsTabs";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import CreateQuoteAdvisorForm from "../../../../shared/components/forms/CreateQuoteAdvisorForm";
+import QuoteAdvisorsTable from "../../../../shared/components/table/QuoteAdvisorsTable";
+import QuoteAdvisorsTabs from "../../../../shared/components/tabs/QuoteAdvisorsTabs";
 
 const QuoteAdvisorsPage = () => {
   document.title = "Lista de Asesores | echadospalante Admin";

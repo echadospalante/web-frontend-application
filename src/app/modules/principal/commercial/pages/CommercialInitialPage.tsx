@@ -2,17 +2,17 @@ import React from "react";
 
 import { Container, Row, Col } from "reactstrap";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import CardUser from "../../../../components/card/UserCard";
-import CardWelcome from "../../../../components/card/CardWelcome";
-import MiniWidget from "../../../../components/widgets/MiniWidget";
-import Earning from "../../../../components/graphics/Earning";
-import SalesAnalytics from "../../../../components/graphics/SalesAnalytics";
-import TotalSelling from "../../../../components/graphics/TotalSelling";
-import CompanySummary from "../../../../components/card/CompanySummary";
-import ActivityFeed from "../../../../components/card/ActivityFeed";
-import AddedJobs from "../../../../components/card/AdedJobs";
-import RecommendedInfo from "../../../../components/card/RecommendedInfo";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import CardUser from "../../../../shared/components/card/UserCard";
+import CardWelcome from "../../../../shared/components/card/CardWelcome";
+import MiniWidget from "../../../../shared/components/widgets/MiniWidget";
+import Earning from "../../../../shared/components/graphics/Earning";
+import SalesAnalytics from "../../../../shared/components/graphics/SalesAnalytics";
+import TotalSelling from "../../../../shared/components/graphics/TotalSelling";
+import CompanySummary from "../../../../shared/components/card/CompanySummary";
+import ActivityFeed from "../../../../shared/components/card/ActivityFeed";
+import AddedJobs from "../../../../shared/components/card/AdedJobs";
+import RecommendedInfo from "../../../../shared/components/card/RecommendedInfo";
 
 const CommercialInitialPage = () => {
   //meta title

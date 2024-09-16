@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import QuotesTable from "../../../../components/table/QuotesTable";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import QuotesTable from "../../../../shared/components/table/QuotesTable";
 
 const QuotesListPage = () => {
   document.title = "Listado de Cotizaciones | echadospalante Admin";

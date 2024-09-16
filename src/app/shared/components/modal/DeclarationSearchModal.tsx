@@ -13,9 +13,8 @@ import {
 } from "reactstrap";
 import * as Yup from "yup";
 
-import { useAppDispatch } from "../../config/redux/store/store.config";
-import { QuoteAreaCreate } from "../../modules/principal/commercial/domain/area";
-import useQuoteAreas from "../../modules/principal/commercial/hooks/useQuoteAreas";
+import { useAppDispatch } from "../../../config/redux/store/store.config";
+import { QuoteAreaCreate } from "../../../modules/principal/commercial/domain/area";
 
 type CreateDeclarationModal = {
   modal: boolean;

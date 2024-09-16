@@ -12,8 +12,8 @@ import {
   changeTopBarTheme,
   selectLayout,
   toggleRightSidebar,
-} from "../../config/redux/reducers/layout.reducer";
-import { useAppDispatch } from "../../config/redux/store/store.config";
+} from "../../../config/redux/reducers/layout.reducer";
+import { useAppDispatch } from "../../../config/redux/store/store.config";
 import RightSidebar from "../rightbar/RightSidebar";
 import Footer from "../footer/VerticalFooter";
 import Header from "../header/VerticalHeader";

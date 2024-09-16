@@ -1,48 +1,48 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 
 import { selectAuthentication } from "../redux/reducers/auth.reducer";
+import { AppRole, Role } from "../../modules/auth/domain/Role";
 
 export interface PrivateRouteProps {
-  allRequiredRoles?: string[];
-  anyRequiredRole?: string[];
+  allRequiredRoles?: AppRole[];
+  anyRequiredRole?: AppRole[];
 }
 
 const PrivateRoute = ({
   allRequiredRoles = [],
   anyRequiredRole = [],
 }: PrivateRouteProps): JSX.Element => {
-  const auth = useSelector(selectAuthentication);
+  const { roles = [], active } = useSelector(selectAuthentication);
+  console.log({ auth: useSelector(selectAuthentication) });
 
-  // if (!auth.active) return <Navigate to="/" />;
-
-  const { roles = [] } = auth;
+  if (!active) return <Navigate to="/" />;
 
   const verifyUserHasAllRoles = (
-    roles: string[],
+    roles: Role[],
     allRequiredRoles: string[]
   ): boolean => {
     return allRequiredRoles.every((requiredRole) =>
-      roles.some((role) => role === requiredRole)
+      roles.some((role) => role.name === requiredRole)
     );
   };
 
   const verifyUserHasAnyRole = (
-    roles: string[],
+    roles: Role[],
     anyRequiredRole: string[]
   ): boolean => {
     const result = anyRequiredRole.some((requiredRole) =>
-      roles.some((role) => role === requiredRole)
+      roles.some((role) => role.name === requiredRole)
     );
     return result;
   };
 
   const verifyAuthorization = (
-    roles: string[],
-    allRequiredRoles: string[],
-    anyRequiredRole: string[]
+    roles: Role[],
+    allRequiredRoles: AppRole[],
+    anyRequiredRole: AppRole[]
   ): boolean => {
     if (roles.length === 0) {
       return false;
@@ -69,7 +69,7 @@ const PrivateRoute = ({
   );
 
   if (!authorized) {
-    // return <Navigate to="/" />;
+    return <Navigate to="/" />;
   }
 
   return (

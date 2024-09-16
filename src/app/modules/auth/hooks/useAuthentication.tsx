@@ -1,35 +1,24 @@
-import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 
-import { Role, UserRole } from "../domain/Role";
+import {
+  changeActiveRole,
+  selectAuthentication,
+} from "../../../config/redux/reducers/auth.reducer";
+import { useAppDispatch } from "../../../config/redux/store/store.config";
+import { AppRole } from "../domain/Role";
 
 const useAuthentication = () => {
-  const [activeRole, setActiveRole] = React.useState<UserRole>();
-  const [roles] = React.useState<UserRole[]>([
-    { label: "Administrador", value: Role.ROLE_ADMIN },
-    { label: "Usuario", value: Role.ROLE_USER },
-    { label: "Moderador", value: Role.ROLE_MODERATOR },
-  ]);
+  const { activeRole, roles } = useSelector(selectAuthentication);
+  const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (window.location.pathname.includes("/administracion")) {
-      setActiveRole({
-        label: "Administrador",
-        value: Role.ROLE_ADMIN,
-      });
-    } else if (window.location.pathname.includes("/principal")) {
-      setActiveRole({
-        label: "Usuario",
-        value: Role.ROLE_USER,
-      });
-    } else if (window.location.pathname.includes("/moderacion")) {
-      setActiveRole({
-        label: "Moderador",
-        value: Role.ROLE_MODERATOR,
-      });
-    }
-  }, []);
+  const setActiveRole = (roleName: AppRole) => {
+    if (!roles) return;
+    const role = roles.find(({ name }) => name === roleName);
+    if (!role) return;
+    dispatch(changeActiveRole(role));
+  };
 
-  return { activeRole, roles, setActiveRole };
+  return { activeRole, setActiveRole, roles };
 };
 
 export default useAuthentication;

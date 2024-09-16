@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import SimpleBar from "simplebar-react";
 
-const PrincipalSidebarContent = () => {
+const UserSidebarContent = () => {
   const { t } = useTranslation();
   const ref = useRef(null);
 
@@ -262,4 +262,4 @@ const PrincipalSidebarContent = () => {
   );
 };
 
-export default PrincipalSidebarContent;
+export default UserSidebarContent;

@@ -15,7 +15,7 @@ import {
   UncontrolledAlert,
 } from "reactstrap";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 
 const PreferencesNotificationsPage = () => {
   document.title = "Idioma y Localización | Preferencias";

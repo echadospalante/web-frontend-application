@@ -2,14 +2,15 @@ import React, { useEffect } from "react";
 
 import { Action } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+
 import { Toast, ToastBody, ToastHeader } from "reactstrap";
 
 import {
   SeverityLevel,
   removeGlobalAlert,
   selectUserInterface,
-} from "../../config/redux/reducers/user-interface.reducer";
-import { useAppDispatch } from "../../config/redux/store/store.config";
+} from "../../../config/redux/reducers/user-interface.reducer";
+import { useAppDispatch } from "../../../config/redux/store/store.config";
 
 export interface SnackbarAlertProps {
   message: string;

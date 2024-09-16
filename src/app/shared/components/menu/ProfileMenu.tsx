@@ -3,20 +3,20 @@ import React, { useState } from "react";
 import { googleLogout } from "@react-oauth/google";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 
 import {
   logoutUser,
   selectAuthentication,
-} from "../../config/redux/reducers/auth.reducer";
-import { useAppDispatch } from "../../config/redux/store/store.config";
-import { useNavigate } from "react-router-dom";
+} from "../../../config/redux/reducers/auth.reducer";
+import { useAppDispatch } from "../../../config/redux/store/store.config";
 
 export const ProfileMenu = () => {
   const { t } = useTranslation();
   const [menu, setMenu] = useState(false);
   const dispatch = useAppDispatch();
-  const { email, picture } = useSelector(selectAuthentication);
+  const auth = useSelector(selectAuthentication);
   const navigate = useNavigate();
 
   const handleLogout = (
@@ -42,8 +42,8 @@ export const ProfileMenu = () => {
         >
           <img
             className="rounded-circle header-profile-user"
-            src="/images/logos/7s-logo-small.png"
-            alt="Header Avatar"
+            src={auth.picture}
+            alt="Profile picture"
           />
           <span className="d-none d-xl-inline-block ms-2 me-1">
             {/* {email?.split("@")[0]} */}

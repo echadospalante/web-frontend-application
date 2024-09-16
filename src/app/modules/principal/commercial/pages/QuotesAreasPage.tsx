@@ -5,10 +5,10 @@ import { ToastContainer } from "react-toastify";
 
 import { TabContent, TabPane } from "reactstrap";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import CreateQuoteAreaForm from "../../../../components/forms/CreateQuoteAreaForm";
-import QuoteAreasTable from "../../../../components/table/QuoteAreasTable";
-import QuoteAreasTabs from "../../../../components/tabs/QuoteAreasTabs";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import CreateQuoteAreaForm from "../../../../shared/components/forms/CreateQuoteAreaForm";
+import QuoteAreasTable from "../../../../shared/components/table/QuoteAreasTable";
+import QuoteAreasTabs from "../../../../shared/components/tabs/QuoteAreasTabs";
 
 const QuoteAreasPage = () => {
   document.title = "Áreas | Comercial";

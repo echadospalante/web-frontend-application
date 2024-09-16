@@ -1,3 +1,4 @@
+import { useFormik } from "formik";
 import {
   Col,
   Form,
@@ -9,11 +10,11 @@ import {
   ModalHeader,
   Row,
 } from "reactstrap";
-import { QuoteAdvisor } from "../../modules/principal/commercial/domain/advisor";
 import * as Yup from "yup";
-import { useFormik } from "formik";
+
+import { QuoteAdvisor } from "../../../modules/principal/commercial/domain/advisor";
+import useQuoteAdvisors from "../../../modules/principal/commercial/hooks/useQuoteAdvisors";
 import countryCodes from "../../data/geo/country-codes";
-import useQuoteAdvisors from "../../modules/principal/commercial/hooks/useQuoteAdvisors";
 
 type EditAdvisorModalProps = {
   show: boolean;

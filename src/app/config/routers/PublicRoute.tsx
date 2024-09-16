@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { Fragment, ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
@@ -13,13 +13,13 @@ const PublicRoute = (): JSX.Element => {
   const { id } = auth;
 
   if (id) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/principal" />;
   }
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Outlet />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

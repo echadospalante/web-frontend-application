@@ -4,10 +4,10 @@ import React, { Fragment, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { TabContent, TabPane } from "reactstrap";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import CreateAccountCollaboratorForm from "../../../../components/forms/CreateAccountCollaboratorForm";
-import AccountCollaboratorsTable from "../../../../components/table/AccountCollaboratorsTable";
-import AccountCollaboratorsTabs from "../../../../components/tabs/AccountCollaboratorsTabs";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import CreateAccountCollaboratorForm from "../../../../shared/components/forms/CreateAccountCollaboratorForm";
+import AccountCollaboratorsTable from "../../../../shared/components/table/AccountCollaboratorsTable";
+import AccountCollaboratorsTabs from "../../../../shared/components/tabs/AccountCollaboratorsTabs";
 
 const ReportDetailPage = () => {
   document.title = "Detalle de Reporte | Administración";

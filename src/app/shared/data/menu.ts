@@ -8,7 +8,7 @@ const menuItems = [
     id: "dashboard",
     label: "Dashboard",
     icon: "mdi-home-variant-outline",
-    link: "/dashboard",
+    link: "/principal",
     badge: 3,
     badgecolor: "bg-primary",
   },

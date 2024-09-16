@@ -43,9 +43,9 @@ import * as Yup from "yup";
 //redux
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import AppSpinner from "../../../../components/loader/Spinner";
-import DeleteModal from "../../../../components/modal/DeleteModal";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import AppSpinner from "../../../../shared/components/loader/Spinner";
+import DeleteModal from "../../../../shared/components/modal/DeleteModal";
 import { LocaleSingularArg } from "@fullcalendar/core/index.js";
 
 const QuotesCalenderPage = () => {

@@ -4,15 +4,15 @@ import React from "react";
 
 import { Col, Container, Row } from "reactstrap";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import ActivityFeed from "../../../../components/card/ActivityFeed";
-import AddedJobs from "../../../../components/card/AdedJobs";
-import CardWelcome from "../../../../components/card/CardWelcome";
-import CompanySummary from "../../../../components/card/CompanySummary";
-import Earning from "../../../../components/graphics/Earning";
-import SalesAnalytics from "../../../../components/graphics/SalesAnalytics";
-import TotalSelling from "../../../../components/graphics/TotalSelling";
-import MiniWidget from "../../../../components/widgets/MiniWidget";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import ActivityFeed from "../../../../shared/components/card/ActivityFeed";
+import AddedJobs from "../../../../shared/components/card/AdedJobs";
+import CardWelcome from "../../../../shared/components/card/CardWelcome";
+import CompanySummary from "../../../../shared/components/card/CompanySummary";
+import Earning from "../../../../shared/components/graphics/Earning";
+import SalesAnalytics from "../../../../shared/components/graphics/SalesAnalytics";
+import TotalSelling from "../../../../shared/components/graphics/TotalSelling";
+import MiniWidget from "../../../../shared/components/widgets/MiniWidget";
 
 const ActivityDashboardPage = () => {
   document.title = "Dashboard de Actividad | Administración";

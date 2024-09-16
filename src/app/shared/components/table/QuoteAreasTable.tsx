@@ -10,16 +10,23 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import Select from "react-select";
-import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
-
-import useQuoteAreas from "../../modules/principal/commercial/hooks/useQuoteAreas";
-import AppSpinner from "../loader/Spinner";
-import Pagination from "../pagination/Pagination";
-import { AreaSummary } from "../../modules/principal/commercial/domain/area";
 import {
-  getQuoteStateColor,
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Pagination,
+  Row,
+  Table,
+} from "reactstrap";
+
+import { AreaSummary } from "../../../modules/principal/commercial/domain/area";
+import {
   QuoteState,
-} from "../../modules/principal/commercial/domain/state";
+  getQuoteStateColor,
+} from "../../../modules/principal/commercial/domain/state";
+import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
+import AppSpinner from "../loader/Spinner";
 
 const QuoteAreasTable = () => {
   const [pagination, setPagination] = useState({

@@ -16,3 +16,18 @@
   position: absolute;
   font-size: 1.2rem;
 }
+
+.form__invalid-feedback {
+  color: white;
+  padding: 0px 5px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  left: 15px;
+}
+
+.characterization__card {
+  &:hover {
+    cursor: pointer;
+    background-color: #f9fbff;
+  }
+}

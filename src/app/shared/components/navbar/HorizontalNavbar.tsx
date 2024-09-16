@@ -124,7 +124,7 @@ const Navbar = ({ leftMenuOpen, menuOpen }: HorizontalLayoutNavbarProps) => {
                   <div
                     className={classname("dropdown-menu", { show: dashboard })}
                   >
-                    <Link to="/dashboard" className="dropdown-item">
+                    <Link to="/principal" className="dropdown-item">
                       {t("Default")}
                     </Link>
                     <Link to="#" className="dropdown-item">

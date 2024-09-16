@@ -13,7 +13,6 @@ const LandingNavbar = () => {
 
   const scrollNavigation = () => {
     const scrollUp = document.documentElement.scrollTop;
-    console.log({ scrollUp });
     if (scrollUp > 50) {
       setNavClass("sticky nav-sticky");
     } else {

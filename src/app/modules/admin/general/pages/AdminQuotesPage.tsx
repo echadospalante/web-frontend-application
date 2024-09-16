@@ -3,8 +3,8 @@ import { Fragment } from "react";
 
 import { ToastContainer } from "react-toastify";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import AdminQuotesTable from "../../../../components/table/AdminQuotesTable";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import AdminQuotesTable from "../../../../shared/components/table/AdminQuotesTable";
 
 const AdminQuotesPage = () => {
   document.title = "Gestión de Usuarios | Administración";

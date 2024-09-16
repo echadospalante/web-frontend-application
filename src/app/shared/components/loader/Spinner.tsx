@@ -1,12 +1,12 @@
-import React from "react";
+import { Fragment } from "react";
 
 import { Spinner } from "reactstrap";
 
 const AppSpinner = () => {
   return (
-    <React.Fragment>
+    <Fragment>
       <Spinner color="primary" className="position-absolute top-50 start-50" />
-    </React.Fragment>
+    </Fragment>
   );
 };
 

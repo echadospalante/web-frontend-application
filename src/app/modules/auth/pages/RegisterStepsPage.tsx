@@ -23,12 +23,11 @@ import {
   TabContent,
   TabPane,
 } from "reactstrap";
-import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
+import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
 
 const RegisterStepsPage = () => {
   //meta title
-  document.title =
-    "KYC Application | Echadospa'lante - Vite React Admin & Dashboard Template";
+  document.title = "KYC Application | Echadospa'lante";
 
   const [modal, setModal] = useState(false);
   const [activeTab, setActiveTab] = useState(1);
@@ -117,7 +116,6 @@ const RegisterStepsPage = () => {
                   </Row>
                 </div>
 
-                {/* modal */}
                 <Modal
                   isOpen={modal}
                   role="dialog"

@@ -12,12 +12,12 @@ import {
 import Select from "react-select";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import { AreaSummary } from "../../modules/principal/commercial/domain/area";
+import { AreaSummary } from "../../../modules/principal/commercial/domain/area";
 import {
-  getQuoteStateColor,
   QuoteState,
-} from "../../modules/principal/commercial/domain/state";
-import useQuoteAreas from "../../modules/principal/commercial/hooks/useQuoteAreas";
+  getQuoteStateColor,
+} from "../../../modules/principal/commercial/domain/state";
+import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
 import AppSpinner from "../loader/Spinner";
 import Pagination from "../pagination/Pagination";
 

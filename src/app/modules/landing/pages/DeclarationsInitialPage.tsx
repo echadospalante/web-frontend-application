@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
 
 //Dropzone
-import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
-import LandingNavbar from "../../../components/navbar/LandingNavbar";
-import DeclarationCreateModal from "../../../components/modal/DeclarationCreateModal";
-import DeclarationSearchModal from "../../../components/modal/DeclarationSearchModal";
+import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
+import LandingNavbar from "../../../shared/components/navbar/LandingNavbar";
+import DeclarationCreateModal from "../../../shared/components/modal/DeclarationCreateModal";
+import DeclarationSearchModal from "../../../shared/components/modal/DeclarationSearchModal";
 
 const DeclarationsInitialPage = () => {
   //meta title

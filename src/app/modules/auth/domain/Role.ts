@@ -1,10 +1,13 @@
-export enum Role {
-  ROLE_ADMIN = "ROLE_ADMIN",
-  ROLE_USER = "ROLE_USER",
-  ROLE_MODERATOR = "ROLE_MODERATOR",
+export enum AppRole {
+  ADMIN = "ADMIN",
+  USER = "USER",
+  MODERATOR = "MODERATOR",
+  NEWS_WRITER = "NEWS_WRITER",
 }
 
-export interface UserRole {
-  label: string;
-  value: Role;
+export interface Role {
+  id: string;
+  name: AppRole;
+  createdAt: Date;
+  updatedAt: Date;
 }

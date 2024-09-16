@@ -16,16 +16,13 @@ import {
   Card,
   CardBody,
   Col,
-  FormGroup,
-  Input,
-  Label,
   Row,
   Table,
   UncontrolledTooltip,
 } from "reactstrap";
 
 import { Link } from "react-router-dom";
-import useQuoteAreas from "../../modules/principal/commercial/hooks/useQuoteAreas";
+import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
 import AppSpinner from "../loader/Spinner";
 import EcommerceOrdersModal from "../modal/BillingDetailModal";
 import Pagination from "../pagination/Pagination";

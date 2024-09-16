@@ -16,7 +16,7 @@ import {
   UncontrolledAlert,
 } from "reactstrap";
 
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import { selectLayout } from "../../../../config/redux/reducers/layout.reducer";
 import {
   LayoutModeType,

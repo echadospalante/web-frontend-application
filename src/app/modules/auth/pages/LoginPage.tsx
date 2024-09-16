@@ -8,11 +8,10 @@ import useLogin from "../hooks/useLogin";
 // import images
 
 const LoginPage = () => {
-  const { loginUser } = useLogin();
+  const { loginWithCredentials } = useLogin();
 
   //meta title
-  document.title =
-    "Login | Echadospa'lante - Vite React Admin & Dashboard Template";
+  document.title = "Login | Echadospa'lante";
 
   // Form validation
 
@@ -59,7 +58,7 @@ const LoginPage = () => {
                       onSuccess={(credentialResponse) => {
                         if (!credentialResponse.credential) return;
                         console.log({ TOKEN: credentialResponse.credential });
-                        loginUser(credentialResponse.credential);
+                        loginWithCredentials(credentialResponse.credential);
                       }}
                       onError={() => {
                         console.log("Login Failed");

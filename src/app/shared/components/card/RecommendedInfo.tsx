@@ -18,7 +18,7 @@ import {
 } from "reactstrap";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "../../../../node_modules/swiper/swiper.scss";
+import "../../../../../node_modules/swiper/swiper.scss";
 
 const RecommendedInfo = () => {
   const [customActiveTab, setCustomActiveTab] = useState("1");

@@ -16,8 +16,8 @@ import {
   changeTopBarTheme,
   selectLayout,
   toggleRightSidebar,
-} from "../../config/redux/reducers/layout.reducer";
-import { useAppDispatch } from "../../config/redux/store/store.config";
+} from "../../../config/redux/reducers/layout.reducer";
+import { useAppDispatch } from "../../../config/redux/store/store.config";
 import {
   LayoutModeType,
   LayoutType,
@@ -26,7 +26,7 @@ import {
   LeftSideBarThemeType,
   LeftSidebarType,
   TopBarThemeType,
-} from "../../modules/common/domain/layout.interfaces";
+} from "../../../modules/common/domain/layout.interfaces";
 
 import "./rightbar.scss";
 

@@ -14,8 +14,8 @@ import {
   TabPane,
 } from "reactstrap";
 
-import Breadcrumb from "../../../components/breadcrumb/Breadcrumb";
-import LandingFooter from "../../../components/footer/LandingFooter";
+import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
+import LandingFooter from "../../../shared/components/footer/LandingFooter";
 
 const TermsAndConditionsPage = () => {
   document.title = "Terminos & Condiciones | Comercial";

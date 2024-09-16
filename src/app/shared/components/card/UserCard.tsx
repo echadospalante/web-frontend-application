@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -31,7 +32,10 @@ const CardUser = () => {
               <div className="flex-grow-1 align-self-center">
                 <div className="text-muted">
                   <p className="mb-3">Welcome to Echadospa'lante Dashboard</p>
-                  <h5 className="mb-2">Henry wells</h5>
+                  <h5 className="mb-2">
+                    Henry wells
+                    <Link to="/registro/bienvenida">Registro</Link>
+                  </h5>
                   <p className="mb-0">UI / UX Designer</p>
                 </div>
               </div>

@@ -2,8 +2,11 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import { LoginResponse } from "../../../modules/auth/domain/Login";
 import { RootState } from "../store/store.config";
+import { Role } from "../../../modules/auth/domain/Role";
 
-export interface AuthenticationState extends Partial<LoginResponse> {}
+export interface AuthenticationState extends Partial<LoginResponse> {
+  activeRole?: Role;
+}
 
 const initialState: AuthenticationState = {};
 
@@ -14,7 +17,17 @@ export const authenticationSlice = createSlice({
   initialState,
   reducers: {
     loginUser: (state, action: PayloadAction<LoginResponse>) => {
-      const { id, email, picture, firstName, lastName, roles } = action.payload;
+      const {
+        id,
+        email,
+        picture,
+        firstName,
+        lastName,
+        roles,
+        active,
+        createdAt,
+        onboardingCompleted,
+      } = action.payload;
 
       state.id = id;
       state.email = email;
@@ -22,14 +35,22 @@ export const authenticationSlice = createSlice({
       state.picture = picture;
       state.lastName = lastName;
       state.roles = roles;
+      state.active = active;
+      state.createdAt = createdAt;
+      state.onboardingCompleted = onboardingCompleted;
+      state.activeRole = roles[0];
     },
     logoutUser: () => {
       return initialState;
     },
+    changeActiveRole: (state, action: PayloadAction<Role>) => {
+      state.activeRole = action.payload;
+    },
   },
 });
 
-export const { loginUser, logoutUser } = authenticationSlice.actions;
+export const { loginUser, logoutUser, changeActiveRole } =
+  authenticationSlice.actions;
 
 export const selectAuthentication = (state: RootState) => state.authentication;
 

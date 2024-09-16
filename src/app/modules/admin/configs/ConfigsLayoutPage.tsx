@@ -4,8 +4,8 @@ import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { Container } from "reactstrap";
 
-import HorizontalLayout from "../../../components/layout/HorizontalLayout";
-import VerticalLayout from "../../../components/layout/VerticalLayout";
+import HorizontalLayout from "../../../shared/components/layout/HorizontalLayout";
+import VerticalLayout from "../../../shared/components/layout/VerticalLayout";
 import { selectLayout } from "../../../config/redux/reducers/layout.reducer";
 import { LayoutType } from "../../common/domain/layout.interfaces";
 

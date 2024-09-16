@@ -2,10 +2,10 @@ import { Fragment, useState } from "react";
 
 import { TabContent, TabPane } from "reactstrap";
 
-import AgileQuotesBoard from "../../../../components/boards/QuotesBoard";
-import Breadcrumb from "../../../../components/breadcrumb/Breadcrumb";
-import QuotesTable from "../../../../components/table/QuotesTable";
-import QuotesTabs from "../../../../components/tabs/QuotesTabs";
+import AgileQuotesBoard from "../../../../shared/components/boards/QuotesBoard";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import QuotesTable from "../../../../shared/components/table/QuotesTable";
+import QuotesTabs from "../../../../shared/components/tabs/QuotesTabs";
 
 const CommercialQuotesPage = () => {
   document.title = "Cotizaciones | Comercial";

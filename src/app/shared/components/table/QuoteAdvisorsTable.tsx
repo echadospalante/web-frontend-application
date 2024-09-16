@@ -12,11 +12,11 @@ import {
 import Select from "react-select";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import useQuoteAdvisors from "../../modules/principal/commercial/hooks/useQuoteAdvisors";
+import { QuoteAdvisor } from "../../../modules/principal/commercial/domain/advisor";
+import useQuoteAdvisors from "../../../modules/principal/commercial/hooks/useQuoteAdvisors";
 import AppSpinner from "../loader/Spinner";
-import Pagination from "../pagination/Pagination";
 import EditAdvisorModal from "../modal/EditAdvisorModal";
-import { QuoteAdvisor } from "../../modules/principal/commercial/domain/advisor";
+import Pagination from "../pagination/Pagination";
 
 const QuoteAdvisorsTable = () => {
   const [pagination, setPagination] = useState({

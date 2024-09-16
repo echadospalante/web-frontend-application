@@ -3,29 +3,45 @@ import { Fragment } from "react";
 
 import { Link } from "react-router-dom";
 
-import PrincipalSidebarContent from "./PrincipalSidebarContent";
-import useAuthentication from "../../modules/auth/hooks/useAuthentication";
+import { AppRole } from "../../../modules/auth/domain/Role";
+import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
 import AdminSidebarContent from "./AdminSidebarContent";
-import { Role } from "../../modules/auth/domain/Role";
+import ModeratorSidebarContent from "./ModeratorSidebarContent";
+import NewsWriterSidebarContent from "./NewsWriterSidebarContent";
+import UserSidebarContent from "./PrincipalSidebarContent";
 
-// type SidebarProps = {
-//   theme: LeftSideBarThemeType;
-//   type: LeftSidebarType;
-//   isMobile: boolean;
-// };
+type SidebarContentProps = {
+  role?: AppRole;
+};
+
+const SidebarContent = ({ role }: SidebarContentProps) => {
+  switch (role) {
+    case AppRole.USER:
+      return <UserSidebarContent />;
+    case AppRole.ADMIN:
+      return <AdminSidebarContent />;
+    case AppRole.MODERATOR:
+      return <ModeratorSidebarContent />;
+    case AppRole.NEWS_WRITER:
+      return <NewsWriterSidebarContent />;
+    default:
+      return <></>;
+  }
+};
 
 const Sidebar = () => {
   const { activeRole } = useAuthentication();
+
   return (
     <Fragment>
       <div className="vertical-menu">
         <div className="navbar-brand-box">
           <Link to="/" className="logo logo-dark">
             <span className="logo-sm">
-              <img src="/images/logos/logo-dark.svg" alt="" height="45" />
+              <img src="/epl2.jpeg" alt="" height="45" />
             </span>
             <span className="logo-lg">
-              <img src="/images/logos/logo-dark.svg" alt="" height="45" />
+              <img src="/epl2.jpeg" alt="" height="45" />
             </span>
           </Link>
 
@@ -39,11 +55,7 @@ const Sidebar = () => {
           </Link>
         </div>
         <div data-simplebar className="h-100">
-          {activeRole?.value === Role.ROLE_USER && <PrincipalSidebarContent />}
-
-          {activeRole?.value === Role.ROLE_ADMIN && <AdminSidebarContent />}
-
-          {/* {activeRole === "ROLE_MODERATOR" && <ModeratorSidebarContent />} */}
+          <SidebarContent role={activeRole?.name} />
         </div>
 
         <div className="sidebar-background"></div>

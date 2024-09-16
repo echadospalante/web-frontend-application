@@ -9,7 +9,7 @@ import {
 } from "../../../../config/redux/reducers/user-interface.reducer";
 import AuthenticationApi from "../http/authentication.api";
 
-export const refreshAuthOnPageReloadMiddleware = () => {
+export const refreshAuthOnReloadMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {
     dispatch(
       startGlobalLoading({
@@ -44,13 +44,7 @@ export const loginWithCredentialsMiddleware = (oauth2Token: string) => {
       })
     );
     return AuthenticationApi.loginUser(oauth2Token)
-      .then((response) => {
-        dispatch(
-          loginUser({
-            ...response,
-          })
-        );
-      })
+      .then((response) => response)
       .catch((error) => {
         console.error(error);
         dispatch(
@@ -62,6 +56,7 @@ export const loginWithCredentialsMiddleware = (oauth2Token: string) => {
             severity: SeverityLevel.ERROR,
           })
         );
+        throw new Error("Error en login");
       })
       .finally(() => {
         dispatch(finishGlobalLoading());

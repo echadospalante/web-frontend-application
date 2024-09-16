@@ -17,13 +17,13 @@ import {
   Row,
 } from "reactstrap";
 import * as Yup from "yup";
-
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../config/redux/reducers/user-interface.reducer";
-import { useAppDispatch } from "../../config/redux/store/store.config";
-import useQuoteAreas from "../../modules/principal/commercial/hooks/useQuoteAreas";
+} from "../../../config/redux/reducers/user-interface.reducer";
+import { useAppDispatch } from "../../../config/redux/store/store.config";
+import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
+
 type CreateAccountCollaboratorFormProps = {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;
 };
