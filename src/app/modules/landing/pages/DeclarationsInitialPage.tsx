@@ -9,8 +9,7 @@ import DeclarationSearchModal from "../../../shared/components/modal/Declaration
 
 const DeclarationsInitialPage = () => {
   //meta title
-  document.title =
-    "KYC Application | Echadospa'lante - Vite React Admin & Dashboard Template";
+  document.title = "KYC Application | Echadospa'lante - ";
 
   const [activeModal, setActiveModal] = useState<"CREATE" | "SEARCH">();
 

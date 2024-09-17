@@ -29,7 +29,7 @@ const useLogin = () => {
         return navigate("/");
       }
       dispatch(loginUser(response));
-      return navigate("/principal");
+      return navigate("/principal/emprendimientos");
     });
   };
 

@@ -2,18 +2,30 @@ import { Fragment } from "react";
 
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
+import GeneralLayoutPage from "../../modules/admin/general/GeneralLayoutPage";
+import AdminEventsPage from "../../modules/admin/general/pages/AdminEventsPage";
+import AdminNewsPage from "../../modules/admin/general/pages/AdminNewsPage";
+import AdminPublicationsPage from "../../modules/admin/general/pages/AdminPublicationsPage";
+import AdminUsersPage from "../../modules/admin/general/pages/AdminUsersPage";
+import AdminVenturesPage from "../../modules/admin/general/pages/AdminVenturesPage";
+import ApplicationMetricsPage from "../../modules/admin/metrics/pages/ApplicationMetricsPage";
+import AvailabilityMetricsPage from "../../modules/admin/metrics/pages/AvailabilityMetricsPage";
+import ThroughputMetricsPage from "../../modules/admin/metrics/pages/ThroughputMetricsPage";
 import { AppRole } from "../../modules/auth/domain/Role";
+import BaseUserInfoPage from "../../modules/auth/pages/BaseUserInfoPage";
+import CelebrationPage from "../../modules/auth/pages/CelebrationPage";
 import LoginPage from "../../modules/auth/pages/LoginPage";
 import RegisterStepsPage from "../../modules/auth/pages/RegisterStepsPage";
+import SelectPreferencesPage from "../../modules/auth/pages/SelectPreferencesPage";
 import WelcomePage from "../../modules/auth/pages/WelcomePage";
 import LandingPage from "../../modules/landing/pages/LandingPage";
 import AccountLayoutPage from "../../modules/principal/account/AccountLayoutPage";
 import AccountBillingPage from "../../modules/principal/account/pages/AccountBillingPage";
 import AccountCollaboratorsPage from "../../modules/principal/account/pages/AccountCollaboratorsPage";
-import CommercialLayoutPage from "../../modules/principal/commercial/CommercialLayoutPage";
+import CommercialLayoutPage from "../../modules/principal/commercial/VenturesLayoutPage";
 import Commercial404Page from "../../modules/principal/commercial/pages/Commercial404Page";
-import CommercialInitialPage from "../../modules/principal/commercial/pages/CommercialInitialPage";
 import CommercialQuotesPage from "../../modules/principal/commercial/pages/CommercialQuotesPage";
+import PublicationsFeedPage from "../../modules/principal/commercial/pages/PublicationsFeedPage";
 import QuotesAdvisorsPage from "../../modules/principal/commercial/pages/QuotesAdvisorsPage";
 import QuoteAreasPage from "../../modules/principal/commercial/pages/QuotesAreasPage";
 import QuotesCalenderPage from "../../modules/principal/commercial/pages/QuotesCalendarPage";
@@ -23,18 +35,6 @@ import PreferencesThemePage from "../../modules/principal/preferences/pages/Pref
 import PreferencesLayoutPage from "../../modules/principal/preferences/PreferencesLayoutPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import BaseUserInfoPage from "../../modules/auth/pages/BaseUserInfoPage";
-import CelebrationPage from "../../modules/auth/pages/CelebrationPage";
-import SelectPreferencesPage from "../../modules/auth/pages/SelectPreferencesPage";
-import AdminUsersPage from "../../modules/admin/general/pages/AdminUsersPage";
-import GeneralLayoutPage from "../../modules/admin/general/GeneralLayoutPage";
-import AdminVenturesPage from "../../modules/admin/general/pages/AdminVenturesPage";
-import AdminEventsPage from "../../modules/admin/general/pages/AdminEventsPage";
-import AdminPublicationsPage from "../../modules/admin/general/pages/AdminPublicationsPage";
-import AdminNewsPage from "../../modules/admin/general/pages/AdminNewsPage";
-import ApplicationMetricsPage from "../../modules/admin/metrics/pages/ApplicationMetricsPage";
-import ThroughputMetricsPage from "../../modules/admin/metrics/pages/ThroughputMetricsPage";
-import AvailabilityMetricsPage from "../../modules/admin/metrics/pages/AvailabilityMetricsPage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -72,10 +72,11 @@ const AppRouter = () => {
             path="principal"
             element={<PrivateRoute anyRequiredRole={[...ALL_ROLES]} />}
           >
-            <Route path="" element={<Navigate to="emprendimientos" />} />
+            <Route path="" index element={<PublicationsFeedPage />} />
 
             <Route path="emprendimientos" element={<CommercialLayoutPage />}>
-              <Route path="" element={<CommercialInitialPage />} />
+              <Route path="" element={<PublicationsFeedPage />} />
+              {/* <Route path="" element={<CommercialInitialPage />} /> */}
               <Route path="cotizaciones" element={<CommercialQuotesPage />} />
               <Route path="calendario" element={<QuotesCalenderPage />} />
               <Route path="asesores" element={<QuotesAdvisorsPage />} />

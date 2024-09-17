@@ -218,6 +218,13 @@ const UserSidebarContent = () => {
             </li>
 
             <li>
+              <Link to="/principal/cuenta/emprendimientos">
+                <i className="bx bx-health"></i>
+                <span>{t("My Ventures")}</span>
+              </Link>
+            </li>
+
+            <li>
               <Link to="/principal/cuenta/suscripciones">
                 <i className="bx bx-heart"></i>
                 <span>{t("My Donations")}</span>
