@@ -3,7 +3,7 @@ import axios from "axios";
 import env from "../../../../../../environment/environment";
 import { ApiResponse, PaginatedBody } from "../../domain/api";
 import { Quote } from "../../domain/quote";
-import { QuoteState } from "../../domain/state";
+import { VentureState } from "../../domain/state";
 
 export class QuotesApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/cotizaciones`;
@@ -80,7 +80,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -113,7 +113,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.NOT_COMPLETED,
+        //   state: VentureState.NOT_COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -146,7 +146,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.NOT_COMPLETED,
+        //   state: VentureState.NOT_COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -179,7 +179,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -212,7 +212,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -245,7 +245,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.COMPLETED,
+        //   state: VentureState.COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -278,7 +278,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -311,7 +311,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -344,7 +344,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.NOT_COMPLETED,
+        //   state: VentureState.NOT_COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -377,7 +377,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -410,7 +410,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.COMPLETED,
+        //   state: VentureState.COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -443,7 +443,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.COMPLETED,
+        //   state: VentureState.COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -476,7 +476,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -509,7 +509,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -542,7 +542,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.COMPLETED,
+        //   state: VentureState.COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -575,7 +575,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -608,7 +608,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -641,7 +641,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.COMPLETED,
+        //   state: VentureState.COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -674,7 +674,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.NOT_COMPLETED,
+        //   state: VentureState.NOT_COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -707,7 +707,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -740,7 +740,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.COMPLETED,
+        //   state: VentureState.COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -773,7 +773,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -806,7 +806,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -839,7 +839,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.NOT_COMPLETED,
+        //   state: VentureState.NOT_COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -872,7 +872,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.COMPLETED,
+        //   state: VentureState.COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -905,7 +905,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -938,7 +938,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -971,7 +971,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.NOT_COMPLETED,
+        //   state: VentureState.NOT_COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1004,7 +1004,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1037,7 +1037,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1070,7 +1070,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1103,7 +1103,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.NOT_COMPLETED,
+        //   state: VentureState.NOT_COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1136,7 +1136,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1169,7 +1169,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1202,7 +1202,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1235,7 +1235,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1268,7 +1268,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.ACTIVE,
+        //   state: VentureState.ACTIVE,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1301,7 +1301,7 @@ export class QuotesApi {
         //     lastName: "Doe",
         //     createdAt: new Date(),
         //   },
-        //   state: QuoteState.NOT_COMPLETED,
+        //   state: VentureState.NOT_COMPLETED,
         //   client: {
         //     id: 1,
         //     firstName: "John",
@@ -1353,7 +1353,7 @@ export class QuotesApi {
         lastName: "Doe",
         createdAt: new Date(),
       },
-      state: QuoteState.COMPLETED,
+      state: VentureState.COMPLETED,
       client: {
         id: 1,
         firstName: "John",

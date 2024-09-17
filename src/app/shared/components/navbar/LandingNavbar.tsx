@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+
+import { Link } from "react-router-dom";
 import { Container } from "reactstrap";
+import LanguageDropdown from "../dropdown/LanguageDropdown";
+import { useTranslation } from "react-i18next";
 
 const LandingNavbar = () => {
   const [navClass, setNavClass] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     window.addEventListener("scroll", scrollNavigation, true);
@@ -13,6 +17,7 @@ const LandingNavbar = () => {
 
   const scrollNavigation = () => {
     const scrollUp = document.documentElement.scrollTop;
+    console.log({ scrollUp });
     if (scrollUp > 50) {
       setNavClass("sticky nav-sticky");
     } else {
@@ -40,50 +45,58 @@ const LandingNavbar = () => {
       id="navbar"
     >
       {/* <div className="navbar navbar-expand-lg navigation fixed-top sticky"> */}
-      <Container className="d-flex justify-content-between align-items-center px-5">
+      <Container
+        fluid
+        className="d-flex justify-content-between align-items-center px-3"
+      >
         <Link className="navbar-logo" to="/">
           <img
-            src="/images/logos/7s-logo-small.png"
+            src="icono-grande.png"
             alt=""
-            height="40"
-            className="logo logo-dark rounded-2"
+            height="50"
+            className="logo logo-dark rounded-3"
           />
           <img
-            src="/images/logos/7s-logo-small.png"
+            src="icono-grande.png"
             alt=""
-            height="40"
-            className="logo logo-light rounded-2"
+            height="50"
+            className="logo logo-light rounded-3"
           />
         </Link>
 
-        <ul className="d-flex flex-row align-items-center justify-content-center  w-100  px-2 mt-3 list-unstyled">
-          <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-            <NavLink to="#home">Home</NavLink>
-          </li>
-          <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-            <NavLink to="#about">About</NavLink>
-          </li>
-          <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-            <NavLink to="#features">Features</NavLink>
-          </li>
-          <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-            <NavLink to="#roadmap">Roadmap</NavLink>
-          </li>
-          <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-            <NavLink to="#team">Team</NavLink>
-          </li>
-          <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-            <NavLink to="#faqs">FAQs</NavLink>
-          </li>
-        </ul>
+        <div className="d-lg-block d-none fw-medium">
+          <ul className="d-flex flex-row align-items-center justify-content-center w-100 px-2 mt-3 list-unstyled">
+            <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
+              <a href="#">{t("Principal")}</a>
+            </li>
+            <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
+              <a href="#nosotros">{t("About Us")}</a>
+            </li>
+            <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
+              <a href="#caracteristicas">{t("Features")}</a>
+            </li>
+            <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
+              <a href="#precios">{t("Success Cases")}</a>
+            </li>
+            <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
+              <a href="#faqs">{t("FAQs")}</a>
+            </li>
+          </ul>
+        </div>
 
-        <div className="my-2 ms-lg-2">
-          <Link
-            to="/autenticacion/ingresa"
-            className="btn btn-outline-success w-xs"
-          >
-            Ingresar
-          </Link>
+        <div className="d-flex align-items-center position-relative">
+          <div className="position-absolute" style={{ left: "-50px" }}>
+            <LanguageDropdown />
+          </div>
+
+          <div>
+            <Link
+              to="/autenticacion/ingresar"
+              className="btn btn-outline-success w-xs"
+            >
+              Ingresar
+            </Link>
+          </div>
         </div>
       </Container>
     </nav>
@@ -123,20 +136,20 @@ const LandingNavbar = () => {
 //         id="navbar"
 //       >
 //         <Container>
-//           <Link className="navbar-logo" to="/">
+//           <a className="navbar-logo" to="/">
 //             <img
-//               src="/images/logos/7s-logo-small.png"
+//               src="/epl.png"
 //               alt=""
 //               height="40"
 //               className="logo logo-dark"
 //             />
 //             <img
-//               src="/images/logos/7s-logo-small.png"
+//               src="/epl.png"
 //               alt=""
 //               height="40"
 //               className="logo logo-light"
 //             />
-//           </Link>
+//           </a>
 
 //           <NavbarToggler
 //             className="btn btn-sm px-3 font-size-16 d-lg-none header-item waves-effect waves-light"
@@ -153,31 +166,31 @@ const LandingNavbar = () => {
 
 //           <div>
 //             {/* <span className="nav-item">
-//               <NavLink to="#home">Home</NavLink>
+//               <a href="#home">Home</a>
 //             </span>
 //             <span className="nav-item">
-//               <NavLink to="#about">About</NavLink>
+//               <a href="#about">About</a>
 //             </span>
 //             <span className="nav-item">
-//               <NavLink to="#features">Features</NavLink>
+//               <a href="#features">Features</a>
 //             </span>
 //             <span className="nav-item">
-//               <NavLink to="#roadmap">Roadmap</NavLink>
+//               <a href="#roadmap">Roadmap</a>
 //             </span>
 //             <span className="nav-item">
-//               <NavLink to="#team">Team</NavLink>
+//               <a href="#team">Team</a>
 //             </span>
 //             <span className="nav-item">
-//               <NavLink to="#news">News</NavLink>
+//               <a href="#news">News</a>
 //             </span> */}
 //             {/* <span className="nav-item">
-//               <NavLink to="#faqs">FAQs</NavLink>
+//               <a href="#faqs">FAQs</a>
 //             </span> */}
 
 //             <div className="my-2 ms-lg-2">
-//               <Link to="#" className="btn btn-outline-success w-xs">
+//               <a href="#" className="btn btn-outline-success w-xs">
 //                 Sign in
-//               </Link>
+//               </a>
 //             </div>
 //           </div>
 //         </Container>

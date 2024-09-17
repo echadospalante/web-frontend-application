@@ -170,11 +170,7 @@ const TermsAndConditionsPage = () => {
               <Card>
                 <CardBody className="border-bottom">
                   <div className="d-flex">
-                    <img
-                      src="/images/logos/7s-logo-small.png"
-                      alt=""
-                      height="50"
-                    />
+                    <img src="/epl.png" alt="" height="50" />
                     <div className="flex-grow-1 ms-3">
                       <h5 className="fw-semibold">Magento Developer</h5>
                       <ul className="list-unstyled hstack gap-2 mb-0">

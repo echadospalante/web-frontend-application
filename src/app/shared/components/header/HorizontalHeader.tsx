@@ -52,92 +52,86 @@ const Header = (props: HeaderProps) => {
               toggle={() => setMenu(!menu)}
             >
               <DropdownToggle className="btn header-item " caret tag="button">
-                {t("Mega Menu")} <i className="mdi mdi-chevron-down" />
+                Enlaces Directos <i className="mdi mdi-chevron-down" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-megamenu">
                 <Row>
                   <Col sm={8}>
                     <Row>
                       <Col md={4}>
-                        <h5 className="font-size-14 mt-0">
-                          {t("UI Components")}
-                        </h5>
+                        <h5 className="font-size-14 mt-0">Prueba</h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Lightbox")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Range Slider")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Sweet Alert")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Rating")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Forms")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tables")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Charts")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                         </ul>
                       </Col>
 
                       <Col md={4}>
-                        <h5 className="font-size-14 mt-0">
-                          {t("Applications")}
-                        </h5>
+                        <h5 className="font-size-14 mt-0">Prueba</h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Ecommerce")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Calendar")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Email")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Projects")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tasks")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Contacts")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                         </ul>
                       </Col>
 
                       <Col md={4}>
-                        <h5 className="font-size-14 mt-0">
-                          {t("Extra Pages")}
-                        </h5>
+                        <h5 className="font-size-14 mt-0">Prueba</h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Light Sidebar")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Compact Sidebar")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Horizontal layout")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#"> {t("Maintenance")}</Link>
+                            <Link to="#"> Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Coming Soon")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Timeline")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("FAQs")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                         </ul>
                       </Col>
@@ -146,30 +140,28 @@ const Header = (props: HeaderProps) => {
                   <Col sm={4}>
                     <Row>
                       <Col sm={6}>
-                        <h5 className="font-size-14 mt-0">
-                          {t("UI Components")}
-                        </h5>
+                        <h5 className="font-size-14 mt-0">Prueba</h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Lightbox")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Range Slider")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Sweet Alert")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Rating")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Forms")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tables")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Charts")}</Link>
+                            <Link to="#">Prueba</Link>
                           </li>
                         </ul>
                       </Col>
@@ -177,7 +169,7 @@ const Header = (props: HeaderProps) => {
                       <Col sm={5}>
                         <div>
                           <img
-                            src="/images/logos/7s-logo-small.png"
+                            src="/epl.png"
                             alt=""
                             className="img-fluid mx-auto d-block"
                           />

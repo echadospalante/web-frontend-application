@@ -13,9 +13,9 @@ const LandingPage = () => {
     <Fragment>
       <LandingNavbar />
       <LandingHero />
-      <LandingCarousel />
+      {/*  <LandingCarousel />
       <LandingFeaturesHero />
-      <FAQs />
+      <FAQs /> */}
       <LandingFooter />
     </Fragment>
   );

@@ -29,12 +29,12 @@ const userSchema = Yup.object().shape({
 });
 
 export const useRegister = () => {
-  const { userInfo } = useSelector(selectRegister);
+  const { userInfo, preferencesIds = [] } = useSelector(selectRegister);
   const dispatch = useAppDispatch();
 
   const submitRegister = () => {
     if (!userInfo) return Promise.reject();
-    return dispatch(createUserRegisterMiddleware(userInfo));
+    return dispatch(createUserRegisterMiddleware(userInfo, preferencesIds));
   };
 
   return { userInfo, submitRegister };
@@ -44,7 +44,7 @@ export const useRegisterPreferences = () => {
   const dispatch = useAppDispatch();
   const { preferencesIds = [] } = useSelector(selectRegister);
 
-  const togglePreference = (preference: number) => {
+  const togglePreference = (preference: string) => {
     if (preferencesIds.length >= 10 && !preferencesIds.includes(preference)) {
       dispatch(
         setGlobalAlert({

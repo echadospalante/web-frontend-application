@@ -1,16 +1,16 @@
-export enum QuoteState {
+export enum VentureState {
   ACTIVE = "ACTIVA",
   COMPLETED = "TERMINADA",
   NOT_COMPLETED = "NO_TERMINADA",
 }
 
-export const getQuoteStateColor = (state: QuoteState) => {
+export const getVentureStateColor = (state: VentureState) => {
   switch (state) {
-    case QuoteState.ACTIVE:
+    case VentureState.ACTIVE:
       return "info";
-    case QuoteState.COMPLETED:
+    case VentureState.COMPLETED:
       return "success";
-    case QuoteState.NOT_COMPLETED:
+    case VentureState.NOT_COMPLETED:
       return "danger";
     default:
       return "primary";

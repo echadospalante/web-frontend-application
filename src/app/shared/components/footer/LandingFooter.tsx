@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
@@ -9,7 +10,7 @@ const FooterLink = () => {
       <Row>
         <Col lg="6">
           <div className="mb-4">
-            <img src="/images/logos/7s-logo-small.png" alt="" height="50" />
+            <img src="/epl.png" alt="" height="100" />
           </div>
 
           <p className="mb-2">
@@ -22,32 +23,33 @@ const FooterLink = () => {
 };
 
 const LandingFooter = () => {
+  const { t } = useTranslation();
   const footerLinks = [
     {
-      title: "Company",
+      title: "Seccion",
       links: [
-        { title: "About Us", to: "#" },
-        { title: "Features", to: "#" },
-        { title: "Team", to: "#" },
-        { title: "News", to: "#" },
-        { title: "FAQs", to: "#" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
       ],
     },
     {
-      title: "Resources",
+      title: "Seccion",
       links: [
-        { title: "Whitepaper", to: "#" },
-        { title: "Token sales", to: "#" },
-        { title: "Privacy Policy", to: "#" },
-        { title: "Terms & Conditions", to: "/terminos-condiciones" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
       ],
     },
     {
-      title: "Links",
+      title: "Seccion",
       links: [
-        { title: "Tokens", to: "#" },
-        { title: "Roadmap", to: "#" },
-        { title: "FAQs", to: "#" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
+        { title: "Link prueba", to: "#" },
       ],
     },
   ];
@@ -62,9 +64,9 @@ const LandingFooter = () => {
                 <div className="mb-4 mb-lg-0">
                   <h5 className="mb-3 footer-list-title">{footerLink.title}</h5>
                   <ul className="list-unstyled footer-list-menu">
-                    {footerLink.links.map((Flink, key) => (
+                    {footerLink.links.map((item, key) => (
                       <li key={key}>
-                        <Link to={Flink.to}>{Flink.title}</Link>
+                        <Link to={item.to}>{item.title}</Link>
                       </li>
                     ))}
                   </ul>
@@ -74,24 +76,24 @@ const LandingFooter = () => {
 
             <Col lg="3" sm="6">
               <div className="mb-4 mb-lg-0">
-                <h5 className="mb-3 footer-list-title">Latest News</h5>
+                <h5 className="mb-3 footer-list-title">{t("Latest News")}</h5>
                 <div className="blog-post">
                   <Link to="#" className="post">
                     <div className="badge badge-soft-success font-size-11 mb-3">
-                      Cryptocurrency
+                      Noticia 1
                     </div>
-                    <h5 className="post-title">Donec pede justo aliquet nec</h5>
+                    <h5 className="post-title">Descripción noticia 1</h5>
                     <p className="mb-0">
-                      <i className="bx bx-calendar me-1" /> 04 Mar, 2020
+                      <i className="bx bx-calendar me-1" /> 15 Sept, 2024
                     </p>
                   </Link>
                   <Link to="#" className="post">
                     <div className="badge badge-soft-success font-size-11 mb-3">
-                      Cryptocurrency
+                      Noticia 2
                     </div>
-                    <h5 className="post-title">In turpis, Pellentesque</h5>
+                    <h5 className="post-title">Descripción noticia 2</h5>
                     <p className="mb-0">
-                      <i className="bx bx-calendar me-1" /> 12 Mar, 2020
+                      <i className="bx bx-calendar me-1" /> 16 Sept, 2024
                     </p>
                   </Link>
                 </div>

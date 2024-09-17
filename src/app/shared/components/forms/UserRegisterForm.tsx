@@ -23,6 +23,8 @@ const UserRegisterForm = () => {
         }}
         className="contact-form needs-validation animate__animated animate__zoomIn"
       >
+        {JSON.stringify(form.values)}
+
         <Row className="gx-4">
           <Col md={6}>
             <Label htmlFor="validationTooltip01">Género *</Label>

@@ -97,22 +97,26 @@ const Earning = ({ dataColors }: any) => {
                       onChangeMonth(e.target.value);
                     }}
                   >
-                    <option value="jan">Jan</option>
-                    <option value="dec">Dec</option>
-                    <option value="nov">Nov</option>
-                    <option value="oct">Oct</option>
+                    <option value="jan">Ene</option>
+                    <option value="dec">Feb</option>
+                    <option value="nov">Mar</option>
+                    <option value="oct">Abr</option>
+                    <option value="oct">May</option>
+                    <option value="oct">Jun</option>
+                    <option value="oct">Jul</option>
+                    <option value="oct">Ago</option>
                   </select>
-                  <label className="input-group-text">Month</label>
+                  <label className="input-group-text">Mes</label>
                 </div>
               </div>
-              <h4 className="card-title mb-4">Earning</h4>
+              <h4 className="card-title mb-4">Test</h4>
             </div>
 
             <Row>
               <Col lg="4">
                 <div className="text-muted">
                   <div className="mb-4">
-                    <p>This month</p>
+                    <p>Test</p>
                     <h4>$2453.35</h4>
                     <div>
                       <span className="badge badge-soft-success font-size-12 me-1">
@@ -125,13 +129,13 @@ const Earning = ({ dataColors }: any) => {
 
                   <div>
                     <Link to="#" className="btn btn-primary  btn-sm">
-                      View Details{" "}
+                      Ver Detalle
                       <i className="mdi mdi-chevron-right ms-1"></i>
                     </Link>
                   </div>
 
                   <div className="mt-4">
-                    <p className="mb-2">Last month</p>
+                    <p className="mb-2">Test</p>
                     <h5>$2281.04</h5>
                   </div>
                 </div>

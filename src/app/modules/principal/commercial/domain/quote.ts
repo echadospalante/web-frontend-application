@@ -1,7 +1,7 @@
 import { QuoteAdvisor } from "./advisor";
 import { QuoteArea } from "./area";
 import { QuoteClient } from "./client";
-import { QuoteState } from "./state";
+import { VentureState } from "./state";
 
 export interface Quote {
   id: string;
@@ -12,5 +12,5 @@ export interface Quote {
   area: QuoteArea;
   advisor?: QuoteAdvisor;
   client?: QuoteClient;
-  state: QuoteState;
+  state: VentureState;
 }

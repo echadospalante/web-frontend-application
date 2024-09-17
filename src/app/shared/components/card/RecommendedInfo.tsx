@@ -32,7 +32,7 @@ const RecommendedInfo = () => {
   return (
     <Card>
       <CardBody>
-        <h4 className="card-title mb-2">Proveedores Recomendados por:</h4>
+        <h4 className="card-title mb-2">Emprendimientos Recomendados por:</h4>
 
         <Nav tabs className="nav-tabs-custom nav-justified">
           <NavItem>
@@ -61,7 +61,7 @@ const RecommendedInfo = () => {
               <span className="d-block d-sm-none">
                 <i className="far fa-user"></i>
               </span>
-              <span className="d-none d-sm-block">Experiencia</span>
+              <span className="d-none d-sm-block">Donaciones</span>
             </NavLink>
           </NavItem>
 
@@ -76,7 +76,7 @@ const RecommendedInfo = () => {
               <span className="d-block d-sm-none">
                 <i className="far fa-user"></i>
               </span>
-              <span className="d-none d-sm-block">Rendimiento</span>
+              <span className="d-none d-sm-block">Suscriptores</span>
             </NavLink>
           </NavItem>
         </Nav>
@@ -131,20 +131,17 @@ const SwiperComponent = () => {
         <SwiperSlide>
           <div className="carousel-item active" data-bs-interval="3000">
             <div className="bg-light p-3 d-flex mb-3 rounded">
-              <img
-                src="/images/logos/7s-logo-small.png"
-                alt=""
-                className="avatar-sm rounded me-3"
-              />
+              <img src="/epl.png" alt="" className="avatar-sm rounded me-3" />
               <div className="flex-grow-1">
                 <h5 className="font-size-15 mb-2">
                   <a href="candidate-overview" className="text-body">
-                    Stephen Hadley
+                    Luis Pérez
                   </a>{" "}
-                  <span className="badge badge-soft-info">Freelance</span>
+                  <span className="badge badge-soft-info">Mantenimiento</span>
                 </h5>
                 <p className="mb-0 text-muted">
-                  <i className="bx bx-map text-body align-middle"></i> Germany
+                  <i className="bx bx-map text-body align-middle"></i> El
+                  Retiro, Antioquia
                 </p>
               </div>
               <div>
@@ -159,11 +156,11 @@ const SwiperComponent = () => {
                   <DropdownMenu aria-labelledby="dropdownMenuButton11">
                     <li>
                       <DropdownItem href="candidate-overview">
-                        View Details
+                        Ver Detalles
                       </DropdownItem>
                     </li>
                     <li>
-                      <DropdownItem href="#">Download CV</DropdownItem>
+                      <DropdownItem href="#">Ver</DropdownItem>
                     </li>
                   </DropdownMenu>
                 </UncontrolledDropdown>
@@ -175,20 +172,17 @@ const SwiperComponent = () => {
         <SwiperSlide>
           <div className="carousel-item active" data-bs-interval="3000">
             <div className="bg-light p-3 d-flex mb-3 rounded">
-              <img
-                src="/images/logos/7s-logo-small.png"
-                alt=""
-                className="avatar-sm rounded me-3"
-              />
+              <img src="/epl.png" alt="" className="avatar-sm rounded me-3" />
               <div className="flex-grow-1">
                 <h5 className="font-size-15 mb-2">
                   <a href="candidate-overview" className="text-body">
-                    Adam Miller
+                    Laura Pérez
                   </a>{" "}
-                  <span className="badge badge-soft-warning">Internship</span>
+                  <span className="badge badge-soft-warning">Arte</span>
                 </h5>
                 <p className="mb-0 text-muted">
-                  <i className="bx bx-map text-body align-middle"></i> Australia
+                  <i className="bx bx-map text-body align-middle"></i> Rionegro,
+                  Antioquia
                 </p>
               </div>
               <div>
@@ -203,11 +197,11 @@ const SwiperComponent = () => {
                   <DropdownMenu aria-labelledby="dropdownMenuButton11">
                     <li>
                       <DropdownItem href="candidate-overview">
-                        View Details
+                        Ver detalles
                       </DropdownItem>
                     </li>
                     <li>
-                      <DropdownItem href="#">Download CV</DropdownItem>
+                      <DropdownItem href="#">Ver</DropdownItem>
                     </li>
                   </DropdownMenu>
                 </UncontrolledDropdown>
@@ -219,20 +213,17 @@ const SwiperComponent = () => {
         <SwiperSlide>
           <div className="carousel-item active" data-bs-interval="3000">
             <div className="bg-light p-3 d-flex mb-3 rounded">
-              <img
-                src="/images/logos/7s-logo-small.png"
-                alt=""
-                className="avatar-sm rounded me-3"
-              />
+              <img src="/epl.png" alt="" className="avatar-sm rounded me-3" />
               <div className="flex-grow-1">
                 <h5 className="font-size-15 mb-2">
                   <a href="candidate-overview" className="text-body">
-                    Bonnie Harney
+                    Pepito Pérez
                   </a>{" "}
-                  <span className="badge badge-soft-success">Full Timer</span>
+                  <span className="badge badge-soft-success">Turismo</span>
                 </h5>
                 <p className="mb-0 text-muted">
-                  <i className="bx bx-map text-body align-middle"></i> Syria
+                  <i className="bx bx-map text-body align-middle"></i> La Ceja,
+                  Antioquia
                 </p>
               </div>
               <div>
@@ -247,11 +238,11 @@ const SwiperComponent = () => {
                   <DropdownMenu aria-labelledby="dropdownMenuButton11">
                     <li>
                       <DropdownItem href="candidate-overview">
-                        View Details
+                        Ver detalle
                       </DropdownItem>
                     </li>
                     <li>
-                      <DropdownItem href="#">Download CV</DropdownItem>
+                      <DropdownItem href="#">Ver</DropdownItem>
                     </li>
                   </DropdownMenu>
                 </UncontrolledDropdown>

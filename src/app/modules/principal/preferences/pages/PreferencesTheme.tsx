@@ -467,7 +467,7 @@ const PreferencesThemePage = () => {
                         </Col>
                       </Row>
                     </div>
-                    <div className="radio-toolbar imgopt-radio">
+                    {/* <div className="radio-toolbar imgopt-radio">
                       <span className="mb-2 d-block" id="radio-bgimg">
                         Fondo de Pantalla de la Barra Lateral Izquierda
                       </span>
@@ -493,7 +493,7 @@ const PreferencesThemePage = () => {
                             width="70"
                             alt="sidebar bg image"
                             className="rounded"
-                            src="/images/logos/7s-logo-small.png"
+                            src="/epl.png"
                           />
                         </label>
 
@@ -518,7 +518,7 @@ const PreferencesThemePage = () => {
                             height="140"
                             width="70"
                             className="rounded"
-                            src="/images/logos/7s-logo-small.png"
+                            src="/epl.png"
                           />
                         </label>
 
@@ -543,7 +543,7 @@ const PreferencesThemePage = () => {
                             height="140"
                             width="70"
                             className="rounded"
-                            src="/images/logos/7s-logo-small.png"
+                            src="/epl.png"
                           />
                         </label>
                         {"   "}
@@ -567,7 +567,7 @@ const PreferencesThemePage = () => {
                             height="140"
                             width="70"
                             className="rounded"
-                            src="/images/logos/7s-logo-small.png"
+                            src="/epl.png"
                           />
                         </label>
                         {"   "}
@@ -595,7 +595,7 @@ const PreferencesThemePage = () => {
                         </label>
                         {"   "}
                       </div>
-                    </div>
+                    </div> */}
                     <hr className="mt-1" />
 
                     <div>

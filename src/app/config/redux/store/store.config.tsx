@@ -5,7 +5,7 @@ import authenticationReducer, {
   AuthenticationState,
 } from "../reducers/auth.reducer";
 import layoutReducer, { LayoutState } from "../reducers/layout.reducer";
-import quotesReducer, { QuotesState } from "../reducers/quotes.reducer";
+import venturesReducer, { VenturesState } from "../reducers/ventures.reducer";
 import userInterfaceReducer, {
   UserInterfaceState,
 } from "../reducers/user-interface.reducer";
@@ -14,7 +14,7 @@ import registerReducer, { RegisterState } from "../reducers/register.reducer";
 export interface GlobalState {
   authentication: AuthenticationState;
   userInterface: UserInterfaceState;
-  maps: QuotesState;
+  ventures: VenturesState;
   layout: LayoutState;
   register: RegisterState;
 }
@@ -23,7 +23,7 @@ const reducer = combineReducers({
   authentication: authenticationReducer,
   userInterface: userInterfaceReducer,
   layout: layoutReducer,
-  quotes: quotesReducer,
+  ventures: venturesReducer,
   register: registerReducer,
 });
 

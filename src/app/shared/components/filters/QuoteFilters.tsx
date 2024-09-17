@@ -8,7 +8,7 @@ import { Col, Row } from "reactstrap";
 import "flatpickr/dist/themes/material_blue.css";
 
 import { QuoteAdvisor } from "../../../modules/principal/commercial/domain/advisor";
-import { QuoteState } from "../../../modules/principal/commercial/domain/state";
+import { VentureState } from "../../../modules/principal/commercial/domain/state";
 import useQuoteAdvisors from "../../../modules/principal/commercial/hooks/useQuoteAdvisors";
 import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
 import useQuoteFilters from "../../../modules/principal/commercial/hooks/useQuoteFilters";
@@ -144,9 +144,9 @@ const QuotesFilter = () => {
         </label>
         <Select
           value={states.map((state) => ({
-            value: state as QuoteState,
-            label: QuoteState[
-              state.toString() as keyof typeof QuoteState
+            value: state as VentureState,
+            label: VentureState[
+              state.toString() as keyof typeof VentureState
             ].replace("_", " "),
           }))}
           isMulti={true}
@@ -157,12 +157,11 @@ const QuotesFilter = () => {
           options={[
             {
               options: [
-                ...Object.keys(QuoteState).map((state) => ({
-                  label: QuoteState[state as keyof typeof QuoteState].replace(
-                    "_",
-                    " "
-                  ),
-                  value: state as QuoteState,
+                ...Object.keys(VentureState).map((state) => ({
+                  label: VentureState[
+                    state as keyof typeof VentureState
+                  ].replace("_", " "),
+                  value: state as VentureState,
                 })),
               ],
             },

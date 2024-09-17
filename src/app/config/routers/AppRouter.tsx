@@ -28,6 +28,13 @@ import CelebrationPage from "../../modules/auth/pages/CelebrationPage";
 import SelectPreferencesPage from "../../modules/auth/pages/SelectPreferencesPage";
 import AdminUsersPage from "../../modules/admin/general/pages/AdminUsersPage";
 import GeneralLayoutPage from "../../modules/admin/general/GeneralLayoutPage";
+import AdminVenturesPage from "../../modules/admin/general/pages/AdminVenturesPage";
+import AdminEventsPage from "../../modules/admin/general/pages/AdminEventsPage";
+import AdminPublicationsPage from "../../modules/admin/general/pages/AdminPublicationsPage";
+import AdminNewsPage from "../../modules/admin/general/pages/AdminNewsPage";
+import ApplicationMetricsPage from "../../modules/admin/metrics/pages/ApplicationMetricsPage";
+import ThroughputMetricsPage from "../../modules/admin/metrics/pages/ThroughputMetricsPage";
+import AvailabilityMetricsPage from "../../modules/admin/metrics/pages/AvailabilityMetricsPage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -46,7 +53,7 @@ const AppRouter = () => {
           </Route>
 
           <Route path="autenticacion" element={<PublicRoute />}>
-            <Route path="ingresa" element={<LoginPage />} />
+            <Route path="ingresar" element={<LoginPage />} />
           </Route>
 
           <Route
@@ -103,7 +110,22 @@ const AppRouter = () => {
             element={<PrivateRoute allRequiredRoles={[AppRole.ADMIN]} />}
           >
             <Route path="general" element={<GeneralLayoutPage />}>
+              {/* <Route path="" element={<Navigate to="usuarios" />} /> */}
               <Route path="usuarios" element={<AdminUsersPage />} />
+              <Route path="emprendimientos" element={<AdminVenturesPage />} />
+              <Route path="eventos" element={<AdminEventsPage />} />
+              <Route path="publicaciones" element={<AdminPublicationsPage />} />
+              <Route path="noticias" element={<AdminNewsPage />} />
+            </Route>
+
+            <Route path="metricas" element={<GeneralLayoutPage />}>
+              <Route path="" element={<ApplicationMetricsPage />} />
+              <Route path="aplicacion" element={<ApplicationMetricsPage />} />
+              <Route path="rendimiento" element={<ThroughputMetricsPage />} />
+              <Route
+                path="disponibilidad"
+                element={<AvailabilityMetricsPage />}
+              />
             </Route>
           </Route>
 

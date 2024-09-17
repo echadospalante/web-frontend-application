@@ -9,16 +9,12 @@ class AuthenticationApi {
 
   public static loginUser(oauth2Token: string): Promise<LoginResponse> {
     return axios
-      .post<LoginResponse>(
-        `${this.BASE_URL}/login`,
-        {},
-        {
-          headers: {
-            withCredentials: true,
-            authorization: `Bearer ${oauth2Token}`,
-          },
-        }
-      )
+      .post<LoginResponse>(`${this.BASE_URL}/login`, undefined, {
+        withCredentials: true,
+        headers: {
+          authorization: `Bearer ${oauth2Token}`,
+        },
+      })
       .then(({ data }) => data);
   }
 
@@ -28,17 +24,18 @@ class AuthenticationApi {
       .then(({ data }) => data);
   }
 
-  static createUserRegister(userInfo: UserRegisterInfo) {
-    // return axios
-    //   .post<void>(`${this.BASE_URL}/register`, userInfo, {
-    //     withCredentials: true,
-    //   })
-    //   .then(({ data }) => data);
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        resolve();
-      }, 1000);
-    });
+  static createUserRegister(
+    userInfo: UserRegisterInfo,
+    preferences: string[]
+  ): Promise<void> {
+    const { gender, birthDate, municipalityId } = userInfo;
+    return axios
+      .post<void>(
+        `${this.BASE_URL}/register`,
+        { gender, birthDate, municipalityId, preferences },
+        { withCredentials: true }
+      )
+      .then(({ data }) => data);
   }
 }
 

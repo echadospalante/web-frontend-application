@@ -12,11 +12,9 @@ import {
 import Select from "react-select";
 import { Button, Card, CardBody, Col, Container, Row, Table } from "reactstrap";
 
-import { QuoteInclude } from "../../modules/principal/commercial/domain/filters";
-import { Quote } from "../../modules/principal/commercial/domain/quote";
 import {
-  getQuoteStateColor,
-  QuoteState,
+  getVentureStateColor,
+  VentureState,
 } from "../../modules/principal/commercial/domain/state";
 import useQuoteFilters from "../../modules/principal/commercial/hooks/useQuoteFilters";
 import useQuotes from "../../modules/principal/commercial/hooks/useQuotes";
@@ -334,9 +332,9 @@ const getColumns = (
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const state = cellProps.row.original.estado as QuoteState;
+        const state = cellProps.row.original.estado as VentureState;
         console.log({ cellProps });
-        const color = getQuoteStateColor(state);
+        const color = getVentureStateColor(state);
         return (
           <section>
             <span className={`badge bg-${color} rounded-pill p-2`}>

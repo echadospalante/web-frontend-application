@@ -12,7 +12,7 @@ export interface UserRegisterInfo {
 
 export interface RegisterState {
   userInfo?: UserRegisterInfo;
-  preferencesIds?: number[];
+  preferencesIds?: string[];
 }
 
 const initialState: RegisterState = {};
@@ -38,7 +38,7 @@ export const registerSlice = createSlice({
     resetUserInfo: (state) => {
       state.userInfo = undefined;
     },
-    setPreferencesIds: (state, action: PayloadAction<number[]>) => {
+    setPreferencesIds: (state, action: PayloadAction<string[]>) => {
       state.preferencesIds = action.payload;
     },
   },

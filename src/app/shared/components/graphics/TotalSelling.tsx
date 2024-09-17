@@ -42,19 +42,19 @@ const TotalSelling = (props: any) => {
   const [sellingData] = useState<any[]>([
     {
       id: 1,
-      name: "Product A",
+      name: "Test A",
       desc: "From previous period",
       value: 67,
     },
     {
       id: 2,
-      name: "Product B",
+      name: "Test B",
       desc: "From previous period",
       value: 84,
     },
     {
       id: 3,
-      name: "Product C",
+      name: "Test C",
       desc: "From previous period",
       value: 63,
     },
@@ -95,11 +95,11 @@ const TotalSelling = (props: any) => {
                   <label className="input-group-text">Month</label>
                 </div>
               </div>
-              <h4 className="card-title mb-4">Top Selling product</h4>
+              <h4 className="card-title mb-4">Test</h4>
             </div>
 
             <div className="text-muted text-center">
-              <p className="mb-2">Product A</p>
+              <p className="mb-2">Test A</p>
               <h4>$ 6385</h4>
               <p className="mt-4 mb-0">
                 <span className="badge badge-soft-success font-size-11 me-2">
@@ -135,7 +135,7 @@ const TotalSelling = (props: any) => {
                           </div>
                         </td>
                         <td>
-                          <p className="text-muted mb-1">Sales</p>
+                          <p className="text-muted mb-1">Test</p>
                           <h5 className="mb-0">{data.value} %</h5>
                         </td>
                       </tr>

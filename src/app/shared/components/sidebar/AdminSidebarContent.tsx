@@ -134,7 +134,7 @@ const AdminSidebarContent = () => {
       <SimpleBar className="h-100" ref={ref}>
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
-            <Link to="/administracion">
+            <Link to="/administracion/general">
               <li className="menu-title">General</li>
             </Link>
 
@@ -145,31 +145,29 @@ const AdminSidebarContent = () => {
               </Link>
             </li>
 
-            <hr className="w-75 mx-auto" />
-
             <li>
-              <Link to="/administracion/emprendimientos">
+              <Link to="/administracion/general/emprendimientos">
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Emprendimientos</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/administracion/eventos">
+              <Link to="/administracion/general/eventos">
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Eventos</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/administracion/publicaciones">
+              <Link to="/administracion/general/publicaciones">
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Publicaciones</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/administracion/noticias">
+              <Link to="/administracion/general/noticias">
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Noticias</span>
               </Link>
@@ -177,10 +175,28 @@ const AdminSidebarContent = () => {
 
             <hr className="w-75 mx-auto" />
 
+            <Link to="/administracion/general">
+              <li className="menu-title">Métricas</li>
+            </Link>
+
             <li>
               <Link to="/administracion/metricas">
                 <i className="bx bx-bar-chart-square"></i>
-                <span>Métricas</span>
+                <span>{t("Application Metrics")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/administracion/metricas">
+                <i className="bx bx-bar-chart-square"></i>
+                <span>{t("Throughput Metrics")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/administracion/metricas">
+                <i className="bx bx-bar-chart-square"></i>
+                <span>{t("Availability Metrics")}</span>
               </Link>
             </li>
           </ul>

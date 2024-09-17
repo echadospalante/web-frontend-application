@@ -7,38 +7,38 @@ import SimpleBar from "simplebar-react";
 const activityFeedData = [
   {
     type: "application",
-    name: "Charles Brown",
-    action: "applied for the job",
-    jobTitle: "Sr.frontend Developer",
+    name: "Test",
+    action: "Action",
+    jobTitle: "Author",
     timestamp: "3 min ago",
-    img: "/images/logos/7s-logo-small.png",
+    img: "/epl.png",
   },
   {
     type: "subscription",
-    message: "Your subscription expires today",
+    message: "Test",
     actionLink: "#",
     timestamp: "53 min ago",
   },
   {
     type: "accountCreation",
-    name: "Jennifer Alexandar",
-    action: "created a new account as a",
-    accountType: "Freelance",
+    name: "Test",
+    action: "Action",
+    accountType: "Test",
     timestamp: "1 hrs ago",
   },
   {
     type: "application",
-    name: "Mark Ellison",
-    action: "applied for the job",
-    jobTitle: "Project Manager",
+    name: "Test",
+    action: "Action",
+    jobTitle: "Test",
     timestamp: "3 hrs ago",
-    img: "/images/logos/7s-logo-small.png",
+    img: "/epl.png",
   },
   {
     type: "accountCreation",
-    name: "Acolin Zelton",
-    action: "created a new account as a",
-    accountType: "Freelance",
+    name: "Test",
+    action: "Test",
+    accountType: "Test",
     timestamp: "1 hrs ago",
   },
 ];
@@ -49,7 +49,7 @@ const ActivityFeed = () => {
       <Col lg={4}>
         <Card>
           <CardBody>
-            <h4 className="card-title mb-4">Activity Feed</h4>
+            <h4 className="card-title mb-4">Test</h4>
             <SimpleBar style={{ maxHeight: "376px" }}>
               <ul className="verti-timeline list-unstyled">
                 {(activityFeedData || [])?.map((event, index) => (
@@ -92,7 +92,7 @@ const ActivityFeed = () => {
                           {event.type === "subscription" && (
                             <>
                               {event.message}{" "}
-                              <a href={event.actionLink}>Renew Now</a>
+                              <a href={event.actionLink}>Test</a>
                             </>
                           )}
                           {event.type === "accountCreation" && (

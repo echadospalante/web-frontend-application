@@ -5,44 +5,44 @@ import { Link } from "react-router-dom";
 const jobVacancyData = [
   {
     id: 1,
-    img: "/images/logos/7s-logo-small.png",
-    title: "Project Manager",
-    country: " California",
+    img: "/epl.png",
+    title: "Test 1",
+    country: "Antioquia",
     vacancy: 8,
   },
   {
     id: 2,
-    img: "/images/logos/7s-logo-small.png",
-    title: "Marketing Director",
-    country: "Danemark",
+    img: "/epl.png",
+    title: "Test 2",
+    country: "Cundinamarca",
     vacancy: 12,
   },
   {
     id: 3,
-    img: "/images/logos/7s-logo-small.png",
-    title: "Product Designer",
-    country: "France",
+    img: "/epl.png",
+    title: "Test 3",
+    country: "Casanare",
     vacancy: 25,
   },
   {
     id: 4,
-    img: "/images/logos/7s-logo-small.png",
-    title: "Magento Developer",
-    country: "Hong-Kong",
+    img: "/epl.png",
+    title: "Test 4",
+    country: "Vichada",
     vacancy: 8,
   },
   {
     id: 5,
-    img: "/images/logos/7s-logo-small.png",
-    title: "Product Sales Specialist",
-    country: " Louisiana",
+    img: "/epl.png",
+    title: "Test 5",
+    country: "Guainia",
     vacancy: 1,
   },
   {
     id: 6,
-    img: "/images/logos/7s-logo-small.png",
-    title: "Business Associate",
-    country: " Phoenix",
+    img: "/epl.png",
+    title: "Test 6",
+    country: "Vaupés",
     vacancy: 15,
   },
 ];
@@ -52,10 +52,10 @@ const CompanySummary = () => {
     <React.Fragment>
       <Col lg={12}>
         <div className="d-flex">
-          <h4 className="card-title mb-4 flex-grow-1">New Job Vacancy</h4>
+          <h4 className="card-title mb-4 flex-grow-1">Test title</h4>
           <div>
             <Link to="/job-list" className="btn btn-primary btn-sm">
-              View All <i className="bx bx-right-arrow-alt"></i>
+              Ver todos <i className="bx bx-right-arrow-alt"></i>
             </Link>
           </div>
         </div>
@@ -77,7 +77,8 @@ const CompanySummary = () => {
                   <i className="bx bx-map text-body"></i> {item.country}
                 </p>
                 <p className="mb-0 text-muted">
-                  <b>{item.vacancy}</b> Vacancy
+                  <b>{item.vacancy}</b>{" "}
+                  {item.vacancy > 1 ? "Donaciones" : "Donacion"}
                 </p>
               </div>
             </CardBody>

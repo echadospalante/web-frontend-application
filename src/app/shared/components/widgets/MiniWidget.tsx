@@ -6,7 +6,7 @@ const MiniWidget = () => {
   const reports = [
     {
       icon: "bx bx-copy-alt",
-      title: "Orders",
+      title: "Test",
       value: "1,452",
       badgeValue: "+ 0.2%",
       color: "success",
@@ -14,7 +14,7 @@ const MiniWidget = () => {
     },
     {
       icon: "bx bx-archive-in",
-      title: "Revenue",
+      title: "Test",
       value: "$ 28,452",
       badgeValue: "+ 0.2%",
       color: "success",
@@ -22,7 +22,7 @@ const MiniWidget = () => {
     },
     {
       icon: "bx bx-purchase-tag-alt",
-      title: "Average Price",
+      title: "Test",
       value: "$ 16.2",
       badgeValue: "0%",
       color: "warning",

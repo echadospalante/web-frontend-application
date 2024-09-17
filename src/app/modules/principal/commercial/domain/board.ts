@@ -1,8 +1,8 @@
 import { Quote } from "./quote";
-import { QuoteState } from "./state";
+import { VentureState } from "./state";
 
 export interface QuotesBoard {
   id: string;
-  name: QuoteState;
+  name: VentureState;
   cards: Quote[];
 }

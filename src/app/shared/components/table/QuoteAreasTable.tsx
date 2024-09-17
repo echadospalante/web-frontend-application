@@ -22,8 +22,8 @@ import {
 
 import { AreaSummary } from "../../../modules/principal/commercial/domain/area";
 import {
-  QuoteState,
-  getQuoteStateColor,
+  VentureState,
+  getVentureStateColor,
 } from "../../../modules/principal/commercial/domain/state";
 import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
 import AppSpinner from "../loader/Spinner";
@@ -253,10 +253,10 @@ const getColumns = () => {
         const summaries = (cellProps.row.original.summaries ||
           []) as AreaSummary[];
         const summary = summaries.find(
-          (summary) => summary.estado === QuoteState.ACTIVE
+          (summary) => summary.estado === VentureState.ACTIVE
         );
         if (!summary) return <></>;
-        const color = getQuoteStateColor(summary.estado);
+        const color = getVentureStateColor(summary.estado);
         const label =
           summary.count === 1
             ? summary.estado.replace("_", " ")
@@ -280,10 +280,10 @@ const getColumns = () => {
         const summaries = (cellProps.row.original.summaries ||
           []) as AreaSummary[];
         const summary = summaries.find(
-          (summary) => summary.estado === QuoteState.COMPLETED
+          (summary) => summary.estado === VentureState.COMPLETED
         );
         if (!summary) return <></>;
-        const color = getQuoteStateColor(summary.estado);
+        const color = getVentureStateColor(summary.estado);
         const label =
           summary.count === 1
             ? summary.estado.replace("_", " ")
@@ -307,10 +307,10 @@ const getColumns = () => {
         const summaries = (cellProps.row.original.summaries ||
           []) as AreaSummary[];
         const summary = summaries.find(
-          (summary) => summary.estado === QuoteState.NOT_COMPLETED
+          (summary) => summary.estado === VentureState.NOT_COMPLETED
         );
         if (!summary) return <></>;
-        const color = getQuoteStateColor(summary.estado);
+        const color = getVentureStateColor(summary.estado);
         const label =
           summary.count === 1
             ? summary.estado.replace("_", " ")

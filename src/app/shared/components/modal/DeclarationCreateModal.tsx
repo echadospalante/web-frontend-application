@@ -418,7 +418,7 @@ const DeclarationCreateModal = ({
                                     height="80"
                                     className="avatar-sm rounded bg-light"
                                     alt={f.name}
-                                    src="/images/logos/7s-logo-small.png"
+                                    src="/epl.png"
                                   />
                                 </Col>
                                 <Col>

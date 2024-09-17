@@ -106,11 +106,7 @@ const RegisterStepsPage = () => {
                   <Row className="justify-content-center mt-5 mb-2">
                     <Col sm="6" xs="8">
                       <div>
-                        <img
-                          src="/images/logos/7s-logo-small.png"
-                          alt=""
-                          className="img-fluid"
-                        />
+                        <img src="/epl.png" alt="" className="img-fluid" />
                       </div>
                     </Col>
                   </Row>
@@ -422,7 +418,7 @@ const RegisterStepsPage = () => {
                                                 height="80"
                                                 className="avatar-sm rounded bg-light"
                                                 alt="Some name"
-                                                src="/images/logos/7s-logo-small.png"
+                                                src="/epl.png"
                                               />
                                             </Col>
                                             <Col>

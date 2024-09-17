@@ -15,58 +15,58 @@ import { Link } from "react-router-dom";
 
 const recentAddedJobsData = [
   {
-    logo: "/images/logos/7s-logo-small.png",
-    jobTitle: "Marketing Director",
-    company: "Themesbrand, USA",
+    logo: "/epl.png",
+    jobTitle: "Test 1",
+    company: "Test emprendimiento",
     postedTime: "53",
     postedText: "sec ago",
   },
   {
-    logo: "/images/logos/7s-logo-small.png",
-    jobTitle: "Frontend Developer",
-    company: "Themesbrand, Hong-Kong",
+    logo: "/epl.png",
+    jobTitle: "Test 2",
+    company: "Test emprendimiento",
     postedTime: "47",
     postedText: "min ago",
   },
   {
-    logo: "/images/logos/7s-logo-small.png",
-    jobTitle: "React Developer",
-    company: "Creative Agency, Danemark",
+    logo: "/epl.png",
+    jobTitle: "Test 3",
+    company: "Test emprendimiento",
     postedTime: "1",
     postedText: "hrs ago",
   },
   {
-    logo: "/images/logos/7s-logo-small.png",
-    jobTitle: "NodeJs Developer",
-    company: "Echadospa'lante Themes, Louisiana",
+    logo: "/epl.png",
+    jobTitle: "Test 4",
+    company: "Test emprendimiento",
     postedTime: "2",
     postedText: "hrs ago",
   },
   {
-    logo: "/images/logos/7s-logo-small.png",
-    jobTitle: "Digital Marketing",
-    company: "Web Technology pvt.Ltd, Danemark",
+    logo: "/epl.png",
+    jobTitle: "Test 5",
+    company: "Test emprendimiento",
     postedTime: "8",
     postedText: "hrs ago",
   },
   {
-    logo: "/images/logos/7s-logo-small.png",
-    jobTitle: "Marketing Director",
-    company: "Echadospa'lante Technology, Dominica",
+    logo: "/epl.png",
+    jobTitle: "Test 1",
+    company: "Test emprendimiento",
     postedTime: "1",
     postedText: "days ago",
   },
   {
-    logo: "/images/logos/7s-logo-small.png",
-    jobTitle: "Business Associate",
-    company: "Themesbrand, Russia",
+    logo: "/epl.png",
+    jobTitle: "Test 6",
+    company: "Test emprendimiento",
     postedTime: "2",
     postedText: "days ago",
   },
   {
-    logo: "/images/logos/7s-logo-small.png",
-    jobTitle: "Backend Developer",
-    company: "Adobe Agency, Malaysia",
+    logo: "/epl.png",
+    jobTitle: "Test 7",
+    company: "Test emprendimiento",
     postedTime: "3",
     postedText: "days ago",
   },
@@ -78,7 +78,7 @@ const AddedJobs = () => {
       <Col lg={4}>
         <Card>
           <CardBody>
-            <h4 className="card-title mb-4">Recent Added Jobs</h4>
+            <h4 className="card-title mb-4">Test</h4>
             <SimpleBar style={{ maxHeight: "376px" }}>
               <div className="vstack gap-4">
                 {(recentAddedJobsData || [])?.map((job, index) => (
@@ -112,9 +112,9 @@ const AddedJobs = () => {
                         aria-labelledby={`dropdownMenuButton${index}`}
                       >
                         <DropdownItem href="/job-details">
-                          View Details
+                          Ver detalle
                         </DropdownItem>
-                        <DropdownItem href="#!">Apply Now</DropdownItem>
+                        <DropdownItem href="#!">Acciones</DropdownItem>
                       </DropdownMenu>
                     </UncontrolledDropdown>
                   </div>

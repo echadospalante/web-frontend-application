@@ -23,7 +23,7 @@ import {
 } from "reactstrap";
 
 import { QuotesBoard } from "../../../modules/principal/commercial/domain/board";
-import { QuoteState } from "../../../modules/principal/commercial/domain/state";
+import { VentureState } from "../../../modules/principal/commercial/domain/state";
 import QuotesFilter from "../filters/QuoteFilters";
 
 const AgileQuotesBoard = () => {
@@ -46,7 +46,7 @@ const AgileQuotesBoard = () => {
   const [kanbanTasks, setkanbanTasks] = useState<QuotesBoard[]>([
     {
       id: "1",
-      name: QuoteState.ACTIVE,
+      name: VentureState.ACTIVE,
       cards: [
         {
           id: 1,
@@ -58,7 +58,7 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.ACTIVE,
+          state: VentureState.ACTIVE,
         },
         {
           id: 2,
@@ -70,7 +70,7 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.ACTIVE,
+          state: VentureState.ACTIVE,
         },
         {
           id: 3,
@@ -82,13 +82,13 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.ACTIVE,
+          state: VentureState.ACTIVE,
         },
       ],
     },
     {
       id: "2",
-      name: QuoteState.COMPLETED,
+      name: VentureState.COMPLETED,
       cards: [
         {
           id: 4,
@@ -100,7 +100,7 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.COMPLETED,
+          state: VentureState.COMPLETED,
         },
         {
           id: 5,
@@ -112,7 +112,7 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.COMPLETED,
+          state: VentureState.COMPLETED,
         },
         {
           id: 6,
@@ -124,13 +124,13 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.COMPLETED,
+          state: VentureState.COMPLETED,
         },
       ],
     },
     {
       id: "3",
-      name: QuoteState.NOT_COMPLETED,
+      name: VentureState.NOT_COMPLETED,
       cards: [
         {
           id: 7,
@@ -142,7 +142,7 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.NOT_COMPLETED,
+          state: VentureState.NOT_COMPLETED,
         },
         {
           id: 8,
@@ -154,7 +154,7 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.NOT_COMPLETED,
+          state: VentureState.NOT_COMPLETED,
         },
         {
           id: 9,
@@ -166,7 +166,7 @@ const AgileQuotesBoard = () => {
             name: "Desarrollo de Software",
             createdAt: new Date(),
           },
-          state: QuoteState.NOT_COMPLETED,
+          state: VentureState.NOT_COMPLETED,
         },
       ],
     },

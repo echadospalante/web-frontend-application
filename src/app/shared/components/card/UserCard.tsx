@@ -31,41 +31,16 @@ const CardUser = () => {
               </div>
               <div className="flex-grow-1 align-self-center">
                 <div className="text-muted">
-                  <p className="mb-3">Welcome to Echadospa'lante Dashboard</p>
+                  <p className="mb-3">
+                    Bienvenido al Dashboard de EchadosPa'lante
+                  </p>
                   <h5 className="mb-2">
-                    Henry wells
-                    <Link to="/registro/bienvenida">Registro</Link>
+                    {"{{Nombre_usuario}}"}
+                    {/* <Link to="/registro/bienvenida">Registro</Link> */}
                   </h5>
-                  <p className="mb-0">UI / UX Designer</p>
+                  <p className="mb-0">{"{{list_of_roles}}"}</p>
                 </div>
               </div>
-            </div>
-          </Col>
-
-          <Col lg={5} md={12} className="align-self-center">
-            <div className="text-lg-center mt-4 mt-lg-0">
-              <Row>
-                <Col xs="4">
-                  <div>
-                    <p className="text-muted text-truncate mb-2">
-                      Total Projects
-                    </p>
-                    <h5 className="mb-0">48</h5>
-                  </div>
-                </Col>
-                <Col xs="4">
-                  <div>
-                    <p className="text-muted text-truncate mb-2">Projects</p>
-                    <h5 className="mb-0">40</h5>
-                  </div>
-                </Col>
-                <Col xs="4">
-                  <div>
-                    <p className="text-muted text-truncate mb-2">Clients</p>
-                    <h5 className="mb-0">18</h5>
-                  </div>
-                </Col>
-              </Row>
             </div>
           </Col>
 

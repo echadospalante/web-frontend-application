@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col, Card } from "reactstrap";
 
 //Import Images
 // import profileImg from "../../assets/images/profile-img.png";
 
 const CardWelcome = () => {
+  const [currentDate] = useState(new Date().toLocaleString());
   return (
     <React.Fragment>
       <Col xl="4">
@@ -13,12 +14,14 @@ const CardWelcome = () => {
             <Row>
               <Col xs="7">
                 <div className="text-primary p-3">
-                  <h5 className="text-primary">Welcome Back !</h5>
-                  <p>Echadospa'lante Saas Dashboard</p>
+                  <h5 className="text-primary">Bienvenido!</h5>
+                  <p>Panel de Control de Echadospa'lante</p>
 
                   <ul className="ps-3 mb-0">
-                    <li className="py-1">7 + Layouts</li>
-                    <li className="py-1">Multiple apps</li>
+                    <li className="py-1">Último login el {currentDate}</li>
+                    <li className="py-1">
+                      Duración de la última sesión: 2h 16m
+                    </li>
                   </ul>
                 </div>
               </Col>

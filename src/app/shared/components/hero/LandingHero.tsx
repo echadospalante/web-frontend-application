@@ -1,20 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardHeader,
-  CardBody,
-  Button,
-} from "reactstrap";
+import { Card, Col, Container, Row } from "reactstrap";
 
 const LandingHero = () => {
   return (
     <React.Fragment>
       <section className="section hero-section bg-ico-hero" id="home">
-        <div className="bg-overlay bg-primary" />
+        <div className="bg-overlay bg-success" />
         <Container>
           <Row className="align-items-center">
             <Col lg="5">
@@ -29,65 +21,18 @@ const LandingHero = () => {
 
                 <div className="d-flex flex-wrap gap-2 mt-4">
                   <Link to="#" className="btn btn-success">
-                    Get Whitepaper
+                    Empezar
                   </Link>
-                  <Link to="#" className="btn btn-light">
-                    How it work
+                  <Link to="#" className="btn btn-info">
+                    <i className="mdi mdi-play me-1" />
+                    Ver la demo
                   </Link>
                 </div>
               </div>
             </Col>
             <Col lg="5" md="8" sm="10" className="ms-lg-auto">
               <Card className="overflow-hidden mb-0 mt-5 mt-lg-0">
-                <CardHeader className="text-center">
-                  <h5 className="mb-0">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                    Cumque, at.
-                  </h5>
-                </CardHeader>
-                <CardBody>
-                  <div className="text-center">
-                    <h5>Time left to Ico :</h5>
-                    <div className="mt-4">
-                      <div className="counter-number ico-countdown">
-                        {/* <Countdown date="2022/10/31" renderer={renderer} /> */}
-                      </div>
-                    </div>
-
-                    <div className="mt-4">
-                      <Button type="button" color="success" className="w-md">
-                        Get Token
-                      </Button>
-                    </div>
-
-                    <div className="mt-5">
-                      <h4 className="font-weight-semibold">
-                        Lorem ipsum dolor sit amet
-                      </h4>
-                      <div className="clearfix mt-4">
-                        <h5 className="float-end font-size-14">
-                          Lorem, ipsum.
-                        </h5>
-                      </div>
-                      <div className="progress p-1 progress-xl softcap-progress">
-                        <div
-                          className="progress-bar bg-info"
-                          role="progressbar"
-                          style={{ width: "15%" }}
-                        >
-                          <div className="progress-label">15 %</div>
-                        </div>
-                        <div
-                          className="progress-bar progress-bar-striped progress-bar-animated"
-                          role="progressbar"
-                          style={{ width: "30%" }}
-                        >
-                          <div className="progress-label">30 %</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </CardBody>
+                <img src="/epl2.jpeg" alt="" />
               </Card>
             </Col>
           </Row>

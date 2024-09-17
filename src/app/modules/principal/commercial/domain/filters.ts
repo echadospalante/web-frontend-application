@@ -1,6 +1,6 @@
 import { QuoteAdvisor } from "./advisor";
 import { QuoteArea } from "./area";
-import { QuoteState } from "./state";
+import { VentureState } from "./state";
 
 export interface DateRange {
   min?: Date;
@@ -17,6 +17,6 @@ export interface QuoteFilter {
   dateRange: DateRange;
   areas: QuoteArea[];
   advisors: QuoteAdvisor[];
-  states: QuoteState[];
+  states: VentureState[];
   include: QuoteInclude[];
 }

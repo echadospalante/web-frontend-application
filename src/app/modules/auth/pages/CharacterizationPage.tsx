@@ -39,7 +39,7 @@ const CharacterizationPage = () => {
                     className="auth-logo-dark mx-auto"
                   />
                   <img
-                    src="/images/logos/7s-logo-small.png"
+                    src="/epl.png"
                     alt=""
                     height="20"
                     className="auth-logo-light mx-auto"
@@ -73,11 +73,7 @@ const CharacterizationPage = () => {
                               sm={12}
                               className="d-flex justify-content-center align-items-center"
                             >
-                              <img
-                                src="/images/logos/7s-logo-small.png"
-                                alt="Skote"
-                                width="100"
-                              />
+                              <img src="/epl.png" alt="Skote" width="100" />
                             </Col>
 
                             <Col lg={9} md={12} sm={12}>

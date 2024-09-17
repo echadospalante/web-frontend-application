@@ -135,56 +135,42 @@ const UserSidebarContent = () => {
         <div id="sidebar-menu">
           <ul className="metismenu list-unstyled" id="side-menu">
             <Link to="/principal">
-              <li className="menu-title">Comercial</li>
+              <li className="menu-title">Principal</li>
             </Link>
 
             <li>
-              <Link to="/principal/comercial/cotizaciones">
+              <Link to="/principal/emprendimientos">
                 {/* <i className="bx bxs-cabinet"></i> */}
                 <i className="bx bx-rocket"></i>
-                <span>Ventas</span>
+                <span>{t("Ventures")}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/comercial/areas">
+              <Link to="/principal/eventos">
                 <i className="bx bx-id-card"></i>
-                <span>{t("Areas")}</span>
+                <span>{t("Events")}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/comercial/asesores">
+              <Link to="/principal/mapa">
                 <i className="bx bx-carousel"></i>
-                <span>{t("Advisors")}</span>
+                <span>{t("Map")}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/comercial/clientes">
-                <i className="bx bxs-user-detail"></i>
-                <span>{t("Clients")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/comercial/calendario">
+              <Link to="/principal/calendario">
                 <i className="bx bx-calendar"></i>
                 <span>{t("Calendar")}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/comercial/reportes">
-                <i className="bx bx-bar-chart-square"></i>
-                <span>{t("Reports")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/comercial/mercadeo">
-                <i className="bx bx-broadcast"></i>
-                <span>{t("Marketing")}</span>
+              <Link to="/principal/calendario">
+                <i className="bx bxs-news"></i>
+                <span>{t("News")}</span>
               </Link>
             </li>
           </ul>
@@ -209,32 +195,32 @@ const UserSidebarContent = () => {
             <li>
               <Link to="/principal/preferencias/tema">
                 <i className="bx bx-sun"></i>
-                <span>{t("Change Theme")}</span>
+                <span>{t("Theme And Layout")}</span>
               </Link>
             </li>
           </ul>
 
           <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">Tu cuenta</li>
+            <li className="menu-title">{t("Your Account")}</li>
 
             <li>
-              <Link to="/principal/cuenta/facturacion">
-                <i className="bx bx-credit-card"></i>
-                <span>{t("Billing")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/cuenta/colaboradores">
-                <i className="bx bx-group"></i>
-                <span>{t("Collaborators")}</span>
+              <Link to="/principal/perfil">
+                <i className="bx bx-id-card"></i>
+                <span>{t("Profile")}</span>
               </Link>
             </li>
 
             <li>
               <Link to="/principal/cuenta/suscripciones">
-                <i className="bx bx-list-check"></i>
+                <i className="bx bx-health"></i>
                 <span>{t("Subscriptions")}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/principal/cuenta/suscripciones">
+                <i className="bx bx-heart"></i>
+                <span>{t("My Donations")}</span>
               </Link>
             </li>
           </ul>

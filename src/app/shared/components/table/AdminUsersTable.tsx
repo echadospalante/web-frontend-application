@@ -14,8 +14,8 @@ import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
 import { AreaSummary } from "../../../modules/principal/commercial/domain/area";
 import {
-  QuoteState,
-  getQuoteStateColor,
+  getVentureStateColor,
+  VentureState,
 } from "../../../modules/principal/commercial/domain/state";
 import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
 import AppSpinner from "../loader/Spinner";
@@ -56,7 +56,7 @@ const AdminUsersTable = () => {
     <Row>
       {error && (
         <div className="alert alert-danger text-center" role="alert">
-          Error al cargar los colaboradores, por favor intente de nuevo
+          Error al cargar los usuarios, por favor intente de nuevo
         </div>
       )}
 
@@ -316,10 +316,10 @@ const getColumns = () => {
         const summaries = (cellProps.row.original.summaries ||
           []) as AreaSummary[];
         const summary = summaries.find(
-          (summary) => summary.estado === QuoteState.ACTIVE
+          (summary) => summary.estado === VentureState.ACTIVE
         );
         if (!summary) return <></>;
-        const color = getQuoteStateColor(summary.estado);
+        const color = getVentureStateColor(summary.estado);
         const label =
           summary.count === 1
             ? summary.estado.replace("_", " ")
@@ -343,10 +343,10 @@ const getColumns = () => {
         const summaries = (cellProps.row.original.summaries ||
           []) as AreaSummary[];
         const summary = summaries.find(
-          (summary) => summary.estado === QuoteState.COMPLETED
+          (summary) => summary.estado === VentureState.COMPLETED
         );
         if (!summary) return <></>;
-        const color = getQuoteStateColor(summary.estado);
+        const color = getVentureStateColor(summary.estado);
         const label =
           summary.count === 1
             ? summary.estado.replace("_", " ")
@@ -370,10 +370,10 @@ const getColumns = () => {
         const summaries = (cellProps.row.original.summaries ||
           []) as AreaSummary[];
         const summary = summaries.find(
-          (summary) => summary.estado === QuoteState.NOT_COMPLETED
+          (summary) => summary.estado === VentureState.NOT_COMPLETED
         );
         if (!summary) return <></>;
-        const color = getQuoteStateColor(summary.estado);
+        const color = getVentureStateColor(summary.estado);
         const label =
           summary.count === 1
             ? summary.estado.replace("_", " ")

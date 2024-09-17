@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { QuoteState } from "../domain/state";
+import { VentureState } from "../domain/state";
 
-const useQuoteStates = () => {
-  const [states, setStates] = useState<QuoteState[]>([]);
+const useVentureStates = () => {
+  const [states, setStates] = useState<VentureState[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     setLoading(true);
-    dispatch(fetchQuoteStatesMiddleware())
+    dispatch(fetchVentureStatesMiddleware())
       .then((states) => {
         setStates(states);
       })
@@ -26,4 +26,4 @@ const useQuoteStates = () => {
   };
 };
 
-export default useQuoteStates;
+export default useVentureStates;

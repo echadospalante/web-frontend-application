@@ -65,7 +65,10 @@ export const loginWithCredentialsMiddleware = (oauth2Token: string) => {
   };
 };
 
-export const createUserRegisterMiddleware = (userInfo: UserRegisterInfo) => {
+export const createUserRegisterMiddleware = (
+  userInfo: UserRegisterInfo,
+  preferences: string[]
+) => {
   return async (dispatch: Dispatch) => {
     dispatch(
       startGlobalLoading({
@@ -74,7 +77,7 @@ export const createUserRegisterMiddleware = (userInfo: UserRegisterInfo) => {
       })
     );
 
-    return AuthenticationApi.createUserRegister(userInfo)
+    return AuthenticationApi.createUserRegister(userInfo, preferences)
       .then(() => {
         dispatch(
           setGlobalAlert({

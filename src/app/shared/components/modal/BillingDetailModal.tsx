@@ -66,11 +66,7 @@ const EcommerceOrdersModal = ({
                 <tr>
                   <th scope="row">
                     <div>
-                      <img
-                        src="/images/logos/7s-logo-small.png"
-                        alt=""
-                        className="avatar-sm"
-                      />
+                      <img src="/epl.png" alt="" className="avatar-sm" />
                     </div>
                   </th>
                   <td>
@@ -86,11 +82,7 @@ const EcommerceOrdersModal = ({
                 <tr>
                   <th scope="row">
                     <div>
-                      <img
-                        src="/images/logos/7s-logo-small.png"
-                        alt=""
-                        className="avatar-sm"
-                      />
+                      <img src="/epl.png" alt="" className="avatar-sm" />
                     </div>
                   </th>
                   <td>

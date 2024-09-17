@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
-import React from "react";
+import { Fragment } from "react";
 
 import { Col, Container, Row } from "reactstrap";
 
@@ -14,14 +13,14 @@ import SalesAnalytics from "../../../../shared/components/graphics/SalesAnalytic
 import TotalSelling from "../../../../shared/components/graphics/TotalSelling";
 import MiniWidget from "../../../../shared/components/widgets/MiniWidget";
 
-const ActivityDashboardPage = () => {
-  document.title = "Dashboard de Actividad | Administración";
+const AvailabilityMetricsPage = () => {
+  document.title = "Métricas de Disponibilidad | Administración";
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="page-content">
         <Container fluid>
-          <Breadcrumb title="Dashboards" breadcrumbItem="Saas" />
+          <Breadcrumb title="Métricas" breadcrumbItem="Disponibilidad" />
 
           <Row>
             <CardWelcome />
@@ -49,8 +48,8 @@ const ActivityDashboardPage = () => {
           </Row>
         </Container>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
-export default ActivityDashboardPage;
+export default AvailabilityMetricsPage;

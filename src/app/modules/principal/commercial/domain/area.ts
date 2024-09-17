@@ -5,7 +5,7 @@
 //   DIGITAL_MARKETING = "Marketing Digital",
 // }
 
-import { QuoteState } from "./state";
+import { VentureState } from "./state";
 
 export interface QuoteAreaCreate {
   name: string;
@@ -20,5 +20,5 @@ export interface QuoteArea {
 
 export interface AreaSummary {
   count: number;
-  estado: QuoteState;
+  estado: VentureState;
 }
