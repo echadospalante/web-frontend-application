@@ -1,6 +1,9 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 
-import { loginUser } from "../../../../config/redux/reducers/auth.reducer";
+import {
+  loginUser,
+  logoutUser,
+} from "../../../../config/redux/reducers/auth.reducer";
 import {
   SeverityLevel,
   finishGlobalLoading,
@@ -100,6 +103,46 @@ export const createUserRegisterMiddleware = (
           })
         );
         throw new Error("Error en registro");
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const logoutUserMiddleware = () => {
+  return async (dispatch: Dispatch) => {
+    dispatch(
+      startGlobalLoading({
+        message: "Cerrando sesión...",
+        iconPath: "/images/icons/loading/loading-secure.svg",
+      })
+    );
+
+    return AuthenticationApi.logoutUser()
+      .then(() => {
+        dispatch(
+          setGlobalAlert({
+            title: "Sesión cerrada",
+            message: "Sesión cerrada exitosamente.",
+            timeout: 5000,
+            severity: SeverityLevel.SUCCESS,
+          })
+        );
+        dispatch(logoutUser());
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(
+          setGlobalAlert({
+            title: "Error en cierre de sesión",
+            message:
+              "Por favor intente nuevamente, si el error persiste contacte al administrador.",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        throw new Error("Error en cierre de sesión");
       })
       .finally(() => {
         dispatch(finishGlobalLoading());

@@ -35,6 +35,8 @@ import QuotesCalenderPage from "../../modules/principal/ventures/pages/QuotesCal
 import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayoutPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import useRefreshAuth from "../../modules/auth/hooks/useRefresh";
+import AppSpinner from "../../shared/components/loader/Spinner";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -44,6 +46,11 @@ const ALL_ROLES = [
 ];
 
 const AppRouter = () => {
+  const { authLoading } = useRefreshAuth();
+
+  if (authLoading) {
+    return <AppSpinner />;
+  }
   return (
     <Fragment>
       <BrowserRouter>

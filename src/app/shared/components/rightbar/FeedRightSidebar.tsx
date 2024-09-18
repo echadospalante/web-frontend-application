@@ -24,6 +24,7 @@ const FeedRightSidebar = () => {
         style={{
           maxHeight: "90vh",
           overflowY: "auto",
+          width: "300px",
         }}
       >
         <Card>

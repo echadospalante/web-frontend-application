@@ -18,7 +18,7 @@ import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
 import LandingFooter from "../../../shared/components/footer/LandingFooter";
 
 const TermsAndConditionsPage = () => {
-  document.title = "Terminos & Condiciones | Comercial";
+  document.title = "Terminos & Condiciones | EchadosPa'lante";
   const [activeTab, setactiveTab] = useState("1");
 
   return (

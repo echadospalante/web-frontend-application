@@ -16,10 +16,8 @@ const PrivateRoute = ({
   anyRequiredRole = [],
 }: PrivateRouteProps): JSX.Element => {
   const { roles = [], active } = useSelector(selectAuthentication);
-  console.log({ auth: useSelector(selectAuthentication) });
 
   if (!active) return <Navigate to="/" />;
-
   const verifyUserHasAllRoles = (
     roles: Role[],
     allRequiredRoles: string[]

@@ -37,6 +37,12 @@ class AuthenticationApi {
       )
       .then(({ data }) => data);
   }
+
+  public static logoutUser() {
+    return axios.post(`${this.BASE_URL}/logout`, undefined, {
+      withCredentials: true,
+    });
+  }
 }
 
 export default AuthenticationApi;

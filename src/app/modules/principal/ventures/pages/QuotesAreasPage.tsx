@@ -11,7 +11,7 @@ import QuoteAreasTable from "../../../../shared/components/table/QuoteAreasTable
 import QuoteAreasTabs from "../../../../shared/components/tabs/QuoteAreasTabs";
 
 const QuoteAreasPage = () => {
-  document.title = "Áreas | Comercial";
+  document.title = "Áreas | EchadosPa'lante";
 
   const [activeTab, setActiveTab] = useState("1");
 

@@ -6,11 +6,9 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 
-import {
-  logoutUser,
-  selectAuthentication,
-} from "../../../config/redux/reducers/auth.reducer";
+import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
+import { logoutUserMiddleware } from "../../../modules/auth/api/middleware/authentication.middleware";
 
 export const ProfileMenu = () => {
   const { t } = useTranslation();
@@ -23,9 +21,11 @@ export const ProfileMenu = () => {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
     event.preventDefault();
-    dispatch(logoutUser());
-    navigate("/");
-    googleLogout();
+    dispatch(logoutUserMiddleware()).then(() => {
+      navigate("/", { replace: true });
+
+      googleLogout();
+    });
   };
 
   return (

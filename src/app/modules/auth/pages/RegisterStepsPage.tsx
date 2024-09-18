@@ -26,8 +26,7 @@ import {
 import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
 
 const RegisterStepsPage = () => {
-  //meta title
-  document.title = "KYC Application | Echadospa'lante";
+  document.title = "Registro de Usuario | Echadospa'lante";
 
   const [modal, setModal] = useState(false);
   const [activeTab, setActiveTab] = useState(1);

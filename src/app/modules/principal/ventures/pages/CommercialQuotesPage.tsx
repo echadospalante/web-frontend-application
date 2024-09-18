@@ -8,7 +8,7 @@ import QuotesTable from "../../../../shared/components/table/QuotesTable";
 import QuotesTabs from "../../../../shared/components/tabs/QuotesTabs";
 
 const CommercialQuotesPage = () => {
-  document.title = "Cotizaciones | Comercial";
+  document.title = "Cotizaciones | EchadosPa'lante";
 
   const [activeTab, setActiveTab] = useState("1");
 
