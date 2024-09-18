@@ -20,8 +20,8 @@ import {
   SeverityLevel,
 } from "../../../config/redux/reducers/user-interface.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
-import { QuoteAreaCreate } from "../../../modules/principal/commercial/domain/area";
-import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
+import { QuoteAreaCreate } from "../../../modules/principal/ventures/domain/area";
+import useQuoteAreas from "../../../modules/principal/ventures/hooks/useQuoteAreas";
 
 type CreateQuoteAreaFormProps = {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;

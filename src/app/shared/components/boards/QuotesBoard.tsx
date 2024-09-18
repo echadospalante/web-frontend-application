@@ -22,8 +22,8 @@ import {
   UncontrolledDropdown,
 } from "reactstrap";
 
-import { QuotesBoard } from "../../../modules/principal/commercial/domain/board";
-import { VentureState } from "../../../modules/principal/commercial/domain/state";
+import { QuotesBoard } from "../../../modules/principal/ventures/domain/board";
+import { VentureState } from "../../../modules/principal/ventures/domain/state";
 import QuotesFilter from "../filters/QuoteFilters";
 
 const AgileQuotesBoard = () => {

@@ -89,10 +89,8 @@ export const useRegisterUserInfo = () => {
 
   useEffect(() => {
     if (form.isValid) {
-      console.log({ IS_VALID: true });
       dispatch(setUserInfo(form.values));
     } else {
-      console.log({ IS_VALID: false });
       dispatch(resetUserInfo());
     }
   }, [dispatch, form.isValid, form.values]);

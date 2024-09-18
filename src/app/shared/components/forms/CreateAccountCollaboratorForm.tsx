@@ -22,7 +22,7 @@ import {
   SeverityLevel,
 } from "../../../config/redux/reducers/user-interface.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
-import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
+import useQuoteAreas from "../../../modules/principal/ventures/hooks/useQuoteAreas";
 
 type CreateAccountCollaboratorFormProps = {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;

@@ -21,18 +21,18 @@ import WelcomePage from "../../modules/auth/pages/WelcomePage";
 import LandingPage from "../../modules/landing/pages/LandingPage";
 import AccountLayoutPage from "../../modules/principal/account/AccountLayoutPage";
 import AccountBillingPage from "../../modules/principal/account/pages/AccountBillingPage";
-import AccountCollaboratorsPage from "../../modules/principal/account/pages/AccountCollaboratorsPage";
-import CommercialLayoutPage from "../../modules/principal/commercial/VenturesLayoutPage";
-import Commercial404Page from "../../modules/principal/commercial/pages/Commercial404Page";
-import CommercialQuotesPage from "../../modules/principal/commercial/pages/CommercialQuotesPage";
-import PublicationsFeedPage from "../../modules/principal/commercial/pages/PublicationsFeedPage";
-import QuotesAdvisorsPage from "../../modules/principal/commercial/pages/QuotesAdvisorsPage";
-import QuoteAreasPage from "../../modules/principal/commercial/pages/QuotesAreasPage";
-import QuotesCalenderPage from "../../modules/principal/commercial/pages/QuotesCalendarPage";
+import AccountProfilePage from "../../modules/principal/account/pages/AccountProfilePage";
 import PreferencesLangLocalePage from "../../modules/principal/preferences/pages/PreferencesLangLocalePage";
 import PreferencesNotificationsPage from "../../modules/principal/preferences/pages/PreferencesNotificationsPage";
 import PreferencesThemePage from "../../modules/principal/preferences/pages/PreferencesTheme";
 import PreferencesLayoutPage from "../../modules/principal/preferences/PreferencesLayoutPage";
+import Commercial404Page from "../../modules/principal/ventures/pages/Commercial404Page";
+import CommercialQuotesPage from "../../modules/principal/ventures/pages/CommercialQuotesPage";
+import PublicationsFeedPage from "../../modules/principal/ventures/pages/PublicationsFeedPage";
+import QuotesAdvisorsPage from "../../modules/principal/ventures/pages/QuotesAdvisorsPage";
+import QuoteAreasPage from "../../modules/principal/ventures/pages/QuotesAreasPage";
+import QuotesCalenderPage from "../../modules/principal/ventures/pages/QuotesCalendarPage";
+import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayoutPage";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
@@ -72,7 +72,7 @@ const AppRouter = () => {
             path="principal"
             element={<PrivateRoute anyRequiredRole={[...ALL_ROLES]} />}
           >
-            <Route path="" index element={<PublicationsFeedPage />} />
+            <Route path="" index element={<Navigate to="emprendimientos" />} />
 
             <Route path="emprendimientos" element={<CommercialLayoutPage />}>
               <Route path="" element={<PublicationsFeedPage />} />
@@ -86,10 +86,7 @@ const AppRouter = () => {
             </Route>
 
             <Route path="cuenta" element={<AccountLayoutPage />}>
-              <Route
-                path="colaboradores"
-                element={<AccountCollaboratorsPage />}
-              />
+              <Route path="perfil" element={<AccountProfilePage />} />
               <Route path="facturacion" element={<AccountBillingPage />} />
             </Route>
 

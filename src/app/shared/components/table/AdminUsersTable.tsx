@@ -12,12 +12,14 @@ import {
 import Select from "react-select";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import { AreaSummary } from "../../../modules/principal/commercial/domain/area";
+import { User } from "x-ventures-domain";
+import { AppRole, Role } from "../../../modules/auth/domain/Role";
+import { AreaSummary } from "../../../modules/principal/ventures/domain/area";
 import {
   getVentureStateColor,
   VentureState,
-} from "../../../modules/principal/commercial/domain/state";
-import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
+} from "../../../modules/principal/ventures/domain/state";
+import useUsers from "../../../modules/principal/ventures/hooks/useUsers";
 import AppSpinner from "../loader/Spinner";
 import Pagination from "../pagination/Pagination";
 
@@ -28,12 +30,20 @@ const AdminUsersTable = () => {
   });
   const { page, size } = pagination;
 
-  const { loading, error, items, total, fetchQuoteAreas } = useQuoteAreas({
+  const {
+    loading,
+    error,
+    items,
+    total,
+    fetchUsers,
+    lockUserAccount,
+    unlockUserAccount,
+  } = useUsers({
     page,
     size,
   });
 
-  const columns = getColumns();
+  const columns = getColumns(lockUserAccount, unlockUserAccount);
 
   const table = useReactTable({
     columns,
@@ -56,7 +66,7 @@ const AdminUsersTable = () => {
     <Row>
       {error && (
         <div className="alert alert-danger text-center" role="alert">
-          Error al cargar los usuarios, por favor intente de nuevo
+          Ha habido un error, por favor intente nuevamente.
         </div>
       )}
 
@@ -103,7 +113,7 @@ const AdminUsersTable = () => {
 
                   <Button
                     type="button"
-                    onClick={fetchQuoteAreas}
+                    onClick={fetchUsers}
                     className="btn btn-light mx-2 mb-2"
                   >
                     <i className="mdi mdi-refresh"></i>
@@ -115,7 +125,7 @@ const AdminUsersTable = () => {
             <CardBody>
               <Fragment>
                 <Row className="mb-2">
-                  <Col sm={2}>
+                  <Col sm={3} lg={2}>
                     <label className="control-label">
                       Elementos por Página
                     </label>
@@ -144,42 +154,29 @@ const AdminUsersTable = () => {
                     ></Select>
                   </Col>
 
-                  <Col sm={2}>
-                    <label className="control-label">Roles</label>
+                  <Col sm={6} lg={3}>
+                    <label className="control-label">
+                      Roles (Todos por defecto)
+                    </label>
                     <Select
                       className=""
                       isDisabled={loading}
-                      value={[{ label: "Todos", value: 0 }]}
+                      value={[{ label: "Usuario", value: AppRole.USER }]}
                       isMulti={true}
                       isSearchable={false}
+                      closeMenuOnSelect={false}
                       onChange={(selected) => {
                         table.setPageIndex(0);
                         console.log({ selected });
                       }}
                       options={[
-                        { label: "Administrador", value: 25 },
-                        { label: "Moderador", value: 50 },
-                        { label: "Usuario", value: 100 },
-                      ]}
-                    ></Select>
-                  </Col>
-
-                  <Col sm={2}>
-                    <label className="control-label">Perfiles</label>
-                    <Select
-                      className=""
-                      isDisabled={loading}
-                      value={[{ label: "Todos", value: 0 }]}
-                      isMulti={true}
-                      isSearchable={false}
-                      onChange={(selected) => {
-                        table.setPageIndex(0);
-                        console.log({ selected });
-                      }}
-                      options={[
-                        { label: "Empresa", value: 25 },
-                        { label: "Proveedor", value: 50 },
-                        { label: "Cliente", value: 100 },
+                        { label: "Administrador", value: AppRole.ADMIN },
+                        { label: "Moderador", value: AppRole.MODERATOR },
+                        {
+                          label: "Publicador de Noticias",
+                          value: AppRole.NEWS_WRITER,
+                        },
+                        { label: "Usuario", value: AppRole.USER },
                       ]}
                     ></Select>
                   </Col>
@@ -278,7 +275,10 @@ const AdminUsersTable = () => {
   );
 };
 
-const getColumns = () => {
+const getColumns = (
+  lockUserAccount: (user: User) => void,
+  unlockUserAccount: (user: User) => void
+) => {
   /*
    "id": 1,
    "name": "Analítica de Datos",
@@ -287,16 +287,97 @@ const getColumns = () => {
   */
   return [
     {
-      header: "No",
-      accessorKey: "id",
+      header: "Foto",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const user = cellProps.row.original as User;
+        return (
+          <section>
+            <img
+              src={user.picture}
+              alt="user"
+              className="avatar-xs rounded-circle"
+            />
+          </section>
+        );
+      },
+    },
+    {
+      header: "Nombres",
+      accessorKey: "firstName",
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Nombre",
-      accessorKey: "name",
+      header: "Apellidos",
+      accessorKey: "lastName",
       enableColumnFilter: false,
       enableSorting: true,
+    },
+    {
+      header: "Email",
+      accessorKey: "email",
+      enableColumnFilter: false,
+      enableSorting: true,
+    },
+    {
+      header: "Completó registro",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const onboardingCompleted = cellProps.row.original.onboardingCompleted;
+        return (
+          <section>
+            <span
+              className={`badge bg-${
+                onboardingCompleted ? "success" : "danger"
+              } rounded-pill p-2 px-3`}
+            >
+              {onboardingCompleted ? "Sí" : "No"}
+            </span>
+          </section>
+        );
+      },
+    },
+    {
+      header: "Estado",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const active = cellProps.row.original.active;
+        return (
+          <section>
+            <span
+              className={`badge bg-${
+                active ? "success" : "danger"
+              } rounded-pill p-2 px-3`}
+            >
+              {active ? "Activo" : "Inactivo"}
+            </span>
+          </section>
+        );
+      },
+    },
+    {
+      header: "Roles",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const roles = cellProps.row.original.roles as Role[];
+        return (
+          <section className="d-flex">
+            {roles.map((role) => (
+              <span
+                key={role.id}
+                className={`badge bg-secondary rounded-3 p-1 px-2 m-1`}
+              >
+                {role.label}
+              </span>
+            ))}
+          </section>
+        );
+      },
     },
     {
       header: "Fecha de creación",
@@ -309,124 +390,38 @@ const getColumns = () => {
       },
     },
     {
-      header: "Activas",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const summaries = (cellProps.row.original.summaries ||
-          []) as AreaSummary[];
-        const summary = summaries.find(
-          (summary) => summary.estado === VentureState.ACTIVE
-        );
-        if (!summary) return <></>;
-        const color = getVentureStateColor(summary.estado);
-        const label =
-          summary.count === 1
-            ? summary.estado.replace("_", " ")
-            : summary.estado.replace("_", " ") + "S";
-        return (
-          <section className="d-flex flex-col flex-nowrap">
-            <div className="mx-1">
-              <span className={`badge bg-${color} rounded-pill p-2`}>
-                <span className="display-7">{summary.count}</span> {label}
-              </span>
-            </div>
-          </section>
-        );
-      },
-    },
-    {
-      header: "Terminadas",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const summaries = (cellProps.row.original.summaries ||
-          []) as AreaSummary[];
-        const summary = summaries.find(
-          (summary) => summary.estado === VentureState.COMPLETED
-        );
-        if (!summary) return <></>;
-        const color = getVentureStateColor(summary.estado);
-        const label =
-          summary.count === 1
-            ? summary.estado.replace("_", " ")
-            : summary.estado.replace("_", " ") + "S";
-        return (
-          <section className="d-flex flex-col flex-nowrap">
-            <div className="mx-1">
-              <span className={`badge bg-${color} rounded-pill p-2`}>
-                <span className="display-7">{summary.count}</span> {label}
-              </span>
-            </div>
-          </section>
-        );
-      },
-    },
-    {
-      header: "No Terminadas",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const summaries = (cellProps.row.original.summaries ||
-          []) as AreaSummary[];
-        const summary = summaries.find(
-          (summary) => summary.estado === VentureState.NOT_COMPLETED
-        );
-        if (!summary) return <></>;
-        const color = getVentureStateColor(summary.estado);
-        const label =
-          summary.count === 1
-            ? summary.estado.replace("_", " ")
-            : summary.estado.replace("_", " ") + "S";
-        return (
-          <section className="d-flex flex-col flex-nowrap">
-            <div className="mx-1">
-              <span className={`badge bg-${color} rounded-pill p-2`}>
-                <span className="display-7">{summary.count}</span> {label}
-              </span>
-            </div>
-          </section>
-        );
-      },
-    },
-    {
-      header: "Estado",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const active = cellProps.row.original.active as boolean;
-        return (
-          <section>
-            <span
-              className={`badge bg-${
-                active ? "success" : "danger"
-              } rounded-pill p-2`}
-            >
-              {active ? "Activa" : "Inactiva"}
-            </span>
-          </section>
-        );
-      },
-    },
-    {
       header: "Acciones",
       enableColumnFilter: false,
       enableSorting: true,
       cell: (value: any) => {
+        const user = value.row.original as User;
+        if (user.roles.some((role) => role.name === AppRole.ADMIN)) {
+          return <></>;
+        }
         return (
           <section>
-            <Button color="info" className="mx-1">
-              <i className="bx bx-edit font-size-16 align-middle me-1 text-white" />
-              <span>Editar</span>
-            </Button>
-
-            <Button
-              // onClick={() => deleteQuote(value.row.original as Quote)}
-              color="danger"
-              className="mx-1"
-            >
-              <i className="bx bx-trash font-size-16 align-middle me-1 text-white" />
-              <span>Eliminar</span>
+            {user.active ? (
+              <Button
+                onClick={() => lockUserAccount(value.row.original as User)}
+                color="danger"
+                className="mx-1"
+              >
+                <i className="bx bx-x font-size-16 align-middle me-1 text-white" />
+                <span>Inactivar</span>
+              </Button>
+            ) : (
+              <Button
+                onClick={() => unlockUserAccount(value.row.original as User)}
+                color="info"
+                className="mx-1"
+              >
+                <i className="bx bx-reset font-size-16 align-middle me-1 text-white" />
+                <span>Reactivar</span>
+              </Button>
+            )}
+            <Button color="primary" className="mx-1">
+              <i className="bx bx-list-ul font-size-16 align-middle me-1 text-white" />
+              <span>Cambiar roles</span>
             </Button>
           </section>
         );

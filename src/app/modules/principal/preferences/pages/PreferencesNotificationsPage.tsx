@@ -21,69 +21,69 @@ const PreferencesNotificationsPage = () => {
   document.title = "Idioma y Localización | Preferencias";
 
   const jobCategories1 = [
-    { id: 1, name: "Creación de Cotización", category: 52 },
-    { id: 2, name: "Actualización de Cotización", category: 10 },
-    { id: 3, name: "Estado de Cotización", category: 64 },
-    { id: 4, name: "Asignación de Proveedor", category: 105 },
-    { id: 5, name: "Nueva Cotización Recibida", category: 142 },
-    { id: 6, name: "Cotización Rechazada", category: 11 },
-    { id: 7, name: "Cotización Aceptada", category: 254 },
-    { id: 8, name: "Cotización Modificada", category: 79 },
+    { id: 1, name: "Test Nombre Notificación", category: 52 },
+    { id: 2, name: "Test Nombre Notificación", category: 10 },
+    { id: 3, name: "Test Nombre Notificación", category: 64 },
+    { id: 4, name: "Test Nombre Notificación", category: 105 },
+    { id: 5, name: "Test Nombre Notificación", category: 142 },
+    { id: 6, name: "Test Nombre Notificación", category: 11 },
+    { id: 7, name: "Test Nombre Notificación", category: 254 },
+    { id: 8, name: "Test Nombre Notificación", category: 79 },
   ];
 
   const jobCategories2 = [
-    { id: 1, name: "Inicio de Etapa", category: 85 },
-    { id: 2, name: "Cierre de Etapa", category: 19 },
-    { id: 3, name: "Reunión Programada", category: 48 },
-    { id: 4, name: "Reunión Cancelada", category: 34 },
-    { id: 5, name: "Actualización de Etapa", category: 33 },
-    { id: 6, name: "Asignación de Proveedor a Etapa", category: 748 },
-    { id: 7, name: "Finalización de Etapa", category: 16 },
-    { id: 8, name: "Cambio de Estado de Etapa", category: 94 },
+    { id: 1, name: "Test Nombre Notificación", category: 85 },
+    { id: 2, name: "Test Nombre Notificación", category: 19 },
+    { id: 3, name: "Test Nombre Notificación", category: 48 },
+    { id: 4, name: "Test Nombre Notificación", category: 34 },
+    { id: 5, name: "Test Nombre Notificación", category: 33 },
+    { id: 6, name: "Test Nombre Notificación", category: 748 },
+    { id: 7, name: "Test Nombre Notificación", category: 16 },
+    { id: 8, name: "Test Nombre Notificación", category: 94 },
   ];
 
   const jobCategories3 = [
-    { id: 1, name: "Nueva Reunión Programada", category: 17 },
-    { id: 2, name: "Actualización de Reunión", category: 64 },
-    { id: 3, name: "Cancelación de Reunión", category: 72 },
-    { id: 4, name: "Recordatorio de Reunión", category: 19 },
-    { id: 5, name: "Reprogramación de Reunión", category: 305 },
-    { id: 6, name: "Reunión Iniciada", category: 64 },
-    { id: 7, name: "Reunión Finalizada", category: 112 },
-    { id: 8, name: "Reunión Pendiente", category: 31 },
+    { id: 1, name: "Test Nombre Notificación", category: 17 },
+    { id: 2, name: "Test Nombre Notificación", category: 64 },
+    { id: 3, name: "Test Nombre Notificación", category: 72 },
+    { id: 4, name: "Test Nombre Notificación", category: 19 },
+    { id: 5, name: "Test Nombre Notificación", category: 305 },
+    { id: 6, name: "Test Nombre Notificación", category: 64 },
+    { id: 7, name: "Test Nombre Notificación", category: 112 },
+    { id: 8, name: "Test Nombre Notificación", category: 31 },
   ];
 
   const jobCategories4 = [
-    { id: 1, name: "Nuevo Comentario Agregado", category: 85 },
-    { id: 2, name: "Nuevo Documento Adjuntado", category: 19 },
-    { id: 3, name: "Comentario Actualizado", category: 48 },
-    { id: 4, name: "Documento Eliminado", category: 34 },
-    { id: 5, name: "Nueva Imagen Subida", category: 33 },
-    { id: 6, name: "Comentario Eliminado", category: 748 },
-    { id: 7, name: "Documentación Revisada", category: 16 },
-    { id: 8, name: "Nuevo Archivo Subido", category: 94 },
+    { id: 1, name: "Test Nombre Notificación", category: 85 },
+    { id: 2, name: "Test Nombre Notificación", category: 19 },
+    { id: 3, name: "Test Nombre Notificación", category: 48 },
+    { id: 4, name: "Test Nombre Notificación", category: 34 },
+    { id: 5, name: "Test Nombre Notificación", category: 33 },
+    { id: 6, name: "Test Nombre Notificación", category: 748 },
+    { id: 7, name: "Test Nombre Notificación", category: 16 },
+    { id: 8, name: "Test Nombre Notificación", category: 94 },
   ];
 
   const jobCategories5 = [
-    { id: 1, name: "Pago Realizado", category: 85 },
-    { id: 2, name: "Comisión Recibida", category: 19 },
-    { id: 3, name: "Factura Generada", category: 48 },
-    { id: 4, name: "Pago Pendiente", category: 34 },
-    { id: 5, name: "Pago Rechazado", category: 33 },
-    { id: 6, name: "Reembolso Procesado", category: 748 },
-    { id: 7, name: "Actualización de Factura", category: 16 },
-    { id: 8, name: "Nuevo Comprobante de Pago", category: 94 },
+    { id: 1, name: "Test Nombre Notificación", category: 85 },
+    { id: 2, name: "Test Nombre Notificación", category: 19 },
+    { id: 3, name: "Test Nombre Notificación", category: 48 },
+    { id: 4, name: "Test Nombre Notificación", category: 34 },
+    { id: 5, name: "Test Nombre Notificación", category: 33 },
+    { id: 6, name: "Test Nombre Notificación", category: 748 },
+    { id: 7, name: "Test Nombre Notificación", category: 16 },
+    { id: 8, name: "Test Nombre Notificación", category: 94 },
   ];
 
   const jobCategories6 = [
-    { id: 1, name: "Acción Requerida", category: 85 },
-    { id: 2, name: "Estado Crítico", category: 19 },
-    { id: 3, name: "Tarea Completada", category: 48 },
-    { id: 4, name: "Evento Importante", category: 34 },
-    { id: 5, name: "Actualización en Tiempo Real", category: 33 },
-    { id: 6, name: "Alerta de Inactividad", category: 748 },
-    { id: 7, name: "Cambio de Estado Urgente", category: 16 },
-    { id: 8, name: "Nuevo Evento Iniciado", category: 94 },
+    { id: 1, name: "Test Nombre Notificación", category: 85 },
+    { id: 2, name: "Test Nombre Notificación", category: 19 },
+    { id: 3, name: "Test Nombre Notificación", category: 48 },
+    { id: 4, name: "Test Nombre Notificación", category: 34 },
+    { id: 5, name: "Test Nombre Notificación", category: 33 },
+    { id: 6, name: "Test Nombre Notificación", category: 748 },
+    { id: 7, name: "Test Nombre Notificación", category: 16 },
+    { id: 8, name: "Test Nombre Notificación", category: 94 },
   ];
 
   return (
@@ -144,7 +144,7 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Cotizaciones
+                            Test
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
                           {(jobCategories1 || []).map((item, key) => (
@@ -170,7 +170,7 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Etapas de Cotización
+                            Test
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
                           {(jobCategories2 || []).map((item, key) => (
@@ -197,7 +197,7 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Reuniones
+                            Test
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
                           {(jobCategories3 || []).map((item, key) => (
@@ -224,7 +224,7 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Comentarios
+                            Test
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
                           {(jobCategories4 || []).map((item, key) => (
@@ -251,7 +251,7 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Pagos y Facturación
+                            Test
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
                           {(jobCategories5 || []).map((item, key) => (
@@ -278,7 +278,7 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Acciones Requeridas
+                            Test
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
                           {(jobCategories6 || []).map((item, key) => (

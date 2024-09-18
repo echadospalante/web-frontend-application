@@ -20,12 +20,12 @@ import {
   Table,
 } from "reactstrap";
 
-import { AreaSummary } from "../../../modules/principal/commercial/domain/area";
+import { AreaSummary } from "../../../modules/principal/ventures/domain/area";
 import {
   VentureState,
   getVentureStateColor,
-} from "../../../modules/principal/commercial/domain/state";
-import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
+} from "../../../modules/principal/ventures/domain/state";
+import useQuoteAreas from "../../../modules/principal/ventures/hooks/useQuoteAreas";
 import AppSpinner from "../loader/Spinner";
 
 const QuoteAreasTable = () => {

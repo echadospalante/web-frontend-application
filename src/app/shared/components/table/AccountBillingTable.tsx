@@ -22,7 +22,7 @@ import {
 } from "reactstrap";
 
 import { Link } from "react-router-dom";
-import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
+import useQuoteAreas from "../../../modules/principal/ventures/hooks/useQuoteAreas";
 import AppSpinner from "../loader/Spinner";
 import EcommerceOrdersModal from "../modal/BillingDetailModal";
 import Pagination from "../pagination/Pagination";

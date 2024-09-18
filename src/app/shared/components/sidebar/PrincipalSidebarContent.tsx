@@ -204,7 +204,7 @@ const UserSidebarContent = () => {
             <li className="menu-title">{t("Your Account")}</li>
 
             <li>
-              <Link to="/principal/perfil">
+              <Link to="/principal/cuenta/perfil">
                 <i className="bx bx-id-card"></i>
                 <span>{t("Profile")}</span>
               </Link>

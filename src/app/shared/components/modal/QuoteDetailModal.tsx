@@ -12,7 +12,7 @@ import {
 import AppSpinner from "../loader/Spinner";
 import QuoteForm from "../content/QuoteForm";
 import QuoteSteps from "../steps/QuoteSteps";
-import useQuoteDetail from "../../../modules/principal/commercial/hooks/useQuoteDetail";
+import useQuoteDetail from "../../../modules/principal/ventures/hooks/useQuoteDetail";
 
 type DeleteModalProps = {
   quoteId: string;

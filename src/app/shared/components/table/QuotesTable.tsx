@@ -12,14 +12,14 @@ import {
 import Select from "react-select";
 import { Button, Card, CardBody, Col, Container, Row, Table } from "reactstrap";
 
-import { QuoteInclude } from "../../../modules/principal/commercial/domain/filters";
-import { Quote } from "../../../modules/principal/commercial/domain/quote";
+import { QuoteInclude } from "../../../modules/principal/ventures/domain/filters";
+import { Quote } from "../../../modules/principal/ventures/domain/quote";
 import {
   VentureState,
   getVentureStateColor,
-} from "../../../modules/principal/commercial/domain/state";
-import useQuoteFilters from "../../../modules/principal/commercial/hooks/useQuoteFilters";
-import useQuotes from "../../../modules/principal/commercial/hooks/useQuotes";
+} from "../../../modules/principal/ventures/domain/state";
+import useQuoteFilters from "../../../modules/principal/ventures/hooks/useQuoteFilters";
+import useQuotes from "../../../modules/principal/ventures/hooks/useQuotes";
 import QuoteForm from "../content/QuoteForm";
 import QuotesFilter from "../filters/QuoteFilters";
 import AppSpinner from "../loader/Spinner";

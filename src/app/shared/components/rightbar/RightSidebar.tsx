@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
 import { useSelector } from "react-redux";
@@ -45,7 +45,7 @@ const RightSidebar = () => {
   } = useSelector(selectLayout);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="right-bar" id="right-bar">
         <SimpleBar style={{ height: "900px", zIndex: 999999 }}>
           <div data-simplebar className="h-100">
@@ -743,7 +743,7 @@ const RightSidebar = () => {
         </SimpleBar>
       </div>
       <div className="rightbar-overlay"></div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

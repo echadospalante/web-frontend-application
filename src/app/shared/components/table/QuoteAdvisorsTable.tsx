@@ -12,8 +12,8 @@ import {
 import Select from "react-select";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import { QuoteAdvisor } from "../../../modules/principal/commercial/domain/advisor";
-import useQuoteAdvisors from "../../../modules/principal/commercial/hooks/useQuoteAdvisors";
+import { QuoteAdvisor } from "../../../modules/principal/ventures/domain/advisor";
+import useQuoteAdvisors from "../../../modules/principal/ventures/hooks/useUsers";
 import AppSpinner from "../loader/Spinner";
 import EditAdvisorModal from "../modal/EditAdvisorModal";
 import Pagination from "../pagination/Pagination";

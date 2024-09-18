@@ -12,8 +12,8 @@ import {
 } from "reactstrap";
 import * as Yup from "yup";
 
-import { QuoteAdvisor } from "../../../modules/principal/commercial/domain/advisor";
-import useQuoteAdvisors from "../../../modules/principal/commercial/hooks/useQuoteAdvisors";
+import { QuoteAdvisor } from "../../../modules/principal/ventures/domain/advisor";
+import useQuoteAdvisors from "../../../modules/principal/ventures/hooks/useUsers";
 
 type EditAdvisorModalProps = {
   show: boolean;

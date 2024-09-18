@@ -7,11 +7,11 @@ import { Col, Row } from "reactstrap";
 
 import "flatpickr/dist/themes/material_blue.css";
 
-import { QuoteAdvisor } from "../../../modules/principal/commercial/domain/advisor";
-import { VentureState } from "../../../modules/principal/commercial/domain/state";
-import useQuoteAdvisors from "../../../modules/principal/commercial/hooks/useQuoteAdvisors";
-import useQuoteAreas from "../../../modules/principal/commercial/hooks/useQuoteAreas";
-import useQuoteFilters from "../../../modules/principal/commercial/hooks/useQuoteFilters";
+import { QuoteAdvisor } from "../../../modules/principal/ventures/domain/advisor";
+import { VentureState } from "../../../modules/principal/ventures/domain/state";
+import useQuoteAdvisors from "../../../modules/principal/ventures/hooks/useUsers";
+import useQuoteAreas from "../../../modules/principal/ventures/hooks/useQuoteAreas";
+import useQuoteFilters from "../../../modules/principal/ventures/hooks/useQuoteFilters";
 
 const QuotesFilter = () => {
   const {

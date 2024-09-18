@@ -26,7 +26,7 @@ const PublicationsFeedPage = () => {
           {/* <Breadcrumb title="Emprendimientos" breadcrumbItem="Publicaciones" /> */}
 
           <Row>
-            <Col xl={9} lg={8}>
+            <Col lg={9}>
               <Card>
                 <ul
                   className="nav nav-tabs nav-tabs-custom justify-content-center pt-2"
@@ -132,21 +132,23 @@ const PublicationsFeedPage = () => {
                                     <li className="list-inline-item mr-3">
                                       <Link to="#" className="text-muted">
                                         <i className="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>{" "}
-                                        Project
+                                        Nombre Categoría
                                       </Link>
                                     </li>
                                     <li className="list-inline-item mr-3">
                                       <Link to="#" className="text-muted">
                                         <i className="bx bx-comment-dots align-middle text-muted me-1"></i>{" "}
-                                        12 Comments
+                                        12 Comentarios
                                       </Link>
                                     </li>
                                   </ul>
                                   <p>
-                                    Neque porro quisquam est, qui dolorem ipsum
-                                    quia dolor sit amet, consectetur, adipisci
-                                    velit, aliquam quaerat voluptatem. Ut enim
-                                    ad minima veniam, quis
+                                    Lorem ipsum dolor sit amet consectetur
+                                    adipisicing elit. Autem vero sint recusandae
+                                    ullam molestiae eveniet perferendis alias,
+                                    omnis laboriosam dolorem dignissimos iure
+                                    quas soluta mollitia error quaerat
+                                    repudiandae at aliquam!
                                   </p>
 
                                   <div>
@@ -362,7 +364,10 @@ const PublicationsFeedPage = () => {
                 </TabContent>
               </Card>
             </Col>
-            <FeedRightSidebar />
+
+            <Col lg={3}>
+              <FeedRightSidebar />
+            </Col>
           </Row>
         </Container>
       </div>
