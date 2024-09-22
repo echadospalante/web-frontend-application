@@ -146,53 +146,9 @@ const ModeratorSidebarContent = () => {
             </li>
 
             <li>
-              <Link to="/administracion/general/cotizaciones">
-                <i className="bx bx-rocket"></i>
-                <span>{t("Quotes")}</span>
-              </Link>
-            </li>
-
-            <li>
               <Link to="/administracion/general/reportes">
                 <i className="bx bx-bar-chart-square"></i>
                 <span>{t("Reports")}</span>
-              </Link>
-            </li>
-          </ul>
-
-          <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">Facturación</li>
-
-            <li>
-              <Link to="/administracion/facturacion/actual">
-                <i className="mdi mdi-tray-full"></i>
-                <span>{t("Current Month")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/administracion/facturacion/historico">
-                <i className="mdi mdi-file-cabinet"></i>
-                <span>{t("Historical")}</span>
-              </Link>
-            </li>
-          </ul>
-
-          <ul className="metismenu list-unstyled" id="side-menu">
-            <li className="menu-title">Configuraciones</li>
-
-            <li>
-              <Link to="/administracion/facturacion/actual">
-                <i className="mdi mdi-tray-full"></i>
-                <span>{t("Pricing")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/administracion/facturacion/historico">
-                <i className="mdi mdi-file-cabinet"></i>
-
-                <span>{t("Rates And Limits")}</span>
               </Link>
             </li>
           </ul>

@@ -118,7 +118,7 @@ const PublicationsFeedPage = () => {
                                       Beautiful Day with Friends
                                     </Link>
                                   </h5>
-                                  <p className="text-muted">10 Apr, 2020</p>
+                                  <p className="text-muted">10 Ago, 2024</p>
 
                                   <div className="position-relative mb-3">
                                     <img
@@ -153,7 +153,7 @@ const PublicationsFeedPage = () => {
 
                                   <div>
                                     <Link to="#" className="text-primary">
-                                      Read more{" "}
+                                      Ver detalle{" "}
                                       <i className="mdi mdi-arrow-right"></i>
                                     </Link>
                                   </div>

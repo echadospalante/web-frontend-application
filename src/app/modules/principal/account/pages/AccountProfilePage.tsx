@@ -1,4 +1,6 @@
-import React, { useMemo } from "react";
+import React from "react";
+
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Card,
@@ -9,11 +11,14 @@ import {
   Row,
   Table,
 } from "reactstrap";
+import { selectAuthentication } from "../../../../config/redux/reducers/auth.reducer";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import VentureCategoryWidget from "../../../../shared/components/widgets/VentureCategoryWidget";
 
 const AccountProfilePage = () => {
   document.title = "Perfil de usuario | EchadosPa'lante";
+  const { firstName, lastName, email, picture, roles } =
+    useSelector(selectAuthentication);
 
   const miniCards = [
     {
@@ -50,19 +55,34 @@ const AccountProfilePage = () => {
                 </div>
                 <CardBody className="pt-0">
                   <Row>
-                    <Col sm="4">
+                    <Col sm="7">
                       <div className="avatar-md profile-user-wid mb-4">
                         <img
-                          src="/epl2.jpeg"
+                          src={picture}
                           alt=""
                           className="img-thumbnail rounded-circle"
                         />
                       </div>
-                      <h5 className="font-size-15 text-truncate">Test name</h5>
+                      <h5 className="font-size-15 text-truncate">
+                        {firstName} {lastName}
+                      </h5>
+                      <h6>{email}</h6>
+
                       <p className="text-muted mb-0 text-truncate">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Harum, magnam.
                       </p>
+
+                      <section className="d-flex mt-3">
+                        {(roles || []).map((role) => (
+                          <span
+                            key={role.id}
+                            className={`badge bg-secondary rounded-3 p-1 px-2 m-1`}
+                          >
+                            {role.label}
+                          </span>
+                        ))}
+                      </section>
                     </Col>
 
                     <Col sm={8}>
