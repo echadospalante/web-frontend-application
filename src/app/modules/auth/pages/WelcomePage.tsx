@@ -1,10 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Fragment } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { Card, CardBody, Col, Container, Row } from "reactstrap";
 
 const WelcomePage = () => {
+  const { onboardingCompleted } = useSelector(selectAuthentication);
+
+  if (onboardingCompleted) {
+    return <Navigate to={"/principal"} replace={true} />;
+  }
+
   return (
     <Fragment>
       <div className="account-pages my-5 pt-sm-5">
@@ -73,6 +79,8 @@ const WelcomePage = () => {
 };
 
 import type { SVGProps } from "react";
+import { useSelector } from "react-redux";
+import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
 
 export function HandGreeting(props: SVGProps<SVGSVGElement>) {
   return (

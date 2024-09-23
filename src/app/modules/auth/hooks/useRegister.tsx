@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import {
@@ -15,6 +15,7 @@ import {
   SeverityLevel,
 } from "../../../config/redux/reducers/user-interface.reducer";
 import { createUserRegisterMiddleware } from "../api/middleware/authentication.middleware";
+import { completeOnboarding } from "../../../config/redux/reducers/auth.reducer";
 
 const userSchema = Yup.object().shape({
   gender: Yup.string()
@@ -34,7 +35,11 @@ export const useRegister = () => {
 
   const submitRegister = () => {
     if (!userInfo) return Promise.reject();
-    return dispatch(createUserRegisterMiddleware(userInfo, preferencesIds));
+    return dispatch(
+      createUserRegisterMiddleware(userInfo, preferencesIds)
+    ).then(() => {
+      dispatch(completeOnboarding());
+    });
   };
 
   return { userInfo, submitRegister };

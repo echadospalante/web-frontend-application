@@ -1,18 +1,24 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 import { Container } from "reactstrap";
 
 import HorizontalLayout from "../../../shared/components/layout/HorizontalLayout";
 import VerticalLayout from "../../../shared/components/layout/VerticalLayout";
 import { selectLayout } from "../../../config/redux/reducers/layout.reducer";
 import { LayoutType } from "../../common/domain/layout.interfaces";
+import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
 
 const CommercialLayoutPage = () => {
   const { layoutType } = useSelector(selectLayout);
+  const { onboardingCompleted } = useSelector(selectAuthentication);
 
-  document.title = "Cotizaciones | Principal";
+  document.title = "Emprendimientos | Principal";
+
+  if (!onboardingCompleted) {
+    return <Navigate to={"/registro"} replace={true} />;
+  }
 
   return (
     <React.Fragment>

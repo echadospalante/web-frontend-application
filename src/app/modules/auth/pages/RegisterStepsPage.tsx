@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import classnames from "classnames";
 import Dropzone from "react-dropzone";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -24,6 +24,8 @@ import {
   TabPane,
 } from "reactstrap";
 import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
+import { useSelector } from "react-redux";
+import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
 
 const RegisterStepsPage = () => {
   document.title = "Registro de Usuario | Echadospa'lante";

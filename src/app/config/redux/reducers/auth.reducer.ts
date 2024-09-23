@@ -46,10 +46,13 @@ export const authenticationSlice = createSlice({
     changeActiveRole: (state, action: PayloadAction<Role>) => {
       state.activeRole = action.payload;
     },
+    completeOnboarding: (state) => {
+      state.onboardingCompleted = true;
+    }
   },
 });
 
-export const { loginUser, logoutUser, changeActiveRole } =
+export const { loginUser, logoutUser, changeActiveRole, completeOnboarding } =
   authenticationSlice.actions;
 
 export const selectAuthentication = (state: RootState) => state.authentication;
