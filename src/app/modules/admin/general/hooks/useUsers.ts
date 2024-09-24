@@ -7,6 +7,8 @@ import {
   fetchUsersMiddleware,
   lockUserAccountMiddleware,
   unlockUserAccountMiddleware,
+  unverifyUserAccountMiddleware,
+  verifyUserAccountMiddleware,
 } from "../api/middleware/users.middleware";
 
 type UseCountriesProps = {
@@ -27,13 +29,17 @@ const useUsers = (props: UseCountriesProps) => {
     total: 0,
   });
 
-  const lockUserAccount = (user: User) => {
+  const toggleLockUserAccount = (user: User) => {
     setUsers((users) => ({
       ...users,
       loading: true,
       error: false,
     }));
-    dispatch(lockUserAccountMiddleware(user.id))
+    const actionMiddleware = user.active
+      ? lockUserAccountMiddleware
+      : unlockUserAccountMiddleware;
+
+    dispatch(actionMiddleware(user.id))
       .then(() => {
         setUsers((users) => ({
           ...users,
@@ -43,7 +49,7 @@ const useUsers = (props: UseCountriesProps) => {
             if (u.id === user.id) {
               return {
                 ...u,
-                active: false,
+                active: !u.active,
               };
             }
             return u;
@@ -59,14 +65,18 @@ const useUsers = (props: UseCountriesProps) => {
         }));
       });
   };
-
-  const unlockUserAccount = (user: User) => {
+  
+  const toggleUserAccountVerification = (user: User) => {
     setUsers((users) => ({
       ...users,
       loading: true,
       error: false,
     }));
-    dispatch(unlockUserAccountMiddleware(user.id))
+    const actionMiddleware = user.active
+      ? verifyUserAccountMiddleware
+      : unverifyUserAccountMiddleware;
+
+    dispatch(actionMiddleware(user.id))
       .then(() => {
         setUsers((users) => ({
           ...users,
@@ -76,7 +86,7 @@ const useUsers = (props: UseCountriesProps) => {
             if (u.id === user.id) {
               return {
                 ...u,
-                active: true,
+                active: !u.verified,
               };
             }
             return u;
@@ -150,8 +160,8 @@ const useUsers = (props: UseCountriesProps) => {
   return {
     ...users,
     fetchUsers,
-    lockUserAccount,
-    unlockUserAccount,
+    toggleLockUserAccount,
+    toggleUserAccountVerification,
   };
 };
 

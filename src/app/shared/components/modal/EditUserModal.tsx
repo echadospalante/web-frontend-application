@@ -13,6 +13,7 @@ import { User } from "x-ventures-domain";
 import useEditUser from "../../../modules/admin/general/hooks/useEditUser";
 import { AppRole } from "../../../modules/auth/domain/Role";
 import useRoles from "../../../modules/auth/hooks/useRoles";
+import UserCard from "../card/UserCard";
 
 type EditUserModalProps = {
   show: boolean;
@@ -31,9 +32,9 @@ const EditUserModal = ({
     error,
     loading,
     handleEditRoles,
-    handleToggleActive,
     handleToggleVerified,
     message,
+    user: editedUser,
   } = useEditUser(user);
 
   const { error: errorRoles, loading: loadingRoles, roles } = useRoles();
@@ -50,14 +51,21 @@ const EditUserModal = ({
     });
   };
 
+  const handleEvaluateVerifiedChange = (email: string) => {
+    handleToggleVerified(email).then(() => {
+      onSuccessfulEdit();
+    });
+  };
+
   return (
     <Modal isOpen={show} toggle={onCloseClick}>
       <ModalHeader toggle={onCloseClick} tag="h4">
         Editar usuario
       </ModalHeader>
       <ModalBody>
+        <UserCard user={editedUser} />
         <Form>
-          <Row className="mt-4 gx-4">
+          <Row className="gx-4">
             <div className="px-2">
               {errorRoles && (
                 <div className="alert alert-danger text-center" role="alert">
@@ -71,7 +79,7 @@ const EditUserModal = ({
               <Select
                 id="departmentId"
                 name="departmentId"
-                value={user.roles
+                value={editedUser.roles
                   .filter(
                     ({ name }) =>
                       name === AppRole.MODERATOR || name === AppRole.NEWS_WRITER
@@ -101,49 +109,12 @@ const EditUserModal = ({
             </Col>
 
             <Col md={12} className="mb-3">
-              <Label htmlFor="validationTooltip01">Estado</Label>
-              <Select
-                id="departmentId"
-                name="departmentId"
-                value={
-                  user.active
-                    ? {
-                        label: "Activo",
-                        value: true,
-                        backgroundColor: "green",
-                      }
-                    : {
-                        label: "Inactivo",
-                        value: false,
-                      }
-                }
-                placeholder="Selecciona los roles del usuario"
-                isMulti={false}
-                onChange={(value) => {
-                  if (!value) return;
-                  console.log({ value });
-                }}
-                options={[
-                  {
-                    label: "Activo",
-                    value: true,
-                  },
-                  {
-                    label: "Inactivo",
-                    value: false,
-                  },
-                ]}
-                className="select2-selection"
-              />
-            </Col>
-
-            <Col md={12} className="mb-3">
               <Label htmlFor="validationTooltip01">Verificación</Label>
               <Select
-                id="departmentId"
-                name="departmentId"
+                id="verified"
+                name="verified"
                 value={
-                  user.active
+                  editedUser.verified
                     ? {
                         label: "Verificado",
                         value: true,
@@ -157,7 +128,7 @@ const EditUserModal = ({
                 isMulti={false}
                 onChange={(value) => {
                   if (!value) return;
-                  console.log({ value });
+                  handleEvaluateVerifiedChange(editedUser.email);
                 }}
                 options={[
                   {

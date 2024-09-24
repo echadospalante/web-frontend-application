@@ -9,6 +9,7 @@ import {
   verifyUserAccountMiddleware,
 } from "../api/middleware/users.middleware";
 import { userInfo } from "os";
+import { AppRole } from "../../../auth/domain/Role";
 
 const useEditUser = (initialInfo: User) => {
   const dispatch = useAppDispatch();
@@ -34,6 +35,12 @@ const useEditUser = (initialInfo: User) => {
       )
     )
       .then(() => {
+        const baseRoles = operation.user.roles.filter(
+          ({ name }) => name === AppRole.ADMIN || name === AppRole.USER
+        );
+        const otherRoles = roles.filter(
+          ({ name }) => !baseRoles.map(({ name }) => name).includes(name)
+        );
         setOperation((operation) => ({
           ...operation,
           loading: false,
@@ -41,7 +48,7 @@ const useEditUser = (initialInfo: User) => {
           message: "",
           user: {
             ...operation.user,
-            roles: [...operation.user.roles, ...roles],
+            roles: [...baseRoles, ...otherRoles],
           },
         }));
       })

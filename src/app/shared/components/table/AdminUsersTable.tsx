@@ -13,11 +13,12 @@ import Select from "react-select";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
 import { User } from "x-ventures-domain";
-import { AppRole, Role } from "../../../modules/auth/domain/Role";
 import useUsers from "../../../modules/admin/general/hooks/useUsers";
+import { AppRole, Role } from "../../../modules/auth/domain/Role";
 import AppSpinner from "../loader/Spinner";
-import Pagination from "../pagination/Pagination";
 import EditUserModal from "../modal/EditUserModal";
+import Pagination from "../pagination/Pagination";
+import IconTooltip from "../tooltips/IconTooltip";
 
 const AdminUsersTable = () => {
   const [pagination, setPagination] = useState({
@@ -33,16 +34,16 @@ const AdminUsersTable = () => {
     items,
     total,
     fetchUsers,
-    lockUserAccount,
-    unlockUserAccount,
+    toggleLockUserAccount,
+    toggleUserAccountVerification,
   } = useUsers({
     page,
     size,
   });
 
   const columns = getColumns(
-    lockUserAccount,
-    unlockUserAccount,
+    toggleLockUserAccount,
+    toggleUserAccountVerification,
     setActiveUserToEdit
   );
 
@@ -289,8 +290,8 @@ const AdminUsersTable = () => {
 };
 
 const getColumns = (
-  lockUserAccount: (user: User) => void,
-  unlockUserAccount: (user: User) => void,
+  toggleLockUserAccount: (user: User) => void,
+  toggleUserAccountVerification: (user: User) => void,
   setActiveUserToEdit: (user: User) => void
 ) => {
   /*
@@ -313,6 +314,20 @@ const getColumns = (
               alt="user"
               className="avatar-xs rounded-circle"
             />
+          </section>
+        );
+      },
+    },
+    {
+      header: "Verificado",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const verified = cellProps.row.original.verified;
+        if (!verified) return <></>;
+        return (
+          <section className="d-flex justify-content-center">
+            <i className="bx bx-badge-check text-primary fs-3"></i>
           </section>
         );
       },
@@ -416,30 +431,51 @@ const getColumns = (
           <section>
             {user.active ? (
               <Button
-                onClick={() => lockUserAccount(value.row.original as User)}
+                onClick={() =>
+                  toggleLockUserAccount(value.row.original as User)
+                }
                 color="danger"
-                className="mx-1"
+                className="px-3 mx-1"
               >
-                <i className="bx bx-x font-size-16 align-middle me-1 text-white" />
-                <span>Inactivar</span>
+                <IconTooltip
+                  tooltipId={"reenable-user"}
+                  tooltipHtml={"<h6>Deshabilitar usuario</h6>"}
+                  tooltipPlace={"top"}
+                  iconClassName={"bx bx-x font-size-16 align-middle text-white"}
+                />
               </Button>
             ) : (
               <Button
-                onClick={() => unlockUserAccount(value.row.original as User)}
+                onClick={() =>
+                  toggleLockUserAccount(value.row.original as User)
+                }
                 color="info"
-                className="mx-1"
+                className="px-3 mx-1"
               >
-                <i className="bx bx-reset font-size-16 align-middle me-1 text-white" />
-                <span>Reactivar</span>
+                <IconTooltip
+                  tooltipId={"disable-user"}
+                  tooltipHtml={"<h6>Reactivar usuario</h6>"}
+                  tooltipPlace={"top"}
+                  iconClassName={
+                    "bx bx-reset font-size-16 align-middle text-white"
+                  }
+                />
               </Button>
             )}
+
             <Button
               onClick={() => setActiveUserToEdit(value.row.original as User)}
               color="primary"
-              className="mx-1"
+              className="px-3"
             >
-              <i className="bx bxs-edit font-size-16 align-middle me-1 text-white" />
-              <span>Modificar</span>
+              <IconTooltip
+                tooltipId={"modify-user"}
+                tooltipHtml={"<h6>Editar</h6>"}
+                tooltipPlace={"top"}
+                iconClassName={
+                  "bx bxs-edit font-size-16 align-middle text-white"
+                }
+              />
             </Button>
           </section>
         );
