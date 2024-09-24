@@ -13,7 +13,7 @@ import {
 import * as Yup from "yup";
 
 import { QuoteAdvisor } from "../../../modules/principal/ventures/domain/advisor";
-import useQuoteAdvisors from "../../../modules/principal/ventures/hooks/useUsers";
+import useQuoteAdvisors from "../../../modules/admin/general/hooks/useUsers";
 
 type EditAdvisorModalProps = {
   show: boolean;

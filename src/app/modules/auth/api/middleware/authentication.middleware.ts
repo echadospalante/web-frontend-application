@@ -4,6 +4,7 @@ import {
   loginUser,
   logoutUser,
 } from "../../../../config/redux/reducers/auth.reducer";
+import { UserRegisterInfo } from "../../../../config/redux/reducers/register.reducer";
 import {
   SeverityLevel,
   finishGlobalLoading,
@@ -11,7 +12,6 @@ import {
   startGlobalLoading,
 } from "../../../../config/redux/reducers/user-interface.reducer";
 import AuthenticationApi from "../http/authentication.api";
-import { UserRegisterInfo } from "../../../../config/redux/reducers/register.reducer";
 
 export const refreshAuthOnReloadMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {

@@ -20,7 +20,7 @@ import {
   SeverityLevel,
 } from "../../../config/redux/reducers/user-interface.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
-import useQuoteAdvisors from "../../../modules/principal/ventures/hooks/useUsers";
+import useQuoteAdvisors from "../../../modules/admin/general/hooks/useUsers";
 
 type CreateQuoteAdvisorFormProps = {
   setActiveTab: React.Dispatch<React.SetStateAction<string>>;

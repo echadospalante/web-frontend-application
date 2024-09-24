@@ -1,14 +1,14 @@
 import React from "react";
 
 import { useSelector } from "react-redux";
-import { Navigate, Outlet, useNavigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { Container } from "reactstrap";
 
+import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
+import { selectLayout } from "../../../config/redux/reducers/layout.reducer";
 import HorizontalLayout from "../../../shared/components/layout/HorizontalLayout";
 import VerticalLayout from "../../../shared/components/layout/VerticalLayout";
-import { selectLayout } from "../../../config/redux/reducers/layout.reducer";
 import { LayoutType } from "../../common/domain/layout.interfaces";
-import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
 
 const CommercialLayoutPage = () => {
   const { layoutType } = useSelector(selectLayout);

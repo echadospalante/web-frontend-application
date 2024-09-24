@@ -14,20 +14,17 @@ import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
 import { User } from "x-ventures-domain";
 import { AppRole, Role } from "../../../modules/auth/domain/Role";
-import { AreaSummary } from "../../../modules/principal/ventures/domain/area";
-import {
-  getVentureStateColor,
-  VentureState,
-} from "../../../modules/principal/ventures/domain/state";
-import useUsers from "../../../modules/principal/ventures/hooks/useUsers";
+import useUsers from "../../../modules/admin/general/hooks/useUsers";
 import AppSpinner from "../loader/Spinner";
 import Pagination from "../pagination/Pagination";
+import EditUserModal from "../modal/EditUserModal";
 
 const AdminUsersTable = () => {
   const [pagination, setPagination] = useState({
     page: 0,
     size: 20,
   });
+  const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
   const { page, size } = pagination;
 
   const {
@@ -43,7 +40,11 @@ const AdminUsersTable = () => {
     size,
   });
 
-  const columns = getColumns(lockUserAccount, unlockUserAccount);
+  const columns = getColumns(
+    lockUserAccount,
+    unlockUserAccount,
+    setActiveUserToEdit
+  );
 
   const table = useReactTable({
     columns,
@@ -62,8 +63,20 @@ const AdminUsersTable = () => {
     setPagination({ ...pagination, page });
   };
 
+  const handleCloseEditModal = () => {
+    setActiveUserToEdit(undefined);
+  };
+
   return (
     <Row>
+      {activeUserToEdit && (
+        <EditUserModal
+          show={!!activeUserToEdit}
+          onCloseClick={handleCloseEditModal}
+          onSuccessfulEdit={fetchUsers}
+          user={activeUserToEdit}
+        />
+      )}
       {error && (
         <div className="alert alert-danger text-center" role="alert">
           Ha habido un error, por favor intente nuevamente.
@@ -277,7 +290,8 @@ const AdminUsersTable = () => {
 
 const getColumns = (
   lockUserAccount: (user: User) => void,
-  unlockUserAccount: (user: User) => void
+  unlockUserAccount: (user: User) => void,
+  setActiveUserToEdit: (user: User) => void
 ) => {
   /*
    "id": 1,
@@ -419,9 +433,13 @@ const getColumns = (
                 <span>Reactivar</span>
               </Button>
             )}
-            <Button color="primary" className="mx-1">
-              <i className="bx bx-list-ul font-size-16 align-middle me-1 text-white" />
-              <span>Cambiar roles</span>
+            <Button
+              onClick={() => setActiveUserToEdit(value.row.original as User)}
+              color="primary"
+              className="mx-1"
+            >
+              <i className="bx bxs-edit font-size-16 align-middle me-1 text-white" />
+              <span>Modificar</span>
             </Button>
           </section>
         );

@@ -9,7 +9,7 @@ import "flatpickr/dist/themes/material_blue.css";
 
 import { QuoteAdvisor } from "../../../modules/principal/ventures/domain/advisor";
 import { VentureState } from "../../../modules/principal/ventures/domain/state";
-import useQuoteAdvisors from "../../../modules/principal/ventures/hooks/useUsers";
+import useQuoteAdvisors from "../../../modules/admin/general/hooks/useUsers";
 import useQuoteAreas from "../../../modules/principal/ventures/hooks/useQuoteAreas";
 import useQuoteFilters from "../../../modules/principal/ventures/hooks/useQuoteFilters";
 
