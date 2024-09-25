@@ -20,15 +20,15 @@ const AccountProfilePage = () => {
   const { firstName, lastName, email, picture, roles } =
     useSelector(selectAuthentication);
 
-  const miniCards = [
-    {
-      title: "Completed Projects",
-      iconClass: "bx-check-circle",
-      text: "125",
-    },
-    { title: "Pending Projects", iconClass: "bx-hourglass", text: "12" },
-    { title: "Total Revenue", iconClass: "bx-package", text: "$36,524" },
-  ];
+  // const miniCards = [
+  //   {
+  //     title: "Completed Projects",
+  //     iconClass: "bx-check-circle",
+  //     text: "125",
+  //   },
+  //   { title: "Pending Projects", iconClass: "bx-hourglass", text: "12" },
+  //   { title: "Total Revenue", iconClass: "bx-package", text: "$36,524" },
+  // ];
 
   return (
     <React.Fragment>
@@ -206,7 +206,7 @@ const AccountProfilePage = () => {
 
             <Col xl="8">
               <Row>
-                {[1, 2, 3]?.map((card, key) => (
+                {[1, 2, 3]?.map((_card) => (
                   <VentureCategoryWidget
                     name={""}
                     count={0}

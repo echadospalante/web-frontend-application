@@ -110,10 +110,10 @@ const HorizontalLayout = ({ children }: LayoutProps) => {
 
       <div id="layout-wrapper">
         <HorizontalHeader
-          toggleLeftmenu={function (arg0: boolean): void {}}
-          showRightSidebarAction={function (arg0: boolean): void {}}
-          leftMenu={false}
-          showRightSidebar={false}
+        // toggleLeftmenu={function (arg0: boolean): void {}}
+        // showRightSidebarAction={function (arg0: boolean): void {}}
+        // leftMenu={false}
+        // showRightSidebar={false}
         />
         {/* <Navbar menuOpen={isMenuOpened} /> */}
         <Sidebar />

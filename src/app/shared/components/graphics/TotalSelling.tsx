@@ -34,8 +34,8 @@ const getChartOptions = (index: any) => {
 
   return options;
 };
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const TotalSelling = (props: any) => {
+
+const TotalSelling = () => {
   const dispatch = useDispatch();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

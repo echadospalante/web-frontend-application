@@ -28,24 +28,13 @@ const AdminUsersTable = () => {
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
   const { page, size } = pagination;
 
-  const {
-    loading,
-    error,
-    items,
-    total,
-    fetchUsers,
-    toggleLockUserAccount,
-    toggleUserAccountVerification,
-  } = useUsers({
-    page,
-    size,
-  });
+  const { loading, error, items, total, fetchUsers, toggleLockUserAccount } =
+    useUsers({
+      page,
+      size,
+    });
 
-  const columns = getColumns(
-    toggleLockUserAccount,
-    toggleUserAccountVerification,
-    setActiveUserToEdit
-  );
+  const columns = getColumns(toggleLockUserAccount, setActiveUserToEdit);
 
   const table = useReactTable({
     columns,
@@ -291,7 +280,6 @@ const AdminUsersTable = () => {
 
 const getColumns = (
   toggleLockUserAccount: (user: User) => void,
-  toggleUserAccountVerification: (user: User) => void,
   setActiveUserToEdit: (user: User) => void
 ) => {
   /*

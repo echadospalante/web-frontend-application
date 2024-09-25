@@ -1,6 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
-import { Card, CardBody, CardFooter, UncontrolledTooltip } from "reactstrap";
+import { Card, CardBody } from "reactstrap";
 import { User } from "x-ventures-domain";
 
 type UserCardProps = {

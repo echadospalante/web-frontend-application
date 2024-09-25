@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import classnames from "classnames";
 import Dropzone from "react-dropzone";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Button,
   Card,
@@ -24,8 +24,6 @@ import {
   TabPane,
 } from "reactstrap";
 import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
-import { useSelector } from "react-redux";
-import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
 
 const RegisterStepsPage = () => {
   document.title = "Registro de Usuario | Echadospa'lante";
@@ -405,7 +403,7 @@ const RegisterStepsPage = () => {
                                   className="dropzone-previews mt-3"
                                   id="file-previews"
                                 >
-                                  {selectedFiles.map((f, i) => {
+                                  {selectedFiles.map((_, i) => {
                                     return (
                                       <Card
                                         className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"

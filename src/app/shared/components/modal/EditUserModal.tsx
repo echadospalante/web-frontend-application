@@ -29,11 +29,8 @@ const EditUserModal = ({
   onSuccessfulEdit,
 }: EditUserModalProps) => {
   const {
-    error,
-    loading,
     handleEditRoles,
     handleToggleVerified,
-    message,
     user: editedUser,
   } = useEditUser(user);
 

@@ -22,7 +22,7 @@ import {
   LayoutModeType,
   LayoutType,
   LayoutWidthType,
-  LeftBarThemeImageType,
+  // LeftBarThemeImageType,
   LeftSideBarThemeType,
   LeftSidebarType,
   TopBarThemeType,
@@ -37,7 +37,7 @@ const PreferencesThemePage = () => {
     topBarTheme,
     leftSideBarTheme,
     leftSideBarType,
-    leftSideBarThemeImage,
+    // leftSideBarThemeImage,
   } = useSelector(selectLayout);
 
   return (

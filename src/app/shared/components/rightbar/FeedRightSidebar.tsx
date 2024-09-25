@@ -1,15 +1,13 @@
-import React from "react";
-
 import { Link } from "react-router-dom";
-import { Card, CardBody, Col } from "reactstrap";
+import { Card, CardBody } from "reactstrap";
 
+import SimpleBar from "simplebar-react";
 import {
   archiveData,
   categoriesData,
   popularPosts,
   tagsData,
 } from "../../data/feed/feed";
-import SimpleBar from "simplebar-react";
 
 const FeedRightSidebar = () => {
   return (

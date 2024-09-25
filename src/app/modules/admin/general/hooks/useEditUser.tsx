@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Role, User } from "x-ventures-domain";
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
+import { AppRole } from "../../../auth/domain/Role";
 import {
   lockUserAccountMiddleware,
   unlockUserAccountMiddleware,
@@ -8,8 +9,6 @@ import {
   updateUserRolesMiddleware,
   verifyUserAccountMiddleware,
 } from "../api/middleware/users.middleware";
-import { userInfo } from "os";
-import { AppRole } from "../../../auth/domain/Role";
 
 const useEditUser = (initialInfo: User) => {
   const dispatch = useAppDispatch();

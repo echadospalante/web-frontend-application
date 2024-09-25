@@ -66,7 +66,7 @@ const UserRegisterForm = () => {
             />
             {form.touched.birthDate && form.errors.birthDate && (
               <p className="bg-danger position-absolute form__invalid-feedback">
-                {form.errors.birthDate}
+                {JSON.stringify(form.errors.birthDate)}
               </p>
             )}
           </Col>

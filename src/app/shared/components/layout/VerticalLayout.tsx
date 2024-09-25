@@ -32,7 +32,7 @@ const VerticalLayout = ({ children }: LayoutProps) => {
     layoutWidth,
     leftSideBarType,
     topBarTheme,
-    showRightSidebar,
+    // showRightSidebar,
     leftSideBarTheme,
     layoutModeType,
   } = useSelector(selectLayout);

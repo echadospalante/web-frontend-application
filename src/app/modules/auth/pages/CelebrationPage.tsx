@@ -7,7 +7,6 @@ import { Card, CardBody, Col, Container, Row } from "reactstrap";
 
 const CelebrationPage = () => {
   const canvasRef = useRef(null);
-  const { preferencesIds, userInfo } = useSelector(selectRegister);
 
   const fireConfetti = () => {
     confetti.create(canvasRef.current!, {
@@ -107,8 +106,6 @@ const CelebrationPage = () => {
 };
 
 import type { SVGProps } from "react";
-import { useSelector } from "react-redux";
-import { selectRegister } from "../../../config/redux/reducers/register.reducer";
 
 export function Clap(props: SVGProps<SVGSVGElement>) {
   return (

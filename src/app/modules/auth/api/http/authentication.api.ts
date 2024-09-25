@@ -1,9 +1,8 @@
 import axios from "axios";
 
-import { LoginResponse } from "../../domain/Login";
 import env from "../../../../../environment/environment";
 import { UserRegisterInfo } from "../../../../config/redux/reducers/register.reducer";
-import { Role } from "x-ventures-domain";
+import { LoginResponse } from "../../domain/Login";
 
 class AuthenticationApi {
   private static readonly BASE_URL = `${env.API_URL}/api/v1/auth`;

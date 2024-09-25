@@ -23,14 +23,13 @@ import {
 } from "reactstrap";
 
 import { QuotesBoard } from "../../../modules/principal/ventures/domain/board";
-import { VentureState } from "../../../modules/principal/ventures/domain/state";
 import QuotesFilter from "../filters/QuoteFilters";
 
 const AgileQuotesBoard = () => {
   document.title = "Tablero de Cotizaciones | echadospalante Admin";
 
   const dispatch = useDispatch();
-  const [images, setImages] = useState<any[]>([]);
+  const [_images, setImages] = useState<any[]>([]);
 
   const [modal, setModal] = useState(false);
   const toggle = () => {
@@ -43,134 +42,7 @@ const AgileQuotesBoard = () => {
     }
   };
 
-  const [kanbanTasks, setkanbanTasks] = useState<QuotesBoard[]>([
-    {
-      id: "1",
-      name: VentureState.ACTIVE,
-      cards: [
-        {
-          id: 1,
-          name: "Nombre de la cotización",
-          code: "DS20240527104034",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.ACTIVE,
-        },
-        {
-          id: 2,
-          name: "Another project",
-          code: "DS20240527104035",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.ACTIVE,
-        },
-        {
-          id: 3,
-          name: "Nombre de la cotización",
-          code: "DS20240527104036",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.ACTIVE,
-        },
-      ],
-    },
-    {
-      id: "2",
-      name: VentureState.COMPLETED,
-      cards: [
-        {
-          id: 4,
-          name: "Nombre de la cotización",
-          code: "DS20240527104034",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.COMPLETED,
-        },
-        {
-          id: 5,
-          name: "Another project",
-          code: "DS20240527104035",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.COMPLETED,
-        },
-        {
-          id: 6,
-          name: "Nombre de la cotización",
-          code: "DS20240527104036",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.COMPLETED,
-        },
-      ],
-    },
-    {
-      id: "3",
-      name: VentureState.NOT_COMPLETED,
-      cards: [
-        {
-          id: 7,
-          name: "Nombre de la cotización",
-          code: "DS20240527104034",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.NOT_COMPLETED,
-        },
-        {
-          id: 8,
-          name: "Another project",
-          code: "DS20240527104035",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.NOT_COMPLETED,
-        },
-        {
-          id: 9,
-          name: "Nombre de la cotización",
-          code: "DS20240527104036",
-          date: new Date(),
-          area: {
-            id: 1,
-            name: "Desarrollo de Software",
-            createdAt: new Date(),
-          },
-          state: VentureState.NOT_COMPLETED,
-        },
-      ],
-    },
-  ]);
+  const [kanbanTasks] = useState<QuotesBoard[]>([]);
 
   const [isLoading, setLoading] = useState(false);
   useEffect(() => {
@@ -178,7 +50,7 @@ const AgileQuotesBoard = () => {
   }, [dispatch]);
 
   const [cards, setCards] = useState<QuotesBoard[]>([]);
-  const [kanbanTasksCards, setKanbanTasksCards] = useState();
+  const [_, setKanbanTasksCards] = useState();
 
   useEffect(() => {
     setCards(kanbanTasks);
@@ -192,6 +64,7 @@ const AgileQuotesBoard = () => {
 
   const [isEdit, setIsEdit] = useState(false);
   const [card, setCard] = useState<any>(null);
+  console.log({ card, isEdit });
   // validation
   // const validation = useFormik({
   //   // enableReinitialize : use this flag when initial values needs to be changed
@@ -277,12 +150,12 @@ const AgileQuotesBoard = () => {
     toggle();
   };
 
-  const handleAddNewCard = (line: any) => {
-    setCard("");
-    setIsEdit(false);
-    toggle();
-    setKanbanTasksCards(line.id);
-  };
+  // const handleAddNewCard = (line: any) => {
+  //   setCard("");
+  //   setIsEdit(false);
+  //   toggle();
+  //   setKanbanTasksCards(line.id);
+  // };
 
   const handleDragEnd = (result: DropResult) => {
     if (!result.destination) return; // If dropped outside a valid drop area, do nothing
