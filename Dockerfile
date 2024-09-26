@@ -3,7 +3,6 @@ FROM node:20.9.0-alpine AS build
 
 WORKDIR /app
 COPY . .
-COPY ./echadospalante-core ./../echadospalante-core
 
 RUN npm i 
 
