@@ -3,10 +3,10 @@ FROM node:20.9.0-alpine AS build
 
 WORKDIR /app
 COPY . .
-COPY ./x-ventures-domain ./../x-ventures-domain
-
+COPY ./echadospalante-core ./../echadospalante-core
 
 RUN npm i 
+
 RUN npm run build -f
 
 FROM nginx:alpine

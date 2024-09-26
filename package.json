@@ -74,8 +74,7 @@
     "string-similarity": "^4.0.4",
     "swiper": "^11.1.4",
     "toastr": "^2.1.4",
-    "yup": "^1.4.0",
-    "x-ventures-domain": "file:../x-ventures-domain"
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "@fullcalendar/bootstrap": "^6.1.15",

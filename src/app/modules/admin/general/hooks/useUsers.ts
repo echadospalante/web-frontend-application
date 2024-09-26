@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { User } from "x-ventures-domain";
+import { User } from "echadospalante-core";
 
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
 import {
@@ -65,7 +65,7 @@ const useUsers = (props: UseCountriesProps) => {
         }));
       });
   };
-  
+
   const toggleUserAccountVerification = (user: User) => {
     setUsers((users) => ({
       ...users,

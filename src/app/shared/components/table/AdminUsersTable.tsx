@@ -12,7 +12,7 @@ import {
 import Select from "react-select";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import { User } from "x-ventures-domain";
+import { User } from "echadospalante-core";
 import useUsers from "../../../modules/admin/general/hooks/useUsers";
 import { AppRole, Role } from "../../../modules/auth/domain/Role";
 import AppSpinner from "../loader/Spinner";

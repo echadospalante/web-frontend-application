@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { Role, User } from "x-ventures-domain";
+import { Role, User } from "echadospalante-core";
 
 import env from "../../../../../../environment/environment";
 import { PaginatedBody } from "../../../../principal/ventures/domain/api";

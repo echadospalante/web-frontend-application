@@ -1,5 +1,5 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
-import { Role } from "x-ventures-domain";
+import { Role } from "echadospalante-core";
 
 import {
   finishGlobalLoading,

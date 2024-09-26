@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
-import { User } from "x-ventures-domain";
+import { User } from "echadospalante-core";
 
 type UserCardProps = {
   user: User;

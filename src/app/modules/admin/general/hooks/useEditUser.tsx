@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Role, User } from "x-ventures-domain";
+import { Role, User } from "echadospalante-core";
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
 import { AppRole } from "../../../auth/domain/Role";
 import {
