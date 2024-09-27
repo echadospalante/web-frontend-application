@@ -24,8 +24,9 @@ import {
   getDepartmentByMunicipalityId,
   getMunicipalityNameById,
 } from "../../helpers/department-helpers";
+import VentureCategoriesFiltersForm from "../forms/VentureCategoriesFiltersForm";
 
-const AdminUsersTable = () => {
+const AdminVentureCategoriesTable = () => {
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
 
   const {
@@ -79,33 +80,9 @@ const AdminUsersTable = () => {
           <CardBody className="border-bottom">
             <div className="d-flex align-items-center">
               <h5 className="mb-0 card-title flex-grow-1">
-                Listado de usuarios
+                Listado de categorías de emprendimientos
               </h5>
               <div className="flex-shrink-0 d-flex flex-row align-items-center">
-                <div className="btn-group h-100" role="group">
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btn-list"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-primary" htmlFor="btn-list">
-                    <i className="bx bx-list-ul"></i>
-                  </label>
-
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btn-grid"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-primary" htmlFor="btn-grid">
-                    <i className="bx bx-grid"></i>
-                  </label>
-                </div>
-
                 <Button
                   type="button"
                   onClick={fetchUsers}
@@ -126,7 +103,7 @@ const AdminUsersTable = () => {
 
           <CardBody>
             <Fragment>
-              <UsersFiltersForm />
+              <VentureCategoriesFiltersForm />
 
               {loading ? (
                 <div style={{ marginTop: "200px" }}>
@@ -444,4 +421,4 @@ const getColumns = (
   ];
 };
 
-export default AdminUsersTable;
+export default AdminVentureCategoriesTable;

@@ -39,6 +39,7 @@ const UserRegisterForm = () => {
               }
               placeholder="Género"
               isMulti={false}
+              isClearable={true}
               name="gender"
               onChange={(value) => {
                 if (!value) return;
@@ -124,8 +125,9 @@ const UserRegisterForm = () => {
                       value: form.values.municipalityId,
                       label: departments
                         .find((d) => d.id === form.values.departmentId)
-                        ?.items.find((i) => i.id === form.values.municipalityId)
-                        ?.name,
+                        ?.items!.find(
+                          (i) => i.id === form.values.municipalityId
+                        )?.name,
                     }
                   : null
               }
@@ -138,7 +140,7 @@ const UserRegisterForm = () => {
               }}
               options={departments
                 .find((d) => d.id === form.values.departmentId)
-                ?.items.map(({ id, name }) => ({
+                ?.items!.map(({ id, name }) => ({
                   label: name,
                   value: id,
                 }))}

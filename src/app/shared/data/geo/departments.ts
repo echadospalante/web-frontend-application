@@ -1,4 +1,10 @@
-const departments = [
+export interface Location {
+  id: number;
+  name: string;
+  items?: Location[];
+}
+
+const departments: Location[] = [
   {
     id: 5,
     name: "Antioquia",
