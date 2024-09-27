@@ -9,16 +9,17 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import Select from "react-select";
+import { User } from "echadospalante-core";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import { User } from "echadospalante-core";
 import useUsers from "../../../modules/admin/general/hooks/useUsers";
 import { AppRole, Role } from "../../../modules/auth/domain/Role";
+import UsersFiltersForm from "../forms/UsersFiltersForm";
 import AppSpinner from "../loader/Spinner";
 import EditUserModal from "../modal/EditUserModal";
 import Pagination from "../pagination/Pagination";
 import IconTooltip from "../tooltips/IconTooltip";
+import { textToRGB } from "../../helpers/colors";
 
 const AdminUsersTable = () => {
   const [pagination, setPagination] = useState({
@@ -81,7 +82,7 @@ const AdminUsersTable = () => {
             <CardBody className="border-bottom">
               <div className="d-flex align-items-center">
                 <h5 className="mb-0 card-title flex-grow-1">
-                  Listado de usuario
+                  Listado de usuarios
                 </h5>
                 <div className="flex-shrink-0 d-flex flex-row align-items-center">
                   <div className="btn-group h-100" role="group">
@@ -127,70 +128,7 @@ const AdminUsersTable = () => {
 
             <CardBody>
               <Fragment>
-                <Row className="mb-2">
-                  <Col sm={3} lg={2}>
-                    <label className="control-label">
-                      Elementos por Página
-                    </label>
-                    <Select
-                      className=""
-                      isDisabled={loading}
-                      value={{
-                        label: size + "",
-                        value: size,
-                      }}
-                      isMulti={false}
-                      isSearchable={false}
-                      onChange={(selected) => {
-                        table.setPageIndex(0);
-                        table.setPageSize(Number(selected?.value));
-                        setPagination({
-                          page: 0,
-                          size: selected?.value || 20,
-                        });
-                      }}
-                      options={[
-                        { label: "20", value: 25 },
-                        { label: "50", value: 50 },
-                        { label: "100", value: 100 },
-                      ]}
-                    ></Select>
-                  </Col>
-
-                  <Col sm={6} lg={3}>
-                    <label className="control-label">
-                      Roles (Todos por defecto)
-                    </label>
-                    <Select
-                      className=""
-                      isDisabled={loading}
-                      value={[{ label: "Usuario", value: AppRole.USER }]}
-                      isMulti={true}
-                      isSearchable={false}
-                      closeMenuOnSelect={false}
-                      onChange={(selected) => {
-                        table.setPageIndex(0);
-                        console.log({ selected });
-                      }}
-                      options={[
-                        { label: "Administrador", value: AppRole.ADMIN },
-                        { label: "Moderador", value: AppRole.MODERATOR },
-                        {
-                          label: "Publicador de Noticias",
-                          value: AppRole.NEWS_WRITER,
-                        },
-                        { label: "Usuario", value: AppRole.USER },
-                      ]}
-                    ></Select>
-                  </Col>
-
-                  <Col lg={3} md={12} sm={12}>
-                    <label className="control-label">
-                      Búsqueda por Coincidencia
-                    </label>
-                    <input className="form-control" type="text" />
-                  </Col>
-                </Row>
+                <UsersFiltersForm />
 
                 <div className="table-responsive">
                   <Table hover bordered={false}>
@@ -282,12 +220,6 @@ const getColumns = (
   toggleLockUserAccount: (user: User) => void,
   setActiveUserToEdit: (user: User) => void
 ) => {
-  /*
-   "id": 1,
-   "name": "Analítica de Datos",
-   "quotes": null,
-   "createdAt": null
-  */
   return [
     {
       header: "Foto",
@@ -387,7 +319,8 @@ const getColumns = (
             {roles.map((role) => (
               <span
                 key={role.id}
-                className={`badge bg-secondary rounded-3 p-1 px-2 m-1`}
+                className={`badge rounded-3  px-1 py-2 m-1`}
+                style={{ backgroundColor: textToRGB(role.label) }}
               >
                 {role.label}
               </span>

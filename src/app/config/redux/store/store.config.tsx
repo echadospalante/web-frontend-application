@@ -14,10 +14,16 @@ import userInterfaceReducer, {
 import registerReducer, {
   RegisterState,
 } from "../reducers/auth/register.reducer";
+import UsersManagementReducer, {
+  UsersManagementState,
+} from "../reducers/admin/users-management.reducer";
 
 export interface GlobalState {
   authentication: AuthenticationState;
   userInterface: UserInterfaceState;
+  admin: {
+    usersManagement: UsersManagementState;
+  };
   ventures: VenturesState;
   layout: LayoutState;
   register: RegisterState;
@@ -29,6 +35,9 @@ const reducer = combineReducers({
   layout: layoutReducer,
   ventures: venturesReducer,
   register: registerReducer,
+  admin: combineReducers({
+    usersManagement: UsersManagementReducer,
+  }),
 });
 
 const store = configureStore({

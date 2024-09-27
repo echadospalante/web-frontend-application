@@ -7,8 +7,8 @@ import { RootState } from "../../store/store.config";
 
 export interface UsersFilter {
   search: string;
-  role: AppRole;
-  gender: string;
+  role: AppRole | "";
+  gender: "M" | "F" | "O" | null;
   page: number;
   size: number;
 }
@@ -19,13 +19,25 @@ export interface UsersManagementState {
 }
 
 // Freeze the initial state to prevent accidental changes
-const initialState: Partial<UsersManagementState> = {};
+const initialState: UsersManagementState = {
+  filters: {
+    gender: null,
+    page: 0,
+    role: "",
+    search: "",
+    size: 20,
+  },
+  users: {
+    items: [],
+    total: 0,
+  },
+};
 
 export const usersManagementSlice = createSlice({
-  name: "usersManagement",
+  name: "admin/usersManagement",
   initialState,
   reducers: {
-    setFilters: (state, action: PayloadAction<UsersFilter>) => {
+    setUserFilters: (state, action: PayloadAction<UsersFilter>) => {
       const { gender, page, role, search, size } = action.payload;
 
       state.filters = {
@@ -36,25 +48,26 @@ export const usersManagementSlice = createSlice({
         size,
       };
     },
-    resetFilters: (state) => {
+    resetUserFilters: (state) => {
       state.filters = initialState.filters;
     },
-    setItems: (state, action: PayloadAction<PaginatedBody<User>>) => {
+    setUsers: (state, action: PayloadAction<PaginatedBody<User>>) => {
       const { items, total } = action.payload;
       state.users = {
         items,
         total,
       };
     },
-    resetItems: (state) => {
+    resetUsers: (state) => {
       state.users = initialState.users;
     },
   },
 });
 
-export const { resetFilters, setFilters, resetItems, setItems } =
+export const { setUserFilters, resetUserFilters, resetUsers, setUsers } =
   usersManagementSlice.actions;
 
-export const selectUsersManagement = (state: RootState) => state.register;
+export const selectUsersManagement = (state: RootState) =>
+  state.admin.usersManagement;
 
 export default usersManagementSlice.reducer;
