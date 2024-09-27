@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import env from "../../../../../environment/environment";
-import { UserRegisterInfo } from "../../../../config/redux/reducers/register.reducer";
+import { UserRegisterInfo } from "../../../../config/redux/reducers/auth/register.reducer";
 import { LoginResponse } from "../../domain/Login";
 
 class AuthenticationApi {

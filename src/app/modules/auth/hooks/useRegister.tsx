@@ -8,14 +8,14 @@ import {
   setPreferencesIds,
   setUserInfo,
   UserRegisterInfo,
-} from "../../../config/redux/reducers/register.reducer";
+} from "../../../config/redux/reducers/auth/register.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import {
   setGlobalAlert,
   SeverityLevel,
 } from "../../../config/redux/reducers/user-interface.reducer";
 import { createUserRegisterMiddleware } from "../api/middleware/authentication.middleware";
-import { completeOnboarding } from "../../../config/redux/reducers/auth.reducer";
+import { completeOnboarding } from "../../../config/redux/reducers/auth/auth.reducer";
 
 const userSchema = Yup.object().shape({
   gender: Yup.string()

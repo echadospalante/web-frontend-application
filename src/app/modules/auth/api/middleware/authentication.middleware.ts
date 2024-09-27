@@ -3,8 +3,8 @@ import { Action, Dispatch } from "@reduxjs/toolkit";
 import {
   loginUser,
   logoutUser,
-} from "../../../../config/redux/reducers/auth.reducer";
-import { UserRegisterInfo } from "../../../../config/redux/reducers/register.reducer";
+} from "../../../../config/redux/reducers/auth/auth.reducer";
+import { UserRegisterInfo } from "../../../../config/redux/reducers/auth/register.reducer";
 import {
   SeverityLevel,
   finishGlobalLoading,

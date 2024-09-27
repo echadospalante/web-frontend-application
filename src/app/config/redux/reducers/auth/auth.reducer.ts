@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { LoginResponse } from "../../../modules/auth/domain/Login";
-import { RootState } from "../store/store.config";
-import { Role } from "../../../modules/auth/domain/Role";
+import { LoginResponse } from "../../../../modules/auth/domain/Login";
+import { RootState } from "../../store/store.config";
+import { Role } from "../../../../modules/auth/domain/Role";
 
 export interface AuthenticationState extends Partial<LoginResponse> {
   activeRole?: Role;
@@ -48,7 +48,7 @@ export const authenticationSlice = createSlice({
     },
     completeOnboarding: (state) => {
       state.onboardingCompleted = true;
-    }
+    },
   },
 });
 

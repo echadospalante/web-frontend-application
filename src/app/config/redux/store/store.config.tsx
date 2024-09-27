@@ -3,13 +3,17 @@ import { useDispatch } from "react-redux";
 
 import authenticationReducer, {
   AuthenticationState,
-} from "../reducers/auth.reducer";
-import layoutReducer, { LayoutState } from "../reducers/layout.reducer";
-import venturesReducer, { VenturesState } from "../reducers/ventures.reducer";
+} from "../reducers/auth/auth.reducer";
+import layoutReducer, { LayoutState } from "../reducers/shared/layout.reducer";
+import venturesReducer, {
+  VenturesState,
+} from "../reducers/principal/ventures.reducer";
 import userInterfaceReducer, {
   UserInterfaceState,
-} from "../reducers/user-interface.reducer";
-import registerReducer, { RegisterState } from "../reducers/register.reducer";
+} from "../reducers/shared/user-interface.reducer";
+import registerReducer, {
+  RegisterState,
+} from "../reducers/auth/register.reducer";
 
 export interface GlobalState {
   authentication: AuthenticationState;

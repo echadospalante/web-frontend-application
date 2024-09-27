@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 
-import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
+import { selectAuthentication } from "../../../config/redux/reducers/auth/auth.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import { logoutUserMiddleware } from "../../../modules/auth/api/middleware/authentication.middleware";
 

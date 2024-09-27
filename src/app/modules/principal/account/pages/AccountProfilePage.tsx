@@ -11,7 +11,7 @@ import {
   Row,
   Table,
 } from "reactstrap";
-import { selectAuthentication } from "../../../../config/redux/reducers/auth.reducer";
+import { selectAuthentication } from "../../../../config/redux/reducers/auth/auth.reducer";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import VentureCategoryWidget from "../../../../shared/components/widgets/VentureCategoryWidget";
 

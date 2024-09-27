@@ -80,7 +80,7 @@ const WelcomePage = () => {
 
 import type { SVGProps } from "react";
 import { useSelector } from "react-redux";
-import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
+import { selectAuthentication } from "../../../config/redux/reducers/auth/auth.reducer";
 
 export function HandGreeting(props: SVGProps<SVGSVGElement>) {
   return (

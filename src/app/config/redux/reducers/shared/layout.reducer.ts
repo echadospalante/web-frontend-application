@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { RootState } from "../store/store.config";
+import { RootState } from "../../store/store.config";
 import {
   LayoutType,
   LayoutModeType,
@@ -9,7 +9,7 @@ import {
   LeftBarThemeImageType,
   LeftSidebarType,
   TopBarThemeType,
-} from "../../../modules/common/domain/layout.interfaces";
+} from "../../../../modules/common/domain/layout.interfaces";
 
 export interface LayoutState {
   layoutType: LayoutType;

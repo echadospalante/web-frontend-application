@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
 
-import { toggleRightSidebar } from "../../../config/redux/reducers/layout.reducer";
+import { toggleRightSidebar } from "../../../config/redux/reducers/shared/layout.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import LanguageDropdown from "../dropdown/LanguageDropdown";
 import NotificationDropdown from "../dropdown/NotificationDropdown";

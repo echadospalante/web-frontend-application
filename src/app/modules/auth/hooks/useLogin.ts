@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../../config/redux/reducers/auth.reducer";
+import { loginUser } from "../../../config/redux/reducers/auth/auth.reducer";
 import {
   setGlobalAlert,
   SeverityLevel,

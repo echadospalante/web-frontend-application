@@ -17,7 +17,7 @@ import {
 } from "reactstrap";
 
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import { selectLayout } from "../../../../config/redux/reducers/layout.reducer";
+import { selectLayout } from "../../../../config/redux/reducers/shared/layout.reducer";
 import {
   LayoutModeType,
   LayoutType,
