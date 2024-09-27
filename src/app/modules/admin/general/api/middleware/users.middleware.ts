@@ -5,7 +5,7 @@ import {
   finishGlobalLoading,
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/user-interface.reducer";
+} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
 import { UsersApi } from "../http/users-management.api";
 import { AppRole } from "../../../../auth/domain/Role";
 export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {

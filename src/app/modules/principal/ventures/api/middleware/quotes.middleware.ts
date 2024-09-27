@@ -3,7 +3,7 @@ import { Action, Dispatch } from "@reduxjs/toolkit";
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/user-interface.reducer";
+} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
 import { QuotesApi } from "../http/quotes.api";
 import { Quote } from "../../domain/quote";
 import { PaginatedBody } from "../../domain/api";

@@ -3,7 +3,7 @@ import { Action, Dispatch } from "@reduxjs/toolkit";
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/user-interface.reducer";
+} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
 import { QuoteArea } from "../../domain/area";
 import { QuoteAreasApi } from "../http/quote-areas.api";
 

@@ -13,7 +13,7 @@ import { useAppDispatch } from "../../../config/redux/store/store.config";
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../config/redux/reducers/user-interface.reducer";
+} from "../../../config/redux/reducers/shared/user-interface.reducer";
 import { createUserRegisterMiddleware } from "../api/middleware/authentication.middleware";
 import { completeOnboarding } from "../../../config/redux/reducers/auth/auth.reducer";
 

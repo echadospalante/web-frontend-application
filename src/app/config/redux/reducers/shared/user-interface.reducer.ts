@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../store/store.config";
+import { RootState } from "../../store/store.config";
 
 export interface UserInterfaceState {
   loading: GlobalLoading;

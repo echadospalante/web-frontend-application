@@ -10,7 +10,7 @@ import {
   finishGlobalLoading,
   setGlobalAlert,
   startGlobalLoading,
-} from "../../../../config/redux/reducers/user-interface.reducer";
+} from "../../../../config/redux/reducers/shared/user-interface.reducer";
 import AuthenticationApi from "../http/authentication.api";
 
 export const refreshAuthOnReloadMiddleware = () => {
