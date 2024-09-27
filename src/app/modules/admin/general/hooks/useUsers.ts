@@ -10,15 +10,14 @@ import {
   unverifyUserAccountMiddleware,
   verifyUserAccountMiddleware,
 } from "../api/middleware/users.middleware";
+import { useSelector } from "react-redux";
+import {
+  selectUsersManagement,
+  setUserFilters,
+} from "../../../../config/redux/reducers/admin/users-management.reducer";
 
-type UseCountriesProps = {
-  page: number;
-  size: number;
-  fetch?: boolean;
-};
-
-const useUsers = (props: UseCountriesProps) => {
-  const { page, size, fetch = true } = props;
+const useUsers = () => {
+  const { filters } = useSelector(selectUsersManagement);
 
   const dispatch = useAppDispatch();
 
@@ -110,7 +109,7 @@ const useUsers = (props: UseCountriesProps) => {
       error: false,
     }));
 
-    dispatch(fetchUsersMiddleware(page, size))
+    dispatch(fetchUsersMiddleware(filters))
       .then((users) => {
         console.log({ users });
         setUsers({
@@ -130,16 +129,18 @@ const useUsers = (props: UseCountriesProps) => {
       });
   };
 
-  useEffect(() => {
-    if (!fetch) return;
+  const setPage = (page: number) => {
+    dispatch(setUserFilters({ ...filters, page }));
+  };
 
+  useEffect(() => {
     setUsers((users) => ({
       ...users,
       loading: true,
       error: false,
     }));
 
-    dispatch(fetchUsersMiddleware(page, size))
+    dispatch(fetchUsersMiddleware(filters))
       .then((users) => {
         console.log({ users });
         setUsers({
@@ -155,11 +156,13 @@ const useUsers = (props: UseCountriesProps) => {
           error: true,
         }));
       });
-  }, [dispatch, fetch, page, size]);
+  }, [dispatch, filters]);
 
   return {
     ...users,
+    ...filters,
     fetchUsers,
+    setPage,
     toggleLockUserAccount,
     toggleUserAccountVerification,
   };

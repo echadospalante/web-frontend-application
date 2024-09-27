@@ -22,18 +22,19 @@ import IconTooltip from "../tooltips/IconTooltip";
 import { textToRGB } from "../../helpers/colors";
 
 const AdminUsersTable = () => {
-  const [pagination, setPagination] = useState({
-    page: 0,
-    size: 20,
-  });
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
-  const { page, size } = pagination;
 
-  const { loading, error, items, total, fetchUsers, toggleLockUserAccount } =
-    useUsers({
-      page,
-      size,
-    });
+  const {
+    loading,
+    error,
+    items,
+    total,
+    fetchUsers,
+    toggleLockUserAccount,
+    page,
+    size,
+    setPage,
+  } = useUsers();
 
   const columns = getColumns(toggleLockUserAccount, setActiveUserToEdit);
 
@@ -51,7 +52,7 @@ const AdminUsersTable = () => {
 
   const handleSetCurrentPage = (page: number) => {
     table.setPageIndex(page + 1);
-    setPagination({ ...pagination, page });
+    setPage(page);
   };
 
   const handleCloseEditModal = () => {
@@ -68,68 +69,66 @@ const AdminUsersTable = () => {
           user={activeUserToEdit}
         />
       )}
-      {error && (
-        <div className="alert alert-danger text-center" role="alert">
-          Ha habido un error, por favor intente nuevamente.
-        </div>
-      )}
 
       <Col lg="12">
-        {loading ? (
-          <AppSpinner />
-        ) : (
-          <Card>
-            <CardBody className="border-bottom">
-              <div className="d-flex align-items-center">
-                <h5 className="mb-0 card-title flex-grow-1">
-                  Listado de usuarios
-                </h5>
-                <div className="flex-shrink-0 d-flex flex-row align-items-center">
-                  <div className="btn-group h-100" role="group">
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-list"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-list"
-                    >
-                      <i className="bx bx-list-ul"></i>
-                    </label>
+        <Card>
+          <CardBody className="border-bottom">
+            <div className="d-flex align-items-center">
+              <h5 className="mb-0 card-title flex-grow-1">
+                Listado de usuarios
+              </h5>
+              <div className="flex-shrink-0 d-flex flex-row align-items-center">
+                <div className="btn-group h-100" role="group">
+                  <input
+                    type="radio"
+                    className="btn-check"
+                    name="btnradio"
+                    id="btn-list"
+                    autoComplete="off"
+                  />
+                  <label className="btn btn-outline-primary" htmlFor="btn-list">
+                    <i className="bx bx-list-ul"></i>
+                  </label>
 
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-grid"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-grid"
-                    >
-                      <i className="bx bx-grid"></i>
-                    </label>
-                  </div>
-
-                  <Button
-                    type="button"
-                    onClick={fetchUsers}
-                    className="btn btn-light mx-2 mb-2"
-                  >
-                    <i className="mdi mdi-refresh"></i>
-                  </Button>
+                  <input
+                    type="radio"
+                    className="btn-check"
+                    name="btnradio"
+                    id="btn-grid"
+                    autoComplete="off"
+                  />
+                  <label className="btn btn-outline-primary" htmlFor="btn-grid">
+                    <i className="bx bx-grid"></i>
+                  </label>
                 </div>
+
+                <Button
+                  type="button"
+                  onClick={fetchUsers}
+                  className="btn btn-light mx-2 mb-2"
+                >
+                  <i className="mdi mdi-refresh"></i>
+                </Button>
               </div>
-            </CardBody>
+            </div>
 
-            <CardBody>
-              <Fragment>
-                <UsersFiltersForm />
+            {error && (
+              <div className="alert alert-danger text-center" role="alert">
+                Ha habido un error al consultar los usuarios, por favor intente
+                nuevamente.
+              </div>
+            )}
+          </CardBody>
 
+          <CardBody>
+            <Fragment>
+              <UsersFiltersForm />
+
+              {loading ? (
+                <div style={{ marginTop: "200px" }}>
+                  <AppSpinner />
+                </div>
+              ) : (
                 <div className="table-responsive">
                   <Table hover bordered={false}>
                     <thead>
@@ -183,34 +182,34 @@ const AdminUsersTable = () => {
                     </tbody>
                   </Table>
                 </div>
+              )}
 
-                <Row>
-                  <Col sm={12} md={5} lg={6}>
-                    <div className="dataTables_info">
-                      Página {page + 1} de {Math.ceil(total / size) || 1}, con
-                      un tatal de {total} usuarios
-                    </div>
-                  </Col>
-                  <Col
-                    sm={12}
-                    md={7}
-                    lg={6}
-                    className="d-flex justify-content-end"
-                  >
-                    <Pagination
-                      perPageData={size}
-                      length={total}
-                      currentPage={page + 1}
-                      setCurrentPage={handleSetCurrentPage}
-                      paginationDiv="col-lg-12"
-                      paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
-                    />
-                  </Col>
-                </Row>
-              </Fragment>
-            </CardBody>
-          </Card>
-        )}
+              <Row>
+                <Col sm={12} md={5} lg={6}>
+                  <div className="dataTables_info">
+                    Página {page + 1} de {Math.ceil(total / size) || 1}, con un
+                    tatal de {total} usuarios
+                  </div>
+                </Col>
+                <Col
+                  sm={12}
+                  md={7}
+                  lg={6}
+                  className="d-flex justify-content-end"
+                >
+                  <Pagination
+                    perPageData={size}
+                    length={total}
+                    currentPage={page + 1}
+                    setCurrentPage={handleSetCurrentPage}
+                    paginationDiv="col-lg-12"
+                    paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                  />
+                </Col>
+              </Row>
+            </Fragment>
+          </CardBody>
+        </Card>
       </Col>
     </Row>
   );

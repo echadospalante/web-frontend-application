@@ -5,19 +5,25 @@ import { Role, User } from "echadospalante-core";
 import env from "../../../../../../environment/environment";
 import { PaginatedBody } from "../../../../principal/ventures/domain/api";
 import { AppRole } from "../../../../auth/domain/Role";
+import { UsersFilter } from "../../../../../config/redux/reducers/admin/users-management.reducer";
+import filterFalsyValues from "../../../../../shared/helpers/object-utils";
 
 export class UsersApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/users`;
 
   public static fetchUsers(
-    page: number,
-    size: number
+    usersFilter: UsersFilter
   ): Promise<PaginatedBody<User>> {
+    const { page, size, ...rest } = usersFilter;
+    const otherPrams = filterFalsyValues(rest);
+    const params = new URLSearchParams(otherPrams as Record<string, string>);
+    params.set("page", page.toString());
+    params.set("size", size.toString());
     return axios
-      .get<PaginatedBody<User>>(
-        `${UsersApi.API_BASE_URL}?page=${page}&size=${size}`,
-        { withCredentials: true }
-      )
+      .get<PaginatedBody<User>>(`${UsersApi.API_BASE_URL}`, {
+        withCredentials: true,
+        params,
+      })
       .then(({ data }) => data);
   }
 

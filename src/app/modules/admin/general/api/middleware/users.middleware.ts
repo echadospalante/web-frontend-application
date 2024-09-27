@@ -8,6 +8,8 @@ import {
 } from "../../../../../config/redux/reducers/shared/user-interface.reducer";
 import { UsersApi } from "../http/users-management.api";
 import { AppRole } from "../../../../auth/domain/Role";
+import { UsersFilter } from "../../../../../config/redux/reducers/admin/users-management.reducer";
+import filterFalsyValues from "../../../../../shared/helpers/object-utils";
 export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {
   return async (dispatch: Dispatch) => {
     return UsersApi.changeUserRoles(email, roles)
@@ -41,9 +43,9 @@ export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {
   };
 };
 
-export const fetchUsersMiddleware = (page: number, size: number) => {
+export const fetchUsersMiddleware = (usersFilters: UsersFilter) => {
   return async (dispatch: Dispatch<Action>) => {
-    return UsersApi.fetchUsers(page, size)
+    return UsersApi.fetchUsers(usersFilters)
       .then((response) => {
         console.log({ response });
         return response;

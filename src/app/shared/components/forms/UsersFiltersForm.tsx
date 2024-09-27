@@ -81,7 +81,6 @@ const UsersFiltersForm = () => {
           <label className="control-label">Género (Todos por defecto)</label>
           <Select
             className=""
-            isDisabled={loadingRoles}
             value={
               filters.gender
                 ? {

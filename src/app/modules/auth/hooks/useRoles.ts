@@ -6,13 +6,12 @@ import { useAppDispatch } from "../../../config/redux/store/store.config";
 import { fetchRolesMiddleware } from "../../admin/general/api/middleware/users.middleware";
 
 const useRoles = () => {
+  const dispatch = useAppDispatch();
   const [rolesRequest, setRolesRequest] = useState({
     loading: false,
     error: false,
     roles: [] as Role[],
   });
-
-  const dispatch = useAppDispatch();
 
   useEffect(() => {
     setRolesRequest((request) => ({
@@ -38,7 +37,7 @@ const useRoles = () => {
           roles: [],
         }));
       });
-  }, [dispatch]);
+  }, []);
 
   return { ...rolesRequest };
 };

@@ -2,13 +2,13 @@ import { useEffect } from "react";
 
 import { AppRole } from "echadospalante-core";
 import { useSelector } from "react-redux";
+import { useSearchParams } from "react-router-dom";
 
 import {
   selectUsersManagement,
   setUserFilters,
 } from "../../../../config/redux/reducers/admin/users-management.reducer";
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { useSearchParams } from "react-router-dom";
 
 const useUsersFilters = () => {
   const { filters } = useSelector(selectUsersManagement);
