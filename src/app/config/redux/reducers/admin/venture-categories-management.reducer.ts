@@ -1,0 +1,84 @@
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+
+import { VentureCategory } from "echadospalante-core";
+
+import { PaginatedBody } from "../../../../modules/principal/ventures/domain/api";
+import { RootState } from "../../store/store.config";
+
+export interface VentureCategoriesFilter {
+  search: string;
+  page: number;
+  size: number;
+}
+
+export interface VentureCategoriesManagementState {
+  filters: VentureCategoriesFilter;
+  categories: PaginatedBody<VentureCategory>;
+}
+
+// Freeze the initial state to prevent accidental changes
+const initialState: VentureCategoriesManagementState = {
+  filters: {
+    page: 0,
+    search: "",
+    size: 20,
+  },
+  categories: {
+    items: [],
+    total: 0,
+  },
+};
+
+export const ventureCategoriesManagementSlice = createSlice({
+  name: "admin/ventureCategoriesManagement",
+  initialState,
+  reducers: {
+    setVentureCategoriesFilters: (
+      state,
+      action: PayloadAction<VentureCategoriesFilter>
+    ) => {
+      const { page, search, size } = action.payload;
+
+      state.filters = {
+        page,
+        search,
+        size,
+      };
+    },
+    updateVentureCategory: (state, action: PayloadAction<VentureCategory>) => {
+      const updatedCategory = action.payload;
+      state.categories.items = state.categories.items.map((category) =>
+        category.id === updatedCategory.id ? updatedCategory : category
+      );
+    },
+    resetVentureCategoriesFilters: (state) => {
+      state.filters = initialState.filters;
+    },
+    setVentureCategories: (
+      state,
+      action: PayloadAction<PaginatedBody<VentureCategory>>
+    ) => {
+      const { items, total } = action.payload;
+      state.categories = {
+        items,
+        total,
+      };
+    },
+    resetVentureCategories: (state) => {
+      state.categories = initialState.categories;
+    },
+  },
+});
+
+export const {
+  setVentureCategoriesFilters,
+  resetVentureCategoriesFilters,
+  resetVentureCategories,
+  setVentureCategories,
+  updateVentureCategory,
+} = ventureCategoriesManagementSlice.actions;
+
+export const selectVentureCategoriesManagement = (state: RootState) =>
+  state.admin.ventureCategoriesManagement;
+
+export default ventureCategoriesManagementSlice.reducer;

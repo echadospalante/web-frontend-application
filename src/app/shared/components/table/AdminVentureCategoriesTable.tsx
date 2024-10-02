@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Fragment, useState } from "react";
 
 import {
@@ -9,39 +8,32 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { User, UserDetail } from "echadospalante-core";
+import { VentureCategory } from "echadospalante-core";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import useUsers from "../../../modules/admin/general/hooks/useUsers";
-import { AppRole, Role } from "../../../modules/auth/domain/Role";
-import UsersFiltersForm from "../forms/UsersFiltersForm";
+import useVentureCategories from "../../../modules/admin/general/hooks/useVentureCategories";
+import VentureCategoriesFiltersForm from "../forms/VentureCategoriesFiltersForm";
 import AppSpinner from "../loader/Spinner";
-import EditUserModal from "../modal/EditUserModal";
+import EditVentureCategoryModal from "../modal/EditVentureCategoryModal";
 import Pagination from "../pagination/Pagination";
 import IconTooltip from "../tooltips/IconTooltip";
-import { textToRGB } from "../../helpers/colors";
-import {
-  getDepartmentByMunicipalityId,
-  getMunicipalityNameById,
-} from "../../helpers/department-helpers";
-import VentureCategoriesFiltersForm from "../forms/VentureCategoriesFiltersForm";
 
 const AdminVentureCategoriesTable = () => {
-  const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
+  const [activeCategoryToEdit, setActiveCategoryToEdit] =
+    useState<VentureCategory>();
 
   const {
     loading,
     error,
-    items,
-    total,
-    fetchUsers,
-    toggleLockUserAccount,
     page,
     size,
     setPage,
-  } = useUsers();
+    items,
+    total,
+    fetchVentureCategories,
+  } = useVentureCategories();
 
-  const columns = getColumns(toggleLockUserAccount, setActiveUserToEdit);
+  const columns = getColumns(setActiveCategoryToEdit);
 
   const table = useReactTable({
     columns,
@@ -61,17 +53,26 @@ const AdminVentureCategoriesTable = () => {
   };
 
   const handleCloseEditModal = () => {
-    setActiveUserToEdit(undefined);
+    setActiveCategoryToEdit(undefined);
   };
 
   return (
     <Row>
-      {activeUserToEdit && (
-        <EditUserModal
-          show={!!activeUserToEdit}
+      {activeCategoryToEdit && (
+        <EditVentureCategoryModal
+          show={!!activeCategoryToEdit}
           onCloseClick={handleCloseEditModal}
-          onSuccessfulEdit={fetchUsers}
-          user={activeUserToEdit}
+          onSuccessfulEdit={fetchVentureCategories}
+          ventureCategory={activeCategoryToEdit}
+        />
+      )}
+
+      {showCreateCategoryModal && (
+        <CreateVentureCategoryModal
+          show={!!activeCategoryToEdit}
+          onCloseClick={handleCloseEditModal}
+          onSuccessfulEdit={fetchVentureCategories}
+          ventureCategory={activeCategoryToEdit}
         />
       )}
 
@@ -85,7 +86,16 @@ const AdminVentureCategoriesTable = () => {
               <div className="flex-shrink-0 d-flex flex-row align-items-center">
                 <Button
                   type="button"
-                  onClick={fetchUsers}
+                  onClick={fetchVentureCategories}
+                  className="btn btn-success mx-2 mb-2"
+                >
+                  Crear categoría
+                  <i className="bx bx-plus mx-1"></i>
+                </Button>
+
+                <Button
+                  type="button"
+                  onClick={fetchVentureCategories}
                   className="btn btn-light mx-2 mb-2"
                 >
                   <i className="mdi mdi-refresh"></i>
@@ -95,8 +105,8 @@ const AdminVentureCategoriesTable = () => {
 
             {error && (
               <div className="alert alert-danger text-center" role="alert">
-                Ha habido un error al consultar los usuarios, por favor intente
-                nuevamente.
+                Ha habido un error al consultar las categorías de
+                emprendimientos, por favor intente nuevamente.
               </div>
             )}
           </CardBody>
@@ -197,153 +207,32 @@ const AdminVentureCategoriesTable = () => {
 };
 
 const getColumns = (
-  toggleLockUserAccount: (user: User) => void,
-  setActiveUserToEdit: (user: User) => void
+  setActiveCategoryToEdit: (ventureCategory: VentureCategory) => void
 ) => {
   return [
     {
-      header: "Foto",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const user = cellProps.row.original as User;
-        return (
-          <section>
-            <img
-              src={user.picture}
-              alt="user"
-              className="avatar-xs rounded-circle"
-            />
-          </section>
-        );
-      },
-    },
-    {
-      header: "Verificado",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const verified = cellProps.row.original.verified;
-        if (!verified) return <></>;
-        return (
-          <section className="d-flex justify-content-center">
-            <i className="bx bx-badge-check text-primary fs-3"></i>
-          </section>
-        );
-      },
-    },
-    {
-      header: "Nombres",
-      accessorKey: "firstName",
+      header: "Id",
+      accessorKey: "id",
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Apellidos",
-      accessorKey: "lastName",
+      header: "Nombre",
+      accessorKey: "name",
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Email",
-      accessorKey: "email",
+      header: "Slug",
+      accessorKey: "slug",
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Género",
-      accessorKey: "detail.gender",
+      header: "Descripción",
+      accessorKey: "description",
       enableColumnFilter: false,
       enableSorting: true,
-    },
-    {
-      header: "Fecha de Nacimiento",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const { birthDate } = cellProps.row.original.detail as UserDetail;
-        return (
-          <section>
-            <span>{new Date(birthDate).toISOString().split("T")[0]}</span>
-          </section>
-        );
-      },
-    },
-    {
-      header: "Municipio",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const municipalityId = cellProps.row.original.detail
-          .municipalityId as number;
-        return (
-          <section>
-            <span>
-              {getMunicipalityNameById(municipalityId)},{" "}
-              {getDepartmentByMunicipalityId(municipalityId)?.name}
-            </span>
-          </section>
-        );
-      },
-    },
-    {
-      header: "Completó registro",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const onboardingCompleted = cellProps.row.original.onboardingCompleted;
-        return (
-          <section>
-            <span
-              className={`badge bg-${
-                onboardingCompleted ? "success" : "danger"
-              } rounded-pill p-2 px-3`}
-            >
-              {onboardingCompleted ? "Sí" : "No"}
-            </span>
-          </section>
-        );
-      },
-    },
-    {
-      header: "Estado",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const active = cellProps.row.original.active;
-        return (
-          <section>
-            <span
-              className={`badge bg-${
-                active ? "success" : "danger"
-              } rounded-pill p-2 px-3`}
-            >
-              {active ? "Activo" : "Inactivo"}
-            </span>
-          </section>
-        );
-      },
-    },
-    {
-      header: "Roles",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const roles = cellProps.row.original.roles as Role[];
-        return (
-          <section className="d-flex">
-            {roles.map((role) => (
-              <span
-                key={role.id}
-                className={`badge rounded-3  px-1 py-2 m-1`}
-                style={{ backgroundColor: textToRGB(role.label) }}
-              >
-                {role.label}
-              </span>
-            ))}
-          </section>
-        );
-      },
     },
     {
       header: "Fecha de creación",
@@ -356,65 +245,54 @@ const getColumns = (
       },
     },
     {
+      header: "Última actualización",
+      accessorKey: "updatedAt",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const date = new Date(cellProps.row.original.updatedAt as string);
+        return <section>{new Date(date).toISOString().split("T")[0]}</section>;
+      },
+    },
+    {
       header: "Acciones",
       enableColumnFilter: false,
       enableSorting: true,
       cell: (value: any) => {
-        const user = value.row.original as User;
-        if (user.roles.some((role) => role.name === AppRole.ADMIN)) {
-          return <></>;
-        }
+        const ventureCategory = value.row.original as VentureCategory;
         return (
-          <section className="d-flex flex-column">
-            {user.active ? (
+          <div className="d-flex flex-row">
+            <section className="d-flex m-1 flex-column">
               <Button
-                onClick={() =>
-                  toggleLockUserAccount(value.row.original as User)
-                }
-                color="danger"
-                className="px-3 py-1 mx-1 w-100"
-              >
-                <IconTooltip
-                  tooltipId={"reenable-user"}
-                  tooltipHtml={"<h6>Deshabilitar usuario</h6>"}
-                  tooltipPlace={"top"}
-                  iconClassName={"bx bx-x font-size-16 align-middle text-white"}
-                />
-              </Button>
-            ) : (
-              <Button
-                onClick={() =>
-                  toggleLockUserAccount(value.row.original as User)
-                }
+                onClick={() => setActiveCategoryToEdit(ventureCategory)}
                 color="info"
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip
-                  tooltipId={"disable-user"}
-                  tooltipHtml={"<h6>Reactivar usuario</h6>"}
+                  tooltipId={"edit-venture-category"}
+                  tooltipHtml={"<h6>Editar categoría</h6>"}
                   tooltipPlace={"top"}
                   iconClassName={
-                    "bx bx-reset font-size-16 align-middle text-white"
+                    "bx bx-edit font-size-16 align-middle text-white"
                   }
                 />
               </Button>
-            )}
-
-            <Button
-              onClick={() => setActiveUserToEdit(value.row.original as User)}
-              color="primary"
-              className="px-3 py-1 mt-1 mx-1 w-100"
-            >
-              <IconTooltip
-                tooltipId={"modify-user"}
-                tooltipHtml={"<h6>Editar</h6>"}
-                tooltipPlace={"top"}
-                iconClassName={
-                  "bx bxs-edit font-size-16 align-middle text-white"
-                }
-              />
-            </Button>
-          </section>
+            </section>
+            <section className="d-flex m-1 flex-column">
+              <Button
+                onClick={() => setActiveCategoryToEdit(ventureCategory)}
+                color="danger"
+                className="px-3 py-1 mx-1 w-100"
+              >
+                <IconTooltip
+                  tooltipId={"delete-venture-category"}
+                  tooltipHtml={"<h6>Eliminar categoría</h6>"}
+                  tooltipPlace={"top"}
+                  iconClassName={"bx bx-x font-size-16 align-middle text-white"}
+                />
+              </Button>
+            </section>
+          </div>
         );
       },
     },

@@ -5,7 +5,6 @@ import { Col, Row } from "reactstrap";
 
 import useUsersFilters from "../../../modules/admin/general/hooks/useUsersFilters";
 import useRoles from "../../../modules/auth/hooks/useRoles";
-import { genders } from "../../data/misc/genders";
 
 const VentureCategoriesFiltersForm = () => {
   const { error: errorRoles, loading: loadingRoles, roles } = useRoles();
@@ -16,7 +15,7 @@ const VentureCategoriesFiltersForm = () => {
     <Fragment>
       {errorRoles && (
         <div className="alert alert-danger text-center" role="alert">
-          Ha habido un error al cargar los roles, por favor intente nuevamente.
+          Ha habido un error al cargar los , por favor intente nuevamente.
         </div>
       )}
 

@@ -14,6 +14,9 @@ import {
 import { selectAuthentication } from "../../../../config/redux/reducers/auth/auth.reducer";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import VentureCategoryWidget from "../../../../shared/components/widgets/VentureCategoryWidget";
+import useUserContactInfo from "../hooks/useUserContactInfo";
+import AppSpinner from "../../../../shared/components/loader/Spinner";
+import UserContactCard from "../../../../shared/components/card/UserContactCard";
 
 const AccountProfilePage = () => {
   document.title = "Perfil de usuario | EchadosPa'lante";
@@ -111,38 +114,6 @@ const AccountProfilePage = () => {
 
               <Card>
                 <CardBody>
-                  <CardTitle className="mb-4">Personal Information</CardTitle>
-                  <p className="text-muted mb-4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Molestiae, itaque?
-                  </p>
-                  <div className="table-responsive">
-                    <Table className="table-nowrap mb-0">
-                      <tbody>
-                        <tr>
-                          <th scope="row">Full Name :</th>
-                          <td>Test </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Mobile :</th>
-                          <td>Test </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">E-mail :</th>
-                          <td>Test </td>
-                        </tr>
-                        <tr>
-                          <th scope="row">Location :</th>
-                          <td>Test </td>
-                        </tr>
-                      </tbody>
-                    </Table>
-                  </div>
-                </CardBody>
-              </Card>
-
-              <Card>
-                <CardBody>
                   <CardTitle className="mb-5">Registro de Actividad</CardTitle>
                   <div>
                     <ul className="verti-timeline list-unstyled">
@@ -204,6 +175,9 @@ const AccountProfilePage = () => {
               </Card>
             </Col>
 
+            <Col xl="8">
+              <UserContactCard />
+            </Col>
             <Col xl="8">
               <Row>
                 {[1, 2, 3]?.map((_card) => (
