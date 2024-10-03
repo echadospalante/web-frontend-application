@@ -10,25 +10,26 @@ import {
   Row,
 } from "reactstrap";
 
-import { VentureCategory } from "echadospalante-core";
 import useCreateVentureCategory from "../../../modules/admin/general/hooks/useCreateVentureCategory";
-import useRoles from "../../../modules/auth/hooks/useRoles";
 
 type CreateVentureCategoryModalProps = {
   show: boolean;
   onCloseClick: () => void;
-  ventureCategory: VentureCategory;
   onSuccessfulCreate: () => void;
 };
 
 const CreateVentureCategoryModal = ({
   show,
   onCloseClick,
-  ventureCategory,
   onSuccessfulCreate,
 }: CreateVentureCategoryModalProps) => {
-  const { error, loading, handleSubmit, form } =
-    useCreateVentureCategory(ventureCategory);
+  const { error, loading, handleSubmit, form } = useCreateVentureCategory();
+
+  const handleCreateCategory = () => {
+    return handleSubmit().then(() => {
+      onSuccessfulCreate();
+    });
+  };
 
   return (
     <Modal isOpen={show} toggle={onCloseClick}>
@@ -77,9 +78,10 @@ const CreateVentureCategoryModal = ({
             <Col>
               <hr />
               <Button
+                disabled={form.isValid || form.isSubmitting}
                 color="success"
                 className="float-end"
-                onClick={form.submitForm}
+                onClick={handleCreateCategory}
               >
                 Crear
               </Button>

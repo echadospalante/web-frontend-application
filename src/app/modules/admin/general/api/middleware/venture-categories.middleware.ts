@@ -1,8 +1,9 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 
-import { VentureCategory } from "echadospalante-core";
+import { VentureCategory, VentureCategoryCreate } from "echadospalante-core";
 
 import {
+  addVentureCategory,
   setVentureCategories,
   updateVentureCategory,
   VentureCategoriesFilter,
@@ -26,6 +27,40 @@ export const updateVentureCategoryMiddleware = (
           setGlobalAlert({
             title: "Categoria actualizada",
             message: "La categoría ha sido actualizada exitosamente.",
+            timeout: 5000,
+            severity: SeverityLevel.SUCCESS,
+          })
+        );
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(
+          setGlobalAlert({
+            title: "Error",
+            message:
+              "Por favor intente nuevamente, si el error persiste contacte al administrador.",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        throw new Error("Error al actualizar la categoría");
+      })
+      .finally(() => {
+        dispatch(finishGlobalLoading());
+      });
+  };
+};
+
+export const createVentureCategoryMiddleware = (
+  ventureCategory: VentureCategoryCreate
+) => {
+  return async (dispatch: Dispatch) => {
+    return VentureCategoriesApi.createVentureCategory(ventureCategory)
+      .then(() => {
+        dispatch(
+          setGlobalAlert({
+            title: "Categoria creada",
+            message: "La categoría ha sido creada exitosamente.",
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
           })

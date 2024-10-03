@@ -51,6 +51,9 @@ export const ventureCategoriesManagementSlice = createSlice({
         category.id === updatedCategory.id ? updatedCategory : category
       );
     },
+    addVentureCategory: (state, action: PayloadAction<VentureCategory>) => {
+      state.categories.items.push(action.payload);
+    },
     resetVentureCategoriesFilters: (state) => {
       state.filters = initialState.filters;
     },
@@ -76,6 +79,8 @@ export const {
   resetVentureCategories,
   setVentureCategories,
   updateVentureCategory,
+  createVentureCategory,
+  addVentureCategory,
 } = ventureCategoriesManagementSlice.actions;
 
 export const selectVentureCategoriesManagement = (state: RootState) =>

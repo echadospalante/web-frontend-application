@@ -17,11 +17,12 @@ import AppSpinner from "../loader/Spinner";
 import EditVentureCategoryModal from "../modal/EditVentureCategoryModal";
 import Pagination from "../pagination/Pagination";
 import IconTooltip from "../tooltips/IconTooltip";
+import CreateVentureCategoryModal from "../modal/CreateVentureCategoryModal";
 
 const AdminVentureCategoriesTable = () => {
   const [activeCategoryToEdit, setActiveCategoryToEdit] =
     useState<VentureCategory>();
-
+  const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const {
     loading,
     error,
@@ -69,10 +70,9 @@ const AdminVentureCategoriesTable = () => {
 
       {showCreateCategoryModal && (
         <CreateVentureCategoryModal
-          show={!!activeCategoryToEdit}
-          onCloseClick={handleCloseEditModal}
-          onSuccessfulEdit={fetchVentureCategories}
-          ventureCategory={activeCategoryToEdit}
+          show={showCreateCategoryModal}
+          onCloseClick={() => setShowCreateCategoryModal(false)}
+          onSuccessfulCreate={fetchVentureCategories}
         />
       )}
 
@@ -86,7 +86,7 @@ const AdminVentureCategoriesTable = () => {
               <div className="flex-shrink-0 d-flex flex-row align-items-center">
                 <Button
                   type="button"
-                  onClick={fetchVentureCategories}
+                  onClick={() => setShowCreateCategoryModal(true)}
                   className="btn btn-success mx-2 mb-2"
                 >
                   Crear categoría

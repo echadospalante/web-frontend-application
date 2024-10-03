@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { VentureCategory } from "echadospalante-core";
+import { VentureCategory, VentureCategoryCreate } from "echadospalante-core";
 
 import env from "../../../../../../environment/environment";
 import { VentureCategoriesFilter } from "../../../../../config/redux/reducers/admin/venture-categories-management.reducer";
@@ -92,6 +92,12 @@ export class VentureCategoriesApi {
   public static updateVentureCategory(
     id: string,
     category: VentureCategory
+  ): Promise<void> {
+    throw new Error("Method not implemented.");
+  }
+
+  public static createVentureCategory(
+    category: VentureCategoryCreate
   ): Promise<void> {
     throw new Error("Method not implemented.");
   }

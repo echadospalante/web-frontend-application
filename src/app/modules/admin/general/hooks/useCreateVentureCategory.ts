@@ -1,12 +1,11 @@
 import { useState } from "react";
 
-import { VentureCategory } from "echadospalante-core";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
+import { VentureCategoryCreate } from "echadospalante-core";
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { updateVentureCategoryMiddleware } from "../api/middleware/venture-categories.middleware";
-import { VentureCategoryCreate } from "echadospalante-core/dist/app/modules/ventures/category";
+import { createVentureCategoryMiddleware } from "../api/middleware/venture-categories.middleware";
 
 const useCreateVentureCategory = () => {
   const dispatch = useAppDispatch();
@@ -17,12 +16,8 @@ const useCreateVentureCategory = () => {
 
   const form = useFormik<VentureCategoryCreate>({
     initialValues: {
-      id: "",
       name: "",
-      slug: "",
       description: "",
-      users: [],
-      ventures: [],
     },
     onSubmit: (values) => {
       console.log({ values });
@@ -40,12 +35,12 @@ const useCreateVentureCategory = () => {
     },
   });
 
-  const handleSubmit = (category: VentureCategory) => {
+  const handleSubmit = () => {
     setOperation({
       loading: true,
       error: false,
     });
-    return dispatch(updateVentureCategoryMiddleware(category.id, category))
+    return dispatch(createVentureCategoryMiddleware(form.values))
       .then(() => {
         setOperation({
           loading: false,
