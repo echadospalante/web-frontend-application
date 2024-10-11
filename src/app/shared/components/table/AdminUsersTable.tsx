@@ -284,10 +284,13 @@ const getColumns = (
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const { birthDate } = cellProps.row.original.detail as UserDetail;
+        const userDetail = cellProps.row.original.detail as UserDetail | null;
+        if (!userDetail) return <></>;
         return (
           <section>
-            <span>{new Date(birthDate).toISOString().split("T")[0]}</span>
+            <span>
+              {new Date(userDetail.birthDate).toISOString().split("T")[0]}
+            </span>
           </section>
         );
       },
@@ -297,13 +300,13 @@ const getColumns = (
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const municipalityId = cellProps.row.original.detail
-          .municipalityId as number;
+        const userDetail = cellProps.row.original.detail;
+        if (!userDetail) return <></>;
         return (
           <section>
             <span>
-              {getMunicipalityNameById(municipalityId)},{" "}
-              {getDepartmentByMunicipalityId(municipalityId)?.name}
+              {getMunicipalityNameById(userDetail.municipalityId)},{" "}
+              {getDepartmentByMunicipalityId(userDetail.municipalityId)?.name}
             </span>
           </section>
         );
