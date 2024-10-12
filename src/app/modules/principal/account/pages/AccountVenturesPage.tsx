@@ -1,9 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 
-import { Container, Row } from "reactstrap";
+import {
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Container,
+  Pagination,
+  Row,
+} from "reactstrap";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import VentureCard from "../../../../shared/components/card/VentureCard";
-import { Venture } from "echadospalante-core";
+import { User, Venture } from "echadospalante-core";
+import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
+import AppSpinner from "../../../../shared/components/loader/Spinner";
+import EditUserModal from "../../../../shared/components/modal/EditUserModal";
+import useUsers from "../../../admin/general/hooks/useUsers";
+import useOwnedVentures from "../../../admin/general/hooks/useOwnedVentures";
 
 const AccountVenturesPage = () => {
   //meta title
@@ -76,28 +89,141 @@ const AccountVenturesPage = () => {
     },
   ]);
 
+  const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
+
+  const {
+    loading,
+    error,
+    items,
+    total,
+    fetchOwnedVentures,
+    page,
+    size,
+    setPage,
+  } = useOwnedVentures();
+
+  const handleSetCurrentPage = (page: number) => {
+    // table.setPageIndex(page + 1);
+    setPage(page);
+  };
+
+  const handleCloseEditModal = () => {
+    setActiveUserToEdit(undefined);
+  };
+
   return (
     <div className="page-content">
       <Container fluid>
         {/* Render Breadcrumbs */}
         <Breadcrumb title="Cuenta" breadcrumbItem="Tus emprendimientos" />
+        {activeUserToEdit && (
+          <EditUserModal
+            show={!!activeUserToEdit}
+            onCloseClick={handleCloseEditModal}
+            onSuccessfulEdit={fetchOwnedVentures}
+            user={activeUserToEdit}
+          />
+        )}
 
-        <Row>
-          {/* Import Cards */}
-          {ventures.map((venture, index) => (
-            <VentureCard key={venture.id} venture={venture} />
-          ))}
-          {/* <Row>
-                <Pagination
-                  perPageData={size}
-                  length={total}
-                  currentPage={page + 1}
-                  setCurrentPage={() => {}}
-                  paginationDiv="col-lg-12"
-                  paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
-                />
-              </Row> */}
-        </Row>
+        <Col lg="12">
+          <Card>
+            <CardBody className="border-bottom">
+              <div className="d-flex align-items-center">
+                <h5 className="mb-0 card-title flex-grow-1">
+                  Listado de tus emprendimientos
+                </h5>
+                <div className="flex-shrink-0 d-flex flex-row align-items-center">
+                  <div className="btn-group h-100" role="group">
+                    <input
+                      type="radio"
+                      className="btn-check"
+                      name="btnradio"
+                      id="btn-list"
+                      autoComplete="off"
+                    />
+                    <label
+                      className="btn btn-outline-primary"
+                      htmlFor="btn-list"
+                    >
+                      <i className="bx bx-list-ul"></i>
+                    </label>
+
+                    <input
+                      type="radio"
+                      className="btn-check"
+                      name="btnradio"
+                      id="btn-grid"
+                      autoComplete="off"
+                    />
+                    <label
+                      className="btn btn-outline-primary"
+                      htmlFor="btn-grid"
+                    >
+                      <i className="bx bx-grid"></i>
+                    </label>
+                  </div>
+
+                  <Button
+                    type="button"
+                    // onClick={fetchUsers}
+                    className="btn btn-light mx-2 mb-2"
+                  >
+                    <i className="mdi mdi-refresh"></i>
+                  </Button>
+                </div>
+              </div>
+
+              {error && (
+                <div className="alert alert-danger text-center" role="alert">
+                  Ha habido un error al consultar los usuarios, por favor
+                  intente nuevamente.
+                </div>
+              )}
+            </CardBody>
+
+            <CardBody>
+              <Fragment>
+                <OwnedVenturesFiltersForm />
+
+                {loading ? (
+                  <div style={{ marginTop: "200px" }}>
+                    <AppSpinner />
+                  </div>
+                ) : (
+                  <Row>
+                    {ventures.map((venture) => (
+                      <VentureCard key={venture.id} venture={venture} />
+                    ))}
+                  </Row>
+                )}
+
+                <Row>
+                  <Col sm={12} md={5} lg={6}>
+                    <div className="dataTables_info">
+                      Página {page + 1} de {Math.ceil(total / size) || 1}, con
+                      un tatal de {total} emprendimientos
+                    </div>
+                  </Col>
+                  <Col
+                    sm={12}
+                    md={7}
+                    lg={6}
+                    className="d-flex justify-content-end"
+                  >
+                    <Pagination
+                      perPageData={size}
+                      length={total}
+                      currentPage={page + 1}
+                      setCurrentPage={handleSetCurrentPage}
+                      paginationDiv="col-lg-12"
+                      paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                    />
+                  </Col>
+                </Row>
+              </Fragment>
+            </CardBody>
+          </Card>
+        </Col>
       </Container>
     </div>
   );

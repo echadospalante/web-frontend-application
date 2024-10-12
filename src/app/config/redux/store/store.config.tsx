@@ -17,10 +17,11 @@ import registerReducer, {
 import UsersManagementReducer, {
   UsersManagementState,
 } from "../reducers/admin/users-management.reducer";
-import {
+import ventureCategoriesManagementReducer, {
   ventureCategoriesManagementSlice,
   VentureCategoriesManagementState,
 } from "../reducers/admin/venture-categories-management.reducer";
+import ownedVenturesManagementReducer from "../reducers/admin/owned-ventures-management.reducer";
 
 export interface GlobalState {
   authentication: AuthenticationState;
@@ -42,7 +43,8 @@ const reducer = combineReducers({
   register: registerReducer,
   admin: combineReducers({
     usersManagement: UsersManagementReducer,
-    ventureCategoriesManagement: ventureCategoriesManagementSlice.reducer,
+    ventureCategoriesManagement: ventureCategoriesManagementReducer,
+    ownedVenturesManagement: ownedVenturesManagementReducer,
   }),
 });
 

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   Badge,
   Button,
@@ -198,7 +197,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                     id={`reactions-${venture.id}`}
                   >
                     <i className="bx bx-like me-1"></i>
-                    <small>10</small>
+                    <small>{Math.ceil(Math.random() * 100)}</small>
                     <UncontrolledTooltip
                       placement="top"
                       target={`reactions-${venture.id}`}
@@ -213,7 +212,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                   >
                     <UilMegaphone />
                     <i className="uil uil-megaphone me-1"></i>
-                    <small>10</small>
+                    <small>{Math.ceil(Math.random() * 100)}</small>
                     <UncontrolledTooltip
                       placement="top"
                       target={`comments-${venture.id}`}
@@ -227,7 +226,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                     id={`events-${venture.id}`}
                   >
                     <i className="bx bx-calendar-event me-1"></i>
-                    <small>10</small>
+                    <small>{Math.ceil(Math.random() * 100)}</small>
                     <UncontrolledTooltip
                       placement="top"
                       target={`events-${venture.id}`}
@@ -242,7 +241,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
             <Col lg={8} md={6} sm={12}>
               <div className="px-4 py-2 border-top">
                 <div className="mt-0 d-flex justify-content-end">
-                  <Button className="mx-2 btn btn-info">
+                  <Button className="mx-2 btn btn-info d-flex">
                     <i className="bx bx-edit-alt me-1"></i> Editar
                   </Button>
                   <Button className="btn btn-danger">
@@ -260,7 +259,6 @@ const VentureCard = ({ venture }: VentureCardProps) => {
 
 export default VentureCard;
 
-import React from "react";
 import type { SVGProps } from "react";
 
 export function UilMegaphone(props: SVGProps<SVGSVGElement>) {
