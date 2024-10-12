@@ -8,7 +8,7 @@ import filterFalsyValues from "../../../../../shared/helpers/object-utils";
 import { PaginatedBody } from "../../../../principal/ventures/domain/api";
 
 export class VentureCategoriesApi {
-  private static readonly API_BASE_URL = `${env.API_URL}/api/v1/venture-categories`;
+  private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/categories`;
 
   public static fetchVentureCategories(
     ventureCategoriesFilter: VentureCategoriesFilter

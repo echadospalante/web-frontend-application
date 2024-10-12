@@ -33,6 +33,9 @@ export const ventureCategoriesManagementSlice = createSlice({
   name: "admin/ventureCategoriesManagement",
   initialState,
   reducers: {
+    createVentureCategory: (state, action: PayloadAction<VentureCategory>) => {
+      state.categories.items.push(action.payload);
+    },
     setVentureCategoriesFilters: (
       state,
       action: PayloadAction<VentureCategoriesFilter>
