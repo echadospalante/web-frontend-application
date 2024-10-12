@@ -38,7 +38,7 @@ const AccountProfilePage = () => {
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumbs */}
-          <Breadcrumb title="Contacts" breadcrumbItem="Profile" />
+          <Breadcrumb title="Cuenta" breadcrumbItem="Perfil" />
 
           <Row>
             <Col xl="4">
