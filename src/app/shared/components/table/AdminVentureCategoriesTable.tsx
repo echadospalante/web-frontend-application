@@ -22,6 +22,7 @@ import CreateVentureCategoryModal from "../modal/CreateVentureCategoryModal";
 const AdminVentureCategoriesTable = () => {
   const [activeCategoryToEdit, setActiveCategoryToEdit] =
     useState<VentureCategory>();
+
   const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const {
     loading,
