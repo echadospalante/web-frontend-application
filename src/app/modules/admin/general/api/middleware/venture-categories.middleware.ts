@@ -108,3 +108,27 @@ export const fetchVentureCategoriesMiddleware = (
       });
   };
 };
+
+export const fetchAllVentureCategoriesMiddleware = (
+) => {
+  return async (dispatch: Dispatch<Action>) => {
+    return VentureCategoriesApi.fetchVentureCategories({
+      search: "",
+      page: 0,
+      size: -1
+    })
+      .then((response) => response.items)
+      .catch((error) => {
+        console.error(error);
+        dispatch(
+          setGlobalAlert({
+            message: "Error al obtener la lista de categorías ⛔",
+            title: "Error",
+            timeout: 5000,
+            severity: SeverityLevel.ERROR,
+          })
+        );
+        throw new Error("Error al obtener la lista de categorías");
+      });
+  };
+};

@@ -3,7 +3,6 @@ import { Action, Dispatch } from "@reduxjs/toolkit";
 import { Venture, VentureCreate } from "echadospalante-core";
 
 import {
-  addOwnedVenture,
   setOwnedVentures,
   updateOwnedVenture,
   OwnedVenturesFilter,

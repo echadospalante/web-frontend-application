@@ -17,6 +17,7 @@ import AppSpinner from "../../../../shared/components/loader/Spinner";
 import EditUserModal from "../../../../shared/components/modal/EditUserModal";
 import useUsers from "../../../admin/general/hooks/useUsers";
 import useOwnedVentures from "../../../admin/general/hooks/useOwnedVentures";
+import { Link, useNavigate } from "react-router-dom";
 
 const AccountVenturesPage = () => {
   //meta title
@@ -88,8 +89,8 @@ const AccountVenturesPage = () => {
       createdAt: new Date(),
     },
   ]);
-
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
+  const navigate = useNavigate();
 
   const {
     loading,
@@ -109,6 +110,15 @@ const AccountVenturesPage = () => {
 
   const handleCloseEditModal = () => {
     setActiveUserToEdit(undefined);
+  };
+
+  const handleNavigateToCreate = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ): void => {
+    event.preventDefault();
+    return navigate("/principal/cuenta/emprendimientos/nuevo", {
+      replace: true,
+    });
   };
 
   return (
@@ -133,6 +143,13 @@ const AccountVenturesPage = () => {
                   Listado de tus emprendimientos
                 </h5>
                 <div className="flex-shrink-0 d-flex flex-row align-items-center">
+                  <Button
+                    className="btn btn-success mx-2 mb-2"
+                    onClick={handleNavigateToCreate}
+                  >
+                    Crear emprendimiento
+                    <i className="bx bx-plus mx-1"></i>
+                  </Button>
                   <div className="btn-group h-100" role="group">
                     <input
                       type="radio"
@@ -175,7 +192,7 @@ const AccountVenturesPage = () => {
 
               {error && (
                 <div className="alert alert-danger text-center" role="alert">
-                  Ha habido un error al consultar los usuarios, por favor
+                  Ha habido un error al consultar tus emprendimientos, por favor
                   intente nuevamente.
                 </div>
               )}
