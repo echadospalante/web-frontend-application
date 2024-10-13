@@ -1,10 +1,12 @@
+import { Fragment } from "react";
+
 import Select from "react-select";
 import { Col, Row } from "reactstrap";
 
-import useVentureCategoriesFilters from "../../../modules/admin/general/hooks/useVentureCategoriesFilter";
+import useOwnedVenturesFilters from "../../../modules/admin/general/hooks/useOwnedVenturesFilter";
 
-const VentureCategoriesFiltersForm = () => {
-  const { filters, setSearchTerm, setSize } = useVentureCategoriesFilters();
+const OwnedVenturesFiltersForm = () => {
+  const { filters, setSearchTerm, setSize } = useOwnedVenturesFilters();
 
   return (
     <Row className="mb-2">
@@ -50,4 +52,4 @@ const VentureCategoriesFiltersForm = () => {
   );
 };
 
-export default VentureCategoriesFiltersForm;
+export default OwnedVenturesFiltersForm;

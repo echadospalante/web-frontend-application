@@ -33,6 +33,8 @@ import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayou
 import AppSpinner from "../../shared/components/loader/Spinner";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
+import AccountVentureCreatePage from "../../modules/principal/account/pages/AccountVentureCreatePage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -87,6 +89,11 @@ const AppRouter = () => {
 
             <Route path="cuenta" element={<AccountLayoutPage />}>
               <Route path="perfil" element={<AccountProfilePage />} />
+              <Route path="emprendimientos" element={<AccountVenturesPage />} />
+              <Route
+                path="emprendimientos/nuevo"
+                element={<AccountVentureCreatePage />}
+              />
             </Route>
 
             <Route path="preferencias" element={<PreferencesLayoutPage />}>
