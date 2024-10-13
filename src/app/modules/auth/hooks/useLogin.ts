@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../../config/redux/reducers/auth.reducer";
+import { loginUser } from "../../../config/redux/reducers/auth/auth.reducer";
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../config/redux/reducers/user-interface.reducer";
+} from "../../../config/redux/reducers/shared/user-interface.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import {
   loginWithCredentialsMiddleware,

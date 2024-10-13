@@ -403,7 +403,7 @@ const RegisterStepsPage = () => {
                                   className="dropzone-previews mt-3"
                                   id="file-previews"
                                 >
-                                  {selectedFiles.map((f, i) => {
+                                  {selectedFiles.map((_, i) => {
                                     return (
                                       <Card
                                         className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"

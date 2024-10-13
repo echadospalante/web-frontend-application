@@ -9,26 +9,24 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import Select from "react-select";
+import { User, UserDetail } from "echadospalante-core";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import { User } from "x-ventures-domain";
+import useUsers from "../../../modules/admin/general/hooks/useUsers";
 import { AppRole, Role } from "../../../modules/auth/domain/Role";
-import { AreaSummary } from "../../../modules/principal/ventures/domain/area";
-import {
-  getVentureStateColor,
-  VentureState,
-} from "../../../modules/principal/ventures/domain/state";
-import useUsers from "../../../modules/principal/ventures/hooks/useUsers";
+import UsersFiltersForm from "../forms/UsersFiltersForm";
 import AppSpinner from "../loader/Spinner";
+import EditUserModal from "../modal/EditUserModal";
 import Pagination from "../pagination/Pagination";
+import IconTooltip from "../tooltips/IconTooltip";
+import { textToRGB } from "../../helpers/colors";
+import {
+  getDepartmentByMunicipalityId,
+  getMunicipalityNameById,
+} from "../../helpers/department-helpers";
 
 const AdminUsersTable = () => {
-  const [pagination, setPagination] = useState({
-    page: 0,
-    size: 20,
-  });
-  const { page, size } = pagination;
+  const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
 
   const {
     loading,
@@ -36,14 +34,13 @@ const AdminUsersTable = () => {
     items,
     total,
     fetchUsers,
-    lockUserAccount,
-    unlockUserAccount,
-  } = useUsers({
+    toggleLockUserAccount,
     page,
     size,
-  });
+    setPage,
+  } = useUsers();
 
-  const columns = getColumns(lockUserAccount, unlockUserAccount);
+  const columns = getColumns(toggleLockUserAccount, setActiveUserToEdit);
 
   const table = useReactTable({
     columns,
@@ -59,136 +56,83 @@ const AdminUsersTable = () => {
 
   const handleSetCurrentPage = (page: number) => {
     table.setPageIndex(page + 1);
-    setPagination({ ...pagination, page });
+    setPage(page);
+  };
+
+  const handleCloseEditModal = () => {
+    setActiveUserToEdit(undefined);
   };
 
   return (
     <Row>
-      {error && (
-        <div className="alert alert-danger text-center" role="alert">
-          Ha habido un error, por favor intente nuevamente.
-        </div>
+      {activeUserToEdit && (
+        <EditUserModal
+          show={!!activeUserToEdit}
+          onCloseClick={handleCloseEditModal}
+          onSuccessfulEdit={fetchUsers}
+          user={activeUserToEdit}
+        />
       )}
 
       <Col lg="12">
-        {loading ? (
-          <AppSpinner />
-        ) : (
-          <Card>
-            <CardBody className="border-bottom">
-              <div className="d-flex align-items-center">
-                <h5 className="mb-0 card-title flex-grow-1">
-                  Listado de usuario
-                </h5>
-                <div className="flex-shrink-0 d-flex flex-row align-items-center">
-                  <div className="btn-group h-100" role="group">
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-list"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-list"
-                    >
-                      <i className="bx bx-list-ul"></i>
-                    </label>
+        <Card>
+          <CardBody className="border-bottom">
+            <div className="d-flex align-items-center">
+              <h5 className="mb-0 card-title flex-grow-1">
+                Listado de usuarios
+              </h5>
+              <div className="flex-shrink-0 d-flex flex-row align-items-center">
+                <div className="btn-group h-100" role="group">
+                  <input
+                    type="radio"
+                    className="btn-check"
+                    name="btnradio"
+                    id="btn-list"
+                    autoComplete="off"
+                  />
+                  <label className="btn btn-outline-primary" htmlFor="btn-list">
+                    <i className="bx bx-list-ul"></i>
+                  </label>
 
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-grid"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-grid"
-                    >
-                      <i className="bx bx-grid"></i>
-                    </label>
-                  </div>
-
-                  <Button
-                    type="button"
-                    onClick={fetchUsers}
-                    className="btn btn-light mx-2 mb-2"
-                  >
-                    <i className="mdi mdi-refresh"></i>
-                  </Button>
+                  <input
+                    type="radio"
+                    className="btn-check"
+                    name="btnradio"
+                    id="btn-grid"
+                    autoComplete="off"
+                  />
+                  <label className="btn btn-outline-primary" htmlFor="btn-grid">
+                    <i className="bx bx-grid"></i>
+                  </label>
                 </div>
+
+                <Button
+                  type="button"
+                  onClick={fetchUsers}
+                  className="btn btn-light mx-2 mb-2"
+                >
+                  <i className="mdi mdi-refresh"></i>
+                </Button>
               </div>
-            </CardBody>
+            </div>
 
-            <CardBody>
-              <Fragment>
-                <Row className="mb-2">
-                  <Col sm={3} lg={2}>
-                    <label className="control-label">
-                      Elementos por Página
-                    </label>
-                    <Select
-                      className=""
-                      isDisabled={loading}
-                      value={{
-                        label: size + "",
-                        value: size,
-                      }}
-                      isMulti={false}
-                      isSearchable={false}
-                      onChange={(selected) => {
-                        table.setPageIndex(0);
-                        table.setPageSize(Number(selected?.value));
-                        setPagination({
-                          page: 0,
-                          size: selected?.value || 20,
-                        });
-                      }}
-                      options={[
-                        { label: "20", value: 25 },
-                        { label: "50", value: 50 },
-                        { label: "100", value: 100 },
-                      ]}
-                    ></Select>
-                  </Col>
+            {error && (
+              <div className="alert alert-danger text-center" role="alert">
+                Ha habido un error al consultar los usuarios, por favor intente
+                nuevamente.
+              </div>
+            )}
+          </CardBody>
 
-                  <Col sm={6} lg={3}>
-                    <label className="control-label">
-                      Roles (Todos por defecto)
-                    </label>
-                    <Select
-                      className=""
-                      isDisabled={loading}
-                      value={[{ label: "Usuario", value: AppRole.USER }]}
-                      isMulti={true}
-                      isSearchable={false}
-                      closeMenuOnSelect={false}
-                      onChange={(selected) => {
-                        table.setPageIndex(0);
-                        console.log({ selected });
-                      }}
-                      options={[
-                        { label: "Administrador", value: AppRole.ADMIN },
-                        { label: "Moderador", value: AppRole.MODERATOR },
-                        {
-                          label: "Publicador de Noticias",
-                          value: AppRole.NEWS_WRITER,
-                        },
-                        { label: "Usuario", value: AppRole.USER },
-                      ]}
-                    ></Select>
-                  </Col>
+          <CardBody>
+            <Fragment>
+              <UsersFiltersForm />
 
-                  <Col lg={3} md={12} sm={12}>
-                    <label className="control-label">
-                      Búsqueda por Coincidencia
-                    </label>
-                    <input className="form-control" type="text" />
-                  </Col>
-                </Row>
-
+              {loading ? (
+                <div style={{ marginTop: "200px" }}>
+                  <AppSpinner />
+                </div>
+              ) : (
                 <div className="table-responsive">
                   <Table hover bordered={false}>
                     <thead>
@@ -242,49 +186,43 @@ const AdminUsersTable = () => {
                     </tbody>
                   </Table>
                 </div>
+              )}
 
-                <Row>
-                  <Col sm={12} md={5} lg={6}>
-                    <div className="dataTables_info">
-                      Página {page + 1} de {Math.ceil(total / size) || 1}, con
-                      un tatal de {total} usuarios
-                    </div>
-                  </Col>
-                  <Col
-                    sm={12}
-                    md={7}
-                    lg={6}
-                    className="d-flex justify-content-end"
-                  >
-                    <Pagination
-                      perPageData={size}
-                      length={total}
-                      currentPage={page + 1}
-                      setCurrentPage={handleSetCurrentPage}
-                      paginationDiv="col-lg-12"
-                      paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
-                    />
-                  </Col>
-                </Row>
-              </Fragment>
-            </CardBody>
-          </Card>
-        )}
+              <Row>
+                <Col sm={12} md={5} lg={6}>
+                  <div className="dataTables_info">
+                    Página {page + 1} de {Math.ceil(total / size) || 1}, con un
+                    tatal de {total} usuarios
+                  </div>
+                </Col>
+                <Col
+                  sm={12}
+                  md={7}
+                  lg={6}
+                  className="d-flex justify-content-end"
+                >
+                  <Pagination
+                    perPageData={size}
+                    length={total}
+                    currentPage={page + 1}
+                    setCurrentPage={handleSetCurrentPage}
+                    paginationDiv="col-lg-12"
+                    paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                  />
+                </Col>
+              </Row>
+            </Fragment>
+          </CardBody>
+        </Card>
       </Col>
     </Row>
   );
 };
 
 const getColumns = (
-  lockUserAccount: (user: User) => void,
-  unlockUserAccount: (user: User) => void
+  toggleLockUserAccount: (user: User) => void,
+  setActiveUserToEdit: (user: User) => void
 ) => {
-  /*
-   "id": 1,
-   "name": "Analítica de Datos",
-   "quotes": null,
-   "createdAt": null
-  */
   return [
     {
       header: "Foto",
@@ -299,6 +237,20 @@ const getColumns = (
               alt="user"
               className="avatar-xs rounded-circle"
             />
+          </section>
+        );
+      },
+    },
+    {
+      header: "Verificado",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const verified = cellProps.row.original.verified;
+        if (!verified) return <></>;
+        return (
+          <section className="d-flex justify-content-center">
+            <i className="bx bx-badge-check text-primary fs-3"></i>
           </section>
         );
       },
@@ -320,6 +272,45 @@ const getColumns = (
       accessorKey: "email",
       enableColumnFilter: false,
       enableSorting: true,
+    },
+    {
+      header: "Género",
+      accessorKey: "detail.gender",
+      enableColumnFilter: false,
+      enableSorting: true,
+    },
+    {
+      header: "Fecha de Nacimiento",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const userDetail = cellProps.row.original.detail as UserDetail | null;
+        if (!userDetail) return <></>;
+        return (
+          <section>
+            <span>
+              {new Date(userDetail.birthDate).toISOString().split("T")[0]}
+            </span>
+          </section>
+        );
+      },
+    },
+    {
+      header: "Municipio",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const userDetail = cellProps.row.original.detail;
+        if (!userDetail) return <></>;
+        return (
+          <section>
+            <span>
+              {getMunicipalityNameById(userDetail.municipalityId)},{" "}
+              {getDepartmentByMunicipalityId(userDetail.municipalityId)?.name}
+            </span>
+          </section>
+        );
+      },
     },
     {
       header: "Completó registro",
@@ -370,7 +361,8 @@ const getColumns = (
             {roles.map((role) => (
               <span
                 key={role.id}
-                className={`badge bg-secondary rounded-3 p-1 px-2 m-1`}
+                className={`badge rounded-3  px-1 py-2 m-1`}
+                style={{ backgroundColor: textToRGB(role.label) }}
               >
                 {role.label}
               </span>
@@ -399,29 +391,54 @@ const getColumns = (
           return <></>;
         }
         return (
-          <section>
+          <section className="d-flex flex-column">
             {user.active ? (
               <Button
-                onClick={() => lockUserAccount(value.row.original as User)}
+                onClick={() =>
+                  toggleLockUserAccount(value.row.original as User)
+                }
                 color="danger"
-                className="mx-1"
+                className="px-3 py-1 mx-1 w-100"
               >
-                <i className="bx bx-x font-size-16 align-middle me-1 text-white" />
-                <span>Inactivar</span>
+                <IconTooltip
+                  tooltipId={"reenable-user"}
+                  tooltipHtml={"<h6>Deshabilitar usuario</h6>"}
+                  tooltipPlace={"top"}
+                  iconClassName={"bx bx-x font-size-16 align-middle text-white"}
+                />
               </Button>
             ) : (
               <Button
-                onClick={() => unlockUserAccount(value.row.original as User)}
+                onClick={() =>
+                  toggleLockUserAccount(value.row.original as User)
+                }
                 color="info"
-                className="mx-1"
+                className="px-3 py-1 mx-1 w-100"
               >
-                <i className="bx bx-reset font-size-16 align-middle me-1 text-white" />
-                <span>Reactivar</span>
+                <IconTooltip
+                  tooltipId={"disable-user"}
+                  tooltipHtml={"<h6>Reactivar usuario</h6>"}
+                  tooltipPlace={"top"}
+                  iconClassName={
+                    "bx bx-reset font-size-16 align-middle text-white"
+                  }
+                />
               </Button>
             )}
-            <Button color="primary" className="mx-1">
-              <i className="bx bx-list-ul font-size-16 align-middle me-1 text-white" />
-              <span>Cambiar roles</span>
+
+            <Button
+              onClick={() => setActiveUserToEdit(value.row.original as User)}
+              color="primary"
+              className="px-3 py-1 mt-1 mx-1 w-100"
+            >
+              <IconTooltip
+                tooltipId={"modify-user"}
+                tooltipHtml={"<h6>Editar</h6>"}
+                tooltipPlace={"top"}
+                iconClassName={
+                  "bx bxs-edit font-size-16 align-middle text-white"
+                }
+              />
             </Button>
           </section>
         );

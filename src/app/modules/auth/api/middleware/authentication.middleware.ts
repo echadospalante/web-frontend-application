@@ -3,15 +3,15 @@ import { Action, Dispatch } from "@reduxjs/toolkit";
 import {
   loginUser,
   logoutUser,
-} from "../../../../config/redux/reducers/auth.reducer";
+} from "../../../../config/redux/reducers/auth/auth.reducer";
+import { UserRegisterInfo } from "../../../../config/redux/reducers/auth/register.reducer";
 import {
   SeverityLevel,
   finishGlobalLoading,
   setGlobalAlert,
   startGlobalLoading,
-} from "../../../../config/redux/reducers/user-interface.reducer";
+} from "../../../../config/redux/reducers/shared/user-interface.reducer";
 import AuthenticationApi from "../http/authentication.api";
-import { UserRegisterInfo } from "../../../../config/redux/reducers/register.reducer";
 
 export const refreshAuthOnReloadMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {

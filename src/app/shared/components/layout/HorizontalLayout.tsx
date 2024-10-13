@@ -8,7 +8,7 @@ import {
   changeTopBarTheme,
   selectLayout,
   toggleRightSidebar,
-} from "../../../config/redux/reducers/layout.reducer";
+} from "../../../config/redux/reducers/shared/layout.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import Footer from "../footer/HorizontalFooter";
 import HorizontalHeader from "../header/HorizontalHeader";
@@ -110,10 +110,10 @@ const HorizontalLayout = ({ children }: LayoutProps) => {
 
       <div id="layout-wrapper">
         <HorizontalHeader
-          toggleLeftmenu={function (arg0: boolean): void {}}
-          showRightSidebarAction={function (arg0: boolean): void {}}
-          leftMenu={false}
-          showRightSidebar={false}
+        // toggleLeftmenu={function (arg0: boolean): void {}}
+        // showRightSidebarAction={function (arg0: boolean): void {}}
+        // leftMenu={false}
+        // showRightSidebar={false}
         />
         {/* <Navbar menuOpen={isMenuOpened} /> */}
         <Sidebar />

@@ -13,7 +13,6 @@ import {
 } from "reactstrap";
 import * as Yup from "yup";
 
-import { useAppDispatch } from "../../../config/redux/store/store.config";
 import { QuoteAreaCreate } from "../../../modules/principal/ventures/domain/area";
 
 type CreateDeclarationModal = {
@@ -25,8 +24,6 @@ const DeclarationSearchModal = ({
   modal,
   toggleModal,
 }: CreateDeclarationModal) => {
-  const dispatch = useAppDispatch();
-
   const validation = useFormik<QuoteAreaCreate>({
     initialValues: {
       name: "",

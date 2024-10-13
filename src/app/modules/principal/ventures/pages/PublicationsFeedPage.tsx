@@ -108,7 +108,7 @@ const PublicationsFeedPage = () => {
                               </Col>
                             </Row>
 
-                            {new Array(10).fill(0).map((item, index) => (
+                            {new Array(10).fill(0).map((_item) => (
                               <Fragment>
                                 <hr className="mb-4" />
 

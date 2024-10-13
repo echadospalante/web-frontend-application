@@ -17,12 +17,12 @@ import {
 } from "reactstrap";
 
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import { selectLayout } from "../../../../config/redux/reducers/layout.reducer";
+import { selectLayout } from "../../../../config/redux/reducers/shared/layout.reducer";
 import {
   LayoutModeType,
   LayoutType,
   LayoutWidthType,
-  LeftBarThemeImageType,
+  // LeftBarThemeImageType,
   LeftSideBarThemeType,
   LeftSidebarType,
   TopBarThemeType,
@@ -37,7 +37,7 @@ const PreferencesThemePage = () => {
     topBarTheme,
     leftSideBarTheme,
     leftSideBarType,
-    leftSideBarThemeImage,
+    // leftSideBarThemeImage,
   } = useSelector(selectLayout);
 
   return (

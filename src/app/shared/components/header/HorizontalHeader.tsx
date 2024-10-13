@@ -10,19 +10,17 @@ import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
 import LanguageDropdown from "../dropdown/LanguageDropdown";
 import NotificationDropdown from "../dropdown/NotificationDropdown";
 import ProfileMenu from "../menu/ProfileMenu";
-import { AppRole } from "../../../modules/auth/domain/Role";
 
-type HeaderProps = {
-  toggleLeftmenu: (arg0: boolean) => void;
-  showRightSidebarAction: (arg0: boolean) => void;
-  leftMenu: boolean;
-  showRightSidebar: boolean;
-};
+// type HeaderProps = {
+//   toggleLeftmenu: (arg0: boolean) => void;
+//   showRightSidebarAction: (arg0: boolean) => void;
+//   leftMenu: boolean;
+//   showRightSidebar: boolean;
+// };
 
-const Header = (props: HeaderProps) => {
+const Header = () => {
   const [menu, setMenu] = useState(false);
   const [isSearch, setSearch] = useState(false);
-  const [socialDrp, setsocialDrp] = useState(false);
   const { t } = useTranslation();
   const { activeRole, roles = [], setActiveRole } = useAuthentication();
 

@@ -61,12 +61,7 @@ const Earning = ({ dataColors }: any) => {
     },
   };
 
-  const series: ApexNonAxisChartSeries = [
-    {
-      name: "Series 1",
-      data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
-    },
-  ];
+  const series: ApexNonAxisChartSeries = [10, 41, 35, 51, 49, 62, 69, 91, 148];
 
   /*
   call api action to receive data

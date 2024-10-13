@@ -7,7 +7,6 @@ interface AppLoadingProps {
 
 const AppLoading: React.FC<AppLoadingProps> = ({
   message = "Loading...",
-  iconPath,
 }: AppLoadingProps) => {
   return (
     <React.Fragment>

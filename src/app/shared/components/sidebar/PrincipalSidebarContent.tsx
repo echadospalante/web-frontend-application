@@ -7,6 +7,7 @@ import SimpleBar from "simplebar-react";
 
 const UserSidebarContent = () => {
   const { t } = useTranslation();
+
   const ref = useRef(null);
 
   const activateParentDropdown = useCallback((item: HTMLAnchorElement) => {

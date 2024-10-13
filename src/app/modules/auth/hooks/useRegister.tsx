@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import {
@@ -8,13 +8,14 @@ import {
   setPreferencesIds,
   setUserInfo,
   UserRegisterInfo,
-} from "../../../config/redux/reducers/register.reducer";
+} from "../../../config/redux/reducers/auth/register.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../config/redux/reducers/user-interface.reducer";
+} from "../../../config/redux/reducers/shared/user-interface.reducer";
 import { createUserRegisterMiddleware } from "../api/middleware/authentication.middleware";
+import { completeOnboarding } from "../../../config/redux/reducers/auth/auth.reducer";
 
 const userSchema = Yup.object().shape({
   gender: Yup.string()
@@ -34,7 +35,11 @@ export const useRegister = () => {
 
   const submitRegister = () => {
     if (!userInfo) return Promise.reject();
-    return dispatch(createUserRegisterMiddleware(userInfo, preferencesIds));
+    return dispatch(
+      createUserRegisterMiddleware(userInfo, preferencesIds)
+    ).then(() => {
+      dispatch(completeOnboarding());
+    });
   };
 
   return { userInfo, submitRegister };

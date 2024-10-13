@@ -3,7 +3,6 @@ import axios from "axios";
 import env from "../../../../../../environment/environment";
 import { ApiResponse, PaginatedBody } from "../../domain/api";
 import { Quote } from "../../domain/quote";
-import { VentureState } from "../../domain/state";
 
 export class QuotesApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/cotizaciones`;
@@ -1329,46 +1328,15 @@ export class QuotesApi {
 
   public static async deleteQuote(id: string): Promise<void> {
     // return axios.delete(`${QuotesApi.API_BASE_URL}/non-standards/${id}`);
+    console.log({ id });
     return Promise.resolve();
   }
 
   public static async fetchQuoteDetail(id: string): Promise<Quote> {
+    console.log({ id });
     // return axios
     //   .get<Quote>(`${QuotesApi.API_BASE_URL}/${id}`)
     //   .then(({ data }) => data);
-    return Promise.resolve({
-      id: 1,
-      code: "123",
-      date: new Date(),
-      name: "Some project name",
-      area: {
-        id: 1,
-        name: "Desarrollo de Software",
-        createdAt: new Date(),
-      },
-      form: "CONTENIDO_DEL_FORMULARIO",
-      advisor: {
-        id: 1,
-        firstName: "John",
-        lastName: "Doe",
-        createdAt: new Date(),
-      },
-      state: VentureState.COMPLETED,
-      client: {
-        id: 1,
-        firstName: "John",
-        lastName: "Doe",
-        email: "jondoe@gmail.com",
-        phoneCode: "57",
-        phoneNumber: "123456789",
-        company: {
-          id: 1,
-          nit: "123456789",
-          name: "Company",
-          createdAt: new Date(),
-        },
-        createdAt: new Date(),
-      },
-    });
+    throw new Error("Method not implemented.");
   }
 }

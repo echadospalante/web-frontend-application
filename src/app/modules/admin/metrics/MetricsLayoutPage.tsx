@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom";
 
 import HorizontalLayout from "../../../shared/components/layout/HorizontalLayout";
 import VerticalLayout from "../../../shared/components/layout/VerticalLayout";
-import { selectLayout } from "../../../config/redux/reducers/layout.reducer";
+import { selectLayout } from "../../../config/redux/reducers/shared/layout.reducer";
 import { LayoutType } from "../../common/domain/layout.interfaces";
 
 const MetricsLayoutPage = () => {

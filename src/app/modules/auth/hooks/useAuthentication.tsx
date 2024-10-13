@@ -3,12 +3,12 @@ import { useSelector } from "react-redux";
 import {
   changeActiveRole,
   selectAuthentication,
-} from "../../../config/redux/reducers/auth.reducer";
+} from "../../../config/redux/reducers/auth/auth.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import { AppRole } from "../domain/Role";
 
 const useAuthentication = () => {
-  const { activeRole, roles } = useSelector(selectAuthentication);
+  const { activeRole, roles, email } = useSelector(selectAuthentication);
   const dispatch = useAppDispatch();
 
   const setActiveRole = (roleName: AppRole) => {
@@ -18,7 +18,7 @@ const useAuthentication = () => {
     dispatch(changeActiveRole(role));
   };
 
-  return { activeRole, setActiveRole, roles };
+  return { activeRole, setActiveRole, roles, email };
 };
 
 export default useAuthentication;

@@ -1,30 +1,49 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
-import { ToastContainer } from "react-toastify";
-
+import { TabContent, TabPane } from "reactstrap";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import { UncontrolledAlert } from "reactstrap";
+import AdminVenturesTabs from "../../../../shared/components/tabs/QuotesTabs";
+import AdminVenturesTable from "../../../../shared/components/table/AdminVenturesTable";
+import AdminVentureCategoriesTable from "../../../../shared/components/table/AdminVentureCategoriesTable";
 
 const AdminVenturesPage = () => {
   document.title = "Gestión de Emprendimientos | Administración";
 
+  const [activeTab, setActiveTab] = useState("1");
+
+  const toggleActiveTab = (tab: string) => {
+    if (activeTab !== tab) {
+      setActiveTab(tab);
+    }
+  };
   return (
     <Fragment>
       <div className="page-content">
         <div className="container-fluid">
-          <Breadcrumb title="Administración" breadcrumbItem="Emprendimientos" />
+          <Breadcrumb
+            title="Emprendimientos"
+            breadcrumbItem={activeTab === "1" ? "Listado" : "Tablero"}
+          />
 
-          {/* <AdminQuotesTable /> */}
-          <div className="px-3 mt-2 mx-2 pt-3 fw-normal">
-            <UncontrolledAlert color="info" role="alert">
-              <i className="mdi mdi-bullseye-arrow me-2"></i>
-              <b>Tenga en cuenta:</b> Esta sección aún no está disponible
-            </UncontrolledAlert>
-          </div>
+          <Fragment>
+            <AdminVenturesTabs
+              activeTab={activeTab}
+              toggleCustom={toggleActiveTab}
+            />
+
+            <TabContent activeTab={activeTab} className="p-3 text-muted">
+              <TabPane tabId="1">
+                {activeTab === "1" && <AdminVenturesTable />}
+              </TabPane>
+
+              <TabPane tabId="2">
+                {activeTab === "2" && <AdminVentureCategoriesTable />}
+              </TabPane>
+            </TabContent>
+          </Fragment>
         </div>
       </div>
-      <ToastContainer />
     </Fragment>
   );
 };

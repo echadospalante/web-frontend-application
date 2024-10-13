@@ -3,12 +3,12 @@ import { isEmpty } from "lodash";
 import React, { useEffect, useState } from "react";
 
 import BootstrapTheme from "@fullcalendar/bootstrap";
+import esLocale from "@fullcalendar/core/locales/es";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
 import FullCalendar from "@fullcalendar/react";
 import { useFormik } from "formik";
-import esLocale from "@fullcalendar/core/locales/es";
 import {
   Button,
   Card,
@@ -46,7 +46,6 @@ import Select from "react-select";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
 import DeleteModal from "../../../../shared/components/modal/DeleteModal";
-import { LocaleSingularArg } from "@fullcalendar/core/index.js";
 
 const QuotesCalenderPage = () => {
   const dispatch = useDispatch();
@@ -74,6 +73,7 @@ const QuotesCalenderPage = () => {
           classNames: values.category + " text-white",
           start: event.start,
         };
+        console.log({ updateEvent });
         // update event
         // dispatch(onUpdateEvent(updateEvent));
         categoryValidation.resetForm();
@@ -86,6 +86,7 @@ const QuotesCalenderPage = () => {
             ? values["category"] + " text-white"
             : "bg-primary text-white",
         };
+        console.log({ newEvent });
         // save new event
         // dispatch(onAddNewEvent(newEvent));
         categoryValidation.resetForm();
@@ -94,8 +95,8 @@ const QuotesCalenderPage = () => {
     },
   });
 
-  const [events, setEvents] = useState([]);
-  const [categories, setCategories] = useState([]);
+  const [events] = useState([]);
+  const [categories] = useState([]);
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState();
@@ -230,14 +231,15 @@ const QuotesCalenderPage = () => {
         start: modifiedDate,
         className: draggedEl.className,
       };
+      console.log({ modifiedData });
       // dispatch(onAddNewEvent(modifiedData));
     }
   };
 
   //set the local language
 
-  const [error, setError] = useState(true);
-  const [loading, setLoading] = useState(false);
+  const [error] = useState(true);
+  const [loading] = useState(false);
 
   return (
     <React.Fragment>

@@ -1,8 +1,8 @@
-import React, { Fragment, ReactNode } from "react";
+import { Fragment, ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 
-import { selectAuthentication } from "../redux/reducers/auth.reducer";
+import { selectAuthentication } from "../redux/reducers/auth/auth.reducer";
 
 export interface PublicRouteProps {
   children: ReactNode;

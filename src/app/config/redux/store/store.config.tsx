@@ -3,17 +3,33 @@ import { useDispatch } from "react-redux";
 
 import authenticationReducer, {
   AuthenticationState,
-} from "../reducers/auth.reducer";
-import layoutReducer, { LayoutState } from "../reducers/layout.reducer";
-import venturesReducer, { VenturesState } from "../reducers/ventures.reducer";
+} from "../reducers/auth/auth.reducer";
+import layoutReducer, { LayoutState } from "../reducers/shared/layout.reducer";
+import venturesReducer, {
+  VenturesState,
+} from "../reducers/principal/ventures.reducer";
 import userInterfaceReducer, {
   UserInterfaceState,
-} from "../reducers/user-interface.reducer";
-import registerReducer, { RegisterState } from "../reducers/register.reducer";
+} from "../reducers/shared/user-interface.reducer";
+import registerReducer, {
+  RegisterState,
+} from "../reducers/auth/register.reducer";
+import UsersManagementReducer, {
+  UsersManagementState,
+} from "../reducers/admin/users-management.reducer";
+import ventureCategoriesManagementReducer, {
+  ventureCategoriesManagementSlice,
+  VentureCategoriesManagementState,
+} from "../reducers/admin/venture-categories-management.reducer";
+import ownedVenturesManagementReducer from "../reducers/admin/owned-ventures-management.reducer";
 
 export interface GlobalState {
   authentication: AuthenticationState;
   userInterface: UserInterfaceState;
+  admin: {
+    usersManagement: UsersManagementState;
+    ventureCategoriesManagement: VentureCategoriesManagementState;
+  };
   ventures: VenturesState;
   layout: LayoutState;
   register: RegisterState;
@@ -25,6 +41,11 @@ const reducer = combineReducers({
   layout: layoutReducer,
   ventures: venturesReducer,
   register: registerReducer,
+  admin: combineReducers({
+    usersManagement: UsersManagementReducer,
+    ventureCategoriesManagement: ventureCategoriesManagementReducer,
+    ownedVenturesManagement: ownedVenturesManagementReducer,
+  }),
 });
 
 const store = configureStore({

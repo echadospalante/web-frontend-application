@@ -1,18 +1,16 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 
-import { Container, Row, Col } from "reactstrap";
+import { Col, Container, Row } from "reactstrap";
 
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import CardUser from "../../../../shared/components/card/UserCard";
+import ActivityFeed from "../../../../shared/components/card/ActivityFeed";
+import AddedJobs from "../../../../shared/components/card/AdedJobs";
 import CardWelcome from "../../../../shared/components/card/CardWelcome";
-import MiniWidget from "../../../../shared/components/widgets/MiniWidget";
+import CompanySummary from "../../../../shared/components/card/CompanySummary";
 import Earning from "../../../../shared/components/graphics/Earning";
 import SalesAnalytics from "../../../../shared/components/graphics/SalesAnalytics";
 import TotalSelling from "../../../../shared/components/graphics/TotalSelling";
-import CompanySummary from "../../../../shared/components/card/CompanySummary";
-import ActivityFeed from "../../../../shared/components/card/ActivityFeed";
-import AddedJobs from "../../../../shared/components/card/AdedJobs";
-import RecommendedInfo from "../../../../shared/components/card/RecommendedInfo";
+import MiniWidget from "../../../../shared/components/widgets/MiniWidget";
 
 const CommercialInitialPage = () => {
   //meta title

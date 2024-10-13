@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Button, Dropdown, DropdownMenu, DropdownToggle } from "reactstrap";
 
-import { selectAuthentication } from "../../../config/redux/reducers/auth.reducer";
+import { selectAuthentication } from "../../../config/redux/reducers/auth/auth.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import { logoutUserMiddleware } from "../../../modules/auth/api/middleware/authentication.middleware";
 
@@ -14,7 +14,7 @@ export const ProfileMenu = () => {
   const { t } = useTranslation();
   const [menu, setMenu] = useState(false);
   const dispatch = useAppDispatch();
-  const auth = useSelector(selectAuthentication);
+  const { picture, email } = useSelector(selectAuthentication);
   const navigate = useNavigate();
 
   const handleLogout = (
@@ -42,11 +42,11 @@ export const ProfileMenu = () => {
         >
           <img
             className="rounded-circle header-profile-user"
-            src={auth.picture || ""}
+            src={picture}
             alt="Profile picture"
           />
           <span className="d-none d-xl-inline-block ms-2 me-1">
-            {auth.email?.split("@")[0]}
+            {email?.split("@")[0]}
           </span>
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
         </DropdownToggle>

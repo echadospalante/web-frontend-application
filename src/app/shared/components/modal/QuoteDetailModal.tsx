@@ -25,7 +25,7 @@ const QuoteDetailModal = ({
   show,
   onCloseClick,
 }: DeleteModalProps) => {
-  const { quote, loading, error, fetchQuoteDetail } = useQuoteDetail(quoteId);
+  const { loading, error, fetchQuoteDetail } = useQuoteDetail(quoteId);
 
   return (
     // Fullscreen modal

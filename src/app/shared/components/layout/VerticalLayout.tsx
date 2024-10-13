@@ -12,7 +12,7 @@ import {
   changeTopBarTheme,
   selectLayout,
   toggleRightSidebar,
-} from "../../../config/redux/reducers/layout.reducer";
+} from "../../../config/redux/reducers/shared/layout.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import RightSidebar from "../rightbar/RightSidebar";
 import Footer from "../footer/VerticalFooter";
@@ -32,7 +32,7 @@ const VerticalLayout = ({ children }: LayoutProps) => {
     layoutWidth,
     leftSideBarType,
     topBarTheme,
-    showRightSidebar,
+    // showRightSidebar,
     leftSideBarTheme,
     layoutModeType,
   } = useSelector(selectLayout);
