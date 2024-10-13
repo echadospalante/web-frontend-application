@@ -56,11 +56,7 @@ const AccountVentureCreatePage = () => {
     fetchAllVentureCategories,
   } = useAllVentureCategories();
   const { email } = useAuthentication();
-  const [selectedFiles, setSelectedFiles] = useState([]);
   const [selectedImage, setSelectedImage] = useState<string>("");
-  const [imgStore, setImgStore] = useState([]);
-  const [dropList, setDropList] = useState(false);
-  const [active, setActive] = useState(0);
   const [locationMode, setLocationMode] = useState<LocationMode>(
     LocationMode.NONE
   );
@@ -68,8 +64,8 @@ const AccountVentureCreatePage = () => {
   // validation
   const validation = useFormik<VentureCreate>({
     initialValues: {
-      name: "",
-      coverPhoto: "",
+      name: "Nombre de prueba",
+      coverPhoto: null,
       description: "",
       categoriesIds: [],
       contact: {
@@ -108,14 +104,12 @@ const AccountVentureCreatePage = () => {
       location: Yup.object().shape({
         lat: Yup.number().required("Latitude is required").optional(),
         lng: Yup.number().required("Longitude is required").optional(),
-        description: Yup.string()
-          .required("Description is required")
-          .optional(),
+        description: Yup.string(),
       }),
     }),
 
     onSubmit: (values) => {
-      // console.log(values);
+      console.log(values);
     },
   });
 
@@ -131,13 +125,14 @@ const AccountVentureCreatePage = () => {
   });
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0]; // Get the selected file
+    const file = event.target.files?.[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        setSelectedImage(reader.result as string); // Set the base64 URL as the image source
+        setSelectedImage(reader.result as string);
+        validation.setFieldValue("coverPhoto", file);
       };
-      reader.readAsDataURL(file); // Convert the file to a base64 string
+      reader.readAsDataURL(file);
     }
   };
 
@@ -347,8 +342,8 @@ const AccountVentureCreatePage = () => {
                           <div className="mb-3">
                             <Label htmlFor="projectname-input">Email</Label>
                             <Input
-                              id="name"
-                              name="name"
+                              id="contact.email"
+                              name="contact.email"
                               type="email"
                               placeholder="Ingresa el email de contacto"
                               onChange={validation.handleChange}
@@ -369,13 +364,15 @@ const AccountVentureCreatePage = () => {
                               Numero de telefono
                             </Label>
                             <Input
-                              id="phoneNumber"
-                              name="phoneNumber"
+                              id="contact.phoneNumbe"
+                              name="contact.phoneNumber"
                               type="text"
                               placeholder="Ingresa el telefono de contacto"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
-                              value={validation.values.contact?.email || ""}
+                              value={
+                                validation.values.contact?.phoneNumber || ""
+                              }
                             />
 
                             {validation.touched.contact &&
@@ -406,7 +403,7 @@ const AccountVentureCreatePage = () => {
                               defaultChecked
                             />
                             <label
-                              className="btn btn-outline-secondary"
+                              className="btn btn-outline-primary"
                               htmlFor="btnradio4"
                             >
                               Mi ubicacion
@@ -423,7 +420,7 @@ const AccountVentureCreatePage = () => {
                               autoComplete="off"
                             />
                             <label
-                              className="btn btn-outline-secondary"
+                              className="btn btn-outline-primary"
                               htmlFor="btnradio5"
                             >
                               Otra ubicacion
@@ -433,14 +430,16 @@ const AccountVentureCreatePage = () => {
                               type="radio"
                               className="btn-check w-100"
                               name="btnradio"
-                              onChange={(e) => {
+                              onChange={() => {
                                 setLocationMode(LocationMode.NONE);
+                                validation.setFieldValue("location.lat", 0);
+                                validation.setFieldValue("location.lng", 0);
                               }}
                               id="btnradio6"
                               autoComplete="off"
                             />
                             <label
-                              className="btn btn-outline-secondary"
+                              className="btn btn-outline-primary"
                               htmlFor="btnradio6"
                             >
                               Ninguna
@@ -556,13 +555,14 @@ const AccountVentureCreatePage = () => {
                                   icon={markerIconInstance}
                                 >
                                   <Popup>La ubicacion que elegiste</Popup>
-                                  <SetMapCenter
-                                    position={[
-                                      validation.values.location?.lat,
-                                      validation.values.location?.lng,
-                                    ]}
-                                  />
                                 </Marker>
+
+                                <SetMapCenter
+                                  position={[
+                                    validation.values.location?.lat,
+                                    validation.values.location?.lng,
+                                  ]}
+                                />
                               </MapContainer>
                             )}
 
