@@ -25,18 +25,19 @@ const AccountVenturesPage = () => {
   const [ventures, setVentures] = useState<Venture[]>([
     {
       id: "123",
-      name: "Some test venturename",
-      slug: "some-test-name",
+      name: "Empanadas Don Pepe",
+      slug: "empanadas-don-pepe",
       coverPhoto:
         "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-      description: "Soem awesome description",
+      description:
+        "Empandas Don Pepe es un gran emprendimiento local, están todos cordialmente invitados a probar mis deliciosas empanadas.",
       active: true,
       verified: true,
       ownerDetail: undefined,
       categories: [
         {
           id: "123",
-          name: "Some Awesome",
+          name: "Empanadas",
           description: "Some awesome desc of the category",
           slug: "some-category",
           users: [],
@@ -44,7 +45,7 @@ const AccountVenturesPage = () => {
         },
         {
           id: "456",
-          name: "Some cat 2",
+          name: "Fritos y pasabocas",
           description: "Some awesome desc of the category 2",
           slug: "some-category-2",
           users: [],
@@ -57,12 +58,12 @@ const AccountVenturesPage = () => {
     },
     {
       id: "456",
-      name: "Cremas marielita",
-      slug: "cremas marielita",
+      name: "Cremas Doña Mariela",
+      slug: "cremas-doña-mariela",
       coverPhoto:
         "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
       description:
-        "Cremas marielita es un emprendimiento de cremas ubicado en la Ceja, Antoniquia, a la orden las cremas",
+        "Cremas Doña Mariela es un emprendimiento de deliciosas cremas de pura fruta, ubicado en la Ceja, Antioquia, a la orden las cremas",
       active: true,
       verified: true,
       ownerDetail: undefined,

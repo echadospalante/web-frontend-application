@@ -17,6 +17,7 @@ const AdminVenturesPage = () => {
       setActiveTab(tab);
     }
   };
+
   return (
     <Fragment>
       <div className="page-content">

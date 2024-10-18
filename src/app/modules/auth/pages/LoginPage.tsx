@@ -10,10 +10,7 @@ import useLogin from "../hooks/useLogin";
 const LoginPage = () => {
   const { loginWithCredentials } = useLogin();
 
-  //meta title
   document.title = "Login | Echadospa'lante";
-
-  // Form validation
 
   return (
     <div>

@@ -35,6 +35,7 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
 import AccountVentureCreatePage from "../../modules/principal/account/pages/AccountVentureCreatePage";
+import VentureDetailPage from "../../modules/principal/ventures/pages/VentureDetailPage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -83,6 +84,7 @@ const AppRouter = () => {
               <Route path="" element={<PublicationsFeedPage />} />
               {/* <Route path="" element={<CommercialInitialPage />} /> */}
               <Route path="calendario" element={<QuotesCalenderPage />} />
+              <Route path=":slug" element={<VentureDetailPage />} />
 
               <Route path="*" element={<Commercial404Page />} />
             </Route>
