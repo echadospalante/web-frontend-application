@@ -95,7 +95,14 @@ const QuotesCalenderPage = () => {
     },
   });
 
-  const [events] = useState([]);
+  const [events] = useState([
+    {
+      start: new Date(),
+      title: "Celebración de logros obtenidos",
+      className: "bg-danger",
+      end: new Date(new Date().setHours(new Date().getHours() + 1)),
+    },
+  ]);
   const [categories] = useState([]);
 
   const [deleteModal, setDeleteModal] = useState(false);

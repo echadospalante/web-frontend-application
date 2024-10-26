@@ -1,17 +1,16 @@
 import Select from "react-select";
 import { Col, Row } from "reactstrap";
 
-import useVentureCategoriesFilters from "../../../modules/admin/general/hooks/useVentureCategoriesFilter";
+import useVenturePublicationsFilters from "../../../modules/admin/general/hooks/useVenturePublicationsFilter";
 
-const VentureCategoriesFiltersForm = () => {
-  const { filters, setSearchTerm, setSize } = useVentureCategoriesFilters();
+const VenturePublicationsFiltersForm = () => {
+  const { filters, setSearchTerm, setSize } = useVenturePublicationsFilters();
 
   return (
     <Row className="mb-2">
-      <Col sm={3} lg={2}>
+      <Col sm={12} md={6} lg={4}>
         <label className="control-label">Elementos por Página</label>
         <Select
-          className=""
           value={{
             label: filters.size + "",
             value: filters.size,
@@ -37,7 +36,7 @@ const VentureCategoriesFiltersForm = () => {
         ></Select>
       </Col>
 
-      <Col lg={3} md={12} sm={12}>
+      <Col lg={4} md={6} sm={12}>
         <label className="control-label">Búsqueda por Coincidencia</label>
         <input
           value={filters.search}
@@ -51,4 +50,4 @@ const VentureCategoriesFiltersForm = () => {
   );
 };
 
-export default VentureCategoriesFiltersForm;
+export default VenturePublicationsFiltersForm;

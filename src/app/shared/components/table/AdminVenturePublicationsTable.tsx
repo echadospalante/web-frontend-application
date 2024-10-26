@@ -8,20 +8,22 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { Venture } from "echadospalante-core";
-import { Button, Card, CardBody, Col, Container, Row, Table } from "reactstrap";
+import { VenturePublication } from "echadospalante-core";
+import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import useVentureCategories from "../../../modules/admin/general/hooks/useVentureCategories";
-import AdminVentureDetail from "../content/AdminVentureDetail";
-import VentureCategoriesFiltersForm from "../forms/VentureCategoriesFiltersForm";
+import useVenturePublications from "../../../modules/admin/general/hooks/useVenturePublications";
+import VenturePublicationsFiltersForm from "../forms/VenturePublicationsFiltersForm";
 import AppSpinner from "../loader/Spinner";
 import Pagination from "../pagination/Pagination";
 import IconTooltip from "../tooltips/IconTooltip";
 
-const AdminVenturesTable = () => {
-  const [activeVenture, setActiveVenture] = useState<Venture>();
+type AdminVenturePublicationsTableProps = {
+  ventureId: string;
+};
 
-  const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
+const AdminVenturePublicationsTable = ({
+  ventureId,
+}: AdminVenturePublicationsTableProps) => {
   const {
     loading,
     error,
@@ -30,10 +32,10 @@ const AdminVenturesTable = () => {
     setPage,
     items,
     total,
-    fetchVentureCategories,
-  } = useVentureCategories();
+    fetchVenturePublications,
+  } = useVenturePublications();
 
-  const columns = getColumns(setActiveVenture);
+  const columns = getColumns();
 
   const table = useReactTable({
     columns,
@@ -59,12 +61,12 @@ const AdminVenturesTable = () => {
           <CardBody className="border-bottom">
             <div className="d-flex align-items-center">
               <h5 className="mb-0 card-title flex-grow-1">
-                Listado de emprendimientos
+                Listado de publicaciones del emprendimiento
               </h5>
               <div className="flex-shrink-0 d-flex flex-row align-items-center">
                 <Button
                   type="button"
-                  onClick={fetchVentureCategories}
+                  onClick={fetchVenturePublications}
                   className="btn btn-light mx-2 mb-2"
                 >
                   <i className="mdi mdi-refresh"></i>
@@ -74,15 +76,15 @@ const AdminVenturesTable = () => {
 
             {error && (
               <div className="alert alert-danger text-center" role="alert">
-                Ha habido un error al consultar las categorías de
-                emprendimientos, por favor intente nuevamente.
+                Ha habido un error al consultar las publicaciones de este
+                emprendimiento, por favor intente nuevamente.
               </div>
             )}
           </CardBody>
 
           <CardBody>
             <Fragment>
-              <VentureCategoriesFiltersForm />
+              <VenturePublicationsFiltersForm />
 
               {loading ? (
                 <div style={{ marginTop: "200px" }}>
@@ -125,31 +127,18 @@ const AdminVenturesTable = () => {
                     <tbody>
                       {getRowModel().rows.map((row) => {
                         return (
-                          <Fragment>
-                            <tr key={row.id}>
-                              {row.getVisibleCells().map((cell) => {
-                                return (
-                                  <td key={cell.id}>
-                                    {flexRender(
-                                      cell.column.columnDef.cell,
-                                      cell.getContext()
-                                    )}
-                                  </td>
-                                );
-                              })}
-                            </tr>
-                            {row.original.id === activeVenture?.id && (
-                              <tr>
-                                <td colSpan={6}>
-                                  <Container className="w-75 mx-auto">
-                                    <AdminVentureDetail
-                                      venture={activeVenture}
-                                    />
-                                  </Container>
+                          <tr key={row.id}>
+                            {row.getVisibleCells().map((cell) => {
+                              return (
+                                <td key={cell.id}>
+                                  {flexRender(
+                                    cell.column.columnDef.cell,
+                                    cell.getContext()
+                                  )}
                                 </td>
-                              </tr>
-                            )}
-                          </Fragment>
+                              );
+                            })}
+                          </tr>
                         );
                       })}
                     </tbody>
@@ -188,23 +177,29 @@ const AdminVenturesTable = () => {
   );
 };
 
-const getColumns = (setActiveVenture: (venture: Venture) => void) => {
+const getColumns = () => {
   return [
     {
-      header: "Nombre",
-      accessorKey: "name",
+      header: "Tipo",
+      accessorKey: "type",
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Slug",
-      accessorKey: "slug",
+      header: "Título",
+      accessorKey: "title",
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Descripción",
-      accessorKey: "description",
+      header: "Contenido",
+      accessorKey: "body",
+      enableColumnFilter: false,
+      enableSorting: true,
+    },
+    {
+      header: "Url",
+      accessorKey: "url",
       enableColumnFilter: false,
       enableSorting: true,
     },
@@ -219,56 +214,38 @@ const getColumns = (setActiveVenture: (venture: Venture) => void) => {
       },
     },
     {
-      header: "Última actualización",
-      accessorKey: "updatedAt",
-      enableColumnFilter: false,
-      enableSorting: true,
-      cell: (cellProps: any) => {
-        const date = new Date(cellProps.row.original.updatedAt as string);
-        return <section>{new Date(date).toISOString().split("T")[0]}</section>;
-      },
-    },
-    {
       header: "Acciones",
       enableColumnFilter: false,
       enableSorting: true,
       cell: (value: any) => {
-        const venture = value.row.original as Venture;
+        const venturePublication = value.row.original as VenturePublication;
         return (
           <div className="d-flex flex-row">
             <section className="d-flex m-1 flex-column">
               <Button
-                onClick={() => {
-                  setActiveVenture((actual) => {
-                    if (actual?.id === venture.id) {
-                      return undefined;
-                    }
-                    return venture;
-                  });
-                }}
-                color="primary"
+                // onClick={() => setActivePublicationToEdit(venturePublication)}
+                color="info"
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip
-                  tooltipId={"edit-venture"}
-                  tooltipHtml={"<h6>Ver detalle</h6>"}
+                  tooltipId={"edit-venture-publication"}
+                  tooltipHtml={"<h6>Editar categoría</h6>"}
                   tooltipPlace={"top"}
                   iconClassName={
-                    "bx bx-show font-size-16 align-middle text-white"
+                    "bx bx-edit font-size-16 align-middle text-white"
                   }
                 />
               </Button>
             </section>
-
             <section className="d-flex m-1 flex-column">
               <Button
-                // onClick={() => setActiveCategoryToEdit(venture)}
+                // onClick={() => setActivePublicationToEdit(venturePublication)}
                 color="danger"
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip
-                  tooltipId={"delete-venture"}
-                  tooltipHtml={"<h6>Eliminar emprendimiento</h6>"}
+                  tooltipId={"delete-venture-publication"}
+                  tooltipHtml={"<h6>Eliminar categoría</h6>"}
                   tooltipPlace={"top"}
                   iconClassName={"bx bx-x font-size-16 align-middle text-white"}
                 />
@@ -281,4 +258,4 @@ const getColumns = (setActiveVenture: (venture: Venture) => void) => {
   ];
 };
 
-export default AdminVenturesTable;
+export default AdminVenturePublicationsTable;

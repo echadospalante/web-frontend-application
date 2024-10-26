@@ -22,6 +22,7 @@ import ventureCategoriesManagementReducer, {
   VentureCategoriesManagementState,
 } from "../reducers/admin/venture-categories-management.reducer";
 import ownedVenturesManagementReducer from "../reducers/admin/owned-ventures-management.reducer";
+import venturePublicationsManagementReducer from "../reducers/admin/venture-publications-management.reducer";
 
 export interface GlobalState {
   authentication: AuthenticationState;
@@ -44,6 +45,7 @@ const reducer = combineReducers({
   admin: combineReducers({
     usersManagement: UsersManagementReducer,
     ventureCategoriesManagement: ventureCategoriesManagementReducer,
+    venturePublicationsManagement: venturePublicationsManagementReducer,
     ownedVenturesManagement: ownedVenturesManagementReducer,
   }),
 });

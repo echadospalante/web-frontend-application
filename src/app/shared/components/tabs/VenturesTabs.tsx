@@ -21,7 +21,7 @@ const VentureDetailTabs = (props: StandardizationTabsProps) => {
           <span className="d-block d-sm-none">
             <i className="fas fa-home"></i>
           </span>
-          <span className="d-none d-sm-block">Publicaciones</span>
+          <span className="d-none d-sm-block">Emprendimientos</span>
         </NavLink>
       </NavItem>
 
@@ -36,37 +36,7 @@ const VentureDetailTabs = (props: StandardizationTabsProps) => {
           <span className="d-block d-sm-none">
             <i className="far fa-user"></i>
           </span>
-          <span className="d-none d-sm-block">Eventos</span>
-        </NavLink>
-      </NavItem>
-
-      <NavItem>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          className={`${activeTab === "3" ? "active" : ""}`}
-          onClick={() => {
-            toggleCustom("3");
-          }}
-        >
-          <span className="d-block d-sm-none">
-            <i className="far fa-user"></i>
-          </span>
-          <span className="d-none d-sm-block">Comentarios</span>
-        </NavLink>
-      </NavItem>
-
-      <NavItem>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          className={`${activeTab === "4" ? "active" : ""}`}
-          onClick={() => {
-            toggleCustom("4");
-          }}
-        >
-          <span className="d-block d-sm-none">
-            <i className="far fa-user"></i>
-          </span>
-          <span className="d-none d-sm-block">Patrocinadores</span>
+          <span className="d-none d-sm-block">Categorías</span>
         </NavLink>
       </NavItem>
     </Nav>

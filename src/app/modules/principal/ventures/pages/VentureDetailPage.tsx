@@ -15,7 +15,7 @@ import {
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import VenturePublication from "../../../../shared/components/card/VenturePublication";
 import AdminVentureCategoriesTable from "../../../../shared/components/table/AdminVentureCategoriesTable";
-import VentureDetailTabs from "../../../../shared/components/tabs/QuotesTabs";
+import VentureDetailTabs from "../../../../shared/components/tabs/VenturesTabs";
 import { textToRGB } from "../../../../shared/helpers/colors";
 import QuotesCalenderPage from "./QuotesCalendarPage";
 import SponsorCard from "../../../../shared/components/card/SponsorCard";
