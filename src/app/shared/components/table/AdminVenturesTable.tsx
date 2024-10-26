@@ -21,7 +21,6 @@ import IconTooltip from "../tooltips/IconTooltip";
 const AdminVenturesTable = () => {
   const [activeVenture, setActiveVenture] = useState<Venture>();
 
-  const [showCreateCategoryModal, setShowCreateCategoryModal] = useState(false);
   const {
     loading,
     error,
@@ -33,7 +32,7 @@ const AdminVenturesTable = () => {
     fetchVentureCategories,
   } = useVentureCategories();
 
-  const columns = getColumns(setActiveVenture);
+  const columns = getColumns(activeVenture, setActiveVenture);
 
   const table = useReactTable({
     columns,
@@ -141,7 +140,7 @@ const AdminVenturesTable = () => {
                             {row.original.id === activeVenture?.id && (
                               <tr>
                                 <td colSpan={6}>
-                                  <Container className="w-75 mx-auto">
+                                  <Container className="px-sm-1 px-md-3 px-lg-5">
                                     <AdminVentureDetail
                                       venture={activeVenture}
                                     />
@@ -188,7 +187,10 @@ const AdminVenturesTable = () => {
   );
 };
 
-const getColumns = (setActiveVenture: (venture: Venture) => void) => {
+const getColumns = (
+  activeVenture: Venture | undefined,
+  setActiveVenture: React.Dispatch<React.SetStateAction<Venture | undefined>>
+) => {
   return [
     {
       header: "Nombre",
@@ -253,8 +255,25 @@ const getColumns = (setActiveVenture: (venture: Venture) => void) => {
                   tooltipId={"edit-venture"}
                   tooltipHtml={"<h6>Ver detalle</h6>"}
                   tooltipPlace={"top"}
+                  iconClassName={`bx bx-chevron-${
+                    activeVenture?.id === venture.id ? "down" : "left"
+                  } font-size-16 align-middle text-white`}
+                />
+              </Button>
+            </section>
+
+            <section className="d-flex m-1 flex-column">
+              <Button
+                // onClick={() => setActivePublicationToEdit(venturePublication)}
+                color="warning"
+                className="px-3 py-1 mx-1 w-100"
+              >
+                <IconTooltip
+                  tooltipId={"edit-venture-publication"}
+                  tooltipHtml={"<h6>Inactivar</h6>"}
+                  tooltipPlace={"top"}
                   iconClassName={
-                    "bx bx-show font-size-16 align-middle text-white"
+                    "bx bx-hide font-size-16 align-middle text-white"
                   }
                 />
               </Button>

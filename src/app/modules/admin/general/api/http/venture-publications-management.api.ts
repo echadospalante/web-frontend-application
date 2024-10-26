@@ -1,4 +1,8 @@
-import { PublicationType, VenturePublication } from "echadospalante-core";
+import {
+  ContentType,
+  PublicationType,
+  VenturePublication,
+} from "echadospalante-core";
 import { faker } from "@faker-js/faker";
 
 import env from "../../../../../../environment/environment";
@@ -43,8 +47,51 @@ export class VenturePublicationsApi {
         description: faker.lorem.paragraph(),
         type: this.randomEnumValue(),
         claps: [],
+        active: Math.random() > 0.5,
         comments: [],
-        body: [],
+        body: [
+          {
+            content: `["${faker.image.url({ width: 400, height: 400 })}"]`,
+            id: crypto.randomUUID(),
+            type: ContentType.IMAGE,
+          },
+          {
+            content: `["${faker.image.url({ width: 400, height: 400 })}"]`,
+            id: crypto.randomUUID(),
+            type: ContentType.IMAGE,
+          },
+          {
+            content: `["${faker.image.url({ width: 400, height: 400 })}"]`,
+            id: crypto.randomUUID(),
+            type: ContentType.IMAGE,
+          },
+          {
+            content: `["${faker.image.url()}", "${faker.commerce.productName()}", "txt", "3Kb"]`,
+            id: crypto.randomUUID(),
+            type: ContentType.FILE,
+          },
+          {
+            content: `["${faker.image.url()}", "${faker.commerce.productName()}", "pdf", "10Kb"]`,
+            id: crypto.randomUUID(),
+            type: ContentType.FILE,
+          },
+          {
+            content: `["${faker.image.url()}", "${faker.commerce.productName()}", "pdf", "10Kb"]`,
+            id: crypto.randomUUID(),
+            type: ContentType.FILE,
+          },
+          {
+            content: `["${faker.image.url()}", "${faker.commerce.productName()}", "wordx", "5Kb"]`,
+            id: crypto.randomUUID(),
+            type: ContentType.FILE,
+          },
+          {
+            type: ContentType.TEXT,
+            content: `["${faker.lorem.paragraph(3)}", "${faker.lorem.paragraph(
+              2
+            )}", "${faker.lorem.paragraph(1)}"]`,
+          },
+        ],
         url: faker.internet.url(),
         createdAt: faker.date.recent(),
         updatedAt: faker.date.recent(),

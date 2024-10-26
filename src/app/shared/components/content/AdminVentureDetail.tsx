@@ -1,11 +1,10 @@
 import { Venture } from "echadospalante-core";
 import { Fragment, useState } from "react";
-import AdminVentureDetailTabs from "../tabs/VentureDetailTabs";
 import { TabContent, TabPane } from "reactstrap";
-import AdminVentureCommentsTable from "../table/AdminVentureCommentsTable";
 import AdminVentureEventsTable from "../table/AdminVentureEventsTable";
 import AdminVenturePublicationsTable from "../table/AdminVenturePublicationsTable";
 import AdminVentureSponsorsTable from "../table/AdminVentureSponsorsTable";
+import AdminVentureDetailTabs from "../tabs/VentureDetailTabs";
 
 type AdminVentureDetailProps = {
   venture: Venture;

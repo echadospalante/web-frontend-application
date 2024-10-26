@@ -8,14 +8,28 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { VenturePublication } from "echadospalante-core";
-import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
+import {
+  ContentType,
+  PublicationType,
+  VenturePublication,
+} from "echadospalante-core";
+import { Link } from "react-router-dom";
+import {
+  Button,
+  Card,
+  CardBody,
+  Col,
+  Row,
+  Table,
+  UncontrolledTooltip,
+} from "reactstrap";
 
 import useVenturePublications from "../../../modules/admin/general/hooks/useVenturePublications";
 import VenturePublicationsFiltersForm from "../forms/VenturePublicationsFiltersForm";
 import AppSpinner from "../loader/Spinner";
 import Pagination from "../pagination/Pagination";
 import IconTooltip from "../tooltips/IconTooltip";
+import { textToRGB } from "../../helpers/colors";
 
 type AdminVenturePublicationsTableProps = {
   ventureId: string;
@@ -130,7 +144,14 @@ const AdminVenturePublicationsTable = ({
                           <tr key={row.id}>
                             {row.getVisibleCells().map((cell) => {
                               return (
-                                <td key={cell.id}>
+                                <td
+                                  key={cell.id}
+                                  className={`${
+                                    cell.row.original.active
+                                      ? "bg-soft-red"
+                                      : ""
+                                  }`}
+                                >
                                   {flexRender(
                                     cell.column.columnDef.cell,
                                     cell.getContext()
@@ -181,27 +202,202 @@ const getColumns = () => {
   return [
     {
       header: "Tipo",
-      accessorKey: "type",
       enableColumnFilter: false,
       enableSorting: true,
+      cell: (cellProps: any) => {
+        const { type } = cellProps.row.original as VenturePublication;
+        return (
+          <section>
+            <span
+              className="badge w-100 px-2 py-1"
+              style={{ backgroundColor: textToRGB(type) }}
+            >
+              {type === PublicationType.STANDARD ? (
+                <span className="d-flex flex-column align-items-center justify-content-center">
+                  <i className="mdi mdi-newspaper-variant-outline fs-2"></i>
+                  Estándar
+                </span>
+              ) : (
+                ""
+              )}
+              {type === PublicationType.ACHIEVEMENT ? (
+                <span className="d-flex flex-column align-items-center justify-content-center">
+                  <i className="mdi mdi-medal-outline fs-2"></i>
+                  <span className="p-1">Logro</span>
+                </span>
+              ) : (
+                ""
+              )}
+              {type === PublicationType.ANNOUNCEMENT ? (
+                <span className="d-flex flex-column align-items-center justify-content-center">
+                  <i className="mdi mdi-bullhorn-outline fs-2"></i>Anuncio
+                </span>
+              ) : (
+                ""
+              )}
+              {type === PublicationType.BEHIND_THE_SCENES ? (
+                <span className="d-flex flex-column align-items-center justify-content-center">
+                  <i className="mdi mdi-layers-search-outline fs-2"></i>Detrás
+                  de cámaras
+                </span>
+              ) : (
+                ""
+              )}
+              {type === PublicationType.PROMOTION ? (
+                <span className="d-flex flex-column align-items-center justify-content-center">
+                  <i className="bx bx-purchase-tag fs-2"></i>
+                  Promoción
+                </span>
+              ) : (
+                ""
+              )}
+            </span>
+          </section>
+        );
+      },
+    },
+    {
+      header: "Recursos",
+      enableColumnFilter: false,
+      enableSorting: true,
+      cell: (cellProps: any) => {
+        const venturePublication = cellProps.row.original as VenturePublication;
+        const [images] = useState(
+          venturePublication.body.filter(
+            ({ type }) => type === ContentType.IMAGE
+          )
+        );
+        const [files] = useState(
+          venturePublication.body.filter(
+            ({ type }) => type === ContentType.FILE
+          )
+        );
+
+        return (
+          <Fragment>
+            {images.length > 0 && (
+              <section>
+                <small>Imágenes ({images.length})</small>
+
+                <div className="avatar-group">
+                  {images.map(({ content, id }, key) => {
+                    const [img] = JSON.parse(content);
+                    return (
+                      <div key={key} className="avatar-group-item">
+                        <Link
+                          to="#"
+                          className="d-inline-block"
+                          id={"member" + id}
+                        >
+                          <img
+                            src={img}
+                            className="rounded-1 avatar-md"
+                            alt=""
+                          />
+                          <UncontrolledTooltip
+                            placement="top"
+                            target={"member" + id}
+                          >
+                            Ver imágen
+                          </UncontrolledTooltip>
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
+            {files.length > 0 && (
+              <section className="mt-3">
+                <small className="pt-4">Archivos ({files.length})</small>
+                {files.map(({ content, id }, key) => {
+                  const [url, name, type, size] = JSON.parse(content);
+                  return (
+                    <div key={key} className="d-flex">
+                      <a href={url} id={"file" + id}>
+                        <img
+                          src={`/images/filetypes/${type}.png`}
+                          height={30}
+                          width={25}
+                          alt=""
+                        />
+                        <span className="px-2">
+                          {name} - <b>{size}</b>
+                        </span>
+                        <UncontrolledTooltip
+                          placement="top"
+                          target={"file" + id}
+                        >
+                          <i className="bx bx-download me-2"></i>
+                          Descargar archivo
+                        </UncontrolledTooltip>
+                      </a>
+                    </div>
+                  );
+                })}
+              </section>
+            )}
+          </Fragment>
+        );
+      },
     },
     {
       header: "Título",
-      accessorKey: "title",
       enableColumnFilter: false,
       enableSorting: true,
+      cell: (cellProps: any) => {
+        return (
+          <div
+            style={{
+              maxWidth: "200px",
+              wordBreak: "break-word",
+              whiteSpace: "normal",
+            }}
+          >
+            <a
+              href={cellProps.row.original.url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {cellProps.row.original.title}
+              <i className="bx bx-link-external ms-2"></i>
+            </a>
+          </div>
+        );
+      },
     },
     {
       header: "Contenido",
-      accessorKey: "body",
       enableColumnFilter: false,
       enableSorting: true,
-    },
-    {
-      header: "Url",
-      accessorKey: "url",
-      enableColumnFilter: false,
-      enableSorting: true,
+      cell: (cellProps: any) => {
+        const venturePublication = cellProps.row.original as VenturePublication;
+        const [paragraphs] = useState(
+          venturePublication.body.filter(
+            ({ type }) => type === ContentType.TEXT
+          )
+        );
+
+        return (
+          <div
+            style={{
+              maxWidth: "150px",
+              wordBreak: "break-word",
+              whiteSpace: "normal",
+            }}
+          >
+            {paragraphs.map(({ content, id }) => {
+              const paragraphs = JSON.parse(content) as string[];
+              return paragraphs.map((text) => (
+                <p key={id} className="text-muted">
+                  {text}
+                </p>
+              ));
+            })}
+          </div>
+        );
+      },
     },
     {
       header: "Fecha de creación",
@@ -221,22 +417,42 @@ const getColumns = () => {
         const venturePublication = value.row.original as VenturePublication;
         return (
           <div className="d-flex flex-row">
-            <section className="d-flex m-1 flex-column">
-              <Button
-                // onClick={() => setActivePublicationToEdit(venturePublication)}
-                color="info"
-                className="px-3 py-1 mx-1 w-100"
-              >
-                <IconTooltip
-                  tooltipId={"edit-venture-publication"}
-                  tooltipHtml={"<h6>Editar categoría</h6>"}
-                  tooltipPlace={"top"}
-                  iconClassName={
-                    "bx bx-edit font-size-16 align-middle text-white"
-                  }
-                />
-              </Button>
-            </section>
+            {venturePublication.active ? (
+              <section className="d-flex m-1 flex-column">
+                <Button
+                  // onClick={() => setActivePublicationToEdit(venturePublication)}
+                  color="warning"
+                  className="px-3 py-1 mx-1 w-100"
+                >
+                  <IconTooltip
+                    tooltipId={"edit-venture-publication"}
+                    tooltipHtml={"<h6>Inactivar</h6>"}
+                    tooltipPlace={"top"}
+                    iconClassName={
+                      "bx bx-hide font-size-16 align-middle text-white"
+                    }
+                  />
+                </Button>
+              </section>
+            ) : (
+              <section className="d-flex m-1 flex-column">
+                <Button
+                  // onClick={() => setActivePublicationToEdit(venturePublication)}
+                  color="primary"
+                  className="px-3 py-1 mx-1 w-100"
+                >
+                  <IconTooltip
+                    tooltipId={"edit-venture-publication"}
+                    tooltipHtml={"<h6>Reactivar</h6>"}
+                    tooltipPlace={"top"}
+                    iconClassName={
+                      "bx bx-show font-size-16 align-middle text-white"
+                    }
+                  />
+                </Button>
+              </section>
+            )}
+
             <section className="d-flex m-1 flex-column">
               <Button
                 // onClick={() => setActivePublicationToEdit(venturePublication)}
@@ -245,9 +461,11 @@ const getColumns = () => {
               >
                 <IconTooltip
                   tooltipId={"delete-venture-publication"}
-                  tooltipHtml={"<h6>Eliminar categoría</h6>"}
+                  tooltipHtml={"<h6>Eliminar publicación</h6>"}
                   tooltipPlace={"top"}
-                  iconClassName={"bx bx-x font-size-16 align-middle text-white"}
+                  iconClassName={
+                    "bx bx-trash font-size-16 align-middle text-white"
+                  }
                 />
               </Button>
             </section>
