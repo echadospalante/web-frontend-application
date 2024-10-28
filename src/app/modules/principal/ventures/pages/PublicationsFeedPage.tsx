@@ -4,7 +4,7 @@ import { Card, Col, Container, NavItem, NavLink, Row } from "reactstrap";
 
 import { faker } from "@faker-js/faker";
 import { Link } from "react-router-dom";
-import FeedRightSidebar from "../../../../shared/components/rightbar/FeedRightSidebar";
+import PublicationsFeedRightSidebar from "../../../../shared/components/rightbar/PublicationsFeedRightSidebar";
 
 const PublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
@@ -21,10 +21,10 @@ const PublicationsFeedPage = () => {
               <Card>
                 <Row className="justify-content-center">
                   <Col xl={8}>
-                    <Row className="align-items-center">
+                    <Row className="align-items-center py-3">
                       <Col xs={4}>
                         <div>
-                          <h5 className="mb-0">Lista de Publicaciones</h5>
+                          <h5>Lista de Publicaciones</h5>
                         </div>
                       </Col>
 
@@ -161,7 +161,7 @@ const PublicationsFeedPage = () => {
             </Col>
 
             <Col lg={3}>
-              <FeedRightSidebar />
+              <PublicationsFeedRightSidebar />
             </Col>
           </Row>
         </Container>

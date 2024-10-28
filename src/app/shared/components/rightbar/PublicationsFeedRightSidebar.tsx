@@ -9,7 +9,7 @@ import {
   tagsData,
 } from "../../data/feed/feed";
 
-const FeedRightSidebar = () => {
+const PublicationsFeedRightSidebar = () => {
   return (
     <div
       style={{
@@ -135,4 +135,4 @@ const FeedRightSidebar = () => {
   );
 };
 
-export default FeedRightSidebar;
+export default PublicationsFeedRightSidebar;

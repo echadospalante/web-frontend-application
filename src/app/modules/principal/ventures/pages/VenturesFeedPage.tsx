@@ -1,24 +1,58 @@
 import { Fragment, useState } from "react";
 
-import {
-  Card,
-  Col,
-  Container,
-  NavItem,
-  NavLink,
-  Row,
-  TabContent,
-  TabPane,
-} from "reactstrap";
+import { Card, Col, Container, NavItem, NavLink, Row } from "reactstrap";
 
-import classnames from "classnames";
 import { Link } from "react-router-dom";
-import FeedRightSidebar from "../../../../shared/components/rightbar/FeedRightSidebar";
+import VenturesFeedRightSidebar from "../../../../shared/components/rightbar/VenturesFeedRightSidebar";
+import VenturePublicationCard from "../../../../shared/components/card/VenturePublicationCard";
 
 const VenturesFeedPage = () => {
-  document.title = "Feed de Publicaciones | Echadospa'lante";
-  const [activeTab, toggleTab] = useState("1");
-
+  document.title = "Feed de Emprendimientos | Echadospa'lante";
+  const [venture, setVenture] = useState<Venture>({
+    id: "123",
+    name: "Cremas doña mariela",
+    slug: "cremas-doña-mariela",
+    coverPhoto:
+      "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+    description: "Soem awesome description",
+    active: true,
+    verified: true,
+    ownerDetail: undefined,
+    categories: [
+      {
+        id: "123",
+        name: "Some Awesome",
+        description: "Some awesome desc of the category",
+        slug: "some-category",
+        users: [],
+        ventures: [],
+      },
+      {
+        id: "456",
+        name: "Some cat 2",
+        description: "Some awesome desc of the category 2",
+        slug: "some-category-2",
+        users: [],
+        ventures: [],
+      },
+    ],
+    contact: {
+      id: "contact-123",
+      email: "contact@example.com",
+      phoneNumber: "+1234567890",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    location: {
+      id: "location-123",
+      description: "La Ceja, Antioquia",
+      lat: 6.025275394547856,
+      lng: -75.43107974837727,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    createdAt: new Date(),
+  });
   return (
     <Fragment>
       <div className="page-content">
@@ -31,7 +65,7 @@ const VenturesFeedPage = () => {
                 <Row className="justify-content-center">
                   <Col xl={8}>
                     <div>
-                      <Row className="align-items-center">
+                      <Row className="align-items-center py-3">
                         <Col xs={4}>
                           <div>
                             <h5 className="mb-0">Lista de Publicaciones</h5>
@@ -69,57 +103,8 @@ const VenturesFeedPage = () => {
                       </Row>
 
                       {new Array(10).fill(0).map((_item) => (
-                        <Fragment>
-                          <hr className="mb-4" />
-
-                          <div>
-                            <h5>
-                              <Link to="#" className="text-dark">
-                                Beautiful Day with Friends
-                              </Link>
-                            </h5>
-                            <p className="text-muted">10 Ago, 2024</p>
-
-                            <div className="position-relative mb-3">
-                              <img
-                                src="/epl.png"
-                                alt=""
-                                className="img-thumbnail"
-                              />
-                            </div>
-
-                            <ul className="list-inline">
-                              <li className="list-inline-item mr-3">
-                                <Link to="#" className="text-muted">
-                                  <i className="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>{" "}
-                                  Nombre Categoría
-                                </Link>
-                              </li>
-                              <li className="list-inline-item mr-3">
-                                <Link to="#" className="text-muted">
-                                  <i className="bx bx-comment-dots align-middle text-muted me-1"></i>{" "}
-                                  12 Comentarios
-                                </Link>
-                              </li>
-                            </ul>
-                            <p>
-                              Lorem ipsum dolor sit amet consectetur adipisicing
-                              elit. Autem vero sint recusandae ullam molestiae
-                              eveniet perferendis alias, omnis laboriosam
-                              dolorem dignissimos iure quas soluta mollitia
-                              error quaerat repudiandae at aliquam!
-                            </p>
-
-                            <div>
-                              <Link to="#" className="text-primary">
-                                Ver detalle{" "}
-                                <i className="mdi mdi-arrow-right"></i>
-                              </Link>
-                            </div>
-                          </div>
-                        </Fragment>
+                        <VenturePublicationCard publication={venture} />
                       ))}
-
                       {/* <hr className="my-5" /> */}
 
                       {/* <div className="text-center">
@@ -168,7 +153,7 @@ const VenturesFeedPage = () => {
             </Col>
 
             <Col lg={3}>
-              <FeedRightSidebar />
+              <VenturesFeedRightSidebar />
             </Col>
           </Row>
         </Container>

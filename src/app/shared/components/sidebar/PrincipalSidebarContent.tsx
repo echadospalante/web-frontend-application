@@ -163,7 +163,7 @@ const UserSidebarContent = () => {
             </li>
 
             <li>
-              <Link to="/principal/mapa">
+              <Link to="/principal/emprendimientos/mapa">
                 <i className="bx bx-carousel"></i>
                 <span>{t("Map")}</span>
               </Link>
@@ -171,15 +171,8 @@ const UserSidebarContent = () => {
 
             <li>
               <Link to="/principal/calendario">
-                <i className="bx bx-calendar"></i>
-                <span>{t("Calendar")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/calendario">
                 <i className="bx bxs-news"></i>
-                <span>{t("News")}</span>
+                <span>{t("Calendar")}</span>
               </Link>
             </li>
           </ul>
