@@ -22,20 +22,19 @@ import WelcomePage from "../../modules/auth/pages/WelcomePage";
 import LandingPage from "../../modules/landing/pages/LandingPage";
 import AccountLayoutPage from "../../modules/principal/account/AccountLayoutPage";
 import AccountProfilePage from "../../modules/principal/account/pages/AccountProfilePage";
+import AccountVentureCreatePage from "../../modules/principal/account/pages/AccountVentureCreatePage";
+import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
 import PreferencesLangLocalePage from "../../modules/principal/preferences/pages/PreferencesLangLocalePage";
 import PreferencesNotificationsPage from "../../modules/principal/preferences/pages/PreferencesNotificationsPage";
 import PreferencesThemePage from "../../modules/principal/preferences/pages/PreferencesTheme";
 import PreferencesLayoutPage from "../../modules/principal/preferences/PreferencesLayoutPage";
 import Commercial404Page from "../../modules/principal/ventures/pages/Commercial404Page";
 import PublicationsFeedPage from "../../modules/principal/ventures/pages/PublicationsFeedPage";
-import QuotesCalenderPage from "../../modules/principal/ventures/pages/QuotesCalendarPage";
+import VentureDetailPage from "../../modules/principal/ventures/pages/VentureDetailPage";
 import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayoutPage";
 import AppSpinner from "../../shared/components/loader/Spinner";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
-import AccountVentureCreatePage from "../../modules/principal/account/pages/AccountVentureCreatePage";
-import VentureDetailPage from "../../modules/principal/ventures/pages/VentureDetailPage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -83,7 +82,7 @@ const AppRouter = () => {
             <Route path="emprendimientos" element={<CommercialLayoutPage />}>
               <Route path="" element={<PublicationsFeedPage />} />
               {/* <Route path="" element={<CommercialInitialPage />} /> */}
-              <Route path="calendario" element={<QuotesCalenderPage />} />
+              {/* <Route path="calendario" element={<QuotesCalenderPage />} /> */}
               <Route path=":slug" element={<VentureDetailPage />} />
 
               <Route path="*" element={<Commercial404Page />} />

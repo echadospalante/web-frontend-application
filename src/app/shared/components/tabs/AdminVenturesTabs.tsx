@@ -1,11 +1,11 @@
 import { Nav, NavItem, NavLink } from "reactstrap";
 
-export type VentureDetailTabsProps = {
+export type AdminVenturesTabsProps = {
   activeTab: string;
   toggleCustom: (tab: string) => void;
 };
 
-const VentureDetailTabs = (props: VentureDetailTabsProps) => {
+const AdminVenturesTabs = (props: AdminVenturesTabsProps) => {
   const { activeTab, toggleCustom } = props;
 
   return (
@@ -21,7 +21,7 @@ const VentureDetailTabs = (props: VentureDetailTabsProps) => {
           <span className="d-block d-sm-none">
             <i className="fas fa-home"></i>
           </span>
-          <span className="d-none d-sm-block">Publicaciones</span>
+          <span className="d-none d-sm-block">Emprendimientos</span>
         </NavLink>
       </NavItem>
 
@@ -36,26 +36,11 @@ const VentureDetailTabs = (props: VentureDetailTabsProps) => {
           <span className="d-block d-sm-none">
             <i className="far fa-user"></i>
           </span>
-          <span className="d-none d-sm-block">Eventos</span>
-        </NavLink>
-      </NavItem>
-
-      <NavItem>
-        <NavLink
-          style={{ cursor: "pointer" }}
-          className={`${activeTab === "3" ? "active" : ""}`}
-          onClick={() => {
-            toggleCustom("3");
-          }}
-        >
-          <span className="d-block d-sm-none">
-            <i className="far fa-user"></i>
-          </span>
-          <span className="d-none d-sm-block">Patrocinadores</span>
+          <span className="d-none d-sm-block">Categorías</span>
         </NavLink>
       </NavItem>
     </Nav>
   );
 };
 
-export default VentureDetailTabs;
+export default AdminVenturesTabs;

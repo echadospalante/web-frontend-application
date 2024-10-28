@@ -86,6 +86,7 @@ export class VenturePublicationsApi {
             type: ContentType.FILE,
           },
           {
+            id: crypto.randomUUID(),
             type: ContentType.TEXT,
             content: `["${faker.lorem.paragraph(3)}", "${faker.lorem.paragraph(
               2

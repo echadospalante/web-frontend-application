@@ -1,10 +1,12 @@
-import { Venture } from "echadospalante-core";
 import { Fragment, useState } from "react";
+
+import { Venture } from "echadospalante-core";
 import { TabContent, TabPane } from "reactstrap";
-import AdminVentureEventsTable from "../table/AdminVentureEventsTable";
+
+import AdminVentureEventsCalendar from "../calendar/AdminVentureEventsCalendar";
 import AdminVenturePublicationsTable from "../table/AdminVenturePublicationsTable";
 import AdminVentureSponsorsTable from "../table/AdminVentureSponsorsTable";
-import AdminVentureDetailTabs from "../tabs/VentureDetailTabs";
+import AdminVentureDetailTabs from "../tabs/AdminVentureDetailTabs";
 
 type AdminVentureDetailProps = {
   venture: Venture;
@@ -32,10 +34,10 @@ const AdminVentureDetail = ({ venture }: AdminVentureDetailProps) => {
         </TabPane>
 
         <TabPane tabId="2">
-          <AdminVentureEventsTable ventureId={venture.id} />{" "}
+          <AdminVentureEventsCalendar ventureId={venture.id} />{" "}
         </TabPane>
 
-        <TabPane tabId="4">
+        <TabPane tabId="3">
           <AdminVentureSponsorsTable ventureId={venture.id} />{" "}
         </TabPane>
       </TabContent>

@@ -152,7 +152,7 @@ const AdminSidebarContent = () => {
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="/administracion/general/eventos">
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Eventos</span>
@@ -164,7 +164,7 @@ const AdminSidebarContent = () => {
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Publicaciones</span>
               </Link>
-            </li>
+            </li> */}
 
             <li>
               <Link to="/administracion/general/noticias">

@@ -13,15 +13,29 @@ import {
 } from "reactstrap";
 
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import VenturePublication from "../../../../shared/components/card/VenturePublication";
-import AdminVentureCategoriesTable from "../../../../shared/components/table/AdminVentureCategoriesTable";
-import VentureDetailTabs from "../../../../shared/components/tabs/VenturesTabs";
-import { textToRGB } from "../../../../shared/helpers/colors";
-import QuotesCalenderPage from "./QuotesCalendarPage";
+import VentureEventsCalendar from "../../../../shared/components/calendar/VentureEventsCalendar";
 import SponsorCard from "../../../../shared/components/card/SponsorCard";
+import VenturePublication from "../../../../shared/components/card/VenturePublication";
+import VentureDetailTabs from "../../../../shared/components/tabs/VentureDetailTabs";
+import { textToRGB } from "../../../../shared/helpers/colors";
+import { faker } from "@faker-js/faker";
+
+//Lightbox
+import Lightbox from "yet-another-react-lightbox";
+import "yet-another-react-lightbox/styles.css";
+
+// Import plugins
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
+import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
+import Download from "yet-another-react-lightbox/plugins/download";
+import Counter from "yet-another-react-lightbox/plugins/counter";
+import "yet-another-react-lightbox/plugins/thumbnails.css";
 
 const VentureDetailPage = () => {
   const [activeTab, setActiveTab] = useState("1");
+
+  const [open, setOpen] = useState(false);
 
   const toggleActiveTab = (tab: string) => {
     if (activeTab !== tab) {
@@ -233,7 +247,76 @@ const VentureDetailPage = () => {
               <CardBody>
                 <h5 className="fw-semibold mb-3">Descripción</h5>
                 <p className="text-muted">{venture.description}</p>
+                <section>
+                  <Card>
+                    <CardBody>
+                      <div className="popup-gallery d-flex flex-wrap">
+                        <div className="img-fluid float-left">
+                          <img
+                            src={faker.image.url({ height: 300, width: 450 })}
+                            onClick={() => {
+                              setOpen(true);
+                            }}
+                            alt=""
+                            width="120"
+                          />
+                        </div>
+                        <div className="img-fluid float-left">
+                          <img
+                            src={faker.image.url({ height: 300, width: 450 })}
+                            onClick={() => {
+                              setOpen(true);
+                            }}
+                            alt=""
+                            width="120"
+                          />
+                        </div>
+                        <div className="img-fluid float-left">
+                          <img
+                            src={faker.image.url({ height: 300, width: 450 })}
+                            onClick={() => {
+                              setOpen(true);
+                            }}
+                            alt=""
+                            width="120"
+                          />
+                        </div>
+                        <div className="img-fluid float-left">
+                          <img
+                            src={faker.image.url({ height: 300, width: 450 })}
+                            onClick={() => {
+                              setOpen(true);
+                            }}
+                            alt=""
+                            width="120"
+                          />
+                        </div>
+                        <div className="img-fluid float-left">
+                          <img
+                            src={faker.image.url({ height: 300, width: 450 })}
+                            onClick={() => {
+                              setOpen(true);
+                            }}
+                            alt=""
+                            width="120"
+                          />
+                        </div>
+                        <div className="img-fluid float-left">
+                          <img
+                            src={faker.image.url({ height: 300, width: 450 })}
+                            onClick={() => {
+                              setOpen(true);
+                            }}
+                            alt=""
+                            width="120"
+                          />
+                        </div>
+                      </div>
+                    </CardBody>
+                  </Card>
+                </section>
               </CardBody>
+
               <CardBody>
                 <VentureDetailTabs
                   activeTab={activeTab}
@@ -252,7 +335,7 @@ const VentureDetailPage = () => {
                   </TabPane>
 
                   <TabPane tabId="2">
-                    {activeTab === "2" && <QuotesCalenderPage />}
+                    <VentureEventsCalendar ventureId={venture.id} />
                   </TabPane>
 
                   <TabPane tabId="3">
@@ -379,17 +462,8 @@ const VentureDetailPage = () => {
                   <TabPane tabId="4">
                     {activeTab === "4" && (
                       <Row>
-                        {new Array(10).fill(0).map((_item) => (
-                          <SponsorCard
-                            user={{
-                              id: "123",
-                              name: "Pepito perez",
-                              designation: "",
-                              img: "https://cdn-icons-png.flaticon.com/512/3607/3607444.png",
-                              color: "info",
-                              tags: [],
-                            }}
-                          />
+                        {new Array(10).fill(0).map((item) => (
+                          <SponsorCard sponsorship={item} />
                         ))}
                       </Row>
                     )}
@@ -400,6 +474,17 @@ const VentureDetailPage = () => {
           </Col>
         </Row>
       </Container>
+      <Lightbox
+        open={open}
+        index={0}
+        close={() => setOpen(false)}
+        slides={[
+          { src: faker.image.url({ width: 1820, height: 1080 }) },
+          { src: faker.image.url({ width: 1820, height: 1080 }) },
+          { src: faker.image.url({ width: 1820, height: 1080 }) },
+        ]}
+        plugins={[Zoom, Fullscreen, Thumbnails, Download, Counter]}
+      />
     </div>
   );
 };

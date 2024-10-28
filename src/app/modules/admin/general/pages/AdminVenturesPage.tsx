@@ -3,7 +3,7 @@ import { Fragment, useState } from "react";
 
 import { TabContent, TabPane } from "reactstrap";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import AdminVenturesTabs from "../../../../shared/components/tabs/VenturesTabs";
+import AdminVenturesTabs from "../../../../shared/components/tabs/AdminVenturesTabs";
 import AdminVenturesTable from "../../../../shared/components/table/AdminVenturesTable";
 import AdminVentureCategoriesTable from "../../../../shared/components/table/AdminVentureCategoriesTable";
 
