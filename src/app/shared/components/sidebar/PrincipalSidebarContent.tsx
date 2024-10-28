@@ -140,6 +140,14 @@ const UserSidebarContent = () => {
             </Link>
 
             <li>
+              <Link to="/principal/publicaciones">
+                {/* <i className="bx bxs-cabinet"></i> */}
+                <i className="mdi mdi-post-outline"></i>
+                <span>{t("Publications")}</span>
+              </Link>
+            </li>
+
+            <li>
               <Link to="/principal/emprendimientos">
                 {/* <i className="bx bxs-cabinet"></i> */}
                 <i className="bx bx-rocket"></i>

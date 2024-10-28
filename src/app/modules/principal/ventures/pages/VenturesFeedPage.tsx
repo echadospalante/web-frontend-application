@@ -1,12 +1,21 @@
 import { Fragment, useState } from "react";
 
-import { Card, Col, Container, NavItem, NavLink, Row } from "reactstrap";
+import {
+  Card,
+  Col,
+  Container,
+  NavItem,
+  NavLink,
+  Row,
+  TabContent,
+  TabPane,
+} from "reactstrap";
 
-import { faker } from "@faker-js/faker";
+import classnames from "classnames";
 import { Link } from "react-router-dom";
 import FeedRightSidebar from "../../../../shared/components/rightbar/FeedRightSidebar";
 
-const PublicationsFeedPage = () => {
+const VenturesFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
   const [activeTab, toggleTab] = useState("1");
 
@@ -21,61 +30,59 @@ const PublicationsFeedPage = () => {
               <Card>
                 <Row className="justify-content-center">
                   <Col xl={8}>
-                    <Row className="align-items-center">
-                      <Col xs={4}>
-                        <div>
-                          <h5 className="mb-0">Lista de Publicaciones</h5>
-                        </div>
-                      </Col>
+                    <div>
+                      <Row className="align-items-center">
+                        <Col xs={4}>
+                          <div>
+                            <h5 className="mb-0">Lista de Publicaciones</h5>
+                          </div>
+                        </Col>
 
-                      <Col xs={8}>
-                        <div className="float-end">
-                          <ul className="nav nav-pills">
-                            <NavItem>
-                              <NavLink
-                                className="disabled"
-                                to="#"
-                                tabIndex={-1}
-                              >
-                                Vista:
-                              </NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <Link className="nav-link active" to="/blog-list">
-                                <i className="mdi mdi-format-list-bulleted"></i>
-                              </Link>
-                            </NavItem>
-                            <NavItem>
-                              <Link to="/blog-grid" className="nav-link">
-                                <i className="mdi mdi-view-grid-outline"></i>
-                              </Link>
-                            </NavItem>
-                          </ul>
-                        </div>
-                      </Col>
-                    </Row>
+                        <Col xs={8}>
+                          <div className="float-end">
+                            <ul className="nav nav-pills">
+                              <NavItem>
+                                <NavLink
+                                  className="disabled"
+                                  to="#"
+                                  tabIndex={-1}
+                                >
+                                  Vista:
+                                </NavLink>
+                              </NavItem>
+                              <NavItem>
+                                <Link
+                                  className="nav-link active"
+                                  to="/blog-list"
+                                >
+                                  <i className="mdi mdi-format-list-bulleted"></i>
+                                </Link>
+                              </NavItem>
+                              <NavItem>
+                                <Link to="/blog-grid" className="nav-link">
+                                  <i className="mdi mdi-view-grid-outline"></i>
+                                </Link>
+                              </NavItem>
+                            </ul>
+                          </div>
+                        </Col>
+                      </Row>
 
-                    {new Array(10).fill(0).map((_item) => (
-                      <a
-                        style={{
-                          textDecoration: "none",
-                          color: "inherit",
-                        }}
-                        href={`/principal/feed/${"123"}`}
-                      >
+                      {new Array(10).fill(0).map((_item) => (
                         <Fragment>
                           <hr className="mb-4" />
 
                           <div>
-                            <h5>Beautiful Day with Friends</h5>
+                            <h5>
+                              <Link to="#" className="text-dark">
+                                Beautiful Day with Friends
+                              </Link>
+                            </h5>
                             <p className="text-muted">10 Ago, 2024</p>
 
                             <div className="position-relative mb-3">
                               <img
-                                src={faker.image.url({
-                                  width: 1080,
-                                  height: 750,
-                                })}
+                                src="/epl.png"
                                 alt=""
                                 className="img-thumbnail"
                               />
@@ -111,12 +118,11 @@ const PublicationsFeedPage = () => {
                             </div>
                           </div>
                         </Fragment>
-                      </a>
-                    ))}
+                      ))}
 
-                    {/* <hr className="my-5" /> */}
+                      {/* <hr className="my-5" /> */}
 
-                    {/* <div className="text-center">
+                      {/* <div className="text-center">
                               <ul className="pagination justify-content-center pagination-rounded">
                                 <li className="page-item disabled">
                                   <Link to="#" className="page-link">
@@ -155,6 +161,7 @@ const PublicationsFeedPage = () => {
                                 </li>
                               </ul>
                             </div> */}
+                    </div>
                   </Col>
                 </Row>
               </Card>
@@ -170,4 +177,4 @@ const PublicationsFeedPage = () => {
   );
 };
 
-export default PublicationsFeedPage;
+export default VenturesFeedPage;

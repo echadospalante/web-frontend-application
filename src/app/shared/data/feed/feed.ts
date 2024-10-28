@@ -1,5 +1,7 @@
 // import images
 
+import { faker } from "@faker-js/faker";
+
 const categoriesData = [
   {
     id: 1,
@@ -61,19 +63,28 @@ const archiveData = [
 const popularPosts = [
   {
     id: 1,
-    imageSrc: "/epl.png",
+    imageSrc: faker.image.url({
+      width: 1080,
+      height: 750,
+    }),
     title: "Test",
     date: "10 Abr, 2020",
   },
   {
     id: 2,
-    imageSrc: "/epl.png",
+    imageSrc: faker.image.url({
+      width: 1080,
+      height: 750,
+    }),
     title: "Test",
     date: "24 Mar, 2020",
   },
   {
     id: 3,
-    imageSrc: "/epl.png",
+    imageSrc: faker.image.url({
+      width: 1080,
+      height: 750,
+    }),
     title: "Test",
     date: "11 Mar, 2020",
   },

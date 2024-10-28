@@ -1,7 +1,18 @@
 import { Fragment } from "react";
+
+import { faker } from "@faker-js/faker";
+import { PublicationType, VenturePublication } from "echadospalante-core";
 import { Link } from "react-router-dom";
 
-const VenturePublication = () => {
+type VenturePublicationProps = {
+  detailButton?: boolean;
+  publication: VenturePublication;
+};
+
+const VenturePublicationCard = ({
+  detailButton = true,
+  publication,
+}: VenturePublicationProps) => {
   return (
     <Fragment>
       <hr className="mb-4" />
@@ -15,15 +26,23 @@ const VenturePublication = () => {
         <p className="text-muted">10 Ago, 2024</p>
 
         <div className="position-relative mb-3">
-          <img src="/epl.png" alt="" className="img-thumbnail" />
+          <img
+            src={faker.image.url({ width: 1820, height: 1080 })}
+            alt=""
+            className="img-thumbnail"
+          />
         </div>
 
         <ul className="list-inline">
           <li className="list-inline-item mr-3">
-            <Link to="#" className="text-muted">
-              <i className="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>{" "}
-              Nombre Categoría
-            </Link>
+            {publication.type === PublicationType.ACHIEVEMENT ? (
+              <span className="d-flex flex-column align-items-center justify-content-center">
+                <i className="mdi mdi-medal-outline fs-2"></i>
+                <span className="p-1">Logro</span>
+              </span>
+            ) : (
+              ""
+            )}
           </li>
           <li className="list-inline-item mr-3">
             <Link to="#" className="text-muted">
@@ -39,14 +58,16 @@ const VenturePublication = () => {
           repudiandae at aliquam!
         </p>
 
-        <div>
-          <Link to="#" className="text-primary">
-            Ver detalle <i className="mdi mdi-arrow-right"></i>
-          </Link>
-        </div>
+        {detailButton && (
+          <div>
+            <Link to="#" className="text-primary">
+              Ver detalle <i className="mdi mdi-arrow-right"></i>
+            </Link>
+          </div>
+        )}
       </div>
     </Fragment>
   );
 };
 
-export default VenturePublication;
+export default VenturePublicationCard;

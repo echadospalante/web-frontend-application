@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 
+import { faker } from "@faker-js/faker";
 import { Venture } from "echadospalante-core";
 import { Link } from "react-router-dom";
 import {
@@ -12,25 +13,23 @@ import {
   TabPane,
 } from "reactstrap";
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import VentureEventsCalendar from "../../../../shared/components/calendar/VentureEventsCalendar";
-import SponsorCard from "../../../../shared/components/card/SponsorCard";
-import VenturePublication from "../../../../shared/components/card/VenturePublication";
-import VentureDetailTabs from "../../../../shared/components/tabs/VentureDetailTabs";
-import { textToRGB } from "../../../../shared/helpers/colors";
-import { faker } from "@faker-js/faker";
-
-//Lightbox
 import Lightbox from "yet-another-react-lightbox";
 import "yet-another-react-lightbox/styles.css";
 
 // Import plugins
-import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import Counter from "yet-another-react-lightbox/plugins/counter";
+import Download from "yet-another-react-lightbox/plugins/download";
 import Fullscreen from "yet-another-react-lightbox/plugins/fullscreen";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
-import Download from "yet-another-react-lightbox/plugins/download";
-import Counter from "yet-another-react-lightbox/plugins/counter";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import VentureEventsCalendar from "../../../../shared/components/calendar/VentureEventsCalendar";
+import SponsorCard from "../../../../shared/components/card/SponsorCard";
+import VenturePublicationCard from "../../../../shared/components/card/VenturePublicationCard";
+import VentureDetailTabs from "../../../../shared/components/tabs/VentureDetailTabs";
+import { textToRGB } from "../../../../shared/helpers/colors";
 
 const VentureDetailPage = () => {
   const [activeTab, setActiveTab] = useState("1");
@@ -87,6 +86,7 @@ const VentureDetailPage = () => {
     },
     createdAt: new Date(),
   });
+
   return (
     <div className="page-content">
       <Container fluid>
@@ -328,7 +328,7 @@ const VentureDetailPage = () => {
                     {activeTab === "1" && (
                       <Fragment>
                         {new Array(10).fill(0).map((_item) => (
-                          <VenturePublication />
+                          <VenturePublicationCard />
                         ))}
                       </Fragment>
                     )}
@@ -474,6 +474,7 @@ const VentureDetailPage = () => {
           </Col>
         </Row>
       </Container>
+
       <Lightbox
         open={open}
         index={0}

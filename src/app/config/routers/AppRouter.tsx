@@ -35,6 +35,8 @@ import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayou
 import AppSpinner from "../../shared/components/loader/Spinner";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
+import VenturesFeedPage from "../../modules/principal/ventures/pages/VenturesFeedPage";
+import PublicationDetailPage from "../../modules/principal/ventures/pages/PublicationDetailPage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -77,12 +79,16 @@ const AppRouter = () => {
             path="principal"
             element={<PrivateRoute anyRequiredRole={[...ALL_ROLES]} />}
           >
-            <Route path="" index element={<Navigate to="emprendimientos" />} />
+            <Route path="" index element={<Navigate to="feed" />} />
+
+            <Route path="feed" element={<CommercialLayoutPage />}>
+              <Route path="" element={<PublicationsFeedPage />} />
+              <Route path=":slug" element={<PublicationDetailPage />} />
+            </Route>
 
             <Route path="emprendimientos" element={<CommercialLayoutPage />}>
-              <Route path="" element={<PublicationsFeedPage />} />
-              {/* <Route path="" element={<CommercialInitialPage />} /> */}
-              {/* <Route path="calendario" element={<QuotesCalenderPage />} /> */}
+              <Route path="" element={<VenturesFeedPage />} />
+
               <Route path=":slug" element={<VentureDetailPage />} />
 
               <Route path="*" element={<Commercial404Page />} />
