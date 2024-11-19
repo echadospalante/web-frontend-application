@@ -1,37 +1,32 @@
-import React, { Fragment, useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/leaflet.css";
+
+import { VentureCreate } from "echadospalante-core";
+import { useFormik } from "formik";
+import L from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import Select from "react-select";
 import {
   Button,
   Card,
   CardBody,
   Col,
   Container,
+  Form,
   FormFeedback,
   Input,
   Label,
   Row,
-  Form,
-  UncontrolledTooltip,
 } from "reactstrap";
-import "leaflet/dist/leaflet.css";
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import L from "leaflet";
-import Select from "react-select";
-import { Link } from "react-router-dom";
 import * as Yup from "yup";
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import Dropzone from "react-dropzone";
-import SimpleBar from "simplebar-react";
-import { useFormik } from "formik";
-import { VentureCreate } from "echadospalante-core";
-import useVentureCategories from "../../../admin/general/hooks/useVentureCategories";
-import useAllVentureCategories from "../../../admin/general/hooks/useAllVentureCategories";
 import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import useAllVentureCategories from "../../../admin/general/hooks/useAllVentureCategories";
 import useAuthentication from "../../../auth/hooks/useAuthentication";
 import useVentureCreate from "../hooks/useVentureCreate";
 
@@ -60,7 +55,7 @@ const AccountVentureCreatePage = () => {
   const { email } = useAuthentication();
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [locationMode, setLocationMode] = useState<LocationMode>(
-    LocationMode.NONE
+    LocationMode.CURRENT
   );
 
   // validation
@@ -570,7 +565,7 @@ const AccountVentureCreatePage = () => {
 
                           <div className="mb-3 mt-2">
                             <Label htmlFor="projectdesc-input">
-                              Descripción corta de la ubicacion
+                              Descripción corta de la ubicacion (*)
                             </Label>
                             <div>
                               <textarea

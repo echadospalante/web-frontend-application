@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import ownedVenturesManagementReducer, {
   OwnedVenturesManagementState,
-} from "../reducers/admin/owned-ventures-management.reducer";
+} from "../reducers/principal/owned-ventures-management.reducer";
 import UsersManagementReducer, {
   UsersManagementState,
 } from "../reducers/admin/users-management.reducer";
@@ -42,9 +42,11 @@ export interface GlobalState {
     venturePublicationsManagement: VenturePublicationsManagementState;
     ventureEventsManagement: VentureEventsManagementState;
     ventureSponsorshipsManagement: VentureSponsorshipsManagementState;
+  };
+  principal: {
+    ventures: VenturesState;
     ownedVenturesManagement: OwnedVenturesManagementState;
   };
-  ventures: VenturesState;
   layout: LayoutState;
   register: RegisterState;
 }
@@ -53,7 +55,10 @@ const reducer = combineReducers({
   authentication: authenticationReducer,
   userInterface: userInterfaceReducer,
   layout: layoutReducer,
-  ventures: venturesReducer,
+  principal: combineReducers({
+    ventures: venturesReducer,
+    ownedVenturesManagement: ownedVenturesManagementReducer,
+  }),
   register: registerReducer,
   admin: combineReducers({
     usersManagement: UsersManagementReducer,
@@ -61,7 +66,6 @@ const reducer = combineReducers({
     venturePublicationsManagement: venturePublicationsManagementReducer,
     ventureSponsorshipsManagement: ventureSponsorshipsManagementReducer,
     ventureEventsManagement: ventureEventsManagementReducer,
-    ownedVenturesManagement: ownedVenturesManagementReducer,
   }),
 });
 

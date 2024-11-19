@@ -3,9 +3,9 @@ import axios from "axios";
 import { Venture, VentureCreate } from "echadospalante-core";
 
 import env from "../../../../../../environment/environment";
-import { OwnedVenturesFilter } from "../../../../../config/redux/reducers/admin/owned-ventures-management.reducer";
+import { OwnedVenturesFilter } from "../../../../../config/redux/reducers/principal/owned-ventures-management.reducer";
 import filterFalsyValues from "../../../../../shared/helpers/object-utils";
-import { PaginatedBody } from "../../../../principal/ventures/domain/api";
+import { PaginatedBody } from "../../../ventures/domain/api";
 
 export class OwnedVenturesApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/categories`;
@@ -19,14 +19,11 @@ export class OwnedVenturesApi {
     params.set("page", page.toString());
     params.set("size", size.toString());
     return axios
-     .get<PaginatedBody<Venture>>(
-       `${OwnedVenturesApi.API_BASE_URL}`,
-       {
-         withCredentials: true,
-         params,
-       }
-     )
-     .then(({ data }) => data);
+      .get<PaginatedBody<Venture>>(`${OwnedVenturesApi.API_BASE_URL}`, {
+        withCredentials: true,
+        params,
+      })
+      .then(({ data }) => data);
   }
 
   public static updateOwnedVenture(
@@ -36,9 +33,7 @@ export class OwnedVenturesApi {
     throw new Error("Method not implemented.");
   }
 
-  public static createOwnedVenture(
-    category: VentureCreate
-  ): Promise<void> {
+  public static createOwnedVenture(category: VentureCreate): Promise<void> {
     throw new Error("Method not implemented.");
   }
 }

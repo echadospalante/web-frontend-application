@@ -6,7 +6,7 @@ import {
   setOwnedVentures,
   updateOwnedVenture,
   OwnedVenturesFilter,
-} from "../../../../../config/redux/reducers/admin/owned-ventures-management.reducer";
+} from "../../../../../config/redux/reducers/principal/owned-ventures-management.reducer";
 import {
   finishGlobalLoading,
   setGlobalAlert,
@@ -50,9 +50,7 @@ export const updateOwnedVentureMiddleware = (
   };
 };
 
-export const createOwnedVentureMiddleware = (
-  ownedVenture: VentureCreate
-) => {
+export const createOwnedVentureMiddleware = (ownedVenture: VentureCreate) => {
   return async (dispatch: Dispatch) => {
     return OwnedVenturesApi.createOwnedVenture(ownedVenture)
       .then(() => {

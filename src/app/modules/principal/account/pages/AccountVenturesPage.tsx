@@ -1,5 +1,7 @@
-import React, { Fragment, useEffect, useMemo, useState } from "react";
+import React, { Fragment, useState } from "react";
 
+import { User, Venture } from "echadospalante-core";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -9,100 +11,19 @@ import {
   Pagination,
   Row,
 } from "reactstrap";
+
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import OwnedVentureCard from "../../../../shared/components/card/OwnedVentureCard";
-import { User, Venture } from "echadospalante-core";
 import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
 import EditUserModal from "../../../../shared/components/modal/EditUserModal";
-import useUsers from "../../../admin/general/hooks/useUsers";
-import useOwnedVentures from "../../../admin/general/hooks/useOwnedVentures";
-import { Link, useNavigate } from "react-router-dom";
 
 const AccountVenturesPage = () => {
   //meta title
   document.title = "Tus emprendimientos | Echadospalante";
-  const [ventures, setVentures] = useState<Venture[]>([
-    {
-      id: "123",
-      name: "Empanadas Don Pepe",
-      slug: "empanadas-don-pepe",
-      coverPhoto:
-        "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-      description:
-        "Empandas Don Pepe es un gran emprendimiento local, están todos cordialmente invitados a probar mis deliciosas empanadas.",
-      active: true,
-      verified: true,
-      ownerDetail: undefined,
-      categories: [
-        {
-          id: "123",
-          name: "Empanadas",
-          description: "Some awesome desc of the category",
-          slug: "some-category",
-          users: [],
-          ventures: [],
-        },
-        {
-          id: "456",
-          name: "Fritos y pasabocas",
-          description: "Some awesome desc of the category 2",
-          slug: "some-category-2",
-          users: [],
-          ventures: [],
-        },
-      ],
-      contact: undefined,
-      location: undefined,
-      createdAt: new Date(),
-    },
-    {
-      id: "456",
-      name: "Cremas Doña Mariela",
-      slug: "cremas-doña-mariela",
-      coverPhoto:
-        "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-      description:
-        "Cremas Doña Mariela es un emprendimiento de deliciosas cremas de pura fruta, ubicado en la Ceja, Antioquia, a la orden las cremas",
-      active: true,
-      verified: true,
-      ownerDetail: undefined,
-      categories: [
-        {
-          id: "123",
-          name: "Cremas",
-          description: "Some awesome desc of the category",
-          slug: "some-category",
-          users: [],
-          ventures: [],
-        },
-        {
-          id: "456",
-          name: "Helados",
-          description: "Some awesome desc of the category 2",
-          slug: "some-category-2",
-          users: [],
-          ventures: [],
-        },
-      ],
-      contact: undefined,
-      location: undefined,
-      createdAt: new Date(),
-    },
-  ]);
+  const {} = useOwnedVentures();
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
   const navigate = useNavigate();
-
-  const {
-    loading,
-    error,
-    items,
-    total,
-    fetchOwnedVentures,
-    page,
-    size,
-    setPage,
-  } = useOwnedVentures();
 
   const handleSetCurrentPage = (page: number) => {
     // table.setPageIndex(page + 1);
