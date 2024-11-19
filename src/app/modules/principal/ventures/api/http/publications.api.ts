@@ -1,9 +1,10 @@
 import axios from "axios";
 
-import { VenturePublication } from "echadospalante-core";
+import { PublicationType, VenturePublication } from "echadospalante-core";
 
 import env from "../../../../../../environment/environment";
 import { ApiResponse, PaginatedBody } from "../../domain/api";
+import { faker } from "@faker-js/faker";
 
 export class PublicationsApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/publicaciones`;
@@ -1340,6 +1341,16 @@ export class PublicationsApi {
     // return axios
     //   .get<VenturePublication>(`${PublicationsApi.API_BASE_URL}/${id}`)
     //   .then(({ data }) => data);
-    throw new Error("Method not implemented.");
+    const publication: VenturePublication = {
+      id: crypto.randomUUID(),
+      description: faker.lorem.paragraph(50),
+      active: false,
+      type: PublicationType.ACHIEVEMENT,
+      claps: [],
+      comments: [],
+      body: [],
+      createdAt: new Date(),
+    };
+    return Promise.resolve(publication);
   }
 }

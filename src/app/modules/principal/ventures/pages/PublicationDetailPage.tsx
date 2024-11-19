@@ -10,6 +10,7 @@ import {
 } from "../../../../config/redux/reducers/shared/user-interface.reducer";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
 import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
+import { faker } from "@faker-js/faker";
 
 const PublicationDetailPage = () => {
   const params = useParams();
@@ -39,7 +40,7 @@ const PublicationDetailPage = () => {
     return <AppSpinner />;
   }
 
-  if (error) {
+  if (error || !publication) {
     return (
       <div
         style={{
@@ -74,18 +75,18 @@ const PublicationDetailPage = () => {
   return (
     <Fragment>
       <Container>
-        {publication && (
-          <VenturePublicationCard
-            detailButton={false}
-            publication={publication}
-          />
-        )}
+        <VenturePublicationCard
+          detailButton={false}
+          publication={publication}
+        />
 
         <div className="mt-5">
           <h6 className="font-size-13">
             <i className="bx bx-message-dots text-muted align-middle me-1"></i>{" "}
             Comentarios:
           </h6>
+
+          <b>{faker.commerce.product()}</b>
 
           <div>
             <div className="d-flex py-3">
@@ -102,15 +103,9 @@ const PublicationDetailPage = () => {
                   <small className="text-muted float-end">1 hr Ago</small>
                 </h5>
                 <p className="text-muted">
-                  If several languages coalesce, the grammar of the resulting
-                  language is more simple and regular than that of the
-                  individual
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa,
+                  aspernatur.
                 </p>
-                <div>
-                  <Link to="#" className="text-success">
-                    <i className="mdi mdi-reply"></i> Reply
-                  </Link>
-                </div>
               </div>
             </div>
             <div className="d-flex py-3 border-top">
@@ -132,36 +127,6 @@ const PublicationDetailPage = () => {
                   Neque porro quisquam est, qui dolorem ipsum quia dolor sit
                   amet
                 </p>
-                <div>
-                  <Link to="#" className="text-success">
-                    <i className="mdi mdi-reply"></i> Reply
-                  </Link>
-                </div>
-
-                <div className="d-flex pt-3">
-                  <div className="flex-shrink-0 me-3">
-                    <div className="avatar-xs">
-                      <div className="avatar-title rounded-circle bg-light text-primary">
-                        <i className="bx bxs-user"></i>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex-grow-1">
-                    <h5 className="font-size-14 mb-1">
-                      Silvia Martinez{" "}
-                      <small className="text-muted float-end">2 hrs Ago</small>
-                    </h5>
-                    <p className="text-muted">
-                      To take a trivial example, which of us ever undertakes
-                      laborious physical exercise
-                    </p>
-                    <div>
-                      <Link to="#" className="text-success">
-                        <i className="mdi mdi-reply"></i> Reply
-                      </Link>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
 
@@ -181,11 +146,6 @@ const PublicationDetailPage = () => {
                 <p className="text-muted">
                   Donec posuere vulputate arcu. phasellus accumsan cursus velit
                 </p>
-                <div>
-                  <Link to="#" className="text-success">
-                    <i className="mdi mdi-reply"></i> Reply
-                  </Link>
-                </div>
               </div>
             </div>
           </div>

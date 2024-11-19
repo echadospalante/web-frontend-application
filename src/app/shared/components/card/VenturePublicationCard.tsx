@@ -1,8 +1,10 @@
 import { Fragment } from "react";
 
 import { faker } from "@faker-js/faker";
-import { PublicationType, VenturePublication } from "echadospalante-core";
+import { VenturePublication } from "echadospalante-core";
 import { Link } from "react-router-dom";
+
+import PublicationTypeIcon from "../content/PublicationTypeIcon";
 
 type VenturePublicationProps = {
   detailButton?: boolean;
@@ -25,7 +27,7 @@ const VenturePublicationCard = ({
         </h5>
         <p className="text-muted">10 Ago, 2024</p>
 
-        <div className="position-relative mb-3">
+        <div className="position-relative w-75 mx-auto mb-3">
           <img
             src={faker.image.url({ width: 1820, height: 1080 })}
             alt=""
@@ -33,17 +35,11 @@ const VenturePublicationCard = ({
           />
         </div>
 
+        <div className="d-flex my-3">
+          {<PublicationTypeIcon type={publication.type} />}
+        </div>
+
         <ul className="list-inline">
-          <li className="list-inline-item mr-3">
-            {publication.type === PublicationType.ACHIEVEMENT ? (
-              <span className="d-flex flex-column align-items-center justify-content-center">
-                <i className="mdi mdi-medal-outline fs-2"></i>
-                <span className="p-1">Logro</span>
-              </span>
-            ) : (
-              ""
-            )}
-          </li>
           <li className="list-inline-item mr-3">
             <Link to="#" className="text-muted">
               <i className="bx bx-comment-dots align-middle text-muted me-1"></i>{" "}
@@ -51,12 +47,7 @@ const VenturePublicationCard = ({
             </Link>
           </li>
         </ul>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem vero
-          sint recusandae ullam molestiae eveniet perferendis alias, omnis
-          laboriosam dolorem dignissimos iure quas soluta mollitia error quaerat
-          repudiandae at aliquam!
-        </p>
+        <p>{publication.description}</p>
 
         {detailButton && (
           <div>

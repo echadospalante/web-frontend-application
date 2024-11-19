@@ -2,23 +2,27 @@ import React, { useState } from "react";
 
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import Select from "react-select";
 import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
 
-import { toggleRightSidebar } from "../../../config/redux/reducers/shared/layout.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
+import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
 import LanguageDropdown from "../dropdown/LanguageDropdown";
 import NotificationDropdown from "../dropdown/NotificationDropdown";
 import ProfileMenu from "../menu/ProfileMenu";
+import { toggleSidebar } from "../../../config/redux/reducers/shared/layout.reducer";
 
 const Header = () => {
-  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const [search, setsearch] = useState(false);
   const [megaMenu, setmegaMenu] = useState(false);
   const [socialDrp, setsocialDrp] = useState(false);
+  const { t } = useTranslation();
+  const { activeRole, roles = [], setActiveRole } = useAuthentication();
 
   function tToggle() {
+    dispatch(toggleSidebar());
     const body = document.body;
     if (window.screen.width <= 998) {
       body.classList.toggle("sidebar-enable");
@@ -57,17 +61,6 @@ const Header = () => {
             >
               <i className="fa fa-fw fa-bars" />
             </button>
-
-            <form className="app-search d-none d-lg-block">
-              <div className="position-relative">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder={t("Search") + "..."}
-                />
-                <span className="bx bx-search-alt" />
-              </div>
-            </form>
 
             <Dropdown
               className="dropdown-mega d-none d-lg-block ms-2"
@@ -255,100 +248,52 @@ const Header = () => {
               </div>
             </div>
 
-            <LanguageDropdown />
-
-            <Dropdown
-              className="d-none d-lg-inline-block ms-1"
-              isOpen={socialDrp}
-              toggle={() => {
-                setsocialDrp(!socialDrp);
-              }}
-            >
-              <DropdownToggle
-                className="btn header-item noti-icon "
-                tag="button"
-              >
-                <i className="bx bx-customize" />
-              </DropdownToggle>
-              <DropdownMenu className="dropdown-menu-lg dropdown-menu-end">
-                <div className="px-lg-2">
-                  <Row className="no-gutters">
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src="/images/brands/github.png" alt="Github" />
-                        <span>GitHub</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img
-                          src="/images/brands/bitbucket.png"
-                          alt="bitbucket"
-                        />
-                        <span>Bitbucket</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src="/images/brands/dribbble.png" alt="dribbble" />
-                        <span>Dribbble</span>
-                      </Link>
-                    </Col>
-                  </Row>
-
-                  <Row className="no-gutters">
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src="/images/brands/dropbox.png" alt="dropbox" />
-                        <span>Dropbox</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img
-                          src="/images/brands/mail_chimp.png"
-                          alt="mail_chimp"
-                        />
-                        <span>Mail Chimp</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src="/images/brands/slack.png" alt="slack" />
-                        <span>Slack</span>
-                      </Link>
-                    </Col>
-                  </Row>
+            <div className="d-flex align-items-center">
+              {roles.length > 1 && activeRole && (
+                <div className="mx-3">
+                  <Select
+                    className=""
+                    isDisabled={false}
+                    value={{
+                      label: activeRole?.label,
+                      value: activeRole?.name,
+                    }}
+                    isMulti={false}
+                    isSearchable={false}
+                    onChange={(selected) => {
+                      if (!selected) return;
+                      setActiveRole(selected.value);
+                    }}
+                    options={roles.map((role) => ({
+                      label: role.label,
+                      value: role.name,
+                    }))}
+                    styles={{
+                      control: (styles) => ({
+                        ...styles,
+                        width: "130px",
+                      }),
+                      menu: (styles) => ({ ...styles, zIndex: 100000 }),
+                    }}
+                  ></Select>
                 </div>
-              </DropdownMenu>
-            </Dropdown>
+              )}
 
-            <div className="dropdown d-none d-lg-inline-block ms-1">
-              <button
+              <LanguageDropdown />
+
+              <div className="dropdown d-none d-lg-inline-block ms-1">
+                {/* <button
                 type="button"
                 onClick={() => console.log("Fullscreen")}
                 className="btn header-item noti-icon "
                 data-toggle="fullscreen"
               >
                 <i className="bx bx-fullscreen" />
-              </button>
-            </div>
+              </button> */}
+              </div>
 
-            <NotificationDropdown />
-            <ProfileMenu />
-
-            <div
-              onClick={() => {
-                dispatch(toggleRightSidebar());
-              }}
-              className="dropdown d-inline-block"
-            >
-              <button
-                type="button"
-                className="btn header-item noti-icon right-bar-toggle "
-              >
-                <i className="bx bx-cog bx-spin" />
-              </button>
+              <NotificationDropdown />
+              <ProfileMenu />
             </div>
           </div>
         </div>

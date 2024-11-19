@@ -11,7 +11,7 @@ import {
 } from "../../../config/redux/reducers/shared/layout.reducer";
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import Footer from "../footer/HorizontalFooter";
-import HorizontalHeader from "../header/HorizontalHeader";
+import Header from "../header/VerticalHeader";
 import RightSidebar from "../rightbar/RightSidebar";
 import Sidebar from "../sidebar/Sidebar";
 
@@ -109,7 +109,8 @@ const HorizontalLayout = ({ children }: LayoutProps) => {
       </div>
 
       <div id="layout-wrapper">
-        <HorizontalHeader
+        <Header
+
         // toggleLeftmenu={function (arg0: boolean): void {}}
         // showRightSidebarAction={function (arg0: boolean): void {}}
         // leftMenu={false}

@@ -23,51 +23,25 @@ const PublicationsFeedPage = () => {
                   <Col xl={8}>
                     <Row className="align-items-center py-3">
                       <Col xs={4}>
-                        <div>
-                          <h5>Lista de Publicaciones</h5>
-                        </div>
-                      </Col>
-
-                      <Col xs={8}>
-                        <div className="float-end">
-                          <ul className="nav nav-pills">
-                            <NavItem>
-                              <NavLink
-                                className="disabled"
-                                to="#"
-                                tabIndex={-1}
-                              >
-                                Vista:
-                              </NavLink>
-                            </NavItem>
-                            <NavItem>
-                              <Link className="nav-link active" to="/blog-list">
-                                <i className="mdi mdi-format-list-bulleted"></i>
-                              </Link>
-                            </NavItem>
-                            <NavItem>
-                              <Link to="/blog-grid" className="nav-link">
-                                <i className="mdi mdi-view-grid-outline"></i>
-                              </Link>
-                            </NavItem>
-                          </ul>
+                        <div className="mt-3">
+                          <h4>Lista de Publicaciones</h4>
                         </div>
                       </Col>
                     </Row>
 
                     {new Array(10).fill(0).map((_item) => (
-                      <a
+                      <Link
                         style={{
                           textDecoration: "none",
                           color: "inherit",
                         }}
-                        href={`/principal/feed/${"123"}`}
+                        to={`/principal/feed/${"123"}`}
                       >
                         <Fragment>
                           <hr className="mb-4" />
 
                           <div>
-                            <h5>Beautiful Day with Friends</h5>
+                            <h5>Publicación de prueba</h5>
                             <p className="text-muted">10 Ago, 2024</p>
 
                             <div className="position-relative mb-3">
@@ -104,57 +78,18 @@ const PublicationsFeedPage = () => {
                             </p>
 
                             <div>
-                              <Link to="#" className="text-primary">
+                              <Link
+                                to={`/principal/feed/${"123"}`}
+                                className="text-primary"
+                              >
                                 Ver detalle{" "}
                                 <i className="mdi mdi-arrow-right"></i>
                               </Link>
                             </div>
                           </div>
                         </Fragment>
-                      </a>
+                      </Link>
                     ))}
-
-                    {/* <hr className="my-5" /> */}
-
-                    {/* <div className="text-center">
-                              <ul className="pagination justify-content-center pagination-rounded">
-                                <li className="page-item disabled">
-                                  <Link to="#" className="page-link">
-                                    <i className="mdi mdi-chevron-left"></i>
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="#" className="page-link">
-                                    1
-                                  </Link>
-                                </li>
-                                <li className="page-item active">
-                                  <Link to="#" className="page-link">
-                                    2
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="#" className="page-link">
-                                    3
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="#" className="page-link">
-                                    ...
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="#" className="page-link">
-                                    10
-                                  </Link>
-                                </li>
-                                <li className="page-item">
-                                  <Link to="#" className="page-link">
-                                    <i className="mdi mdi-chevron-right"></i>
-                                  </Link>
-                                </li>
-                              </ul>
-                            </div> */}
                   </Col>
                 </Row>
               </Card>

@@ -9,6 +9,8 @@ import AdminSidebarContent from "./AdminSidebarContent";
 import ModeratorSidebarContent from "./ModeratorSidebarContent";
 import NewsWriterSidebarContent from "./NewsWriterSidebarContent";
 import UserSidebarContent from "./PrincipalSidebarContent";
+import { useSelector } from "react-redux";
+import { selectLayout } from "../../../config/redux/reducers/shared/layout.reducer";
 
 type SidebarContentProps = {
   role?: AppRole;
@@ -31,6 +33,7 @@ const SidebarContent = ({ role }: SidebarContentProps) => {
 
 const Sidebar = () => {
   const { activeRole } = useAuthentication();
+  const { showSidebar } = useSelector(selectLayout);
 
   return (
     <Fragment>
@@ -38,10 +41,10 @@ const Sidebar = () => {
         <div className="navbar-brand-box">
           <Link to="/" className="logo logo-dark">
             <span className="logo-sm">
-              <img src="/epl2.jpeg" alt="" height="45" />
+              <img src="/epl2.jpeg" alt="" height="35" className="rounded-2" />
             </span>
             <span className="logo-lg">
-              <img src="/epl2.jpeg" alt="" height="45" />
+              <img src="/epl2.jpeg" alt="" height="35" className="rounded-2" />
             </span>
           </Link>
 
@@ -54,7 +57,10 @@ const Sidebar = () => {
             </span>
           </Link>
         </div>
-        <div data-simplebar className="h-100">
+        <div
+          data-simplebar
+          className={`h-100 ${showSidebar ? "" : "position-fixed"}`}
+        >
           <SidebarContent role={activeRole?.name} />
         </div>
 

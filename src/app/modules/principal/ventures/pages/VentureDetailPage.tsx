@@ -2,8 +2,9 @@ import { Fragment, useState } from "react";
 
 import { faker } from "@faker-js/faker";
 import { Venture } from "echadospalante-core";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import {
+  Button,
   Card,
   CardBody,
   Col,
@@ -30,10 +31,13 @@ import SponsorCard from "../../../../shared/components/card/SponsorCard";
 import VenturePublicationCard from "../../../../shared/components/card/VenturePublicationCard";
 import VentureDetailTabs from "../../../../shared/components/tabs/VentureDetailTabs";
 import { textToRGB } from "../../../../shared/helpers/colors";
+import VentureSponsorsTable from "./VentureSponsorsTable";
+import useVentureDetail from "../hooks/useVentureDetail";
+import AppLoading from "../../../../shared/components/loader/AppLoading";
+import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
 
 const VentureDetailPage = () => {
   const [activeTab, setActiveTab] = useState("1");
-
   const [open, setOpen] = useState(false);
 
   const toggleActiveTab = (tab: string) => {
@@ -41,51 +45,45 @@ const VentureDetailPage = () => {
       setActiveTab(tab);
     }
   };
-  const [venture, setVenture] = useState<Venture>({
-    id: "123",
-    name: "Cremas doña mariela",
-    slug: "cremas-doña-mariela",
-    coverPhoto:
-      "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-    description: "Soem awesome description",
-    active: true,
-    verified: true,
-    ownerDetail: undefined,
-    categories: [
-      {
-        id: "123",
-        name: "Some Awesome",
-        description: "Some awesome desc of the category",
-        slug: "some-category",
-        users: [],
-        ventures: [],
-      },
-      {
-        id: "456",
-        name: "Some cat 2",
-        description: "Some awesome desc of the category 2",
-        slug: "some-category-2",
-        users: [],
-        ventures: [],
-      },
-    ],
-    contact: {
-      id: "contact-123",
-      email: "contact@example.com",
-      phoneNumber: "+1234567890",
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    location: {
-      id: "location-123",
-      description: "La Ceja, Antioquia",
-      lat: 6.025275394547856,
-      lng: -75.43107974837727,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    },
-    createdAt: new Date(),
-  });
+
+  const { venture, loading, error, fetchVentureDetail } = useVentureDetail();
+
+  if (loading)
+    return (
+      <AppLoading
+        iconPath={""}
+        message="Cargando la información del emprendimiento..."
+      />
+    );
+
+  if (error || !venture) {
+    return (
+      <div className="page-content px-5">
+        <div className="d-flex justify-content-center mb-4">
+          <img
+            src="/images/error-img.png"
+            alt="Error"
+            className="img-fluid w-25"
+          />
+        </div>
+
+        <AlertWithReload
+          message="Ha ocurrido un error al consultar el emprendimiento, intente nuevamente."
+          onReload={fetchVentureDetail}
+        />
+
+        <div className="d-flex flex-row justify-content-center my-5">
+          <div>
+            <p>Si lo anterior no funciona, también podrías:</p>
+            <Link to={"/principal/emprendimientos"} className="btn btn-success">
+              <i className="mdi mdi-arrow-left-circle me-1"></i>
+              Volver a todos los emprendimientos
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="page-content">
@@ -327,8 +325,11 @@ const VentureDetailPage = () => {
                   <TabPane tabId="1">
                     {activeTab === "1" && (
                       <Fragment>
-                        {new Array(10).fill(0).map((_item) => (
-                          <VenturePublicationCard />
+                        {new Array(10).fill(0).map((publication, i) => (
+                          <VenturePublicationCard
+                            key={i}
+                            publication={publication}
+                          />
                         ))}
                       </Fragment>
                     )}
@@ -339,124 +340,7 @@ const VentureDetailPage = () => {
                   </TabPane>
 
                   <TabPane tabId="3">
-                    <div className="mt-5">
-                      <h5 className="font-size-15">
-                        <i className="bx bx-message-dots text-muted align-middle me-1"></i>{" "}
-                        Comments :
-                      </h5>
-
-                      <div>
-                        <div className="d-flex py-3">
-                          <div className="flex-shrink-0 me-3">
-                            <div className="avatar-xs">
-                              <div className="avatar-title rounded-circle bg-light text-primary">
-                                <i className="bx bxs-user"></i>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex-grow-1">
-                            <h5 className="font-size-14 mb-1">
-                              Delores Williams{" "}
-                              <small className="text-muted float-end">
-                                1 hr Ago
-                              </small>
-                            </h5>
-                            <p className="text-muted">
-                              If several languages coalesce, the grammar of the
-                              resulting language is more simple and regular than
-                              that of the individual
-                            </p>
-                            <div>
-                              <Link to="#" className="text-success">
-                                <i className="mdi mdi-reply"></i> Reply
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="d-flex py-3 border-top">
-                          <div className="flex-shrink-0 me-3">
-                            <div className="avatar-xs">
-                              <img
-                                src="https://cdn-icons-png.flaticon.com/512/3607/3607444.png"
-                                alt=""
-                                className="img-fluid d-block rounded-circle"
-                              />
-                            </div>
-                          </div>
-                          <div className="flex-grow-1">
-                            <h5 className="font-size-14 mb-1">
-                              Clarence Smith{" "}
-                              <small className="text-muted float-end">
-                                2 hrs Ago
-                              </small>
-                            </h5>
-                            <p className="text-muted">
-                              Neque porro quisquam est, qui dolorem ipsum quia
-                              dolor sit amet
-                            </p>
-                            <div>
-                              <Link to="#" className="text-success">
-                                <i className="mdi mdi-reply"></i> Reply
-                              </Link>
-                            </div>
-
-                            <div className="d-flex pt-3">
-                              <div className="flex-shrink-0 me-3">
-                                <div className="avatar-xs">
-                                  <div className="avatar-title rounded-circle bg-light text-primary">
-                                    <i className="bx bxs-user"></i>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="flex-grow-1">
-                                <h5 className="font-size-14 mb-1">
-                                  Silvia Martinez{" "}
-                                  <small className="text-muted float-end">
-                                    2 hrs Ago
-                                  </small>
-                                </h5>
-                                <p className="text-muted">
-                                  To take a trivial example, which of us ever
-                                  undertakes laborious physical exercise
-                                </p>
-                                <div>
-                                  <Link to="#" className="text-success">
-                                    <i className="mdi mdi-reply"></i> Reply
-                                  </Link>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="d-flex py-3 border-top">
-                          <div className="flex-shrink-0 me-3">
-                            <div className="avatar-xs">
-                              <div className="avatar-title rounded-circle bg-light text-primary">
-                                <i className="bx bxs-user"></i>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex-grow-1">
-                            <h5 className="font-size-14 mb-1">
-                              Keith McCoy{" "}
-                              <small className="text-muted float-end">
-                                12 Aug
-                              </small>
-                            </h5>
-                            <p className="text-muted">
-                              Donec posuere vulputate arcu. phasellus accumsan
-                              cursus velit
-                            </p>
-                            <div>
-                              <Link to="#" className="text-success">
-                                <i className="mdi mdi-reply"></i> Reply
-                              </Link>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <VentureSponsorsTable ventureId="123" />
                   </TabPane>
 
                   <TabPane tabId="4">

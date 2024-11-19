@@ -5,9 +5,15 @@
   "Success Cases": "Success Cases",
   "Ventures": "Ventures",
   "Events": "Events",
+  "Users": "Users",
   "Map": "Map",
   "Calendar": "Calendar",
+  "Alerts And Notifications": "Alerts And Notifications",
+  "Donations And Sponsorships": "Donations And Sponsorships",
+  "Language and Locale": "Language and Locale",
   "News": "News",
+  "Profile": "Profile",
+  "Support": "Support",
   "Publications": "Publications",
   "FAQs": "FAQs",
   "Latest News": "Latest News",
@@ -16,5 +22,6 @@
   "Availability Metrics": "Availability",
   "Donations": "Donations",
   "Sponsorships": "Sponsorships",
+  "Terms And Conditions": "Terms And Conditions",
   "Subscriptions": "Subscriptions"
 }

@@ -145,7 +145,6 @@ const VerticalLayout = ({ children }: LayoutProps) => {
         <Footer />
       </div>
       {/* {showRightSidebar ? <RightSidebar /> : null} */}
-      <RightSidebar />
     </React.Fragment>
   );
 };

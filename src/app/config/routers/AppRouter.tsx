@@ -26,18 +26,18 @@ import AccountVentureCreatePage from "../../modules/principal/account/pages/Acco
 import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
 import PreferencesLangLocalePage from "../../modules/principal/preferences/pages/PreferencesLangLocalePage";
 import PreferencesNotificationsPage from "../../modules/principal/preferences/pages/PreferencesNotificationsPage";
-import PreferencesThemePage from "../../modules/principal/preferences/pages/PreferencesTheme";
 import PreferencesLayoutPage from "../../modules/principal/preferences/PreferencesLayoutPage";
 import Commercial404Page from "../../modules/principal/ventures/pages/Commercial404Page";
+import EventsCalendarPage from "../../modules/principal/ventures/pages/EventsCalendarPage";
+import PublicationDetailPage from "../../modules/principal/ventures/pages/PublicationDetailPage";
 import PublicationsFeedPage from "../../modules/principal/ventures/pages/PublicationsFeedPage";
 import VentureDetailPage from "../../modules/principal/ventures/pages/VentureDetailPage";
+import VenturesFeedPage from "../../modules/principal/ventures/pages/VenturesFeedPage";
+import VenturesMapPage from "../../modules/principal/ventures/pages/VenturesMapPage";
 import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayoutPage";
 import AppSpinner from "../../shared/components/loader/Spinner";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import VenturesFeedPage from "../../modules/principal/ventures/pages/VenturesFeedPage";
-import PublicationDetailPage from "../../modules/principal/ventures/pages/PublicationDetailPage";
-import VenturesMapPage from "../../modules/principal/ventures/pages/VenturesMapPage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -91,6 +91,7 @@ const AppRouter = () => {
               <Route path="" element={<VenturesFeedPage />} />
 
               <Route path="mapa" element={<VenturesMapPage />} />
+              <Route path="calendario" element={<EventsCalendarPage />} />
               <Route path=":slug" element={<VentureDetailPage />} />
 
               <Route path="*" element={<Commercial404Page />} />
@@ -110,7 +111,7 @@ const AppRouter = () => {
                 path="lenguaje-localizacion"
                 element={<PreferencesLangLocalePage />}
               />
-              <Route path="tema" element={<PreferencesThemePage />} />
+              {/* <Route path="tema" element={<PreferencesThemePage />} /> */}
               <Route
                 path="alertas-notificaciones"
                 element={<PreferencesNotificationsPage />}

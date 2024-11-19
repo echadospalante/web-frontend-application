@@ -124,7 +124,7 @@ const AdminVenturesTable = () => {
                     <tbody>
                       {getRowModel().rows.map((row) => {
                         return (
-                          <Fragment>
+                          <Fragment key={row.id}>
                             <tr key={row.id}>
                               {row.getVisibleCells().map((cell) => {
                                 return (

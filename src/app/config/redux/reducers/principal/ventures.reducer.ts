@@ -1,23 +1,28 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+import { Venture } from "echadospalante-core";
 import { RootState } from "../../store/store.config";
 
-export interface VentureFilter {}
+export interface VentureFilter {
+  search: string;
+  department: string;
+  categoriesSlugs: string[];
+  page: number;
+  size: number;
+}
 
 export interface VenturesState {
   filters: VentureFilter;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  items: any[];
+  items: Venture[];
 }
 
 const initialState: VenturesState = {
   filters: {
     search: "",
-    dateRange: {},
-    areas: [],
-    advisors: [],
-    states: [],
-    include: [],
+    department: "",
+    categoriesSlugs: [],
+    page: 0,
+    size: 20,
   },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   // items: [] as any[],
@@ -56,11 +61,15 @@ export const venturesSlice = createSlice({
     setVentures: (state, action: PayloadAction<any>) => {
       state.items = action.payload;
     },
+    addVentures: (state, action: PayloadAction<Venture[]>) => {
+      state.items = state.items.concat(action.payload);
+    },
   },
 });
 
 export const {
   setVentures,
+  addVentures,
   // changeFilterArea,
   // changeFilterState,
   // changeFilterSearch,

@@ -10,7 +10,7 @@ import {
   Row,
 } from "reactstrap";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import VentureCard from "../../../../shared/components/card/VentureCard";
+import OwnedVentureCard from "../../../../shared/components/card/OwnedVentureCard";
 import { User, Venture } from "echadospalante-core";
 import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
@@ -151,35 +151,6 @@ const AccountVenturesPage = () => {
                     Crear emprendimiento
                     <i className="bx bx-plus mx-1"></i>
                   </Button>
-                  <div className="btn-group h-100" role="group">
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-list"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-list"
-                    >
-                      <i className="bx bx-list-ul"></i>
-                    </label>
-
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-grid"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-grid"
-                    >
-                      <i className="bx bx-grid"></i>
-                    </label>
-                  </div>
 
                   <Button
                     type="button"
@@ -210,7 +181,7 @@ const AccountVenturesPage = () => {
                 ) : (
                   <Row>
                     {ventures.map((venture) => (
-                      <VentureCard key={venture.id} venture={venture} />
+                      <OwnedVentureCard key={venture.id} venture={venture} />
                     ))}
                   </Row>
                 )}
