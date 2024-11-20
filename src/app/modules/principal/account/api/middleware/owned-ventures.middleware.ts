@@ -1,18 +1,18 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 
-import { Venture, VentureCreate } from "echadospalante-core";
+import { Pagination, Venture, VentureCreate } from "echadospalante-core";
 
 import {
   setOwnedVentures,
   updateOwnedVenture,
   OwnedVenturesFilter,
-} from "../../../../../config/redux/reducers/principal/owned-ventures-management.reducer";
+} from "../../../../../config/redux/reducers/principal/owned-ventures.reducer";
 import {
   finishGlobalLoading,
   setGlobalAlert,
   SeverityLevel,
 } from "../../../../../config/redux/reducers/shared/user-interface.reducer";
-import { OwnedVenturesApi } from "../http/owned-ventures-management.api";
+import OwnedVenturesApi from "../http/owned-ventures.api";
 
 export const updateOwnedVentureMiddleware = (
   id: string,
@@ -52,12 +52,12 @@ export const updateOwnedVentureMiddleware = (
 
 export const createOwnedVentureMiddleware = (ownedVenture: VentureCreate) => {
   return async (dispatch: Dispatch) => {
-    return OwnedVenturesApi.createOwnedVenture(ownedVenture)
+    return OwnedVenturesApi.createVenture(ownedVenture)
       .then(() => {
         dispatch(
           setGlobalAlert({
-            title: "Emprendimiento creado",
-            message: "La categoría ha sido creada exitosamente.",
+            title: "Éxito",
+            message: "El emprendimiento ha sido creado exitosamente.",
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
           })
@@ -82,26 +82,23 @@ export const createOwnedVentureMiddleware = (ownedVenture: VentureCreate) => {
   };
 };
 
-export const fetchOwnedVenturesMiddleware = (
-  ownedVenturesFilters: OwnedVenturesFilter
-) => {
+export const fetchOwnedVenturesMiddleware = (page: number, size: number) => {
   return async (dispatch: Dispatch<Action>) => {
-    return OwnedVenturesApi.fetchOwnedVentures(ownedVenturesFilters)
+    return OwnedVenturesApi.fetchOwnedVentures(page, size)
       .then((response) => {
         dispatch(setOwnedVentures(response));
-        return response;
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al obtener la lista de categorías ⛔",
+            message: "Error al obtener la lista de tus emprendimientos ⛔",
             title: "Error",
             timeout: 5000,
             severity: SeverityLevel.ERROR,
           })
         );
-        throw new Error("Error al obtener la lista de categorías");
+        throw new Error("Error al obtener la lista de tus emprendimientos");
       });
   };
 };

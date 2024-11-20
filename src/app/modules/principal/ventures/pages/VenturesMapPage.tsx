@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
-import * as turf from "@turf/turf";
 import { Col, Row } from "reactstrap";
 
 import "leaflet/dist/leaflet.css";
@@ -8,16 +7,27 @@ import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
 
 import { faker } from "@faker-js/faker";
-import { FeatureCollection } from "geojson";
 import L, { LatLngBoundsExpression } from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import { GeoJSON, MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+  GeoJSON,
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  Tooltip,
+} from "react-leaflet";
 
 import colGeoJSON from "../../../../shared/data/geo/colombia.geojson";
+import { Venture } from "echadospalante-core";
 
-const VenturesMapPage = () => {
+export interface VenturesMapProps {
+  ventures: Venture[];
+}
+
+const VenturesMap = ({ ventures }: VenturesMapProps) => {
   const [activeTab, setActiveTab] = useState("1");
 
   const [open, setOpen] = useState(false);
@@ -51,25 +61,6 @@ const VenturesMapPage = () => {
     [-4.2, -66.8],
   ];
 
-  const [randomPoints, setRandomPoints] = useState<FeatureCollection>();
-
-  useEffect(() => {
-    const pointsWithinColombia = [];
-    while (pointsWithinColombia.length < 100) {
-      const point = turf.randomPoint(1, { bbox: [-79.0, -4.2, -66.8, 12.5] });
-
-      if (
-        turf.booleanPointInPolygon(
-          point.features[0],
-          colGeoJSON.features[0] as any
-        )
-      ) {
-        pointsWithinColombia.push(point.features[0]);
-      }
-    }
-    setRandomPoints(turf.featureCollection(pointsWithinColombia));
-  }, []);
-
   return (
     <Row>
       <Col lg={12}>
@@ -89,22 +80,16 @@ const VenturesMapPage = () => {
 
             <GeoJSON data={colGeoJSON} style={geoJSONStyle} />
 
-            {randomPoints &&
-              randomPoints.features.map((point, index) => {
-                return (
-                  <Marker
-                    position={[
-                      point.geometry.coordinates[1],
-                      point.geometry.coordinates[0],
-                    ]}
-                    icon={markerIconInstance}
-                  >
-                    <Popup offset={[0, -5]}>
-                      {faker.commerce.productName()}
-                    </Popup>
-                  </Marker>
-                );
-              })}
+            {ventures.map((venture) => (
+              <Marker
+                position={[venture.location!.lat!, venture.location!.lng!]}
+                icon={markerIconInstance}
+              >
+                <Tooltip permanent offset={[0, -5]}>
+                  {venture.name}
+                </Tooltip>
+              </Marker>
+            ))}
           </MapContainer>
         </div>
       </Col>
@@ -112,4 +97,4 @@ const VenturesMapPage = () => {
   );
 };
 
-export default VenturesMapPage;
+export default VenturesMap;

@@ -28,7 +28,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
         <Row className="d-flex p-1">
           <Col lg={5} md={6} sm={12} className="mx-auto">
             <img
-              src={faker.image.url({ width: 400, height: 250 })}
+              src={venture.coverPhoto}
               className="w-100 bg-light text-danger font-size-16 rounded-2"
             />
           </Col>
@@ -157,7 +157,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                 id={`comments-${venture.id}`}
               >
                 <i className="bx bx-comment-dots me-1"></i>
-                <small>10</small>
+                <small>0</small>
                 <UncontrolledTooltip
                   placement="top"
                   target={`comments-${venture.id}`}
@@ -171,7 +171,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                 id={`reactions-${venture.id}`}
               >
                 <i className="bx bx-like me-1"></i>
-                <small>{Math.ceil(Math.random() * 100)}</small>
+                <small>0</small>
                 <UncontrolledTooltip
                   placement="top"
                   target={`reactions-${venture.id}`}
@@ -186,7 +186,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
               >
                 <UilMegaphone />
                 <i className="uil uil-megaphone me-1"></i>
-                <small>{Math.ceil(Math.random() * 100)}</small>
+                <small>0</small>
                 <UncontrolledTooltip
                   placement="top"
                   target={`comments-${venture.id}`}
@@ -200,7 +200,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                 id={`events-${venture.id}`}
               >
                 <i className="bx bx-calendar-event me-1"></i>
-                <small>{Math.ceil(Math.random() * 100)}</small>
+                <small>0</small>
                 <UncontrolledTooltip
                   placement="top"
                   target={`events-${venture.id}`}
@@ -221,14 +221,17 @@ const VentureCard = ({ venture }: VentureCardProps) => {
               >
                 <i className="bx bx-link-external me-1"></i> Ver detalle
               </Link> */}
-              <Link
-                to={`/principal/emprendimientos/${venture.id}/patrocinar`}
-                className="btn btn-danger mx-1"
-              >
-                <i className="bx bxs-heart me-1"></i> Patrocinar
+              <Link to={"#"} className="btn btn-primary mx-1">
+                <i className="bx bxs-like me-1"></i>
+              </Link>
+              <Link to={"#"} className="btn btn-info mx-1">
+                <i className="bx bxs-comment me-1"></i>
+              </Link>
+              <Link to={"#"} className="btn btn-danger mx-1">
+                <i className="bx bxs-heart me-1"></i>
               </Link>
               <Link
-                to={`/principal/emprendimientos/${venture.id}`}
+                to={`/principal/emprendimientos/${venture.slug}`}
                 className="btn btn-success mx-1"
               >
                 <i className="bx bx-link-external me-1"></i> Ver detalle

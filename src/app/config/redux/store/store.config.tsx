@@ -1,9 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-import ownedVenturesManagementReducer, {
-  OwnedVenturesManagementState,
-} from "../reducers/principal/owned-ventures-management.reducer";
 import UsersManagementReducer, {
   UsersManagementState,
 } from "../reducers/admin/users-management.reducer";
@@ -16,12 +13,18 @@ import ventureEventsManagementReducer, {
 import venturePublicationsManagementReducer, {
   VenturePublicationsManagementState,
 } from "../reducers/admin/venture-publications-management.reducer";
+import ventureSponsorshipsManagementReducer, {
+  VentureSponsorshipsManagementState,
+} from "../reducers/admin/venture-sponsorships-management.reducer";
 import authenticationReducer, {
   AuthenticationState,
 } from "../reducers/auth/auth.reducer";
 import registerReducer, {
   RegisterState,
 } from "../reducers/auth/register.reducer";
+import ownedVenturesManagementReducer, {
+  OwnedVenturesState,
+} from "../reducers/principal/owned-ventures.reducer";
 import venturesReducer, {
   VenturesState,
 } from "../reducers/principal/ventures.reducer";
@@ -29,9 +32,6 @@ import layoutReducer, { LayoutState } from "../reducers/shared/layout.reducer";
 import userInterfaceReducer, {
   UserInterfaceState,
 } from "../reducers/shared/user-interface.reducer";
-import ventureSponsorshipsManagementReducer, {
-  VentureSponsorshipsManagementState,
-} from "../reducers/admin/venture-sponsorships-management.reducer";
 
 export interface GlobalState {
   authentication: AuthenticationState;
@@ -45,7 +45,7 @@ export interface GlobalState {
   };
   principal: {
     ventures: VenturesState;
-    ownedVenturesManagement: OwnedVenturesManagementState;
+    ownedVenturesManagement: OwnedVenturesState;
   };
   layout: LayoutState;
   register: RegisterState;
@@ -57,7 +57,7 @@ const reducer = combineReducers({
   layout: layoutReducer,
   principal: combineReducers({
     ventures: venturesReducer,
-    ownedVenturesManagement: ownedVenturesManagementReducer,
+    ownedVentures: ownedVenturesManagementReducer,
   }),
   register: registerReducer,
   admin: combineReducers({

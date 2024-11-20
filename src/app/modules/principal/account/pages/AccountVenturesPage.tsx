@@ -1,6 +1,5 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 
-import { User, Venture } from "echadospalante-core";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -16,22 +15,18 @@ import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import OwnedVentureCard from "../../../../shared/components/card/OwnedVentureCard";
 import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
-import EditUserModal from "../../../../shared/components/modal/EditUserModal";
+import useOwnedVentures from "../hooks/useOwnedVentures";
 
 const AccountVenturesPage = () => {
   //meta title
   document.title = "Tus emprendimientos | Echadospalante";
-  const {} = useOwnedVentures();
-  const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
+  const { error, items, fetchOwnedVentures, loading, setPage, total, filters } =
+    useOwnedVentures();
   const navigate = useNavigate();
 
   const handleSetCurrentPage = (page: number) => {
     // table.setPageIndex(page + 1);
     setPage(page);
-  };
-
-  const handleCloseEditModal = () => {
-    setActiveUserToEdit(undefined);
   };
 
   const handleNavigateToCreate = (
@@ -48,14 +43,6 @@ const AccountVenturesPage = () => {
       <Container fluid>
         {/* Render Breadcrumbs */}
         <Breadcrumb title="Cuenta" breadcrumbItem="Tus emprendimientos" />
-        {activeUserToEdit && (
-          <EditUserModal
-            show={!!activeUserToEdit}
-            onCloseClick={handleCloseEditModal}
-            onSuccessfulEdit={fetchOwnedVentures}
-            user={activeUserToEdit}
-          />
-        )}
 
         <Col lg="12">
           <Card>
@@ -75,7 +62,7 @@ const AccountVenturesPage = () => {
 
                   <Button
                     type="button"
-                    // onClick={fetchUsers}
+                    onClick={fetchOwnedVentures}
                     className="btn btn-light mx-2 mb-2"
                   >
                     <i className="mdi mdi-refresh"></i>
@@ -101,7 +88,7 @@ const AccountVenturesPage = () => {
                   </div>
                 ) : (
                   <Row>
-                    {ventures.map((venture) => (
+                    {items.map((venture) => (
                       <OwnedVentureCard key={venture.id} venture={venture} />
                     ))}
                   </Row>
@@ -110,8 +97,9 @@ const AccountVenturesPage = () => {
                 <Row>
                   <Col sm={12} md={5} lg={6}>
                     <div className="dataTables_info">
-                      Página {page + 1} de {Math.ceil(total / size) || 1}, con
-                      un tatal de {total} emprendimientos
+                      Página {filters.page + 1} de{" "}
+                      {Math.ceil(total / filters.size) || 1}, con un total de{" "}
+                      {total} emprendimientos
                     </div>
                   </Col>
                   <Col
@@ -121,9 +109,9 @@ const AccountVenturesPage = () => {
                     className="d-flex justify-content-end"
                   >
                     <Pagination
-                      perPageData={size}
+                      perPageData={filters.size}
                       length={total}
-                      currentPage={page + 1}
+                      currentPage={filters.page + 1}
                       setCurrentPage={handleSetCurrentPage}
                       paginationDiv="col-lg-12"
                       paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"

@@ -12,13 +12,13 @@ export interface OwnedVenturesFilter {
   categorySlug: string;
 }
 
-export interface OwnedVenturesManagementState {
+export interface OwnedVenturesState {
   filters: OwnedVenturesFilter;
   ventures: PaginatedBody<Venture>;
 }
 
 // Freeze the initial state to prevent accidental changes
-const initialState: OwnedVenturesManagementState = {
+const initialState: OwnedVenturesState = {
   filters: {
     page: 0,
     search: "",
@@ -31,8 +31,8 @@ const initialState: OwnedVenturesManagementState = {
   },
 };
 
-export const ownedVenturesManagementSlice = createSlice({
-  name: "admin/ownedVenturesManagement",
+export const ownedVenturesSlice = createSlice({
+  name: "principal/ownedVentures",
   initialState,
   reducers: {
     createOwnedVenture: (state, action: PayloadAction<Venture>) => {
@@ -48,7 +48,7 @@ export const ownedVenturesManagementSlice = createSlice({
         page,
         search,
         size,
-        categorySlug
+        categorySlug,
       };
     },
     updateOwnedVenture: (state, action: PayloadAction<Venture>) => {
@@ -87,9 +87,9 @@ export const {
   updateOwnedVenture,
   createOwnedVenture,
   addOwnedVenture,
-} = ownedVenturesManagementSlice.actions;
+} = ownedVenturesSlice.actions;
 
 export const selectOwnedVenturesManagement = (state: RootState) =>
-  state.admin.ownedVenturesManagement;
+  state.principal.ownedVentures;
 
-export default ownedVenturesManagementSlice.reducer;
+export default ownedVenturesSlice.reducer;

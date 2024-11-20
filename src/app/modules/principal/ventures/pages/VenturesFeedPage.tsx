@@ -2,20 +2,23 @@ import { Fragment, useState } from "react";
 
 import { Card, Col, Container, Row, TabContent, TabPane } from "reactstrap";
 
+import InfiniteScroll from "react-infinite-scroll-component";
+
+import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
 import VentureCard from "../../../../shared/components/card/VentureCard";
+import AppLoading from "../../../../shared/components/loader/AppLoading";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
 import VenturesFeedRightSidebar from "../../../../shared/components/rightbar/VenturesFeedRightSidebar";
 import AdminVenturesTabs from "../../../../shared/components/tabs/VenturesFeedTabs";
 import useVentures from "../hooks/useVentures";
-import VenturesMapPage from "./VenturesMapPage";
-import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
+import VenturesMap from "./VenturesMapPage";
 
 const VenturesFeedPage = () => {
   document.title = "Feed de Emprendimientos | Echadospa'lante";
 
   const [activeTab, setActiveTab] = useState("1");
 
-  const { ventures, loading, error, fetchVentures } = useVentures();
+  const { ventures, loading, error, fetchMoreVentures } = useVentures();
 
   const toggleActiveTab = (tab: string) => {
     if (activeTab !== tab) {
@@ -33,7 +36,7 @@ const VenturesFeedPage = () => {
             <Col lg={9} md={12} sm={12}>
               <Card>
                 <Row>
-                  <Col lg={11} md={12} className="mx-auto">
+                  <Col lg={11} md={12} sm={11} className="mx-auto">
                     <div>
                       <Row className="align-items-center py-3">
                         <Col xs={4}>
@@ -55,7 +58,7 @@ const VenturesFeedPage = () => {
                       {error && (
                         <AlertWithReload
                           message="Ha habido un error al consultar los emprendimientos, por favor intente nuevamente."
-                          onReload={fetchVentures}
+                          onReload={fetchMoreVentures}
                         />
                       )}
 
@@ -63,29 +66,41 @@ const VenturesFeedPage = () => {
                         activeTab={activeTab}
                         className="p-1 text-muted"
                       >
-                        {loading ? (
-                          <div style={{ marginTop: "50px" }}>
-                            <AppSpinner />
-                          </div>
-                        ) : (
-                          <Fragment>
-                            {activeTab === "1" && (
-                              <TabPane tabId="1">
-                                <Row>
-                                  {[...ventures, ...ventures].map((venture) => (
-                                    <Col lg={12} md={12} sm={12}>
-                                      <VentureCard venture={venture} />
-                                    </Col>
-                                  ))}
-                                </Row>
-                              </TabPane>
-                            )}
-
-                            <TabPane tabId="2">
-                              {activeTab === "2" && <VenturesMapPage />}
+                        <Fragment>
+                          {activeTab === "1" && (
+                            <TabPane tabId="1">
+                              <Row>
+                                <Col>
+                                  <InfiniteScroll
+                                    dataLength={ventures.total}
+                                    next={fetchMoreVentures}
+                                    hasMore={
+                                      ventures.items.length < ventures.total
+                                    }
+                                    loader={null}
+                                    endMessage={
+                                      <p style={{ textAlign: "center" }}>
+                                        No more items to show
+                                      </p>
+                                    }
+                                  >
+                                    {ventures.items.map((venture) => (
+                                      <Col lg={12} md={12} sm={12}>
+                                        <VentureCard venture={venture} />
+                                      </Col>
+                                    ))}
+                                  </InfiniteScroll>
+                                </Col>
+                              </Row>
                             </TabPane>
-                          </Fragment>
-                        )}
+                          )}
+
+                          <TabPane tabId="2">
+                            {activeTab === "2" && (
+                              <VenturesMap ventures={ventures.items} />
+                            )}
+                          </TabPane>
+                        </Fragment>
                       </TabContent>
                     </div>
                   </Col>
@@ -95,7 +110,7 @@ const VenturesFeedPage = () => {
 
             <Col lg={3} className="position-relative">
               <div className="position-fixed">
-                <VenturesFeedRightSidebar />
+                <VenturesFeedRightSidebar ventures={ventures} />
               </div>
             </Col>
           </Row>

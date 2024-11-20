@@ -4,32 +4,32 @@ import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
 import {
-  selectOwnedVenturesManagement,
-  setOwnedVenturesFilters,
-} from "../../../../config/redux/reducers/principal/owned-ventures.reducer";
+  selectVentures,
+  setVenturesFilters,
+} from "../../../../config/redux/reducers/principal/ventures.reducer";
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
 
-const useOwnedVenturesFilters = () => {
-  const { filters } = useSelector(selectOwnedVenturesManagement);
+const useVenturesFilters = () => {
+  const { filters } = useSelector(selectVentures);
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();
 
   const setSearchTerm = (search: string) => {
-    dispatch(setOwnedVenturesFilters({ ...filters, search, page: 0 }));
+    dispatch(setVenturesFilters({ ...filters, search, page: 0 }));
   };
 
   const setPage = (page: number) => {
-    dispatch(setOwnedVenturesFilters({ ...filters, page }));
+    dispatch(setVenturesFilters({ ...filters, page }));
   };
 
   const setSize = (size: number) => {
-    dispatch(setOwnedVenturesFilters({ ...filters, size, page: 0 }));
+    dispatch(setVenturesFilters({ ...filters, size, page: 0 }));
   };
 
   useEffect(() => {
     if (filters && filters.size === 0) {
-      dispatch(setOwnedVenturesFilters({ ...filters, size: 20 }));
+      dispatch(setVenturesFilters({ ...filters, size: 20 }));
     }
   }, []);
 
@@ -48,4 +48,4 @@ const useOwnedVenturesFilters = () => {
   return { filters, setSearchTerm, setPage, setSize };
 };
 
-export default useOwnedVenturesFilters;
+export default useVenturesFilters;

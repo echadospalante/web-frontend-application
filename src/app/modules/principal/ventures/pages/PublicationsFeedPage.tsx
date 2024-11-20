@@ -18,7 +18,7 @@ const PublicationsFeedPage = () => {
 
           <Row>
             <Col lg={9}>
-              <Card>
+              <Card className="px-3">
                 <Row className="justify-content-center">
                   <Col xl={8}>
                     <Row className="align-items-center py-3">
@@ -95,9 +95,13 @@ const PublicationsFeedPage = () => {
               </Card>
             </Col>
 
-            <Col lg={3}>
-              <PublicationsFeedRightSidebar />
+            <Col lg={3} className="position-relative">
+              <div className="position-fixed">
+                <PublicationsFeedRightSidebar />
+              </div>
             </Col>
+
+            <Col lg={3}></Col>
           </Row>
         </Container>
       </div>

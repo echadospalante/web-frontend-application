@@ -1,6 +1,8 @@
 import axios from "axios";
-import { Pagination, Venture, VentureCreate } from "echadospalante-core";
+import { Venture, VentureCreate } from "echadospalante-core";
+
 import env from "../../../../../../environment/environment";
+import { PaginatedBody } from "../../../ventures/domain/api";
 
 class OwnedVenturesApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures`;
@@ -30,21 +32,26 @@ class OwnedVenturesApi {
       .then(({ data }) => data);
   }
 
-  public static deleteVenture(ventureId: string) {
+  public static fetchOwnedVentures(
+    page: number,
+    size: number
+  ): Promise<PaginatedBody<Venture>> {
+    // const otherPrams = filterFalsyValues(rest);
+    const params = new URLSearchParams();
+    params.append("page", page.toString());
+    params.append("size", size.toString());
     return axios
-      .delete<Venture>(`${OwnedVenturesApi.API_BASE_URL}/${ventureId}`, {
+      .get<PaginatedBody<Venture>>(`${OwnedVenturesApi.API_BASE_URL}/owned`, {
         withCredentials: true,
+        params,
       })
       .then(({ data }) => data);
   }
 
-  public static fetchOwnedVentures(pagination: Pagination) {
+  public static deleteVenture(ventureId: string) {
     return axios
-      .get<Venture[]>(`${OwnedVenturesApi.API_BASE_URL}/owned`, {
+      .delete<Venture>(`${OwnedVenturesApi.API_BASE_URL}/${ventureId}`, {
         withCredentials: true,
-        params: {
-          pagination,
-        },
       })
       .then(({ data }) => data);
   }

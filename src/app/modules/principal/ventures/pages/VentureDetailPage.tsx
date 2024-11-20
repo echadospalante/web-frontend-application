@@ -30,15 +30,21 @@ import VentureEventsCalendar from "../../../../shared/components/calendar/Ventur
 import SponsorCard from "../../../../shared/components/card/SponsorCard";
 import VenturePublicationCard from "../../../../shared/components/card/VenturePublicationCard";
 import VentureDetailTabs from "../../../../shared/components/tabs/VentureDetailTabs";
-import { textToRGB } from "../../../../shared/helpers/colors";
+import { stringToColor, textToRGB } from "../../../../shared/helpers/colors";
 import VentureSponsorsTable from "./VentureSponsorsTable";
 import useVentureDetail from "../hooks/useVentureDetail";
 import AppLoading from "../../../../shared/components/loader/AppLoading";
 import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
+import VentureMapModal from "../../../../shared/components/modal/VentureMapModal";
 
 const VentureDetailPage = () => {
   const [activeTab, setActiveTab] = useState("1");
   const [open, setOpen] = useState(false);
+  const [showMapModal, setShowMapModal] = useState(false);
+
+  const handleToggleMapModal = (): void => {
+    setShowMapModal(!showMapModal);
+  };
 
   const toggleActiveTab = (tab: string) => {
     if (activeTab !== tab) {
@@ -55,6 +61,8 @@ const VentureDetailPage = () => {
         message="Cargando la información del emprendimiento..."
       />
     );
+
+  console.log({ venture });
 
   if (error || !venture) {
     return (
@@ -108,7 +116,13 @@ const VentureDetailPage = () => {
                       </tr>
                       <tr>
                         <th scope="row">Creado:</th>
-                        <td>{venture.createdAt.toISOString().split("T")[0]}</td>
+                        <td>
+                          {
+                            new Date(venture.createdAt)
+                              .toISOString()
+                              .split("T")[0]
+                          }
+                        </td>
                       </tr>
                       <tr>
                         <th scope="row">Verificado</th>
@@ -123,7 +137,7 @@ const VentureDetailPage = () => {
                         </td>
                       </tr>
                       <tr>
-                        <th scope="row">Status</th>
+                        <th scope="row">Estado</th>
                         <td>
                           <span className="badge badge-soft-info">
                             {venture.active ? "Activo" : "Inactivo"}
@@ -146,7 +160,9 @@ const VentureDetailPage = () => {
 
             <Card>
               <CardBody>
-                <div className="text-center">
+                <h5 className="fw-semibold mb-3">Contacto</h5>
+
+                {/* <div className="text-center">
                   <img
                     src={"/epl.png"}
                     alt=""
@@ -155,7 +171,7 @@ const VentureDetailPage = () => {
                   />
                   <h5 className="mt-3 mb-1">Mariela Calderón</h5>
                   <p className="text-muted mb-0">Desde Agosto, 2024</p>
-                </div>
+                </div> */}
 
                 <ul className="list-unstyled mt-4">
                   <li>
@@ -163,7 +179,9 @@ const VentureDetailPage = () => {
                       <i className="bx bx-phone text-primary fs-4"></i>
                       <div className="ms-3">
                         <h6 className="fs-14 mb-2">Teléfono</h6>
-                        <p className="text-muted fs-14 mb-0">+589 560 56555</p>
+                        <p className="text-muted fs-14 mb-0">
+                          {venture.contact?.phoneNumber}
+                        </p>
                       </div>
                     </div>
                   </li>
@@ -173,42 +191,56 @@ const VentureDetailPage = () => {
                       <div className="ms-3">
                         <h6 className="fs-14 mb-2">Email</h6>
                         <p className="text-muted fs-14 mb-0">
-                          echadospalante@gmail.com
+                          {venture.contact?.email}
                         </p>
                       </div>
                     </div>
                   </li>
-                  <li className="mt-3">
+                  {/* <li className="mt-3">
                     <div className="d-flex">
                       <i className="bx bx-globe text-primary fs-4"></i>
                       <div className="ms-3">
                         <h6 className="fs-14 mb-2">Website</h6>
                         <p className="text-muted fs-14 text-break mb-0">
-                          www.echadospalante.com
+                         No dis
                         </p>
                       </div>
                     </div>
-                  </li>
+                  </li> */}
                   <li className="mt-3">
                     <div className="d-flex">
                       <i className="bx bx-map text-primary fs-4"></i>
                       <div className="ms-3">
                         <h6 className="fs-14 mb-2">Ubicación</h6>
                         <p className="text-muted fs-14 mb-0">
-                          La Ceja, Antioquia
+                          {venture.location?.description}
                         </p>
+
+                        <Button
+                          color="primary"
+                          className="mt-2"
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            handleToggleMapModal();
+                          }}
+                        >
+                          <i className="bx bxs-map me-1"></i>
+                          <span>Ver en el mapa</span>
+                        </Button>
                       </div>
                     </div>
                   </li>
                 </ul>
-                <div className="mt-4">
+                {/* <div className="mt-4">
                   <Link
                     to="#"
                     className="btn btn-soft-primary btn-hover w-100 rounded"
                   >
                     <i className="mdi mdi-eye"></i> View Profile
                   </Link>
-                </div>
+                </div> */}
               </CardBody>
             </Card>
           </Col>
@@ -230,12 +262,12 @@ const VentureDetailPage = () => {
                     <ul className="list-unstyled d-flex flex-wrap hstack gap-2 mb-0 mt-1">
                       {venture.categories.map((category) => (
                         <li
-                          className="px-2 rounded-1"
+                          className="px-2 py-1 rounded-2"
                           style={{
-                            backgroundColor: textToRGB(category.name),
+                            backgroundColor: stringToColor(category.name),
                           }}
                         >
-                          <span className=" text-white">{category.name}</span>
+                          <span className="text-white">{category.name}</span>
                         </li>
                       ))}
                     </ul>
@@ -245,7 +277,7 @@ const VentureDetailPage = () => {
               <CardBody>
                 <h5 className="fw-semibold mb-3">Descripción</h5>
                 <p className="text-muted">{venture.description}</p>
-                <section>
+                {/* <section>
                   <Card>
                     <CardBody>
                       <div className="popup-gallery d-flex flex-wrap">
@@ -312,7 +344,7 @@ const VentureDetailPage = () => {
                       </div>
                     </CardBody>
                   </Card>
-                </section>
+                </section> */}
               </CardBody>
 
               <CardBody>
@@ -358,6 +390,18 @@ const VentureDetailPage = () => {
           </Col>
         </Row>
       </Container>
+
+      {showMapModal && venture.location?.lat && venture.location.lng ? (
+        <VentureMapModal
+          modal={showMapModal}
+          toggle={handleToggleMapModal}
+          coords={{
+            lat: venture.location?.lat,
+            lng: venture.location?.lng,
+          }}
+          address={venture.location.description || ""}
+        />
+      ) : null}
 
       <Lightbox
         open={open}

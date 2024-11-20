@@ -24,9 +24,10 @@ const useVentureDetail = () => {
       error: false,
     }));
     return dispatch(fetchVentureDetailMiddleware(params.slug))
-      .then(() => {
-        setVenturesRequest((venture) => ({
-          ...venture,
+      .then((ventureDetail) => {
+        setVenturesRequest((ventureRequest) => ({
+          ...ventureRequest,
+          venture: ventureDetail,
           loading: false,
           error: false,
         }));
@@ -48,16 +49,18 @@ const useVentureDetail = () => {
       error: false,
     }));
     dispatch(fetchVentureDetailMiddleware(params.slug))
-      .then(() => {
-        setVenturesRequest((venture) => ({
-          ...venture,
+      .then((ventureDetail) => {
+        setVenturesRequest((ventureRequest) => ({
+          ...ventureRequest,
+          venture: ventureDetail,
           loading: false,
           error: false,
         }));
       })
       .catch(() => {
-        setVenturesRequest((venture) => ({
-          ...venture,
+        setVenturesRequest((ventureRequest) => ({
+          ...ventureRequest,
+
           loading: false,
           error: true,
         }));

@@ -1,6 +1,7 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 
 import {
+  addVentures,
   setVentures,
   VentureFilter,
 } from "../../../../../config/redux/reducers/principal/ventures.reducer";
@@ -14,7 +15,7 @@ export const fetchVenturesMiddleware = (ventureFilter: VentureFilter) => {
   return async (dispatch: Dispatch<Action>) => {
     return VenturesApi.fetchVentures(ventureFilter)
       .then((response) => {
-        dispatch(setVentures(response));
+        dispatch(addVentures(response));
       })
       .catch((error) => {
         console.error(error);

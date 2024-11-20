@@ -61,7 +61,7 @@ const AccountVentureCreatePage = () => {
   // validation
   const validation = useFormik<VentureCreate>({
     initialValues: {
-      name: "Nombre de prueba",
+      name: "",
       coverPhoto: null,
       description: "",
       categoriesIds: [],

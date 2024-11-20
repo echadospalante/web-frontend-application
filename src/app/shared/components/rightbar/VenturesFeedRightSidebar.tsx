@@ -1,18 +1,20 @@
 import { Card, CardBody, Input } from "reactstrap";
 
 import Select from "react-select";
-import SimpleBar from "simplebar-react";
+import { Venture } from "echadospalante-core";
+
+import useVenturesFilters from "../../../modules/admin/general/hooks/useVenturesFilter";
+import { PaginatedBody } from "../../../modules/principal/ventures/domain/api";
 import departments from "../../data/geo/departments";
 
-const VenturesFeedRightSidebar = () => {
-  // const form = useFormik({
-  //   initialValues: {
-  //     departmentId: [] as string[],
-  //   },
-  //   onSubmit: (values) => {
-  //     console.log(values);
-  //   },
-  // });
+type VenturesFeedRightSidebarProps = {
+  ventures: PaginatedBody<Venture>;
+};
+
+const VenturesFeedRightSidebar = ({
+  ventures,
+}: VenturesFeedRightSidebarProps) => {
+  const { filters, setPage, setSearchTerm, setSize } = useVenturesFilters();
 
   return (
     <div>
@@ -21,6 +23,7 @@ const VenturesFeedRightSidebar = () => {
           <p className="text-muted">Busca por coincidencias</p>
           <Input
             type="text"
+            onChange={({ target }) => setSearchTerm(target.value)}
             style={{ height: "37px" }}
             className=""
             placeholder="Buscar"
@@ -107,9 +110,8 @@ const VenturesFeedRightSidebar = () => {
             />
           </div>
           <hr className="my-4" />
-          Resumen de resultados por departamento...
-          <br />
-          Resumen de resultados por categoría...
+          Se encontraron {ventures.total} emprendimientos basado en los filtros
+          aplicados.
         </CardBody>
       </Card>
     </div>

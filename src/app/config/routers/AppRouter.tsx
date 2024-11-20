@@ -33,7 +33,7 @@ import PublicationDetailPage from "../../modules/principal/ventures/pages/Public
 import PublicationsFeedPage from "../../modules/principal/ventures/pages/PublicationsFeedPage";
 import VentureDetailPage from "../../modules/principal/ventures/pages/VentureDetailPage";
 import VenturesFeedPage from "../../modules/principal/ventures/pages/VenturesFeedPage";
-import VenturesMapPage from "../../modules/principal/ventures/pages/VenturesMapPage";
+import VenturesMap from "../../modules/principal/ventures/pages/VenturesMapPage";
 import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayoutPage";
 import AppSpinner from "../../shared/components/loader/Spinner";
 import PrivateRoute from "./PrivateRoute";
@@ -90,7 +90,7 @@ const AppRouter = () => {
             <Route path="emprendimientos" element={<CommercialLayoutPage />}>
               <Route path="" element={<VenturesFeedPage />} />
 
-              <Route path="mapa" element={<VenturesMapPage />} />
+              <Route path="mapa" element={<VenturesMap />} />
               <Route path="calendario" element={<EventsCalendarPage />} />
               <Route path=":slug" element={<VentureDetailPage />} />
 
