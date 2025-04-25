@@ -1,12 +1,12 @@
 # Build Stage
-FROM node:20.9.0-alpine AS build
+FROM node:22-alpine AS build
 
 WORKDIR /app
 COPY . .
 
-RUN npm i 
+RUN npm install --force
 
-RUN npm run build -f
+RUN npm run build
 
 FROM nginx:alpine
 

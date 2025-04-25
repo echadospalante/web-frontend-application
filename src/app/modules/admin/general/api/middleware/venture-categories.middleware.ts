@@ -3,7 +3,6 @@ import { Action, Dispatch } from "@reduxjs/toolkit";
 import { VentureCategory, VentureCategoryCreate } from "echadospalante-core";
 
 import {
-  addVentureCategory,
   setVentureCategories,
   updateVentureCategory,
   VentureCategoriesFilter,
@@ -109,13 +108,12 @@ export const fetchVentureCategoriesMiddleware = (
   };
 };
 
-export const fetchAllVentureCategoriesMiddleware = (
-) => {
+export const fetchAllVentureCategoriesMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {
     return VentureCategoriesApi.fetchVentureCategories({
       search: "",
       page: 0,
-      size: -1
+      size: -1,
     })
       .then((response) => response.items)
       .catch((error) => {

@@ -19,26 +19,23 @@ export class OwnedVenturesApi {
     params.set("page", page.toString());
     params.set("size", size.toString());
     return axios
-     .get<PaginatedBody<Venture>>(
-       `${OwnedVenturesApi.API_BASE_URL}`,
-       {
-         withCredentials: true,
-         params,
-       }
-     )
-     .then(({ data }) => data);
+      .get<PaginatedBody<Venture>>(`${OwnedVenturesApi.API_BASE_URL}`, {
+        withCredentials: true,
+        params,
+      })
+      .then(({ data }) => data);
   }
 
-  public static updateOwnedVenture(
+  public static async updateOwnedVenture(
     id: string,
     category: Venture
   ): Promise<void> {
-    throw new Error("Method not implemented.");
+    console.log({ id, category });
   }
 
-  public static createOwnedVenture(
+  public static async createOwnedVenture(
     category: VentureCreate
   ): Promise<void> {
-    throw new Error("Method not implemented.");
+    console.log({ category });
   }
 }

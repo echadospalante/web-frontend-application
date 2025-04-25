@@ -1,5 +1,3 @@
-import { Fragment } from "react";
-
 import Select from "react-select";
 import { Col, Row } from "reactstrap";
 

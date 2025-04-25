@@ -12,7 +12,6 @@ import {
 
 import { VentureCategory } from "echadospalante-core";
 import useEditVentureCategory from "../../../modules/admin/general/hooks/useEditVentureCategory";
-import useRoles from "../../../modules/auth/hooks/useRoles";
 
 type EditVentureCategoryModalProps = {
   show: boolean;
@@ -25,10 +24,8 @@ const EditVentureCategoryModal = ({
   show,
   onCloseClick,
   ventureCategory,
-  onSuccessfulEdit,
 }: EditVentureCategoryModalProps) => {
-  const { error, loading, handleSubmit, form } =
-    useEditVentureCategory(ventureCategory);
+  const { error, form } = useEditVentureCategory(ventureCategory);
 
   return (
     <Modal isOpen={show} toggle={onCloseClick}>

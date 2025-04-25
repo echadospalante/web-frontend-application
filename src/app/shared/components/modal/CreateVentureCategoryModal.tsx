@@ -23,7 +23,7 @@ const CreateVentureCategoryModal = ({
   onCloseClick,
   onSuccessfulCreate,
 }: CreateVentureCategoryModalProps) => {
-  const { error, loading, handleSubmit, form } = useCreateVentureCategory();
+  const { error, handleSubmit, form } = useCreateVentureCategory();
 
   const handleCreateCategory = () => {
     return handleSubmit().then(() => {

@@ -19,14 +19,14 @@ export class VentureCategoriesApi {
     params.set("page", page.toString());
     params.set("size", size.toString());
     return axios
-     .get<PaginatedBody<VentureCategory>>(
-       `${VentureCategoriesApi.API_BASE_URL}`,
-       {
-         withCredentials: true,
-         params,
-       }
-     )
-     .then(({ data }) => data);
+      .get<PaginatedBody<VentureCategory>>(
+        `${VentureCategoriesApi.API_BASE_URL}`,
+        {
+          withCredentials: true,
+          params,
+        }
+      )
+      .then(({ data }) => data);
     // return Promise.resolve({
     //   items: [
     //     {
@@ -89,16 +89,16 @@ export class VentureCategoriesApi {
     // });
   }
 
-  public static updateVentureCategory(
+  public static async updateVentureCategory(
     id: string,
     category: VentureCategory
   ): Promise<void> {
-    throw new Error("Method not implemented.");
+    console.log({ id, category });
   }
 
-  public static createVentureCategory(
+  public static async createVentureCategory(
     category: VentureCategoryCreate
   ): Promise<void> {
-    throw new Error("Method not implemented.");
+    console.log({ category });
   }
 }

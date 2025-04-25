@@ -1,27 +1,26 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-import authenticationReducer, {
-  AuthenticationState,
-} from "../reducers/auth/auth.reducer";
-import layoutReducer, { LayoutState } from "../reducers/shared/layout.reducer";
-import venturesReducer, {
-  VenturesState,
-} from "../reducers/principal/ventures.reducer";
-import userInterfaceReducer, {
-  UserInterfaceState,
-} from "../reducers/shared/user-interface.reducer";
-import registerReducer, {
-  RegisterState,
-} from "../reducers/auth/register.reducer";
+import ownedVenturesManagementReducer from "../reducers/admin/owned-ventures-management.reducer";
 import UsersManagementReducer, {
   UsersManagementState,
 } from "../reducers/admin/users-management.reducer";
 import ventureCategoriesManagementReducer, {
-  ventureCategoriesManagementSlice,
   VentureCategoriesManagementState,
 } from "../reducers/admin/venture-categories-management.reducer";
-import ownedVenturesManagementReducer from "../reducers/admin/owned-ventures-management.reducer";
+import authenticationReducer, {
+  AuthenticationState,
+} from "../reducers/auth/auth.reducer";
+import registerReducer, {
+  RegisterState,
+} from "../reducers/auth/register.reducer";
+import venturesReducer, {
+  VenturesState,
+} from "../reducers/principal/ventures.reducer";
+import layoutReducer, { LayoutState } from "../reducers/shared/layout.reducer";
+import userInterfaceReducer, {
+  UserInterfaceState,
+} from "../reducers/shared/user-interface.reducer";
 
 export interface GlobalState {
   authentication: AuthenticationState;

@@ -21,7 +21,7 @@ const useCreateVentureCategory = () => {
     },
     onSubmit: (values) => {
       console.log({ values });
-      handleSubmit(values);
+      handleSubmit();
     },
     validationSchema: {
       name: Yup.string()

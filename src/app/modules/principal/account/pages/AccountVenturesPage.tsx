@@ -1,5 +1,7 @@
-import React, { Fragment, useEffect, useMemo, useState } from "react";
+import React, { Fragment, useState } from "react";
 
+import { User, Venture } from "echadospalante-core";
+import { useNavigate } from "react-router-dom";
 import {
   Button,
   Card,
@@ -11,18 +13,15 @@ import {
 } from "reactstrap";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import VentureCard from "../../../../shared/components/card/VentureCard";
-import { User, Venture } from "echadospalante-core";
 import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
 import EditUserModal from "../../../../shared/components/modal/EditUserModal";
-import useUsers from "../../../admin/general/hooks/useUsers";
 import useOwnedVentures from "../../../admin/general/hooks/useOwnedVentures";
-import { Link, useNavigate } from "react-router-dom";
 
 const AccountVenturesPage = () => {
   //meta title
   document.title = "Tus emprendimientos | Echadospalante";
-  const [ventures, setVentures] = useState<Venture[]>([
+  const [ventures] = useState<Venture[]>([
     {
       id: "123",
       name: "Some test venturename",
@@ -92,16 +91,8 @@ const AccountVenturesPage = () => {
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
   const navigate = useNavigate();
 
-  const {
-    loading,
-    error,
-    items,
-    total,
-    fetchOwnedVentures,
-    page,
-    size,
-    setPage,
-  } = useOwnedVentures();
+  const { loading, error, total, fetchOwnedVentures, page, size, setPage } =
+    useOwnedVentures();
 
   const handleSetCurrentPage = (page: number) => {
     // table.setPageIndex(page + 1);

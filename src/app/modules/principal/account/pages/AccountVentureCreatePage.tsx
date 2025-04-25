@@ -1,37 +1,32 @@
-import React, { Fragment, useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
 
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/leaflet.css";
 import {
   Button,
   Card,
   CardBody,
   Col,
   Container,
+  Form,
   FormFeedback,
   Input,
   Label,
   Row,
-  Form,
-  UncontrolledTooltip,
 } from "reactstrap";
-import "leaflet/dist/leaflet.css";
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
 
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import Select from "react-select";
-import { Link } from "react-router-dom";
 import * as Yup from "yup";
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import Dropzone from "react-dropzone";
-import SimpleBar from "simplebar-react";
-import { useFormik } from "formik";
 import { VentureCreate } from "echadospalante-core";
-import useVentureCategories from "../../../admin/general/hooks/useVentureCategories";
-import useAllVentureCategories from "../../../admin/general/hooks/useAllVentureCategories";
+import { useFormik } from "formik";
 import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
+import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import useAllVentureCategories from "../../../admin/general/hooks/useAllVentureCategories";
 import useAuthentication from "../../../auth/hooks/useAuthentication";
 
 enum LocationMode {
@@ -65,7 +60,7 @@ const AccountVentureCreatePage = () => {
   const validation = useFormik<VentureCreate>({
     initialValues: {
       name: "Nombre de prueba",
-      coverPhoto: null,
+      coverPhoto: "null",
       description: "",
       categoriesIds: [],
       contact: {
@@ -396,7 +391,7 @@ const AccountVentureCreatePage = () => {
                               className="btn-check w-100"
                               name="btnradio"
                               id="btnradio4"
-                              onChange={(e) => {
+                              onChange={(_) => {
                                 setLocationMode(LocationMode.CURRENT);
                               }}
                               autoComplete="off"
@@ -413,7 +408,7 @@ const AccountVentureCreatePage = () => {
                               type="radio"
                               className="btn-check w-100"
                               name="btnradio"
-                              onChange={(e) => {
+                              onChange={(_) => {
                                 setLocationMode(LocationMode.OTHER);
                               }}
                               id="btnradio5"

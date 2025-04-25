@@ -1,15 +1,14 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 import { Role } from "echadospalante-core";
 
+import { UsersFilter } from "../../../../../config/redux/reducers/admin/users-management.reducer";
 import {
   finishGlobalLoading,
   setGlobalAlert,
   SeverityLevel,
 } from "../../../../../config/redux/reducers/shared/user-interface.reducer";
-import { UsersApi } from "../http/users-management.api";
 import { AppRole } from "../../../../auth/domain/Role";
-import { UsersFilter } from "../../../../../config/redux/reducers/admin/users-management.reducer";
-import filterFalsyValues from "../../../../../shared/helpers/object-utils";
+import { UsersApi } from "../http/users-management.api";
 export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {
   return async (dispatch: Dispatch) => {
     return UsersApi.changeUserRoles(email, roles)
