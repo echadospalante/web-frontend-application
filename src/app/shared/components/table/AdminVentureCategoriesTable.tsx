@@ -212,12 +212,6 @@ const getColumns = (
 ) => {
   return [
     {
-      header: "Id",
-      accessorKey: "id",
-      enableColumnFilter: false,
-      enableSorting: true,
-    },
-    {
       header: "Nombre",
       accessorKey: "name",
       enableColumnFilter: false,

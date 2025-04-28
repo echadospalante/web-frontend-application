@@ -4,12 +4,25 @@ import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
+
+import { VentureCreate } from "echadospalante-core";
+import { useFormik } from "formik";
+import L from "leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
+import Select from "react-select";
+import React, { useState } from "react";
+
+import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
+import markerIcon from "leaflet/dist/images/marker-icon.png";
+import markerShadow from "leaflet/dist/images/marker-shadow.png";
+import "leaflet/dist/leaflet.css";
 import {
   Button,
   Card,
   CardBody,
   Col,
   Container,
+  Form,
   Form,
   FormFeedback,
   Input,
@@ -24,10 +37,16 @@ import * as Yup from "yup";
 
 import { VentureCreate } from "echadospalante-core";
 import { useFormik } from "formik";
+import * as Yup from "yup";
+
+import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
+import { VentureCreate } from "echadospalante-core";
+import { useFormik } from "formik";
 import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import useAllVentureCategories from "../../../admin/general/hooks/useAllVentureCategories";
 import useAuthentication from "../../../auth/hooks/useAuthentication";
+import useVentureCreate from "../hooks/useVentureCreate";
 
 enum LocationMode {
   "CURRENT",
@@ -50,16 +69,17 @@ const AccountVentureCreatePage = () => {
     error: errorCategories,
     fetchAllVentureCategories,
   } = useAllVentureCategories();
+  const { createVenture, error, loading } = useVentureCreate();
   const { email } = useAuthentication();
   const [selectedImage, setSelectedImage] = useState<string>("");
   const [locationMode, setLocationMode] = useState<LocationMode>(
-    LocationMode.NONE
+    LocationMode.CURRENT
   );
 
   // validation
   const validation = useFormik<VentureCreate>({
     initialValues: {
-      name: "Nombre de prueba",
+      name: "",
       coverPhoto: "null",
       description: "",
       categoriesIds: [],
@@ -74,37 +94,37 @@ const AccountVentureCreatePage = () => {
       },
     },
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required").max(50),
-      coverPhoto: Yup.mixed<File>()
-        .required("La foto de portada es requerida")
-        .test(
-          "fileType",
-          "Unsupported file format. Please upload an image in JPEG or PNG.",
-          (value) => {
-            return (
-              value &&
-              ["image/jpeg", "image/png", "image/jpg"].includes(value.type)
-            );
-          }
-        ),
-      description: Yup.string().required("Description is required").max(300),
-      categories: Yup.array().required("Category is required").min(1),
-      contact: Yup.object().shape({
-        email: Yup.string().required("Email is required").email().optional(),
-        phoneNumber: Yup.string()
-          .required("Phone number is required")
-          .matches(/^[0-9]+$/)
-          .optional(),
-      }),
-      location: Yup.object().shape({
-        lat: Yup.number().required("Latitude is required").optional(),
-        lng: Yup.number().required("Longitude is required").optional(),
-        description: Yup.string(),
-      }),
+      // name: Yup.string().required("Name is required").max(50),
+      // coverPhoto: Yup.mixed<File>()
+      //   .required("La foto de portada es requerida")
+      //   .test(
+      //     "fileType",
+      //     "Unsupported file format. Please upload an image in JPEG or PNG.",
+      //     (value) => {
+      //       return (
+      //         value &&
+      //         ["image/jpeg", "image/png", "image/jpg"].includes(value.type)
+      //       );
+      //     }
+      //   ),
+      // description: Yup.string().required("Description is required").max(300),
+      // categories: Yup.array().required("Category is required").min(1),
+      // contact: Yup.object().shape({
+      //   email: Yup.string().required("Email is required").email().optional(),
+      //   phoneNumber: Yup.string()
+      //     .required("Phone number is required")
+      //     .matches(/^[0-9]+$/)
+      //     .optional(),
+      // }),
+      // location: Yup.object().shape({
+      //   lat: Yup.number().required("Latitude is required").optional(),
+      //   lng: Yup.number().required("Longitude is required").optional(),
+      //   description: Yup.string(),
+      // }),
     }),
-
     onSubmit: (values) => {
-      console.log(values);
+      console.log({ values });
+      createVenture(values);
     },
   });
 
@@ -441,7 +461,7 @@ const AccountVentureCreatePage = () => {
                             </label>
                           </div>
 
-                          {locationMode === 0 && (
+                          {locationMode === 0 ? (
                             <Button
                               className="btn btn-info w-100 my-2"
                               onClick={() => {
@@ -465,9 +485,9 @@ const AccountVentureCreatePage = () => {
                               <i className="bx bx-map me-1"></i>
                               Obtener mi ubicacion actual
                             </Button>
-                          )}
+                          ) : null}
 
-                          {locationMode === 1 && (
+                          {locationMode === 1 ? (
                             <Row>
                               <Col lg={6}>
                                 <div className="mb-3">
@@ -526,44 +546,44 @@ const AccountVentureCreatePage = () => {
                                 </div>
                               </Col>
                             </Row>
-                          )}
+                          ) : null}
 
                           {validation.values.location?.lat &&
-                            validation.values.location?.lng && (
-                              <MapContainer
-                                center={[
+                          validation.values.location?.lng ? (
+                            <MapContainer
+                              center={[
+                                validation.values.location?.lat,
+                                validation.values.location?.lng,
+                              ]}
+                              zoom={13}
+                              style={{ height: "400px", width: "100%" }}
+                            >
+                              <TileLayer
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // OpenStreetMap tiles
+                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                              />
+                              <Marker
+                                position={[
                                   validation.values.location?.lat,
                                   validation.values.location?.lng,
                                 ]}
-                                zoom={13}
-                                style={{ height: "400px", width: "100%" }}
+                                icon={markerIconInstance}
                               >
-                                <TileLayer
-                                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // OpenStreetMap tiles
-                                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                />
-                                <Marker
-                                  position={[
-                                    validation.values.location?.lat,
-                                    validation.values.location?.lng,
-                                  ]}
-                                  icon={markerIconInstance}
-                                >
-                                  <Popup>La ubicacion que elegiste</Popup>
-                                </Marker>
+                                <Popup>La ubicacion que elegiste</Popup>
+                              </Marker>
 
-                                <SetMapCenter
-                                  position={[
-                                    validation.values.location?.lat,
-                                    validation.values.location?.lng,
-                                  ]}
-                                />
-                              </MapContainer>
-                            )}
+                              <SetMapCenter
+                                position={[
+                                  validation.values.location?.lat,
+                                  validation.values.location?.lng,
+                                ]}
+                              />
+                            </MapContainer>
+                          ) : null}
 
                           <div className="mb-3 mt-2">
                             <Label htmlFor="projectdesc-input">
-                              Descripción corta de la ubicacion
+                              Descripción corta de la ubicacion (*)
                             </Label>
                             <div>
                               <textarea
@@ -597,9 +617,20 @@ const AccountVentureCreatePage = () => {
                   </Row>
                 </Col>
 
+                {errorCategories && (
+                  <Col lg={12}>
+                    <AlertWithReload
+                      message="Ha habido un error al crear el emprendimiento, por favor intente nuevamente."
+                      onReload={() => {
+                        validation.handleSubmit();
+                      }}
+                    />
+                  </Col>
+                )}
+
                 <Col lg={12}>
                   <div className="text-center mb-4">
-                    <Button type="submit" color="primary">
+                    <Button disabled={loading} type="submit" color="primary">
                       <i className="bx bx-rocket me-1"></i>
                       Crear emprendimiento
                     </Button>

@@ -1,5 +1,5 @@
 import Select from "react-select";
-import { Col, Row } from "reactstrap";
+import { Col, Input, Row } from "reactstrap";
 
 import useOwnedVenturesFilters from "../../../modules/admin/general/hooks/useOwnedVenturesFilter";
 
@@ -39,7 +39,8 @@ const OwnedVenturesFiltersForm = () => {
 
       <Col lg={3} md={12} sm={12}>
         <label className="control-label">Búsqueda por Coincidencia</label>
-        <input
+        <Input
+          style={{ height: "37px" }}
           value={filters.search}
           onChange={({ target }) => setSearchTerm(target.value)}
           className="form-control"

@@ -1,6 +1,10 @@
 import React, { Fragment, useState } from "react";
 
 import { User, Venture } from "echadospalante-core";
+import React, { Fragment } from "react";
+
+import { useNavigate } from "react-router-dom";
+import { User, Venture } from "echadospalante-core";
 import { useNavigate } from "react-router-dom";
 import {
   Button,
@@ -11,16 +15,24 @@ import {
   Pagination,
   Row,
 } from "reactstrap";
+
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import VentureCard from "../../../../shared/components/card/VentureCard";
+import OwnedVentureCard from "../../../../shared/components/card/OwnedVentureCard";
 import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
 import EditUserModal from "../../../../shared/components/modal/EditUserModal";
 import useOwnedVentures from "../../../admin/general/hooks/useOwnedVentures";
+import OwnedVentureCard from "../../../../shared/components/card/OwnedVentureCard";
+import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
+import AppSpinner from "../../../../shared/components/loader/Spinner";
+import useOwnedVentures from "../hooks/useOwnedVentures";
 
 const AccountVenturesPage = () => {
   //meta title
   document.title = "Tus emprendimientos | Echadospalante";
+  const { error, items, fetchOwnedVentures, loading, setPage, total, filters } =
+    useOwnedVentures();
   const [ventures] = useState<Venture[]>([
     {
       id: "123",
@@ -99,10 +111,6 @@ const AccountVenturesPage = () => {
     setPage(page);
   };
 
-  const handleCloseEditModal = () => {
-    setActiveUserToEdit(undefined);
-  };
-
   const handleNavigateToCreate = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ): void => {
@@ -117,14 +125,6 @@ const AccountVenturesPage = () => {
       <Container fluid>
         {/* Render Breadcrumbs */}
         <Breadcrumb title="Cuenta" breadcrumbItem="Tus emprendimientos" />
-        {activeUserToEdit && (
-          <EditUserModal
-            show={!!activeUserToEdit}
-            onCloseClick={handleCloseEditModal}
-            onSuccessfulEdit={fetchOwnedVentures}
-            user={activeUserToEdit}
-          />
-        )}
 
         <Col lg="12">
           <Card>
@@ -141,39 +141,10 @@ const AccountVenturesPage = () => {
                     Crear emprendimiento
                     <i className="bx bx-plus mx-1"></i>
                   </Button>
-                  <div className="btn-group h-100" role="group">
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-list"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-list"
-                    >
-                      <i className="bx bx-list-ul"></i>
-                    </label>
-
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-grid"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-grid"
-                    >
-                      <i className="bx bx-grid"></i>
-                    </label>
-                  </div>
 
                   <Button
                     type="button"
-                    // onClick={fetchUsers}
+                    onClick={fetchOwnedVentures}
                     className="btn btn-light mx-2 mb-2"
                   >
                     <i className="mdi mdi-refresh"></i>
@@ -199,8 +170,8 @@ const AccountVenturesPage = () => {
                   </div>
                 ) : (
                   <Row>
-                    {ventures.map((venture) => (
-                      <VentureCard key={venture.id} venture={venture} />
+                    {items.map((venture) => (
+                      <OwnedVentureCard key={venture.id} venture={venture} />
                     ))}
                   </Row>
                 )}
@@ -208,8 +179,9 @@ const AccountVenturesPage = () => {
                 <Row>
                   <Col sm={12} md={5} lg={6}>
                     <div className="dataTables_info">
-                      Página {page + 1} de {Math.ceil(total / size) || 1}, con
-                      un tatal de {total} emprendimientos
+                      Página {filters.page + 1} de{" "}
+                      {Math.ceil(total / filters.size) || 1}, con un total de{" "}
+                      {total} emprendimientos
                     </div>
                   </Col>
                   <Col
@@ -219,9 +191,9 @@ const AccountVenturesPage = () => {
                     className="d-flex justify-content-end"
                   >
                     <Pagination
-                      perPageData={size}
+                      perPageData={filters.size}
                       length={total}
-                      currentPage={page + 1}
+                      currentPage={filters.page + 1}
                       setCurrentPage={handleSetCurrentPage}
                       paginationDiv="col-lg-12"
                       paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"

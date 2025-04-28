@@ -148,30 +148,31 @@ const UserSidebarContent = () => {
             </li>
 
             <li>
+              <Link to="/principal/publicaciones">
+                {/* <i className="bx bxs-cabinet"></i> */}
+                <i className="mdi mdi-post-outline"></i>
+                <span>{t("Publications")}</span>
+              </Link>
+            </li>
+
+            {/* <li>
               <Link to="/principal/eventos">
                 <i className="bx bx-id-card"></i>
                 <span>{t("Events")}</span>
               </Link>
-            </li>
+            </li> */}
 
-            <li>
-              <Link to="/principal/mapa">
+            {/* <li>
+              <Link to="/principal/emprendimientos/mapa">
                 <i className="bx bx-carousel"></i>
                 <span>{t("Map")}</span>
               </Link>
-            </li>
+            </li> */}
 
             <li>
-              <Link to="/principal/calendario">
+              <Link to="/principal/emprendimientos/calendario">
                 <i className="bx bx-calendar"></i>
-                <span>{t("Calendar")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/calendario">
-                <i className="bx bxs-news"></i>
-                <span>{t("News")}</span>
+                <span>{t("Events")}</span>
               </Link>
             </li>
           </ul>
@@ -193,12 +194,12 @@ const UserSidebarContent = () => {
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="/principal/preferencias/tema">
                 <i className="bx bx-sun"></i>
                 <span>{t("Theme And Layout")}</span>
               </Link>
-            </li>
+            </li> */}
           </ul>
 
           <ul className="metismenu list-unstyled" id="side-menu">
@@ -211,16 +212,16 @@ const UserSidebarContent = () => {
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="/principal/cuenta/suscripciones">
                 <i className="bx bx-health"></i>
                 <span>{t("Subscriptions")}</span>
               </Link>
-            </li>
+            </li> */}
 
             <li>
               <Link to="/principal/cuenta/emprendimientos">
-                <i className="bx bx-health"></i>
+                <i className="bx bx-store"></i>
                 <span>{t("My Ventures")}</span>
               </Link>
             </li>
@@ -228,7 +229,7 @@ const UserSidebarContent = () => {
             <li>
               <Link to="/principal/cuenta/suscripciones">
                 <i className="bx bx-heart"></i>
-                <span>{t("My Donations")}</span>
+                <span>{t("Donations And Sponsorships")}</span>
               </Link>
             </li>
           </ul>

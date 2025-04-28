@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import {
   selectOwnedVenturesManagement,
   setOwnedVenturesFilters,
-} from "../../../../config/redux/reducers/admin/owned-ventures-management.reducer";
+} from "../../../../config/redux/reducers/principal/owned-ventures.reducer";
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
 
 const useOwnedVenturesFilters = () => {

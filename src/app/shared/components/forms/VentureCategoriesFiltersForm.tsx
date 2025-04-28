@@ -41,6 +41,7 @@ const VentureCategoriesFiltersForm = () => {
         <label className="control-label">Búsqueda por Coincidencia</label>
         <input
           value={filters.search}
+          style={{ height: "37px" }}
           onChange={({ target }) => setSearchTerm(target.value)}
           className="form-control"
           type="text"

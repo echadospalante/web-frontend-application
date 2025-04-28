@@ -28,17 +28,17 @@ const AccountProfilePage = () => {
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumbs */}
-          <Breadcrumb title="Cuenta" breadcrumbItem="Perfil" />
+          <Breadcrumb title="Account" breadcrumbItem="Profile" />
 
           <Row>
-            <Col xl="4">
+            <Col xl="12">
               <Card className="overflow-hidden">
                 <div className="bg-primary-subtle">
                   <Row>
                     <Col xs="7">
                       <div className="text-primary p-3">
-                        <h5 className="text-primary">Welcome Back !</h5>
-                        <p>It will seem like simplified</p>
+                        <h5 className="text-primary">Welcome Back!</h5>
+                        <p>We're glad to see you again!</p>
                       </div>
                     </Col>
                     <Col xs="5" className="align-self-end">
@@ -62,8 +62,8 @@ const AccountProfilePage = () => {
                       <h6>{email}</h6>
 
                       <p className="text-muted mb-0 text-truncate">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Harum, magnam.
+                        Desarrollador y estudiante de ingeniería de sistemas,
+                        apasionado por el emprendimiento y la tecnología.
                       </p>
 
                       <section className="d-flex mt-3">
@@ -80,7 +80,7 @@ const AccountProfilePage = () => {
 
                     <Col sm={8}>
                       <div className="pt-4">
-                        <Row>
+                        {/* <Row>
                           <Col xs="6">
                             <h5 className="font-size-15">Test</h5>
                             <p className="text-muted mb-0">Projects</p>
@@ -89,10 +89,10 @@ const AccountProfilePage = () => {
                             <h5 className="font-size-15">$Test</h5>
                             <p className="text-muted mb-0">Test </p>
                           </Col>
-                        </Row>
+                        </Row> */}
                         <div className="mt-4">
                           <Link to="" className="btn btn-primary  btn-sm">
-                            Editar perfil{" "}
+                            Edit profile{" "}
                             <i className="mdi mdi-arrow-right ms-1" />
                           </Link>
                         </div>
@@ -102,7 +102,7 @@ const AccountProfilePage = () => {
                 </CardBody>
               </Card>
 
-              <Card>
+              {/* <Card>
                 <CardBody>
                   <CardTitle className="mb-5">Registro de Actividad</CardTitle>
                   <div>
@@ -162,13 +162,13 @@ const AccountProfilePage = () => {
                     </ul>
                   </div>
                 </CardBody>
-              </Card>
+              </Card> */}
             </Col>
 
-            <Col xl="8">
+            {/* <Col xl="8">
               <UserContactCard />
-            </Col>
-            <Col xl="8">
+            </Col> */}
+            {/* <Col xl="8">
               <Row>
                 {[1, 2, 3]?.map((_card) => (
                   <VentureCategoryWidget
@@ -181,7 +181,7 @@ const AccountProfilePage = () => {
                   />
                 ))}
               </Row>
-            </Col>
+            </Col> */}
           </Row>
         </Container>
       </div>

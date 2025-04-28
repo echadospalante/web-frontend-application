@@ -147,12 +147,12 @@ const AdminSidebarContent = () => {
 
             <li>
               <Link to="/administracion/general/emprendimientos">
-                <i className="bx bx-bar-chart-square"></i>
-                <span>Emprendimientos</span>
+                <i className="bx bx-rocket"></i>
+                <span>{t("Ventures")}</span>
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="/administracion/general/eventos">
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Eventos</span>
@@ -164,12 +164,19 @@ const AdminSidebarContent = () => {
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Publicaciones</span>
               </Link>
+            </li> */}
+
+            <li>
+              <Link to="/administracion/general/noticias">
+                <i className="bx bx-news"></i>
+                <span>Noticias</span>
+              </Link>
             </li>
 
             <li>
               <Link to="/administracion/general/noticias">
-                <i className="bx bx-bar-chart-square"></i>
-                <span>Noticias</span>
+                <i className="bx bx-calendar"></i>
+                <span>Eventos</span>
               </Link>
             </li>
 
@@ -188,14 +195,14 @@ const AdminSidebarContent = () => {
 
             <li>
               <Link to="/administracion/metricas">
-                <i className="bx bx-bar-chart-square"></i>
+                <i className="mdi mdi-speedometer"></i>
                 <span>{t("Throughput Metrics")}</span>
               </Link>
             </li>
 
             <li>
               <Link to="/administracion/metricas">
-                <i className="bx bx-bar-chart-square"></i>
+                <i className="bx bx-bolt-circle"></i>
                 <span>{t("Availability Metrics")}</span>
               </Link>
             </li>

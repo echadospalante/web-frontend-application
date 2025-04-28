@@ -1,45 +1,38 @@
 import { useEffect, useState } from "react";
 
-import { Venture } from "echadospalante-core";
 import { useSelector } from "react-redux";
-
 import {
   selectOwnedVenturesManagement,
   setOwnedVenturesFilters,
-} from "../../../../config/redux/reducers/admin/owned-ventures-management.reducer";
+} from "../../../../config/redux/reducers/principal/owned-ventures.reducer";
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import {
-  fetchOwnedVenturesMiddleware,
-  updateOwnedVentureMiddleware,
-} from "../api/middleware/owned-ventures.middleware";
+import { fetchOwnedVenturesMiddleware } from "../api/middleware/owned-ventures.middleware";
 
 const useOwnedVentures = () => {
-  const { filters, ventures } = useSelector(
-    selectOwnedVenturesManagement
-  );
-
   const dispatch = useAppDispatch();
 
-  const [ownedVenturesRequest, setCategoriesRequest] = useState({
-    loading: true,
+  const { ventures, filters } = useSelector(selectOwnedVenturesManagement);
+  const [ownedVenturesRequest, setVenturesRequest] = useState({
+    loading: false,
     error: false,
   });
 
   const fetchOwnedVentures = () => {
-    setCategoriesRequest({
+    setVenturesRequest((venturesRequest) => ({
+      ...venturesRequest,
       loading: true,
       error: false,
-    });
+    }));
 
-    dispatch(fetchOwnedVenturesMiddleware(filters))
+    dispatch(fetchOwnedVenturesMiddleware(filters.page, filters.size))
       .then(() => {
-        setCategoriesRequest({
+        setVenturesRequest({
           loading: false,
           error: false,
         });
       })
       .catch(() => {
-        setCategoriesRequest(() => ({
+        setVenturesRequest(() => ({
           loading: false,
           error: true,
         }));
@@ -50,38 +43,34 @@ const useOwnedVentures = () => {
     dispatch(setOwnedVenturesFilters({ ...filters, page }));
   };
 
-  const handleEditOwnedVenture = (venture: Venture) => {
-    dispatch(updateOwnedVentureMiddleware(venture.id, venture));
-  };
-
   useEffect(() => {
-    setCategoriesRequest({
+    setVenturesRequest((venturesRequest) => ({
+      ...venturesRequest,
       loading: true,
       error: false,
-    });
+    }));
 
-    dispatch(fetchOwnedVenturesMiddleware(filters))
+    dispatch(fetchOwnedVenturesMiddleware(filters.page, filters.size))
       .then(() => {
-        setCategoriesRequest({
+        setVenturesRequest({
           loading: false,
           error: false,
         });
       })
       .catch(() => {
-        setCategoriesRequest({
+        setVenturesRequest(() => ({
           loading: false,
           error: true,
-        });
+        }));
       });
-  }, [dispatch, filters]);
+  }, [dispatch, filters.page, filters.size]);
 
   return {
     ...ventures,
     ...ownedVenturesRequest,
-    ...filters,
     fetchOwnedVentures,
-    handleEditOwnedVenture,
     setPage,
+    filters,
   };
 };
 

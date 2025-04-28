@@ -22,19 +22,22 @@ import WelcomePage from "../../modules/auth/pages/WelcomePage";
 import LandingPage from "../../modules/landing/pages/LandingPage";
 import AccountLayoutPage from "../../modules/principal/account/AccountLayoutPage";
 import AccountProfilePage from "../../modules/principal/account/pages/AccountProfilePage";
+import AccountVentureCreatePage from "../../modules/principal/account/pages/AccountVentureCreatePage";
+import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
 import PreferencesLangLocalePage from "../../modules/principal/preferences/pages/PreferencesLangLocalePage";
 import PreferencesNotificationsPage from "../../modules/principal/preferences/pages/PreferencesNotificationsPage";
-import PreferencesThemePage from "../../modules/principal/preferences/pages/PreferencesTheme";
 import PreferencesLayoutPage from "../../modules/principal/preferences/PreferencesLayoutPage";
 import Commercial404Page from "../../modules/principal/ventures/pages/Commercial404Page";
+import EventsCalendarPage from "../../modules/principal/ventures/pages/EventsCalendarPage";
+import PublicationDetailPage from "../../modules/principal/ventures/pages/PublicationDetailPage";
 import PublicationsFeedPage from "../../modules/principal/ventures/pages/PublicationsFeedPage";
-import QuotesCalenderPage from "../../modules/principal/ventures/pages/QuotesCalendarPage";
+import VentureDetailPage from "../../modules/principal/ventures/pages/VentureDetailPage";
+import VenturesFeedPage from "../../modules/principal/ventures/pages/VenturesFeedPage";
+import VenturesMap from "../../modules/principal/ventures/pages/VenturesMapPage";
 import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayoutPage";
 import AppSpinner from "../../shared/components/loader/Spinner";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
-import AccountVentureCreatePage from "../../modules/principal/account/pages/AccountVentureCreatePage";
 
 const ALL_ROLES = [
   AppRole.ADMIN,
@@ -77,12 +80,19 @@ const AppRouter = () => {
             path="principal"
             element={<PrivateRoute anyRequiredRole={[...ALL_ROLES]} />}
           >
-            <Route path="" index element={<Navigate to="emprendimientos" />} />
+            <Route path="" index element={<Navigate to="feed" />} />
+
+            <Route path="feed" element={<CommercialLayoutPage />}>
+              <Route path="" element={<PublicationsFeedPage />} />
+              <Route path=":slug" element={<PublicationDetailPage />} />
+            </Route>
 
             <Route path="emprendimientos" element={<CommercialLayoutPage />}>
-              <Route path="" element={<PublicationsFeedPage />} />
-              {/* <Route path="" element={<CommercialInitialPage />} /> */}
-              <Route path="calendario" element={<QuotesCalenderPage />} />
+              <Route path="" element={<VenturesFeedPage />} />
+
+              <Route path="mapa" element={<VenturesMap />} />
+              <Route path="calendario" element={<EventsCalendarPage />} />
+              <Route path=":slug" element={<VentureDetailPage />} />
 
               <Route path="*" element={<Commercial404Page />} />
             </Route>
@@ -101,7 +111,7 @@ const AppRouter = () => {
                 path="lenguaje-localizacion"
                 element={<PreferencesLangLocalePage />}
               />
-              <Route path="tema" element={<PreferencesThemePage />} />
+              {/* <Route path="tema" element={<PreferencesThemePage />} /> */}
               <Route
                 path="alertas-notificaciones"
                 element={<PreferencesNotificationsPage />}

@@ -84,7 +84,7 @@ export const layoutSlice = createSlice({
     toggleRightSidebar: (state) => {
       state.showRightSidebar = !state.showRightSidebar;
     },
-    showSidebar: (state) => {
+    toggleSidebar: (state) => {
       state.showSidebar = !state.showSidebar;
     },
     toggleLeftMenu: (state) => {
@@ -103,7 +103,7 @@ export const {
   changeSidebarType,
   changeTopBarTheme,
   toggleRightSidebar,
-  showSidebar,
+  toggleSidebar,
   toggleLeftMenu,
 } = layoutSlice.actions;
 

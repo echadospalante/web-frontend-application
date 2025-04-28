@@ -1,12 +1,13 @@
-import { Nav, NavItem, NavLink } from "reactstrap";
+import { Card, CardBody, Container, Nav, NavItem, NavLink } from "reactstrap";
 
 export type StandardizationTabsProps = {
   activeTab: string;
   toggleCustom: (tab: string) => void;
 };
 
-const AdminVenturesTabs = (props: StandardizationTabsProps) => {
+const AdminVentureDetailTabs = (props: StandardizationTabsProps) => {
   const { activeTab, toggleCustom } = props;
+
   return (
     <Nav tabs className="nav-tabs-custom nav-justified">
       <NavItem>
@@ -20,10 +21,9 @@ const AdminVenturesTabs = (props: StandardizationTabsProps) => {
           <span className="d-block d-sm-none">
             <i className="fas fa-home"></i>
           </span>
-          <span className="d-none d-sm-block">Listado</span>
+          <span className="d-none d-sm-block">Publicaciones</span>
         </NavLink>
       </NavItem>
-
       <NavItem>
         <NavLink
           style={{ cursor: "pointer" }}
@@ -33,13 +33,27 @@ const AdminVenturesTabs = (props: StandardizationTabsProps) => {
           }}
         >
           <span className="d-block d-sm-none">
-            <i className="far fa-user"></i>
+            <i className="fas fa-home"></i>
           </span>
-          <span className="d-none d-sm-block">Categorías</span>
+          <span className="d-none d-sm-block">Eventos</span>
+        </NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink
+          style={{ cursor: "pointer" }}
+          className={`${activeTab === "3" ? "active" : ""}`}
+          onClick={() => {
+            toggleCustom("3");
+          }}
+        >
+          <span className="d-block d-sm-none">
+            <i className="fas fa-home"></i>
+          </span>
+          <span className="d-none d-sm-block">Patrocinadores</span>
         </NavLink>
       </NavItem>
     </Nav>
   );
 };
 
-export default AdminVenturesTabs;
+export default AdminVentureDetailTabs;
