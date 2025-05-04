@@ -6,10 +6,10 @@ import SimpleBar from "simplebar-react";
 
 import { useRegisterPreferences } from "../../../modules/auth/hooks/useRegister";
 import VentureCategoryWidget from "../widgets/VentureCategoryWidget";
-import ventureCategories from "../../data/ventures/categories";
 
 const UserPreferencesForm = () => {
   const { preferencesIds, togglePreference } = useRegisterPreferences();
+  const {} = useFetchVentureCategories();
 
   const form = useFormik({
     initialValues: {

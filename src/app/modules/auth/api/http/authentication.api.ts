@@ -31,7 +31,7 @@ class AuthenticationApi {
     const { gender, birthDate, municipalityId } = userInfo;
     return axios
       .post<void>(
-        `${this.BASE_URL}/register`,
+        `${this.BASE_URL}/onboarding`,
         { gender, birthDate, municipalityId, preferences },
         { withCredentials: true }
       )
