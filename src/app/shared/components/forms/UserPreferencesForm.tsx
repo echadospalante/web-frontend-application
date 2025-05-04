@@ -5,11 +5,14 @@ import { Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import SimpleBar from "simplebar-react";
 
 import { useRegisterPreferences } from "../../../modules/auth/hooks/useRegister";
+import useFetchVentureCategories from "../../../modules/principal/ventures/hooks/useFetchVentureCategories";
 import VentureCategoryWidget from "../widgets/VentureCategoryWidget";
 
 const UserPreferencesForm = () => {
   const { preferencesIds, togglePreference } = useRegisterPreferences();
-  const {} = useFetchVentureCategories();
+  const { ventureCategories, error, loading } = useFetchVentureCategories();
+
+  // const [data, setData] = useState<VentureCategory[]>();
 
   const form = useFormik({
     initialValues: {
@@ -19,6 +22,26 @@ const UserPreferencesForm = () => {
       console.log({ values });
     },
   });
+
+  if (loading) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="alert alert-danger" role="alert">
+          Error al cargar las categorías de emprendimiento
+        </div>
+      </div>
+    );
+  }
 
   return (
     <Fragment>
@@ -43,10 +66,10 @@ const UserPreferencesForm = () => {
         }}
       >
         <Row className="mt-4">
-          {ventureCategories
-            .filter((item) =>
-              item.name.toLowerCase().includes(form.values.search.toLowerCase())
-            )
+          {ventureCategories.items
+            // .filter((item) =>
+            //   item.name.toLowerCase().includes(form.values.search.toLowerCase())
+            // )
             .map((item) => (
               <Col
                 lg={3}
@@ -56,9 +79,9 @@ const UserPreferencesForm = () => {
               >
                 <VentureCategoryWidget
                   name={item.name}
-                  count={item.count}
-                  percentageGrowth={item.percentage}
-                  icon={item.icon}
+                  count={10}
+                  percentageGrowth={10}
+                  icon={"bx bx-user"}
                   backgroundColor={"success"}
                   checked={preferencesIds.includes(item.id)}
                 />
