@@ -1,6 +1,6 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 
-import { Venture, VentureCreate } from "echadospalante-core";
+import { Venture, VentureCreate } from "echadospalante-domain";
 
 import {
   setOwnedVentures,

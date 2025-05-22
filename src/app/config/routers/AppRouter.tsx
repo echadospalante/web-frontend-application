@@ -57,10 +57,6 @@ const AppRouter = () => {
             <Route index element={<LandingPage />} />
           </Route>
 
-          <Route path="autenticacion" element={<PublicRoute />}>
-            <Route path="ingresar" element={<LoginPage />} />
-          </Route>
-
           <Route
             path="registro"
             element={<PrivateRoute anyRequiredRole={[...ALL_ROLES]} />}

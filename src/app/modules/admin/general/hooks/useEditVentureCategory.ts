@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { VentureCategory } from "echadospalante-core";
+import { VentureCategory } from "echadospalante-domain";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 

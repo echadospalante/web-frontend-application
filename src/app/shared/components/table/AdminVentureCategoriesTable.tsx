@@ -8,7 +8,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { VentureCategory } from "echadospalante-core";
+import { VentureCategory } from "echadospalante-domain";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
 import useVentureCategories from "../../../modules/admin/general/hooks/useVentureCategories";

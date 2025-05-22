@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { VentureCategory, VentureCategoryCreate } from "echadospalante-core";
+import { VentureCategory, VentureCategoryCreate } from "echadospalante-domain";
 
 import env from "../../../../../../environment/environment";
 import { VentureCategoriesFilter } from "../../../../../config/redux/reducers/admin/venture-categories-management.reducer";

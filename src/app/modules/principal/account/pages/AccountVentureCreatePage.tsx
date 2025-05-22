@@ -28,7 +28,7 @@ import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import Dropzone from "react-dropzone";
 import SimpleBar from "simplebar-react";
 import { useFormik } from "formik";
-import { VentureCreate } from "echadospalante-core";
+import { VentureCreate } from "echadospalante-domain";
 import useVentureCategories from "../../../admin/general/hooks/useVentureCategories";
 import useAllVentureCategories from "../../../admin/general/hooks/useAllVentureCategories";
 import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";

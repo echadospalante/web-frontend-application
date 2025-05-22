@@ -4,8 +4,11 @@ import { Link } from "react-router-dom";
 import { Container } from "reactstrap";
 import LanguageDropdown from "../dropdown/LanguageDropdown";
 import { useTranslation } from "react-i18next";
+import useLogin from "../../../modules/auth/hooks/useLogin";
+import { GoogleLogin } from "@react-oauth/google";
 
 const LandingNavbar = () => {
+  const { loginWithCredentials } = useLogin();
   const [navClass, setNavClass] = useState("");
   const { t } = useTranslation();
 
@@ -90,12 +93,15 @@ const LandingNavbar = () => {
           </div>
 
           <div>
-            <Link
-              to="/autenticacion/ingresar"
-              className="btn btn-outline-success w-xs"
-            >
-              Ingresar
-            </Link>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                if (!credentialResponse.credential) return;
+                loginWithCredentials(credentialResponse.credential);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
           </div>
         </div>
       </Container>

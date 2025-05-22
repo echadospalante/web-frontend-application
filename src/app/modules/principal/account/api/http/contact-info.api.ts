@@ -1,4 +1,4 @@
-import { UserContact } from "echadospalante-core";
+import { UserContact } from "echadospalante-domain";
 import env from "../../../../../../environment/environment";
 import axios from "axios";
 

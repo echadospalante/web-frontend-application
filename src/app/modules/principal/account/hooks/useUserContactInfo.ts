@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { UserContact } from "echadospalante-core";
+import { UserContact } from "echadospalante-domain";
 
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
 import { fetchUserContactInfoMiddleware } from "../api/middleware/user-contact-info.middleware";

@@ -9,7 +9,7 @@ import {
   Row,
 } from "reactstrap";
 
-import { User } from "echadospalante-core";
+import { User } from "echadospalante-domain";
 import useEditUser from "../../../modules/admin/general/hooks/useEditUser";
 import { AppRole } from "../../../modules/auth/domain/Role";
 import useRoles from "../../../modules/auth/hooks/useRoles";

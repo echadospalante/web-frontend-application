@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Role } from "echadospalante-core";
+import { Role } from "echadospalante-domain";
 
 import { useAppDispatch } from "../../../config/redux/store/store.config";
 import { fetchRolesMiddleware } from "../../admin/general/api/middleware/users.middleware";

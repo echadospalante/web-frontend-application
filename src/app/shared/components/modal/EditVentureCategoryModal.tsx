@@ -10,7 +10,7 @@ import {
   Row,
 } from "reactstrap";
 
-import { VentureCategory } from "echadospalante-core";
+import { VentureCategory } from "echadospalante-domain";
 import useEditVentureCategory from "../../../modules/admin/general/hooks/useEditVentureCategory";
 import useRoles from "../../../modules/auth/hooks/useRoles";
 

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import { VentureCategoryCreate } from "echadospalante-core";
+import { VentureCategoryCreate } from "echadospalante-domain";
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
 import { createVentureCategoryMiddleware } from "../api/middleware/venture-categories.middleware";
 

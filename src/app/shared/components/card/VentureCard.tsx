@@ -7,7 +7,7 @@ import {
   Row,
   UncontrolledTooltip,
 } from "reactstrap";
-import { Venture } from "echadospalante-core";
+import { Venture } from "echadospalante-domain";
 import { textToRGB } from "../../helpers/colors";
 import { formatDate } from "../../helpers/dates";
 

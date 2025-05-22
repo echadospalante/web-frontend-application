@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { Venture, VentureCreate } from "echadospalante-core";
+import { Venture, VentureCreate } from "echadospalante-domain";
 
 import env from "../../../../../../environment/environment";
 import { OwnedVenturesFilter } from "../../../../../config/redux/reducers/admin/owned-ventures-management.reducer";

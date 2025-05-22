@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { AppRole } from "echadospalante-core";
+import { AppRole } from "echadospalante-domain";
 import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 

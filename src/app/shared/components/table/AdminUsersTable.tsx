@@ -9,42 +9,33 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { User, UserDetail } from "echadospalante-core";
+import { User, UserDetail } from "echadospalante-domain";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
-import useUsers from "../../../modules/admin/general/hooks/useUsers";
+import useFetchUsers from "../../../modules/admin/general/hooks/useFetchUsers";
 import { AppRole, Role } from "../../../modules/auth/domain/Role";
-import UsersFiltersForm from "../forms/UsersFiltersForm";
-import AppSpinner from "../loader/Spinner";
-import EditUserModal from "../modal/EditUserModal";
-import Pagination from "../pagination/Pagination";
-import IconTooltip from "../tooltips/IconTooltip";
 import { textToRGB } from "../../helpers/colors";
 import {
   getDepartmentByMunicipalityId,
   getMunicipalityNameById,
 } from "../../helpers/department-helpers";
+import UsersFiltersForm from "../forms/UsersFiltersForm";
+import AppSpinner from "../loader/Spinner";
+import EditUserModal from "../modal/EditUserModal";
+import Pagination from "../pagination/Pagination";
+import IconTooltip from "../tooltips/IconTooltip";
 
 const AdminUsersTable = () => {
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
 
-  const {
-    loading,
-    error,
-    items,
-    total,
-    fetchUsers,
-    toggleLockUserAccount,
-    page,
-    size,
-    setPage,
-  } = useUsers();
+  const { loading, error, users, toggleLockUserAccount, page, size, setPage } =
+    useFetchUsers();
 
   const columns = getColumns(toggleLockUserAccount, setActiveUserToEdit);
 
   const table = useReactTable({
     columns,
-    data: items || [],
+    data: users?.items || [],
     manualPagination: true,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -69,7 +60,8 @@ const AdminUsersTable = () => {
         <EditUserModal
           show={!!activeUserToEdit}
           onCloseClick={handleCloseEditModal}
-          onSuccessfulEdit={fetchUsers}
+          // onSuccessfulEdit={fetchUsers}
+          onSuccessfulEdit={() => {}}
           user={activeUserToEdit}
         />
       )}
@@ -108,7 +100,8 @@ const AdminUsersTable = () => {
 
                 <Button
                   type="button"
-                  onClick={fetchUsers}
+                  // onClick={fetchUsers}
+                  onClick={() => {}}
                   className="btn btn-light mx-2 mb-2"
                 >
                   <i className="mdi mdi-refresh"></i>
@@ -188,29 +181,31 @@ const AdminUsersTable = () => {
                 </div>
               )}
 
-              <Row>
-                <Col sm={12} md={5} lg={6}>
-                  <div className="dataTables_info">
-                    Página {page + 1} de {Math.ceil(total / size) || 1}, con un
-                    tatal de {total} usuarios
-                  </div>
-                </Col>
-                <Col
-                  sm={12}
-                  md={7}
-                  lg={6}
-                  className="d-flex justify-content-end"
-                >
-                  <Pagination
-                    perPageData={size}
-                    length={total}
-                    currentPage={page + 1}
-                    setCurrentPage={handleSetCurrentPage}
-                    paginationDiv="col-lg-12"
-                    paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
-                  />
-                </Col>
-              </Row>
+              {users && (
+                <Row>
+                  <Col sm={12} md={5} lg={6}>
+                    <div className="dataTables_info">
+                      Página {page + 1} de {Math.ceil(users.total / size) || 1},
+                      con un tatal de {users.total} usuarios
+                    </div>
+                  </Col>
+                  <Col
+                    sm={12}
+                    md={7}
+                    lg={6}
+                    className="d-flex justify-content-end"
+                  >
+                    <Pagination
+                      perPageData={size}
+                      length={users.total}
+                      currentPage={page + 1}
+                      setCurrentPage={handleSetCurrentPage}
+                      paginationDiv="col-lg-12"
+                      paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                    />
+                  </Col>
+                </Row>
+              )}
             </Fragment>
           </CardBody>
         </Card>

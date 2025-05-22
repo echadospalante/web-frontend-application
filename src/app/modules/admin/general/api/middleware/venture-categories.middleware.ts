@@ -1,6 +1,6 @@
 import { Action, Dispatch } from "@reduxjs/toolkit";
 
-import { VentureCategory, VentureCategoryCreate } from "echadospalante-core";
+import { VentureCategory, VentureCategoryCreate } from "echadospalante-domain";
 
 import {
   addVentureCategory,

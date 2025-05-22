@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { Venture } from "echadospalante-core";
+import { Venture } from "echadospalante-domain";
 
 import { PaginatedBody } from "../../../../modules/principal/ventures/domain/api";
 import { RootState } from "../../store/store.config";

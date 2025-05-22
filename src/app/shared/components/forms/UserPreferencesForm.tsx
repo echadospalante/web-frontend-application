@@ -10,7 +10,7 @@ import VentureCategoryWidget from "../widgets/VentureCategoryWidget";
 
 const UserPreferencesForm = () => {
   const { preferencesIds, togglePreference } = useRegisterPreferences();
-  const { ventureCategories, error, loading } = useFetchVentureCategories();
+  const { data, isError, isLoading } = useFetchVentureCategories();
 
   // const [data, setData] = useState<VentureCategory[]>();
 
@@ -23,21 +23,31 @@ const UserPreferencesForm = () => {
     },
   });
 
-  if (loading) {
+  if (isLoading) {
     return (
       <div className="d-flex justify-content-center align-items-center">
         <div className="spinner-border" role="status">
-          <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden">Cargando...</span>
         </div>
       </div>
     );
   }
 
-  if (error) {
+  if (isError) {
     return (
       <div className="d-flex justify-content-center align-items-center">
         <div className="alert alert-danger" role="alert">
           Error al cargar las categorías de emprendimiento
+        </div>
+      </div>
+    );
+  }
+
+  if (!data || data.items.length === 0) {
+    return (
+      <div className="d-flex justify-content-center align-items-center">
+        <div className="alert alert-danger" role="alert">
+          No hay categorías de emprendimiento disponibles
         </div>
       </div>
     );
@@ -66,7 +76,7 @@ const UserPreferencesForm = () => {
         }}
       >
         <Row className="mt-4">
-          {ventureCategories.items
+          {data.items
             // .filter((item) =>
             //   item.name.toLowerCase().includes(form.values.search.toLowerCase())
             // )

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { VentureCategory } from "echadospalante-core";
+import { VentureCategory } from "echadospalante-domain";
 
 import { useAppDispatch } from "../../../../config/redux/store/store.config";
 import {

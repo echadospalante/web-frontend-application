@@ -11,11 +11,11 @@ import {
 } from "reactstrap";
 import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
 import VentureCard from "../../../../shared/components/card/VentureCard";
-import { User, Venture } from "echadospalante-core";
+import { User, Venture } from "echadospalante-domain";
 import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
 import AppSpinner from "../../../../shared/components/loader/Spinner";
 import EditUserModal from "../../../../shared/components/modal/EditUserModal";
-import useUsers from "../../../admin/general/hooks/useUsers";
+import useFetchUsers from "../../../admin/general/hooks/useFetchUsers";
 import useOwnedVentures from "../../../admin/general/hooks/useOwnedVentures";
 import { Link, useNavigate } from "react-router-dom";
 

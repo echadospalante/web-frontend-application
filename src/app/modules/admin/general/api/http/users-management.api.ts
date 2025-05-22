@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { Role, User } from "echadospalante-core";
+import { Role, User } from "echadospalante-domain";
 
 import env from "../../../../../../environment/environment";
 import { PaginatedBody } from "../../../../principal/ventures/domain/api";
@@ -17,8 +17,10 @@ export class UsersApi {
     const { page, size, ...rest } = usersFilter;
     const otherPrams = filterFalsyValues(rest);
     const params = new URLSearchParams(otherPrams as Record<string, string>);
-    params.set("page", page.toString());
-    params.set("size", size.toString());
+    const skip = page * size;
+    const take = size;
+    params.set("skip", skip.toString());
+    params.set("take", take.toString());
     return axios
       .get<PaginatedBody<User>>(`${UsersApi.API_BASE_URL}`, {
         withCredentials: true,

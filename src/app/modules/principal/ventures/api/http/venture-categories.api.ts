@@ -1,16 +1,16 @@
 import axios from "axios";
-import { VentureCategory } from "echadospalante-core";
+import { VentureCategory } from "echadospalante-domain";
+import { PaginatedBody } from "../../../../principal/ventures/domain/api";
 
 export default class VentureCategoriesApi {
-  private static readonly BASE_URL = `${import.meta.env.VITE_API_URL}/api/v1/ventures/categories`;
+  private static readonly BASE_URL = `${
+    import.meta.env.VITE_API_URL
+  }/api/v1/ventures/categories`;
 
   public static async getVentureCategories() {
-   await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     return axios
-      .get<{
-        items: VentureCategory[];
-        total: number;
-      }>(`${this.BASE_URL}`, {
+      .get<PaginatedBody<VentureCategory>>(`${this.BASE_URL}`, {
         withCredentials: true,
       })
       .then(({ data }) => data);
