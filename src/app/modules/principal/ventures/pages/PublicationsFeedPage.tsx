@@ -13,6 +13,7 @@ import {
 
 import classnames from "classnames";
 import { Link } from "react-router-dom";
+
 import FeedRightSidebar from "../../../../shared/components/rightbar/FeedRightSidebar";
 
 const PublicationsFeedPage = () => {
@@ -55,7 +56,7 @@ const PublicationsFeedPage = () => {
                         toggleTab("2");
                       }}
                     >
-                      Historial
+                      Mapa
                     </NavLink>
                   </NavItem>
                 </ul>

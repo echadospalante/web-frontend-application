@@ -140,6 +140,14 @@ const UserSidebarContent = () => {
             </Link>
 
             <li>
+              <Link to="/principal/publicaciones">
+                {/* <i className="bx bxs-cabinet"></i> */}
+                <i className="bx bx-rocket"></i>
+                <span>{t("Publications")}</span>
+              </Link>
+            </li>
+
+            <li>
               <Link to="/principal/emprendimientos">
                 {/* <i className="bx bxs-cabinet"></i> */}
                 <i className="bx bx-rocket"></i>
@@ -165,13 +173,6 @@ const UserSidebarContent = () => {
               <Link to="/principal/calendario">
                 <i className="bx bx-calendar"></i>
                 <span>{t("Calendar")}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/calendario">
-                <i className="bx bxs-news"></i>
-                <span>{t("News")}</span>
               </Link>
             </li>
           </ul>

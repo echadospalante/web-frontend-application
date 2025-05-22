@@ -14,10 +14,10 @@ import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 import useVentureCategories from "../../../modules/admin/general/hooks/useVentureCategories";
 import VentureCategoriesFiltersForm from "../forms/VentureCategoriesFiltersForm";
 import AppSpinner from "../loader/Spinner";
+import CreateVentureCategoryModal from "../modal/CreateVentureCategoryModal";
 import EditVentureCategoryModal from "../modal/EditVentureCategoryModal";
 import Pagination from "../pagination/Pagination";
 import IconTooltip from "../tooltips/IconTooltip";
-import CreateVentureCategoryModal from "../modal/CreateVentureCategoryModal";
 
 const AdminVentureCategoriesTable = () => {
   const [activeCategoryToEdit, setActiveCategoryToEdit] =
@@ -180,7 +180,7 @@ const AdminVentureCategoriesTable = () => {
                 <Col sm={12} md={5} lg={6}>
                   <div className="dataTables_info">
                     Página {page + 1} de {Math.ceil(total / size) || 1}, con un
-                    tatal de {total} usuarios
+                    tatal de {total} categorías
                   </div>
                 </Col>
                 <Col

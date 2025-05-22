@@ -166,13 +166,6 @@ const AdminSidebarContent = () => {
               </Link>
             </li>
 
-            <li>
-              <Link to="/administracion/general/noticias">
-                <i className="bx bx-bar-chart-square"></i>
-                <span>Noticias</span>
-              </Link>
-            </li>
-
             <hr className="w-75 mx-auto" />
 
             <Link to="/administracion/general">

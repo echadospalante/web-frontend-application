@@ -9,16 +9,12 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { User, UserDetail } from "echadospalante-domain";
+import { User } from "echadospalante-domain";
 import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
 
 import useFetchUsers from "../../../modules/admin/general/hooks/useFetchUsers";
 import { AppRole, Role } from "../../../modules/auth/domain/Role";
-import { textToRGB } from "../../helpers/colors";
-import {
-  getDepartmentByMunicipalityId,
-  getMunicipalityNameById,
-} from "../../helpers/department-helpers";
+import { getIconName, stringToColor, textToRGB } from "../../helpers/colors";
 import UsersFiltersForm from "../forms/UsersFiltersForm";
 import AppSpinner from "../loader/Spinner";
 import EditUserModal from "../modal/EditUserModal";
@@ -74,30 +70,6 @@ const AdminUsersTable = () => {
                 Listado de usuarios
               </h5>
               <div className="flex-shrink-0 d-flex flex-row align-items-center">
-                <div className="btn-group h-100" role="group">
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btn-list"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-primary" htmlFor="btn-list">
-                    <i className="bx bx-list-ul"></i>
-                  </label>
-
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btn-grid"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-primary" htmlFor="btn-grid">
-                    <i className="bx bx-grid"></i>
-                  </label>
-                </div>
-
                 <Button
                   type="button"
                   // onClick={fetchUsers}
@@ -225,13 +197,34 @@ const getColumns = (
       enableSorting: true,
       cell: (cellProps: any) => {
         const user = cellProps.row.original as User;
+        const [displayPicture, setDisplayPicture] = useState(false);
         return (
           <section>
-            <img
-              src={user.picture}
-              alt="user"
-              className="avatar-xs rounded-circle"
-            />
+            {displayPicture ? (
+              <img
+                className="rounded-circle header-profile-user"
+                src={user.picture}
+                alt="Profile picture"
+                onError={() => setDisplayPicture(false)}
+              />
+            ) : (
+              <div
+                title={`${user.firstName} ${user.lastName}`}
+                className="rounded-circle d-inline-flex btn-soft-primary"
+                style={{
+                  width: "40px",
+                  backgroundColor: stringToColor(
+                    `${user.firstName} ${user.lastName}`
+                  ),
+                  height: "40px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {getIconName(`${user.firstName} ${user.lastName}`)}
+              </div>
+            )}
           </section>
         );
       },
@@ -270,7 +263,7 @@ const getColumns = (
     },
     {
       header: "Género",
-      accessorKey: "detail.gender",
+      accessorKey: "gender",
       enableColumnFilter: false,
       enableSorting: true,
     },
@@ -279,13 +272,11 @@ const getColumns = (
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const userDetail = cellProps.row.original.detail as UserDetail | null;
-        if (!userDetail) return <></>;
+        const user = cellProps.row.original as User;
+        if (!user) return <></>;
         return (
           <section>
-            <span>
-              {new Date(userDetail.birthDate).toISOString().split("T")[0]}
-            </span>
+            <span>{new Date(user.birthDate).toISOString().split("T")[0]}</span>
           </section>
         );
       },
@@ -295,14 +286,13 @@ const getColumns = (
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const userDetail = cellProps.row.original.detail;
-        if (!userDetail) return <></>;
+        const user = cellProps.row.original as User;
+        if (!user.municipality) return <></>;
         return (
-          <section>
-            <span>
-              {getMunicipalityNameById(userDetail.municipalityId)},{" "}
-              {getDepartmentByMunicipalityId(userDetail.municipalityId)?.name}
-            </span>
+          <section className="d-flex align-items-center cursor-pointer">
+            {user.municipality.name}
+            <i className="bx bx-link-external text-primary"></i>
+            {/* {getDepartmentByMunicipalityId(user.municipalityId)?.name} */}
           </section>
         );
       },
@@ -350,7 +340,7 @@ const getColumns = (
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const roles = cellProps.row.original.roles as Role[];
+        const roles = (cellProps.row.original.roles as Role[]) || [];
         return (
           <section className="d-flex">
             {roles.map((role) => (

@@ -2,11 +2,12 @@ import axios from "axios";
 
 import { Role, User } from "echadospalante-domain";
 
+import { PaginatedBody } from "echadospalante-domain/dist/app/modules/domain/common/pagination";
+
 import env from "../../../../../../environment/environment";
-import { PaginatedBody } from "../../../../principal/ventures/domain/api";
-import { AppRole } from "../../../../auth/domain/Role";
 import { UsersFilter } from "../../../../../config/redux/reducers/admin/users-management.reducer";
 import filterFalsyValues from "../../../../../shared/helpers/object-utils";
+import { AppRole } from "../../../../auth/domain/Role";
 
 export class UsersApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/users`;
@@ -71,12 +72,6 @@ export class UsersApi {
       .patch<void>(`${UsersApi.API_BASE_URL}/unverify/${email}`, undefined, {
         withCredentials: true,
       })
-      .then(({ data }) => data);
-  }
-
-  public static fetchAllRoles(): Promise<Role[]> {
-    return axios
-      .get<Role[]>(`${this.API_BASE_URL}/roles`, { withCredentials: true })
       .then(({ data }) => data);
   }
 }

@@ -3,6 +3,7 @@ import axios from "axios";
 import env from "../../../../../environment/environment";
 import { UserRegisterInfo } from "../../../../config/redux/reducers/auth/register.reducer";
 import { LoginResponse } from "../../domain/Login";
+import { Role } from "echadospalante-domain";
 
 class AuthenticationApi {
   private static readonly BASE_URL = `${env.API_URL}/api/v1/auth`;
@@ -19,6 +20,12 @@ class AuthenticationApi {
   }
 
   public static refreshAuth(): Promise<LoginResponse> {
+    return axios
+      .get<LoginResponse>(`${this.BASE_URL}/refresh`, { withCredentials: true })
+      .then(({ data }) => data);
+  }
+
+  public static getAllRoles(): Promise<LoginResponse> {
     return axios
       .get<LoginResponse>(`${this.BASE_URL}/refresh`, { withCredentials: true })
       .then(({ data }) => data);
@@ -42,6 +49,12 @@ class AuthenticationApi {
     return axios.post(`${this.BASE_URL}/logout`, undefined, {
       withCredentials: true,
     });
+  }
+
+  public static fetchAllRoles(): Promise<Role[]> {
+    return axios
+      .get<Role[]>(`${this.BASE_URL}/roles`, { withCredentials: true })
+      .then(({ data }) => data);
   }
 }
 

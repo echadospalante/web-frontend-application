@@ -8,6 +8,7 @@ import {
 } from "../../../../../config/redux/reducers/shared/user-interface.reducer";
 import { AppRole } from "../../../../auth/domain/Role";
 import { UsersApi } from "../http/users-management.api";
+import AuthenticationApi from "../../../../auth/api/http/authentication.api";
 
 export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {
   return async (dispatch: Dispatch) => {
@@ -156,7 +157,7 @@ export const unverifyUserAccountMiddleware = (email: string) => {
 
 export const fetchRolesMiddleware = () => {
   return async (dispatch: Dispatch<Action>): Promise<Role[]> => {
-    return UsersApi.fetchAllRoles()
+    return AuthenticationApi.fetchAllRoles()
       .then((response) => response)
       .catch((error) => {
         dispatch(

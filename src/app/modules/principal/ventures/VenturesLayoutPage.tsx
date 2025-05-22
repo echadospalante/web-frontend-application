@@ -10,7 +10,7 @@ import HorizontalLayout from "../../../shared/components/layout/HorizontalLayout
 import VerticalLayout from "../../../shared/components/layout/VerticalLayout";
 import { LayoutType } from "../../common/domain/layout.interfaces";
 
-const CommercialLayoutPage = () => {
+const VenturesLayoutPage = () => {
   const { layoutType } = useSelector(selectLayout);
   const { onboardingCompleted } = useSelector(selectAuthentication);
 
@@ -46,4 +46,4 @@ export const Dashboard404Page = () => {
   return <h1>404 Not found</h1>;
 };
 
-export default CommercialLayoutPage;
+export default VenturesLayoutPage;

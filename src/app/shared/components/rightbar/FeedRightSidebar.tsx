@@ -8,6 +8,7 @@ import {
   popularPosts,
   tagsData,
 } from "../../data/feed/feed";
+import ventureCategories from "../../data/misc/venture-categories";
 
 const FeedRightSidebar = () => {
   return (
@@ -45,17 +46,19 @@ const FeedRightSidebar = () => {
               <p className="text-muted">Categorías</p>
 
               <ul className="list-unstyled fw-medium">
-                {(categoriesData || []).map((item, index) => (
+                {(ventureCategories || []).slice(0, 5).map((item, index) => (
                   <li key={index}>
                     <Link to="#" className="text-muted py-2 d-block">
-                      <i className={`${item.icon} me-1`}></i> {item.text}
-                      {item.badge && (
+                      {/* <i className={`${item.icon} me-1`}></i>  */}
+                      <i className={`mdi mdi-chevron-right me-1`}></i>
+                      {item.name}
+                      {/* {item.badge && (
                         <span
                           className={`badge ${item.badge.color} rounded-pill float-end ms-1 font-size-12`}
                         >
                           {item.badge.text}
                         </span>
-                      )}
+                      )} */}
                     </Link>
                   </li>
                 ))}
@@ -64,7 +67,7 @@ const FeedRightSidebar = () => {
 
             <hr className="my-4" />
 
-            <div>
+            {/* <div>
               <p className="text-muted">Historiales</p>
 
               <ul className="list-unstyled fw-medium">
@@ -79,7 +82,7 @@ const FeedRightSidebar = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </div> */}
 
             <hr className="my-4" />
 

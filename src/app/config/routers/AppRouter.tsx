@@ -15,13 +15,14 @@ import { AppRole } from "../../modules/auth/domain/Role";
 import useRefreshAuth from "../../modules/auth/hooks/useRefresh";
 import BaseUserInfoPage from "../../modules/auth/pages/BaseUserInfoPage";
 import CelebrationPage from "../../modules/auth/pages/CelebrationPage";
-import LoginPage from "../../modules/auth/pages/LoginPage";
 import RegisterStepsPage from "../../modules/auth/pages/RegisterStepsPage";
 import SelectPreferencesPage from "../../modules/auth/pages/SelectPreferencesPage";
 import WelcomePage from "../../modules/auth/pages/WelcomePage";
 import LandingPage from "../../modules/landing/pages/LandingPage";
 import AccountLayoutPage from "../../modules/principal/account/AccountLayoutPage";
 import AccountProfilePage from "../../modules/principal/account/pages/AccountProfilePage";
+import AccountVentureCreatePage from "../../modules/principal/account/pages/AccountVentureCreatePage";
+import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
 import PreferencesLangLocalePage from "../../modules/principal/preferences/pages/PreferencesLangLocalePage";
 import PreferencesNotificationsPage from "../../modules/principal/preferences/pages/PreferencesNotificationsPage";
 import PreferencesThemePage from "../../modules/principal/preferences/pages/PreferencesTheme";
@@ -29,19 +30,12 @@ import PreferencesLayoutPage from "../../modules/principal/preferences/Preferenc
 import Commercial404Page from "../../modules/principal/ventures/pages/Commercial404Page";
 import PublicationsFeedPage from "../../modules/principal/ventures/pages/PublicationsFeedPage";
 import QuotesCalenderPage from "../../modules/principal/ventures/pages/QuotesCalendarPage";
-import CommercialLayoutPage from "../../modules/principal/ventures/VenturesLayoutPage";
+import VenturesLayoutPage from "../../modules/principal/ventures/VenturesLayoutPage";
 import AppSpinner from "../../shared/components/loader/Spinner";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
-import AccountVenturesPage from "../../modules/principal/account/pages/AccountVenturesPage";
-import AccountVentureCreatePage from "../../modules/principal/account/pages/AccountVentureCreatePage";
 
-const ALL_ROLES = [
-  AppRole.ADMIN,
-  AppRole.MODERATOR,
-  AppRole.NEWS_WRITER,
-  AppRole.USER,
-];
+const ALL_ROLES = [AppRole.ADMIN, AppRole.MODERATOR, AppRole.USER];
 
 const AppRouter = () => {
   const { authLoading } = useRefreshAuth();
@@ -75,7 +69,7 @@ const AppRouter = () => {
           >
             <Route path="" index element={<Navigate to="emprendimientos" />} />
 
-            <Route path="emprendimientos" element={<CommercialLayoutPage />}>
+            <Route path="emprendimientos" element={<VenturesLayoutPage />}>
               <Route path="" element={<PublicationsFeedPage />} />
               {/* <Route path="" element={<CommercialInitialPage />} /> */}
               <Route path="calendario" element={<QuotesCalenderPage />} />
@@ -115,7 +109,6 @@ const AppRouter = () => {
               <Route path="emprendimientos" element={<AdminVenturesPage />} />
               <Route path="eventos" element={<AdminEventsPage />} />
               <Route path="publicaciones" element={<AdminPublicationsPage />} />
-              <Route path="noticias" element={<AdminNewsPage />} />
             </Route>
 
             <Route path="metricas" element={<GeneralLayoutPage />}>
