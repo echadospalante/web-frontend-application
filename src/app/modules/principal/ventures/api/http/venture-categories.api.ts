@@ -1,6 +1,7 @@
 import axios from "axios";
 import { VentureCategory } from "echadospalante-domain";
-import { PaginatedBody } from "../../../../principal/ventures/domain/api";
+import { PaginatedBody } from "echadospalante-domain/dist/app/modules/domain/common/pagination";
+
 
 export default class VentureCategoriesApi {
   private static readonly BASE_URL = `${

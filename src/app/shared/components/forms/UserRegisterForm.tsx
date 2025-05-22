@@ -4,6 +4,7 @@ import Select from "react-select";
 import { Col, Form, Input, Label, Row } from "reactstrap";
 import departments from "../../data/geo/departments";
 import { useRegisterUserInfo } from "../../../modules/auth/hooks/useRegister";
+import municipalities from "../../data/geo/municipalities";
 
 const genders = [
   { label: "Masculino", value: "M" },
@@ -123,11 +124,10 @@ const UserRegisterForm = () => {
                 form.values.municipalityId
                   ? {
                       value: form.values.municipalityId,
-                      label: departments
-                        .find((d) => d.id === form.values.departmentId)
-                        ?.items!.find(
-                          (i) => i.id === form.values.municipalityId
-                        )?.name,
+                      label: municipalities.find(
+                        ({ departmentId }) =>
+                          departmentId === form.values.departmentId
+                      )?.name,
                     }
                   : null
               }
@@ -138,9 +138,12 @@ const UserRegisterForm = () => {
                 if (!value) return;
                 form.setFieldValue("municipalityId", value.value);
               }}
-              options={departments
-                .find((d) => d.id === form.values.departmentId)
-                ?.items!.map(({ id, name }) => ({
+              options={municipalities
+                .filter(
+                  ({ departmentId }) =>
+                    departmentId === form.values.departmentId
+                )
+                .map(({ id, name }) => ({
                   label: name,
                   value: id,
                 }))}
