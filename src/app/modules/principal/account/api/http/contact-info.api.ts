@@ -1,6 +1,6 @@
-import { UserContact } from "echadospalante-domain";
-import env from "../../../../../../environment/environment";
-import axios from "axios";
+import { UserContact } from 'echadospalante-domain';
+import env from '../../../../../../environment/environment';
+import axios from 'axios';
 
 export default class UserContactInfoApi {
   private static readonly BASE_URL = `${env.API_URL}/api/v1/users`;

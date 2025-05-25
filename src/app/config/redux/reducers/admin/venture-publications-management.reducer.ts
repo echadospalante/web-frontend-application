@@ -1,9 +1,9 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { VenturePublication } from "echadospalante-domain";
+import { VenturePublication } from 'echadospalante-domain';
 
-import { RootState } from "../../store/store.config";
-import { PaginatedBody } from "echadospalante-domain/dist/app/modules/domain/common/pagination";
+import { RootState } from '../../store/store.config';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
 export interface VenturePublicationsFilter {
   ventureId: string;
@@ -20,9 +20,9 @@ export interface VenturePublicationsManagementState {
 // Freeze the initial state to prevent accidental changes
 const initialState: VenturePublicationsManagementState = {
   filters: {
-    ventureId: "",
+    ventureId: '',
     page: 0,
-    search: "",
+    search: '',
     size: 20,
   },
   publications: {
@@ -32,18 +32,18 @@ const initialState: VenturePublicationsManagementState = {
 };
 
 export const venturePublicationsManagementSlice = createSlice({
-  name: "admin/venturePublicationsManagement",
+  name: 'admin/venturePublicationsManagement',
   initialState,
   reducers: {
     createVenturePublication: (
       state,
-      action: PayloadAction<VenturePublication>
+      action: PayloadAction<VenturePublication>,
     ) => {
       state.publications.items.push(action.payload);
     },
     setVenturePublicationsFilters: (
       state,
-      action: PayloadAction<VenturePublicationsFilter>
+      action: PayloadAction<VenturePublicationsFilter>,
     ) => {
       const { page, search, size, ventureId } = action.payload;
 
@@ -56,18 +56,18 @@ export const venturePublicationsManagementSlice = createSlice({
     },
     updateVenturePublication: (
       state,
-      action: PayloadAction<VenturePublication>
+      action: PayloadAction<VenturePublication>,
     ) => {
       const updatedPublication = action.payload;
       state.publications.items = state.publications.items.map((publication) =>
         publication.id === updatedPublication.id
           ? updatedPublication
-          : publication
+          : publication,
       );
     },
     addVenturePublication: (
       state,
-      action: PayloadAction<VenturePublication>
+      action: PayloadAction<VenturePublication>,
     ) => {
       state.publications.items.push(action.payload);
     },
@@ -76,7 +76,7 @@ export const venturePublicationsManagementSlice = createSlice({
     },
     setVenturePublications: (
       state,
-      action: PayloadAction<PaginatedBody<VenturePublication>>
+      action: PayloadAction<PaginatedBody<VenturePublication>>,
     ) => {
       const { items, total } = action.payload;
       state.publications = {

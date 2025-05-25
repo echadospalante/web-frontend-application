@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { Role } from "echadospalante-domain";
+import { Role } from 'echadospalante-domain';
 
-import { useAppDispatch } from "../../../config/redux/store/store.config";
-import { fetchRolesMiddleware } from "../../admin/general/api/middleware/users.middleware";
+import { useAppDispatch } from '../../../config/redux/store/store.config';
+import { fetchRolesMiddleware } from '../../admin/general/api/middleware/users.middleware';
 
 const useRoles = () => {
   const dispatch = useAppDispatch();

@@ -1,21 +1,21 @@
-import { User } from "echadospalante-domain";
+import { User } from 'echadospalante-domain';
 
-import { useQuery } from "@tanstack/react-query";
-import { useSelector } from "react-redux";
+import { useQuery } from '@tanstack/react-query';
+import { useSelector } from 'react-redux';
 
 import {
   selectUsersManagement,
   setUserFilters,
-} from "../../../../config/redux/reducers/admin/users-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { UsersApi } from "../api/http/users-management.api";
-import { PaginatedBody } from "../../../principal/ventures/domain/api";
+} from '../../../../config/redux/reducers/admin/users-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { UsersApi } from '../api/http/users-management.api';
+import { PaginatedBody } from '../../../principal/ventures/domain/api';
 
 const useFetchUsers = () => {
   const { filters } = useSelector(selectUsersManagement);
 
   const usersQuery = useQuery<PaginatedBody<User>>({
-    queryKey: ["users", filters],
+    queryKey: ['users', filters],
     queryFn: () => UsersApi.fetchUsers(filters),
     staleTime: 1000 * 60 * 60,
   });

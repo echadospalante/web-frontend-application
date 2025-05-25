@@ -1,22 +1,22 @@
-import { Action, Dispatch } from "@reduxjs/toolkit";
+import { Action, Dispatch } from '@reduxjs/toolkit';
 
 import {
   setVentureSponsors,
   VentureSponsorshipsFilter,
-} from "../../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer";
+} from '../../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer';
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
-import { VentureSponsorshipsApi } from "../http/venture-sponsorships-management.api";
-import { User } from "echadospalante-domain";
+} from '../../../../../config/redux/reducers/shared/user-interface.reducer';
+import { VentureSponsorshipsApi } from '../http/venture-sponsorships-management.api';
+import { User } from 'echadospalante-domain';
 
 export const fetchVentureSponsorshipsMiddleware = (
-  ventureSponsorshipsFilters: VentureSponsorshipsFilter
+  ventureSponsorshipsFilters: VentureSponsorshipsFilter,
 ) => {
   return async (dispatch: Dispatch<Action>) => {
     return VentureSponsorshipsApi.fetchVentureSponsorships(
-      ventureSponsorshipsFilters
+      ventureSponsorshipsFilters,
     )
       .then((response) => {
         dispatch(setVentureSponsors(response));
@@ -26,13 +26,13 @@ export const fetchVentureSponsorshipsMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al obtener la lista de patrocinadores ⛔",
-            title: "Error",
+            message: 'Error al obtener la lista de patrocinadores ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al obtener la lista de patrocinadores");
+        throw new Error('Error al obtener la lista de patrocinadores');
       });
   };
 };
@@ -47,13 +47,13 @@ export const fetchOwnerBySponsorshipIdMiddleware = (sponsorshipId: string) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al obtener el dueño del patrocinio ⛔",
-            title: "Error",
+            message: 'Error al obtener el dueño del patrocinio ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al obtener el dueño del patrocinio");
+        throw new Error('Error al obtener el dueño del patrocinio');
       });
   };
 };

@@ -1,4 +1,4 @@
-import { Modal, ModalBody, ModalHeader, Spinner } from "reactstrap";
+import { Modal, ModalBody, ModalHeader, Spinner } from 'reactstrap';
 
 type ModalLoadingProps = {
   message: string;

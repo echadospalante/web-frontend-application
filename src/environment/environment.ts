@@ -5,9 +5,9 @@ interface AppEnvironment {
 }
 
 const env: AppEnvironment = {
-  APP_NAME: import.meta.env["VITE_APP_NAME"],
-  API_URL: import.meta.env["VITE_API_URL"],
-  GOOGLE_CLIENT_ID: import.meta.env["VITE_GOOGLE_CLIENT_ID"],
+  APP_NAME: import.meta.env['VITE_APP_NAME'],
+  API_URL: import.meta.env['VITE_API_URL'],
+  GOOGLE_CLIENT_ID: import.meta.env['VITE_GOOGLE_CLIENT_ID'],
 };
 
 export default env;

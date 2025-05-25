@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { AppRole } from "../../../modules/auth/domain/Role";
-import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
-import AdminSidebarContent from "./AdminSidebarContent";
-import ModeratorSidebarContent from "./ModeratorSidebarContent";
-import NewsWriterSidebarContent from "./NewsWriterSidebarContent";
-import UserSidebarContent from "./PrincipalSidebarContent";
+import { AppRole } from '../../../modules/auth/domain/Role';
+import useAuthentication from '../../../modules/auth/hooks/useAuthentication';
+import AdminSidebarContent from './AdminSidebarContent';
+import ModeratorSidebarContent from './ModeratorSidebarContent';
+import NewsWriterSidebarContent from './NewsWriterSidebarContent';
+import UserSidebarContent from './PrincipalSidebarContent';
 
 type SidebarContentProps = {
   role?: AppRole;

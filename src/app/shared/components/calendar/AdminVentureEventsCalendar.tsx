@@ -1,18 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from 'react';
 
-import moment from "moment";
-import "moment/locale/es";
-import { Calendar, EventProps, momentLocalizer } from "react-big-calendar";
-import Select from "react-select";
-import { Button, Card, CardBody, Col, Form, Input, Row } from "reactstrap";
+import moment from 'moment';
+import 'moment/locale/es';
+import { Calendar, EventProps, momentLocalizer } from 'react-big-calendar';
+import Select from 'react-select';
+import { Button, Card, CardBody, Col, Form, Input, Row } from 'reactstrap';
 
 import useVentureEvents, {
   CalendarEvent,
-} from "../../../modules/admin/general/hooks/useVentureEvents";
-import EventDetailModal from "../modal/EventDetailModal";
+} from '../../../modules/admin/general/hooks/useVentureEvents';
+import EventDetailModal from '../modal/EventDetailModal';
 
-moment.locale("es");
+moment.locale('es');
 
 const localizer = momentLocalizer(moment);
 
@@ -41,13 +41,13 @@ const AdminVentureEventsCalendar = ({
     event: CalendarEvent,
     start: Date,
     end: Date,
-    isSelected: boolean
+    isSelected: boolean,
   ) => {
     return {
       style: {
-        color: "white",
-        borderRadius: "5px",
-        padding: "5px",
+        color: 'white',
+        borderRadius: '5px',
+        padding: '5px',
       },
     };
   };
@@ -112,7 +112,7 @@ const AdminVentureEventsCalendar = ({
                                   <Input
                                     type="text"
                                     placeholder="Buscar por coincidencia"
-                                    style={{ height: "37px" }}
+                                    style={{ height: '37px' }}
                                   />
                                 </Col>
 
@@ -122,7 +122,7 @@ const AdminVentureEventsCalendar = ({
                                   </label>
                                   <Select
                                     isDisabled={false}
-                                    value={[{ label: "Área 1", value: 0 }]}
+                                    value={[{ label: 'Área 1', value: 0 }]}
                                     isMulti={false}
                                     isClearable={true}
                                     isSearchable={false}
@@ -130,11 +130,11 @@ const AdminVentureEventsCalendar = ({
                                       console.log({ selected });
                                     }}
                                     options={[
-                                      { label: "Área 1", value: 0 },
-                                      { label: "Área 2", value: 1 },
-                                      { label: "Área 3", value: 2 },
-                                      { label: "Área 4", value: 3 },
-                                      { label: "Área 5", value: 4 },
+                                      { label: 'Área 1', value: 0 },
+                                      { label: 'Área 2', value: 1 },
+                                      { label: 'Área 3', value: 2 },
+                                      { label: 'Área 4', value: 3 },
+                                      { label: 'Área 5', value: 4 },
                                     ]}
                                   ></Select>
                                 </Col>
@@ -170,9 +170,9 @@ const AdminVentureEventsCalendar = ({
                               startAccessor="start"
                               endAccessor="end"
                               style={{
-                                height: "600px",
-                                width: "100%",
-                                overflow: "auto",
+                                height: '600px',
+                                width: '100%',
+                                overflow: 'auto',
                               }}
                               defaultView="month"
                               components={{
@@ -183,18 +183,18 @@ const AdminVentureEventsCalendar = ({
                               }}
                               eventPropGetter={eventStyleGetter}
                               messages={{
-                                today: "Hoy",
-                                previous: "Anterior",
-                                next: "Siguiente",
-                                month: "Mes",
-                                week: "Semana",
-                                day: "Día",
-                                agenda: "Agenda",
-                                date: "Fecha",
-                                time: "Hora",
-                                event: "Evento",
+                                today: 'Hoy',
+                                previous: 'Anterior',
+                                next: 'Siguiente',
+                                month: 'Mes',
+                                week: 'Semana',
+                                day: 'Día',
+                                agenda: 'Agenda',
+                                date: 'Fecha',
+                                time: 'Hora',
+                                event: 'Evento',
                                 noEventsInRange:
-                                  "No hay eventos en este rango.",
+                                  'No hay eventos en este rango.',
                               }}
                             />
                           </CardBody>

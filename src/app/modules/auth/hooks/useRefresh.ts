@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useAppDispatch } from "../../../config/redux/store/store.config";
-import { refreshAuthOnReloadMiddleware } from "../api/middleware/authentication.middleware";
+import { useAppDispatch } from '../../../config/redux/store/store.config';
+import { refreshAuthOnReloadMiddleware } from '../api/middleware/authentication.middleware';
 
 const useRefreshAuth = () => {
   const dispatch = useAppDispatch();

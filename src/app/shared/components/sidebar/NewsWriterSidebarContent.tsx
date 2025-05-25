@@ -1,41 +1,41 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from 'react';
 
-import MetisMenu from "metismenujs";
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import SimpleBar from "simplebar-react";
+import MetisMenu from 'metismenujs';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import SimpleBar from 'simplebar-react';
 
 const NewsWriterSidebarContent = () => {
   const { t } = useTranslation();
   const ref = useRef(null);
 
   const activateParentDropdown = useCallback((item: HTMLAnchorElement) => {
-    item.classList.add("active");
+    item.classList.add('active');
     const parent = item.parentElement;
     const parent2El = parent!.childNodes[1] as HTMLElement;
-    if (parent2El && parent2El.id !== "side-menu") {
-      parent2El.classList.add("mm-show");
+    if (parent2El && parent2El.id !== 'side-menu') {
+      parent2El.classList.add('mm-show');
     }
 
     if (parent) {
-      parent.classList.add("mm-active");
+      parent.classList.add('mm-active');
       const parent2 = parent.parentElement;
 
       if (parent2) {
-        parent2.classList.add("mm-show"); // ul tag
+        parent2.classList.add('mm-show'); // ul tag
 
         const parent3 = parent2.parentElement; // li tag
 
         if (parent3) {
-          parent3.classList.add("mm-active"); // li
-          (parent3.childNodes[0] as HTMLElement).classList.add("mm-active"); //a
+          parent3.classList.add('mm-active'); // li
+          (parent3.childNodes[0] as HTMLElement).classList.add('mm-active'); //a
           const parent4 = parent3.parentElement; // ul
           if (parent4) {
-            parent4.classList.add("mm-show"); // ul
+            parent4.classList.add('mm-show'); // ul
             const parent5 = parent4.parentElement;
             if (parent5) {
-              parent5.classList.add("mm-show"); // li
-              (parent5.childNodes[0] as HTMLElement).classList.add("mm-active"); // a tag
+              parent5.classList.add('mm-show'); // li
+              (parent5.childNodes[0] as HTMLElement).classList.add('mm-active'); // a tag
             }
           }
         }
@@ -52,38 +52,38 @@ const NewsWriterSidebarContent = () => {
       const item = items[i];
       const parent = items[i].parentElement;
 
-      if (item && item.classList.contains("active")) {
-        item.classList.remove("active");
+      if (item && item.classList.contains('active')) {
+        item.classList.remove('active');
       }
       if (parent) {
         const parent2El =
           parent.childNodes && parent.childNodes.length && parent.childNodes[1]
             ? (parent.childNodes[1] as HTMLElement)
             : null;
-        if (parent2El && parent2El.id !== "side-menu") {
-          parent2El.classList.remove("mm-show");
+        if (parent2El && parent2El.id !== 'side-menu') {
+          parent2El.classList.remove('mm-show');
         }
 
-        parent.classList.remove("mm-active");
+        parent.classList.remove('mm-active');
         const parent2 = parent.parentElement;
 
         if (parent2) {
-          parent2.classList.remove("mm-show");
+          parent2.classList.remove('mm-show');
 
           const parent3 = parent2.parentElement;
           if (parent3) {
-            parent3.classList.remove("mm-active"); // li
+            parent3.classList.remove('mm-active'); // li
             (parent3.childNodes[0] as HTMLElement).classList.remove(
-              "mm-active"
+              'mm-active',
             );
             const parent4 = parent3.parentElement; // ul
             if (parent4) {
-              parent4.classList.remove("mm-show"); // ul
+              parent4.classList.remove('mm-show'); // ul
               const parent5 = parent4.parentElement;
               if (parent5) {
-                parent5.classList.remove("mm-show"); // li
+                parent5.classList.remove('mm-show'); // li
                 (parent5.childNodes[0] as HTMLElement).classList.remove(
-                  "mm-active"
+                  'mm-active',
                 ); // a tag
               }
             }
@@ -95,8 +95,8 @@ const NewsWriterSidebarContent = () => {
 
   const activeMenu = useCallback(() => {
     let matchingMenuItem = null;
-    const ul = document.getElementById("side-menu");
-    const items = ul!.getElementsByTagName("a");
+    const ul = document.getElementById('side-menu');
+    const items = ul!.getElementsByTagName('a');
     removeActivation(items);
     const pathname = window.location.pathname;
     for (let i = 0; i < items.length; ++i) {
@@ -120,12 +120,12 @@ const NewsWriterSidebarContent = () => {
   }
 
   useEffect(() => {
-    new MetisMenu("#side-menu");
+    new MetisMenu('#side-menu');
     activeMenu();
   }, [activeMenu]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     activeMenu();
   }, [activeMenu]);
 
@@ -141,21 +141,21 @@ const NewsWriterSidebarContent = () => {
             <li>
               <Link to="/administracion/general/usuarios">
                 <i className="mdi mdi-account-group-outline"></i>
-                <span>{t("Users")}</span>
+                <span>{t('Users')}</span>
               </Link>
             </li>
 
             <li>
               <Link to="/administracion/general/cotizaciones">
                 <i className="bx bx-rocket"></i>
-                <span>{t("Quotes")}</span>
+                <span>{t('Quotes')}</span>
               </Link>
             </li>
 
             <li>
               <Link to="/administracion/general/reportes">
                 <i className="bx bx-bar-chart-square"></i>
-                <span>{t("Reports")}</span>
+                <span>{t('Reports')}</span>
               </Link>
             </li>
           </ul>
@@ -166,14 +166,14 @@ const NewsWriterSidebarContent = () => {
             <li>
               <Link to="/administracion/facturacion/actual">
                 <i className="mdi mdi-tray-full"></i>
-                <span>{t("Current Month")}</span>
+                <span>{t('Current Month')}</span>
               </Link>
             </li>
 
             <li>
               <Link to="/administracion/facturacion/historico">
                 <i className="mdi mdi-file-cabinet"></i>
-                <span>{t("Historical")}</span>
+                <span>{t('Historical')}</span>
               </Link>
             </li>
           </ul>
@@ -184,7 +184,7 @@ const NewsWriterSidebarContent = () => {
             <li>
               <Link to="/administracion/facturacion/actual">
                 <i className="mdi mdi-tray-full"></i>
-                <span>{t("Pricing")}</span>
+                <span>{t('Pricing')}</span>
               </Link>
             </li>
 
@@ -192,7 +192,7 @@ const NewsWriterSidebarContent = () => {
               <Link to="/administracion/facturacion/historico">
                 <i className="mdi mdi-file-cabinet"></i>
 
-                <span>{t("Rates And Limits")}</span>
+                <span>{t('Rates And Limits')}</span>
               </Link>
             </li>
           </ul>
@@ -203,7 +203,7 @@ const NewsWriterSidebarContent = () => {
             <li>
               <Link to="/administracion/ayuda/soporte">
                 <i className="bx bx-support"></i>
-                <span>{t("Support")}</span>
+                <span>{t('Support')}</span>
               </Link>
             </li>
           </ul>

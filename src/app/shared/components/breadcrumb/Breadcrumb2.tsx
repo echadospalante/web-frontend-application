@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { BreadcrumbItem, Col, Row } from "reactstrap";
+import { BreadcrumbItem, Col, Row } from 'reactstrap';
 
 type BreadCrumbProps = {
   breadcrumbItems: { to: string; title: string }[];

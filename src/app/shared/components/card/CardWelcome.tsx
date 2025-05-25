@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Row, Col, Card } from "reactstrap";
+import React, { useState } from 'react';
+import { Row, Col, Card } from 'reactstrap';
 
 //Import Images
 // import profileImg from "../../assets/images/profile-img.png";

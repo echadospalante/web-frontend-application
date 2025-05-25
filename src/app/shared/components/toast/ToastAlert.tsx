@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { Action } from "@reduxjs/toolkit";
-import { useSelector } from "react-redux";
+import { Action } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 
-import { Toast, ToastBody, ToastHeader } from "reactstrap";
+import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 
 import {
   SeverityLevel,
   removeGlobalAlert,
   selectUserInterface,
-} from "../../../config/redux/reducers/shared/user-interface.reducer";
-import { useAppDispatch } from "../../../config/redux/store/store.config";
+} from '../../../config/redux/reducers/shared/user-interface.reducer';
+import { useAppDispatch } from '../../../config/redux/store/store.config';
 
 export interface SnackbarAlertProps {
   message: string;
@@ -45,9 +45,9 @@ const ToastAlert = () => {
     <React.Fragment>
       <div
         style={{
-          position: "fixed",
-          bottom: "20px",
-          right: "20px",
+          position: 'fixed',
+          bottom: '20px',
+          right: '20px',
           zIndex: 9999,
         }}
       >

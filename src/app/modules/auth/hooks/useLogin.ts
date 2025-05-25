@@ -1,14 +1,14 @@
-import { useNavigate } from "react-router-dom";
-import { loginUser } from "../../../config/redux/reducers/auth/auth.reducer";
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../../config/redux/reducers/auth/auth.reducer';
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../config/redux/reducers/shared/user-interface.reducer";
-import { useAppDispatch } from "../../../config/redux/store/store.config";
+} from '../../../config/redux/reducers/shared/user-interface.reducer';
+import { useAppDispatch } from '../../../config/redux/store/store.config';
 import {
   loginWithCredentialsMiddleware,
   refreshAuthOnReloadMiddleware,
-} from "../api/middleware/authentication.middleware";
+} from '../api/middleware/authentication.middleware';
 
 const useLogin = () => {
   const dispatch = useAppDispatch();
@@ -20,16 +20,16 @@ const useLogin = () => {
       if (!active) {
         dispatch(
           setGlobalAlert({
-            title: "Error en login",
-            message: "El usuario no se encuentra activo.",
+            title: 'Error en login',
+            message: 'El usuario no se encuentra activo.',
             timeout: 5000,
             severity: SeverityLevel.WARNING,
-          })
+          }),
         );
-        return navigate("/");
+        return navigate('/');
       }
       dispatch(loginUser(response));
-      return navigate("/principal/emprendimientos");
+      return navigate('/principal/emprendimientos');
     });
   };
 

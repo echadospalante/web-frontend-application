@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 import {
   selectVenturePublicationsManagement,
   setVenturePublicationsFilters,
-} from "../../../../config/redux/reducers/admin/venture-publications-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { fetchVenturePublicationsMiddleware } from "../api/middleware/venture-publications.middleware";
+} from '../../../../config/redux/reducers/admin/venture-publications-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { fetchVenturePublicationsMiddleware } from '../api/middleware/venture-publications.middleware';
 
 const useVenturePublications = () => {
   const { filters, publications } = useSelector(
-    selectVenturePublicationsManagement
+    selectVenturePublicationsManagement,
   );
 
   const dispatch = useAppDispatch();

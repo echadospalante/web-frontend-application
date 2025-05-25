@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { isEmpty } from "lodash";
-import React, { useEffect, useState } from "react";
+import { isEmpty } from 'lodash';
+import React, { useEffect, useState } from 'react';
 
-import BootstrapTheme from "@fullcalendar/bootstrap";
-import esLocale from "@fullcalendar/core/locales/es";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin, { Draggable } from "@fullcalendar/interaction";
-import listPlugin from "@fullcalendar/list";
-import FullCalendar from "@fullcalendar/react";
-import { useFormik } from "formik";
+import BootstrapTheme from '@fullcalendar/bootstrap';
+import esLocale from '@fullcalendar/core/locales/es';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import interactionPlugin, { Draggable } from '@fullcalendar/interaction';
+import listPlugin from '@fullcalendar/list';
+import FullCalendar from '@fullcalendar/react';
+import { useFormik } from 'formik';
 import {
   Button,
   Card,
@@ -23,8 +23,8 @@ import {
   ModalBody,
   ModalHeader,
   Row,
-} from "reactstrap";
-import * as Yup from "yup";
+} from 'reactstrap';
+import * as Yup from 'yup';
 
 //Import Breadcrumb
 
@@ -41,11 +41,11 @@ import * as Yup from "yup";
 // import DeleteModal from "./DeleteModal";
 
 //redux
-import { useDispatch } from "react-redux";
-import Select from "react-select";
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import AppSpinner from "../../../../shared/components/loader/Spinner";
-import DeleteModal from "../../../../shared/components/modal/DeleteModal";
+import { useDispatch } from 'react-redux';
+import Select from 'react-select';
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import AppSpinner from '../../../../shared/components/loader/Spinner';
+import DeleteModal from '../../../../shared/components/modal/DeleteModal';
 
 const QuotesCalenderPage = () => {
   const dispatch = useDispatch();
@@ -58,19 +58,19 @@ const QuotesCalenderPage = () => {
     enableReinitialize: true,
 
     initialValues: {
-      title: (event && event.title) || "",
-      category: (event && event.category) || "",
+      title: (event && event.title) || '',
+      category: (event && event.category) || '',
     },
     validationSchema: Yup.object({
-      title: Yup.string().required("Please Enter Your Event Name"),
-      category: Yup.string().required("Please Enter Your Billing Name"),
+      title: Yup.string().required('Please Enter Your Event Name'),
+      category: Yup.string().required('Please Enter Your Billing Name'),
     }),
     onSubmit: (values) => {
       if (isEdit) {
         const updateEvent = {
           id: event.id,
           title: values.title,
-          classNames: values.category + " text-white",
+          classNames: values.category + ' text-white',
           start: event.start,
         };
         console.log({ updateEvent });
@@ -80,11 +80,11 @@ const QuotesCalenderPage = () => {
       } else {
         const newEvent = {
           id: Math.floor(Math.random() * 100),
-          title: values["title"],
+          title: values['title'],
           start: selectedDay ? selectedDay.date : new Date(),
-          className: values["category"]
-            ? values["category"] + " text-white"
-            : "bg-primary text-white",
+          className: values['category']
+            ? values['category'] + ' text-white'
+            : 'bg-primary text-white',
         };
         console.log({ newEvent });
         // save new event
@@ -106,8 +106,8 @@ const QuotesCalenderPage = () => {
   useEffect(() => {
     // dispatch(onGetCategories());
     // dispatch(onGetEvents());
-    new Draggable(document.getElementById("external-events")!, {
-      itemSelector: ".external-event",
+    new Draggable(document.getElementById('external-events')!, {
+      itemSelector: '.external-event',
     });
   }, [dispatch]);
 
@@ -137,7 +137,7 @@ const QuotesCalenderPage = () => {
    * Handling date click on calendar
    */
   const handleDateClick = (arg: any) => {
-    const date = arg["date"];
+    const date = arg['date'];
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
@@ -152,7 +152,7 @@ const QuotesCalenderPage = () => {
       day,
       currentHour,
       currentMin,
-      currentSec
+      currentSec,
     );
     const modifiedData = { ...arg, date: modifiedDate };
 
@@ -201,7 +201,7 @@ const QuotesCalenderPage = () => {
    * On calendar drop event
    */
   const onDrop = (event: any) => {
-    const date = event["date"];
+    const date = event['date'];
     const day = date.getDate();
     const month = date.getMonth();
     const year = date.getFullYear();
@@ -216,14 +216,14 @@ const QuotesCalenderPage = () => {
       day,
       currentHour,
       currentMin,
-      currentSec
+      currentSec,
     );
 
     const draggedEl = event.draggedEl;
     const draggedElclass = draggedEl.className;
     if (
-      draggedEl.classList.contains("external-event") &&
-      draggedElclass.indexOf("fc-event-draggable") == -1
+      draggedEl.classList.contains('external-event') &&
+      draggedElclass.indexOf('fc-event-draggable') == -1
     ) {
       const modifiedData = {
         id: Math.floor(Math.random() * 100),
@@ -247,7 +247,7 @@ const QuotesCalenderPage = () => {
         show={deleteModal}
         onDeleteClick={handleDeleteEvent}
         onCloseClick={() => setDeleteModal(false)}
-        title={"Some title"}
+        title={'Some title'}
         warningMessage={false}
       />
       <div className="page-content">
@@ -274,7 +274,7 @@ const QuotesCalenderPage = () => {
                               <label className="control-label">Área</label>
                               <Select
                                 isDisabled={false}
-                                value={[{ label: "Área 1", value: 0 }]}
+                                value={[{ label: 'Área 1', value: 0 }]}
                                 isMulti={false}
                                 isClearable={true}
                                 isSearchable={false}
@@ -282,11 +282,11 @@ const QuotesCalenderPage = () => {
                                   console.log({ selected });
                                 }}
                                 options={[
-                                  { label: "Área 1", value: 0 },
-                                  { label: "Área 2", value: 1 },
-                                  { label: "Área 3", value: 2 },
-                                  { label: "Área 4", value: 3 },
-                                  { label: "Área 5", value: 4 },
+                                  { label: 'Área 1', value: 0 },
+                                  { label: 'Área 2', value: 1 },
+                                  { label: 'Área 3', value: 2 },
+                                  { label: 'Área 4', value: 3 },
+                                  { label: 'Área 5', value: 4 },
                                 ]}
                               ></Select>
                             </Col>
@@ -297,7 +297,7 @@ const QuotesCalenderPage = () => {
                               </label>
                               <Select
                                 isDisabled={false}
-                                value={[{ label: "Cotización 1", value: 0 }]}
+                                value={[{ label: 'Cotización 1', value: 0 }]}
                                 isMulti={false}
                                 isClearable={true}
                                 isSearchable={false}
@@ -305,11 +305,11 @@ const QuotesCalenderPage = () => {
                                   console.log({ selected });
                                 }}
                                 options={[
-                                  { label: "Cotización 1", value: 0 },
-                                  { label: "Cotización 2", value: 1 },
-                                  { label: "Cotización 3", value: 2 },
-                                  { label: "Cotización 4", value: 3 },
-                                  { label: "Cotización 5", value: 4 },
+                                  { label: 'Cotización 1', value: 0 },
+                                  { label: 'Cotización 2', value: 1 },
+                                  { label: 'Cotización 3', value: 2 },
+                                  { label: 'Cotización 4', value: 3 },
+                                  { label: 'Cotización 5', value: 4 },
                                 ]}
                               ></Select>
                             </Col>
@@ -343,7 +343,7 @@ const QuotesCalenderPage = () => {
                             (categories || [])?.map((category: any) => (
                               <div
                                 className={`${category.type} external-event fc-event text-white`}
-                                key={"cat-" + category.id}
+                                key={'cat-' + category.id}
                                 draggable
                                 onDrag={(event) => onDrag(event)}
                               >
@@ -375,14 +375,14 @@ const QuotesCalenderPage = () => {
                             listPlugin,
                             interactionPlugin,
                           ]}
-                          slotDuration={"00:15:00"}
+                          slotDuration={'00:15:00'}
                           handleWindowResize={true}
                           themeSystem="bootstrap"
                           headerToolbar={{
-                            left: "prev,next today",
-                            center: "title",
+                            left: 'prev,next today',
+                            center: 'title',
                             right:
-                              "dayGridMonth,dayGridWeek,dayGridDay,listWeek",
+                              'dayGridMonth,dayGridWeek,dayGridDay,listWeek',
                           }}
                           locale={esLocale}
                           events={events}
@@ -396,7 +396,7 @@ const QuotesCalenderPage = () => {
                       </CardBody>
                     </Card>
 
-                    <Modal isOpen={modalCategory} className={""} centered>
+                    <Modal isOpen={modalCategory} className={''} centered>
                       <ModalHeader toggle={toggle} tag="h5">
                         Edit Event
                       </ModalHeader>
@@ -418,7 +418,7 @@ const QuotesCalenderPage = () => {
                                   placeholder="Insert Event Name"
                                   onChange={categoryValidation.handleChange}
                                   onBlur={categoryValidation.handleBlur}
-                                  value={categoryValidation.values.title || ""}
+                                  value={categoryValidation.values.title || ''}
                                   invalid={
                                     categoryValidation.touched.title &&
                                     categoryValidation.errors.title
@@ -444,7 +444,7 @@ const QuotesCalenderPage = () => {
                                   onChange={categoryValidation.handleChange}
                                   onBlur={categoryValidation.handleBlur}
                                   value={
-                                    categoryValidation.values.category || ""
+                                    categoryValidation.values.category || ''
                                   }
                                   invalid={
                                     categoryValidation.touched.category &&

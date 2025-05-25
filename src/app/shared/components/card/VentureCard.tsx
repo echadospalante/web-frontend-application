@@ -6,10 +6,10 @@ import {
   Col,
   Row,
   UncontrolledTooltip,
-} from "reactstrap";
-import { Venture } from "echadospalante-domain";
-import { textToRGB } from "../../helpers/colors";
-import { formatDate } from "../../helpers/dates";
+} from 'reactstrap';
+import { Venture } from 'echadospalante-domain';
+import { textToRGB } from '../../helpers/colors';
+import { formatDate } from '../../helpers/dates';
 
 export type VentureCardProps = {
   venture: Venture;
@@ -40,7 +40,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                 </h5>
                 <p className="text-muted mb-2" id={`description-${venture.id}`}>
                   {venture.description.substring(0, 100)}
-                  {venture.description.length >= 100 ? "..." : ""}
+                  {venture.description.length >= 100 ? '...' : ''}
                 </p>
 
                 <UncontrolledTooltip
@@ -64,8 +64,8 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                         className="px-1"
                         style={{
                           backgroundColor: textToRGB(category.name),
-                          color: "white",
-                          borderRadius: "5px",
+                          color: 'white',
+                          borderRadius: '5px',
                         }}
                       >
                         {category.name}
@@ -139,22 +139,22 @@ const VentureCard = ({ venture }: VentureCardProps) => {
               <div className="mt-0 d-flex justify-content-between">
                 <Badge
                   className={`py-1 px-2 bg-${
-                    venture.active ? "success" : "danger"
+                    venture.active ? 'success' : 'danger'
                   }`}
                 >
-                  {venture.active ? "Activo" : "Inactivo"}
+                  {venture.active ? 'Activo' : 'Inactivo'}
                 </Badge>
                 <Badge
                   className={`py-1 px-2 bg-${
-                    venture.verified ? "info" : "secondary"
+                    venture.verified ? 'info' : 'secondary'
                   }`}
                 >
                   <i
                     className={`bx ${
-                      venture.verified ? "bx-badge-check" : "bx bx-badge"
+                      venture.verified ? 'bx-badge-check' : 'bx bx-badge'
                     } me-2`}
                   ></i>
-                  {venture.verified ? "Verificado" : "No verificado"}
+                  {venture.verified ? 'Verificado' : 'No verificado'}
                 </Badge>
               </div>
             </ul>
@@ -259,7 +259,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
 
 export default VentureCard;
 
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react';
 
 export function UilMegaphone(props: SVGProps<SVGSVGElement>) {
   return (

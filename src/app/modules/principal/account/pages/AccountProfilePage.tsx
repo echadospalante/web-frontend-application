@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -10,13 +10,13 @@ import {
   Container,
   Row,
   Table,
-} from "reactstrap";
-import { selectAuthentication } from "../../../../config/redux/reducers/auth/auth.reducer";
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import VentureCategoryWidget from "../../../../shared/components/widgets/VentureCategoryWidget";
-import useUserContactInfo from "../hooks/useUserContactInfo";
-import AppSpinner from "../../../../shared/components/loader/Spinner";
-import UserContactCard from "../../../../shared/components/card/UserContactCard";
+} from 'reactstrap';
+import { selectAuthentication } from '../../../../config/redux/reducers/auth/auth.reducer';
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import VentureCategoryWidget from '../../../../shared/components/widgets/VentureCategoryWidget';
+import useUserContactInfo from '../hooks/useUserContactInfo';
+import AppSpinner from '../../../../shared/components/loader/Spinner';
+import UserContactCard from '../../../../shared/components/card/UserContactCard';
 
 const AccountProfilePage = () => {
   document.title = "Perfil de usuario | EchadosPa'lante";
@@ -102,7 +102,7 @@ const AccountProfilePage = () => {
                         </Row>
                         <div className="mt-4">
                           <Link to="" className="btn btn-primary  btn-sm">
-                            Editar perfil{" "}
+                            Editar perfil{' '}
                             <i className="mdi mdi-arrow-right ms-1" />
                           </Link>
                         </div>
@@ -118,28 +118,28 @@ const AccountProfilePage = () => {
                   <div>
                     <ul className="verti-timeline list-unstyled">
                       {[
-                        { id: 1, iconClass: "bx bx-user", link: "#" },
-                        { id: 2, iconClass: "bx bxs-news", link: "#" },
+                        { id: 1, iconClass: 'bx bx-user', link: '#' },
+                        { id: 2, iconClass: 'bx bxs-news', link: '#' },
                         {
                           id: 3,
-                          iconClass: "bx bxs-comment-add",
-                          link: "#",
+                          iconClass: 'bx bxs-comment-add',
+                          link: '#',
                         },
                       ]?.map((experience, i) => (
                         <li
                           className={
                             experience.id === 1
-                              ? "event-list active"
-                              : "event-list"
+                              ? 'event-list active'
+                              : 'event-list'
                           }
-                          key={"_exp_" + i}
+                          key={'_exp_' + i}
                         >
                           <div className="event-timeline-dot">
                             <i
                               className={
                                 experience.id === 1
-                                  ? "bx bx-right-arrow-circle bx-fade-right"
-                                  : "bx bx-right-arrow-circle"
+                                  ? 'bx bx-right-arrow-circle bx-fade-right'
+                                  : 'bx bx-right-arrow-circle'
                               }
                             />
                           </div>
@@ -147,9 +147,9 @@ const AccountProfilePage = () => {
                             <div className="me-3">
                               <i
                                 className={
-                                  "bx " +
+                                  'bx ' +
                                   experience.iconClass +
-                                  " h4 text-primary"
+                                  ' h4 text-primary'
                                 }
                               />
                             </div>
@@ -182,11 +182,11 @@ const AccountProfilePage = () => {
               <Row>
                 {[1, 2, 3]?.map((_card) => (
                   <VentureCategoryWidget
-                    name={""}
+                    name={''}
                     count={0}
                     percentageGrowth={0}
-                    icon={""}
-                    backgroundColor={""}
+                    icon={''}
+                    backgroundColor={''}
                     checked={false}
                   />
                 ))}

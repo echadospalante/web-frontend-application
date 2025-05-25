@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { Quote } from "../domain/quote";
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { Quote } from '../domain/quote';
 import {
   deleteQuoteMiddleware,
   fetchQuotesMiddleware,
-} from "../api/middleware/quotes.middleware";
+} from '../api/middleware/quotes.middleware';
 
 type UseQuotesProps = {
   page: number;

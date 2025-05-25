@@ -1,7 +1,7 @@
-import Select from "react-select";
-import { Col, Row } from "reactstrap";
+import Select from 'react-select';
+import { Col, Row } from 'reactstrap';
 
-import useVentureCategoriesFilters from "../../../modules/admin/general/hooks/useVentureCategoriesFilter";
+import useVentureCategoriesFilters from '../../../modules/admin/general/hooks/useVentureCategoriesFilter';
 
 const VentureCategoriesFiltersForm = () => {
   const { filters, setSearchTerm, setSize } = useVentureCategoriesFilters();
@@ -13,7 +13,7 @@ const VentureCategoriesFiltersForm = () => {
         <Select
           className=""
           value={{
-            label: filters.size + "",
+            label: filters.size + '',
             value: filters.size,
           }}
           isMulti={false}
@@ -30,9 +30,9 @@ const VentureCategoriesFiltersForm = () => {
             //   });
           }}
           options={[
-            { label: "20", value: 20 },
-            { label: "50", value: 50 },
-            { label: "100", value: 100 },
+            { label: '20', value: 20 },
+            { label: '50', value: 50 },
+            { label: '100', value: 100 },
           ]}
         ></Select>
       </Col>

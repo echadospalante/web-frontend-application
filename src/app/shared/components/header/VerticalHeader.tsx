@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
 
-import { toggleRightSidebar } from "../../../config/redux/reducers/shared/layout.reducer";
-import { useAppDispatch } from "../../../config/redux/store/store.config";
-import LanguageDropdown from "../dropdown/LanguageDropdown";
-import NotificationDropdown from "../dropdown/NotificationDropdown";
-import ProfileMenu from "../menu/ProfileMenu";
+import { toggleRightSidebar } from '../../../config/redux/reducers/shared/layout.reducer';
+import { useAppDispatch } from '../../../config/redux/store/store.config';
+import LanguageDropdown from '../dropdown/LanguageDropdown';
+import NotificationDropdown from '../dropdown/NotificationDropdown';
+import ProfileMenu from '../menu/ProfileMenu';
 
 const Header = () => {
   const { t } = useTranslation();
@@ -21,10 +21,10 @@ const Header = () => {
   function tToggle() {
     const body = document.body;
     if (window.screen.width <= 998) {
-      body.classList.toggle("sidebar-enable");
+      body.classList.toggle('sidebar-enable');
     } else {
-      body.classList.toggle("vertical-collpsed");
-      body.classList.toggle("sidebar-enable");
+      body.classList.toggle('vertical-collpsed');
+      body.classList.toggle('sidebar-enable');
     }
   }
 
@@ -63,7 +63,7 @@ const Header = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder={t("Search") + "..."}
+                  placeholder={t('Search') + '...'}
                 />
                 <span className="bx bx-search-alt" />
               </div>
@@ -77,8 +77,8 @@ const Header = () => {
               }}
             >
               <DropdownToggle className="btn header-item " caret tag="button">
-                {" "}
-                {t("Mega Menu")} <i className="mdi mdi-chevron-down" />
+                {' '}
+                {t('Mega Menu')} <i className="mdi mdi-chevron-down" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-megamenu">
                 <Row>
@@ -86,84 +86,84 @@ const Header = () => {
                     <Row>
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {t("UI Components")}
+                          {t('UI Components')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Lightbox")}</Link>
+                            <Link to="#">{t('Lightbox')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Range Slider")}</Link>
+                            <Link to="#">{t('Range Slider')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Sweet Alert")}</Link>
+                            <Link to="#">{t('Sweet Alert')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Rating")}</Link>
+                            <Link to="#">{t('Rating')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Forms")}</Link>
+                            <Link to="#">{t('Forms')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tables")}</Link>
+                            <Link to="#">{t('Tables')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Charts")}</Link>
+                            <Link to="#">{t('Charts')}</Link>
                           </li>
                         </ul>
                       </Col>
 
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {t("Applications")}
+                          {t('Applications')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Ecommerce")}</Link>
+                            <Link to="#">{t('Ecommerce')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Calendar")}</Link>
+                            <Link to="#">{t('Calendar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Email")}</Link>
+                            <Link to="#">{t('Email')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Projects")}</Link>
+                            <Link to="#">{t('Projects')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tasks")}</Link>
+                            <Link to="#">{t('Tasks')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Contacts")}</Link>
+                            <Link to="#">{t('Contacts')}</Link>
                           </li>
                         </ul>
                       </Col>
 
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {t("Extra Pages")}
+                          {t('Extra Pages')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Light Sidebar")}</Link>
+                            <Link to="#">{t('Light Sidebar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Compact Sidebar")}</Link>
+                            <Link to="#">{t('Compact Sidebar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Horizontal layout")}</Link>
+                            <Link to="#">{t('Horizontal layout')}</Link>
                           </li>
                           <li>
-                            <Link to="#"> {t("Maintenance")}</Link>
+                            <Link to="#"> {t('Maintenance')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Coming Soon")}</Link>
+                            <Link to="#">{t('Coming Soon')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Timeline")}</Link>
+                            <Link to="#">{t('Timeline')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("FAQs")}</Link>
+                            <Link to="#">{t('FAQs')}</Link>
                           </li>
                         </ul>
                       </Col>
@@ -173,29 +173,29 @@ const Header = () => {
                     <Row>
                       <Col sm={6}>
                         <h5 className="font-size-14 mt-0">
-                          {t("UI Components")}
+                          {t('UI Components')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Lightbox")}</Link>
+                            <Link to="#">{t('Lightbox')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Range Slider")}</Link>
+                            <Link to="#">{t('Range Slider')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Sweet Alert")}</Link>
+                            <Link to="#">{t('Sweet Alert')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Rating")}</Link>
+                            <Link to="#">{t('Rating')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Forms")}</Link>
+                            <Link to="#">{t('Forms')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tables")}</Link>
+                            <Link to="#">{t('Tables')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Charts")}</Link>
+                            <Link to="#">{t('Charts')}</Link>
                           </li>
                         </ul>
                       </Col>
@@ -230,8 +230,8 @@ const Header = () => {
               <div
                 className={
                   search
-                    ? "dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show"
-                    : "dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                    ? 'dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show'
+                    : 'dropdown-menu dropdown-menu-lg dropdown-menu-end p-0'
                 }
                 aria-labelledby="page-header-search-dropdown"
               >
@@ -326,7 +326,7 @@ const Header = () => {
             <div className="dropdown d-none d-lg-inline-block ms-1">
               <button
                 type="button"
-                onClick={() => console.log("Fullscreen")}
+                onClick={() => console.log('Fullscreen')}
                 className="btn header-item noti-icon "
                 data-toggle="fullscreen"
               >

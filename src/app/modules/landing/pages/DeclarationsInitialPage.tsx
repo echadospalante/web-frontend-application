@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
+import React, { useState } from 'react';
+import { Button, Card, CardBody, Col, Container, Row } from 'reactstrap';
 
 //Dropzone
-import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
-import LandingNavbar from "../../../shared/components/navbar/LandingNavbar";
-import DeclarationCreateModal from "../../../shared/components/modal/DeclarationCreateModal";
-import DeclarationSearchModal from "../../../shared/components/modal/DeclarationSearchModal";
+import Breadcrumb from '../../../shared/components/breadcrumb/Breadcrumb';
+import LandingNavbar from '../../../shared/components/navbar/LandingNavbar';
+import DeclarationCreateModal from '../../../shared/components/modal/DeclarationCreateModal';
+import DeclarationSearchModal from '../../../shared/components/modal/DeclarationSearchModal';
 
 const DeclarationsInitialPage = () => {
   //meta title
   document.title = "KYC Application | Echadospa'lante - ";
 
-  const [activeModal, setActiveModal] = useState<"CREATE" | "SEARCH">();
+  const [activeModal, setActiveModal] = useState<'CREATE' | 'SEARCH'>();
 
-  const toggleModal = (activeModal?: "CREATE" | "SEARCH") => {
+  const toggleModal = (activeModal?: 'CREATE' | 'SEARCH') => {
     setActiveModal(activeModal);
   };
 
@@ -53,7 +53,7 @@ const DeclarationsInitialPage = () => {
                           <Button
                             type="button"
                             className="mb-3 fs-5 btn-soft-success"
-                            onClick={() => toggleModal("CREATE")}
+                            onClick={() => toggleModal('CREATE')}
                           >
                             <i className="mdi mdi-plus-circle-outline me-2"></i>
                             Crear declaración de interés
@@ -62,7 +62,7 @@ const DeclarationsInitialPage = () => {
                           <Button
                             type="button"
                             className="mb-3 fs-5 btn-soft-primary"
-                            onClick={() => toggleModal("SEARCH")}
+                            onClick={() => toggleModal('SEARCH')}
                           >
                             <i className="mdi mdi-magnify me-2"></i>
                             Consultar declaración de interés
@@ -88,16 +88,16 @@ const DeclarationsInitialPage = () => {
             </Col>
           </Row>
 
-          {activeModal === "CREATE" && (
+          {activeModal === 'CREATE' && (
             <DeclarationCreateModal
-              modal={activeModal === "CREATE"}
+              modal={activeModal === 'CREATE'}
               toggleModal={toggleModal}
             />
           )}
 
-          {activeModal === "SEARCH" && (
+          {activeModal === 'SEARCH' && (
             <DeclarationSearchModal
-              modal={activeModal === "SEARCH"}
+              modal={activeModal === 'SEARCH'}
               toggleModal={toggleModal}
             />
           )}

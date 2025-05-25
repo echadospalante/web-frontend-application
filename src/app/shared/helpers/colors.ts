@@ -13,11 +13,11 @@ export const textToRGB = (text: string): string => {
 
 export const getIconName = (name: string) => {
   const nameArray = name
-    .split(" ")
+    .split(' ')
     .filter((n) => n && n.length > 0)
-    .filter((n) => n !== "undefined" && n !== "null");
+    .filter((n) => n !== 'undefined' && n !== 'null');
   if (nameArray.length > 1) {
-    const value = nameArray[0].charAt(0) + "" + nameArray[1].charAt(0);
+    const value = nameArray[0].charAt(0) + '' + nameArray[1].charAt(0);
     return value.toUpperCase();
   }
   return nameArray[0].slice(0, 2).toUpperCase();
@@ -30,7 +30,7 @@ export const stringToColor = (str: string) => {
   }
 
   const color =
-    "#" + ((1 << 24) + (hash & 0xffffff)).toString(16).slice(1).toUpperCase();
+    '#' + ((1 << 24) + (hash & 0xffffff)).toString(16).slice(1).toUpperCase();
 
   return color;
 };

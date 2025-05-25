@@ -1,43 +1,34 @@
-import React, { Fragment, useEffect, useMemo, useState } from "react";
+import React, { useState } from 'react';
 
+import L from 'leaflet';
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import Select from 'react-select';
 import {
   Button,
   Card,
   CardBody,
   Col,
   Container,
+  Form,
   FormFeedback,
   Input,
   Label,
   Row,
-  Form,
-  UncontrolledTooltip,
-} from "reactstrap";
-import "leaflet/dist/leaflet.css";
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
+} from 'reactstrap';
 
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import L from "leaflet";
-import Select from "react-select";
-import { Link } from "react-router-dom";
-import * as Yup from "yup";
-
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import Dropzone from "react-dropzone";
-import SimpleBar from "simplebar-react";
-import { useFormik } from "formik";
-import { VentureCreate } from "echadospalante-domain";
-import useVentureCategories from "../../../admin/general/hooks/useVentureCategories";
-import useAllVentureCategories from "../../../admin/general/hooks/useAllVentureCategories";
-import AlertWithReload from "../../../../shared/components/alert/AlertWithReload";
-import useAuthentication from "../../../auth/hooks/useAuthentication";
+import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import useFetchAllVentureCategories from '../../../admin/general/hooks/useAllVentureCategories';
+import useVentureCreate from '../hooks/useVentureCreate';
 
 enum LocationMode {
-  "CURRENT",
-  "OTHER",
-  "NONE",
+  'CURRENT',
+  'OTHER',
+  'NONE',
 }
 
 const SetMapCenter = ({ position }: { position: [number, number] }) => {
@@ -47,71 +38,20 @@ const SetMapCenter = ({ position }: { position: [number, number] }) => {
 };
 
 const AccountVentureCreatePage = () => {
-  //meta title
-  document.title = "Nuevo emprendimiento | Echadospalante";
+  document.title = 'Nuevo emprendimiento | Echadospalante';
   const {
-    categories,
     loading: loadingCategories,
     error: errorCategories,
-    fetchAllVentureCategories,
-  } = useAllVentureCategories();
-  const { email } = useAuthentication();
-  const [selectedImage, setSelectedImage] = useState<string>("");
+    data: categories,
+    retryFetch: fetchAllVentureCategories,
+  } = useFetchAllVentureCategories();
+
   const [locationMode, setLocationMode] = useState<LocationMode>(
-    LocationMode.NONE
+    LocationMode.NONE,
   );
 
-  // validation
-  const validation = useFormik<VentureCreate>({
-    initialValues: {
-      name: "Nombre de prueba",
-      coverPhoto: null,
-      description: "",
-      categoriesIds: [],
-      contact: {
-        email: email,
-        phoneNumber: "",
-      },
-      location: {
-        lat: 0,
-        lng: 0,
-        description: "",
-      },
-    },
-    validationSchema: Yup.object({
-      name: Yup.string().required("Name is required").max(50),
-      coverPhoto: Yup.mixed<File>()
-        .required("La foto de portada es requerida")
-        .test(
-          "fileType",
-          "Unsupported file format. Please upload an image in JPEG or PNG.",
-          (value) => {
-            return (
-              value &&
-              ["image/jpeg", "image/png", "image/jpg"].includes(value.type)
-            );
-          }
-        ),
-      description: Yup.string().required("Description is required").max(300),
-      categories: Yup.array().required("Category is required").min(1),
-      contact: Yup.object().shape({
-        email: Yup.string().required("Email is required").email().optional(),
-        phoneNumber: Yup.string()
-          .required("Phone number is required")
-          .matches(/^[0-9]+$/)
-          .optional(),
-      }),
-      location: Yup.object().shape({
-        lat: Yup.number().required("Latitude is required").optional(),
-        lng: Yup.number().required("Longitude is required").optional(),
-        description: Yup.string(),
-      }),
-    }),
-
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+  const { form, handleImageUpload, handleImageRemove, uploadImageRequest } =
+    useVentureCreate();
 
   const markerIconInstance = new L.Icon({
     iconUrl: markerIcon,
@@ -123,18 +63,6 @@ const AccountVentureCreatePage = () => {
     shadowSize: [41, 41],
     shadowAnchor: [12, 41],
   });
-
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setSelectedImage(reader.result as string);
-        validation.setFieldValue("coverPhoto", file);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   return (
     <div className="page-content">
@@ -156,7 +84,7 @@ const AccountVentureCreatePage = () => {
               id="createproject-form"
               onSubmit={(e) => {
                 e.preventDefault();
-                validation.handleSubmit();
+                form.handleSubmit();
                 return false;
               }}
             >
@@ -185,13 +113,13 @@ const AccountVentureCreatePage = () => {
                           name="name"
                           type="text"
                           placeholder="Ingresa el nombre del emprendimiento"
-                          onChange={validation.handleChange}
-                          onBlur={validation.handleBlur}
-                          value={validation.values.name || ""}
+                          onChange={form.handleChange}
+                          onBlur={form.handleBlur}
+                          value={form.values.name || ''}
                         />
-                        {validation.touched.name && validation.errors.name ? (
+                        {form.touched.name && form.errors.name ? (
                           <FormFeedback type="invalid" className="d-block">
-                            {validation.errors.name}
+                            {form.errors.name}
                           </FormFeedback>
                         ) : null}
                       </div>
@@ -204,15 +132,16 @@ const AccountVentureCreatePage = () => {
                               <Label
                                 htmlFor="project-image-input"
                                 className="mb-0"
+                                disabled={uploadImageRequest.isLoading}
                                 id="projectImageInput"
                               >
                                 <div className="m-1">
                                   <div className="d-flex bg-light p-1 border text-muted cursor-pointer shadow font-size-16">
                                     <i className="bx bxs-image-alt"></i>
                                     <small>
-                                      {selectedImage
-                                        ? "Cambiar foto"
-                                        : "Subir foto"}
+                                      {form.values.coverPhoto
+                                        ? 'Cambiar foto'
+                                        : 'Subir foto'}
                                     </small>
                                   </div>
                                 </div>
@@ -221,15 +150,16 @@ const AccountVentureCreatePage = () => {
                               <input
                                 className="form-control d-none"
                                 id="project-image-input"
+                                disabled={uploadImageRequest.isLoading}
                                 type="file"
                                 multiple={false}
                                 accept="image/png, image/gif, image/jpeg"
                                 onChange={handleImageUpload}
                               />
 
-                              {selectedImage && (
+                              {form.values.coverPhoto && (
                                 <p
-                                  onClick={() => setSelectedImage("")}
+                                  onClick={handleImageRemove}
                                   className="mb-0 fw-medium"
                                 >
                                   <div className="m-1">
@@ -244,7 +174,7 @@ const AccountVentureCreatePage = () => {
 
                             <div className="">
                               <img
-                                src={selectedImage || ""}
+                                src={form.values.coverPhoto || ''}
                                 id="projectlogo-img"
                                 width="100%"
                                 className="h-auto"
@@ -252,10 +182,12 @@ const AccountVentureCreatePage = () => {
                             </div>
                           </div>
 
-                          {validation.touched.coverPhoto &&
-                          validation.errors.coverPhoto ? (
-                            <FormFeedback type="invalid" className="d-block">
-                              {validation.errors.coverPhoto}
+                          {form.touched.coverPhoto && form.errors.coverPhoto ? (
+                            <FormFeedback
+                              type="invalid"
+                              className="d-block mt-4"
+                            >
+                              {form.errors.coverPhoto}
                             </FormFeedback>
                           ) : null}
                         </div>
@@ -269,23 +201,22 @@ const AccountVentureCreatePage = () => {
                           <textarea
                             className="form-control w-100"
                             style={{
-                              minHeight: "50px",
-                              maxHeight: "150px",
-                              height: "100px",
+                              minHeight: '50px',
+                              maxHeight: '150px',
+                              height: '100px',
                             }}
                             id="description"
                             name="description"
                             placeholder="Ingrese la descripción del emprendimiento"
-                            onChange={validation.handleChange}
-                            onBlur={validation.handleBlur}
-                            value={validation.values.description || ""}
+                            onChange={form.handleChange}
+                            onBlur={form.handleBlur}
+                            value={form.values.description || ''}
                           />
                         </div>
 
-                        {validation.touched.description &&
-                        validation.errors.description ? (
+                        {form.touched.description && form.errors.description ? (
                           <FormFeedback type="invalid" className="d-block">
-                            {validation.errors.description}
+                            {form.errors.description}
                           </FormFeedback>
                         ) : null}
                       </div>
@@ -303,17 +234,18 @@ const AccountVentureCreatePage = () => {
                         <Select
                           id="categoriesIds"
                           name="categoriesIds"
-                          value={validation.values.categoriesIds.map((id) => ({
+                          value={form.values.categoriesIds.map((id) => ({
                             label: categories.find((c) => c.id === id)?.name,
                             value: id,
                           }))}
+                          closeMenuOnSelect={false}
                           placeholder="Selecciona las categorias, maximo 10"
                           isMulti={true}
                           isLoading={loadingCategories}
                           onChange={(value) => {
-                            validation.setFieldValue(
-                              "categoriesIds",
-                              value.map((category) => category.value)
+                            form.setFieldValue(
+                              'categoriesIds',
+                              value.map((category) => category.value),
                             );
                           }}
                           options={categories.map(({ name, id }) => ({
@@ -323,10 +255,9 @@ const AccountVentureCreatePage = () => {
                           className="select2-selection"
                         />
 
-                        {validation.touched.description &&
-                        validation.errors.description ? (
+                        {form.touched.description && form.errors.description ? (
                           <FormFeedback type="invalid" className="d-block">
-                            {validation.errors.description}
+                            {form.errors.description}
                           </FormFeedback>
                         ) : null}
                       </div>
@@ -346,15 +277,14 @@ const AccountVentureCreatePage = () => {
                               name="contact.email"
                               type="email"
                               placeholder="Ingresa el email de contacto"
-                              onChange={validation.handleChange}
-                              onBlur={validation.handleBlur}
-                              value={validation.values.contact?.email || ""}
+                              onChange={form.handleChange}
+                              onBlur={form.handleBlur}
+                              value={form.values.contact?.email || ''}
                             />
 
-                            {validation.touched.contact &&
-                            validation.errors.contact ? (
+                            {form.touched.contact && form.errors.contact ? (
                               <FormFeedback type="invalid" className="d-block">
-                                {validation.errors.contact}
+                                {form.errors.contact}
                               </FormFeedback>
                             ) : null}
                           </div>
@@ -368,17 +298,14 @@ const AccountVentureCreatePage = () => {
                               name="contact.phoneNumber"
                               type="text"
                               placeholder="Ingresa el telefono de contacto"
-                              onChange={validation.handleChange}
-                              onBlur={validation.handleBlur}
-                              value={
-                                validation.values.contact?.phoneNumber || ""
-                              }
+                              onChange={form.handleChange}
+                              onBlur={form.handleBlur}
+                              value={form.values.contact?.phoneNumber || ''}
                             />
 
-                            {validation.touched.contact &&
-                            validation.errors.contact ? (
+                            {form.touched.contact && form.errors.contact ? (
                               <FormFeedback type="invalid" className="d-block">
-                                {validation.errors.contact}
+                                {form.errors.contact}
                               </FormFeedback>
                             ) : null}
                           </div>
@@ -432,8 +359,8 @@ const AccountVentureCreatePage = () => {
                               name="btnradio"
                               onChange={() => {
                                 setLocationMode(LocationMode.NONE);
-                                validation.setFieldValue("location.lat", 0);
-                                validation.setFieldValue("location.lng", 0);
+                                form.setFieldValue('location.lat', 0);
+                                form.setFieldValue('location.lng', 0);
                               }}
                               id="btnradio6"
                               autoComplete="off"
@@ -445,25 +372,25 @@ const AccountVentureCreatePage = () => {
                               Ninguna
                             </label>
                           </div>
-
+                          ;
                           {locationMode === 0 && (
                             <Button
                               className="btn btn-info w-100 my-2"
                               onClick={() => {
                                 navigator.geolocation.getCurrentPosition(
                                   (position) => {
-                                    validation.setFieldValue(
-                                      "location.lat",
-                                      position.coords.latitude
+                                    form.setFieldValue(
+                                      'location.lat',
+                                      position.coords.latitude,
                                     );
-                                    validation.setFieldValue(
-                                      "location.lng",
-                                      position.coords.longitude
+                                    form.setFieldValue(
+                                      'location.lng',
+                                      position.coords.longitude,
                                     );
                                   },
                                   (error) => {
                                     console.error(error);
-                                  }
+                                  },
                                 );
                               }}
                             >
@@ -471,7 +398,6 @@ const AccountVentureCreatePage = () => {
                               Obtener mi ubicacion actual
                             </Button>
                           )}
-
                           {locationMode === 1 && (
                             <Row>
                               <Col lg={6}>
@@ -484,20 +410,18 @@ const AccountVentureCreatePage = () => {
                                     name="location.lat"
                                     type="number"
                                     placeholder="Ingresa la latitud"
-                                    onChange={validation.handleChange}
-                                    onBlur={validation.handleBlur}
-                                    value={
-                                      validation.values.location?.lat || ""
-                                    }
+                                    onChange={form.handleChange}
+                                    onBlur={form.handleBlur}
+                                    value={form.values.location?.lat || ''}
                                   />
 
-                                  {validation.touched.location &&
-                                  validation.errors.location ? (
+                                  {form.touched.location &&
+                                  form.errors.location ? (
                                     <FormFeedback
                                       type="invalid"
                                       className="d-block"
                                     >
-                                      {validation.errors.location}
+                                      {form.errors.location}
                                     </FormFeedback>
                                   ) : null}
                                 </div>
@@ -512,60 +436,58 @@ const AccountVentureCreatePage = () => {
                                     name="location.lng"
                                     type="number"
                                     placeholder="Ingresa la longitud"
-                                    onChange={validation.handleChange}
-                                    onBlur={validation.handleBlur}
-                                    value={
-                                      validation.values.location?.lng || ""
-                                    }
+                                    onChange={form.handleChange}
+                                    onBlur={form.handleBlur}
+                                    value={form.values.location?.lng || ''}
                                   />
 
-                                  {validation.touched.location &&
-                                  validation.errors.location ? (
+                                  {form.touched.location &&
+                                  form.errors.location ? (
                                     <FormFeedback
                                       type="invalid"
                                       className="d-block"
                                     >
-                                      {validation.errors.location}
+                                      {form.errors.location}
                                     </FormFeedback>
                                   ) : null}
                                 </div>
                               </Col>
                             </Row>
                           )}
-
-                          {validation.values.location?.lat &&
-                            validation.values.location?.lng && (
-                              <MapContainer
-                                center={[
-                                  validation.values.location?.lat,
-                                  validation.values.location?.lng,
+                          {form.values.location?.lat &&
+                          form.values.location?.lng ? (
+                            <MapContainer
+                              center={[
+                                form.values.location?.lat,
+                                form.values.location?.lng,
+                              ]}
+                              zoom={13}
+                              style={{ height: '400px', width: '100%' }}
+                            >
+                              <TileLayer
+                                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // OpenStreetMap tiles
+                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                              />
+                              <Marker
+                                position={[
+                                  form.values.location?.lat,
+                                  form.values.location?.lng,
                                 ]}
-                                zoom={13}
-                                style={{ height: "400px", width: "100%" }}
+                                icon={markerIconInstance}
                               >
-                                <TileLayer
-                                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // OpenStreetMap tiles
-                                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                />
-                                <Marker
-                                  position={[
-                                    validation.values.location?.lat,
-                                    validation.values.location?.lng,
-                                  ]}
-                                  icon={markerIconInstance}
-                                >
-                                  <Popup>La ubicacion que elegiste</Popup>
-                                </Marker>
+                                <Popup>La ubicacion que elegiste</Popup>
+                              </Marker>
 
-                                <SetMapCenter
-                                  position={[
-                                    validation.values.location?.lat,
-                                    validation.values.location?.lng,
-                                  ]}
-                                />
-                              </MapContainer>
-                            )}
-
+                              <SetMapCenter
+                                position={[
+                                  form.values.location?.lat,
+                                  form.values.location?.lng,
+                                ]}
+                              />
+                            </MapContainer>
+                          ) : (
+                            <></>
+                          )}
                           <div className="mb-3 mt-2">
                             <Label htmlFor="projectdesc-input">
                               Descripción corta de la ubicacion
@@ -574,25 +496,23 @@ const AccountVentureCreatePage = () => {
                               <textarea
                                 className="form-control w-100"
                                 style={{
-                                  minHeight: "50px",
-                                  maxHeight: "150px",
-                                  height: "100px",
+                                  minHeight: '50px',
+                                  maxHeight: '150px',
+                                  height: '100px',
                                 }}
                                 id="location.description"
                                 name="location.description"
                                 placeholder="Ingrese la descripción del emprendimiento"
-                                onChange={validation.handleChange}
-                                onBlur={validation.handleBlur}
-                                value={
-                                  validation.values.location?.description || ""
-                                }
+                                onChange={form.handleChange}
+                                onBlur={form.handleBlur}
+                                value={form.values.location?.description || ''}
                               />
                             </div>
 
-                            {validation.touched.description &&
-                            validation.errors.description ? (
+                            {form.touched.description &&
+                            form.errors.description ? (
                               <FormFeedback type="invalid" className="d-block">
-                                {validation.errors.description}
+                                {form.errors.description}
                               </FormFeedback>
                             ) : null}
                           </div>
@@ -604,7 +524,13 @@ const AccountVentureCreatePage = () => {
 
                 <Col lg={12}>
                   <div className="text-center mb-4">
-                    <Button type="submit" color="primary">
+                    <Button
+                      type="button"
+                      onClick={() => {
+                        form.handleSubmit();
+                      }}
+                      color="primary"
+                    >
                       <i className="bx bx-rocket me-1"></i>
                       Crear emprendimiento
                     </Button>

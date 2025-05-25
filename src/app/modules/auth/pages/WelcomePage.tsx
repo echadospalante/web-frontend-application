@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { Link, Navigate } from "react-router-dom";
-import { Card, CardBody, Col, Container, Row } from "reactstrap";
+import { Link, Navigate } from 'react-router-dom';
+import { Card, CardBody, Col, Container, Row } from 'reactstrap';
 
 const WelcomePage = () => {
   const { onboardingCompleted } = useSelector(selectAuthentication);
 
   if (onboardingCompleted) {
-    return <Navigate to={"/principal"} replace={true} />;
+    return <Navigate to={'/principal'} replace={true} />;
   }
 
   return (
@@ -66,7 +66,7 @@ const WelcomePage = () => {
               </Card>
               <div className="mt-5 text-center">
                 <p>
-                  © {new Date().getFullYear()} Echadospa'lante. Crafted with{" "}
+                  © {new Date().getFullYear()} Echadospa'lante. Crafted with{' '}
                   <i className="mdi mdi-heart text-danger"></i> by Themesbrand
                 </p>
               </div>
@@ -78,9 +78,9 @@ const WelcomePage = () => {
   );
 };
 
-import type { SVGProps } from "react";
-import { useSelector } from "react-redux";
-import { selectAuthentication } from "../../../config/redux/reducers/auth/auth.reducer";
+import type { SVGProps } from 'react';
+import { useSelector } from 'react-redux';
+import { selectAuthentication } from '../../../config/redux/reducers/auth/auth.reducer';
 
 export function HandGreeting(props: SVGProps<SVGSVGElement>) {
   return (

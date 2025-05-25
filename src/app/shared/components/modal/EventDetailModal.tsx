@@ -8,17 +8,17 @@ import {
   ModalHeader,
   Row,
   UncontrolledTooltip,
-} from "reactstrap";
+} from 'reactstrap';
 
-import { CalendarEvent } from "../../../modules/admin/general/hooks/useVentureEvents";
-import { textToRGB } from "../../helpers/colors";
+import { CalendarEvent } from '../../../modules/admin/general/hooks/useVentureEvents';
+import { textToRGB } from '../../helpers/colors';
 
-import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerShadow from "leaflet/dist/images/marker-shadow.png";
-import "leaflet/dist/leaflet.css";
+import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
+import markerIcon from 'leaflet/dist/images/marker-icon.png';
+import markerShadow from 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet/dist/leaflet.css';
 
-import L from "leaflet";
+import L from 'leaflet';
 import {
   MapContainer,
   Marker,
@@ -26,9 +26,9 @@ import {
   TileLayer,
   Tooltip,
   useMap,
-} from "react-leaflet";
-import SponsorCard from "../card/SponsorCard";
-import useVentureSponsorships from "../../../modules/admin/general/hooks/useVentureSponsorships";
+} from 'react-leaflet';
+import SponsorCard from '../card/SponsorCard';
+import useVentureSponsorships from '../../../modules/admin/general/hooks/useVentureSponsorships';
 
 type EventDetailModalProps = {
   event: CalendarEvent;
@@ -99,8 +99,8 @@ const EventDetailModal = ({ event, onCloseClick }: EventDetailModalProps) => {
                       className="px-2 py-1 fs-6"
                       style={{
                         backgroundColor: textToRGB(category.name),
-                        color: "white",
-                        borderRadius: "5px",
+                        color: 'white',
+                        borderRadius: '5px',
                       }}
                     >
                       {category.name}
@@ -118,7 +118,7 @@ const EventDetailModal = ({ event, onCloseClick }: EventDetailModalProps) => {
                   <MapContainer
                     center={[event.location.lat, event.location.lng]}
                     zoom={13}
-                    style={{ height: "400px", width: "100%" }}
+                    style={{ height: '400px', width: '100%' }}
                   >
                     <TileLayer
                       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // OpenStreetMap tiles

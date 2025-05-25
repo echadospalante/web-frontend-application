@@ -1,6 +1,6 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { Spinner } from "reactstrap";
+import { Spinner } from 'reactstrap';
 
 const AppSpinner = () => {
   return (

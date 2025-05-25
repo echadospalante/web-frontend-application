@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
 import {
   Card,
@@ -9,16 +9,16 @@ import {
   Row,
   TabContent,
   TabPane,
-} from "reactstrap";
+} from 'reactstrap';
 
-import classnames from "classnames";
-import { Link } from "react-router-dom";
+import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 
-import FeedRightSidebar from "../../../../shared/components/rightbar/FeedRightSidebar";
+import FeedRightSidebar from '../../../../shared/components/rightbar/FeedRightSidebar';
 
 const PublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
-  const [activeTab, toggleTab] = useState("1");
+  const [activeTab, toggleTab] = useState('1');
 
   return (
     <Fragment>
@@ -37,10 +37,10 @@ const PublicationsFeedPage = () => {
                     <NavLink
                       to="#"
                       className={classnames({
-                        active: activeTab === "1",
+                        active: activeTab === '1',
                       })}
                       onClick={() => {
-                        toggleTab("1");
+                        toggleTab('1');
                       }}
                     >
                       Publicaciones
@@ -50,10 +50,10 @@ const PublicationsFeedPage = () => {
                     <NavLink
                       to="#"
                       className={classnames({
-                        active: activeTab === "2",
+                        active: activeTab === '2',
                       })}
                       onClick={() => {
-                        toggleTab("2");
+                        toggleTab('2');
                       }}
                     >
                       Mapa
@@ -132,13 +132,13 @@ const PublicationsFeedPage = () => {
                                   <ul className="list-inline">
                                     <li className="list-inline-item mr-3">
                                       <Link to="#" className="text-muted">
-                                        <i className="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>{" "}
+                                        <i className="bx bx-purchase-tag-alt align-middle text-muted me-1"></i>{' '}
                                         Nombre Categoría
                                       </Link>
                                     </li>
                                     <li className="list-inline-item mr-3">
                                       <Link to="#" className="text-muted">
-                                        <i className="bx bx-comment-dots align-middle text-muted me-1"></i>{" "}
+                                        <i className="bx bx-comment-dots align-middle text-muted me-1"></i>{' '}
                                         12 Comentarios
                                       </Link>
                                     </li>
@@ -154,7 +154,7 @@ const PublicationsFeedPage = () => {
 
                                   <div>
                                     <Link to="#" className="text-primary">
-                                      Ver detalle{" "}
+                                      Ver detalle{' '}
                                       <i className="mdi mdi-arrow-right"></i>
                                     </Link>
                                   </div>
@@ -233,7 +233,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
 
@@ -241,7 +241,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
 
@@ -249,7 +249,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
                             </div>
@@ -273,7 +273,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
 
@@ -281,7 +281,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
 
@@ -289,7 +289,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
 
@@ -297,7 +297,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Cras mi eu turpis
                               </Link>
 
@@ -305,7 +305,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
 
@@ -313,7 +313,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
                             </div>
@@ -337,7 +337,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
 
@@ -345,7 +345,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
 
@@ -353,7 +353,7 @@ const PublicationsFeedPage = () => {
                                 to="#"
                                 className="list-group-item text-muted"
                               >
-                                <i className="mdi mdi-circle-medium me-1"></i>{" "}
+                                <i className="mdi mdi-circle-medium me-1"></i>{' '}
                                 Nombre emprendimiento
                               </Link>
                             </div>

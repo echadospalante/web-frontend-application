@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
 // //Import Scrollbar
-import SimpleBar from "simplebar-react";
+import SimpleBar from 'simplebar-react';
 import {
   Card,
   CardBody,
@@ -10,65 +10,65 @@ import {
   DropdownMenu,
   DropdownToggle,
   UncontrolledDropdown,
-} from "reactstrap";
-import { Link } from "react-router-dom";
+} from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const recentAddedJobsData = [
   {
-    logo: "/epl.png",
-    jobTitle: "Test 1",
-    company: "Test emprendimiento",
-    postedTime: "53",
-    postedText: "sec ago",
+    logo: '/epl.png',
+    jobTitle: 'Test 1',
+    company: 'Test emprendimiento',
+    postedTime: '53',
+    postedText: 'sec ago',
   },
   {
-    logo: "/epl.png",
-    jobTitle: "Test 2",
-    company: "Test emprendimiento",
-    postedTime: "47",
-    postedText: "min ago",
+    logo: '/epl.png',
+    jobTitle: 'Test 2',
+    company: 'Test emprendimiento',
+    postedTime: '47',
+    postedText: 'min ago',
   },
   {
-    logo: "/epl.png",
-    jobTitle: "Test 3",
-    company: "Test emprendimiento",
-    postedTime: "1",
-    postedText: "hrs ago",
+    logo: '/epl.png',
+    jobTitle: 'Test 3',
+    company: 'Test emprendimiento',
+    postedTime: '1',
+    postedText: 'hrs ago',
   },
   {
-    logo: "/epl.png",
-    jobTitle: "Test 4",
-    company: "Test emprendimiento",
-    postedTime: "2",
-    postedText: "hrs ago",
+    logo: '/epl.png',
+    jobTitle: 'Test 4',
+    company: 'Test emprendimiento',
+    postedTime: '2',
+    postedText: 'hrs ago',
   },
   {
-    logo: "/epl.png",
-    jobTitle: "Test 5",
-    company: "Test emprendimiento",
-    postedTime: "8",
-    postedText: "hrs ago",
+    logo: '/epl.png',
+    jobTitle: 'Test 5',
+    company: 'Test emprendimiento',
+    postedTime: '8',
+    postedText: 'hrs ago',
   },
   {
-    logo: "/epl.png",
-    jobTitle: "Test 1",
-    company: "Test emprendimiento",
-    postedTime: "1",
-    postedText: "days ago",
+    logo: '/epl.png',
+    jobTitle: 'Test 1',
+    company: 'Test emprendimiento',
+    postedTime: '1',
+    postedText: 'days ago',
   },
   {
-    logo: "/epl.png",
-    jobTitle: "Test 6",
-    company: "Test emprendimiento",
-    postedTime: "2",
-    postedText: "days ago",
+    logo: '/epl.png',
+    jobTitle: 'Test 6',
+    company: 'Test emprendimiento',
+    postedTime: '2',
+    postedText: 'days ago',
   },
   {
-    logo: "/epl.png",
-    jobTitle: "Test 7",
-    company: "Test emprendimiento",
-    postedTime: "3",
-    postedText: "days ago",
+    logo: '/epl.png',
+    jobTitle: 'Test 7',
+    company: 'Test emprendimiento',
+    postedTime: '3',
+    postedText: 'days ago',
   },
 ];
 
@@ -79,7 +79,7 @@ const AddedJobs = () => {
         <Card>
           <CardBody>
             <h4 className="card-title mb-4">Test</h4>
-            <SimpleBar style={{ maxHeight: "376px" }}>
+            <SimpleBar style={{ maxHeight: '376px' }}>
               <div className="vstack gap-4">
                 {(recentAddedJobsData || [])?.map((job, index) => (
                   <div className="d-flex" key={index}>

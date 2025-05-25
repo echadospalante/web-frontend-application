@@ -1,22 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { Venture } from "echadospalante-domain";
-import { useSelector } from "react-redux";
+import { Venture } from 'echadospalante-domain';
+import { useSelector } from 'react-redux';
 
 import {
   selectOwnedVenturesManagement,
   setOwnedVenturesFilters,
-} from "../../../../config/redux/reducers/admin/owned-ventures-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
+} from '../../../../config/redux/reducers/admin/owned-ventures-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import {
   fetchOwnedVenturesMiddleware,
   updateOwnedVentureMiddleware,
-} from "../api/middleware/owned-ventures.middleware";
+} from '../api/middleware/owned-ventures.middleware';
 
 const useOwnedVentures = () => {
-  const { filters, ventures } = useSelector(
-    selectOwnedVenturesManagement
-  );
+  const { filters, ventures } = useSelector(selectOwnedVenturesManagement);
 
   const dispatch = useAppDispatch();
 

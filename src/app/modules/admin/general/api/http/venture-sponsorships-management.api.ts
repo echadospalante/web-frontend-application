@@ -1,15 +1,15 @@
-import { faker } from "@faker-js/faker";
-import { User, VentureSponsorship } from "echadospalante-domain";
-import { PaginatedBody } from "echadospalante-domain/dist/app/modules/domain/common/pagination";
+import { faker } from '@faker-js/faker';
+import { User, VentureSponsorship } from 'echadospalante-domain';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
-import env from "../../../../../../environment/environment";
-import { VentureSponsorshipsFilter } from "../../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer";
+import env from '../../../../../../environment/environment';
+import { VentureSponsorshipsFilter } from '../../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer';
 
 export class VentureSponsorshipsApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/sponsorships`;
 
   public static fetchVentureSponsorships(
-    ventureSponsorshipsFilter: VentureSponsorshipsFilter
+    ventureSponsorshipsFilter: VentureSponsorshipsFilter,
   ): Promise<PaginatedBody<VentureSponsorship>> {
     // const { page, size, ...rest } = ventureSponsorshipsFilter;
     // const otherPrams = filterFalsyValues(rest);
@@ -32,7 +32,7 @@ export class VentureSponsorshipsApi {
   }
 
   private static generateRandomSponsorships(
-    length: number
+    length: number,
   ): VentureSponsorship[] {
     const array = new Array(length).fill(null);
 
@@ -46,7 +46,7 @@ export class VentureSponsorshipsApi {
   }
 
   public static fetchOwnerBySponsorshipId(
-    sponsorshipId: string
+    sponsorshipId: string,
   ): Promise<User> {
     const user: User = {
       id: crypto.randomUUID(),

@@ -1,12 +1,12 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { useFormik } from "formik";
-import { Col, Form, FormGroup, Input, Label, Row } from "reactstrap";
-import SimpleBar from "simplebar-react";
+import { useFormik } from 'formik';
+import { Col, Form, FormGroup, Input, Label, Row } from 'reactstrap';
+import SimpleBar from 'simplebar-react';
 
-import { useRegisterPreferences } from "../../../modules/auth/hooks/useRegister";
-import useFetchVentureCategories from "../../../modules/principal/ventures/hooks/useFetchVentureCategories";
-import VentureCategoryWidget from "../widgets/VentureCategoryWidget";
+import { useRegisterPreferences } from '../../../modules/auth/hooks/useRegister';
+import useFetchVentureCategories from '../../../modules/principal/ventures/hooks/useFetchVentureCategories';
+import VentureCategoryWidget from '../widgets/VentureCategoryWidget';
 
 const UserPreferencesForm = () => {
   const { preferencesIds, togglePreference } = useRegisterPreferences();
@@ -16,7 +16,7 @@ const UserPreferencesForm = () => {
 
   const form = useFormik({
     initialValues: {
-      search: "",
+      search: '',
     },
     onSubmit: (values) => {
       console.log({ values });
@@ -70,9 +70,9 @@ const UserPreferencesForm = () => {
 
       <SimpleBar
         style={{
-          maxHeight: "80vh",
-          overflowY: "auto",
-          overflowX: "hidden",
+          maxHeight: '80vh',
+          overflowY: 'auto',
+          overflowX: 'hidden',
         }}
       >
         <Row className="mt-4">
@@ -91,8 +91,8 @@ const UserPreferencesForm = () => {
                   name={item.name}
                   count={10}
                   percentageGrowth={10}
-                  icon={"bx bx-user"}
-                  backgroundColor={"success"}
+                  icon={'bx bx-user'}
+                  backgroundColor={'success'}
                   checked={preferencesIds.includes(item.id)}
                 />
               </Col>

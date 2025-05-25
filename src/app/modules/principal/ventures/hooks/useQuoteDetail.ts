@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { Quote } from "../domain/quote";
-import { fetchQuoteDetailMiddleware } from "../api/middleware/quotes.middleware";
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { Quote } from '../domain/quote';
+import { fetchQuoteDetailMiddleware } from '../api/middleware/quotes.middleware';
 
 const useQuoteDetail = (id: string) => {
   const dispatch = useAppDispatch();

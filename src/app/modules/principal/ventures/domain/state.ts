@@ -1,18 +1,18 @@
 export enum VentureState {
-  ACTIVE = "ACTIVA",
-  COMPLETED = "TERMINADA",
-  NOT_COMPLETED = "NO_TERMINADA",
+  ACTIVE = 'ACTIVA',
+  COMPLETED = 'TERMINADA',
+  NOT_COMPLETED = 'NO_TERMINADA',
 }
 
 export const getVentureStateColor = (state: VentureState) => {
   switch (state) {
     case VentureState.ACTIVE:
-      return "info";
+      return 'info';
     case VentureState.COMPLETED:
-      return "success";
+      return 'success';
     case VentureState.NOT_COMPLETED:
-      return "danger";
+      return 'danger';
     default:
-      return "primary";
+      return 'primary';
   }
 };

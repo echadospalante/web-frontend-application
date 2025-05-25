@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { RootState } from "../../store/store.config";
+import { RootState } from '../../store/store.config';
 
 export interface VentureFilter {}
 
@@ -12,7 +12,7 @@ export interface VenturesState {
 
 const initialState: VenturesState = {
   filters: {
-    search: "",
+    search: '',
     dateRange: {},
     areas: [],
     advisors: [],
@@ -28,7 +28,7 @@ const initialState: VenturesState = {
 Object.freeze(initialState);
 
 export const venturesSlice = createSlice({
-  name: "ventures",
+  name: 'ventures',
   initialState,
   reducers: {
     // changeFilterSearch: (state, action: PayloadAction<string>) => {

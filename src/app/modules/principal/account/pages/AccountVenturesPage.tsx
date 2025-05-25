@@ -1,5 +1,7 @@
-import React, { Fragment, useEffect, useMemo, useState } from "react";
+import React, { Fragment, useState } from 'react';
 
+import { User, Venture } from 'echadospalante-domain';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -8,45 +10,42 @@ import {
   Container,
   Pagination,
   Row,
-} from "reactstrap";
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import VentureCard from "../../../../shared/components/card/VentureCard";
-import { User, Venture } from "echadospalante-domain";
-import OwnedVenturesFiltersForm from "../../../../shared/components/forms/OwnedVenturesFiltersForm";
-import AppSpinner from "../../../../shared/components/loader/Spinner";
-import EditUserModal from "../../../../shared/components/modal/EditUserModal";
-import useFetchUsers from "../../../admin/general/hooks/useFetchUsers";
-import useOwnedVentures from "../../../admin/general/hooks/useOwnedVentures";
-import { Link, useNavigate } from "react-router-dom";
+} from 'reactstrap';
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import VentureCard from '../../../../shared/components/card/VentureCard';
+import OwnedVenturesFiltersForm from '../../../../shared/components/forms/OwnedVenturesFiltersForm';
+import AppSpinner from '../../../../shared/components/loader/Spinner';
+import EditUserModal from '../../../../shared/components/modal/EditUserModal';
+import useOwnedVentures from '../../../admin/general/hooks/useOwnedVentures';
 
 const AccountVenturesPage = () => {
-  document.title = "Tus emprendimientos | Echadospalante";
+  document.title = 'Tus emprendimientos | Echadospalante';
   const [ventures, setVentures] = useState<Venture[]>([
     {
-      id: "123",
-      name: "Some test venturename",
-      slug: "some-test-name",
+      id: '123',
+      name: 'Some test venturename',
+      slug: 'some-test-name',
       coverPhoto:
-        "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
-      description: "Soem awesome description",
+        'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+      description: 'Soem awesome description',
       active: true,
       verified: true,
       categories: [
         {
-          id: "123",
-          name: "Some Awesome",
-          description: "Some awesome desc of the category",
-          slug: "some-category",
+          id: '123',
+          name: 'Some Awesome',
+          description: 'Some awesome desc of the category',
+          slug: 'some-category',
           users: [],
           ventures: [],
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          id: "456",
-          name: "Some cat 2",
-          description: "Some awesome desc of the category 2",
-          slug: "some-category-2",
+          id: '456',
+          name: 'Some cat 2',
+          description: 'Some awesome desc of the category 2',
+          slug: 'some-category-2',
           users: [],
           ventures: [],
           createdAt: new Date(),
@@ -63,31 +62,31 @@ const AccountVenturesPage = () => {
       updatedAt: new Date(),
     },
     {
-      id: "456",
-      name: "Cremas marielita",
-      slug: "cremas marielita",
+      id: '456',
+      name: 'Cremas marielita',
+      slug: 'cremas marielita',
       coverPhoto:
-        "https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png",
+        'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
       description:
-        "Cremas marielita es un emprendimiento de cremas ubicado en la Ceja, Antoniquia, a la orden las cremas",
+        'Cremas marielita es un emprendimiento de cremas ubicado en la Ceja, Antoniquia, a la orden las cremas',
       active: true,
       verified: true,
       categories: [
         {
-          id: "123",
-          name: "Cremas",
-          description: "Some awesome desc of the category",
-          slug: "some-category",
+          id: '123',
+          name: 'Cremas',
+          description: 'Some awesome desc of the category',
+          slug: 'some-category',
           users: [],
           ventures: [],
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          id: "456",
-          name: "Helados",
-          description: "Some awesome desc of the category 2",
-          slug: "some-category-2",
+          id: '456',
+          name: 'Helados',
+          description: 'Some awesome desc of the category 2',
+          slug: 'some-category-2',
           users: [],
           ventures: [],
           createdAt: new Date(),
@@ -128,10 +127,10 @@ const AccountVenturesPage = () => {
   };
 
   const handleNavigateToCreate = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ): void => {
     event.preventDefault();
-    return navigate("/principal/cuenta/emprendimientos/nuevo", {
+    return navigate('/principal/cuenta/emprendimientos/nuevo', {
       replace: true,
     });
   };
@@ -165,35 +164,6 @@ const AccountVenturesPage = () => {
                     Crear emprendimiento
                     <i className="bx bx-plus mx-1"></i>
                   </Button>
-                  <div className="btn-group h-100" role="group">
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-list"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-list"
-                    >
-                      <i className="bx bx-list-ul"></i>
-                    </label>
-
-                    <input
-                      type="radio"
-                      className="btn-check"
-                      name="btnradio"
-                      id="btn-grid"
-                      autoComplete="off"
-                    />
-                    <label
-                      className="btn btn-outline-primary"
-                      htmlFor="btn-grid"
-                    >
-                      <i className="bx bx-grid"></i>
-                    </label>
-                  </div>
 
                   <Button
                     type="button"
@@ -218,7 +188,7 @@ const AccountVenturesPage = () => {
                 <OwnedVenturesFiltersForm />
 
                 {loading ? (
-                  <div style={{ marginTop: "200px" }}>
+                  <div style={{ marginTop: '200px' }}>
                     <AppSpinner />
                   </div>
                 ) : (

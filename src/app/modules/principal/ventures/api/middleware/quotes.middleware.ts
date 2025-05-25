@@ -1,12 +1,12 @@
-import { Action, Dispatch } from "@reduxjs/toolkit";
+import { Action, Dispatch } from '@reduxjs/toolkit';
 
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
-import { QuotesApi } from "../http/quotes.api";
-import { Quote } from "../../domain/quote";
-import { PaginatedBody } from "../../domain/api";
+} from '../../../../../config/redux/reducers/shared/user-interface.reducer';
+import { QuotesApi } from '../http/quotes.api';
+import { Quote } from '../../domain/quote';
+import { PaginatedBody } from '../../domain/api';
 
 export const fetchQuotesMiddleware = (page: number, size: number) => {
   return async (dispatch: Dispatch<Action>): Promise<PaginatedBody<Quote>> => {
@@ -16,13 +16,13 @@ export const fetchQuotesMiddleware = (page: number, size: number) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al obtener las cotizaciones ⛔",
-            title: "Error",
+            message: 'Error al obtener las cotizaciones ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al obtener las cotizaciones");
+        throw new Error('Error al obtener las cotizaciones');
       });
   };
 };
@@ -33,24 +33,24 @@ export const deleteQuoteMiddleware = (id: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
-            message: "Cotización eliminada correctamente ✅",
-            title: "Éxito",
+            message: 'Cotización eliminada correctamente ✅',
+            title: 'Éxito',
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
-          })
+          }),
         );
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al eliminar la cotización ⛔",
-            title: "Error",
+            message: 'Error al eliminar la cotización ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al eliminar la cotización");
+        throw new Error('Error al eliminar la cotización');
       });
   };
 };
@@ -63,13 +63,13 @@ export const fetchQuoteDetailMiddleware = (id: string) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al obtener el detalle de la cotización ⛔",
-            title: "Error",
+            message: 'Error al obtener el detalle de la cotización ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al obtener el detalle de la cotización");
+        throw new Error('Error al obtener el detalle de la cotización');
       });
   };
 };

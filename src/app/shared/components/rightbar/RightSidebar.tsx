@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 
-import { useSelector } from "react-redux";
-import { Col, FormGroup, Row } from "reactstrap";
-import SimpleBar from "simplebar-react";
+import { useSelector } from 'react-redux';
+import { Col, FormGroup, Row } from 'reactstrap';
+import SimpleBar from 'simplebar-react';
 
 import {
   changeLayout,
@@ -16,8 +16,8 @@ import {
   changeTopBarTheme,
   selectLayout,
   toggleRightSidebar,
-} from "../../../config/redux/reducers/shared/layout.reducer";
-import { useAppDispatch } from "../../../config/redux/store/store.config";
+} from '../../../config/redux/reducers/shared/layout.reducer';
+import { useAppDispatch } from '../../../config/redux/store/store.config';
 import {
   LayoutModeType,
   LayoutType,
@@ -26,9 +26,9 @@ import {
   LeftSideBarThemeType,
   LeftSidebarType,
   TopBarThemeType,
-} from "../../../modules/common/domain/layout.interfaces";
+} from '../../../modules/common/domain/layout.interfaces';
 
-import "./rightbar.scss";
+import './rightbar.scss';
 
 const RightSidebar = () => {
   const dispatch = useAppDispatch();
@@ -47,7 +47,7 @@ const RightSidebar = () => {
   return (
     <Fragment>
       <div className="right-bar" id="right-bar">
-        <SimpleBar style={{ height: "900px", zIndex: 999999 }}>
+        <SimpleBar style={{ height: '900px', zIndex: 999999 }}>
           <div data-simplebar className="h-100">
             <div className="rightbar-title px-3 py-4">
               <Link
@@ -110,7 +110,7 @@ const RightSidebar = () => {
                   onChange={(e) => {
                     if (e.target.checked) {
                       dispatch(
-                        changeLayoutMode(e.target.value as LayoutModeType)
+                        changeLayoutMode(e.target.value as LayoutModeType),
                       );
                     }
                   }}
@@ -127,7 +127,7 @@ const RightSidebar = () => {
                   onChange={(e) => {
                     if (e.target.checked) {
                       dispatch(
-                        changeLayoutMode(e.target.value as LayoutModeType)
+                        changeLayoutMode(e.target.value as LayoutModeType),
                       );
                     }
                   }}
@@ -149,7 +149,7 @@ const RightSidebar = () => {
                   onChange={(e) => {
                     if (e.target.checked) {
                       dispatch(
-                        changeLayoutWidth(e.target.value as LayoutWidthType)
+                        changeLayoutWidth(e.target.value as LayoutWidthType),
                       );
                     }
                   }}
@@ -166,7 +166,7 @@ const RightSidebar = () => {
                   onChange={(e) => {
                     if (e.target.checked) {
                       dispatch(
-                        changeLayoutWidth(e.target.value as LayoutWidthType)
+                        changeLayoutWidth(e.target.value as LayoutWidthType),
                       );
                     }
                   }}
@@ -183,7 +183,7 @@ const RightSidebar = () => {
                   onChange={(e) => {
                     if (e.target.checked) {
                       dispatch(
-                        changeLayoutWidth(e.target.value as LayoutWidthType)
+                        changeLayoutWidth(e.target.value as LayoutWidthType),
                       );
                     }
                   }}
@@ -205,7 +205,7 @@ const RightSidebar = () => {
                   onChange={(e) => {
                     if (e.target.checked) {
                       dispatch(
-                        changeTopBarTheme(e.target.value as TopBarThemeType)
+                        changeTopBarTheme(e.target.value as TopBarThemeType),
                       );
                     }
                   }}
@@ -222,7 +222,7 @@ const RightSidebar = () => {
                   onChange={(e) => {
                     if (e.target.checked) {
                       dispatch(
-                        changeTopBarTheme(e.target.value as TopBarThemeType)
+                        changeTopBarTheme(e.target.value as TopBarThemeType),
                       );
                     }
                   }}
@@ -230,7 +230,7 @@ const RightSidebar = () => {
                 <label className="me-1" htmlFor="radioThemeDark">
                   Dark
                 </label>
-                {layoutType === "vertical" ? null : (
+                {layoutType === 'vertical' ? null : (
                   <>
                     <input
                       type="radio"
@@ -241,24 +241,26 @@ const RightSidebar = () => {
                       onChange={(e) => {
                         if (e.target.checked) {
                           dispatch(
-                            changeTopBarTheme(e.target.value as TopBarThemeType)
+                            changeTopBarTheme(
+                              e.target.value as TopBarThemeType,
+                            ),
                           );
                         }
                       }}
                     />
                     <label className="me-1" htmlFor="radioThemeColored">
                       Colored
-                    </label>{" "}
+                    </label>{' '}
                   </>
                 )}
               </div>
 
-              {layoutType === "vertical" ? (
+              {layoutType === 'vertical' ? (
                 <React.Fragment>
                   <hr className="mt-1" />
                   <div className="radio-toolbar">
                     <span className="mb-2 d-block" id="radio-title">
-                      Left Sidebar Type{" "}
+                      Left Sidebar Type{' '}
                     </span>
                     <input
                       type="radio"
@@ -269,7 +271,9 @@ const RightSidebar = () => {
                       onChange={(e) => {
                         if (e.target.checked) {
                           dispatch(
-                            changeSidebarType(e.target.value as LeftSidebarType)
+                            changeSidebarType(
+                              e.target.value as LeftSidebarType,
+                            ),
                           );
                         }
                       }}
@@ -286,7 +290,9 @@ const RightSidebar = () => {
                       onChange={(e) => {
                         if (e.target.checked) {
                           dispatch(
-                            changeSidebarType(e.target.value as LeftSidebarType)
+                            changeSidebarType(
+                              e.target.value as LeftSidebarType,
+                            ),
                           );
                         }
                       }}
@@ -303,7 +309,9 @@ const RightSidebar = () => {
                       onChange={(e) => {
                         if (e.target.checked) {
                           dispatch(
-                            changeSidebarType(e.target.value as LeftSidebarType)
+                            changeSidebarType(
+                              e.target.value as LeftSidebarType,
+                            ),
                           );
                         }
                       }}
@@ -333,8 +341,8 @@ const RightSidebar = () => {
                             if (e.target.checked) {
                               dispatch(
                                 changeSidebarTheme(
-                                  e.target.value as LeftSideBarThemeType
-                                )
+                                  e.target.value as LeftSideBarThemeType,
+                                ),
                               );
                             }
                           }}
@@ -342,9 +350,9 @@ const RightSidebar = () => {
                         <label
                           htmlFor="leftsidebarThemelight"
                           className={
-                            layoutModeType === "dark"
-                              ? "bg-dark rounded-circle wh-30 me-1"
-                              : "bg-light rounded-circle wh-30 me-1"
+                            layoutModeType === 'dark'
+                              ? 'bg-dark rounded-circle wh-30 me-1'
+                              : 'bg-light rounded-circle wh-30 me-1'
                           }
                         ></label>
 
@@ -360,8 +368,8 @@ const RightSidebar = () => {
                             if (e.target.checked) {
                               dispatch(
                                 changeSidebarTheme(
-                                  e.target.value as LeftSideBarThemeType
-                                )
+                                  e.target.value as LeftSideBarThemeType,
+                                ),
                               );
                             }
                           }}
@@ -369,9 +377,9 @@ const RightSidebar = () => {
                         <label
                           htmlFor="leftsidebarThemedark"
                           className={
-                            layoutModeType === "light"
-                              ? "bg-dark rounded-circle wh-30 me-1"
-                              : "bg-light rounded-circle wh-30 me-1"
+                            layoutModeType === 'light'
+                              ? 'bg-dark rounded-circle wh-30 me-1'
+                              : 'bg-light rounded-circle wh-30 me-1'
                           }
                         ></label>
 
@@ -387,8 +395,8 @@ const RightSidebar = () => {
                             if (e.target.checked) {
                               dispatch(
                                 changeSidebarTheme(
-                                  e.target.value as LeftSideBarThemeType
-                                )
+                                  e.target.value as LeftSideBarThemeType,
+                                ),
                               );
                             }
                           }}
@@ -413,8 +421,8 @@ const RightSidebar = () => {
                             if (e.target.checked) {
                               dispatch(
                                 changeSidebarTheme(
-                                  e.target.value as LeftSideBarThemeType
-                                )
+                                  e.target.value as LeftSideBarThemeType,
+                                ),
                               );
                             }
                           }}
@@ -436,8 +444,8 @@ const RightSidebar = () => {
                             if (e.target.checked) {
                               dispatch(
                                 changeSidebarTheme(
-                                  e.target.value as LeftSideBarThemeType
-                                )
+                                  e.target.value as LeftSideBarThemeType,
+                                ),
                               );
                             }
                           }}
@@ -459,8 +467,8 @@ const RightSidebar = () => {
                             if (e.target.checked) {
                               dispatch(
                                 changeSidebarTheme(
-                                  e.target.value as LeftSideBarThemeType
-                                )
+                                  e.target.value as LeftSideBarThemeType,
+                                ),
                               );
                             }
                           }}
@@ -483,8 +491,8 @@ const RightSidebar = () => {
                             if (e.target.checked) {
                               dispatch(
                                 changeSidebarTheme(
-                                  e.target.value as LeftSideBarThemeType
-                                )
+                                  e.target.value as LeftSideBarThemeType,
+                                ),
                               );
                             }
                           }}
@@ -505,8 +513,8 @@ const RightSidebar = () => {
                             if (e.target.checked) {
                               dispatch(
                                 changeSidebarTheme(
-                                  e.target.value as LeftSideBarThemeType
-                                )
+                                  e.target.value as LeftSideBarThemeType,
+                                ),
                               );
                             }
                           }}
@@ -535,8 +543,8 @@ const RightSidebar = () => {
                           if (e.target.checked) {
                             dispatch(
                               changeSidebarThemeImage(
-                                e.target.value as LeftBarThemeImageType
-                              )
+                                e.target.value as LeftBarThemeImageType,
+                              ),
                             );
                           }
                         }}
@@ -550,7 +558,7 @@ const RightSidebar = () => {
                           src="/images/sidebar/img1.jpg"
                         />
                       </label>
-                      {"   "}
+                      {'   '}
 
                       <input
                         type="radio"
@@ -564,8 +572,8 @@ const RightSidebar = () => {
                           if (e.target.checked) {
                             dispatch(
                               changeSidebarThemeImage(
-                                e.target.value as LeftBarThemeImageType
-                              )
+                                e.target.value as LeftBarThemeImageType,
+                              ),
                             );
                           }
                         }}
@@ -579,7 +587,7 @@ const RightSidebar = () => {
                           src="/images/sidebar/img2.jpg"
                         />
                       </label>
-                      {"   "}
+                      {'   '}
 
                       <input
                         type="radio"
@@ -593,8 +601,8 @@ const RightSidebar = () => {
                           if (e.target.checked) {
                             dispatch(
                               changeSidebarThemeImage(
-                                e.target.value as LeftBarThemeImageType
-                              )
+                                e.target.value as LeftBarThemeImageType,
+                              ),
                             );
                           }
                         }}
@@ -620,8 +628,8 @@ const RightSidebar = () => {
                           if (e.target.checked) {
                             dispatch(
                               changeSidebarThemeImage(
-                                e.target.value as LeftBarThemeImageType
-                              )
+                                e.target.value as LeftBarThemeImageType,
+                              ),
                             );
                           }
                         }}
@@ -634,7 +642,7 @@ const RightSidebar = () => {
                           src="/images/sidebar/img4.jpg"
                         />
                       </label>
-                      {"   "}
+                      {'   '}
 
                       <input
                         type="radio"
@@ -648,20 +656,20 @@ const RightSidebar = () => {
                           if (e.target.checked) {
                             dispatch(
                               changeSidebarThemeImage(
-                                e.target.value as LeftBarThemeImageType
-                              )
+                                e.target.value as LeftBarThemeImageType,
+                              ),
                             );
                           }
                         }}
                       />
                       <label htmlFor="leftsidebarThemenone">
-                        <div style={{ width: "40px", height: "80px" }}>
+                        <div style={{ width: '40px', height: '80px' }}>
                           <div className="bg-light border px-2 h-100 shadow-none">
                             <div className="verticalcontent">None</div>
                           </div>
                         </div>
                       </label>
-                      {"   "}
+                      {'   '}
                     </div>
                   </div>
                   <hr className="mt-1" />

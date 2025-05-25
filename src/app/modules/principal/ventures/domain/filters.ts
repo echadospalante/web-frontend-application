@@ -1,6 +1,6 @@
-import { QuoteAdvisor } from "./advisor";
-import { QuoteArea } from "./area";
-import { VentureState } from "./state";
+import { QuoteAdvisor } from './advisor';
+import { QuoteArea } from './area';
+import { VentureState } from './state';
 
 export interface DateRange {
   min?: Date;
@@ -8,8 +8,8 @@ export interface DateRange {
 }
 
 export enum QuoteInclude {
-  Formulario = "Formulario",
-  Etapas = "Etapas",
+  Formulario = 'Formulario',
+  Etapas = 'Etapas',
 }
 
 export interface QuoteFilter {

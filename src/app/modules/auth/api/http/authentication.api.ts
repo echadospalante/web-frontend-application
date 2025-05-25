@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios from 'axios';
 
-import env from "../../../../../environment/environment";
-import { UserRegisterInfo } from "../../../../config/redux/reducers/auth/register.reducer";
-import { LoginResponse } from "../../domain/Login";
-import { Role } from "echadospalante-domain";
+import env from '../../../../../environment/environment';
+import { UserRegisterInfo } from '../../../../config/redux/reducers/auth/register.reducer';
+import { LoginResponse } from '../../domain/Login';
+import { Role } from 'echadospalante-domain';
 
 class AuthenticationApi {
   private static readonly BASE_URL = `${env.API_URL}/api/v1/auth`;
@@ -33,14 +33,14 @@ class AuthenticationApi {
 
   static createUserRegister(
     userInfo: UserRegisterInfo,
-    preferences: string[]
+    preferences: string[],
   ): Promise<void> {
     const { gender, birthDate, municipalityId } = userInfo;
     return axios
       .post<void>(
         `${this.BASE_URL}/onboarding`,
         { gender, birthDate, municipalityId, preferences },
-        { withCredentials: true }
+        { withCredentials: true },
       )
       .then(({ data }) => data);
   }

@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { Col, Container, Row } from "reactstrap";
+import { Link } from 'react-router-dom';
+import { Col, Container, Row } from 'reactstrap';
 
 // Formik validation
-import { GoogleLogin } from "@react-oauth/google";
-import useLogin from "../hooks/useLogin";
+import { GoogleLogin } from '@react-oauth/google';
+import useLogin from '../hooks/useLogin';
 
 // import images
 
@@ -61,7 +61,7 @@ const LoginPage = () => {
                         loginWithCredentials(credentialResponse.credential);
                       }}
                       onError={() => {
-                        console.log("Login Failed");
+                        console.log('Login Failed');
                       }}
                     />
                   </div>

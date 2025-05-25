@@ -1,23 +1,23 @@
-import { Action, Dispatch } from "@reduxjs/toolkit";
+import { Action, Dispatch } from '@reduxjs/toolkit';
 
-import { VentureCategory, VentureCategoryCreate } from "echadospalante-domain";
+import { VentureCategory, VentureCategoryCreate } from 'echadospalante-domain';
 
 import {
   addVentureCategory,
   setVentureCategories,
   updateVentureCategory,
   VentureCategoriesFilter,
-} from "../../../../../config/redux/reducers/admin/venture-categories-management.reducer";
+} from '../../../../../config/redux/reducers/admin/venture-categories-management.reducer';
 import {
   finishGlobalLoading,
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
-import { VentureCategoriesApi } from "../http/venture-categories-management.api";
+} from '../../../../../config/redux/reducers/shared/user-interface.reducer';
+import { VentureCategoriesApi } from '../http/venture-categories-management.api';
 
 export const updateVentureCategoryMiddleware = (
   id: string,
-  ventureCategory: VentureCategory
+  ventureCategory: VentureCategory,
 ) => {
   return async (dispatch: Dispatch) => {
     return VentureCategoriesApi.updateVentureCategory(id, ventureCategory)
@@ -25,25 +25,25 @@ export const updateVentureCategoryMiddleware = (
         dispatch(updateVentureCategory(ventureCategory));
         dispatch(
           setGlobalAlert({
-            title: "Categoria actualizada",
-            message: "La categoría ha sido actualizada exitosamente.",
+            title: 'Categoria actualizada',
+            message: 'La categoría ha sido actualizada exitosamente.',
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
-          })
+          }),
         );
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            title: "Error",
+            title: 'Error',
             message:
-              "Por favor intente nuevamente, si el error persiste contacte al administrador.",
+              'Por favor intente nuevamente, si el error persiste contacte al administrador.',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al actualizar la categoría");
+        throw new Error('Error al actualizar la categoría');
       })
       .finally(() => {
         dispatch(finishGlobalLoading());
@@ -52,32 +52,32 @@ export const updateVentureCategoryMiddleware = (
 };
 
 export const createVentureCategoryMiddleware = (
-  ventureCategory: VentureCategoryCreate
+  ventureCategory: VentureCategoryCreate,
 ) => {
   return async (dispatch: Dispatch) => {
     return VentureCategoriesApi.createVentureCategory(ventureCategory)
       .then(() => {
         dispatch(
           setGlobalAlert({
-            title: "Categoria creada",
-            message: "La categoría ha sido creada exitosamente.",
+            title: 'Categoria creada',
+            message: 'La categoría ha sido creada exitosamente.',
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
-          })
+          }),
         );
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            title: "Error",
+            title: 'Error',
             message:
-              "Por favor intente nuevamente, si el error persiste contacte al administrador.",
+              'Por favor intente nuevamente, si el error persiste contacte al administrador.',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al actualizar la categoría");
+        throw new Error('Error al actualizar la categoría');
       })
       .finally(() => {
         dispatch(finishGlobalLoading());
@@ -86,7 +86,7 @@ export const createVentureCategoryMiddleware = (
 };
 
 export const fetchVentureCategoriesMiddleware = (
-  ventureCategoriesFilters: VentureCategoriesFilter
+  ventureCategoriesFilters: VentureCategoriesFilter,
 ) => {
   return async (dispatch: Dispatch<Action>) => {
     return VentureCategoriesApi.fetchVentureCategories(ventureCategoriesFilters)
@@ -98,37 +98,36 @@ export const fetchVentureCategoriesMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al obtener la lista de categorías ⛔",
-            title: "Error",
+            message: 'Error al obtener la lista de categorías ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al obtener la lista de categorías");
+        throw new Error('Error al obtener la lista de categorías');
       });
   };
 };
 
-export const fetchAllVentureCategoriesMiddleware = (
-) => {
+export const fetchAllVentureCategoriesMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {
     return VentureCategoriesApi.fetchVentureCategories({
-      search: "",
+      search: '',
       page: 0,
-      size: -1
+      size: -1,
     })
       .then((response) => response.items)
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al obtener la lista de categorías ⛔",
-            title: "Error",
+            message: 'Error al obtener la lista de categorías ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al obtener la lista de categorías");
+        throw new Error('Error al obtener la lista de categorías');
       });
   };
 };

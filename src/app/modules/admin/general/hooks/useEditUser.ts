@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { Role, User } from "echadospalante-domain";
+import { Role, User } from 'echadospalante-domain';
 
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { AppRole } from "../../../auth/domain/Role";
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { AppRole } from '../../../auth/domain/Role';
 import {
   lockUserAccountMiddleware,
   unlockUserAccountMiddleware,
   unverifyUserAccountMiddleware,
   updateUserRolesMiddleware,
   verifyUserAccountMiddleware,
-} from "../api/middleware/users.middleware";
+} from '../api/middleware/users.middleware';
 
 const useEditUser = (initialInfo: User) => {
   const dispatch = useAppDispatch();
   const [operation, setOperation] = useState({
     loading: false,
-    message: "",
+    message: '',
     error: false,
     user: initialInfo,
   });
@@ -27,26 +27,26 @@ const useEditUser = (initialInfo: User) => {
       ...operation,
       loading: true,
       error: false,
-      message: "Actualizando roles...",
+      message: 'Actualizando roles...',
     }));
     return dispatch(
       updateUserRolesMiddleware(
         email,
-        roles.map(({ name }) => name)
-      )
+        roles.map(({ name }) => name),
+      ),
     )
       .then(() => {
         const baseRoles = operation.user.roles.filter(
-          ({ name }) => name === AppRole.ADMIN || name === AppRole.USER
+          ({ name }) => name === AppRole.ADMIN || name === AppRole.USER,
         );
         const otherRoles = roles.filter(
-          ({ name }) => !baseRoles.map(({ name }) => name).includes(name)
+          ({ name }) => !baseRoles.map(({ name }) => name).includes(name),
         );
         setOperation((operation) => ({
           ...operation,
           loading: false,
           error: false,
-          message: "",
+          message: '',
           user: {
             ...operation.user,
             roles: [...baseRoles, ...otherRoles],
@@ -58,7 +58,7 @@ const useEditUser = (initialInfo: User) => {
           ...operation,
           loading: false,
           error: true,
-          message: "Error al actualizar roles",
+          message: 'Error al actualizar roles',
         }));
       });
   };
@@ -68,7 +68,7 @@ const useEditUser = (initialInfo: User) => {
       ...operation,
       loading: true,
       error: false,
-      message: "Actualizando estado...",
+      message: 'Actualizando estado...',
     }));
     if (operation.user.active) {
       return dispatch(lockUserAccountMiddleware(email))
@@ -77,7 +77,7 @@ const useEditUser = (initialInfo: User) => {
             ...operation,
             loading: false,
             error: false,
-            message: "",
+            message: '',
             user: {
               ...operation.user,
               active: false,
@@ -89,7 +89,7 @@ const useEditUser = (initialInfo: User) => {
             ...operation,
             loading: false,
             error: true,
-            message: "Error al actualizar estado",
+            message: 'Error al actualizar estado',
           }));
         });
     }
@@ -99,7 +99,7 @@ const useEditUser = (initialInfo: User) => {
           ...operation,
           loading: false,
           error: false,
-          message: "",
+          message: '',
           user: {
             ...operation.user,
             active: true,
@@ -111,7 +111,7 @@ const useEditUser = (initialInfo: User) => {
           ...operation,
           loading: false,
           error: true,
-          message: "Error al actualizar estado",
+          message: 'Error al actualizar estado',
         }));
       });
   };
@@ -121,7 +121,7 @@ const useEditUser = (initialInfo: User) => {
       ...operation,
       loading: true,
       error: false,
-      message: "Actualizando verificación...",
+      message: 'Actualizando verificación...',
     }));
     if (operation.user.verified) {
       return dispatch(unverifyUserAccountMiddleware(email))
@@ -130,7 +130,7 @@ const useEditUser = (initialInfo: User) => {
             ...operation,
             loading: false,
             error: false,
-            message: "",
+            message: '',
             user: {
               ...operation.user,
               verified: false,
@@ -142,7 +142,7 @@ const useEditUser = (initialInfo: User) => {
             ...operation,
             loading: false,
             error: true,
-            message: "Error al actualizar verificación",
+            message: 'Error al actualizar verificación',
           }));
         });
     }
@@ -152,7 +152,7 @@ const useEditUser = (initialInfo: User) => {
           ...operation,
           loading: false,
           error: false,
-          message: "",
+          message: '',
           user: {
             ...operation.user,
             verified: true,
@@ -164,7 +164,7 @@ const useEditUser = (initialInfo: User) => {
           ...operation,
           loading: false,
           error: true,
-          message: "Error al actualizar verificación",
+          message: 'Error al actualizar verificación',
         }));
       });
   };

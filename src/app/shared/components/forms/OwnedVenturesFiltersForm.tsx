@@ -1,9 +1,9 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import Select from "react-select";
-import { Col, Row } from "reactstrap";
+import Select from 'react-select';
+import { Col, Row } from 'reactstrap';
 
-import useOwnedVenturesFilters from "../../../modules/admin/general/hooks/useOwnedVenturesFilter";
+import useOwnedVenturesFilters from '../../../modules/admin/general/hooks/useOwnedVenturesFilter';
 
 const OwnedVenturesFiltersForm = () => {
   const { filters, setSearchTerm, setSize } = useOwnedVenturesFilters();
@@ -15,7 +15,7 @@ const OwnedVenturesFiltersForm = () => {
         <Select
           className=""
           value={{
-            label: filters.size + "",
+            label: filters.size + '',
             value: filters.size,
           }}
           isMulti={false}
@@ -32,9 +32,9 @@ const OwnedVenturesFiltersForm = () => {
             //   });
           }}
           options={[
-            { label: "20", value: 20 },
-            { label: "50", value: 50 },
-            { label: "100", value: 100 },
+            { label: '20', value: 20 },
+            { label: '50', value: 50 },
+            { label: '100', value: 100 },
           ]}
         ></Select>
       </Col>

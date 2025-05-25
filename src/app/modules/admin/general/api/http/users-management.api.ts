@@ -1,27 +1,27 @@
-import axios from "axios";
+import axios from 'axios';
 
-import { Role, User } from "echadospalante-domain";
+import { Role, User } from 'echadospalante-domain';
 
-import { PaginatedBody } from "echadospalante-domain/dist/app/modules/domain/common/pagination";
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
-import env from "../../../../../../environment/environment";
-import { UsersFilter } from "../../../../../config/redux/reducers/admin/users-management.reducer";
-import filterFalsyValues from "../../../../../shared/helpers/object-utils";
-import { AppRole } from "../../../../auth/domain/Role";
+import env from '../../../../../../environment/environment';
+import { UsersFilter } from '../../../../../config/redux/reducers/admin/users-management.reducer';
+import filterFalsyValues from '../../../../../shared/helpers/object-utils';
+import { AppRole } from '../../../../auth/domain/Role';
 
 export class UsersApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/users`;
 
   public static fetchUsers(
-    usersFilter: UsersFilter
+    usersFilter: UsersFilter,
   ): Promise<PaginatedBody<User>> {
     const { page, size, ...rest } = usersFilter;
     const otherPrams = filterFalsyValues(rest);
     const params = new URLSearchParams(otherPrams as Record<string, string>);
     const skip = page * size;
     const take = size;
-    params.set("skip", skip.toString());
-    params.set("take", take.toString());
+    params.set('skip', skip.toString());
+    params.set('take', take.toString());
     return axios
       .get<PaginatedBody<User>>(`${UsersApi.API_BASE_URL}`, {
         withCredentials: true,
@@ -48,13 +48,13 @@ export class UsersApi {
 
   public static changeUserRoles(
     email: string,
-    roles: AppRole[]
+    roles: AppRole[],
   ): Promise<void> {
     return axios
       .patch<void>(
         `${UsersApi.API_BASE_URL}/roles`,
         { email, roles },
-        { withCredentials: true }
+        { withCredentials: true },
       )
       .then(({ data }) => data);
   }

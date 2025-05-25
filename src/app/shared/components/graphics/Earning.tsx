@@ -1,30 +1,30 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import ReactApexChart from "react-apexcharts";
-import { Link } from "react-router-dom";
-import { Card, CardBody, Col, Row } from "reactstrap";
+import ReactApexChart from 'react-apexcharts';
+import { Link } from 'react-router-dom';
+import { Card, CardBody, Col, Row } from 'reactstrap';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const getChartColorsArray = (colors: any) => {
   colors = JSON.parse(colors);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return colors.map(function (value: any) {
-    const newValue = value.replace(" ", "");
-    if (newValue.indexOf(",") === -1) {
+    const newValue = value.replace(' ', '');
+    if (newValue.indexOf(',') === -1) {
       let color = getComputedStyle(document.documentElement).getPropertyValue(
-        newValue
+        newValue,
       );
 
-      if (color.indexOf("#") !== -1) color = color.replace(" ", "");
+      if (color.indexOf('#') !== -1) color = color.replace(' ', '');
       if (color) return color;
       else return newValue;
     } else {
-      const val = value.split(",");
+      const val = value.split(',');
       if (val.length === 2) {
         let rgbaColor = getComputedStyle(
-          document.documentElement
+          document.documentElement,
         ).getPropertyValue(val[0]);
-        rgbaColor = "rgba(" + rgbaColor + "," + val[1] + ")";
+        rgbaColor = 'rgba(' + rgbaColor + ',' + val[1] + ')';
         return rgbaColor;
       } else {
         return newValue;
@@ -44,7 +44,7 @@ const Earning = ({ dataColors }: any) => {
       },
       dropShadow: {
         enabled: !0,
-        color: "#000",
+        color: '#000',
         top: 18,
         left: 7,
         blur: 8,
@@ -56,7 +56,7 @@ const Earning = ({ dataColors }: any) => {
     },
     colors: apexlineColors,
     stroke: {
-      curve: "smooth",
+      curve: 'smooth',
       width: 3,
     },
   };
@@ -70,7 +70,7 @@ const Earning = ({ dataColors }: any) => {
   //     dispatch(getEarningChartsData("jan"));
   //   }, [dispatch]);
 
-  const [seletedMonth, setSeletedMonth] = useState("jan");
+  const [seletedMonth, setSeletedMonth] = useState('jan');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onChangeMonth = (value: any) => {
     setSeletedMonth(value);
@@ -115,9 +115,9 @@ const Earning = ({ dataColors }: any) => {
                     <h4>$2453.35</h4>
                     <div>
                       <span className="badge badge-soft-success font-size-12 me-1">
-                        {" "}
-                        + 0.2%{" "}
-                      </span>{" "}
+                        {' '}
+                        + 0.2%{' '}
+                      </span>{' '}
                       From previous period
                     </div>
                   </div>

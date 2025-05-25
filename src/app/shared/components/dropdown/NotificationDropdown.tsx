@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Link } from "react-router-dom";
-import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
-import SimpleBar from "simplebar-react";
+import { Link } from 'react-router-dom';
+import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
+import SimpleBar from 'simplebar-react';
 
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const NotificationDropdown = () => {
   const { t } = useTranslation();
@@ -31,18 +31,18 @@ const NotificationDropdown = () => {
           <div className="p-3">
             <Row className="align-items-center">
               <Col>
-                <h6 className="m-0"> {t("Notifications")} </h6>
+                <h6 className="m-0"> {t('Notifications')} </h6>
               </Col>
               <div className="col-auto">
                 <a href="#!" className="small">
-                  {" "}
+                  {' '}
                   View All
                 </a>
               </div>
             </Row>
           </div>
 
-          <SimpleBar style={{ height: "230px" }}>
+          <SimpleBar style={{ height: '230px' }}>
             <Link to="" className="text-reset notification-item">
               <div className="d-flex">
                 <div className="avatar-xs me-3">
@@ -57,7 +57,8 @@ const NotificationDropdown = () => {
                       Descripción de Notificación de Prueba
                     </p>
                     <p className="mb-0">
-                      <i className="mdi mdi-clock-outline" /> Hace 15 minutos{" "}
+                      <i className="mdi mdi-clock-outline" /> Hace 15
+                      minutos{' '}
                     </p>
                   </div>
                 </div>
@@ -103,7 +104,7 @@ const NotificationDropdown = () => {
                   </div>
                 </div>
               </div>
-            </Link>{" "}
+            </Link>{' '}
             <Link to="" className="text-reset notification-item">
               <div className="d-flex">
                 <div className="avatar-xs me-3">
@@ -118,7 +119,8 @@ const NotificationDropdown = () => {
                       Descripción de Notificación de Prueba
                     </p>
                     <p className="mb-0">
-                      <i className="mdi mdi-clock-outline" /> Hace 15 minutos{" "}
+                      <i className="mdi mdi-clock-outline" /> Hace 15
+                      minutos{' '}
                     </p>
                   </div>
                 </div>
@@ -164,7 +166,7 @@ const NotificationDropdown = () => {
                   </div>
                 </div>
               </div>
-            </Link>{" "}
+            </Link>{' '}
             <Link to="" className="text-reset notification-item">
               <div className="d-flex">
                 <div className="avatar-xs me-3">
@@ -179,7 +181,8 @@ const NotificationDropdown = () => {
                       Descripción de Notificación de Prueba
                     </p>
                     <p className="mb-0">
-                      <i className="mdi mdi-clock-outline" /> Hace 15 minutos{" "}
+                      <i className="mdi mdi-clock-outline" /> Hace 15
+                      minutos{' '}
                     </p>
                   </div>
                 </div>
@@ -237,8 +240,8 @@ const NotificationDropdown = () => {
                   <h6 className="mt-0 mb-1">Notificación de Prueba</h6>
                   <div className="font-size-12 text-muted">
                     <p className="mb-1">
-                      {t("As a skeptical Cambridge friend of mine occidental") +
-                        "."}
+                      {t('As a skeptical Cambridge friend of mine occidental') +
+                        '.'}
                     </p>
                     <p className="mb-0">
                       <i className="mdi mdi-clock-outline" />

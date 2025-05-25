@@ -1,7 +1,7 @@
-import { Button, Card, CardBody, CardTitle, Col, Row, Table } from "reactstrap";
-import useUserContactInfo from "../../../modules/principal/account/hooks/useUserContactInfo";
-import AppSpinner from "../loader/Spinner";
-import AlertWithReload from "../alert/AlertWithReload";
+import { Button, Card, CardBody, CardTitle, Col, Row, Table } from 'reactstrap';
+import useUserContactInfo from '../../../modules/principal/account/hooks/useUserContactInfo';
+import AppSpinner from '../loader/Spinner';
+import AlertWithReload from '../alert/AlertWithReload';
 
 const UserContactCard = () => {
   const { error, loading, data, fetchUserContactInfo } = useUserContactInfo();

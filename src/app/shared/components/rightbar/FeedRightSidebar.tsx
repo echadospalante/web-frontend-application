@@ -1,29 +1,29 @@
-import { Link } from "react-router-dom";
-import { Card, CardBody } from "reactstrap";
+import { Link } from 'react-router-dom';
+import { Card, CardBody } from 'reactstrap';
 
-import SimpleBar from "simplebar-react";
+import SimpleBar from 'simplebar-react';
 import {
   archiveData,
   categoriesData,
   popularPosts,
   tagsData,
-} from "../../data/feed/feed";
-import ventureCategories from "../../data/misc/venture-categories";
+} from '../../data/feed/feed';
+import ventureCategories from '../../data/misc/venture-categories';
 
 const FeedRightSidebar = () => {
   return (
     <div
       style={{
-        position: "fixed",
-        top: "95px",
-        right: "30px",
+        position: 'fixed',
+        top: '95px',
+        right: '30px',
       }}
     >
       <SimpleBar
         style={{
-          maxHeight: "90vh",
-          overflowY: "auto",
-          width: "370px",
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          width: '370px',
         }}
       >
         <Card>

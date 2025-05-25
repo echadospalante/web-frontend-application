@@ -1,15 +1,15 @@
-import { faker } from "@faker-js/faker";
-import { VentureEvent } from "echadospalante-domain";
+import { faker } from '@faker-js/faker';
+import { VentureEvent } from 'echadospalante-domain';
 
-import { PaginatedBody } from "echadospalante-domain/dist/app/modules/domain/common/pagination";
-import env from "../../../../../../environment/environment";
-import { VentureEventsFilter } from "../../../../../config/redux/reducers/admin/venture-events-management.reducer";
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import env from '../../../../../../environment/environment';
+import { VentureEventsFilter } from '../../../../../config/redux/reducers/admin/venture-events-management.reducer';
 
 export class VentureEventsApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/events`;
 
   public static fetchVentureEvents(
-    ventureEventsFilter: VentureEventsFilter
+    ventureEventsFilter: VentureEventsFilter,
   ): Promise<PaginatedBody<VentureEvent>> {
     // const { page, size, ...rest } = ventureEventsFilter;
     // const otherPrams = filterFalsyValues(rest);

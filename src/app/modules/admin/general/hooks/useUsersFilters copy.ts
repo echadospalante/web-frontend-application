@@ -1,14 +1,14 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { AppRole } from "echadospalante-domain";
-import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { AppRole } from 'echadospalante-domain';
+import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 import {
   selectUsersManagement,
   setUserFilters,
-} from "../../../../config/redux/reducers/admin/users-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
+} from '../../../../config/redux/reducers/admin/users-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
 
 const useUsersFilters = () => {
   const { filters } = useSelector(selectUsersManagement);
@@ -24,7 +24,7 @@ const useUsersFilters = () => {
     dispatch(setUserFilters({ ...filters, role, page: 0 }));
   };
 
-  const setGender = (gender: "M" | "F" | "O" | null) => {
+  const setGender = (gender: 'M' | 'F' | 'O' | null) => {
     dispatch(setUserFilters({ ...filters, gender, page: 0 }));
   };
 
@@ -46,12 +46,12 @@ const useUsersFilters = () => {
     const newSearchParams = new URLSearchParams(searchParams);
     const { gender, page, size, role, search } = filters;
 
-    newSearchParams.set("page", page.toString());
-    newSearchParams.set("size", size.toString());
+    newSearchParams.set('page', page.toString());
+    newSearchParams.set('size', size.toString());
 
-    gender && newSearchParams.set("gender", gender);
-    role && newSearchParams.set("role", role);
-    search && newSearchParams.set("search", search);
+    gender && newSearchParams.set('gender', gender);
+    role && newSearchParams.set('role', role);
+    search && newSearchParams.set('search', search);
 
     setSearchParams(newSearchParams);
   }, [filters]);

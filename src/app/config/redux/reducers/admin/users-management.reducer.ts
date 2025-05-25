@@ -1,14 +1,14 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { AppRole, User } from "echadospalante-domain";
+import { AppRole, User } from 'echadospalante-domain';
 
-import { PaginatedBody } from "../../../../modules/principal/ventures/domain/api";
-import { RootState } from "../../store/store.config";
+import { PaginatedBody } from '../../../../modules/principal/ventures/domain/api';
+import { RootState } from '../../store/store.config';
 
 export interface UsersFilter {
   search: string;
-  role: AppRole | "";
-  gender: "M" | "F" | "O" | null;
+  role: AppRole | '';
+  gender: 'M' | 'F' | 'O' | null;
   page: number;
   size: number;
 }
@@ -23,8 +23,8 @@ const initialState: UsersManagementState = {
   filters: {
     gender: null,
     page: 0,
-    role: "",
-    search: "",
+    role: '',
+    search: '',
     size: 20,
   },
   users: {
@@ -34,7 +34,7 @@ const initialState: UsersManagementState = {
 };
 
 export const usersManagementSlice = createSlice({
-  name: "admin/usersManagement",
+  name: 'admin/usersManagement',
   initialState,
   reducers: {
     setUserFilters: (state, action: PayloadAction<UsersFilter>) => {

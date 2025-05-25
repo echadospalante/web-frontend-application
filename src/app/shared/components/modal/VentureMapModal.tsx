@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState } from 'react';
 
 import {
   MapContainer,
@@ -8,16 +8,16 @@ import {
   TileLayer,
   Tooltip,
   useMapEvents,
-} from "react-leaflet";
-import { Button, Col, Modal, ModalBody, ModalHeader, Row } from "reactstrap";
+} from 'react-leaflet';
+import { Button, Col, Modal, ModalBody, ModalHeader, Row } from 'reactstrap';
 // Import plugins
 
 import {
   buildPointBounds,
   getMidpoint,
   haversineDistance,
-} from "../../helpers/map-helpers";
-import FlyToLocation from "../map/FlyToLocation";
+} from '../../helpers/map-helpers';
+import FlyToLocation from '../map/FlyToLocation';
 
 type VentureMapModalProps = {
   modal: boolean;
@@ -91,7 +91,7 @@ const VentureMapModal = (props: VentureMapModalProps) => {
               minZoom={5}
               zoomSnap={0.5} // Permitir zoom en fracciones de 0.5
               zoomDelta={0.5} // Controla la sensibilidad del zoom
-              style={{ height: "50vh", width: "100%" }}
+              style={{ height: '50vh', width: '100%' }}
               maxZoom={18}
             >
               <TileLayer

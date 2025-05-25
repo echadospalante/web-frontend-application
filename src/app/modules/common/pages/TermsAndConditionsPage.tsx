@@ -1,7 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
-import classnames from "classnames";
-import { Link } from "react-router-dom";
+import classnames from 'classnames';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -12,14 +12,14 @@ import {
   Row,
   TabContent,
   TabPane,
-} from "reactstrap";
+} from 'reactstrap';
 
-import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
-import LandingFooter from "../../../shared/components/footer/LandingFooter";
+import Breadcrumb from '../../../shared/components/breadcrumb/Breadcrumb';
+import LandingFooter from '../../../shared/components/footer/LandingFooter';
 
 const TermsAndConditionsPage = () => {
   document.title = "Terminos & Condiciones | EchadosPa'lante";
-  const [activeTab, setactiveTab] = useState("1");
+  const [activeTab, setactiveTab] = useState('1');
 
   return (
     <Fragment>
@@ -41,9 +41,9 @@ const TermsAndConditionsPage = () => {
                         <h5>Aviso de privacidad y términos de uso</h5>
                         <hr
                           style={{
-                            backgroundColor: "lightgray",
-                            height: "1px",
-                            border: "none",
+                            backgroundColor: 'lightgray',
+                            height: '1px',
+                            border: 'none',
                           }}
                         />
                       </div>
@@ -58,10 +58,10 @@ const TermsAndConditionsPage = () => {
                             <Nav pills className="flex-column">
                               <NavLink
                                 className={classnames({
-                                  active: activeTab === "1",
+                                  active: activeTab === '1',
                                 })}
                                 onClick={() => {
-                                  setactiveTab("1");
+                                  setactiveTab('1');
                                 }}
                               >
                                 <i className="bx bx-help-circle nav-icon d-block mb-2" />
@@ -72,10 +72,10 @@ const TermsAndConditionsPage = () => {
 
                               <NavLink
                                 className={classnames({
-                                  active: activeTab === "2",
+                                  active: activeTab === '2',
                                 })}
                                 onClick={() => {
-                                  setactiveTab("2");
+                                  setactiveTab('2');
                                 }}
                               >
                                 <i className="bx bx-receipt nav-icon d-block mb-2" />
@@ -86,10 +86,10 @@ const TermsAndConditionsPage = () => {
 
                               <NavLink
                                 className={classnames({
-                                  active: activeTab === "3",
+                                  active: activeTab === '3',
                                 })}
                                 onClick={() => {
-                                  setactiveTab("3");
+                                  setactiveTab('3');
                                 }}
                               >
                                 <i className="bx bx-timer d-block nav-icon mb-2" />
@@ -101,10 +101,10 @@ const TermsAndConditionsPage = () => {
 
                               <NavLink
                                 className={classnames({
-                                  active: activeTab === "4",
+                                  active: activeTab === '4',
                                 })}
                                 onClick={() => {
-                                  setactiveTab("4");
+                                  setactiveTab('4');
                                 }}
                               >
                                 <i className="bx bx-timer d-block nav-icon mb-2" />
@@ -116,10 +116,10 @@ const TermsAndConditionsPage = () => {
 
                               <NavLink
                                 className={classnames({
-                                  active: activeTab === "5",
+                                  active: activeTab === '5',
                                 })}
                                 onClick={() => {
-                                  setactiveTab("5");
+                                  setactiveTab('5');
                                 }}
                               >
                                 <i className="bx bx-timer d-block nav-icon mb-2" />
@@ -130,10 +130,10 @@ const TermsAndConditionsPage = () => {
                               </NavLink>
                               <NavLink
                                 className={classnames({
-                                  active: activeTab === "6",
+                                  active: activeTab === '6',
                                 })}
                                 onClick={() => {
-                                  setactiveTab("6");
+                                  setactiveTab('6');
                                 }}
                               >
                                 <i className="bx bx-timer d-block nav-icon mb-2" />
@@ -144,10 +144,10 @@ const TermsAndConditionsPage = () => {
                               </NavLink>
                               <NavLink
                                 className={classnames({
-                                  active: activeTab === "7",
+                                  active: activeTab === '7',
                                 })}
                                 onClick={() => {
-                                  setactiveTab("7");
+                                  setactiveTab('7');
                                 }}
                               >
                                 <i className="bx bx-timer d-block nav-icon mb-2" />
@@ -175,11 +175,11 @@ const TermsAndConditionsPage = () => {
                       <h5 className="fw-semibold">Magento Developer</h5>
                       <ul className="list-unstyled hstack gap-2 mb-0">
                         <li>
-                          <i className="bx bx-building-house"></i>{" "}
+                          <i className="bx bx-building-house"></i>{' '}
                           <span className="text-muted">Themesbrand</span>
                         </li>
                         <li>
-                          <i className="bx bx-map"></i>{" "}
+                          <i className="bx bx-map"></i>{' '}
                           <span className="text-muted">California</span>
                         </li>
                       </ul>

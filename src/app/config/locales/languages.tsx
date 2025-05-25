@@ -1,11 +1,11 @@
 const languages = {
   es: {
-    label: "ES",
-    flag: "/images/flags/spain.jpg",
+    label: 'ES',
+    flag: '/images/flags/spain.jpg',
   },
   en: {
-    label: "EN",
-    flag: "/images/flags/us.jpg",
+    label: 'EN',
+    flag: '/images/flags/us.jpg',
   },
   // gr: {
   //   label: "German",

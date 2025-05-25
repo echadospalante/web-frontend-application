@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from 'react';
 
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -13,15 +13,15 @@ import {
   Container,
   Row,
   UncontrolledAlert,
-} from "reactstrap";
-import Select from "react-select";
+} from 'reactstrap';
+import Select from 'react-select';
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 
-import counties from "./all";
+import counties from './all';
 
 const PreferencesLangLocalePage = () => {
-  document.title = "Idioma y Localización | Preferencias";
+  document.title = 'Idioma y Localización | Preferencias';
   const [geoInfo, setGeoInfo] = useState<
     { region: string; countries: { name: string; flag: string }[] }[]
   >([]);
@@ -94,7 +94,7 @@ const PreferencesLangLocalePage = () => {
                       <label className="control-label">País</label>
                       <Select
                         isDisabled={false}
-                        value={{ label: "Colombia", value: 0 }}
+                        value={{ label: 'Colombia', value: 0 }}
                         isMulti={false}
                         isSearchable={true}
                         isClearable={true}
@@ -116,7 +116,7 @@ const PreferencesLangLocalePage = () => {
                       <label className="control-label">Zona Horaria</label>
                       <Select
                         isDisabled={false}
-                        value={[{ label: "UTC-05:00", value: 0 }]}
+                        value={[{ label: 'UTC-05:00', value: 0 }]}
                         isMulti={false}
                         isClearable={true}
                         isSearchable={false}
@@ -124,15 +124,15 @@ const PreferencesLangLocalePage = () => {
                           console.log({ selected });
                         }}
                         options={[
-                          { label: "UTC+03:00", value: 0 },
-                          { label: "UTC+04:00", value: 1 },
-                          { label: "UTC+06:00", value: 2 },
-                          { label: "UTC+07:00", value: 4 },
-                          { label: "UTC+08:00", value: 5 },
-                          { label: "UTC+09:00", value: 6 },
-                          { label: "UTC+10:00", value: 7 },
-                          { label: "UTC+11:00", value: 8 },
-                          { label: "UTC+12:00", value: 9 },
+                          { label: 'UTC+03:00', value: 0 },
+                          { label: 'UTC+04:00', value: 1 },
+                          { label: 'UTC+06:00', value: 2 },
+                          { label: 'UTC+07:00', value: 4 },
+                          { label: 'UTC+08:00', value: 5 },
+                          { label: 'UTC+09:00', value: 6 },
+                          { label: 'UTC+10:00', value: 7 },
+                          { label: 'UTC+11:00', value: 8 },
+                          { label: 'UTC+12:00', value: 9 },
                         ]}
                       ></Select>
                     </Col>
@@ -141,7 +141,7 @@ const PreferencesLangLocalePage = () => {
                       <label className="control-label">Moneda</label>
                       <Select
                         isDisabled={false}
-                        value={[{ label: "Peso Colombiano", value: 1 }]}
+                        value={[{ label: 'Peso Colombiano', value: 1 }]}
                         isMulti={false}
                         isClearable={true}
                         isSearchable={false}
@@ -149,8 +149,8 @@ const PreferencesLangLocalePage = () => {
                           console.log({ selected });
                         }}
                         options={[
-                          { label: "USD - Dólar americano", value: 0 },
-                          { label: "COP - Peso colombiano", value: 1 },
+                          { label: 'USD - Dólar americano', value: 0 },
+                          { label: 'COP - Peso colombiano', value: 1 },
                         ]}
                       ></Select>
                     </Col>
@@ -159,7 +159,7 @@ const PreferencesLangLocalePage = () => {
                       <label className="control-label">Lenguaje</label>
                       <Select
                         isDisabled={false}
-                        value={[{ label: "Español", value: 0 }]}
+                        value={[{ label: 'Español', value: 0 }]}
                         isMulti={false}
                         isClearable={true}
                         isSearchable={false}
@@ -167,8 +167,8 @@ const PreferencesLangLocalePage = () => {
                           console.log({ selected });
                         }}
                         options={[
-                          { label: "es - Español", value: 0 },
-                          { label: "en - English", value: 1 },
+                          { label: 'es - Español', value: 0 },
+                          { label: 'en - English', value: 1 },
                         ]}
                       ></Select>
                     </Col>

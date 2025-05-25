@@ -1,14 +1,14 @@
-import { Action, Dispatch } from "@reduxjs/toolkit";
-import { Role } from "echadospalante-domain";
+import { Action, Dispatch } from '@reduxjs/toolkit';
+import { Role } from 'echadospalante-domain';
 
 import {
   finishGlobalLoading,
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
-import { AppRole } from "../../../../auth/domain/Role";
-import { UsersApi } from "../http/users-management.api";
-import AuthenticationApi from "../../../../auth/api/http/authentication.api";
+} from '../../../../../config/redux/reducers/shared/user-interface.reducer';
+import { AppRole } from '../../../../auth/domain/Role';
+import { UsersApi } from '../http/users-management.api';
+import AuthenticationApi from '../../../../auth/api/http/authentication.api';
 
 export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {
   return async (dispatch: Dispatch) => {
@@ -16,26 +16,26 @@ export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
-            title: "Roles actualizados",
+            title: 'Roles actualizados',
             message:
-              "Los roles del usuario han sido actualizados correctamente.",
+              'Los roles del usuario han sido actualizados correctamente.',
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
-          })
+          }),
         );
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            title: "Error al actualizar roles",
+            title: 'Error al actualizar roles',
             message:
-              "Por favor intente nuevamente, si el error persiste contacte al administrador.",
+              'Por favor intente nuevamente, si el error persiste contacte al administrador.',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error en la actualización de roles");
+        throw new Error('Error en la actualización de roles');
       })
       .finally(() => {
         dispatch(finishGlobalLoading());
@@ -49,24 +49,24 @@ export const lockUserAccountMiddleware = (email: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
-            message: "Usuario desbloqueado correctamente ✅",
-            title: "Operación exitosa",
+            message: 'Usuario desbloqueado correctamente ✅',
+            title: 'Operación exitosa',
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
-          })
+          }),
         );
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al bloquear el usuario ⛔",
-            title: "Error",
+            message: 'Error al bloquear el usuario ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al bloquear el usuario");
+        throw new Error('Error al bloquear el usuario');
       });
   };
 };
@@ -77,24 +77,24 @@ export const unlockUserAccountMiddleware = (email: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
-            message: "Usuario desbloqueado correctamente ✅",
-            title: "Operación exitosa",
+            message: 'Usuario desbloqueado correctamente ✅',
+            title: 'Operación exitosa',
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
-          })
+          }),
         );
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al desbloquear el usuario ⛔",
-            title: "Error",
+            message: 'Error al desbloquear el usuario ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al desbloquear el usuario");
+        throw new Error('Error al desbloquear el usuario');
       });
   };
 };
@@ -105,24 +105,24 @@ export const verifyUserAccountMiddleware = (email: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
-            message: "Usuario verificado correctamente ✅",
-            title: "Operación exitosa",
+            message: 'Usuario verificado correctamente ✅',
+            title: 'Operación exitosa',
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
-          })
+          }),
         );
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al verificar el usuario ⛔",
-            title: "Error",
+            message: 'Error al verificar el usuario ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al verificar el usuario");
+        throw new Error('Error al verificar el usuario');
       });
   };
 };
@@ -133,24 +133,24 @@ export const unverifyUserAccountMiddleware = (email: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
-            message: "Usuario desverificado correctamente ✅",
-            title: "Operación exitosa",
+            message: 'Usuario desverificado correctamente ✅',
+            title: 'Operación exitosa',
             timeout: 5000,
             severity: SeverityLevel.SUCCESS,
-          })
+          }),
         );
       })
       .catch((error) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al desverificar el usuario ⛔",
-            title: "Error",
+            message: 'Error al desverificar el usuario ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al desverificar el usuario");
+        throw new Error('Error al desverificar el usuario');
       });
   };
 };
@@ -162,15 +162,15 @@ export const fetchRolesMiddleware = () => {
       .catch((error) => {
         dispatch(
           setGlobalAlert({
-            title: "Error al obtener roles",
+            title: 'Error al obtener roles',
             message:
-              "Por favor intente nuevamente, si el error persiste contacte al administrador.",
+              'Por favor intente nuevamente, si el error persiste contacte al administrador.',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
         console.error(error);
-        throw new Error("Error al obtener roles");
+        throw new Error('Error al obtener roles');
       });
   };
 };

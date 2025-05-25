@@ -1,10 +1,10 @@
-import type { SVGProps } from "react";
-import { Fragment } from "react";
+import type { SVGProps } from 'react';
+import { Fragment } from 'react';
 
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
-import UserRegisterForm from "../../../shared/components/forms/UserRegisterForm";
-import { useRegister } from "../hooks/useRegister";
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, Card, CardBody, Col, Container, Row } from 'reactstrap';
+import UserRegisterForm from '../../../shared/components/forms/UserRegisterForm';
+import { useRegister } from '../hooks/useRegister';
 
 const BaseUserInfoPage = () => {
   const { userInfo } = useRegister();
@@ -61,7 +61,7 @@ const BaseUserInfoPage = () => {
                           </Link>
                           <Button
                             disabled={!userInfo}
-                            onClick={() => navigate("/registro/preferencias")}
+                            onClick={() => navigate('/registro/preferencias')}
                             className="btn btn-success mx-1"
                           >
                             Siguiente
@@ -75,7 +75,7 @@ const BaseUserInfoPage = () => {
 
               <div className="mt-5 text-center">
                 <p>
-                  © {new Date().getFullYear()} Echados Pa'lante. Powered with{" "}
+                  © {new Date().getFullYear()} Echados Pa'lante. Powered with{' '}
                   <i className="mdi mdi-heart text-danger"></i> by Themesbrand
                 </p>
               </div>

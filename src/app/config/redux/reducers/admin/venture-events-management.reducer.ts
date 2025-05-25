@@ -1,9 +1,9 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { VentureEvent } from "echadospalante-domain";
-import { PaginatedBody } from "echadospalante-domain/dist/app/modules/domain/common/pagination";
+import { VentureEvent } from 'echadospalante-domain';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
-import { RootState } from "../../store/store.config";
+import { RootState } from '../../store/store.config';
 
 export interface VentureEventsFilter {
   ventureId: string;
@@ -23,8 +23,8 @@ lastWeek.setDate(lastWeek.getDate() - 7);
 // Freeze the initial state to prevent accidental changes
 const initialState: VentureEventsManagementState = {
   filters: {
-    ventureId: "",
-    search: "",
+    ventureId: '',
+    search: '',
     from: lastWeek.toISOString(),
     to: new Date().toISOString(),
   },
@@ -35,7 +35,7 @@ const initialState: VentureEventsManagementState = {
 };
 
 export const ventureEventsManagementSlice = createSlice({
-  name: "admin/ventureEventsManagement",
+  name: 'admin/ventureEventsManagement',
   initialState,
   reducers: {
     createVentureEvent: (state, action: PayloadAction<VentureEvent>) => {
@@ -43,7 +43,7 @@ export const ventureEventsManagementSlice = createSlice({
     },
     setVentureEventsFilters: (
       state,
-      action: PayloadAction<VentureEventsFilter>
+      action: PayloadAction<VentureEventsFilter>,
     ) => {
       const { from, search, to, ventureId } = action.payload;
 
@@ -57,7 +57,7 @@ export const ventureEventsManagementSlice = createSlice({
     updateVentureEvent: (state, action: PayloadAction<VentureEvent>) => {
       const updatedEvent = action.payload;
       state.events.items = state.events.items.map((event) =>
-        event.id === updatedEvent.id ? updatedEvent : event
+        event.id === updatedEvent.id ? updatedEvent : event,
       );
     },
     addVentureEvent: (state, action: PayloadAction<VentureEvent>) => {
@@ -68,7 +68,7 @@ export const ventureEventsManagementSlice = createSlice({
     },
     setVentureEvents: (
       state,
-      action: PayloadAction<PaginatedBody<VentureEvent>>
+      action: PayloadAction<PaginatedBody<VentureEvent>>,
     ) => {
       const { items, total } = action.payload;
       state.events = {

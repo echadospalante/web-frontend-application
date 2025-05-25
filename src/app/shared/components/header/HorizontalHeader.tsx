@@ -1,15 +1,15 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { useTranslation } from "react-i18next";
-import Select from "react-select";
-import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
+import { useTranslation } from 'react-i18next';
+import Select from 'react-select';
+import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
 
-import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
-import LanguageDropdown from "../dropdown/LanguageDropdown";
-import NotificationDropdown from "../dropdown/NotificationDropdown";
-import ProfileMenu from "../menu/ProfileMenu";
+import useAuthentication from '../../../modules/auth/hooks/useAuthentication';
+import LanguageDropdown from '../dropdown/LanguageDropdown';
+import NotificationDropdown from '../dropdown/NotificationDropdown';
+import ProfileMenu from '../menu/ProfileMenu';
 
 // type HeaderProps = {
 //   toggleLeftmenu: (arg0: boolean) => void;
@@ -215,8 +215,8 @@ const Header = () => {
               <div
                 className={
                   isSearch
-                    ? "dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show"
-                    : "dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                    ? 'dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show'
+                    : 'dropdown-menu dropdown-menu-lg dropdown-menu-end p-0'
                 }
                 aria-labelledby="page-header-search-dropdown"
               >
@@ -226,7 +226,7 @@ const Header = () => {
                       <input
                         type="text"
                         className="form-control"
-                        placeholder={t("Search") + "..."}
+                        placeholder={t('Search') + '...'}
                         aria-label="Recipient's username"
                       />
                       <div className="input-group-append">

@@ -1,11 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
 
-import { useQuery } from "@tanstack/react-query";
-
-import VentureCategoriesApi from "../api/http/venture-categories.api";
+import VentureCategoriesApi from '../api/http/venture-categories.api';
 
 const useFetchVentureCategories = () => {
   const ventureCategoriesQuery = useQuery({
-    queryKey: ["venture", "categories"],
+    queryKey: ['venture', 'categories'],
     queryFn: () => VentureCategoriesApi.getVentureCategories(),
     staleTime: 1000 * 60 * 60, // 1 hour
   });

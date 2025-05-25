@@ -1,72 +1,24 @@
-import { useEffect, useState } from "react";
+import { useQuery } from '@tanstack/react-query';
 
-import { VentureCategory } from "echadospalante-domain";
+import { VentureCategoriesApi } from '../api/http/venture-categories-management.api';
 
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import {
-  fetchAllVentureCategoriesMiddleware,
-} from "../api/middleware/venture-categories.middleware";
-
-const useAllVentureCategories = () => {
-  const dispatch = useAppDispatch();
-  const [categoriesRequest, setCategoriesRequest] = useState({
-    categories: [] as VentureCategory[],
-    loading: true,
-    error: false,
+const useFetchAllVentureCategories = () => {
+  const ventureCategoriesQuery = useQuery({
+    queryKey: ['ventures', 'categories'],
+    queryFn: () =>
+      VentureCategoriesApi.fetchVentureCategories({
+        search: '',
+        page: 0,
+        size: -1,
+      }),
   });
 
-  const fetchAllVentureCategories = () => {
-    setCategoriesRequest({
-      categories:[],
-      loading: true,
-      error: false,
-    });
-
-    dispatch(fetchAllVentureCategoriesMiddleware())
-      .then((categories) => {
-        setCategoriesRequest({
-          categories,
-          loading: false,
-          error: false,
-        });
-      })
-      .catch(() => {
-        setCategoriesRequest(() => ({
-          categories: [],
-          loading: false,
-          error: true,
-        }));
-      });
-  };
-
-  useEffect(() => {
-    setCategoriesRequest({
-      categories: [],
-      loading: true,
-      error: false,
-    });
-
-    dispatch(fetchAllVentureCategoriesMiddleware())
-      .then((categories) => {
-        setCategoriesRequest({
-          categories,
-          loading: false,
-          error: false,
-        });
-      })
-      .catch(() => {
-        setCategoriesRequest({
-          categories: [],
-          loading: false,
-          error: true,
-        });
-      });
-  }, [dispatch]);
-
   return {
-    ...categoriesRequest,
-    fetchAllVentureCategories,
+    loading: ventureCategoriesQuery.isLoading,
+    error: ventureCategoriesQuery.isError,
+    data: ventureCategoriesQuery.data?.items || [],
+    retryFetch: ventureCategoriesQuery.refetch,
   };
 };
 
-export default useAllVentureCategories;
+export default useFetchAllVentureCategories;

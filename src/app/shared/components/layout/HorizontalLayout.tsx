@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 import {
   changeLayoutMode,
@@ -8,12 +8,12 @@ import {
   changeTopBarTheme,
   selectLayout,
   toggleRightSidebar,
-} from "../../../config/redux/reducers/shared/layout.reducer";
-import { useAppDispatch } from "../../../config/redux/store/store.config";
-import Footer from "../footer/HorizontalFooter";
-import HorizontalHeader from "../header/HorizontalHeader";
-import RightSidebar from "../rightbar/RightSidebar";
-import Sidebar from "../sidebar/Sidebar";
+} from '../../../config/redux/reducers/shared/layout.reducer';
+import { useAppDispatch } from '../../../config/redux/store/store.config';
+import Footer from '../footer/HorizontalFooter';
+import HorizontalHeader from '../header/HorizontalHeader';
+import RightSidebar from '../rightbar/RightSidebar';
+import Sidebar from '../sidebar/Sidebar';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -42,7 +42,7 @@ const HorizontalLayout = ({ children }: LayoutProps) => {
 
     //hides right sidebar on body click
     const hideRightBar = (event: MouseEvent) => {
-      const rightBar = document.getElementById("right-bar");
+      const rightBar = document.getElementById('right-bar');
       //if clicked in inside right bar, then do nothing
       if (rightBar && rightBar.contains(event.target as Node)) {
         return;
@@ -53,19 +53,19 @@ const HorizontalLayout = ({ children }: LayoutProps) => {
     };
 
     //init body click event fot toggle rightbar
-    document.body.addEventListener("click", hideRightBar, true);
+    document.body.addEventListener('click', hideRightBar, true);
 
     if (isPreloader === true) {
-      document.getElementById("preloader")!.style.display = "block";
-      document.getElementById("status")!.style.display = "block";
+      document.getElementById('preloader')!.style.display = 'block';
+      document.getElementById('status')!.style.display = 'block';
 
       setTimeout(function () {
-        document.getElementById("preloader")!.style.display = "none";
-        document.getElementById("status")!.style.display = "none";
+        document.getElementById('preloader')!.style.display = 'none';
+        document.getElementById('status')!.style.display = 'none';
       }, 2500);
     } else {
-      document.getElementById("preloader")!.style.display = "none";
-      document.getElementById("status")!.style.display = "none";
+      document.getElementById('preloader')!.style.display = 'none';
+      document.getElementById('status')!.style.display = 'none';
     }
   }, [dispatch, isPreloader]);
 

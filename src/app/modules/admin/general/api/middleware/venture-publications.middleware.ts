@@ -1,21 +1,21 @@
-import { Action, Dispatch } from "@reduxjs/toolkit";
+import { Action, Dispatch } from '@reduxjs/toolkit';
 
 import {
   setVenturePublications,
   VenturePublicationsFilter,
-} from "../../../../../config/redux/reducers/admin/venture-publications-management.reducer";
+} from '../../../../../config/redux/reducers/admin/venture-publications-management.reducer';
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
-import { VenturePublicationsApi } from "../http/venture-publications-management.api";
+} from '../../../../../config/redux/reducers/shared/user-interface.reducer';
+import { VenturePublicationsApi } from '../http/venture-publications-management.api';
 
 export const fetchVenturePublicationsMiddleware = (
-  venturePublicationsFilters: VenturePublicationsFilter
+  venturePublicationsFilters: VenturePublicationsFilter,
 ) => {
   return async (dispatch: Dispatch<Action>) => {
     return VenturePublicationsApi.fetchVenturePublications(
-      venturePublicationsFilters
+      venturePublicationsFilters,
     )
       .then((response) => {
         dispatch(setVenturePublications(response));
@@ -25,13 +25,13 @@ export const fetchVenturePublicationsMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
-            message: "Error al obtener la lista de publicaciones ⛔",
-            title: "Error",
+            message: 'Error al obtener la lista de publicaciones ⛔',
+            title: 'Error',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error al obtener la lista de publicaciones");
+        throw new Error('Error al obtener la lista de publicaciones');
       });
   };
 };

@@ -1,17 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
-import { TabContent, TabPane } from "reactstrap";
+import { TabContent, TabPane } from 'reactstrap';
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import AdminVenturesTabs from "../../../../shared/components/tabs/AdminVenturesTabs";
-import AdminVenturesTable from "../../../../shared/components/table/AdminVenturesTable";
-import AdminVentureCategoriesTable from "../../../../shared/components/table/AdminVentureCategoriesTable";
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import AdminVenturesTabs from '../../../../shared/components/tabs/AdminVenturesTabs';
+import AdminVenturesTable from '../../../../shared/components/table/AdminVenturesTable';
+import AdminVentureCategoriesTable from '../../../../shared/components/table/AdminVentureCategoriesTable';
 
 const AdminVenturesPage = () => {
-  document.title = "Gestión de Emprendimientos | Administración";
+  document.title = 'Gestión de Emprendimientos | Administración';
 
-  const [activeTab, setActiveTab] = useState("1");
+  const [activeTab, setActiveTab] = useState('1');
 
   const toggleActiveTab = (tab: string) => {
     if (activeTab !== tab) {
@@ -24,7 +24,7 @@ const AdminVenturesPage = () => {
         <div className="container-fluid">
           <Breadcrumb
             title="Emprendimientos"
-            breadcrumbItem={activeTab === "1" ? "Listado" : "Tablero"}
+            breadcrumbItem={activeTab === '1' ? 'Listado' : 'Tablero'}
           />
 
           <Fragment>
@@ -35,11 +35,11 @@ const AdminVenturesPage = () => {
 
             <TabContent activeTab={activeTab} className="p-3 text-muted">
               <TabPane tabId="1">
-                {activeTab === "1" && <AdminVenturesTable />}
+                {activeTab === '1' && <AdminVenturesTable />}
               </TabPane>
 
               <TabPane tabId="2">
-                {activeTab === "2" && <AdminVentureCategoriesTable />}
+                {activeTab === '2' && <AdminVentureCategoriesTable />}
               </TabPane>
             </TabContent>
           </Fragment>

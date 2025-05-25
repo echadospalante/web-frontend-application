@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 import {
   selectVentureEventsManagement,
   setVentureEventsFilters,
-} from "../../../../config/redux/reducers/admin/venture-events-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
+} from '../../../../config/redux/reducers/admin/venture-events-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
 
 const useVentureEventsFilters = () => {
   const { filters } = useSelector(selectVentureEventsManagement);
@@ -31,10 +31,10 @@ const useVentureEventsFilters = () => {
     const newSearchParams = new URLSearchParams(searchParams);
     const { from, to, search } = filters;
 
-    newSearchParams.set("from", new Date(from).toISOString());
-    newSearchParams.set("to", new Date(to).toISOString());
+    newSearchParams.set('from', new Date(from).toISOString());
+    newSearchParams.set('to', new Date(to).toISOString());
 
-    search && newSearchParams.set("search", search);
+    search && newSearchParams.set('search', search);
 
     setSearchParams(newSearchParams);
   }, [filters]);

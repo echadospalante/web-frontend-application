@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface AppLoadingProps {
   message?: string;
@@ -6,7 +6,7 @@ interface AppLoadingProps {
 }
 
 const AppLoading: React.FC<AppLoadingProps> = ({
-  message = "Loading...",
+  message = 'Loading...',
 }: AppLoadingProps) => {
   return (
     <React.Fragment>

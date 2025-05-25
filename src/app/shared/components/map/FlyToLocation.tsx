@@ -1,7 +1,7 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { useMap } from "react-leaflet";
-import { Button } from "reactstrap";
+import { useMap } from 'react-leaflet';
+import { Button } from 'reactstrap';
 
 type FlayToLocationProps = {
   lat: number;
@@ -25,7 +25,7 @@ const FlyToLocation = ({ lat, lng }: FlayToLocationProps) => {
     <Button
       color="primary"
       onClick={handleFlyTo}
-      style={{ position: "absolute", top: "10px", right: "10px", zIndex: 1000 }}
+      style={{ position: 'absolute', top: '10px', right: '10px', zIndex: 1000 }}
     >
       Ir a la ubicación
     </Button>

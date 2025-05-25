@@ -1,4 +1,4 @@
-import { Nav, NavItem, NavLink } from "reactstrap";
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 export type StandardizationTabsProps = {
   activeTab: string;
@@ -11,10 +11,10 @@ const AdminVenturesTabs = (props: StandardizationTabsProps) => {
     <Nav tabs className="nav-tabs-custom nav-justified">
       <NavItem>
         <NavLink
-          style={{ cursor: "pointer" }}
-          className={`${activeTab === "1" ? "active" : ""}`}
+          style={{ cursor: 'pointer' }}
+          className={`${activeTab === '1' ? 'active' : ''}`}
           onClick={() => {
-            toggleCustom("1");
+            toggleCustom('1');
           }}
         >
           <span className="d-block d-sm-none">
@@ -26,10 +26,10 @@ const AdminVenturesTabs = (props: StandardizationTabsProps) => {
 
       <NavItem>
         <NavLink
-          style={{ cursor: "pointer" }}
-          className={`${activeTab === "2" ? "active" : ""}`}
+          style={{ cursor: 'pointer' }}
+          className={`${activeTab === '2' ? 'active' : ''}`}
           onClick={() => {
-            toggleCustom("2");
+            toggleCustom('2');
           }}
         >
           <span className="d-block d-sm-none">

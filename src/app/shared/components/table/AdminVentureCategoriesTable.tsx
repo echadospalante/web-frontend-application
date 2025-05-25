@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
 import {
   flexRender,
@@ -7,17 +7,17 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { VentureCategory } from "echadospalante-domain";
-import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
+} from '@tanstack/react-table';
+import { VentureCategory } from 'echadospalante-domain';
+import { Button, Card, CardBody, Col, Row, Table } from 'reactstrap';
 
-import useVentureCategories from "../../../modules/admin/general/hooks/useVentureCategories";
-import VentureCategoriesFiltersForm from "../forms/VentureCategoriesFiltersForm";
-import AppSpinner from "../loader/Spinner";
-import CreateVentureCategoryModal from "../modal/CreateVentureCategoryModal";
-import EditVentureCategoryModal from "../modal/EditVentureCategoryModal";
-import Pagination from "../pagination/Pagination";
-import IconTooltip from "../tooltips/IconTooltip";
+import useVentureCategories from '../../../modules/admin/general/hooks/useVentureCategories';
+import VentureCategoriesFiltersForm from '../forms/VentureCategoriesFiltersForm';
+import AppSpinner from '../loader/Spinner';
+import CreateVentureCategoryModal from '../modal/CreateVentureCategoryModal';
+import EditVentureCategoryModal from '../modal/EditVentureCategoryModal';
+import Pagination from '../pagination/Pagination';
+import IconTooltip from '../tooltips/IconTooltip';
 
 const AdminVentureCategoriesTable = () => {
   const [activeCategoryToEdit, setActiveCategoryToEdit] =
@@ -117,7 +117,7 @@ const AdminVentureCategoriesTable = () => {
               <VentureCategoriesFiltersForm />
 
               {loading ? (
-                <div style={{ marginTop: "200px" }}>
+                <div style={{ marginTop: '200px' }}>
                   <AppSpinner />
                 </div>
               ) : (
@@ -133,8 +133,8 @@ const AdminVentureCategoriesTable = () => {
                                 colSpan={header.colSpan}
                                 className={`${
                                   header.column.columnDef.enableSorting
-                                    ? "sorting sorting_desc"
-                                    : ""
+                                    ? 'sorting sorting_desc'
+                                    : ''
                                 }`}
                               >
                                 {header.isPlaceholder ? null : (
@@ -142,7 +142,7 @@ const AdminVentureCategoriesTable = () => {
                                     <div>
                                       {flexRender(
                                         header.column.columnDef.header,
-                                        header.getContext()
+                                        header.getContext(),
                                       )}
                                     </div>
                                   </Fragment>
@@ -163,7 +163,7 @@ const AdminVentureCategoriesTable = () => {
                                 <td key={cell.id}>
                                   {flexRender(
                                     cell.column.columnDef.cell,
-                                    cell.getContext()
+                                    cell.getContext(),
                                   )}
                                 </td>
                               );
@@ -208,55 +208,55 @@ const AdminVentureCategoriesTable = () => {
 };
 
 const getColumns = (
-  setActiveCategoryToEdit: (ventureCategory: VentureCategory) => void
+  setActiveCategoryToEdit: (ventureCategory: VentureCategory) => void,
 ) => {
   return [
     {
-      header: "Id",
-      accessorKey: "id",
+      header: 'Id',
+      accessorKey: 'id',
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Nombre",
-      accessorKey: "name",
+      header: 'Nombre',
+      accessorKey: 'name',
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Slug",
-      accessorKey: "slug",
+      header: 'Slug',
+      accessorKey: 'slug',
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Descripción",
-      accessorKey: "description",
+      header: 'Descripción',
+      accessorKey: 'description',
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Fecha de creación",
-      accessorKey: "createdAt",
+      header: 'Fecha de creación',
+      accessorKey: 'createdAt',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
         const date = new Date(cellProps.row.original.createdAt as string);
-        return <section>{new Date(date).toISOString().split("T")[0]}</section>;
+        return <section>{new Date(date).toISOString().split('T')[0]}</section>;
       },
     },
     {
-      header: "Última actualización",
-      accessorKey: "updatedAt",
+      header: 'Última actualización',
+      accessorKey: 'updatedAt',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
         const date = new Date(cellProps.row.original.updatedAt as string);
-        return <section>{new Date(date).toISOString().split("T")[0]}</section>;
+        return <section>{new Date(date).toISOString().split('T')[0]}</section>;
       },
     },
     {
-      header: "Acciones",
+      header: 'Acciones',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (value: any) => {
@@ -270,11 +270,11 @@ const getColumns = (
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip
-                  tooltipId={"edit-venture-category"}
-                  tooltipHtml={"<h6>Editar categoría</h6>"}
-                  tooltipPlace={"top"}
+                  tooltipId={'edit-venture-category'}
+                  tooltipHtml={'<h6>Editar categoría</h6>'}
+                  tooltipPlace={'top'}
                   iconClassName={
-                    "bx bx-edit font-size-16 align-middle text-white"
+                    'bx bx-edit font-size-16 align-middle text-white'
                   }
                 />
               </Button>
@@ -286,10 +286,10 @@ const getColumns = (
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip
-                  tooltipId={"delete-venture-category"}
-                  tooltipHtml={"<h6>Eliminar categoría</h6>"}
-                  tooltipPlace={"top"}
-                  iconClassName={"bx bx-x font-size-16 align-middle text-white"}
+                  tooltipId={'delete-venture-category'}
+                  tooltipHtml={'<h6>Eliminar categoría</h6>'}
+                  tooltipPlace={'top'}
+                  iconClassName={'bx bx-x font-size-16 align-middle text-white'}
                 />
               </Button>
             </section>

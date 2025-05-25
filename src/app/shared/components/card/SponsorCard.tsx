@@ -1,14 +1,14 @@
-import { VentureSponsorship } from "echadospalante-domain";
-import moment from "moment";
-import "moment/locale/es";
-import { Link } from "react-router-dom";
-import { Card, CardBody, CardFooter, UncontrolledTooltip } from "reactstrap";
+import { VentureSponsorship } from 'echadospalante-domain';
+import moment from 'moment';
+import 'moment/locale/es';
+import { Link } from 'react-router-dom';
+import { Card, CardBody, CardFooter, UncontrolledTooltip } from 'reactstrap';
 
-import useSponsorshipOwner from "../../../modules/admin/general/hooks/useSponsorshipOwner";
-import { textToRGB } from "../../helpers/colors";
-import AppSpinner from "../loader/Spinner";
+import useSponsorshipOwner from '../../../modules/admin/general/hooks/useSponsorshipOwner';
+import { textToRGB } from '../../helpers/colors';
+import AppSpinner from '../loader/Spinner';
 
-moment.locale("es");
+moment.locale('es');
 
 type SponsorCardProps = {
   sponsorship: VentureSponsorship;
@@ -28,7 +28,7 @@ const SponsorCard = ({ sponsorship }: SponsorCardProps) => {
         {!owner.picture ? (
           <div className="avatar-sm mx-auto mb-4">
             <span
-              className={"avatar-title rounded-circle"}
+              className={'avatar-title rounded-circle'}
               style={{
                 backgroundColor: textToRGB(owner.firstName + owner.lastName),
               }}
@@ -53,7 +53,7 @@ const SponsorCard = ({ sponsorship }: SponsorCardProps) => {
         </h6>
 
         <p>
-          Se realizó el:{" "}
+          Se realizó el:{' '}
           <span className="text-muted">
             {moment(sponsorship.createdAt).fromNow()}
           </span>
@@ -71,12 +71,12 @@ const SponsorCard = ({ sponsorship }: SponsorCardProps) => {
             <Link
               to={`/principal/perfiles/${owner.id}`}
               target="_blank"
-              id={"profile-" + owner.id}
+              id={'profile-' + owner.id}
             >
               <i className="bx bx-message-square-dots" />
               <UncontrolledTooltip
                 placement="top"
-                target={"profile-" + owner.id}
+                target={'profile-' + owner.id}
               >
                 Ver perfil
               </UncontrolledTooltip>
@@ -85,14 +85,14 @@ const SponsorCard = ({ sponsorship }: SponsorCardProps) => {
 
           <div className="flex-fill">
             <Link
-              to={`/principal/perfiles/${owner.id}?tab=${"emprendimientos"}`}
+              to={`/principal/perfiles/${owner.id}?tab=${'emprendimientos'}`}
               target="_blank"
-              id={"ventures-" + owner.id}
+              id={'ventures-' + owner.id}
             >
               <i className="bx bx-pie-chart-alt text-primary" />
               <UncontrolledTooltip
                 placement="top"
-                target={"ventures-" + owner.id}
+                target={'ventures-' + owner.id}
               >
                 Emprendimientos
               </UncontrolledTooltip>
@@ -101,14 +101,14 @@ const SponsorCard = ({ sponsorship }: SponsorCardProps) => {
 
           <div className="flex-fill">
             <Link
-              to={`/principal/perfiles/${owner.id}?tab=${"comentarios"}`}
+              to={`/principal/perfiles/${owner.id}?tab=${'comentarios'}`}
               target="_blank"
-              id={"comments-" + owner.id}
+              id={'comments-' + owner.id}
             >
               <i className="bx bx-user-circle text-success" />
               <UncontrolledTooltip
                 placement="top"
-                target={"comments-" + owner.id}
+                target={'comments-' + owner.id}
               >
                 Perfil
               </UncontrolledTooltip>

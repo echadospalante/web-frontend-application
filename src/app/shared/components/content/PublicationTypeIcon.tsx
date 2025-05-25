@@ -1,5 +1,5 @@
-import { PublicationType } from "echadospalante-domain";
-import { textToRGB } from "../../helpers/colors";
+import { PublicationType } from 'echadospalante-domain';
+import { textToRGB } from '../../helpers/colors';
 
 type PublicationTypeIconProps = {
   type: PublicationType;
@@ -18,7 +18,7 @@ const PublicationTypeIcon = ({ type }: PublicationTypeIconProps) => {
             Estándar
           </span>
         ) : (
-          ""
+          ''
         )}
         {type === PublicationType.ACHIEVEMENT ? (
           <span className="d-flex flex-column align-items-center justify-content-center">
@@ -26,14 +26,14 @@ const PublicationTypeIcon = ({ type }: PublicationTypeIconProps) => {
             <span className="p-1">Logro</span>
           </span>
         ) : (
-          ""
+          ''
         )}
         {type === PublicationType.ANNOUNCEMENT ? (
           <span className="d-flex flex-column align-items-center justify-content-center">
             <i className="mdi mdi-bullhorn-outline fs-2"></i>Anuncio
           </span>
         ) : (
-          ""
+          ''
         )}
         {type === PublicationType.BEHIND_THE_SCENES ? (
           <span className="d-flex flex-column align-items-center justify-content-center">
@@ -41,7 +41,7 @@ const PublicationTypeIcon = ({ type }: PublicationTypeIconProps) => {
             cámaras
           </span>
         ) : (
-          ""
+          ''
         )}
         {type === PublicationType.PROMOTION ? (
           <span className="d-flex flex-column align-items-center justify-content-center">
@@ -49,7 +49,7 @@ const PublicationTypeIcon = ({ type }: PublicationTypeIconProps) => {
             Promoción
           </span>
         ) : (
-          ""
+          ''
         )}
       </span>
     </section>

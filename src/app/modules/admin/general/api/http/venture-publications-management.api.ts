@@ -2,18 +2,18 @@ import {
   ContentType,
   PublicationType,
   VenturePublication,
-} from "echadospalante-domain";
-import { faker } from "@faker-js/faker";
+} from 'echadospalante-domain';
+import { faker } from '@faker-js/faker';
 
-import env from "../../../../../../environment/environment";
-import { VenturePublicationsFilter } from "../../../../../config/redux/reducers/admin/venture-publications-management.reducer";
-import { PaginatedBody } from "echadospalante-domain/dist/app/modules/domain/common/pagination";
+import env from '../../../../../../environment/environment';
+import { VenturePublicationsFilter } from '../../../../../config/redux/reducers/admin/venture-publications-management.reducer';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
 export class VenturePublicationsApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/publications`;
 
   public static fetchVenturePublications(
-    venturePublicationsFilter: VenturePublicationsFilter
+    venturePublicationsFilter: VenturePublicationsFilter,
   ): Promise<PaginatedBody<VenturePublication>> {
     // const { page, size, ...rest } = venturePublicationsFilter;
     // const otherPrams = filterFalsyValues(rest);
@@ -36,7 +36,7 @@ export class VenturePublicationsApi {
   }
 
   private static generateRandomPublications(
-    length: number
+    length: number,
   ): VenturePublication[] {
     const array = new Array(length).fill(null);
 
@@ -89,7 +89,7 @@ export class VenturePublicationsApi {
             id: crypto.randomUUID(),
             type: ContentType.TEXT,
             content: `["${faker.lorem.paragraph(3)}", "${faker.lorem.paragraph(
-              2
+              2,
             )}", "${faker.lorem.paragraph(1)}"]`,
           },
         ],

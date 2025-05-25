@@ -1,13 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 import {
   selectVentureSponsorsManagement,
   setVentureSponsorsFilters,
-} from "../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { fetchVentureSponsorshipsMiddleware } from "../api/middleware/venture-sponsorships.middleware";
+} from '../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { fetchVentureSponsorshipsMiddleware } from '../api/middleware/venture-sponsorships.middleware';
 
 const useEventDonators = () => {
   const { filters, sponsors } = useSelector(selectVentureSponsorsManagement);

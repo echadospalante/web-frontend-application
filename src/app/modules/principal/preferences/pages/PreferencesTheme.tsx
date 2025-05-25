@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -14,10 +14,10 @@ import {
   Container,
   Row,
   UncontrolledAlert,
-} from "reactstrap";
+} from 'reactstrap';
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import { selectLayout } from "../../../../config/redux/reducers/shared/layout.reducer";
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import { selectLayout } from '../../../../config/redux/reducers/shared/layout.reducer';
 import {
   LayoutModeType,
   LayoutType,
@@ -26,10 +26,10 @@ import {
   LeftSideBarThemeType,
   LeftSidebarType,
   TopBarThemeType,
-} from "../../../common/domain/layout.interfaces";
+} from '../../../common/domain/layout.interfaces';
 
 const PreferencesThemePage = () => {
-  document.title = "Tema y Personalización | Preferencias";
+  document.title = 'Tema y Personalización | Preferencias';
   const {
     layoutType,
     layoutModeType,
@@ -219,7 +219,7 @@ const PreferencesThemePage = () => {
                       <label className="me-1" htmlFor="radioThemeDark">
                         Dark
                       </label>
-                      {layoutType === "vertical" ? null : (
+                      {layoutType === 'vertical' ? null : (
                         <>
                           <input
                             type="radio"
@@ -235,7 +235,7 @@ const PreferencesThemePage = () => {
                           />
                           <label className="me-1" htmlFor="radioThemeColored">
                             Colored
-                          </label>{" "}
+                          </label>{' '}
                         </>
                       )}
                     </div>
@@ -317,9 +317,9 @@ const PreferencesThemePage = () => {
                           <label
                             htmlFor="leftsidebarThemelight"
                             className={
-                              layoutModeType === "dark"
-                                ? "bg-dark rounded-circle wh-30 me-1"
-                                : "bg-light rounded-circle wh-30 me-1"
+                              layoutModeType === 'dark'
+                                ? 'bg-dark rounded-circle wh-30 me-1'
+                                : 'bg-light rounded-circle wh-30 me-1'
                             }
                           ></label>
 
@@ -340,9 +340,9 @@ const PreferencesThemePage = () => {
                           <label
                             htmlFor="leftsidebarThemedark"
                             className={
-                              layoutModeType === "light"
-                                ? "bg-dark rounded-circle wh-30 me-1"
-                                : "bg-light rounded-circle wh-30 me-1"
+                              layoutModeType === 'light'
+                                ? 'bg-dark rounded-circle wh-30 me-1'
+                                : 'bg-light rounded-circle wh-30 me-1'
                             }
                           ></label>
 

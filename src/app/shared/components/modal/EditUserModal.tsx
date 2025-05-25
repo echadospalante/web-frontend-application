@@ -1,4 +1,4 @@
-import Select, { MultiValue } from "react-select";
+import Select, { MultiValue } from 'react-select';
 import {
   Col,
   Form,
@@ -7,13 +7,13 @@ import {
   ModalBody,
   ModalHeader,
   Row,
-} from "reactstrap";
+} from 'reactstrap';
 
-import { User } from "echadospalante-domain";
-import useEditUser from "../../../modules/admin/general/hooks/useEditUser";
-import { AppRole } from "../../../modules/auth/domain/Role";
-import useRoles from "../../../modules/auth/hooks/useRoles";
-import UserCard from "../card/UserCard";
+import { User } from 'echadospalante-domain';
+import useEditUser from '../../../modules/admin/general/hooks/useEditUser';
+import { AppRole } from '../../../modules/auth/domain/Role';
+import useRoles from '../../../modules/auth/hooks/useRoles';
+import UserCard from '../card/UserCard';
 
 type EditUserModalProps = {
   show: boolean;
@@ -37,11 +37,11 @@ const EditUserModal = ({
   const { error: errorRoles, loading: loadingRoles, roles } = useRoles();
 
   const handleEvaluateRolesChange = (
-    values: MultiValue<{ label: string; value: AppRole }>
+    values: MultiValue<{ label: string; value: AppRole }>,
   ) => {
     if (!values) return;
     const selectedRoles = roles.filter((role) =>
-      values.map(({ value }) => value).includes(role.name)
+      values.map(({ value }) => value).includes(role.name),
     );
     handleEditRoles(selectedRoles).then(() => {
       onSuccessfulEdit();
@@ -79,7 +79,8 @@ const EditUserModal = ({
                 value={editedUser.roles
                   .filter(
                     ({ name }) =>
-                      name === AppRole.MODERATOR || name === AppRole.NEWS_WRITER
+                      name === AppRole.MODERATOR ||
+                      name === AppRole.NEWS_WRITER,
                   )
                   .map(({ name, label }) => ({
                     label: label,
@@ -94,7 +95,8 @@ const EditUserModal = ({
                 options={roles
                   .filter(
                     ({ name }) =>
-                      name === AppRole.MODERATOR || name === AppRole.NEWS_WRITER
+                      name === AppRole.MODERATOR ||
+                      name === AppRole.NEWS_WRITER,
                   )
                   .map((role) => ({
                     label: role.label,
@@ -113,11 +115,11 @@ const EditUserModal = ({
                 value={
                   editedUser.verified
                     ? {
-                        label: "Verificado",
+                        label: 'Verificado',
                         value: true,
                       }
                     : {
-                        label: "No verificado",
+                        label: 'No verificado',
                         value: false,
                       }
                 }
@@ -129,11 +131,11 @@ const EditUserModal = ({
                 }}
                 options={[
                   {
-                    label: "Verificado",
+                    label: 'Verificado',
                     value: true,
                   },
                   {
-                    label: "No verificado",
+                    label: 'No verificado',
                     value: false,
                   },
                 ]}

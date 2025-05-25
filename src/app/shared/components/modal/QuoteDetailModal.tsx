@@ -1,4 +1,4 @@
-import { Fragment } from "react/jsx-runtime";
+import { Fragment } from 'react/jsx-runtime';
 import {
   Button,
   Card,
@@ -7,12 +7,12 @@ import {
   Modal,
   ModalBody,
   Row,
-} from "reactstrap";
+} from 'reactstrap';
 
-import AppSpinner from "../loader/Spinner";
-import QuoteForm from "../content/QuoteForm";
-import QuoteSteps from "../steps/QuoteSteps";
-import useQuoteDetail from "../../../modules/principal/ventures/hooks/useQuoteDetail";
+import AppSpinner from '../loader/Spinner';
+import QuoteForm from '../content/QuoteForm';
+import QuoteSteps from '../steps/QuoteSteps';
+import useQuoteDetail from '../../../modules/principal/ventures/hooks/useQuoteDetail';
 
 type DeleteModalProps = {
   quoteId: string;

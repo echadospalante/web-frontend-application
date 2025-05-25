@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useState } from 'react';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import {
   Button,
   Modal,
@@ -9,7 +9,7 @@ import {
   ModalFooter,
   ModalHeader,
   Table,
-} from "reactstrap";
+} from 'reactstrap';
 
 type EcommerceOrdersModalProps = {
   onCloseClick: () => void;
@@ -23,8 +23,8 @@ const EcommerceOrdersModal = ({
   onCloseClick,
 }: EcommerceOrdersModalProps) => {
   const [transaction] = useState({
-    orderId: "#SK2540",
-    billingName: "Neal Matthews",
+    orderId: '#SK2540',
+    billingName: 'Neal Matthews',
     total: 255,
   });
   return (
@@ -41,15 +41,15 @@ const EcommerceOrdersModal = ({
         <ModalHeader toggle={onCloseClick}>Detalle de la factura</ModalHeader>
         <ModalBody>
           <p className="mb-2">
-            Product id:{" "}
+            Product id:{' '}
             <span className="text-primary">
-              {transaction.orderId || "#SK2540"}
+              {transaction.orderId || '#SK2540'}
             </span>
           </p>
           <p className="mb-4">
-            Billing Name:{" "}
+            Billing Name:{' '}
             <span className="text-primary">
-              {transaction.billingName || "Neal Matthews"}
+              {transaction.billingName || 'Neal Matthews'}
             </span>
           </p>
 

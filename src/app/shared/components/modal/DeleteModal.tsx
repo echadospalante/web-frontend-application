@@ -1,4 +1,4 @@
-import { Modal, ModalBody } from "reactstrap";
+import { Modal, ModalBody } from 'reactstrap';
 
 type DeleteModalProps = {
   onCloseClick: () => void;

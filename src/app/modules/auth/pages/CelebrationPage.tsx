@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment, useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from 'react';
 
-import confetti from "canvas-confetti";
-import { Link } from "react-router-dom";
-import { Card, CardBody, Col, Container, Row } from "reactstrap";
+import confetti from 'canvas-confetti';
+import { Link } from 'react-router-dom';
+import { Card, CardBody, Col, Container, Row } from 'reactstrap';
 
 const CelebrationPage = () => {
   const canvasRef = useRef(null);
@@ -14,7 +14,7 @@ const CelebrationPage = () => {
       useWorker: true, // Use web worker to improve performance
     })({
       particleCount: 200,
-      shapes: ["square", "circle", "star"],
+      shapes: ['square', 'circle', 'star'],
       spread: 100,
       origin: { x: 0.5, y: 0.5 },
     });
@@ -32,7 +32,7 @@ const CelebrationPage = () => {
       <canvas
         ref={canvasRef}
         style={{
-          position: "fixed",
+          position: 'fixed',
           top: 0,
           left: 0,
           width: window.innerWidth,
@@ -93,7 +93,7 @@ const CelebrationPage = () => {
 
               <div className="mt-5 text-center">
                 <p>
-                  © {new Date().getFullYear()} Echados Pa'lante. Powered with{" "}
+                  © {new Date().getFullYear()} Echados Pa'lante. Powered with{' '}
                   <i className="mdi mdi-heart text-danger"></i> by Themesbrand
                 </p>
               </div>
@@ -105,7 +105,7 @@ const CelebrationPage = () => {
   );
 };
 
-import type { SVGProps } from "react";
+import type { SVGProps } from 'react';
 
 export function Clap(props: SVGProps<SVGSVGElement>) {
   return (

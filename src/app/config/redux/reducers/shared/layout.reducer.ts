@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { RootState } from "../../store/store.config";
+import { RootState } from '../../store/store.config';
 import {
   LayoutType,
   LayoutModeType,
@@ -9,7 +9,7 @@ import {
   LeftBarThemeImageType,
   LeftSidebarType,
   TopBarThemeType,
-} from "../../../../modules/common/domain/layout.interfaces";
+} from '../../../../modules/common/domain/layout.interfaces';
 
 export interface LayoutState {
   layoutType: LayoutType;
@@ -45,7 +45,7 @@ const initialState: LayoutState = {
 Object.freeze(initialState);
 
 export const layoutSlice = createSlice({
-  name: "layout",
+  name: 'layout',
   initialState,
   reducers: {
     changeLayout: (state) => {
@@ -65,13 +65,13 @@ export const layoutSlice = createSlice({
     },
     changeSidebarTheme: (
       state,
-      action: PayloadAction<LeftSideBarThemeType>
+      action: PayloadAction<LeftSideBarThemeType>,
     ) => {
       state.leftSideBarTheme = action.payload;
     },
     changeSidebarThemeImage: (
       state,
-      action: PayloadAction<LeftBarThemeImageType>
+      action: PayloadAction<LeftBarThemeImageType>,
     ) => {
       state.leftSideBarThemeImage = action.payload;
     },

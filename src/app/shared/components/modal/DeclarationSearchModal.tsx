@@ -1,4 +1,4 @@
-import { useFormik } from "formik";
+import { useFormik } from 'formik';
 import {
   Card,
   CardBody,
@@ -10,10 +10,10 @@ import {
   ModalBody,
   ModalHeader,
   Row,
-} from "reactstrap";
-import * as Yup from "yup";
+} from 'reactstrap';
+import * as Yup from 'yup';
 
-import { QuoteAreaCreate } from "../../../modules/principal/ventures/domain/area";
+import { QuoteAreaCreate } from '../../../modules/principal/ventures/domain/area';
 
 type CreateDeclarationModal = {
   modal: boolean;
@@ -26,17 +26,17 @@ const DeclarationSearchModal = ({
 }: CreateDeclarationModal) => {
   const validation = useFormik<QuoteAreaCreate>({
     initialValues: {
-      name: "",
+      name: '',
     },
     validationSchema: Yup.object({
       name: Yup.string()
         .matches(
           // El nombre solo puede contener letras, números, espacios y guiones medios y la letra ñ
           /^[a-zA-Z0-9ñÑ\s-]*$/,
-          "El nombre solo puede contener letras, números, espacios y guiones medios"
+          'El nombre solo puede contener letras, números, espacios y guiones medios',
         )
-        .required("Por favor ingrese el código de consulta")
-        .length(8, "El código debe tener 8 caracteres"),
+        .required('Por favor ingrese el código de consulta')
+        .length(8, 'El código debe tener 8 caracteres'),
     }),
     onSubmit: (values) => {
       console.log({ values });
@@ -89,7 +89,7 @@ const DeclarationSearchModal = ({
                               id="validationCustom01"
                               onChange={(e) => handleInputChange(e)}
                               onBlur={validation.handleBlur}
-                              value={validation.values.name || ""}
+                              value={validation.values.name || ''}
                               invalid={
                                 validation.touched.name &&
                                 validation.errors.name
