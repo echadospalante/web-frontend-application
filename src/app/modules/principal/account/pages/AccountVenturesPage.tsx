@@ -20,7 +20,6 @@ import useOwnedVentures from "../../../admin/general/hooks/useOwnedVentures";
 import { Link, useNavigate } from "react-router-dom";
 
 const AccountVenturesPage = () => {
-  //meta title
   document.title = "Tus emprendimientos | Echadospalante";
   const [ventures, setVentures] = useState<Venture[]>([
     {
@@ -32,7 +31,6 @@ const AccountVenturesPage = () => {
       description: "Soem awesome description",
       active: true,
       verified: true,
-      ownerDetail: undefined,
       categories: [
         {
           id: "123",
@@ -41,6 +39,8 @@ const AccountVenturesPage = () => {
           slug: "some-category",
           users: [],
           ventures: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           id: "456",
@@ -49,11 +49,18 @@ const AccountVenturesPage = () => {
           slug: "some-category-2",
           users: [],
           ventures: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ],
       contact: undefined,
       location: undefined,
       createdAt: new Date(),
+      events: [],
+      sponsorships: [],
+      subscriptions: [],
+      publications: [],
+      updatedAt: new Date(),
     },
     {
       id: "456",
@@ -65,7 +72,6 @@ const AccountVenturesPage = () => {
         "Cremas marielita es un emprendimiento de cremas ubicado en la Ceja, Antoniquia, a la orden las cremas",
       active: true,
       verified: true,
-      ownerDetail: undefined,
       categories: [
         {
           id: "123",
@@ -74,6 +80,8 @@ const AccountVenturesPage = () => {
           slug: "some-category",
           users: [],
           ventures: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
         {
           id: "456",
@@ -82,11 +90,18 @@ const AccountVenturesPage = () => {
           slug: "some-category-2",
           users: [],
           ventures: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
         },
       ],
       contact: undefined,
       location: undefined,
       createdAt: new Date(),
+      events: [],
+      sponsorships: [],
+      subscriptions: [],
+      publications: [],
+      updatedAt: new Date(),
     },
   ]);
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
