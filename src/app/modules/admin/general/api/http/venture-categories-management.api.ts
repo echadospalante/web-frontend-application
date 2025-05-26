@@ -93,12 +93,14 @@ export class VentureCategoriesApi {
     id: string,
     category: VentureCategory,
   ): Promise<void> {
+    console.log({ id, category });
     throw new Error('Method not implemented.');
   }
 
   public static createVentureCategory(
     category: VentureCategoryCreate,
   ): Promise<void> {
+    console.log({ category });
     throw new Error('Method not implemented.');
   }
 }

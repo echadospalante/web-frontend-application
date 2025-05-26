@@ -2,12 +2,7 @@ import { Link } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
 
 import SimpleBar from 'simplebar-react';
-import {
-  archiveData,
-  categoriesData,
-  popularPosts,
-  tagsData,
-} from '../../data/feed/feed';
+import { popularPosts, tagsData } from '../../data/feed/feed';
 import ventureCategories from '../../data/misc/venture-categories';
 
 const FeedRightSidebar = () => {

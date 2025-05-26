@@ -1,13 +1,12 @@
 import { useEffect, useState } from 'react';
 
-import { get, map } from 'lodash';
-
 import {
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownToggle,
 } from 'reactstrap';
+
 import i18n from '../../../config/locales/i18n';
 import languages from '../../../config/locales/languages';
 
@@ -37,14 +36,15 @@ const LanguageDropdown = () => {
       <Dropdown isOpen={menu} toggle={toggle} className="d-inline-block">
         <DropdownToggle className="btn header-item " tag="button">
           <img
-            src={get(languages, `${selectedLang}.flag`)}
+            // src={get(languages, `${selectedLang}.flag`)}
+            src={languages[selectedLang as keyof typeof languages]?.flag}
             alt="echadospalante Admin"
             height="16"
             className="me-1"
           />
         </DropdownToggle>
         <DropdownMenu className="language-switch dropdown-menu-end">
-          {map(Object.keys(languages), (key) => (
+          {Object.keys(languages).map((key) => (
             <DropdownItem
               key={key}
               onClick={() => changeLanguageAction(key)}
@@ -53,13 +53,13 @@ const LanguageDropdown = () => {
               }`}
             >
               <img
-                src={get(languages, `${key}.flag`)}
+                src={languages[key as keyof typeof languages]?.flag}
                 alt="echadospalante Admin"
                 className="me-1"
                 height="12"
               />
               <span className="align-middle">
-                {get(languages, `${key}.label`)}
+                {languages[key as keyof typeof languages]?.label}
               </span>
             </DropdownItem>
           ))}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardBody, Col } from 'reactstrap';
-
 import SimpleBar from 'simplebar-react';
 
 const activityFeedData = [

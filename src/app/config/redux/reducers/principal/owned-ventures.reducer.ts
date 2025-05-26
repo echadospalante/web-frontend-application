@@ -9,7 +9,7 @@ export interface OwnedVenturesFilter {
   search: string;
   page: number;
   size: number;
-  categorySlug: string;
+  categoriesIds: string[];
 }
 
 export interface OwnedVenturesState {
@@ -23,7 +23,7 @@ const initialState: OwnedVenturesState = {
     page: 0,
     search: '',
     size: 20,
-    categorySlug: '',
+    categoriesIds: [],
   },
   ventures: {
     items: [],
@@ -42,13 +42,13 @@ export const ownedVenturesSlice = createSlice({
       state,
       action: PayloadAction<OwnedVenturesFilter>,
     ) => {
-      const { page, search, size, categorySlug } = action.payload;
+      const { page, search, size, categoriesIds } = action.payload;
 
       state.filters = {
         page,
         search,
         size,
-        categorySlug,
+        categoriesIds,
       };
     },
     updateOwnedVenture: (state, action: PayloadAction<Venture>) => {
@@ -89,7 +89,7 @@ export const {
   addOwnedVenture,
 } = ownedVenturesSlice.actions;
 
-export const selectOwnedVenturesManagement = (state: RootState) =>
+export const selectOwnedVentures = (state: RootState) =>
   state.principal.ownedVentures;
 
 export default ownedVenturesSlice.reducer;

@@ -1,48 +1,29 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
+import { useQuery } from '@tanstack/react-query';
 import { Venture } from 'echadospalante-domain';
 import { useSelector } from 'react-redux';
 
 import {
-  selectOwnedVenturesManagement,
+  selectOwnedVentures,
+  setOwnedVentures,
   setOwnedVenturesFilters,
-} from '../../../../config/redux/reducers/admin/owned-ventures-management.reducer';
+} from '../../../../config/redux/reducers/principal/owned-ventures.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
-import {
-  fetchOwnedVenturesMiddleware,
-  updateOwnedVentureMiddleware,
-} from '../api/middleware/owned-ventures.middleware';
+import { OwnedVenturesApi } from '../../../principal/account/api/http/owned-ventures-management.api';
+import { updateOwnedVentureMiddleware } from '../api/middleware/owned-ventures.middleware';
 
 const useOwnedVentures = () => {
-  const { filters, ventures } = useSelector(selectOwnedVenturesManagement);
-
-  const dispatch = useAppDispatch();
-
-  const [ownedVenturesRequest, setCategoriesRequest] = useState({
-    loading: true,
-    error: false,
+  const { filters, ventures } = useSelector(selectOwnedVentures);
+  const ownedVenturesQuery = useQuery({
+    queryKey: ['ventures', 'owned', filters],
+    queryFn: () => OwnedVenturesApi.fetchOwnedVentures(filters),
+    staleTime: 1000 * 60 * 60, // 1 hour
   });
 
-  const fetchOwnedVentures = () => {
-    setCategoriesRequest({
-      loading: true,
-      error: false,
-    });
+  const { isSuccess, data } = ownedVenturesQuery;
 
-    dispatch(fetchOwnedVenturesMiddleware(filters))
-      .then(() => {
-        setCategoriesRequest({
-          loading: false,
-          error: false,
-        });
-      })
-      .catch(() => {
-        setCategoriesRequest(() => ({
-          loading: false,
-          error: true,
-        }));
-      });
-  };
+  const dispatch = useAppDispatch();
 
   const setPage = (page: number) => {
     dispatch(setOwnedVenturesFilters({ ...filters, page }));
@@ -53,33 +34,20 @@ const useOwnedVentures = () => {
   };
 
   useEffect(() => {
-    setCategoriesRequest({
-      loading: true,
-      error: false,
-    });
-
-    dispatch(fetchOwnedVenturesMiddleware(filters))
-      .then(() => {
-        setCategoriesRequest({
-          loading: false,
-          error: false,
-        });
-      })
-      .catch(() => {
-        setCategoriesRequest({
-          loading: false,
-          error: true,
-        });
-      });
-  }, [dispatch, filters]);
+    if (isSuccess && data) {
+      dispatch(setOwnedVentures(data));
+    }
+  }, [isSuccess, data]);
 
   return {
     ...ventures,
-    ...ownedVenturesRequest,
     ...filters,
-    fetchOwnedVentures,
+    loading: ownedVenturesQuery.isLoading,
+    error: ownedVenturesQuery.isError,
+    data: ownedVenturesQuery.data?.items || [],
     handleEditOwnedVenture,
     setPage,
+    retryFetch: ownedVenturesQuery.refetch,
   };
 };
 

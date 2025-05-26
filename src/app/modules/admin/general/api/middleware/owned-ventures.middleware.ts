@@ -3,10 +3,10 @@ import { Action, Dispatch } from '@reduxjs/toolkit';
 import { Venture, VentureCreate } from 'echadospalante-domain';
 
 import {
+  OwnedVenturesFilter,
   setOwnedVentures,
   updateOwnedVenture,
-  OwnedVenturesFilter,
-} from '../../../../../config/redux/reducers/admin/owned-ventures-management.reducer';
+} from '../../../../../config/redux/reducers/principal/owned-ventures.reducer';
 import {
   finishGlobalLoading,
   setGlobalAlert,
@@ -14,7 +14,10 @@ import {
 } from '../../../../../config/redux/reducers/shared/user-interface.reducer';
 import { OwnedVenturesApi } from '../../../../principal/account/api/http/owned-ventures-management.api';
 
-export const updateOwnedVentureMiddleware = (id: string, ownedVenture: Venture) => {
+export const updateOwnedVentureMiddleware = (
+  id: string,
+  ownedVenture: Venture,
+) => {
   return async (dispatch: Dispatch) => {
     return OwnedVenturesApi.updateOwnedVenture(id, ownedVenture)
       .then(() => {
@@ -75,30 +78,6 @@ export const createOwnedVentureMiddleware = (ownedVenture: VentureCreate) => {
       })
       .finally(() => {
         dispatch(finishGlobalLoading());
-      });
-  };
-};
-
-export const fetchOwnedVenturesMiddleware = (
-  ownedVenturesFilters: OwnedVenturesFilter,
-) => {
-  return async (dispatch: Dispatch<Action>) => {
-    return OwnedVenturesApi.fetchOwnedVentures(ownedVenturesFilters)
-      .then((response) => {
-        dispatch(setOwnedVentures(response));
-        return response;
-      })
-      .catch((error) => {
-        console.error(error);
-        dispatch(
-          setGlobalAlert({
-            message: 'Error al obtener la lista de categorías ⛔',
-            title: 'Error',
-            timeout: 5000,
-            severity: SeverityLevel.ERROR,
-          }),
-        );
-        throw new Error('Error al obtener la lista de categorías');
       });
   };
 };

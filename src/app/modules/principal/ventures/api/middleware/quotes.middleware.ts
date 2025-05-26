@@ -1,12 +1,12 @@
 import { Action, Dispatch } from '@reduxjs/toolkit';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
 import {
   setGlobalAlert,
   SeverityLevel,
 } from '../../../../../config/redux/reducers/shared/user-interface.reducer';
-import { QuotesApi } from '../http/quotes.api';
 import { Quote } from '../../domain/quote';
-import { PaginatedBody } from '../../domain/api';
+import { QuotesApi } from '../http/quotes.api';
 
 export const fetchQuotesMiddleware = (page: number, size: number) => {
   return async (dispatch: Dispatch<Action>): Promise<PaginatedBody<Quote>> => {

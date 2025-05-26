@@ -29,8 +29,9 @@ import layoutReducer, { LayoutState } from '../reducers/shared/layout.reducer';
 import userInterfaceReducer, {
   UserInterfaceState,
 } from '../reducers/shared/user-interface.reducer';
-import { OwnedVenturesState } from '../reducers/principal/owned-ventures.reducer';
-import ownedVenturesManagementReducer from '../reducers/admin/owned-ventures-management.reducer';
+import ownedVenturesReducer, {
+  OwnedVenturesState,
+} from '../reducers/principal/owned-ventures.reducer';
 
 export interface GlobalState {
   authentication: AuthenticationState;
@@ -66,7 +67,7 @@ const reducer = combineReducers({
   }),
   principal: combineReducers({
     ventures: venturesReducer,
-    ownedVentures: ownedVenturesManagementReducer,
+    ownedVentures: ownedVenturesReducer,
   }),
 });
 

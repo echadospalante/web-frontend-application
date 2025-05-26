@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { isEmpty } from 'lodash';
 import React, { useEffect, useState } from 'react';
 
 import BootstrapTheme from '@fullcalendar/bootstrap';
@@ -112,7 +111,7 @@ const QuotesCalenderPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (!modalCategory && !isEmpty(event) && !!isEdit) {
+    if (!modalCategory && !!event && !!isEdit) {
       setTimeout(() => {
         setEvent({});
         setIsEdit(false);

@@ -1,9 +1,9 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import * as d3 from 'd3';
-import { User, VentureSponsorship } from 'echadospalante-domain';
+import { VentureSponsorship } from 'echadospalante-domain';
+
 import useSponsorshipsOwners from '../../../modules/admin/general/hooks/useSponsorshipsOwners';
-import SponsorshipDetailModal from '../modal/SponsorshipDetailModal';
 
 interface BubbleData {
   name: string;
@@ -18,9 +18,12 @@ interface SponsorsBubbleChartProps {
 const SponsorsBubbleChart: React.FC<SponsorsBubbleChartProps> = ({ items }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
 
-  const { error, loading, owners, fetchAllSponsorshipsOwners } =
-    useSponsorshipsOwners(items.map((item) => item.id));
+  const { loading, owners, fetchAllSponsorshipsOwners } = useSponsorshipsOwners(
+    items.map((item) => item.id),
+  );
   const [data, setData] = useState<BubbleData[]>([]);
+
+  console.log(fetchAllSponsorshipsOwners);
 
   useEffect(() => {
     if (loading) return;
@@ -43,7 +46,7 @@ const SponsorsBubbleChart: React.FC<SponsorsBubbleChartProps> = ({ items }) => {
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
     const root = d3.pack<BubbleData>().size([width, height]).padding(3)(
-      d3.hierarchy({ children: data } as any).sum((d) => d.value),
+      d3.hierarchy({ children: data } as any).sum((d: any) => d.value),
     );
 
     const svg = d3
@@ -58,21 +61,23 @@ const SponsorsBubbleChart: React.FC<SponsorsBubbleChartProps> = ({ items }) => {
       .selectAll('g')
       .data(root.leaves())
       .join('g')
-      .attr('transform', (d) => `translate(${d.x},${d.y})`);
+      .attr('transform', (d: any) => `translate(${d.x},${d.y})`);
 
     node
       .append('circle')
-      .attr('r', (d) => d.r)
-      .attr('fill', (_, i) => color(i.toString()));
-    // .on("click", function (d) {});
+      .attr('r', (d: any) => d.r)
+      .attr('fill', (_: any, i: any) => color(i.toString()));
+    // .on("click", function (d: any) {});
 
     node
       .append('text')
       .attr('dy', '0.3em')
       .attr('text-anchor', 'middle')
-      .style('font-size', (d) => Math.min((3 * d.r) / d.data.name?.length, 14))
+      .style('font-size', (d: any) =>
+        Math.min((3 * d.r) / d.data.name?.length, 14),
+      )
       .style('font-weight', '600')
-      .html((d) => {
+      .html((d: any) => {
         const { name, ownerId } = d.data;
         return `<a target="_blank" href="/principal/perfiles/${ownerId}">
         ${name}
@@ -83,8 +88,10 @@ const SponsorsBubbleChart: React.FC<SponsorsBubbleChartProps> = ({ items }) => {
       .append('text')
       .attr('dy', '1.8em')
       .attr('text-anchor', 'middle')
-      .style('font-size', (d) => Math.min((2 * d.r) / d.data.name?.length, 17))
-      .text((d) => 'USD $' + d.data.value?.toFixed(2));
+      .style('font-size', (d: any) =>
+        Math.min((2 * d.r) / d.data.name?.length, 17),
+      )
+      .text((d: any) => 'USD $' + d.data.value?.toFixed(2));
   }, [data]);
 
   return <svg style={{ width: '100%' }} ref={svgRef}></svg>;

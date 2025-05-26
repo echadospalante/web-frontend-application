@@ -1,6 +1,7 @@
 import { User } from 'echadospalante-domain';
 
 import { useQuery } from '@tanstack/react-query';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 import { useSelector } from 'react-redux';
 
 import {
@@ -9,7 +10,6 @@ import {
 } from '../../../../config/redux/reducers/admin/users-management.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import { UsersApi } from '../api/http/users-management.api';
-import { PaginatedBody } from '../../../principal/ventures/domain/api';
 
 const useFetchUsers = () => {
   const { filters } = useSelector(selectUsersManagement);

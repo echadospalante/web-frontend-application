@@ -2,8 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 import { VentureCategory } from 'echadospalante-domain';
 
-import { PaginatedBody } from '../../../../modules/principal/ventures/domain/api';
 import { RootState } from '../../store/store.config';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
 export interface VentureCategoriesFilter {
   search: string;

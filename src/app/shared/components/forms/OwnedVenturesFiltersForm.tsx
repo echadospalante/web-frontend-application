@@ -1,16 +1,25 @@
-import { Fragment } from 'react';
-
 import Select from 'react-select';
-import { Col, Row } from 'reactstrap';
+import { Col, Label, Row } from 'reactstrap';
 
+import useFetchAllVentureCategories from '../../../modules/admin/general/hooks/useAllVentureCategories';
 import useOwnedVenturesFilters from '../../../modules/admin/general/hooks/useOwnedVenturesFilter';
+import AlertWithReload from '../alert/AlertWithReload';
+import { useAppDispatch } from '../../../config/redux/store/store.config';
+import { setOwnedVenturesFilters } from '../../../config/redux/reducers/principal/owned-ventures.reducer';
 
 const OwnedVenturesFiltersForm = () => {
   const { filters, setSearchTerm, setSize } = useOwnedVenturesFilters();
+  const dispatch = useAppDispatch();
+  const {
+    data: categories,
+    error: errorCategories,
+    loading: loadingCategories,
+    retryFetch: fetchAllVentureCategories,
+  } = useFetchAllVentureCategories();
 
   return (
     <Row className="mb-2">
-      <Col sm={3} lg={2}>
+      <Col lg={2} sm={3}>
         <label className="control-label">Elementos por Página</label>
         <Select
           className=""
@@ -46,6 +55,45 @@ const OwnedVenturesFiltersForm = () => {
           onChange={({ target }) => setSearchTerm(target.value)}
           className="form-control"
           type="text"
+        />
+      </Col>
+
+      <Col lg={7} md={12} sm={12}>
+        <Label htmlFor="categoriesIds">
+          Categorías ({filters.categoriesIds.length})
+        </Label>
+        {errorCategories && (
+          <AlertWithReload
+            message="Ha habido un error al consultar las categorias, por favor intente nuevamente."
+            onReload={fetchAllVentureCategories}
+          />
+        )}
+        <Select
+          id="categoriesIds"
+          name="categoriesIds"
+          value={filters.categoriesIds.map((id) => ({
+            label: categories.find((c) => c.id === id)?.name,
+            value: id,
+          }))}
+          closeMenuOnSelect={false}
+          placeholder="Selecciona las categorias, maximo 10"
+          isMulti
+          isSearchable
+          isLoading={loadingCategories}
+          onChange={(values) => {
+            console.log(values);
+            dispatch(
+              setOwnedVenturesFilters({
+                ...filters,
+                categoriesIds: values.map((option) => option.value),
+              }),
+            );
+          }}
+          options={categories.map(({ name, id }) => ({
+            label: name,
+            value: id,
+          }))}
+          className="select2-selection"
         />
       </Col>
     </Row>

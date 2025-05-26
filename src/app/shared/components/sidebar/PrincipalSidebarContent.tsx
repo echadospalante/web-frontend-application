@@ -142,7 +142,7 @@ const UserSidebarContent = () => {
             <li>
               <Link to="/principal/publicaciones">
                 {/* <i className="bx bxs-cabinet"></i> */}
-                <i className="bx bx-rocket"></i>
+                <i className="bx bx-news"></i>
                 <span>{t('Publications')}</span>
               </Link>
             </li>
@@ -186,13 +186,6 @@ const UserSidebarContent = () => {
                 <span>{t('Alerts And Notifications')}</span>
               </Link>
             </li>
-            <li>
-              <Link to="/principal/preferencias/lenguaje-localizacion">
-                <i className="mdi mdi-translate"></i>
-
-                <span>{t('Language and Locale')}</span>
-              </Link>
-            </li>
 
             <li>
               <Link to="/principal/preferencias/tema">
@@ -214,14 +207,14 @@ const UserSidebarContent = () => {
 
             <li>
               <Link to="/principal/cuenta/suscripciones">
-                <i className="bx bx-health"></i>
+                <i className="mdi mdi-account-group-outline"></i>
                 <span>{t('Subscriptions')}</span>
               </Link>
             </li>
 
             <li>
               <Link to="/principal/cuenta/emprendimientos">
-                <i className="bx bx-health"></i>
+                <i className="bx bx-rocket"></i>
                 <span>{t('My Ventures')}</span>
               </Link>
             </li>

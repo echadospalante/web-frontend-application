@@ -63,7 +63,7 @@ const AdminVentureCommentsTable = ({
   const handleCloseEditModal = () => {
     setActiveCategoryToEdit(undefined);
   };
-
+  console.log(ventureId);
   return (
     <Row>
       {activeCategoryToEdit && (

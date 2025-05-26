@@ -17,7 +17,7 @@ export type VentureCardProps = {
 
 const VentureCard = ({ venture }: VentureCardProps) => {
   return (
-    <Col xl="4" lg="6" md="6" sm="12">
+    <Col xl={6} lg={6} md={6} sm={12}>
       <a target="_blank" href={`/principal/emprendimientos/${venture.slug}`}>
         <Card>
           <CardBody>
@@ -61,7 +61,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                       </UncontrolledTooltip>
                       <small
                         id={`category-${category.id}`}
-                        className="px-1"
+                        className="px-1 py-1"
                         style={{
                           backgroundColor: textToRGB(category.name),
                           color: 'white',
@@ -241,12 +241,29 @@ const VentureCard = ({ venture }: VentureCardProps) => {
             <Col lg={8} md={6} sm={12}>
               <div className="px-4 py-2 border-top">
                 <div className="mt-0 d-flex justify-content-end">
-                  <Button className="mx-2 btn btn-info d-flex">
+                  <Button className="mx-2 btn btn-info">
                     <i className="bx bx-edit-alt me-1"></i> Editar
                   </Button>
                   <Button className="btn btn-danger">
                     <i className="bx bx-trash me-1"></i> Eliminar
                   </Button>
+                </div>
+              </div>
+              <div className="px-4 py-2">
+                <div className="mt-0 d-flex justify-content-end">
+                  <Link
+                    to={`/principal/cuenta/emprendimientos/${venture.id}/publicaciones/nueva`}
+                    className="mx-2 btn btn-outline-primary"
+                  >
+                    <i className="bx bx-plus me-1"></i> Crear publicación
+                  </Link>
+
+                  <Link
+                    to={`/principal/cuenta/emprendimientos/${venture.id}/eventos/nuevo`}
+                    className="mx-2 btn btn-outline-primary"
+                  >
+                    <i className="bx bx-plus me-1"></i> Crear evento
+                  </Link>
                 </div>
               </div>
             </Col>
@@ -260,6 +277,7 @@ const VentureCard = ({ venture }: VentureCardProps) => {
 export default VentureCard;
 
 import type { SVGProps } from 'react';
+import { Link } from 'react-router-dom';
 
 export function UilMegaphone(props: SVGProps<SVGSVGElement>) {
   return (

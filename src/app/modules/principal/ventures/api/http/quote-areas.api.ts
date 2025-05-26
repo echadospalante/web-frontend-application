@@ -1,8 +1,10 @@
 import axios from 'axios';
 
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+
 import env from '../../../../../../environment/environment';
+import { ApiResponse } from '../../domain/api';
 import { AreaSummary, QuoteArea } from '../../domain/area';
-import { ApiResponse, PaginatedBody } from '../../domain/api';
 
 export class QuoteAreasApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1`;

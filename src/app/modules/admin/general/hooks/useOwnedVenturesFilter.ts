@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 
 import {
-  selectOwnedVenturesManagement,
+  selectOwnedVentures,
   setOwnedVenturesFilters,
-} from '../../../../config/redux/reducers/admin/owned-ventures-management.reducer';
+} from '../../../../config/redux/reducers/principal/owned-ventures.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
 
 const useOwnedVenturesFilters = () => {
-  const { filters } = useSelector(selectOwnedVenturesManagement);
+  const { filters } = useSelector(selectOwnedVentures);
   const dispatch = useAppDispatch();
 
   const [searchParams, setSearchParams] = useSearchParams();

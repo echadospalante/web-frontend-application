@@ -4,7 +4,7 @@ import { Venture, VentureCreate } from 'echadospalante-domain';
 import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
 import env from '../../../../../../environment/environment';
-import { OwnedVenturesFilter } from '../../../../../config/redux/reducers/admin/owned-ventures-management.reducer';
+import { OwnedVenturesFilter } from '../../../../../config/redux/reducers/principal/owned-ventures.reducer';
 import filterFalsyValues from '../../../../../shared/helpers/object-utils';
 
 export class OwnedVenturesApi {
@@ -16,8 +16,8 @@ export class OwnedVenturesApi {
     const { page, size, ...rest } = ownedVenturesFilter;
     const otherPrams = filterFalsyValues(rest);
     const params = new URLSearchParams(otherPrams as Record<string, string>);
-    params.set('page', page.toString());
-    params.set('size', size.toString());
+    params.set('skip', page.toString());
+    params.set('take', size.toString());
     return axios
       .get<PaginatedBody<Venture>>(`${OwnedVenturesApi.API_BASE_URL}`, {
         withCredentials: true,

@@ -8,6 +8,7 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { Venture } from 'echadospalante-domain';
 import { Button, Card, CardBody, Col, Container, Row, Table } from 'reactstrap';
 
 import useVentureCategories from '../../../modules/admin/general/hooks/useVentureCategories';
@@ -240,7 +241,7 @@ const getColumns = (
             <section className="d-flex m-1 flex-column">
               <Button
                 onClick={() => {
-                  setActiveVenture((actual) => {
+                  setActiveVenture((actual: any) => {
                     if (actual?.id === venture.id) {
                       return undefined;
                     }

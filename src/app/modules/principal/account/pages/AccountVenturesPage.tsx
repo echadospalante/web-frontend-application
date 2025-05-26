@@ -20,101 +20,102 @@ import useOwnedVentures from '../../../admin/general/hooks/useOwnedVentures';
 
 const AccountVenturesPage = () => {
   document.title = 'Tus emprendimientos | Echadospalante';
-  const [ventures, setVentures] = useState<Venture[]>([
-    {
-      id: '123',
-      name: 'Some test venturename',
-      slug: 'some-test-name',
-      coverPhoto:
-        'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
-      description: 'Soem awesome description',
-      active: true,
-      verified: true,
-      categories: [
-        {
-          id: '123',
-          name: 'Some Awesome',
-          description: 'Some awesome desc of the category',
-          slug: 'some-category',
-          users: [],
-          ventures: [],
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          id: '456',
-          name: 'Some cat 2',
-          description: 'Some awesome desc of the category 2',
-          slug: 'some-category-2',
-          users: [],
-          ventures: [],
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      contact: undefined,
-      location: undefined,
-      createdAt: new Date(),
-      events: [],
-      sponsorships: [],
-      subscriptions: [],
-      publications: [],
-      updatedAt: new Date(),
-    },
-    {
-      id: '456',
-      name: 'Cremas marielita',
-      slug: 'cremas marielita',
-      coverPhoto:
-        'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
-      description:
-        'Cremas marielita es un emprendimiento de cremas ubicado en la Ceja, Antoniquia, a la orden las cremas',
-      active: true,
-      verified: true,
-      categories: [
-        {
-          id: '123',
-          name: 'Cremas',
-          description: 'Some awesome desc of the category',
-          slug: 'some-category',
-          users: [],
-          ventures: [],
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          id: '456',
-          name: 'Helados',
-          description: 'Some awesome desc of the category 2',
-          slug: 'some-category-2',
-          users: [],
-          ventures: [],
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      contact: undefined,
-      location: undefined,
-      createdAt: new Date(),
-      events: [],
-      sponsorships: [],
-      subscriptions: [],
-      publications: [],
-      updatedAt: new Date(),
-    },
-  ]);
+  // const [ventures, setVentures] = useState<Venture[]>([
+  //   {
+  //     id: '123',
+  //     name: 'Some test venturename',
+  //     slug: 'some-test-name',
+  //     coverPhoto:
+  //       'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+  //     description: 'Soem awesome description',
+  //     active: true,
+  //     verified: true,
+  //     categories: [
+  //       {
+  //         id: '123',
+  //         name: 'Some Awesome',
+  //         description: 'Some awesome desc of the category',
+  //         slug: 'some-category',
+  //         users: [],
+  //         ventures: [],
+  //         createdAt: new Date(),
+  //         updatedAt: new Date(),
+  //       },
+  //       {
+  //         id: '456',
+  //         name: 'Some cat 2',
+  //         description: 'Some awesome desc of the category 2',
+  //         slug: 'some-category-2',
+  //         users: [],
+  //         ventures: [],
+  //         createdAt: new Date(),
+  //         updatedAt: new Date(),
+  //       },
+  //     ],
+  //     contact: undefined,
+  //     location: undefined,
+  //     createdAt: new Date(),
+  //     events: [],
+  //     sponsorships: [],
+  //     subscriptions: [],
+  //     publications: [],
+  //     updatedAt: new Date(),
+  //   },
+  //   {
+  //     id: '456',
+  //     name: 'Cremas marielita',
+  //     slug: 'cremas marielita',
+  //     coverPhoto:
+  //       'https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png',
+  //     description:
+  //       'Cremas marielita es un emprendimiento de cremas ubicado en la Ceja, Antoniquia, a la orden las cremas',
+  //     active: true,
+  //     verified: true,
+  //     categories: [
+  //       {
+  //         id: '123',
+  //         name: 'Cremas',
+  //         description: 'Some awesome desc of the category',
+  //         slug: 'some-category',
+  //         users: [],
+  //         ventures: [],
+  //         createdAt: new Date(),
+  //         updatedAt: new Date(),
+  //       },
+  //       {
+  //         id: '456',
+  //         name: 'Helados',
+  //         description: 'Some awesome desc of the category 2',
+  //         slug: 'some-category-2',
+  //         users: [],
+  //         ventures: [],
+  //         createdAt: new Date(),
+  //         updatedAt: new Date(),
+  //       },
+  //     ],
+  //     contact: undefined,
+  //     location: undefined,
+  //     createdAt: new Date(),
+  //     events: [],
+  //     sponsorships: [],
+  //     subscriptions: [],
+  //     publications: [],
+  //     updatedAt: new Date(),
+  //   },
+  // ]);
+
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
   const navigate = useNavigate();
 
   const {
     loading,
     error,
-    items,
+    items: ventures,
     total,
-    fetchOwnedVentures,
     page,
     size,
     setPage,
+    retryFetch: fetchOwnedVentures,
   } = useOwnedVentures();
 
   const handleSetCurrentPage = (page: number) => {

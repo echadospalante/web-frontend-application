@@ -8,7 +8,11 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { ContentType, VenturePublication } from 'echadospalante-domain';
+import {
+  ContentType,
+  PublicationType,
+  VenturePublication,
+} from 'echadospalante-domain';
 import { Link } from 'react-router-dom';
 import {
   Button,
@@ -19,12 +23,13 @@ import {
   Table,
   UncontrolledTooltip,
 } from 'reactstrap';
+
+import useVenturePublications from '../../../modules/admin/general/hooks/useVenturePublications';
 import PublicationTypeIcon from '../content/PublicationTypeIcon';
 import VenturePublicationsFiltersForm from '../forms/VenturePublicationsFiltersForm';
 import AppSpinner from '../loader/Spinner';
 import Pagination from '../pagination/Pagination';
 import IconTooltip from '../tooltips/IconTooltip';
-import useVenturePublications from '../../../modules/admin/general/hooks/useVenturePublications';
 
 type AdminVenturePublicationsTableProps = {
   ventureId: string;
@@ -62,6 +67,8 @@ const AdminVenturePublicationsTable = ({
     table.setPageIndex(page + 1);
     setPage(page);
   };
+
+  console.log(ventureId);
 
   return (
     <Row>
@@ -200,8 +207,9 @@ const getColumns = () => {
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const { type } = cellProps.row.original as VenturePublication;
-        return <PublicationTypeIcon type={type} />;
+        // const {  } = cellProps.row.original as VenturePublication;
+        console.log(cellProps.row.original);
+        return <PublicationTypeIcon type={PublicationType.ACHIEVEMENT} />;
       },
     },
     {
@@ -211,12 +219,12 @@ const getColumns = () => {
       cell: (cellProps: any) => {
         const venturePublication = cellProps.row.original as VenturePublication;
         const [images] = useState(
-          venturePublication.body.filter(
+          venturePublication.contents.filter(
             ({ type }) => type === ContentType.IMAGE,
           ),
         );
         const [files] = useState(
-          venturePublication.body.filter(
+          venturePublication.contents.filter(
             ({ type }) => type === ContentType.FILE,
           ),
         );
@@ -322,7 +330,7 @@ const getColumns = () => {
       cell: (cellProps: any) => {
         const venturePublication = cellProps.row.original as VenturePublication;
         const [paragraphs] = useState(
-          venturePublication.body.filter(
+          venturePublication.contents.filter(
             ({ type }) => type === ContentType.TEXT,
           ),
         );

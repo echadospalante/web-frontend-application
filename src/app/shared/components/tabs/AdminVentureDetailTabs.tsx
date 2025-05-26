@@ -1,4 +1,4 @@
-import { Card, CardBody, Container, Nav, NavItem, NavLink } from 'reactstrap';
+import { Nav, NavItem, NavLink } from 'reactstrap';
 
 export type StandardizationTabsProps = {
   activeTab: string;

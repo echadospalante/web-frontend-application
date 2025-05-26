@@ -11,6 +11,7 @@ const useFetchAllVentureCategories = () => {
         page: 0,
         size: -1,
       }),
+    staleTime: 1000 * 60 * 60, // 1 hour
   });
 
   return {

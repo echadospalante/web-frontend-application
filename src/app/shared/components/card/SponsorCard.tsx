@@ -15,8 +15,7 @@ type SponsorCardProps = {
 };
 
 const SponsorCard = ({ sponsorship }: SponsorCardProps) => {
-  const { error, fetchAllVentureCategories, loading, owner } =
-    useSponsorshipOwner(sponsorship.id);
+  const { loading, owner } = useSponsorshipOwner(sponsorship.id);
 
   if (loading || !owner) {
     return <AppSpinner />;

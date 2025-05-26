@@ -10,11 +10,12 @@ import { VenturePublicationsFilter } from '../../../../../config/redux/reducers/
 import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
 export class VenturePublicationsApi {
-  private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/publications`;
+  // private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/publications`;
 
   public static fetchVenturePublications(
     venturePublicationsFilter: VenturePublicationsFilter,
   ): Promise<PaginatedBody<VenturePublication>> {
+    console.log('venturePublicationsFilter', venturePublicationsFilter);
     // const { page, size, ...rest } = venturePublicationsFilter;
     // const otherPrams = filterFalsyValues(rest);
     // const params = new URLSearchParams(otherPrams as Record<string, string>);
@@ -38,71 +39,7 @@ export class VenturePublicationsApi {
   private static generateRandomPublications(
     length: number,
   ): VenturePublication[] {
-    const array = new Array(length).fill(null);
-
-    return array.map(() => {
-      return {
-        id: crypto.randomUUID(),
-        title: faker.lorem.sentence(),
-        description: faker.lorem.paragraph(),
-        type: this.randomEnumValue(),
-        claps: [],
-        active: Math.random() > 0.5,
-        comments: [],
-        body: [
-          {
-            content: `["${faker.image.url({ width: 400, height: 400 })}"]`,
-            id: crypto.randomUUID(),
-            type: ContentType.IMAGE,
-          },
-          {
-            content: `["${faker.image.url({ width: 400, height: 400 })}"]`,
-            id: crypto.randomUUID(),
-            type: ContentType.IMAGE,
-          },
-          {
-            content: `["${faker.image.url({ width: 400, height: 400 })}"]`,
-            id: crypto.randomUUID(),
-            type: ContentType.IMAGE,
-          },
-          {
-            content: `["${faker.image.url()}", "${faker.commerce.productName()}", "txt", "3Kb"]`,
-            id: crypto.randomUUID(),
-            type: ContentType.FILE,
-          },
-          {
-            content: `["${faker.image.url()}", "${faker.commerce.productName()}", "pdf", "10Kb"]`,
-            id: crypto.randomUUID(),
-            type: ContentType.FILE,
-          },
-          {
-            content: `["${faker.image.url()}", "${faker.commerce.productName()}", "pdf", "10Kb"]`,
-            id: crypto.randomUUID(),
-            type: ContentType.FILE,
-          },
-          {
-            content: `["${faker.image.url()}", "${faker.commerce.productName()}", "wordx", "5Kb"]`,
-            id: crypto.randomUUID(),
-            type: ContentType.FILE,
-          },
-          {
-            id: crypto.randomUUID(),
-            type: ContentType.TEXT,
-            content: `["${faker.lorem.paragraph(3)}", "${faker.lorem.paragraph(
-              2,
-            )}", "${faker.lorem.paragraph(1)}"]`,
-          },
-        ],
-        url: faker.internet.url(),
-        createdAt: faker.date.recent(),
-        updatedAt: faker.date.recent(),
-      };
-    });
-  }
-
-  private static randomEnumValue() {
-    const values = Object.values(PublicationType);
-    const randomIndex = Math.floor(Math.random() * values.length);
-    return values[randomIndex];
+    console.log(length);
+    return [];
   }
 }

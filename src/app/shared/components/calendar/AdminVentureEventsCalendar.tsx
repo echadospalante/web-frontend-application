@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { Fragment, useRef, useState } from 'react';
 
 import moment from 'moment';
 import 'moment/locale/es';
@@ -23,10 +23,10 @@ type AdminVentureEventsCalendarProps = {
 const AdminVentureEventsCalendar = ({
   ventureId,
 }: AdminVentureEventsCalendarProps) => {
-  const { loading, error, items, total, calendarEvents, fetchVentureEvents } =
-    useVentureEvents();
+  const { error, calendarEvents, fetchVentureEvents } = useVentureEvents();
   const [selectedEvent, setSelectedEvent] = useState<CalendarEvent>();
 
+  console.log({ ventureId });
   // Ref to fetchEvents button
   const fetchEventsButtonRef = useRef(null);
 
@@ -43,6 +43,12 @@ const AdminVentureEventsCalendar = ({
     end: Date,
     isSelected: boolean,
   ) => {
+    console.log({
+      event,
+      start,
+      end,
+      isSelected,
+    });
     return {
       style: {
         color: 'white',
@@ -178,7 +184,7 @@ const AdminVentureEventsCalendar = ({
                               components={{
                                 event: CustomEvent,
                               }}
-                              onSelectEvent={(event) => {
+                              onSelectEvent={(event: any) => {
                                 setSelectedEvent(event);
                               }}
                               eventPropGetter={eventStyleGetter}

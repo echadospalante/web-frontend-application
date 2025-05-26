@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Role, User } from 'echadospalante-domain';
+import { User } from 'echadospalante-domain';
 
 import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 

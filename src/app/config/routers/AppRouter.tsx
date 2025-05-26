@@ -4,7 +4,6 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import GeneralLayoutPage from '../../modules/admin/general/GeneralLayoutPage';
 import AdminEventsPage from '../../modules/admin/general/pages/AdminEventsPage';
-import AdminNewsPage from '../../modules/admin/general/pages/AdminNewsPage';
 import AdminPublicationsPage from '../../modules/admin/general/pages/AdminPublicationsPage';
 import AdminUsersPage from '../../modules/admin/general/pages/AdminUsersPage';
 import AdminVenturesPage from '../../modules/admin/general/pages/AdminVenturesPage';
@@ -20,10 +19,11 @@ import SelectPreferencesPage from '../../modules/auth/pages/SelectPreferencesPag
 import WelcomePage from '../../modules/auth/pages/WelcomePage';
 import LandingPage from '../../modules/landing/pages/LandingPage';
 import AccountLayoutPage from '../../modules/principal/account/AccountLayoutPage';
+import AccountEventCreatePage from '../../modules/principal/account/pages/AccountEventCreatePage';
 import AccountProfilePage from '../../modules/principal/account/pages/AccountProfilePage';
+import AccountPublicationCreatePage from '../../modules/principal/account/pages/AccountPublicationCreatePage';
 import AccountVentureCreatePage from '../../modules/principal/account/pages/AccountVentureCreatePage';
 import AccountVenturesPage from '../../modules/principal/account/pages/AccountVenturesPage';
-import PreferencesLangLocalePage from '../../modules/principal/preferences/pages/PreferencesLangLocalePage';
 import PreferencesNotificationsPage from '../../modules/principal/preferences/pages/PreferencesNotificationsPage';
 import PreferencesThemePage from '../../modules/principal/preferences/pages/PreferencesTheme';
 import PreferencesLayoutPage from '../../modules/principal/preferences/PreferencesLayoutPage';
@@ -84,13 +84,17 @@ const AppRouter = () => {
                 path="emprendimientos/nuevo"
                 element={<AccountVentureCreatePage />}
               />
+              <Route
+                path="emprendimientos/:ventureId/publicaciones/nueva"
+                element={<AccountPublicationCreatePage />}
+              />
+              <Route
+                path="emprendimientos/:ventureId/eventos/nuevo"
+                element={<AccountEventCreatePage />}
+              />
             </Route>
 
             <Route path="preferencias" element={<PreferencesLayoutPage />}>
-              <Route
-                path="lenguaje-localizacion"
-                element={<PreferencesLangLocalePage />}
-              />
               <Route path="tema" element={<PreferencesThemePage />} />
               <Route
                 path="alertas-notificaciones"

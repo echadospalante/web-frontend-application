@@ -1,11 +1,9 @@
 import {
-  Button,
   Card,
   CardBody,
   Col,
   Modal,
   ModalBody,
-  ModalHeader,
   Row,
   UncontrolledTooltip,
 } from 'reactstrap';
@@ -19,16 +17,9 @@ import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/leaflet.css';
 
 import L from 'leaflet';
-import {
-  MapContainer,
-  Marker,
-  Popup,
-  TileLayer,
-  Tooltip,
-  useMap,
-} from 'react-leaflet';
-import SponsorCard from '../card/SponsorCard';
+import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
 import useVentureSponsorships from '../../../modules/admin/general/hooks/useVentureSponsorships';
+import SponsorCard from '../card/SponsorCard';
 
 type EventDetailModalProps = {
   event: CalendarEvent;
@@ -54,14 +45,14 @@ const EventDetailModal = ({ event, onCloseClick }: EventDetailModalProps) => {
   });
 
   const {
-    loading,
-    error,
-    page,
-    size,
-    setPage,
+    // loading,
+    // error,
+    // page,
+    // size,
+    // setPage,
     items,
-    total,
-    fetchVentureSponsors,
+    // total,
+    // fetchVentureSponsors,
   } = useVentureSponsorships();
 
   return (
@@ -114,30 +105,40 @@ const EventDetailModal = ({ event, onCloseClick }: EventDetailModalProps) => {
                   Nota: Puedes hacer click en el marcador para ver el detalle de
                   la ubicación.
                 </p>
-                {event.location.lat && event.location.lng && (
-                  <MapContainer
-                    center={[event.location.lat, event.location.lng]}
-                    zoom={13}
-                    style={{ height: '400px', width: '100%' }}
-                  >
-                    <TileLayer
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // OpenStreetMap tiles
-                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                    />
-                    <Marker
-                      position={[event.location.lat, event.location.lng]}
-                      icon={markerIconInstance}
+                {event.location.location?.coordinates[0] &&
+                  event.location.location.coordinates[1] && (
+                    <MapContainer
+                      center={[
+                        event.location.location?.coordinates[0],
+                        event.location.location.coordinates[1],
+                      ]}
+                      zoom={13}
+                      style={{ height: '400px', width: '100%' }}
                     >
-                      <Popup offset={[0, -5]}>
-                        {event.location.description}
-                      </Popup>
-                    </Marker>
+                      <TileLayer
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // OpenStreetMap tiles
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                      />
+                      <Marker
+                        position={[
+                          event.location.location?.coordinates[0],
+                          event.location.location.coordinates[1],
+                        ]}
+                        icon={markerIconInstance}
+                      >
+                        <Popup offset={[0, -5]}>
+                          {event.location.description}
+                        </Popup>
+                      </Marker>
 
-                    <SetMapCenter
-                      position={[event.location.lat, event.location.lng]}
-                    />
-                  </MapContainer>
-                )}
+                      <SetMapCenter
+                        position={[
+                          event.location.location?.coordinates[0],
+                          event.location.location.coordinates[1],
+                        ]}
+                      />
+                    </MapContainer>
+                  )}
               </div>
 
               <Row className="mt-4">

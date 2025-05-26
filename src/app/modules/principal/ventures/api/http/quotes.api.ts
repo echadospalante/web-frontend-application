@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+
 import env from '../../../../../../environment/environment';
-import { ApiResponse, PaginatedBody } from '../../domain/api';
+import { ApiResponse } from '../../domain/api';
 import { Quote } from '../../domain/quote';
 
 export class QuotesApi {

@@ -1,10 +1,10 @@
 import { Fragment } from 'react/jsx-runtime';
 import { Button, Card, CardBody, Col, Pagination, Row } from 'reactstrap';
+
 import useVentureSponsorships from '../../../modules/admin/general/hooks/useVentureSponsorships';
-import SponsorCard from '../card/SponsorCard';
+import SponsorsBubbleChart from '../charts/SponsorsBubbleChart';
 import VenturePublicationsFiltersForm from '../forms/VenturePublicationsFiltersForm';
 import AppSpinner from '../loader/Spinner';
-import SponsorsBubbleChart from '../charts/SponsorsBubbleChart';
 
 type AdminVentureSponsorsTableProps = {
   ventureId: string;
@@ -23,6 +23,8 @@ const AdminVentureSponsorsTable = ({
     total,
     fetchVentureSponsors,
   } = useVentureSponsorships();
+
+  console.log(ventureId);
 
   return (
     <div>
