@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { DragDropContext, Draggable, Droppable } from 'react-beautiful-dnd';
 import Select from 'react-select';
 import {
   Button,
@@ -11,46 +11,30 @@ import {
   Input,
   Label,
   Row,
-  ButtonGroup,
 } from 'reactstrap';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
+import {
+  setGlobalAlert,
+  SeverityLevel,
+} from '../../../../config/redux/reducers/shared/user-interface.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
-import useFetchAllVentureCategories from '../../../admin/general/hooks/useAllVentureCategories';
-
-interface BodyItem {
-  id: string;
-  type: 'TEXT' | 'IMAGE' | 'VIDEO' | 'LINK';
-  content: string;
-}
-
-interface PostData {
-  description: string;
-  type: 'STANDARD';
-  body: BodyItem[];
-  categoriesIds: string[];
-}
+import UploadImageButton from '../../../../shared/components/buttons/UploadImageButton';
+import useFetchAllPublicationCategories from '../hooks/useAllPublicationCategories';
+import usePublicationCreate, { BodyItem } from '../hooks/usePublicationCreate';
 
 const AccountPostCreatePage = () => {
   document.title = 'Nueva publicación | Echadospalante';
-
+  const dispatch = useAppDispatch();
   const {
     loading: loadingCategories,
     error: errorCategories,
     data: categories,
-    retryFetch: fetchAllVentureCategories,
-  } = useFetchAllVentureCategories();
-
-  const [postData, setPostData] = useState<PostData>({
-    description: '',
-    type: 'STANDARD',
-    body: [],
-    categoriesIds: [],
-  });
-
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [touched, setTouched] = useState<{ [key: string]: boolean }>({});
+    retryFetch: fetchAllPublicationCategories,
+  } = useFetchAllPublicationCategories();
+  const { setPublicationCreate, postData, errors, isValidUrl, handleSubmit } =
+    usePublicationCreate();
 
   const addBodyItem = (type: BodyItem['type']) => {
     const newItem: BodyItem = {
@@ -58,14 +42,23 @@ const AccountPostCreatePage = () => {
       type,
       content: '',
     };
-    setPostData((prev) => ({
+    dispatch(
+      setGlobalAlert({
+        message:
+          'Dirígete a al final de esta vista para editar el nuevo recurso',
+        timeout: 0,
+        severity: SeverityLevel.SUCCESS,
+        title: 'Recurso Agregado',
+      }),
+    );
+    setPublicationCreate((prev) => ({
       ...prev,
       body: [...prev.body, newItem],
     }));
   };
 
   const updateBodyItem = (id: string, content: string) => {
-    setPostData((prev) => ({
+    setPublicationCreate((prev) => ({
       ...prev,
       body: prev.body.map((item) =>
         item.id === id ? { ...item, content } : item,
@@ -74,7 +67,7 @@ const AccountPostCreatePage = () => {
   };
 
   const removeBodyItem = (id: string) => {
-    setPostData((prev) => ({
+    setPublicationCreate((prev) => ({
       ...prev,
       body: prev.body.filter((item) => item.id !== id),
     }));
@@ -87,71 +80,10 @@ const AccountPostCreatePage = () => {
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
-    setPostData((prev) => ({
+    setPublicationCreate((prev) => ({
       ...prev,
       body: items,
     }));
-  };
-
-  const validateForm = () => {
-    const newErrors: { [key: string]: string } = {};
-
-    if (!postData.description.trim()) {
-      newErrors.description = 'La descripción es requerida';
-    }
-
-    if (postData.categoriesIds.length === 0) {
-      newErrors.categoriesIds = 'Selecciona al menos una categoría';
-    }
-
-    postData.body.forEach((item, index) => {
-      if (!item.content.trim()) {
-        newErrors[`body_${item.id}`] = 'El contenido es requerido';
-      }
-
-      if (
-        item.type === 'VIDEO' &&
-        item.content &&
-        !isValidYouTubeUrl(item.content)
-      ) {
-        newErrors[`body_${item.id}`] = 'URL de YouTube no válida';
-      }
-
-      if (item.type === 'LINK' && item.content && !isValidUrl(item.content)) {
-        newErrors[`body_${item.id}`] = 'URL no válida';
-      }
-    });
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const isValidYouTubeUrl = (url: string) => {
-    const youtubeRegex =
-      /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)/;
-    return youtubeRegex.test(url);
-  };
-
-  const isValidUrl = (url: string) => {
-    try {
-      new URL(url);
-      return true;
-    } catch {
-      return false;
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (validateForm()) {
-      // Preparar datos para envío
-      const submissionData = {
-        ...postData,
-        body: postData.body.map(({ id, ...item }) => item), // Remover IDs temporales
-      };
-      console.log('Datos a enviar:', JSON.stringify(submissionData, null, 2));
-      // Aquí harías la llamada a la API
-    }
   };
 
   const renderBodyItem = (item: BodyItem, index: number) => {
@@ -206,13 +138,21 @@ const AccountPostCreatePage = () => {
             )}
 
             {item.type === 'IMAGE' && (
-              <div>
+              <div className="d-flex flex-column gap-2">
                 <Input
                   type="url"
                   className={hasError ? 'is-invalid' : ''}
                   placeholder="https://ejemplo.com/imagen.jpg"
                   value={item.content}
                   onChange={(e) => updateBodyItem(item.id, e.target.value)}
+                />
+
+                <p className="mb-0 pb-0 mt-3">O también puedes:</p>
+
+                <UploadImageButton
+                  onUpload={(url) => updateBodyItem(item.id, url)}
+                  btnText="Subir una imagen"
+                  type={'PUBLICATION'}
                 />
                 {item.content && isValidUrl(item.content) && (
                   <div className="mt-2">
@@ -231,13 +171,23 @@ const AccountPostCreatePage = () => {
             )}
 
             {item.type === 'VIDEO' && (
-              <Input
-                type="url"
-                className={hasError ? 'is-invalid' : ''}
-                placeholder="https://youtube.com/watch?v=..."
-                value={item.content}
-                onChange={(e) => updateBodyItem(item.id, e.target.value)}
-              />
+              <>
+                <Input
+                  type="url"
+                  className={hasError ? 'is-invalid' : ''}
+                  placeholder="https://youtube.com/watch?v=..."
+                  value={item.content}
+                  onChange={(e) => updateBodyItem(item.id, e.target.value)}
+                />
+                <iframe
+                  width="560"
+                  height="315"
+                  src={`https://www.youtube.com/embed/${item.content}`}
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allowFullScreen
+                />
+              </>
             )}
 
             {item.type === 'LINK' && (
@@ -291,7 +241,7 @@ const AccountPostCreatePage = () => {
                       placeholder="Describe tu publicación..."
                       value={postData.description}
                       onChange={(e) =>
-                        setPostData((prev) => ({
+                        setPublicationCreate((prev) => ({
                           ...prev,
                           description: e.target.value,
                         }))
@@ -310,7 +260,7 @@ const AccountPostCreatePage = () => {
                     {errorCategories && (
                       <AlertWithReload
                         message="Ha habido un error al consultar las categorías, por favor intente nuevamente."
-                        onReload={fetchAllVentureCategories}
+                        onReload={fetchAllPublicationCategories}
                       />
                     )}
                     <Select
@@ -323,7 +273,7 @@ const AccountPostCreatePage = () => {
                       isMulti={true}
                       isLoading={loadingCategories}
                       onChange={(value) => {
-                        setPostData((prev) => ({
+                        setPublicationCreate((prev) => ({
                           ...prev,
                           categoriesIds: value.map(
                             (category) => category.value,
@@ -369,7 +319,7 @@ const AccountPostCreatePage = () => {
                         onClick={() => addBodyItem('IMAGE')}
                       >
                         <i className="bx bx-image me-1"></i>
-                        Agregar Imagen
+                        Agregar Imágen
                       </Button>
                       <Button
                         type="button"
@@ -423,8 +373,8 @@ const AccountPostCreatePage = () => {
 
                   {/* Botón de envío */}
                   <div className="text-center">
-                    <Button type="submit" color="primary" size="lg">
-                      <i className="bx bx-send me-1"></i>
+                    <Button type="submit" color="primary">
+                      <i className="bx bx-send me-1 fs-6"></i>
                       Publicar
                     </Button>
                   </div>

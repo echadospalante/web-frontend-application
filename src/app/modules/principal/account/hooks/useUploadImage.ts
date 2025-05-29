@@ -10,7 +10,7 @@ const useUploadImage = () => {
   const uploadVentureImageMutation = useMutation({
     mutationFn: (data: {
       file: File;
-      type: 'ventures' | 'events' | 'publication';
+      type: 'ventures' | 'events' | 'publications';
     }) => ImageUploadApi.uploadImage(data.file, data.type),
     onSuccess: (data) => {
       console.log('Image uploaded successfully', data);
@@ -27,7 +27,7 @@ const useUploadImage = () => {
   };
 
   const uploadPublicationImage = (file: File) => {
-    uploadVentureImageMutation.mutate({ file, type: 'publication' });
+    uploadVentureImageMutation.mutate({ file, type: 'publications' });
   };
 
   return {

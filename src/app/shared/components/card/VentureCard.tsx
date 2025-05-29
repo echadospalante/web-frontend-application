@@ -208,16 +208,16 @@ const VentureCard = ({ venture }: VentureCardProps) => {
 
                   <li
                     className="list-inline-item me-3 d-flex align-items-center"
-                    id={`comments-${venture.id}`}
+                    id={`publications-${venture.id}`}
                   >
                     <UilMegaphone />
                     <i className="uil uil-megaphone me-1"></i>
                     <small>{Math.ceil(Math.random() * 100)}</small>
                     <UncontrolledTooltip
                       placement="top"
-                      target={`comments-${venture.id}`}
+                      target={`publications-${venture.id}`}
                     >
-                      Número de publicaciones
+                      Cantidad de publicaciones
                     </UncontrolledTooltip>
                   </li>
 

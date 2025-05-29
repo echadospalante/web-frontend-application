@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { VentureCategory, VentureCategoryCreate } from 'echadospalante-domain';
+import { VentureCategory } from 'echadospalante-domain';
 import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
 import env from '../../../../../../environment/environment';
@@ -19,20 +19,5 @@ export class VentureCategoriesApi {
         },
       )
       .then(({ data }) => data);
-  }
-
-  public static updateVentureCategory(
-    id: string,
-    category: VentureCategory,
-  ): Promise<void> {
-    console.log({ id, category });
-    throw new Error('Method not implemented.');
-  }
-
-  public static createVentureCategory(
-    category: VentureCategoryCreate,
-  ): Promise<void> {
-    console.log({ category });
-    throw new Error('Method not implemented.');
   }
 }

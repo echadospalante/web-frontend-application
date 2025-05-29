@@ -1,7 +1,7 @@
 import Select from 'react-select';
 import { Col, Label, Row } from 'reactstrap';
 
-import useFetchAllVentureCategories from '../../../modules/admin/general/hooks/useAllVentureCategories';
+import useFetchAllVentureCategories from '../../../modules/principal/account/hooks/useAllVentureCategories';
 import useOwnedVenturesFilters from '../../../modules/admin/general/hooks/useOwnedVenturesFilter';
 import AlertWithReload from '../alert/AlertWithReload';
 import { useAppDispatch } from '../../../config/redux/store/store.config';

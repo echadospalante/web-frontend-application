@@ -22,7 +22,7 @@ import {
 
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
-import useFetchAllVentureCategories from '../../../admin/general/hooks/useAllVentureCategories';
+import useFetchAllVentureCategories from '../hooks/useAllVentureCategories';
 import useVentureCreate from '../hooks/useVentureCreate';
 
 enum LocationMode {

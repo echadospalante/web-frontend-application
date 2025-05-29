@@ -7,12 +7,13 @@ class ImageUploadApi {
 
   public static uploadImage(
     file: File,
-    type: 'ventures' | 'events' | 'publication',
+    type: 'ventures' | 'events' | 'publications',
   ) {
+    const fullType = type !== 'ventures' ? `ventures/_/${type}` : type;
     const formData = new FormData();
     formData.append('file', file);
     return axios
-      .post(this.BASE_URL.replace('__type__', type), formData, {
+      .post(this.BASE_URL.replace('__type__', fullType), formData, {
         withCredentials: true,
         headers: { 'Content-Type': 'multipart/form-data' },
       })
