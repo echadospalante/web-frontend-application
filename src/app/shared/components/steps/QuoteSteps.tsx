@@ -1,10 +1,10 @@
-import React from "react";
-import { Container, Row, Col } from "reactstrap";
+import React from 'react';
+import { Container, Row, Col } from 'reactstrap';
 
 //swiper
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Navigation, Autoplay } from "swiper/modules";
-import "../../../../../node_modules/swiper/swiper.scss";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import '../../../../../node_modules/swiper/swiper.scss';
 
 const QuoteSteps = () => {
   return (

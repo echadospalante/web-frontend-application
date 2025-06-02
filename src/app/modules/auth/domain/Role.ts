@@ -1,8 +1,8 @@
 export enum AppRole {
-  ADMIN = "ADMIN",
-  USER = "USER",
-  MODERATOR = "MODERATOR",
-  NEWS_WRITER = "NEWS_WRITER",
+  ADMIN = 'ADMIN',
+  USER = 'USER',
+  MODERATOR = 'MODERATOR',
+  NEWS_WRITER = 'NEWS_WRITER',
 }
 
 export interface Role {

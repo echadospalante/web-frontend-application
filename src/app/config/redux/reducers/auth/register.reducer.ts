@@ -1,6 +1,6 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { RootState } from "../../store/store.config";
+import { RootState } from '../../store/store.config';
 
 export interface UserRegisterInfo {
   gender: string;
@@ -20,7 +20,7 @@ const initialState: RegisterState = {};
 // Freeze the initial state to prevent accidental changes
 
 export const registerSlice = createSlice({
-  name: "register",
+  name: 'register',
   initialState,
   reducers: {
     setUserInfo: (state, action: PayloadAction<UserRegisterInfo>) => {

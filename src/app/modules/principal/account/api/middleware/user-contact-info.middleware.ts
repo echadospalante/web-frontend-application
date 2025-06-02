@@ -1,10 +1,10 @@
-import { Action, Dispatch } from "@reduxjs/toolkit";
+import { Action, Dispatch } from '@reduxjs/toolkit';
 
 import {
   setGlobalAlert,
   SeverityLevel,
-} from "../../../../../config/redux/reducers/shared/user-interface.reducer";
-import UserContactInfoApi from "../http/contact-info.api";
+} from '../../../../../config/redux/reducers/shared/user-interface.reducer';
+import UserContactInfoApi from '../http/contact-info.api';
 
 export const fetchUserContactInfoMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {
@@ -14,14 +14,14 @@ export const fetchUserContactInfoMiddleware = () => {
         console.error(error);
         dispatch(
           setGlobalAlert({
-            title: "Error al obtener información de contacto",
+            title: 'Error al obtener información de contacto',
             message:
-              "Por favor intente nuevamente, si el error persiste contacte al administrador.",
+              'Por favor intente nuevamente, si el error persiste contacte al administrador.',
             timeout: 5000,
             severity: SeverityLevel.ERROR,
-          })
+          }),
         );
-        throw new Error("Error en login");
+        throw new Error('Error en login');
       });
   };
 };

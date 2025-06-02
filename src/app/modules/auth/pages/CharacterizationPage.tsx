@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -11,17 +11,17 @@ import {
   Col,
   Container,
   Row,
-} from "reactstrap";
+} from 'reactstrap';
 
 const CharacterizationPage = () => {
-  const [selectedOption, setSelectedOption] = useState<"COMPANY" | "ADVISOR">();
+  const [selectedOption, setSelectedOption] = useState<'COMPANY' | 'ADVISOR'>();
   const navigate = useNavigate();
-  const handleSelectOption = (option: "COMPANY" | "ADVISOR") => {
+  const handleSelectOption = (option: 'COMPANY' | 'ADVISOR') => {
     setSelectedOption(option);
   };
 
   const handleNextStep = (): void => {
-    navigate("/registro/informacion-base");
+    navigate('/registro/informacion-base');
   };
 
   return (
@@ -80,7 +80,7 @@ const CharacterizationPage = () => {
                               <CardBody>
                                 <CardTitle tag="h4" className="mt-0">
                                   <i className="bx bx-info-circle me-1"></i>
-                                  {"{{Nombre_empresa}}"} ha pre-registrado tu
+                                  {'{{Nombre_empresa}}'} ha pre-registrado tu
                                   cuenta para prestar sus servicios como asesor.
                                 </CardTitle>
                                 <CardText>
@@ -102,10 +102,10 @@ const CharacterizationPage = () => {
                         <Row className="mt-1 text-center">
                           <Col lg={6} md={12} sm={12}>
                             <Card
-                              onClick={() => handleSelectOption("COMPANY")}
+                              onClick={() => handleSelectOption('COMPANY')}
                               className="border characterization__card p-1"
                             >
-                              {selectedOption === "COMPANY" && (
+                              {selectedOption === 'COMPANY' && (
                                 <i className="bx bx-check-circle declaration__check-icon"></i>
                               )}
                               <CardTitle className="pt-3">Empresa</CardTitle>
@@ -125,10 +125,10 @@ const CharacterizationPage = () => {
                           </Col>
                           <Col lg={6} md={6} sm={12}>
                             <Card
-                              onClick={() => handleSelectOption("ADVISOR")}
+                              onClick={() => handleSelectOption('ADVISOR')}
                               className="border characterization__card p-1"
                             >
-                              {selectedOption === "ADVISOR" && (
+                              {selectedOption === 'ADVISOR' && (
                                 <i className="bx bx-check-circle declaration__check-icon"></i>
                               )}
                               <CardTitle className="pt-3">Asesor</CardTitle>
@@ -165,7 +165,7 @@ const CharacterizationPage = () => {
               </Card>
               <div className="mt-5 text-center">
                 <p>
-                  © {new Date().getFullYear()} Echados Pa'lante. Powered with{" "}
+                  © {new Date().getFullYear()} Echados Pa'lante. Powered with{' '}
                   <i className="mdi mdi-heart text-danger"></i> by Themesbrand
                 </p>
               </div>

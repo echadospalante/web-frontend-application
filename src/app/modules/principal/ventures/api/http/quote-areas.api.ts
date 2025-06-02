@@ -1,22 +1,24 @@
-import axios from "axios";
+import axios from 'axios';
 
-import env from "../../../../../../environment/environment";
-import { AreaSummary, QuoteArea } from "../../domain/area";
-import { ApiResponse, PaginatedBody } from "../../domain/api";
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+
+import env from '../../../../../../environment/environment';
+import { ApiResponse } from '../../domain/api';
+import { AreaSummary, QuoteArea } from '../../domain/area';
 
 export class QuoteAreasApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1`;
 
   public static fetchQuoteAreas(
     page: number,
-    size: number
+    size: number,
   ): Promise<PaginatedBody<QuoteArea>> {
     return axios
       .get<ApiResponse<PaginatedBody<QuoteArea>>>(
         `${QuoteAreasApi.API_BASE_URL}/cotizaciones/areas`,
         {
           params: { pagina: page, cantidad: size },
-        }
+        },
         //{ withCredentials: true }
       )
       .then(({ data }) => data.message);
@@ -25,7 +27,7 @@ export class QuoteAreasApi {
   static fetchQuoteAreaSummary(areaId: number) {
     return axios
       .get<ApiResponse<AreaSummary[]>>(
-        `${QuoteAreasApi.API_BASE_URL}/admin/cotizaciones/areas/resumen/${areaId}`
+        `${QuoteAreasApi.API_BASE_URL}/admin/cotizaciones/areas/resumen/${areaId}`,
         //{ withCredentials: true }
       )
       .then(({ data }) => data.message);
@@ -36,7 +38,7 @@ export class QuoteAreasApi {
       .post<void>(
         `${QuoteAreasApi.API_BASE_URL}/admin/cotizaciones/areas`,
         { ...area },
-        { withCredentials: true }
+        { withCredentials: true },
       )
       .then((response) => response.data);
   }
@@ -44,7 +46,7 @@ export class QuoteAreasApi {
   public static fetchQuoteAlreadyExists(name: string): Promise<boolean> {
     return axios
       .get<ApiResponse<{ exists: boolean }>>(
-        `${QuoteAreasApi.API_BASE_URL}/admin/cotizaciones/areas/exists/name/${name}`
+        `${QuoteAreasApi.API_BASE_URL}/admin/cotizaciones/areas/exists/name/${name}`,
         //{ withCredentials: true }
       )
       .then(({ data }) => data.message.exists);

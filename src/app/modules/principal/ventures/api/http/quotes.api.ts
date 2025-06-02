@@ -1,19 +1,21 @@
-import axios from "axios";
+import axios from 'axios';
 
-import env from "../../../../../../environment/environment";
-import { ApiResponse, PaginatedBody } from "../../domain/api";
-import { Quote } from "../../domain/quote";
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+
+import env from '../../../../../../environment/environment';
+import { ApiResponse } from '../../domain/api';
+import { Quote } from '../../domain/quote';
 
 export class QuotesApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/cotizaciones`;
 
   public static async fetchQuotes(
     page: number,
-    size: number
+    size: number,
   ): Promise<PaginatedBody<Quote>> {
     return axios
       .get<ApiResponse<PaginatedBody<Quote>>>(
-        `${QuotesApi.API_BASE_URL}?pagina=${page}&cantidad=${size}`
+        `${QuotesApi.API_BASE_URL}?pagina=${page}&cantidad=${size}`,
         //{ withCredentials: true }
       )
       .then(({ data }) => data.message);
@@ -1337,6 +1339,6 @@ export class QuotesApi {
     // return axios
     //   .get<Quote>(`${QuotesApi.API_BASE_URL}/${id}`)
     //   .then(({ data }) => data);
-    throw new Error("Method not implemented.");
+    throw new Error('Method not implemented.');
   }
 }

@@ -1,9 +1,9 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { VentureCategory } from "echadospalante-core";
+import { VentureCategory } from 'echadospalante-domain';
 
-import { PaginatedBody } from "../../../../modules/principal/ventures/domain/api";
-import { RootState } from "../../store/store.config";
+import { RootState } from '../../store/store.config';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
 export interface VentureCategoriesFilter {
   search: string;
@@ -20,7 +20,7 @@ export interface VentureCategoriesManagementState {
 const initialState: VentureCategoriesManagementState = {
   filters: {
     page: 0,
-    search: "",
+    search: '',
     size: 20,
   },
   categories: {
@@ -30,7 +30,7 @@ const initialState: VentureCategoriesManagementState = {
 };
 
 export const ventureCategoriesManagementSlice = createSlice({
-  name: "admin/ventureCategoriesManagement",
+  name: 'admin/ventureCategoriesManagement',
   initialState,
   reducers: {
     createVentureCategory: (state, action: PayloadAction<VentureCategory>) => {
@@ -38,7 +38,7 @@ export const ventureCategoriesManagementSlice = createSlice({
     },
     setVentureCategoriesFilters: (
       state,
-      action: PayloadAction<VentureCategoriesFilter>
+      action: PayloadAction<VentureCategoriesFilter>,
     ) => {
       const { page, search, size } = action.payload;
 
@@ -51,7 +51,7 @@ export const ventureCategoriesManagementSlice = createSlice({
     updateVentureCategory: (state, action: PayloadAction<VentureCategory>) => {
       const updatedCategory = action.payload;
       state.categories.items = state.categories.items.map((category) =>
-        category.id === updatedCategory.id ? updatedCategory : category
+        category.id === updatedCategory.id ? updatedCategory : category,
       );
     },
     addVentureCategory: (state, action: PayloadAction<VentureCategory>) => {
@@ -62,7 +62,7 @@ export const ventureCategoriesManagementSlice = createSlice({
     },
     setVentureCategories: (
       state,
-      action: PayloadAction<PaginatedBody<VentureCategory>>
+      action: PayloadAction<PaginatedBody<VentureCategory>>,
     ) => {
       const { items, total } = action.payload;
       state.categories = {

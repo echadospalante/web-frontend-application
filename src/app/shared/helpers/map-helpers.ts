@@ -1,9 +1,9 @@
-import L from "leaflet";
+import L from 'leaflet';
 
 export const interpolateColor = (
   color1: string,
   color2: string,
-  factor: number
+  factor: number,
 ): string => {
   if (factor === 0) return color1;
   if (factor === 1) return color2;
@@ -23,7 +23,7 @@ export const interpolateColor = (
   const g = Math.round(g1 + (g2 - g1) * factor);
   const b = Math.round(b1 + (b2 - b1) * factor);
 
-  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, "0")}`;
+  return `#${((r << 16) | (g << 8) | b).toString(16).padStart(6, '0')}`;
 };
 
 // export const getColorForPrice = (price: number, items: MapMarker[]): string => {
@@ -60,11 +60,11 @@ export const getMapMarkerIcon = (color: string) => {
 export const buildPointBounds = (
   latitude: number,
   longitude: number,
-  sideLengthKm = 10
+  sideLengthKm = 10,
 ): L.LatLngBoundsExpression => {
   const createSquareBounds = (
     center: { lat: number; lng: number },
-    sideLengthKm: number
+    sideLengthKm: number,
   ): L.LatLngBoundsExpression => {
     const lat = center.lat;
     const lng = center.lng;
@@ -72,8 +72,8 @@ export const buildPointBounds = (
     const latDelta = sideLengthKm / 110.574;
     const lngDelta = sideLengthKm / (111.32 * Math.cos((lat * Math.PI) / 180));
 
-    const southwest = L.latLng(lat - latDelta, lng - lngDelta);
-    const northeast = L.latLng(lat + latDelta, lng + lngDelta);
+    const southwest: any = L.latLng(lat - latDelta, lng - lngDelta);
+    const northeast: any = L.latLng(lat + latDelta, lng + lngDelta);
 
     return [southwest, northeast];
   };
@@ -85,7 +85,7 @@ export const buildPointBounds = (
 
 export const haversineDistance = (
   center: { lat: number; lng: number },
-  point: { lat: number; lng: number }
+  point: { lat: number; lng: number },
 ): number => {
   const lat1 = center.lat;
   const lon1 = center.lng;
@@ -111,7 +111,7 @@ export const haversineDistance = (
 
 export const getMidpoint = (
   point1: { lat: number; lng: number },
-  point2: { lat: number; lng: number }
+  point2: { lat: number; lng: number },
 ) => {
   // return [(point1[0] + point2[0]) / 2, (point1[1] + point2[1]) / 2];
   return {

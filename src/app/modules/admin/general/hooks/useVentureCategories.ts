@@ -1,21 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { VentureCategory } from "echadospalante-core";
-import { useSelector } from "react-redux";
+import { VentureCategory } from 'echadospalante-domain';
+import { useSelector } from 'react-redux';
 
 import {
   selectVentureCategoriesManagement,
   setVentureCategoriesFilters,
-} from "../../../../config/redux/reducers/admin/venture-categories-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
+} from '../../../../config/redux/reducers/admin/venture-categories-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import {
   fetchVentureCategoriesMiddleware,
   updateVentureCategoryMiddleware,
-} from "../api/middleware/venture-categories.middleware";
+} from '../api/middleware/venture-categories.middleware';
 
 const useVentureCategories = () => {
   const { filters, categories } = useSelector(
-    selectVentureCategoriesManagement
+    selectVentureCategoriesManagement,
   );
 
   const dispatch = useAppDispatch();

@@ -1,43 +1,34 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { Venture } from "echadospalante-core";
-import { RootState } from "../../store/store.config";
-import { PaginatedBody } from "../../../../modules/principal/ventures/domain/api";
+import { RootState } from '../../store/store.config';
 
-export interface VentureFilter {
-  search: string;
-  department: string;
-  categoriesSlugs: string[];
-  page: number;
-  size: number;
-}
+export interface VentureFilter {}
 
 export interface VenturesState {
   filters: VentureFilter;
-  ventures: PaginatedBody<Venture>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  items: any[];
 }
 
 const initialState: VenturesState = {
   filters: {
-    search: "",
-    department: "",
-    categoriesSlugs: [],
-    page: 0,
-    size: 20,
+    search: '',
+    dateRange: {},
+    areas: [],
+    advisors: [],
+    states: [],
+    include: [],
   },
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   // items: [] as any[],
   // total: 0,
-  ventures: {
-    items: [],
-    total: 0,
-  },
+  items: [],
 };
 
 Object.freeze(initialState);
 
 export const venturesSlice = createSlice({
-  name: "principal/ventures",
+  name: 'ventures',
   initialState,
   reducers: {
     // changeFilterSearch: (state, action: PayloadAction<string>) => {
@@ -61,42 +52,23 @@ export const venturesSlice = createSlice({
     // ) => {
     //   state.filters.include = action.payload;
     // },
-    setVenturesFiltersPage: (state, action: PayloadAction<number>) => {
-      state.filters.page = action.payload;
-    },
-    setVentures: (state, action: PayloadAction<PaginatedBody<Venture>>) => {
-      state.ventures = action.payload;
-    },
-    addVentures: (state, action: PayloadAction<PaginatedBody<Venture>>) => {
-      state.ventures.items = [...state.ventures.items, ...action.payload.items];
-      state.ventures.total = action.payload.total;
-    },
-    resetVentures: (state) => {
-      state.ventures = initialState.ventures;
-    },
-    setVenturesFilters: (state, action: PayloadAction<VentureFilter>) => {
-      const { page, search, size, categoriesSlugs, department } =
-        action.payload;
-
-      state.filters = {
-        page,
-        search,
-        size,
-        categoriesSlugs,
-        department,
-      };
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    setVentures: (state, action: PayloadAction<any>) => {
+      state.items = action.payload;
     },
   },
 });
 
 export const {
   setVentures,
-  addVentures,
-  setVenturesFiltersPage,
-  resetVentures,
-  setVenturesFilters,
+  // changeFilterArea,
+  // changeFilterState,
+  // changeFilterSearch,
+  // changeFilterAdvisors,
+  // changeFilterDateRange,
+  // changeFilterIncludedFields,
 } = venturesSlice.actions;
 
-export const selectVentures = (state: RootState) => state.principal.ventures;
+export const selectVentures = (state: RootState) => state.ventures;
 
 export default venturesSlice.reducer;

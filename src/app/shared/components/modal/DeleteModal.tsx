@@ -1,4 +1,4 @@
-import { Modal, ModalBody } from "reactstrap";
+import { Modal, ModalBody } from 'reactstrap';
 
 type DeleteModalProps = {
   onCloseClick: () => void;
@@ -25,7 +25,7 @@ const DeleteModal = ({
             className="btn-close position-absolute end-0 top-0 m-3"
           ></button>
           <div className="avatar-sm mb-4 mx-auto">
-            <div className="avatar-title bg-danger text-danger bg-opacity-10 font-size-20 rounded-3">
+            <div className="avatar-title bg-primary text-primary bg-opacity-10 font-size-20 rounded-3">
               <i className="mdi mdi-trash-can-outline"></i>
             </div>
           </div>

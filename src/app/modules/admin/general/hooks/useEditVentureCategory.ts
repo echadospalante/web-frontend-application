@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import { VentureCategory } from "echadospalante-core";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { VentureCategory } from 'echadospalante-domain';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { updateVentureCategoryMiddleware } from "../api/middleware/venture-categories.middleware";
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { updateVentureCategoryMiddleware } from '../api/middleware/venture-categories.middleware';
 
 const useEditVentureCategory = (ventureCategory: VentureCategory) => {
   const dispatch = useAppDispatch();
@@ -22,13 +22,13 @@ const useEditVentureCategory = (ventureCategory: VentureCategory) => {
     },
     validationSchema: {
       name: Yup.string()
-        .required("El nombre es requerido")
-        .min(3, "El nombre debe tener al menos 3 caracteres")
-        .max(50, "El nombre debe tener como máximo 50 caracteres"),
+        .required('El nombre es requerido')
+        .min(3, 'El nombre debe tener al menos 3 caracteres')
+        .max(50, 'El nombre debe tener como máximo 50 caracteres'),
       description: Yup.string()
-        .required("La descripción es requerida")
-        .min(3, "La descripción debe tener al menos 3 caracteres")
-        .max(255, "La descripción debe tener como máximo 255 caracteres"),
+        .required('La descripción es requerida')
+        .min(3, 'La descripción debe tener al menos 3 caracteres')
+        .max(255, 'La descripción debe tener como máximo 255 caracteres'),
     },
   });
 

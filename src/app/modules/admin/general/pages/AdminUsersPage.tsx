@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import AdminUsersTable from "../../../../shared/components/table/AdminUsersTable";
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import AdminUsersTable from '../../../../shared/components/table/AdminUsersTable';
 
 const AdminUsersPage = () => {
-  document.title = "Gestión de Usuarios | Administración";
+  document.title = 'Gestión de Usuarios | Administración';
 
   return (
     <Fragment>

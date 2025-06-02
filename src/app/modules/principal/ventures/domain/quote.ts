@@ -1,7 +1,7 @@
-import { QuoteAdvisor } from "./advisor";
-import { QuoteArea } from "./area";
-import { QuoteClient } from "./client";
-import { VentureState } from "./state";
+import { QuoteAdvisor } from './advisor';
+import { QuoteArea } from './area';
+import { QuoteClient } from './client';
+import { VentureState } from './state';
 
 export interface Quote {
   id: string;

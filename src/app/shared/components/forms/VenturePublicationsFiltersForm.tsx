@@ -1,7 +1,7 @@
-import Select from "react-select";
-import { Col, Row } from "reactstrap";
+import Select from 'react-select';
+import { Col, Row } from 'reactstrap';
 
-import useVenturePublicationsFilters from "../../../modules/admin/general/hooks/useVenturePublicationsFilter";
+import useVenturePublicationsFilters from '../../../modules/admin/general/hooks/useVenturePublicationsFilter';
 
 const VenturePublicationsFiltersForm = () => {
   const { filters, setSearchTerm, setSize } = useVenturePublicationsFilters();
@@ -12,7 +12,7 @@ const VenturePublicationsFiltersForm = () => {
         <label className="control-label">Elementos por Página</label>
         <Select
           value={{
-            label: filters.size + "",
+            label: filters.size + '',
             value: filters.size,
           }}
           isMulti={false}
@@ -29,9 +29,9 @@ const VenturePublicationsFiltersForm = () => {
             //   });
           }}
           options={[
-            { label: "20", value: 20 },
-            { label: "50", value: 50 },
-            { label: "100", value: 100 },
+            { label: '20', value: 20 },
+            { label: '50', value: 50 },
+            { label: '100', value: 100 },
           ]}
         ></Select>
       </Col>
@@ -40,7 +40,7 @@ const VenturePublicationsFiltersForm = () => {
         <label className="control-label">Búsqueda por Coincidencia</label>
         <input
           value={filters.search}
-          style={{ height: "37px" }}
+          style={{ height: '37px' }}
           onChange={({ target }) => setSearchTerm(target.value)}
           className="form-control"
           type="text"

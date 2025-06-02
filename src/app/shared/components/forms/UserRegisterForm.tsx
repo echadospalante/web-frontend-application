@@ -1,14 +1,15 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import Select from "react-select";
-import { Col, Form, Input, Label, Row } from "reactstrap";
-import departments from "../../data/geo/departments";
-import { useRegisterUserInfo } from "../../../modules/auth/hooks/useRegister";
+import Select from 'react-select';
+import { Col, Form, Input, Label, Row } from 'reactstrap';
+import departments from '../../data/geo/departments';
+import { useRegisterUserInfo } from '../../../modules/auth/hooks/useRegister';
+import municipalities from '../../data/geo/municipalities';
 
 const genders = [
-  { label: "Masculino", value: "M" },
-  { label: "Femenino", value: "F" },
-  { label: "Otro", value: "O" },
+  { label: 'Masculino', value: 'M' },
+  { label: 'Femenino', value: 'F' },
+  { label: 'Otro', value: 'O' },
 ];
 
 const UserRegisterForm = () => {
@@ -43,7 +44,7 @@ const UserRegisterForm = () => {
               name="gender"
               onChange={(value) => {
                 if (!value) return;
-                form.setFieldValue("gender", value.value);
+                form.setFieldValue('gender', value.value);
               }}
               options={genders}
               className="select2-selection"
@@ -86,7 +87,7 @@ const UserRegisterForm = () => {
                   ? {
                       value: form.values.departmentId,
                       label: departments.find(
-                        (d) => d.id === form.values.departmentId
+                        (d) => d.id === form.values.departmentId,
                       )?.name,
                     }
                   : null
@@ -95,8 +96,8 @@ const UserRegisterForm = () => {
               isMulti={false}
               onChange={(value) => {
                 if (!value) return;
-                form.setFieldValue("departmentId", value.value);
-                form.setFieldValue("municipalityId", 0);
+                form.setFieldValue('departmentId', value.value);
+                form.setFieldValue('municipalityId', 0);
               }}
               options={departments
                 .sort((a, b) => a.name.localeCompare(b.name))
@@ -123,11 +124,9 @@ const UserRegisterForm = () => {
                 form.values.municipalityId
                   ? {
                       value: form.values.municipalityId,
-                      label: departments
-                        .find((d) => d.id === form.values.departmentId)
-                        ?.items!.find(
-                          (i) => i.id === form.values.municipalityId
-                        )?.name,
+                      label: municipalities.find(
+                        ({ id }) => id === form.values.municipalityId,
+                      )?.name,
                     }
                   : null
               }
@@ -136,11 +135,14 @@ const UserRegisterForm = () => {
               name="municipality"
               onChange={(value) => {
                 if (!value) return;
-                form.setFieldValue("municipalityId", value.value);
+                form.setFieldValue('municipalityId', value.value);
               }}
-              options={departments
-                .find((d) => d.id === form.values.departmentId)
-                ?.items!.map(({ id, name }) => ({
+              options={municipalities
+                .filter(
+                  ({ departmentId }) =>
+                    departmentId === form.values.departmentId,
+                )
+                .map(({ id, name }) => ({
                   label: name,
                   value: id,
                 }))}
@@ -173,8 +175,8 @@ const UserRegisterForm = () => {
             />
             Acepto los términos y condiciones expresados en
             <a target="_blank" href="/politica-privacidad">
-              {" "}
-              la política de privacidad{" "}
+              {' '}
+              la política de privacidad{' '}
             </a>
             {form.touched.acceptedTerms && form.errors.acceptedTerms && (
               <p className="bg-danger position-absolute form__invalid-feedback">

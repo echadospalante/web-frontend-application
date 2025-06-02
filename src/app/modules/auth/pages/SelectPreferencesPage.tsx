@@ -1,11 +1,11 @@
-import type { SVGProps } from "react";
-import { Fragment } from "react";
+import type { SVGProps } from 'react';
+import { Fragment } from 'react';
 
-import { Link, useNavigate } from "react-router-dom";
-import { Button, Card, CardBody, Col, Container, Row } from "reactstrap";
-import { useRegister, useRegisterPreferences } from "../hooks/useRegister";
+import { Link, useNavigate } from 'react-router-dom';
+import { Button, Card, CardBody, Col, Container, Row } from 'reactstrap';
+import { useRegister, useRegisterPreferences } from '../hooks/useRegister';
 
-import UserPreferencesForm from "../../../shared/components/forms/UserPreferencesForm";
+import UserPreferencesForm from '../../../shared/components/forms/UserPreferencesForm';
 
 const SelectPreferencesPage = () => {
   const { preferencesIds } = useRegisterPreferences();
@@ -13,10 +13,10 @@ const SelectPreferencesPage = () => {
   const navigate = useNavigate();
 
   const handleSendRegister = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
   ): void => {
     event.preventDefault();
-    submitRegister().then(() => navigate("/registro/exito"));
+    submitRegister().then(() => navigate('/registro/exito'));
   };
 
   return (
@@ -85,7 +85,7 @@ const SelectPreferencesPage = () => {
               </Card>
               <div className="mt-5 text-center">
                 <p>
-                  © {new Date().getFullYear()} Echados Pa'lante. Powered with{" "}
+                  © {new Date().getFullYear()} Echados Pa'lante. Powered with{' '}
                   <i className="mdi mdi-heart text-danger"></i> by Themesbrand
                 </p>
               </div>

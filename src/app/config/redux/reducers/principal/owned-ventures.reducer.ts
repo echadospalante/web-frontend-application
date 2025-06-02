@@ -1,15 +1,15 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { Venture } from "echadospalante-core";
+import { Venture } from 'echadospalante-domain';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
-import { PaginatedBody } from "../../../../modules/principal/ventures/domain/api";
-import { RootState } from "../../store/store.config";
+import { RootState } from '../../store/store.config';
 
 export interface OwnedVenturesFilter {
   search: string;
   page: number;
   size: number;
-  categorySlug: string;
+  categoriesIds: string[];
 }
 
 export interface OwnedVenturesState {
@@ -21,9 +21,9 @@ export interface OwnedVenturesState {
 const initialState: OwnedVenturesState = {
   filters: {
     page: 0,
-    search: "",
+    search: '',
     size: 20,
-    categorySlug: "",
+    categoriesIds: [],
   },
   ventures: {
     items: [],
@@ -32,7 +32,7 @@ const initialState: OwnedVenturesState = {
 };
 
 export const ownedVenturesSlice = createSlice({
-  name: "principal/ownedVentures",
+  name: 'principal/ownedVentures',
   initialState,
   reducers: {
     createOwnedVenture: (state, action: PayloadAction<Venture>) => {
@@ -40,21 +40,21 @@ export const ownedVenturesSlice = createSlice({
     },
     setOwnedVenturesFilters: (
       state,
-      action: PayloadAction<OwnedVenturesFilter>
+      action: PayloadAction<OwnedVenturesFilter>,
     ) => {
-      const { page, search, size, categorySlug } = action.payload;
+      const { page, search, size, categoriesIds } = action.payload;
 
       state.filters = {
         page,
         search,
         size,
-        categorySlug,
+        categoriesIds,
       };
     },
     updateOwnedVenture: (state, action: PayloadAction<Venture>) => {
       const updatedVenture = action.payload;
       state.ventures.items = state.ventures.items.map((venture) =>
-        venture.id === updatedVenture.id ? updatedVenture : venture
+        venture.id === updatedVenture.id ? updatedVenture : venture,
       );
     },
     addOwnedVenture: (state, action: PayloadAction<Venture>) => {
@@ -65,7 +65,7 @@ export const ownedVenturesSlice = createSlice({
     },
     setOwnedVentures: (
       state,
-      action: PayloadAction<PaginatedBody<Venture>>
+      action: PayloadAction<PaginatedBody<Venture>>,
     ) => {
       const { items, total } = action.payload;
       state.ventures = {
@@ -89,7 +89,7 @@ export const {
   addOwnedVenture,
 } = ownedVenturesSlice.actions;
 
-export const selectOwnedVenturesManagement = (state: RootState) =>
+export const selectOwnedVentures = (state: RootState) =>
   state.principal.ownedVentures;
 
 export default ownedVenturesSlice.reducer;

@@ -1,7 +1,7 @@
-import classnames from "classnames";
-import { useState } from "react";
-import Dropzone from "react-dropzone";
-import { Link } from "react-router-dom";
+import classnames from 'classnames';
+import { useState } from 'react';
+import Dropzone from 'react-dropzone';
+import { Link } from 'react-router-dom';
 import {
   Card,
   Col,
@@ -17,7 +17,7 @@ import {
   Row,
   TabContent,
   TabPane,
-} from "reactstrap";
+} from 'reactstrap';
 
 type CreateDeclarationModal = {
   modal: boolean;
@@ -37,19 +37,19 @@ const DeclarationCreateModal = ({
       Object.assign(file, {
         preview: URL.createObjectURL(file),
         formattedSize: formatBytes(file.size),
-      })
+      }),
     );
     setSelectedFiles(files);
   };
 
   const formatBytes = (bytes: number, decimals = 2) => {
-    if (bytes === 0) return "0 Bytes";
+    if (bytes === 0) return '0 Bytes';
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   };
 
   const toggleTab = (tab: number) => {
@@ -82,13 +82,13 @@ const DeclarationCreateModal = ({
                 <NavItem
                   className={classnames({
                     current: activeTab === 1,
-                    "mx-1": true,
+                    'mx-1': true,
                   })}
                 >
                   <NavLink
                     className={classnames({
                       active: activeTab === 1,
-                      "position-relative": true,
+                      'position-relative': true,
                     })}
                     onClick={() => {
                       toggleTab(1);
@@ -104,13 +104,13 @@ const DeclarationCreateModal = ({
                 <NavItem
                   className={classnames({
                     current: activeTab === 2,
-                    "mx-1": true,
+                    'mx-1': true,
                   })}
                 >
                   <NavLink
                     className={classnames({
                       active: activeTab === 2,
-                      "position-relative": true,
+                      'position-relative': true,
                     })}
                     onClick={() => {
                       toggleTab(2);
@@ -126,13 +126,13 @@ const DeclarationCreateModal = ({
                 <NavItem
                   className={classnames({
                     current: activeTab === 3,
-                    "mx-1": true,
+                    'mx-1': true,
                   })}
                 >
                   <NavLink
                     className={classnames({
                       active: activeTab === 3,
-                      "position-relative": true,
+                      'position-relative': true,
                     })}
                     onClick={() => {
                       toggleTab(3);
@@ -148,13 +148,13 @@ const DeclarationCreateModal = ({
                 <NavItem
                   className={classnames({
                     current: activeTab === 3,
-                    "mx-1": true,
+                    'mx-1': true,
                   })}
                 >
                   <NavLink
                     className={classnames({
                       active: activeTab === 3,
-                      "position-relative": true,
+                      'position-relative': true,
                     })}
                     onClick={() => {
                       toggleTab(3);
@@ -170,13 +170,13 @@ const DeclarationCreateModal = ({
                 <NavItem
                   className={classnames({
                     current: activeTab === 3,
-                    "mx-1": true,
+                    'mx-1': true,
                   })}
                 >
                   <NavLink
                     className={classnames({
                       active: activeTab === 3,
-                      "position-relative": true,
+                      'position-relative': true,
                     })}
                     onClick={() => {
                       toggleTab(3);
@@ -408,7 +408,7 @@ const DeclarationCreateModal = ({
                         return (
                           <Card
                             className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
-                            key={i + "-file"}
+                            key={i + '-file'}
                           >
                             <div className="p-2">
                               <Row className="align-items-center">
@@ -445,7 +445,7 @@ const DeclarationCreateModal = ({
             <div className="actions clearfix">
               <ul role="menu" aria-label="Pagination">
                 <li
-                  className={activeTab === 1 ? "previous disabled" : "previous"}
+                  className={activeTab === 1 ? 'previous disabled' : 'previous'}
                 >
                   <Link
                     to="#"
@@ -456,7 +456,7 @@ const DeclarationCreateModal = ({
                     Previous
                   </Link>
                 </li>
-                <li className={activeTab === 3 ? "next disabled" : "next"}>
+                <li className={activeTab === 3 ? 'next disabled' : 'next'}>
                   <Link
                     to="#"
                     onClick={() => {

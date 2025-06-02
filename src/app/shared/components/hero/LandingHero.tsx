@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Card, Col, Container, Row } from "reactstrap";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Card, Col, Container, Row } from 'reactstrap';
 
 const LandingHero = () => {
   return (

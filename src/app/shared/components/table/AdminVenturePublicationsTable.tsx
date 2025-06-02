@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
 import {
   flexRender,
@@ -7,9 +7,13 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { ContentType, VenturePublication } from "echadospalante-core";
-import { Link } from "react-router-dom";
+} from '@tanstack/react-table';
+import {
+  ContentType,
+  PublicationType,
+  VenturePublication,
+} from 'echadospalante-domain';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -18,14 +22,14 @@ import {
   Row,
   Table,
   UncontrolledTooltip,
-} from "reactstrap";
+} from 'reactstrap';
 
-import useVenturePublications from "../../../modules/admin/general/hooks/useVenturePublications";
-import PublicationTypeIcon from "../content/PublicationTypeIcon";
-import VenturePublicationsFiltersForm from "../forms/VenturePublicationsFiltersForm";
-import AppSpinner from "../loader/Spinner";
-import Pagination from "../pagination/Pagination";
-import IconTooltip from "../tooltips/IconTooltip";
+import useVenturePublications from '../../../modules/admin/general/hooks/useVenturePublications';
+import PublicationTypeIcon from '../content/PublicationTypeIcon';
+import VenturePublicationsFiltersForm from '../forms/VenturePublicationsFiltersForm';
+import AppSpinner from '../loader/Spinner';
+import Pagination from '../pagination/Pagination';
+import IconTooltip from '../tooltips/IconTooltip';
 
 type AdminVenturePublicationsTableProps = {
   ventureId: string;
@@ -64,6 +68,8 @@ const AdminVenturePublicationsTable = ({
     setPage(page);
   };
 
+  console.log(ventureId);
+
   return (
     <Row>
       <Col lg="12">
@@ -97,7 +103,7 @@ const AdminVenturePublicationsTable = ({
               <VenturePublicationsFiltersForm />
 
               {loading ? (
-                <div style={{ marginTop: "200px" }}>
+                <div style={{ marginTop: '200px' }}>
                   <AppSpinner />
                 </div>
               ) : (
@@ -113,8 +119,8 @@ const AdminVenturePublicationsTable = ({
                                 colSpan={header.colSpan}
                                 className={`${
                                   header.column.columnDef.enableSorting
-                                    ? "sorting sorting_desc"
-                                    : ""
+                                    ? 'sorting sorting_desc'
+                                    : ''
                                 }`}
                               >
                                 {header.isPlaceholder ? null : (
@@ -122,7 +128,7 @@ const AdminVenturePublicationsTable = ({
                                     <div>
                                       {flexRender(
                                         header.column.columnDef.header,
-                                        header.getContext()
+                                        header.getContext(),
                                       )}
                                     </div>
                                   </Fragment>
@@ -144,13 +150,13 @@ const AdminVenturePublicationsTable = ({
                                   key={cell.id}
                                   className={`${
                                     cell.row.original.active
-                                      ? "bg-soft-red"
-                                      : ""
+                                      ? 'bg-soft-red'
+                                      : ''
                                   }`}
                                 >
                                   {flexRender(
                                     cell.column.columnDef.cell,
-                                    cell.getContext()
+                                    cell.getContext(),
                                   )}
                                 </td>
                               );
@@ -197,29 +203,30 @@ const AdminVenturePublicationsTable = ({
 const getColumns = () => {
   return [
     {
-      header: "Tipo",
+      header: 'Tipo',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const { type } = cellProps.row.original as VenturePublication;
-        return <PublicationTypeIcon type={type} />;
+        // const {  } = cellProps.row.original as VenturePublication;
+        console.log(cellProps.row.original);
+        return <PublicationTypeIcon type={PublicationType.ACHIEVEMENT} />;
       },
     },
     {
-      header: "Recursos",
+      header: 'Recursos',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
         const venturePublication = cellProps.row.original as VenturePublication;
         const [images] = useState(
-          venturePublication.body.filter(
-            ({ type }) => type === ContentType.IMAGE
-          )
+          venturePublication.contents.filter(
+            ({ type }) => type === ContentType.IMAGE,
+          ),
         );
         const [files] = useState(
-          venturePublication.body.filter(
-            ({ type }) => type === ContentType.FILE
-          )
+          venturePublication.contents.filter(
+            ({ type }) => type === ContentType.FILE,
+          ),
         );
 
         return (
@@ -236,7 +243,7 @@ const getColumns = () => {
                         <Link
                           to="#"
                           className="d-inline-block"
-                          id={"member" + id}
+                          id={'member' + id}
                         >
                           <img
                             src={img}
@@ -245,7 +252,7 @@ const getColumns = () => {
                           />
                           <UncontrolledTooltip
                             placement="top"
-                            target={"member" + id}
+                            target={'member' + id}
                           >
                             Ver imágen
                           </UncontrolledTooltip>
@@ -264,7 +271,7 @@ const getColumns = () => {
                   const [url, name, type, size] = JSON.parse(content);
                   return (
                     <div key={key} className="d-flex">
-                      <a href={url} id={"file" + id}>
+                      <a href={url} id={'file' + id}>
                         <img
                           src={`/images/filetypes/${type}.png`}
                           height={30}
@@ -276,7 +283,7 @@ const getColumns = () => {
                         </span>
                         <UncontrolledTooltip
                           placement="top"
-                          target={"file" + id}
+                          target={'file' + id}
                         >
                           <i className="bx bx-download me-2"></i>
                           Descargar archivo
@@ -292,16 +299,16 @@ const getColumns = () => {
       },
     },
     {
-      header: "Título",
+      header: 'Título',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
         return (
           <div
             style={{
-              maxWidth: "200px",
-              wordBreak: "break-word",
-              whiteSpace: "normal",
+              maxWidth: '200px',
+              wordBreak: 'break-word',
+              whiteSpace: 'normal',
             }}
           >
             <a
@@ -317,23 +324,23 @@ const getColumns = () => {
       },
     },
     {
-      header: "Contenido",
+      header: 'Contenido',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
         const venturePublication = cellProps.row.original as VenturePublication;
         const [paragraphs] = useState(
-          venturePublication.body.filter(
-            ({ type }) => type === ContentType.TEXT
-          )
+          venturePublication.contents.filter(
+            ({ type }) => type === ContentType.TEXT,
+          ),
         );
 
         return (
           <div
             style={{
-              maxWidth: "150px",
-              wordBreak: "break-word",
-              whiteSpace: "normal",
+              maxWidth: '150px',
+              wordBreak: 'break-word',
+              whiteSpace: 'normal',
             }}
           >
             {paragraphs.map(({ content, id }) => {
@@ -349,17 +356,17 @@ const getColumns = () => {
       },
     },
     {
-      header: "Fecha de creación",
-      accessorKey: "createdAt",
+      header: 'Fecha de creación',
+      accessorKey: 'createdAt',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
         const date = new Date(cellProps.row.original.createdAt as string);
-        return <section>{new Date(date).toISOString().split("T")[0]}</section>;
+        return <section>{new Date(date).toISOString().split('T')[0]}</section>;
       },
     },
     {
-      header: "Acciones",
+      header: 'Acciones',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (value: any) => {
@@ -374,11 +381,11 @@ const getColumns = () => {
                   className="px-3 py-1 mx-1 w-100"
                 >
                   <IconTooltip
-                    tooltipId={"edit-venture-publication"}
-                    tooltipHtml={"<h6>Inactivar</h6>"}
-                    tooltipPlace={"top"}
+                    tooltipId={'edit-venture-publication'}
+                    tooltipHtml={'<h6>Inactivar</h6>'}
+                    tooltipPlace={'top'}
                     iconClassName={
-                      "bx bx-hide font-size-16 align-middle text-white"
+                      'bx bx-hide font-size-16 align-middle text-white'
                     }
                   />
                 </Button>
@@ -391,11 +398,11 @@ const getColumns = () => {
                   className="px-3 py-1 mx-1 w-100"
                 >
                   <IconTooltip
-                    tooltipId={"edit-venture-publication"}
-                    tooltipHtml={"<h6>Reactivar</h6>"}
-                    tooltipPlace={"top"}
+                    tooltipId={'edit-venture-publication'}
+                    tooltipHtml={'<h6>Reactivar</h6>'}
+                    tooltipPlace={'top'}
                     iconClassName={
-                      "bx bx-show font-size-16 align-middle text-white"
+                      'bx bx-show font-size-16 align-middle text-white'
                     }
                   />
                 </Button>
@@ -409,11 +416,11 @@ const getColumns = () => {
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip
-                  tooltipId={"delete-venture-publication"}
-                  tooltipHtml={"<h6>Eliminar publicación</h6>"}
-                  tooltipPlace={"top"}
+                  tooltipId={'delete-venture-publication'}
+                  tooltipHtml={'<h6>Eliminar publicación</h6>'}
+                  tooltipPlace={'top'}
                   iconClassName={
-                    "bx bx-trash font-size-16 align-middle text-white"
+                    'bx bx-trash font-size-16 align-middle text-white'
                   }
                 />
               </Button>

@@ -1,6 +1,6 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
-import classnames from "classnames";
+import classnames from 'classnames';
 import {
   Card,
   CardBody,
@@ -11,11 +11,11 @@ import {
   Row,
   TabContent,
   TabPane,
-} from "reactstrap";
-import Accordion from "../accordion/Accordion";
+} from 'reactstrap';
+import Accordion from '../accordion/Accordion';
 
 const FAQs = () => {
-  const [activeTab, setactiveTab] = useState("1");
+  const [activeTab, setactiveTab] = useState('1');
 
   return (
     <Fragment>
@@ -37,9 +37,9 @@ const FAQs = () => {
                   <Col lg="2" sm="4">
                     <Nav pills className="flex-column">
                       <NavLink
-                        className={classnames({ active: activeTab === "1" })}
+                        className={classnames({ active: activeTab === '1' })}
                         onClick={() => {
-                          setactiveTab("1");
+                          setactiveTab('1');
                         }}
                       >
                         <i className="bx bx-help-circle nav-icon d-block mb-2" />
@@ -49,9 +49,9 @@ const FAQs = () => {
                       </NavLink>
 
                       <NavLink
-                        className={classnames({ active: activeTab === "2" })}
+                        className={classnames({ active: activeTab === '2' })}
                         onClick={() => {
-                          setactiveTab("2");
+                          setactiveTab('2');
                         }}
                       >
                         <i className="bx bx-receipt nav-icon d-block mb-2" />
@@ -59,9 +59,9 @@ const FAQs = () => {
                       </NavLink>
 
                       <NavLink
-                        className={classnames({ active: activeTab === "3" })}
+                        className={classnames({ active: activeTab === '3' })}
                         onClick={() => {
-                          setactiveTab("3");
+                          setactiveTab('3');
                         }}
                       >
                         <i className="bx bx-timer d-block nav-icon mb-2" />

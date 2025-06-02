@@ -1,16 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-import { AppRole } from "../../../modules/auth/domain/Role";
-import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
-import AdminSidebarContent from "./AdminSidebarContent";
-import ModeratorSidebarContent from "./ModeratorSidebarContent";
-import NewsWriterSidebarContent from "./NewsWriterSidebarContent";
-import UserSidebarContent from "./PrincipalSidebarContent";
-import { useSelector } from "react-redux";
-import { selectLayout } from "../../../config/redux/reducers/shared/layout.reducer";
+import { AppRole } from '../../../modules/auth/domain/Role';
+import useAuthentication from '../../../modules/auth/hooks/useAuthentication';
+import AdminSidebarContent from './AdminSidebarContent';
+import ModeratorSidebarContent from './ModeratorSidebarContent';
+import NewsWriterSidebarContent from './NewsWriterSidebarContent';
+import UserSidebarContent from './PrincipalSidebarContent';
 
 type SidebarContentProps = {
   role?: AppRole;
@@ -33,7 +31,6 @@ const SidebarContent = ({ role }: SidebarContentProps) => {
 
 const Sidebar = () => {
   const { activeRole } = useAuthentication();
-  const { showSidebar } = useSelector(selectLayout);
 
   return (
     <Fragment>
@@ -41,10 +38,10 @@ const Sidebar = () => {
         <div className="navbar-brand-box">
           <Link to="/" className="logo logo-dark">
             <span className="logo-sm">
-              <img src="/epl2.jpeg" alt="" height="35" className="rounded-2" />
+              <img src="/epl2.jpeg" alt="" height="45" />
             </span>
             <span className="logo-lg">
-              <img src="/epl2.jpeg" alt="" height="35" className="rounded-2" />
+              <img src="/epl2.jpeg" alt="" height="45" />
             </span>
           </Link>
 
@@ -57,10 +54,7 @@ const Sidebar = () => {
             </span>
           </Link>
         </div>
-        <div
-          data-simplebar
-          className={`h-100 ${showSidebar ? "" : "position-fixed"}`}
-        >
+        <div data-simplebar className="h-100">
           <SidebarContent role={activeRole?.name} />
         </div>
 

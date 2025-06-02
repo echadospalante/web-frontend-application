@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { User } from "echadospalante-core";
+import { User } from 'echadospalante-domain';
 
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import {
   fetchUsersMiddleware,
   lockUserAccountMiddleware,
   unlockUserAccountMiddleware,
   unverifyUserAccountMiddleware,
   verifyUserAccountMiddleware,
-} from "../api/middleware/users.middleware";
-import { useSelector } from "react-redux";
+} from '../api/middleware/users.middleware';
+import { useSelector } from 'react-redux';
 import {
   selectUsersManagement,
   setUserFilters,
-} from "../../../../config/redux/reducers/admin/users-management.reducer";
+} from '../../../../config/redux/reducers/admin/users-management.reducer';
 
 const useUsers = () => {
   const { filters } = useSelector(selectUsersManagement);

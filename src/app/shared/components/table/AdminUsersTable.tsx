@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment, useState } from "react";
+import { Fragment, useState } from 'react';
 
 import {
   flexRender,
@@ -8,43 +8,30 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
-} from "@tanstack/react-table";
-import { User, UserDetail } from "echadospalante-core";
-import { Button, Card, CardBody, Col, Row, Table } from "reactstrap";
+} from '@tanstack/react-table';
+import { User } from 'echadospalante-domain';
+import { Button, Card, CardBody, Col, Row, Table } from 'reactstrap';
 
-import useUsers from "../../../modules/admin/general/hooks/useUsers";
-import { AppRole, Role } from "../../../modules/auth/domain/Role";
-import UsersFiltersForm from "../forms/UsersFiltersForm";
-import AppSpinner from "../loader/Spinner";
-import EditUserModal from "../modal/EditUserModal";
-import Pagination from "../pagination/Pagination";
-import IconTooltip from "../tooltips/IconTooltip";
-import { textToRGB } from "../../helpers/colors";
-import {
-  getDepartmentByMunicipalityId,
-  getMunicipalityNameById,
-} from "../../helpers/department-helpers";
+import useFetchUsers from '../../../modules/admin/general/hooks/useFetchUsers';
+import { AppRole, Role } from '../../../modules/auth/domain/Role';
+import { getIconName, stringToColor, textToRGB } from '../../helpers/colors';
+import UsersFiltersForm from '../forms/UsersFiltersForm';
+import AppSpinner from '../loader/Spinner';
+import EditUserModal from '../modal/EditUserModal';
+import Pagination from '../pagination/Pagination';
+import IconTooltip from '../tooltips/IconTooltip';
 
 const AdminUsersTable = () => {
   const [activeUserToEdit, setActiveUserToEdit] = useState<User>();
 
-  const {
-    loading,
-    error,
-    items,
-    total,
-    fetchUsers,
-    toggleLockUserAccount,
-    page,
-    size,
-    setPage,
-  } = useUsers();
+  const { loading, error, users, toggleLockUserAccount, page, size, setPage } =
+    useFetchUsers();
 
   const columns = getColumns(toggleLockUserAccount, setActiveUserToEdit);
 
   const table = useReactTable({
     columns,
-    data: items || [],
+    data: users?.items || [],
     manualPagination: true,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -69,7 +56,8 @@ const AdminUsersTable = () => {
         <EditUserModal
           show={!!activeUserToEdit}
           onCloseClick={handleCloseEditModal}
-          onSuccessfulEdit={fetchUsers}
+          // onSuccessfulEdit={fetchUsers}
+          onSuccessfulEdit={() => {}}
           user={activeUserToEdit}
         />
       )}
@@ -82,33 +70,10 @@ const AdminUsersTable = () => {
                 Listado de usuarios
               </h5>
               <div className="flex-shrink-0 d-flex flex-row align-items-center">
-                <div className="btn-group h-100" role="group">
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btn-list"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-primary" htmlFor="btn-list">
-                    <i className="bx bx-list-ul"></i>
-                  </label>
-
-                  <input
-                    type="radio"
-                    className="btn-check"
-                    name="btnradio"
-                    id="btn-grid"
-                    autoComplete="off"
-                  />
-                  <label className="btn btn-outline-primary" htmlFor="btn-grid">
-                    <i className="bx bx-grid"></i>
-                  </label>
-                </div>
-
                 <Button
                   type="button"
-                  onClick={fetchUsers}
+                  // onClick={fetchUsers}
+                  onClick={() => {}}
                   className="btn btn-light mx-2 mb-2"
                 >
                   <i className="mdi mdi-refresh"></i>
@@ -129,7 +94,7 @@ const AdminUsersTable = () => {
               <UsersFiltersForm />
 
               {loading ? (
-                <div style={{ marginTop: "200px" }}>
+                <div style={{ marginTop: '200px' }}>
                   <AppSpinner />
                 </div>
               ) : (
@@ -145,8 +110,8 @@ const AdminUsersTable = () => {
                                 colSpan={header.colSpan}
                                 className={`${
                                   header.column.columnDef.enableSorting
-                                    ? "sorting sorting_desc"
-                                    : ""
+                                    ? 'sorting sorting_desc'
+                                    : ''
                                 }`}
                               >
                                 {header.isPlaceholder ? null : (
@@ -154,7 +119,7 @@ const AdminUsersTable = () => {
                                     <div>
                                       {flexRender(
                                         header.column.columnDef.header,
-                                        header.getContext()
+                                        header.getContext(),
                                       )}
                                     </div>
                                   </Fragment>
@@ -175,7 +140,7 @@ const AdminUsersTable = () => {
                                 <td key={cell.id}>
                                   {flexRender(
                                     cell.column.columnDef.cell,
-                                    cell.getContext()
+                                    cell.getContext(),
                                   )}
                                 </td>
                               );
@@ -188,29 +153,31 @@ const AdminUsersTable = () => {
                 </div>
               )}
 
-              <Row>
-                <Col sm={12} md={5} lg={6}>
-                  <div className="dataTables_info">
-                    Página {page + 1} de {Math.ceil(total / size) || 1}, con un
-                    tatal de {total} usuarios
-                  </div>
-                </Col>
-                <Col
-                  sm={12}
-                  md={7}
-                  lg={6}
-                  className="d-flex justify-content-end"
-                >
-                  <Pagination
-                    perPageData={size}
-                    length={total}
-                    currentPage={page + 1}
-                    setCurrentPage={handleSetCurrentPage}
-                    paginationDiv="col-lg-12"
-                    paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
-                  />
-                </Col>
-              </Row>
+              {users && (
+                <Row>
+                  <Col sm={12} md={5} lg={6}>
+                    <div className="dataTables_info">
+                      Página {page + 1} de {Math.ceil(users.total / size) || 1},
+                      con un tatal de {users.total} usuarios
+                    </div>
+                  </Col>
+                  <Col
+                    sm={12}
+                    md={7}
+                    lg={6}
+                    className="d-flex justify-content-end"
+                  >
+                    <Pagination
+                      perPageData={size}
+                      length={users.total}
+                      currentPage={page + 1}
+                      setCurrentPage={handleSetCurrentPage}
+                      paginationDiv="col-lg-12"
+                      paginationClass="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                    />
+                  </Col>
+                </Row>
+              )}
             </Fragment>
           </CardBody>
         </Card>
@@ -221,28 +188,49 @@ const AdminUsersTable = () => {
 
 const getColumns = (
   toggleLockUserAccount: (user: User) => void,
-  setActiveUserToEdit: (user: User) => void
+  setActiveUserToEdit: (user: User) => void,
 ) => {
   return [
     {
-      header: "Foto",
+      header: 'Foto',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
         const user = cellProps.row.original as User;
+        const [displayPicture, setDisplayPicture] = useState(false);
         return (
           <section>
-            <img
-              src={user.picture}
-              alt="user"
-              className="avatar-xs rounded-circle"
-            />
+            {displayPicture ? (
+              <img
+                className="rounded-circle header-profile-user"
+                src={user.picture}
+                alt="Profile picture"
+                onError={() => setDisplayPicture(false)}
+              />
+            ) : (
+              <div
+                title={`${user.firstName} ${user.lastName}`}
+                className="rounded-circle d-inline-flex btn-soft-primary"
+                style={{
+                  width: '40px',
+                  backgroundColor: stringToColor(
+                    `${user.firstName} ${user.lastName}`,
+                  ),
+                  height: '40px',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                {getIconName(`${user.firstName} ${user.lastName}`)}
+              </div>
+            )}
           </section>
         );
       },
     },
     {
-      header: "Verificado",
+      header: 'Verificado',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
@@ -256,64 +244,61 @@ const getColumns = (
       },
     },
     {
-      header: "Nombres",
-      accessorKey: "firstName",
+      header: 'Nombres',
+      accessorKey: 'firstName',
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Apellidos",
-      accessorKey: "lastName",
+      header: 'Apellidos',
+      accessorKey: 'lastName',
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Email",
-      accessorKey: "email",
+      header: 'Email',
+      accessorKey: 'email',
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Género",
-      accessorKey: "detail.gender",
+      header: 'Género',
+      accessorKey: 'gender',
       enableColumnFilter: false,
       enableSorting: true,
     },
     {
-      header: "Fecha de Nacimiento",
+      header: 'Fecha de Nacimiento',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const userDetail = cellProps.row.original.detail as UserDetail | null;
-        if (!userDetail) return <></>;
+        const user = cellProps.row.original as User;
+        if (!user) return <></>;
         return (
           <section>
-            <span>
-              {new Date(userDetail.birthDate).toISOString().split("T")[0]}
-            </span>
+            <span>{new Date(user.birthDate).toISOString().split('T')[0]}</span>
           </section>
         );
       },
     },
     {
-      header: "Municipio",
+      header: 'Municipio',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const userDetail = cellProps.row.original.detail;
-        if (!userDetail) return <></>;
+        const user = cellProps.row.original as User;
+        if (!user.municipality) return <></>;
         return (
-          <section>
-            <span>
-              {getMunicipalityNameById(userDetail.municipalityId)},{" "}
-              {getDepartmentByMunicipalityId(userDetail.municipalityId)?.name}
-            </span>
+          <section className="d-flex align-items-center cursor-pointer">
+            {user.municipality.name}
+            <i className="bx bx-link-external text-primary"></i>
+            {/* {getDepartmentByMunicipalityId(user.municipalityId)?.name} */}
           </section>
         );
       },
     },
     {
-      header: "Completó registro",
+      header: 'Completó registro',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
@@ -322,17 +307,17 @@ const getColumns = (
           <section>
             <span
               className={`badge bg-${
-                onboardingCompleted ? "success" : "danger"
+                onboardingCompleted ? 'success' : 'danger'
               } rounded-pill p-2 px-3`}
             >
-              {onboardingCompleted ? "Sí" : "No"}
+              {onboardingCompleted ? 'Sí' : 'No'}
             </span>
           </section>
         );
       },
     },
     {
-      header: "Estado",
+      header: 'Estado',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
@@ -341,21 +326,21 @@ const getColumns = (
           <section>
             <span
               className={`badge bg-${
-                active ? "success" : "danger"
+                active ? 'success' : 'danger'
               } rounded-pill p-2 px-3`}
             >
-              {active ? "Activo" : "Inactivo"}
+              {active ? 'Activo' : 'Inactivo'}
             </span>
           </section>
         );
       },
     },
     {
-      header: "Roles",
+      header: 'Roles',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
-        const roles = cellProps.row.original.roles as Role[];
+        const roles = (cellProps.row.original.roles as Role[]) || [];
         return (
           <section className="d-flex">
             {roles.map((role) => (
@@ -372,17 +357,17 @@ const getColumns = (
       },
     },
     {
-      header: "Fecha de creación",
-      accessorKey: "createdAt",
+      header: 'Fecha de creación',
+      accessorKey: 'createdAt',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (cellProps: any) => {
         const date = new Date(cellProps.row.original.createdAt as string);
-        return <section>{new Date(date).toISOString().split("T")[0]}</section>;
+        return <section>{new Date(date).toISOString().split('T')[0]}</section>;
       },
     },
     {
-      header: "Acciones",
+      header: 'Acciones',
       enableColumnFilter: false,
       enableSorting: true,
       cell: (value: any) => {
@@ -401,10 +386,10 @@ const getColumns = (
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip
-                  tooltipId={"reenable-user"}
-                  tooltipHtml={"<h6>Deshabilitar usuario</h6>"}
-                  tooltipPlace={"top"}
-                  iconClassName={"bx bx-x font-size-16 align-middle text-white"}
+                  tooltipId={'reenable-user'}
+                  tooltipHtml={'<h6>Deshabilitar usuario</h6>'}
+                  tooltipPlace={'top'}
+                  iconClassName={'bx bx-x font-size-16 align-middle text-white'}
                 />
               </Button>
             ) : (
@@ -416,11 +401,11 @@ const getColumns = (
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip
-                  tooltipId={"disable-user"}
-                  tooltipHtml={"<h6>Reactivar usuario</h6>"}
-                  tooltipPlace={"top"}
+                  tooltipId={'disable-user'}
+                  tooltipHtml={'<h6>Reactivar usuario</h6>'}
+                  tooltipPlace={'top'}
                   iconClassName={
-                    "bx bx-reset font-size-16 align-middle text-white"
+                    'bx bx-reset font-size-16 align-middle text-white'
                   }
                 />
               </Button>
@@ -432,11 +417,11 @@ const getColumns = (
               className="px-3 py-1 mt-1 mx-1 w-100"
             >
               <IconTooltip
-                tooltipId={"modify-user"}
-                tooltipHtml={"<h6>Editar</h6>"}
-                tooltipPlace={"top"}
+                tooltipId={'modify-user'}
+                tooltipHtml={'<h6>Editar</h6>'}
+                tooltipPlace={'top'}
                 iconClassName={
-                  "bx bxs-edit font-size-16 align-middle text-white"
+                  'bx bxs-edit font-size-16 align-middle text-white'
                 }
               />
             </Button>

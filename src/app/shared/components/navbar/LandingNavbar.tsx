@@ -1,19 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
-import { Link } from "react-router-dom";
-import { Container } from "reactstrap";
-import LanguageDropdown from "../dropdown/LanguageDropdown";
-import { useTranslation } from "react-i18next";
-import useLogin from "../../../modules/auth/hooks/useLogin";
-import { GoogleLogin } from "@react-oauth/google";
+import { Link } from 'react-router-dom';
+import { Container } from 'reactstrap';
+import LanguageDropdown from '../dropdown/LanguageDropdown';
+import { useTranslation } from 'react-i18next';
+import useLogin from '../../../modules/auth/hooks/useLogin';
+import { GoogleLogin } from '@react-oauth/google';
 
 const LandingNavbar = () => {
-  const [navClass, setNavClass] = useState("");
-  const { t } = useTranslation();
   const { loginWithCredentials } = useLogin();
+  const [navClass, setNavClass] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
-    window.addEventListener("scroll", scrollNavigation, true);
+    window.addEventListener('scroll', scrollNavigation, true);
   });
 
   const ref = useRef<HTMLLIElement[]>([]);
@@ -22,19 +22,19 @@ const LandingNavbar = () => {
     const scrollUp = document.documentElement.scrollTop;
     console.log({ scrollUp });
     if (scrollUp > 50) {
-      setNavClass("sticky nav-sticky");
+      setNavClass('sticky nav-sticky');
     } else {
-      setNavClass("");
+      setNavClass('');
     }
 
     const element = ref.current;
     element.forEach((item) => {
       const firstChild = item.firstChild as HTMLElement;
-      firstChild.classList.remove("active");
+      firstChild.classList.remove('active');
 
-      if (item.classList.contains("active")) {
+      if (item.classList.contains('active')) {
         const firstChild = item.firstChild as HTMLElement;
-        firstChild.classList.add("active");
+        firstChild.classList.add('active');
       }
     });
   };
@@ -42,7 +42,7 @@ const LandingNavbar = () => {
   return (
     <nav
       className={
-        "navbar bg-white navbar-expand-lg align-items-center fixed-top sticky " +
+        'navbar bg-white navbar-expand-lg align-items-center fixed-top sticky ' +
         navClass
       }
       id="navbar"
@@ -70,25 +70,25 @@ const LandingNavbar = () => {
         <div className="d-lg-block d-none fw-medium">
           <ul className="d-flex flex-row align-items-center justify-content-center w-100 px-2 mt-3 list-unstyled">
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#">{t("Principal")}</a>
+              <a href="#">{t('Principal')}</a>
             </li>
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#nosotros">{t("About Us")}</a>
+              <a href="#nosotros">{t('About Us')}</a>
             </li>
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#caracteristicas">{t("Features")}</a>
+              <a href="#caracteristicas">{t('Features')}</a>
             </li>
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#precios">{t("Success Cases")}</a>
+              <a href="#precios">{t('Success Cases')}</a>
             </li>
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#faqs">{t("FAQs")}</a>
+              <a href="#faqs">{t('FAQs')}</a>
             </li>
           </ul>
         </div>
 
         <div className="d-flex align-items-center position-relative">
-          <div className="position-absolute" style={{ left: "-50px" }}>
+          <div className="position-absolute" style={{ left: '-50px' }}>
             <LanguageDropdown />
           </div>
 
@@ -96,11 +96,10 @@ const LandingNavbar = () => {
             <GoogleLogin
               onSuccess={(credentialResponse) => {
                 if (!credentialResponse.credential) return;
-                console.log({ TOKEN: credentialResponse.credential });
                 loginWithCredentials(credentialResponse.credential);
               }}
               onError={() => {
-                console.log("Login Failed");
+                console.log('Login Failed');
               }}
             />
           </div>

@@ -1,48 +1,48 @@
-import React from "react";
-import { Card, CardBody, Col } from "reactstrap";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Card, CardBody, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const jobVacancyData = [
   {
     id: 1,
-    img: "/epl.png",
-    title: "Test 1",
-    country: "Antioquia",
+    img: '/epl.png',
+    title: 'Test 1',
+    country: 'Antioquia',
     vacancy: 8,
   },
   {
     id: 2,
-    img: "/epl.png",
-    title: "Test 2",
-    country: "Cundinamarca",
+    img: '/epl.png',
+    title: 'Test 2',
+    country: 'Cundinamarca',
     vacancy: 12,
   },
   {
     id: 3,
-    img: "/epl.png",
-    title: "Test 3",
-    country: "Casanare",
+    img: '/epl.png',
+    title: 'Test 3',
+    country: 'Casanare',
     vacancy: 25,
   },
   {
     id: 4,
-    img: "/epl.png",
-    title: "Test 4",
-    country: "Vichada",
+    img: '/epl.png',
+    title: 'Test 4',
+    country: 'Vichada',
     vacancy: 8,
   },
   {
     id: 5,
-    img: "/epl.png",
-    title: "Test 5",
-    country: "Guainia",
+    img: '/epl.png',
+    title: 'Test 5',
+    country: 'Guainia',
     vacancy: 1,
   },
   {
     id: 6,
-    img: "/epl.png",
-    title: "Test 6",
-    country: "Vaupés",
+    img: '/epl.png',
+    title: 'Test 6',
+    country: 'Vaupés',
     vacancy: 15,
   },
 ];
@@ -77,8 +77,8 @@ const CompanySummary = () => {
                   <i className="bx bx-map text-body"></i> {item.country}
                 </p>
                 <p className="mb-0 text-muted">
-                  <b>{item.vacancy}</b>{" "}
-                  {item.vacancy > 1 ? "Donaciones" : "Donacion"}
+                  <b>{item.vacancy}</b>{' '}
+                  {item.vacancy > 1 ? 'Donaciones' : 'Donacion'}
                 </p>
               </div>
             </CardBody>

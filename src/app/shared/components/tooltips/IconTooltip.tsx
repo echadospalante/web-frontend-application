@@ -1,6 +1,6 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { PlacesType, Tooltip } from "react-tooltip";
+import { PlacesType, Tooltip } from 'react-tooltip';
 
 type IconTooltipProps = {
   tooltipId: string;

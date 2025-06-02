@@ -1,12 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { EventCategory, EventLocation } from "echadospalante-core";
-import { useSelector } from "react-redux";
+import { EventCategory, EventLocation } from 'echadospalante-domain';
+import { useSelector } from 'react-redux';
 
-import { selectVentureEventsManagement } from "../../../../config/redux/reducers/admin/venture-events-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { textToRGB } from "../../../../shared/helpers/colors";
-import { fetchVentureEventsMiddleware } from "../api/middleware/venture-events.middleware";
+import { selectVentureEventsManagement } from '../../../../config/redux/reducers/admin/venture-events-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { textToRGB } from '../../../../shared/helpers/colors';
+import { fetchVentureEventsMiddleware } from '../api/middleware/venture-events.middleware';
 
 export interface CalendarEvent {
   id: string;
@@ -36,7 +36,7 @@ const useVentureEvents = () => {
       location: item.location,
       categories: item.categories,
       backgroundColor: textToRGB(item.title),
-    }))
+    })),
   );
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const useVentureEvents = () => {
         location: item.location,
         categories: item.categories,
         backgroundColor: textToRGB(item.title),
-      }))
+      })),
     );
   }, [events]);
 

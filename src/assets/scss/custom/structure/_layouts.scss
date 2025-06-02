@@ -1,15 +1,15 @@
-// 
+//
 // _layouts.scss
-// 
+//
 
-body[data-layout-size="boxed"] {
-    background-color: var(--#{$prefix}boxed-body-bg);
-    #layout-wrapper {
-        background-color: var(--#{$prefix}body-bg);
-        max-width: $boxed-layout-width;
-        margin: 0 auto;
-        box-shadow: $box-shadow;
-    }
+body[data-layout-size='boxed'] {
+  background-color: var(--#{$prefix}boxed-body-bg);
+  #layout-wrapper {
+    background-color: var(--#{$prefix}body-bg);
+    max-width: $boxed-layout-width;
+    margin: 0 auto;
+    box-shadow: $box-shadow;
+  }
 
   #page-topbar {
     max-width: calc(#{$boxed-layout-width} - #{$sidebar-width});
@@ -19,16 +19,15 @@ body[data-layout-size="boxed"] {
   .footer {
     margin: 0 auto;
     max-width: calc(#{$boxed-layout-width} - #{$sidebar-width});
-}
-
-&.vertical-collpsed {
-    .footer {
-        max-width: calc(#{$boxed-layout-width} - #{$sidebar-collapsed-width});
-    }
-
   }
 
-  &[data-sidebar-size="small"] {
+  &.vertical-collpsed {
+    .footer {
+      max-width: calc(#{$boxed-layout-width} - #{$sidebar-collapsed-width});
+    }
+  }
+
+  &[data-sidebar-size='small'] {
     #page-topbar {
       max-width: calc(#{$boxed-layout-width} - #{$sidebar-width-sm});
       // left: $sidebar-width-sm;
@@ -38,22 +37,21 @@ body[data-layout-size="boxed"] {
     }
   }
 
+  .footer {
+    margin: 0 auto;
+    max-width: calc(#{$boxed-layout-width} - #{$sidebar-width});
+  }
+
+  &.vertical-collpsed {
     .footer {
-        margin: 0 auto;
-        max-width: calc(#{$boxed-layout-width} - #{$sidebar-width});
+      max-width: calc(#{$boxed-layout-width} - #{$sidebar-collapsed-width});
     }
-
-    &.vertical-collpsed {
-        .footer {
-            max-width: calc(#{$boxed-layout-width} - #{$sidebar-collapsed-width});
-        }
-    }
+  }
 }
-
 
 // Horizontal Boxed Layout
 
-body[data-layout="horizontal"][data-layout-size="boxed"] {
+body[data-layout='horizontal'][data-layout-size='boxed'] {
   #page-topbar,
   #layout-wrapper,
   .footer {
@@ -65,7 +63,7 @@ body[data-layout="horizontal"][data-layout-size="boxed"] {
   }
 
   &.vertical-collpsed {
-    .main-content{
+    .main-content {
       min-height: auto;
     }
   }
@@ -73,7 +71,7 @@ body[data-layout="horizontal"][data-layout-size="boxed"] {
 
 // Scrollable layout
 
-body[data-layout-scrollable="true"] {
+body[data-layout-scrollable='true'] {
   @media (min-width: 992px) {
     #page-topbar,
     .vertical-menu,
@@ -82,7 +80,7 @@ body[data-layout-scrollable="true"] {
     }
   }
 
-  &[data-layout="horizontal"] {
+  &[data-layout='horizontal'] {
     @media (min-width: 992px) {
       #page-topbar,
       .topnav {

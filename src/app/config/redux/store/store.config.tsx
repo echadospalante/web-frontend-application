@@ -1,37 +1,40 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { useDispatch } from 'react-redux';
 
 import UsersManagementReducer, {
   UsersManagementState,
-} from "../reducers/admin/users-management.reducer";
+} from '../reducers/admin/users-management.reducer';
 import ventureCategoriesManagementReducer, {
   VentureCategoriesManagementState,
-} from "../reducers/admin/venture-categories-management.reducer";
+} from '../reducers/admin/venture-categories-management.reducer';
 import ventureEventsManagementReducer, {
   VentureEventsManagementState,
-} from "../reducers/admin/venture-events-management.reducer";
+} from '../reducers/admin/venture-events-management.reducer';
 import venturePublicationsManagementReducer, {
   VenturePublicationsManagementState,
-} from "../reducers/admin/venture-publications-management.reducer";
+} from '../reducers/admin/venture-publications-management.reducer';
 import ventureSponsorshipsManagementReducer, {
   VentureSponsorshipsManagementState,
-} from "../reducers/admin/venture-sponsorships-management.reducer";
+} from '../reducers/admin/venture-sponsorships-management.reducer';
 import authenticationReducer, {
   AuthenticationState,
-} from "../reducers/auth/auth.reducer";
+} from '../reducers/auth/auth.reducer';
 import registerReducer, {
   RegisterState,
-} from "../reducers/auth/register.reducer";
-import ownedVenturesManagementReducer, {
-  OwnedVenturesState,
-} from "../reducers/principal/owned-ventures.reducer";
+} from '../reducers/auth/register.reducer';
 import venturesReducer, {
   VenturesState,
-} from "../reducers/principal/ventures.reducer";
-import layoutReducer, { LayoutState } from "../reducers/shared/layout.reducer";
+} from '../reducers/principal/ventures.reducer';
+import layoutReducer, { LayoutState } from '../reducers/shared/layout.reducer';
 import userInterfaceReducer, {
   UserInterfaceState,
-} from "../reducers/shared/user-interface.reducer";
+} from '../reducers/shared/user-interface.reducer';
+import ownedVenturesReducer, {
+  OwnedVenturesState,
+} from '../reducers/principal/owned-ventures.reducer';
+import publicationsReducer, {
+  PublicationsState,
+} from '../reducers/principal/publications.reducer';
 
 export interface GlobalState {
   authentication: AuthenticationState;
@@ -46,7 +49,9 @@ export interface GlobalState {
   principal: {
     ventures: VenturesState;
     ownedVenturesManagement: OwnedVenturesState;
+    publications: PublicationsState;
   };
+  ventures: VenturesState;
   layout: LayoutState;
   register: RegisterState;
 }
@@ -55,10 +60,7 @@ const reducer = combineReducers({
   authentication: authenticationReducer,
   userInterface: userInterfaceReducer,
   layout: layoutReducer,
-  principal: combineReducers({
-    ventures: venturesReducer,
-    ownedVentures: ownedVenturesManagementReducer,
-  }),
+  ventures: venturesReducer,
   register: registerReducer,
   admin: combineReducers({
     usersManagement: UsersManagementReducer,
@@ -67,15 +69,16 @@ const reducer = combineReducers({
     ventureSponsorshipsManagement: ventureSponsorshipsManagementReducer,
     ventureEventsManagement: ventureEventsManagementReducer,
   }),
+  principal: combineReducers({
+    ventures: venturesReducer,
+    ownedVentures: ownedVenturesReducer,
+    publications: publicationsReducer,
+  }),
 });
 
 const store = configureStore({
   reducer,
-  devTools: process.env.NODE_ENV === "development",
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }),
+  devTools: process.env.NODE_ENV === 'development',
 });
 
 export type RootState = ReturnType<typeof store.getState>;
