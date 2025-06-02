@@ -26,9 +26,9 @@ import useFetchAllVentureCategories from '../hooks/useAllVentureCategories';
 import useVentureCreate from '../hooks/useVentureCreate';
 
 enum LocationMode {
-  'CURRENT',
-  'OTHER',
-  'NONE',
+  CURRENT = 'CURRENT',
+  OTHER = 'OTHER',
+  NONE = 'NONE',
 }
 
 const SetMapCenter = ({ position }: { position: [number, number] }) => {
@@ -47,7 +47,7 @@ const AccountVentureCreatePage = () => {
   } = useFetchAllVentureCategories();
 
   const [locationMode, setLocationMode] = useState<LocationMode>(
-    LocationMode.NONE,
+    LocationMode.CURRENT,
   );
 
   const { form, handleImageUpload, handleImageRemove, uploadImageRequest } =
@@ -238,6 +238,10 @@ const AccountVentureCreatePage = () => {
                             label: categories.find((c) => c.id === id)?.name,
                             value: id,
                           }))}
+                          styles={{
+                            menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                          }}
+                          menuPortalTarget={document.body}
                           closeMenuOnSelect={false}
                           placeholder="Selecciona las categorias, maximo 10"
                           isMulti={true}
@@ -372,9 +376,9 @@ const AccountVentureCreatePage = () => {
                               Ninguna
                             </label>
                           </div>
-                          ;
-                          {locationMode === 0 && (
+                          {locationMode === LocationMode.CURRENT && (
                             <Button
+                              type="button"
                               className="btn btn-info w-100 my-2"
                               onClick={() => {
                                 navigator.geolocation.getCurrentPosition(
@@ -398,7 +402,7 @@ const AccountVentureCreatePage = () => {
                               Obtener mi ubicacion actual
                             </Button>
                           )}
-                          {locationMode === 1 && (
+                          {locationMode === LocationMode.OTHER && (
                             <Row>
                               <Col lg={6}>
                                 <div className="mb-3">

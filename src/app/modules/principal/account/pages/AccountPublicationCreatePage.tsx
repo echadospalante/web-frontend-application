@@ -38,7 +38,7 @@ const AccountPostCreatePage = () => {
 
   const addBodyItem = (type: BodyItem['type']) => {
     const newItem: BodyItem = {
-      id: Date.now().toString(),
+      id: crypto.randomUUID().toString(),
       type,
       content: '',
     };
@@ -264,6 +264,10 @@ const AccountPostCreatePage = () => {
                       />
                     )}
                     <Select
+                      styles={{
+                        menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                      }}
+                      menuPortalTarget={document.body}
                       value={postData.categoriesIds.map((id) => ({
                         label: categories?.find((c) => c.id === id)?.name || '',
                         value: id,

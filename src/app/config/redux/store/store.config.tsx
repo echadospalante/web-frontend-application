@@ -32,6 +32,9 @@ import userInterfaceReducer, {
 import ownedVenturesReducer, {
   OwnedVenturesState,
 } from '../reducers/principal/owned-ventures.reducer';
+import publicationsReducer, {
+  PublicationsState,
+} from '../reducers/principal/publications.reducer';
 
 export interface GlobalState {
   authentication: AuthenticationState;
@@ -46,6 +49,7 @@ export interface GlobalState {
   principal: {
     ventures: VenturesState;
     ownedVenturesManagement: OwnedVenturesState;
+    publications: PublicationsState;
   };
   ventures: VenturesState;
   layout: LayoutState;
@@ -68,6 +72,7 @@ const reducer = combineReducers({
   principal: combineReducers({
     ventures: venturesReducer,
     ownedVentures: ownedVenturesReducer,
+    publications: publicationsReducer,
   }),
 });
 

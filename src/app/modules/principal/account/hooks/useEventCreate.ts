@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 
 import { useMutation } from '@tanstack/react-query';
+import { EventCreate } from 'echadospalante-domain';
 import { useFormik } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as Yup from 'yup';
@@ -9,28 +11,29 @@ import {
   SeverityLevel,
 } from '../../../../config/redux/reducers/shared/user-interface.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import useAuthentication from '../../../auth/hooks/useAuthentication';
 import { OwnedEventsApi } from '../api/http/owned-events-management.api';
-import { EventCreate } from 'echadospalante-domain';
-
+import useUploadImage from './useUploadImage';
 
 const useEventCreate = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { ventureId } = useParams();
+  const { email } = useAuthentication();
+  const { uploadPublicationImage, ...rest } = useUploadImage();
+  const { uploadResultUrl } = rest;
 
-  const form = useFormik<EventCreate & {startDate: string, endDate: string }>({
+  const form = useFormik<EventCreate & { startDate: string; endDate: string }>({
     initialValues: {
       title: '',
       description: '',
       coverPhoto: '',
-      location: {
-        lat: 0,
-        lng: 0,
-        description: '',
-      },
+      locationLat: '',
+      locationLng: '',
+      locationDescription: '',
       datesAndHours: [],
       categoriesIds: [],
-      contactEmail: '',
+      contactEmail: email || '',
       contactPhoneNumber: '',
       startDate: '',
       endDate: '',
@@ -98,6 +101,9 @@ const useEventCreate = () => {
     const currentDate = new Date(startDate);
     const endDateObj = new Date(endDate);
 
+    currentDate.setDate(currentDate.getDate() + 1);
+    endDateObj.setDate(endDateObj.getDate() + 1);
+
     while (currentDate <= endDateObj) {
       dates.push(currentDate.toISOString().split('T')[0]);
       currentDate.setDate(currentDate.getDate() + 1);
@@ -150,7 +156,6 @@ const useEventCreate = () => {
   };
 
   const handleFormSubmit = (values: EventCreate) => {
-    // Validaciones adicionales que no se pueden hacer con Yup
     const additionalValidation = validateAdditionalFields(values);
 
     if (!additionalValidation.isValid) {
@@ -165,12 +170,13 @@ const useEventCreate = () => {
       return;
     }
 
-    // Preparar datos para enviar (sin los campos auxiliares)
     const dataToSend: Omit<EventCreate, 'startDate' | 'endDate'> = {
       title: values.title,
       description: values.description,
       coverPhoto: values.coverPhoto,
-      location: values.location,
+      locationLat: values.locationLat,
+      locationLng: values.locationLng,
+      locationDescription: values.locationDescription,
       datesAndHours: values.datesAndHours,
       categoriesIds: values.categoriesIds,
       contactEmail: values.contactEmail,
@@ -181,7 +187,6 @@ const useEventCreate = () => {
   };
 
   const validateAdditionalFields = (values: EventCreate) => {
-    // Validar que haya al menos un horario definido
     const hasWorkingRanges = values.datesAndHours.some(
       (dateAndHour) => dateAndHour.workingRanges.length > 0,
     );
@@ -193,7 +198,6 @@ const useEventCreate = () => {
       };
     }
 
-    // Validar horarios individuales
     for (
       let dateIndex = 0;
       dateIndex < values.datesAndHours.length;
@@ -233,15 +237,6 @@ const useEventCreate = () => {
     return { isValid: true, message: '' };
   };
 
-  // Función helper para obtener errores de campos específicos
-  const getFieldError = (fieldName: string) => {
-    return form.touched[fieldName as keyof EventCreate] &&
-      form.errors[fieldName as keyof EventCreate]
-      ? form.errors[fieldName as keyof EventCreate]
-      : undefined;
-  };
-
-  // Función helper para obtener errores de working ranges
   const getWorkingRangeError = (
     dateIndex: number,
     rangeIndex: number,
@@ -251,20 +246,59 @@ const useEventCreate = () => {
     return form.errors[fieldName as keyof EventCreate];
   };
 
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    if (!file) {
+      dispatch(
+        setGlobalAlert({
+          message: 'No se ha seleccionado ninguna imagen',
+          timeout: 0,
+          severity: SeverityLevel.WARNING,
+          title: 'Alerta',
+        }),
+      );
+      return;
+    }
+    const validFormats = ['image/jpeg', 'image/png', 'image/jpg'];
+    if (!validFormats.includes(file?.type || '')) {
+      dispatch(
+        setGlobalAlert({
+          message: 'Formato de imagen no soportado',
+          timeout: 0,
+          severity: SeverityLevel.WARNING,
+          title: 'Alerta',
+        }),
+      );
+      return;
+    }
+
+    uploadPublicationImage(file);
+  };
+
+  const handleImageRemove = () => {
+    form.setFieldValue('coverPhoto', '');
+  };
+
+  useEffect(() => {
+    console.log('uploadResultUrl', uploadResultUrl);
+    if (uploadResultUrl) {
+      form.setFieldValue('coverPhoto', uploadResultUrl);
+    }
+  }, [uploadResultUrl]);
+
   return {
     form,
-    eventData: form.values, // Para mantener compatibilidad
-    errors: form.errors,
-    touched: form.touched,
-    handleSubmit: form.handleSubmit,
     addWorkingRange,
     removeWorkingRange,
     updateWorkingRange,
     generateDatesInRange,
     updateDatesAndHours,
-    getFieldError,
     getWorkingRangeError,
     isLoading: createEventMutation.isPending,
+    isError: createEventMutation.isError,
+    handleImageUpload,
+    uploadImageRequest: rest,
+    handleImageRemove,
   };
 };
 

@@ -119,8 +119,9 @@ const usePublicationCreate = () => {
           title: 'Tiene errores',
         }),
       );
-      createPublicationMutation.mutate(postData);
+      return;
     }
+    createPublicationMutation.mutate(postData);
   };
 
   const validateForm = () => {

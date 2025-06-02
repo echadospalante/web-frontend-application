@@ -16,8 +16,8 @@ import { Link } from 'react-router-dom';
 
 import FeedRightSidebar from '../../../../shared/components/rightbar/FeedRightSidebar';
 
-const PublicationsFeedPage = () => {
-  document.title = "Feed de Publicaciones | Echadospa'lante";
+const VenturePublicationsFeedPage = () => {
+  document.title = "Publicaciones del emprendimiento | Echadospa'lante";
   const [activeTab, toggleTab] = useState('1');
 
   return (
@@ -73,38 +73,6 @@ const PublicationsFeedPage = () => {
                                   <h5 className="mb-0">
                                     Lista de Publicaciones
                                   </h5>
-                                </div>
-                              </Col>
-
-                              <Col xs={8}>
-                                <div className="float-end">
-                                  <ul className="nav nav-pills">
-                                    <NavItem>
-                                      <NavLink
-                                        className="disabled"
-                                        to="#"
-                                        tabIndex={-1}
-                                      >
-                                        Vista:
-                                      </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                      <Link
-                                        className="nav-link active"
-                                        to="/blog-list"
-                                      >
-                                        <i className="mdi mdi-format-list-bulleted"></i>
-                                      </Link>
-                                    </NavItem>
-                                    <NavItem>
-                                      <Link
-                                        to="/blog-grid"
-                                        className="nav-link"
-                                      >
-                                        <i className="mdi mdi-view-grid-outline"></i>
-                                      </Link>
-                                    </NavItem>
-                                  </ul>
                                 </div>
                               </Col>
                             </Row>
@@ -376,4 +344,4 @@ const PublicationsFeedPage = () => {
   );
 };
 
-export default PublicationsFeedPage;
+export default VenturePublicationsFeedPage;

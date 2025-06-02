@@ -1,3 +1,7 @@
+import { useState } from 'react';
+
+import 'leaflet/dist/leaflet.css';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import Select from 'react-select';
 import {
   Button,
@@ -12,28 +16,21 @@ import {
   Row,
 } from 'reactstrap';
 
-import 'leaflet/dist/leaflet.css';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-
-import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
-import UploadImageButton from '../../../../shared/components/buttons/UploadImageButton';
 import useFetchAllPublicationCategories from '../hooks/useAllPublicationCategories';
 import useEventCreate from '../hooks/useEventCreate';
-import { useState } from 'react';
 
 enum LocationMode {
-  'CURRENT',
-  'OTHER',
-  'NONE',
+  CURRENT = 'CURRENT',
+  OTHER = 'OTHER',
+  NONE = 'NONE',
 }
 
 const AccountEventCreatePage = () => {
   document.title = 'Nuevo evento | Echadospalante';
-  const dispatch = useAppDispatch();
   const [locationMode, setLocationMode] = useState<LocationMode>(
-    LocationMode.NONE,
+    LocationMode.CURRENT,
   );
   const {
     loading: loadingCategories,
@@ -48,9 +45,12 @@ const AccountEventCreatePage = () => {
     removeWorkingRange,
     updateWorkingRange,
     updateDatesAndHours,
-    getFieldError,
-    getWorkingRangeError,
+    isError,
     isLoading,
+    getWorkingRangeError,
+    handleImageRemove,
+    handleImageUpload,
+    uploadImageRequest,
   } = useEventCreate();
 
   const handleDateRangeChange = (
@@ -176,15 +176,15 @@ const AccountEventCreatePage = () => {
                           id="title"
                           name="title"
                           type="text"
-                          className={getFieldError('title') ? 'is-invalid' : ''}
+                          className={form.errors.title ? 'is-invalid' : ''}
                           placeholder="Nombre de tu evento..."
                           value={form.values.title}
                           onChange={form.handleChange}
                           onBlur={form.handleBlur}
                         />
-                        {getFieldError('title') && (
+                        {form.errors.title && (
                           <FormFeedback type="invalid" className="d-block">
-                            {JSON.stringify(getFieldError('title'))}
+                            El titulo es inválido
                           </FormFeedback>
                         )}
                       </div>
@@ -196,48 +196,87 @@ const AccountEventCreatePage = () => {
                         <textarea
                           id="description"
                           name="description"
-                          className={`form-control ${getFieldError('description') ? 'is-invalid' : ''}`}
+                          className={`form-control ${form.errors.description ? 'is-invalid' : ''}`}
                           rows={4}
                           placeholder="Describe tu evento..."
                           value={form.values.description}
                           onChange={form.handleChange}
                           onBlur={form.handleBlur}
                         />
-                        {getFieldError('description') && (
+                        {form.errors.description && (
                           <FormFeedback type="invalid" className="d-block">
-                            {JSON.stringify(getFieldError('description'))}
+                            La descripción es inválida
                           </FormFeedback>
                         )}
                       </div>
 
-                      <div className="mb-4">
-                        <Label>Imagen de portada *</Label>
-                        <div className="d-flex flex-column gap-2">
-                          <UploadImageButton
-                            onUpload={(url) =>
-                              form.setFieldValue('coverPhoto', url)
-                            }
-                            btnText="Subir una imagen"
-                            type={'PUBLICATION'}
-                          />
-                          {form.values.coverPhoto && (
-                            <div className="mt-2">
+                      <div className="mb-3">
+                        <Label className="form-label">Imagen de portada</Label>
+
+                        <div className="text-center">
+                          <div className="position-relative d-flex justify-content-center">
+                            <div className="position-absolute d-flex">
+                              <Label
+                                htmlFor="project-image-input"
+                                className="mb-0"
+                                disabled={uploadImageRequest.isLoading}
+                                id="projectImageInput"
+                              >
+                                <div className="m-1">
+                                  <div className="d-flex bg-light p-1 border text-muted cursor-pointer shadow font-size-16">
+                                    <i className="bx bxs-image-alt"></i>
+                                    <small>
+                                      {form.values.coverPhoto
+                                        ? 'Cambiar foto'
+                                        : 'Subir foto'}
+                                    </small>
+                                  </div>
+                                </div>
+                              </Label>
+
+                              <input
+                                className="form-control d-none"
+                                id="project-image-input"
+                                disabled={uploadImageRequest.isLoading}
+                                type="file"
+                                multiple={false}
+                                accept="image/png, image/gif, image/jpeg"
+                                onChange={handleImageUpload}
+                              />
+
+                              {form.values.coverPhoto && (
+                                <p
+                                  onClick={handleImageRemove}
+                                  className="mb-0 fw-medium"
+                                >
+                                  <div className="m-1">
+                                    <div className="d-flex bg-danger text-white p-1 border border-danger cursor-pointer shadow font-size-16">
+                                      <i className="bx bx-trash"></i>
+                                      <small>Eliminar foto</small>
+                                    </div>
+                                  </div>
+                                </p>
+                              )}
+                            </div>
+
+                            <div>
                               <img
-                                src={form.values.coverPhoto}
-                                alt="Preview"
-                                className="img-thumbnail"
-                                style={{ width: '100%' }}
-                                onError={(e) => {
-                                  e.currentTarget.style.display = 'none';
-                                }}
+                                src={form.values.coverPhoto || ''}
+                                id="projectlogo-img"
+                                width="100%"
+                                className="h-auto"
                               />
                             </div>
-                          )}
-                          {getFieldError('coverPhoto') && (
-                            <FormFeedback type="invalid" className="d-block">
-                              {JSON.stringify(getFieldError('coverPhoto'))}
+                          </div>
+
+                          {form.touched.coverPhoto && form.errors.coverPhoto ? (
+                            <FormFeedback
+                              type="invalid"
+                              className="d-block mt-4"
+                            >
+                              {form.errors.coverPhoto}
                             </FormFeedback>
-                          )}
+                          ) : null}
                         </div>
                       </div>
                     </Col>
@@ -252,6 +291,10 @@ const AccountEventCreatePage = () => {
                           />
                         )}
                         <Select
+                          styles={{
+                            menuPortal: (base) => ({ ...base, zIndex: 9999 }),
+                          }}
+                          menuPortalTarget={document.body}
                           value={form.values.categoriesIds.map((id) => ({
                             label:
                               categories?.find((c) => c.id === id)?.name || '',
@@ -278,11 +321,55 @@ const AccountEventCreatePage = () => {
                           }
                           className="select2-selection"
                         />
-                        {getFieldError('categoriesIds') && (
+                        {form.errors.categoriesIds && (
                           <FormFeedback type="invalid" className="d-block">
-                            {JSON.stringify(getFieldError('categoriesIds'))}
+                            {JSON.stringify(form.errors.categoriesIds)}
                           </FormFeedback>
                         )}
+                      </div>
+
+                      <div className="mb-4">
+                        <div className="mb-3">
+                          <Label htmlFor="projectname-input">Email</Label>
+                          <Input
+                            id="contactEmail"
+                            name="contactEmail"
+                            type="email"
+                            placeholder="Ingresa el email de contacto"
+                            onChange={form.handleChange}
+                            onBlur={form.handleBlur}
+                            value={form.values.contactEmail || ''}
+                          />
+
+                          {form.touched.contactEmail &&
+                          form.errors.contactEmail ? (
+                            <FormFeedback type="invalid" className="d-block">
+                              {form.errors.contactEmail}
+                            </FormFeedback>
+                          ) : null}
+                        </div>
+
+                        <div>
+                          <Label htmlFor="project-visibility-input">
+                            Numero de telefono
+                          </Label>
+                          <Input
+                            id="contactPhoneNumber"
+                            name="contactPhoneNumber"
+                            type="text"
+                            placeholder="Ingresa el telefono de contacto"
+                            onChange={form.handleChange}
+                            onBlur={form.handleBlur}
+                            value={form.values.contactPhoneNumber || ''}
+                          />
+
+                          {form.touched.contactPhoneNumber &&
+                          form.errors.contactPhoneNumber ? (
+                            <FormFeedback type="invalid" className="d-block">
+                              {form.errors.contactPhoneNumber}
+                            </FormFeedback>
+                          ) : null}
+                        </div>
                       </div>
 
                       <Col lg={12}>
@@ -331,8 +418,8 @@ const AccountEventCreatePage = () => {
                                 name="btnradio"
                                 onChange={() => {
                                   setLocationMode(LocationMode.NONE);
-                                  form.setFieldValue('location.lat', 0);
-                                  form.setFieldValue('location.lng', 0);
+                                  form.setFieldValue('locationLat', '');
+                                  form.setFieldValue('locationLng', '');
                                 }}
                                 id="btnradio6"
                                 autoComplete="off"
@@ -347,17 +434,18 @@ const AccountEventCreatePage = () => {
 
                             {locationMode === LocationMode.CURRENT && (
                               <Button
+                                type="button"
                                 className="btn btn-info w-100 my-2"
                                 onClick={() => {
                                   navigator.geolocation.getCurrentPosition(
                                     (position) => {
                                       form.setFieldValue(
-                                        'location.lat',
-                                        position.coords.latitude,
+                                        'locationLat',
+                                        `${position.coords.latitude}`,
                                       );
                                       form.setFieldValue(
-                                        'location.lng',
-                                        position.coords.longitude,
+                                        'locationLng',
+                                        `${position.coords.longitude}`,
                                       );
                                     },
                                     (error) => {
@@ -378,12 +466,17 @@ const AccountEventCreatePage = () => {
                                     <Label htmlFor="lat">Latitud</Label>
                                     <Input
                                       id="lat"
-                                      name="location.lat"
+                                      name="locationLat"
                                       type="number"
                                       placeholder="Ingresa la latitud"
-                                      onChange={form.handleChange}
+                                      onChange={({ target }) =>
+                                        form.setFieldValue(
+                                          'locationLat',
+                                          target.value,
+                                        )
+                                      }
                                       onBlur={form.handleBlur}
-                                      value={form.values.location?.lat || ''}
+                                      value={form.values.locationLat || ''}
                                     />
                                   </div>
                                 </Col>
@@ -392,24 +485,29 @@ const AccountEventCreatePage = () => {
                                     <Label htmlFor="lng">Longitud</Label>
                                     <Input
                                       id="lng"
-                                      name="location.lng"
+                                      name="locationLng"
                                       type="number"
                                       placeholder="Ingresa la longitud"
-                                      onChange={form.handleChange}
+                                      onChange={({ target }) =>
+                                        form.setFieldValue(
+                                          'locationLng',
+                                          target.value,
+                                        )
+                                      }
                                       onBlur={form.handleBlur}
-                                      value={form.values.location?.lng || ''}
+                                      value={form.values.locationLng || ''}
                                     />
                                   </div>
                                 </Col>
                               </Row>
                             )}
 
-                            {form.values.location?.lat &&
-                            form.values.location?.lng ? (
+                            {form.values.locationLat &&
+                            form.values.locationLng ? (
                               <MapContainer
                                 center={[
-                                  form.values.location?.lat,
-                                  form.values.location?.lng,
+                                  +form.values.locationLat,
+                                  +form.values.locationLng,
                                 ]}
                                 zoom={13}
                                 style={{ height: '400px', width: '100%' }}
@@ -420,14 +518,16 @@ const AccountEventCreatePage = () => {
                                 />
                                 <Marker
                                   position={[
-                                    form.values.location?.lat,
-                                    form.values.location?.lng,
+                                    +form.values.locationLat,
+                                    +form.values.locationLng,
                                   ]}
                                 >
                                   <Popup>La ubicación que elegiste</Popup>
                                 </Marker>
                               </MapContainer>
-                            ) : null}
+                            ) : (
+                              <></>
+                            )}
 
                             <div className="mb-3 mt-2">
                               <Label htmlFor="location-description">
@@ -442,13 +542,11 @@ const AccountEventCreatePage = () => {
                                     height: '100px',
                                   }}
                                   id="location-description"
-                                  name="location.description"
+                                  name="locationDescription"
                                   placeholder="Ingrese la descripción de la ubicación"
                                   onChange={form.handleChange}
                                   onBlur={form.handleBlur}
-                                  value={
-                                    form.values.location?.description || ''
-                                  }
+                                  value={form.values.locationDescription || ''}
                                 />
                               </div>
                             </div>
@@ -469,7 +567,7 @@ const AccountEventCreatePage = () => {
                             name="startDate"
                             type="date"
                             className={
-                              getFieldError('startDate') ? 'is-invalid' : ''
+                              form.errors.startDate ? 'is-invalid' : ''
                             }
                             value={form.values.startDate || ''}
                             onChange={(e) =>
@@ -477,9 +575,9 @@ const AccountEventCreatePage = () => {
                             }
                             onBlur={form.handleBlur}
                           />
-                          {getFieldError('startDate') && (
+                          {form.errors.startDate && (
                             <FormFeedback type="invalid" className="d-block">
-                              {JSON.stringify(getFieldError('startDate'))}
+                              {JSON.stringify(form.errors.startDate)}
                             </FormFeedback>
                           )}
                         </Col>
@@ -489,18 +587,16 @@ const AccountEventCreatePage = () => {
                             id="endDate"
                             name="endDate"
                             type="date"
-                            className={
-                              getFieldError('endDate') ? 'is-invalid' : ''
-                            }
+                            className={form.errors.endDate ? 'is-invalid' : ''}
                             value={form.values.endDate || ''}
                             onChange={(e) =>
                               handleDateRangeChange('endDate', e.target.value)
                             }
                             onBlur={form.handleBlur}
                           />
-                          {getFieldError('endDate') && (
+                          {form.errors.endDate && (
                             <FormFeedback type="invalid" className="d-block">
-                              {JSON.stringify(getFieldError('endDate'))}
+                              {JSON.stringify(form.errors.endDate)}
                             </FormFeedback>
                           )}
                         </Col>

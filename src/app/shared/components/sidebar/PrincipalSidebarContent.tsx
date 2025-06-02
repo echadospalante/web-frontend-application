@@ -140,18 +140,18 @@ const UserSidebarContent = () => {
             </Link>
 
             <li>
-              <Link to="/principal/publicaciones">
-                {/* <i className="bx bxs-cabinet"></i> */}
-                <i className="bx bx-news"></i>
-                <span>{t('Publications')}</span>
-              </Link>
-            </li>
-
-            <li>
               <Link to="/principal/emprendimientos">
                 {/* <i className="bx bxs-cabinet"></i> */}
                 <i className="bx bx-rocket"></i>
                 <span>{t('Ventures')}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/principal/emprendimientos/publicaciones">
+                {/* <i className="bx bxs-cabinet"></i> */}
+                <i className="bx bx-news"></i>
+                <span>{t('Publications')}</span>
               </Link>
             </li>
 

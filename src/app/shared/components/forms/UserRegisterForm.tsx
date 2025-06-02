@@ -125,8 +125,7 @@ const UserRegisterForm = () => {
                   ? {
                       value: form.values.municipalityId,
                       label: municipalities.find(
-                        ({ departmentId }) =>
-                          departmentId === form.values.departmentId,
+                        ({ id }) => id === form.values.municipalityId,
                       )?.name,
                     }
                   : null

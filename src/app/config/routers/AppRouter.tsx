@@ -28,7 +28,7 @@ import PreferencesNotificationsPage from '../../modules/principal/preferences/pa
 import PreferencesThemePage from '../../modules/principal/preferences/pages/PreferencesTheme';
 import PreferencesLayoutPage from '../../modules/principal/preferences/PreferencesLayoutPage';
 import Commercial404Page from '../../modules/principal/ventures/pages/Commercial404Page';
-import PublicationsFeedPage from '../../modules/principal/ventures/pages/PublicationsFeedPage';
+import GeneralPublicationsFeedPage from '../../modules/principal/ventures/pages/GeneralPublicationsFeedPage';
 import QuotesCalenderPage from '../../modules/principal/ventures/pages/QuotesCalendarPage';
 import VenturesLayoutPage from '../../modules/principal/ventures/VenturesLayoutPage';
 import AppSpinner from '../../shared/components/loader/Spinner';
@@ -70,8 +70,14 @@ const AppRouter = () => {
             <Route path="" index element={<Navigate to="emprendimientos" />} />
 
             <Route path="emprendimientos" element={<VenturesLayoutPage />}>
-              <Route path="" element={<PublicationsFeedPage />} />
-              {/* <Route path="" element={<CommercialInitialPage />} /> */}
+              <Route
+                path="publicaciones"
+                element={<GeneralPublicationsFeedPage />}
+              />
+              <Route
+                path=":ventureId/publicaciones"
+                element={<GeneralPublicationsFeedPage />}
+              />
               <Route path="calendario" element={<QuotesCalenderPage />} />
 
               <Route path="*" element={<Commercial404Page />} />
