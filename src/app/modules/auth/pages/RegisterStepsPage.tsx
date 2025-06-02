@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from "react";
+import { useState } from 'react';
 
-import classnames from "classnames";
-import Dropzone from "react-dropzone";
-import { Link } from "react-router-dom";
+import classnames from 'classnames';
+import Dropzone from 'react-dropzone';
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -22,8 +22,8 @@ import {
   Row,
   TabContent,
   TabPane,
-} from "reactstrap";
-import Breadcrumb from "../../../shared/components/breadcrumb/Breadcrumb";
+} from 'reactstrap';
+import Breadcrumb from '../../../shared/components/breadcrumb/Breadcrumb';
 
 const RegisterStepsPage = () => {
   document.title = "Registro de Usuario | Echadospa'lante";
@@ -52,7 +52,7 @@ const RegisterStepsPage = () => {
       Object.assign(file, {
         preview: URL.createObjectURL(file),
         formattedSize: formatBytes(file.size),
-      })
+      }),
     );
     setSelectedFiles(files);
   };
@@ -61,13 +61,13 @@ const RegisterStepsPage = () => {
    * Formats the size
    */
   const formatBytes = (bytes: any, decimals = 2) => {
-    if (bytes === 0) return "0 Bytes";
+    if (bytes === 0) return '0 Bytes';
     const k = 1024;
     const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
   };
 
   return (
@@ -407,7 +407,7 @@ const RegisterStepsPage = () => {
                                     return (
                                       <Card
                                         className="mt-1 mb-0 shadow-none border dz-processing dz-image-preview dz-success dz-complete"
-                                        key={i + "-file"}
+                                        key={i + '-file'}
                                       >
                                         <div className="p-2">
                                           <Row className="align-items-center">
@@ -446,8 +446,8 @@ const RegisterStepsPage = () => {
                             <li
                               className={
                                 activeTab === 1
-                                  ? "previous disabled"
-                                  : "previous"
+                                  ? 'previous disabled'
+                                  : 'previous'
                               }
                             >
                               <Link
@@ -461,7 +461,7 @@ const RegisterStepsPage = () => {
                             </li>
                             <li
                               className={
-                                activeTab === 3 ? "next disabled" : "next"
+                                activeTab === 3 ? 'next disabled' : 'next'
                               }
                             >
                               <Link

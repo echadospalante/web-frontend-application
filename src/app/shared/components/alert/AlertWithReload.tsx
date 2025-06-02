@@ -1,4 +1,4 @@
-import { Button, Col, Row } from "reactstrap";
+import { Button, Col, Row } from 'reactstrap';
 
 type AlertWithReloadProps = {
   message: string;

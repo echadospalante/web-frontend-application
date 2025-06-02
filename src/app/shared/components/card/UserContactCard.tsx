@@ -1,10 +1,11 @@
-import { Button, Card, CardBody, CardTitle, Col, Row, Table } from "reactstrap";
-import useUserContactInfo from "../../../modules/principal/account/hooks/useUserContactInfo";
-import AppSpinner from "../loader/Spinner";
-import AlertWithReload from "../alert/AlertWithReload";
+import { Card, CardBody, CardTitle, Table } from 'reactstrap';
+
+import useUserContactInfo from '../../../modules/principal/account/hooks/useUserContactInfo';
+import AlertWithReload from '../alert/AlertWithReload';
+import AppSpinner from '../loader/Spinner';
 
 const UserContactCard = () => {
-  const { error, loading, data, fetchUserContactInfo } = useUserContactInfo();
+  const { error, loading, fetchUserContactInfo } = useUserContactInfo();
 
   if (loading) {
   }
@@ -19,7 +20,7 @@ const UserContactCard = () => {
 
         {error && (
           <AlertWithReload
-            message="Ha habido un error al consultar la información del perfil, por favor intente nuevamente."
+            message="Ha habido un error al consultar los usuarios, por favor intente nuevamente."
             onReload={fetchUserContactInfo}
           />
         )}

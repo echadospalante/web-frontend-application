@@ -8,9 +8,9 @@ import {
   ModalBody,
   ModalHeader,
   Row,
-} from "reactstrap";
+} from 'reactstrap';
 
-import useCreateVentureCategory from "../../../modules/admin/general/hooks/useCreateVentureCategory";
+import useCreateVentureCategory from '../../../modules/admin/general/hooks/useCreateVentureCategory';
 
 type CreateVentureCategoryModalProps = {
   show: boolean;
@@ -23,7 +23,7 @@ const CreateVentureCategoryModal = ({
   onCloseClick,
   onSuccessfulCreate,
 }: CreateVentureCategoryModalProps) => {
-  const { error, loading, handleSubmit, form } = useCreateVentureCategory();
+  const { error, handleSubmit, form } = useCreateVentureCategory();
 
   const handleCreateCategory = () => {
     return handleSubmit().then(() => {
@@ -65,7 +65,7 @@ const CreateVentureCategoryModal = ({
               <Input
                 type="textarea"
                 name="description"
-                style={{ minHeight: "100px", maxHeight: "200px" }}
+                style={{ minHeight: '100px', maxHeight: '200px' }}
                 id="description"
                 value={form.values.description}
                 onChange={form.handleChange}

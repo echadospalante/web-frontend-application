@@ -1,13 +1,13 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
-import { useSelector } from "react-redux";
-import { useSearchParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { useSearchParams } from 'react-router-dom';
 
 import {
   selectVenturePublicationsManagement,
   setVenturePublicationsFilters,
-} from "../../../../config/redux/reducers/admin/venture-publications-management.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
+} from '../../../../config/redux/reducers/admin/venture-publications-management.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
 
 const useVenturePublicationsFilters = () => {
   const { filters } = useSelector(selectVenturePublicationsManagement);
@@ -37,10 +37,10 @@ const useVenturePublicationsFilters = () => {
     const newSearchParams = new URLSearchParams(searchParams);
     const { page, size, search } = filters;
 
-    newSearchParams.set("page", page.toString());
-    newSearchParams.set("size", size.toString());
+    newSearchParams.set('page', page.toString());
+    newSearchParams.set('size', size.toString());
 
-    search && newSearchParams.set("search", search);
+    search && newSearchParams.set('search', search);
 
     setSearchParams(newSearchParams);
   }, [filters]);

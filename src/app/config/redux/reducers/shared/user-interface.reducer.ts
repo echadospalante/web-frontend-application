@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "../../store/store.config";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../store/store.config';
 
 export interface UserInterfaceState {
   loading: GlobalLoading;
@@ -7,11 +7,11 @@ export interface UserInterfaceState {
 }
 
 export enum SeverityLevel {
-  SUCCESS = "success",
-  ERROR = "danger",
-  INFO = "primary",
-  WARNING = "warning",
-  NONE = "",
+  SUCCESS = 'success',
+  ERROR = 'danger',
+  INFO = 'primary',
+  WARNING = 'warning',
+  NONE = '',
 }
 
 export interface GlobalLoading {
@@ -23,7 +23,7 @@ export interface GlobalLoading {
 export interface AlertAction {
   label: string;
   severity: SeverityLevel;
-  type: "outlined" | "contained" | "text";
+  type: 'outlined' | 'contained' | 'text';
   callback: () => void | Promise<void>;
 }
 
@@ -37,19 +37,19 @@ export interface GlobalAlert {
 
 export type AlertInfo = Pick<
   GlobalAlert,
-  "message" | "timeout" | "severity" | "title"
+  'message' | 'timeout' | 'severity' | 'title'
 >;
 
 const initialState: UserInterfaceState = {
   loading: {
     active: false,
-    message: "",
-    iconPath: "",
+    message: '',
+    iconPath: '',
   },
   alert: {
     active: false,
-    title: "",
-    message: "",
+    title: '',
+    message: '',
     timeout: 0,
     severity: SeverityLevel.NONE,
   },
@@ -62,22 +62,22 @@ Object.freeze(initialState);
  * This slice is responsible for managing the global loading and alert states that are used throughout the application (GlobalLoading and GlobalAlert interfaces)
  */
 export const userInterfaceSlice = createSlice({
-  name: "userInterface",
+  name: 'userInterface',
   initialState,
   reducers: {
     startGlobalLoading: (
       state,
-      action: PayloadAction<{ message: string; iconPath?: string }>
+      action: PayloadAction<{ message: string; iconPath?: string }>,
     ) => {
       state.loading.active = true;
       state.loading.message = action.payload.message;
 
       state.loading.iconPath =
-        action.payload.iconPath || "/images/icons/loading/loading.svg";
+        action.payload.iconPath || '/images/icons/loading/loading.svg';
     },
     finishGlobalLoading: (state) => {
       state.loading.active = false;
-      state.loading.message = "";
+      state.loading.message = '';
     },
     setGlobalAlert: (state, action: PayloadAction<AlertInfo>) => {
       state.alert.active = true;

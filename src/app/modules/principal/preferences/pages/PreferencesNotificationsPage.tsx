@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -13,77 +13,77 @@ import {
   Container,
   Row,
   UncontrolledAlert,
-} from "reactstrap";
+} from 'reactstrap';
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 
 const PreferencesNotificationsPage = () => {
-  document.title = "Idioma y Localización | Preferencias";
+  document.title = 'Idioma y Localización | Preferencias';
 
   const jobCategories1 = [
-    { id: 1, name: "Test Nombre Notificación", category: 52 },
-    { id: 2, name: "Test Nombre Notificación", category: 10 },
-    { id: 3, name: "Test Nombre Notificación", category: 64 },
-    { id: 4, name: "Test Nombre Notificación", category: 105 },
-    { id: 5, name: "Test Nombre Notificación", category: 142 },
-    { id: 6, name: "Test Nombre Notificación", category: 11 },
-    { id: 7, name: "Test Nombre Notificación", category: 254 },
-    { id: 8, name: "Test Nombre Notificación", category: 79 },
+    { id: 1, name: 'Test Nombre Notificación', category: 52 },
+    { id: 2, name: 'Test Nombre Notificación', category: 10 },
+    { id: 3, name: 'Test Nombre Notificación', category: 64 },
+    { id: 4, name: 'Test Nombre Notificación', category: 105 },
+    { id: 5, name: 'Test Nombre Notificación', category: 142 },
+    { id: 6, name: 'Test Nombre Notificación', category: 11 },
+    { id: 7, name: 'Test Nombre Notificación', category: 254 },
+    { id: 8, name: 'Test Nombre Notificación', category: 79 },
   ];
 
   const jobCategories2 = [
-    { id: 1, name: "Test Nombre Notificación", category: 85 },
-    { id: 2, name: "Test Nombre Notificación", category: 19 },
-    { id: 3, name: "Test Nombre Notificación", category: 48 },
-    { id: 4, name: "Test Nombre Notificación", category: 34 },
-    { id: 5, name: "Test Nombre Notificación", category: 33 },
-    { id: 6, name: "Test Nombre Notificación", category: 748 },
-    { id: 7, name: "Test Nombre Notificación", category: 16 },
-    { id: 8, name: "Test Nombre Notificación", category: 94 },
+    { id: 1, name: 'Test Nombre Notificación', category: 85 },
+    { id: 2, name: 'Test Nombre Notificación', category: 19 },
+    { id: 3, name: 'Test Nombre Notificación', category: 48 },
+    { id: 4, name: 'Test Nombre Notificación', category: 34 },
+    { id: 5, name: 'Test Nombre Notificación', category: 33 },
+    { id: 6, name: 'Test Nombre Notificación', category: 748 },
+    { id: 7, name: 'Test Nombre Notificación', category: 16 },
+    { id: 8, name: 'Test Nombre Notificación', category: 94 },
   ];
 
   const jobCategories3 = [
-    { id: 1, name: "Test Nombre Notificación", category: 17 },
-    { id: 2, name: "Test Nombre Notificación", category: 64 },
-    { id: 3, name: "Test Nombre Notificación", category: 72 },
-    { id: 4, name: "Test Nombre Notificación", category: 19 },
-    { id: 5, name: "Test Nombre Notificación", category: 305 },
-    { id: 6, name: "Test Nombre Notificación", category: 64 },
-    { id: 7, name: "Test Nombre Notificación", category: 112 },
-    { id: 8, name: "Test Nombre Notificación", category: 31 },
+    { id: 1, name: 'Test Nombre Notificación', category: 17 },
+    { id: 2, name: 'Test Nombre Notificación', category: 64 },
+    { id: 3, name: 'Test Nombre Notificación', category: 72 },
+    { id: 4, name: 'Test Nombre Notificación', category: 19 },
+    { id: 5, name: 'Test Nombre Notificación', category: 305 },
+    { id: 6, name: 'Test Nombre Notificación', category: 64 },
+    { id: 7, name: 'Test Nombre Notificación', category: 112 },
+    { id: 8, name: 'Test Nombre Notificación', category: 31 },
   ];
 
   const jobCategories4 = [
-    { id: 1, name: "Test Nombre Notificación", category: 85 },
-    { id: 2, name: "Test Nombre Notificación", category: 19 },
-    { id: 3, name: "Test Nombre Notificación", category: 48 },
-    { id: 4, name: "Test Nombre Notificación", category: 34 },
-    { id: 5, name: "Test Nombre Notificación", category: 33 },
-    { id: 6, name: "Test Nombre Notificación", category: 748 },
-    { id: 7, name: "Test Nombre Notificación", category: 16 },
-    { id: 8, name: "Test Nombre Notificación", category: 94 },
+    { id: 1, name: 'Test Nombre Notificación', category: 85 },
+    { id: 2, name: 'Test Nombre Notificación', category: 19 },
+    { id: 3, name: 'Test Nombre Notificación', category: 48 },
+    { id: 4, name: 'Test Nombre Notificación', category: 34 },
+    { id: 5, name: 'Test Nombre Notificación', category: 33 },
+    { id: 6, name: 'Test Nombre Notificación', category: 748 },
+    { id: 7, name: 'Test Nombre Notificación', category: 16 },
+    { id: 8, name: 'Test Nombre Notificación', category: 94 },
   ];
 
   const jobCategories5 = [
-    { id: 1, name: "Test Nombre Notificación", category: 85 },
-    { id: 2, name: "Test Nombre Notificación", category: 19 },
-    { id: 3, name: "Test Nombre Notificación", category: 48 },
-    { id: 4, name: "Test Nombre Notificación", category: 34 },
-    { id: 5, name: "Test Nombre Notificación", category: 33 },
-    { id: 6, name: "Test Nombre Notificación", category: 748 },
-    { id: 7, name: "Test Nombre Notificación", category: 16 },
-    { id: 8, name: "Test Nombre Notificación", category: 94 },
+    { id: 1, name: 'Test Nombre Notificación', category: 85 },
+    { id: 2, name: 'Test Nombre Notificación', category: 19 },
+    { id: 3, name: 'Test Nombre Notificación', category: 48 },
+    { id: 4, name: 'Test Nombre Notificación', category: 34 },
+    { id: 5, name: 'Test Nombre Notificación', category: 33 },
+    { id: 6, name: 'Test Nombre Notificación', category: 748 },
+    { id: 7, name: 'Test Nombre Notificación', category: 16 },
+    { id: 8, name: 'Test Nombre Notificación', category: 94 },
   ];
 
   const jobCategories6 = [
-    { id: 1, name: "Test Nombre Notificación", category: 85 },
-    { id: 2, name: "Test Nombre Notificación", category: 19 },
-    { id: 3, name: "Test Nombre Notificación", category: 48 },
-    { id: 4, name: "Test Nombre Notificación", category: 34 },
-    { id: 5, name: "Test Nombre Notificación", category: 33 },
-    { id: 6, name: "Test Nombre Notificación", category: 748 },
-    { id: 7, name: "Test Nombre Notificación", category: 16 },
-    { id: 8, name: "Test Nombre Notificación", category: 94 },
+    { id: 1, name: 'Test Nombre Notificación', category: 85 },
+    { id: 2, name: 'Test Nombre Notificación', category: 19 },
+    { id: 3, name: 'Test Nombre Notificación', category: 48 },
+    { id: 4, name: 'Test Nombre Notificación', category: 34 },
+    { id: 5, name: 'Test Nombre Notificación', category: 33 },
+    { id: 6, name: 'Test Nombre Notificación', category: 748 },
+    { id: 7, name: 'Test Nombre Notificación', category: 16 },
+    { id: 8, name: 'Test Nombre Notificación', category: 94 },
   ];
 
   return (

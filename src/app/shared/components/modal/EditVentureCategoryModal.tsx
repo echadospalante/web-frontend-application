@@ -8,11 +8,10 @@ import {
   ModalBody,
   ModalHeader,
   Row,
-} from "reactstrap";
+} from 'reactstrap';
 
-import { VentureCategory } from "echadospalante-core";
-import useEditVentureCategory from "../../../modules/admin/general/hooks/useEditVentureCategory";
-import useRoles from "../../../modules/auth/hooks/useRoles";
+import { VentureCategory } from 'echadospalante-domain';
+import useEditVentureCategory from '../../../modules/admin/general/hooks/useEditVentureCategory';
 
 type EditVentureCategoryModalProps = {
   show: boolean;
@@ -25,9 +24,9 @@ const EditVentureCategoryModal = ({
   show,
   onCloseClick,
   ventureCategory,
-  onSuccessfulEdit,
+  // onSuccessfulEdit,
 }: EditVentureCategoryModalProps) => {
-  const { error, loading, handleSubmit, form } =
+  const { error, /*loading, handleSubmit*/ form } =
     useEditVentureCategory(ventureCategory);
 
   return (
@@ -65,7 +64,7 @@ const EditVentureCategoryModal = ({
               <Input
                 type="textarea"
                 name="description"
-                style={{ minHeight: "100px", maxHeight: "200px" }}
+                style={{ minHeight: '100px', maxHeight: '200px' }}
                 id="description"
                 value={form.values.description}
                 onChange={form.handleChange}

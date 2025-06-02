@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
-import { useTranslation } from "react-i18next";
+import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 
-import { Link } from "react-router-dom";
-import { Col, Container, Row } from "reactstrap";
+import { Link } from 'react-router-dom';
+import { Col, Container, Row } from 'reactstrap';
 
 const FooterLink = () => {
   return (
@@ -26,30 +26,30 @@ const LandingFooter = () => {
   const { t } = useTranslation();
   const footerLinks = [
     {
-      title: "Seccion",
+      title: 'Seccion',
       links: [
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
       ],
     },
     {
-      title: "Seccion",
+      title: 'Seccion',
       links: [
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
       ],
     },
     {
-      title: "Seccion",
+      title: 'Seccion',
       links: [
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
-        { title: "Link prueba", to: "#" },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
+        { title: 'Link prueba', to: '#' },
       ],
     },
   ];
@@ -76,7 +76,7 @@ const LandingFooter = () => {
 
             <Col lg="3" sm="6">
               <div className="mb-4 mb-lg-0">
-                <h5 className="mb-3 footer-list-title">{t("Latest News")}</h5>
+                <h5 className="mb-3 footer-list-title">{t('Latest News')}</h5>
                 <div className="blog-post">
                   <Link to="#" className="post">
                     <div className="badge badge-soft-success font-size-11 mb-3">

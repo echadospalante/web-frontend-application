@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { User } from "echadospalante-core";
+import { User } from 'echadospalante-domain';
 
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { fetchOwnerBySponsorshipIdMiddleware } from "../api/middleware/venture-sponsorships.middleware";
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { fetchOwnerBySponsorshipIdMiddleware } from '../api/middleware/venture-sponsorships.middleware';
 
 const useSponsorshipsOwners = (sponsorshipIds: string[]) => {
   const dispatch = useAppDispatch();
@@ -23,9 +23,9 @@ const useSponsorshipsOwners = (sponsorshipIds: string[]) => {
     return Promise.all(
       sponsorshipIds.map((sponsorshipId) =>
         dispatch(fetchOwnerBySponsorshipIdMiddleware(sponsorshipId)).then(
-          (owner) => ({ id: sponsorshipId, owner })
-        )
-      )
+          (owner) => ({ id: sponsorshipId, owner }),
+        ),
+      ),
     )
       .then((owners) => {
         setOwnerRequest({
@@ -53,9 +53,9 @@ const useSponsorshipsOwners = (sponsorshipIds: string[]) => {
     Promise.all(
       sponsorshipIds.map((sponsorshipId) =>
         dispatch(fetchOwnerBySponsorshipIdMiddleware(sponsorshipId)).then(
-          (owner) => ({ id: sponsorshipId, owner })
-        )
-      )
+          (owner) => ({ id: sponsorshipId, owner }),
+        ),
+      ),
     )
       .then((owners) => {
         setOwnerRequest({

@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 
-import ReactApexChart from "react-apexcharts";
-import { useDispatch } from "react-redux";
-import { Card, CardBody, Col, Table } from "reactstrap";
+import ReactApexChart from 'react-apexcharts';
+import { useDispatch } from 'react-redux';
+import { Card, CardBody, Col, Table } from 'reactstrap';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const getChartOptions = (index: any) => {
   const options = {
     chart: { sparkline: { enabled: !0 } },
     dataLabels: { enabled: !1 },
-    colors: ["#556ee6"],
+    colors: ['#556ee6'],
     plotOptions: {
       radialBar: {
-        hollow: { margin: 0, size: "60%" },
+        hollow: { margin: 0, size: '60%' },
         track: { margin: 0 },
         dataLabels: { show: !1 },
       },
@@ -20,13 +20,13 @@ const getChartOptions = (index: any) => {
   };
   switch (index) {
     case 1:
-      options["colors"][0] = "#556ee6";
+      options['colors'][0] = '#556ee6';
       break;
     case 2:
-      options["colors"][0] = "#34c38f";
+      options['colors'][0] = '#34c38f';
       break;
     case 3:
-      options["colors"][0] = "#f46a6a";
+      options['colors'][0] = '#f46a6a';
       break;
     default:
       break;
@@ -42,20 +42,20 @@ const TotalSelling = () => {
   const [sellingData] = useState<any[]>([
     {
       id: 1,
-      name: "Test A",
-      desc: "From previous period",
+      name: 'Test A',
+      desc: 'From previous period',
       value: 67,
     },
     {
       id: 2,
-      name: "Test B",
-      desc: "From previous period",
+      name: 'Test B',
+      desc: 'From previous period',
       value: 84,
     },
     {
       id: 3,
-      name: "Test C",
-      desc: "From previous period",
+      name: 'Test C',
+      desc: 'From previous period',
       value: 63,
     },
   ]);
@@ -64,7 +64,7 @@ const TotalSelling = () => {
     // dispatch(getTopSellingProduct("jan"));
   }, [dispatch]);
 
-  const [seletedMonth, setSeletedMonth] = useState("jan");
+  const [seletedMonth, setSeletedMonth] = useState('jan');
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onChangeMonth = (value: any) => {
@@ -103,9 +103,9 @@ const TotalSelling = () => {
               <h4>$ 6385</h4>
               <p className="mt-4 mb-0">
                 <span className="badge badge-soft-success font-size-11 me-2">
-                  {" "}
-                  0.6% <i className="mdi mdi-arrow-up" />{" "}
-                </span>{" "}
+                  {' '}
+                  0.6% <i className="mdi mdi-arrow-up" />{' '}
+                </span>{' '}
                 From previous period
               </p>
             </div>

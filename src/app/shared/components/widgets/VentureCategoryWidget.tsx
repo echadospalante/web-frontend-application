@@ -1,4 +1,4 @@
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody } from 'reactstrap';
 
 type CompanyWidgetProps = {
   name: string;
@@ -29,7 +29,7 @@ const VentureCategoryWidget = ({
               className="avatar-title rounded-circle font-size-16"
               style={{ backgroundColor }}
             >
-              <span className={"badge font-size-20"}>
+              <span className={'badge font-size-20'}>
                 <i className={icon}></i>
               </span>
             </span>

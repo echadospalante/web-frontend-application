@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { User } from "echadospalante-core";
+import { User } from 'echadospalante-domain';
 
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import { fetchOwnerBySponsorshipIdMiddleware } from "../api/middleware/venture-sponsorships.middleware";
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import { fetchOwnerBySponsorshipIdMiddleware } from '../api/middleware/venture-sponsorships.middleware';
 
 const useSponsorshipOwner = (sponsorshipId: string) => {
   const dispatch = useAppDispatch();

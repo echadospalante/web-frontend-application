@@ -1,7 +1,7 @@
-import Flatpickr from "react-flatpickr";
-import { Col, Row } from "reactstrap";
+import Flatpickr from 'react-flatpickr';
+import { Col, Row } from 'reactstrap';
 
-import useVentureEventsFilters from "../../../modules/admin/general/hooks/useVentureEventsFilter";
+import useVentureEventsFilters from '../../../modules/admin/general/hooks/useVentureEventsFilter';
 
 const VentureEventsFiltersForm = () => {
   const { filters, setFrom, setTo, setSearchTerm } = useVentureEventsFilters();
@@ -14,15 +14,15 @@ const VentureEventsFiltersForm = () => {
           value={filters.from} // Assuming filters has `from` date
           onChange={(selectedDates) => setFrom(selectedDates[0])} // Adjust based on `useVentureEventsFilters` behavior
           options={{
-            dateFormat: "Y-m-d",
-            mode: "range",
+            dateFormat: 'Y-m-d',
+            mode: 'range',
             onChange: (selectedDates) => {
               setFrom(selectedDates[0]);
               setTo(selectedDates[1]);
             },
           }}
           className="form-control"
-          style={{ height: "37px" }}
+          style={{ height: '37px' }}
         />
       </Col>
 
@@ -30,7 +30,7 @@ const VentureEventsFiltersForm = () => {
         <label className="control-label">Búsqueda por Coincidencia</label>
         <input
           value={filters.search}
-          style={{ height: "37px" }}
+          style={{ height: '37px' }}
           onChange={({ target }) => setSearchTerm(target.value)}
           className="form-control"
           type="text"

@@ -1,9 +1,9 @@
-import { PayloadAction, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { VentureSponsorship } from "echadospalante-core";
+import { VentureSponsorship } from 'echadospalante-domain';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
-import { PaginatedBody } from "../../../../modules/principal/ventures/domain/api";
-import { RootState } from "../../store/store.config";
+import { RootState } from '../../store/store.config';
 
 export interface VentureSponsorshipsFilter {
   ventureId: string;
@@ -20,9 +20,9 @@ export interface VentureSponsorshipsManagementState {
 // Freeze the initial state to prevent accidental changes
 const initialState: VentureSponsorshipsManagementState = {
   filters: {
-    ventureId: "",
+    ventureId: '',
     page: 0,
-    search: "",
+    search: '',
     size: 20,
   },
   sponsors: {
@@ -32,18 +32,18 @@ const initialState: VentureSponsorshipsManagementState = {
 };
 
 export const ventureSponsorsManagementSlice = createSlice({
-  name: "admin/ventureSponsorsManagement",
+  name: 'admin/ventureSponsorsManagement',
   initialState,
   reducers: {
     createVentureSponsor: (
       state,
-      action: PayloadAction<VentureSponsorship>
+      action: PayloadAction<VentureSponsorship>,
     ) => {
       state.sponsors.items.push(action.payload);
     },
     setVentureSponsorsFilters: (
       state,
-      action: PayloadAction<VentureSponsorshipsFilter>
+      action: PayloadAction<VentureSponsorshipsFilter>,
     ) => {
       const { page, search, size, ventureId } = action.payload;
 
@@ -56,11 +56,11 @@ export const ventureSponsorsManagementSlice = createSlice({
     },
     updateVentureSponsor: (
       state,
-      action: PayloadAction<VentureSponsorship>
+      action: PayloadAction<VentureSponsorship>,
     ) => {
       const updatedSponsor = action.payload;
       state.sponsors.items = state.sponsors.items.map((sponsor) =>
-        sponsor.id === updatedSponsor.id ? updatedSponsor : sponsor
+        sponsor.id === updatedSponsor.id ? updatedSponsor : sponsor,
       );
     },
     addVentureSponsor: (state, action: PayloadAction<VentureSponsorship>) => {
@@ -71,7 +71,7 @@ export const ventureSponsorsManagementSlice = createSlice({
     },
     setVentureSponsors: (
       state,
-      action: PayloadAction<PaginatedBody<VentureSponsorship>>
+      action: PayloadAction<PaginatedBody<VentureSponsorship>>,
     ) => {
       const { items, total } = action.payload;
       state.sponsors = {

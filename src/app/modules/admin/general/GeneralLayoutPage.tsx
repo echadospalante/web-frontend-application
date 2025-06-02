@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import { useSelector } from "react-redux";
-import { Outlet } from "react-router-dom";
-import { Container } from "reactstrap";
+import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
-import HorizontalLayout from "../../../shared/components/layout/HorizontalLayout";
-import VerticalLayout from "../../../shared/components/layout/VerticalLayout";
-import { selectLayout } from "../../../config/redux/reducers/shared/layout.reducer";
-import { LayoutType } from "../../common/domain/layout.interfaces";
+import HorizontalLayout from '../../../shared/components/layout/HorizontalLayout';
+import VerticalLayout from '../../../shared/components/layout/VerticalLayout';
+import { selectLayout } from '../../../config/redux/reducers/shared/layout.reducer';
+import { LayoutType } from '../../common/domain/layout.interfaces';
 
 const GeneralLayoutPage = () => {
   const { layoutType } = useSelector(selectLayout);
 
-  document.title = "General | Administración";
+  document.title = 'General | Administración';
 
   return (
     <React.Fragment>

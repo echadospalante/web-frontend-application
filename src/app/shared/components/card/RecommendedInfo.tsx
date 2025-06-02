@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import classnames from "classnames";
+import classnames from 'classnames';
 import {
   Card,
   CardBody,
@@ -15,13 +15,13 @@ import {
   TabContent,
   TabPane,
   UncontrolledDropdown,
-} from "reactstrap";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "../../../../../node_modules/swiper/swiper.scss";
+} from 'reactstrap';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import '../../../../../node_modules/swiper/swiper.scss';
 
 const RecommendedInfo = () => {
-  const [customActiveTab, setCustomActiveTab] = useState("1");
+  const [customActiveTab, setCustomActiveTab] = useState('1');
 
   const toggleCustom = (tab: string) => {
     if (customActiveTab !== tab) {
@@ -37,10 +37,10 @@ const RecommendedInfo = () => {
         <Nav tabs className="nav-tabs-custom nav-justified">
           <NavItem>
             <NavLink
-              style={{ cursor: "pointer" }}
-              className={classnames({ active: customActiveTab === "1" })}
+              style={{ cursor: 'pointer' }}
+              className={classnames({ active: customActiveTab === '1' })}
               onClick={() => {
-                toggleCustom("1");
+                toggleCustom('1');
               }}
             >
               <span className="d-block d-sm-none">
@@ -52,10 +52,10 @@ const RecommendedInfo = () => {
 
           <NavItem>
             <NavLink
-              style={{ cursor: "pointer" }}
-              className={classnames({ active: customActiveTab === "2" })}
+              style={{ cursor: 'pointer' }}
+              className={classnames({ active: customActiveTab === '2' })}
               onClick={() => {
-                toggleCustom("2");
+                toggleCustom('2');
               }}
             >
               <span className="d-block d-sm-none">
@@ -67,10 +67,10 @@ const RecommendedInfo = () => {
 
           <NavItem>
             <NavLink
-              style={{ cursor: "pointer" }}
-              className={classnames({ active: customActiveTab === "2" })}
+              style={{ cursor: 'pointer' }}
+              className={classnames({ active: customActiveTab === '2' })}
               onClick={() => {
-                toggleCustom("2");
+                toggleCustom('2');
               }}
             >
               <span className="d-block d-sm-none">
@@ -136,7 +136,7 @@ const SwiperComponent = () => {
                 <h5 className="font-size-15 mb-2">
                   <a href="candidate-overview" className="text-body">
                     Luis Pérez
-                  </a>{" "}
+                  </a>{' '}
                   <span className="badge badge-soft-info">Mantenimiento</span>
                 </h5>
                 <p className="mb-0 text-muted">
@@ -177,7 +177,7 @@ const SwiperComponent = () => {
                 <h5 className="font-size-15 mb-2">
                   <a href="candidate-overview" className="text-body">
                     Laura Pérez
-                  </a>{" "}
+                  </a>{' '}
                   <span className="badge badge-soft-warning">Arte</span>
                 </h5>
                 <p className="mb-0 text-muted">
@@ -218,7 +218,7 @@ const SwiperComponent = () => {
                 <h5 className="font-size-15 mb-2">
                   <a href="candidate-overview" className="text-body">
                     Pepito Pérez
-                  </a>{" "}
+                  </a>{' '}
                   <span className="badge badge-soft-success">Turismo</span>
                 </h5>
                 <p className="mb-0 text-muted">

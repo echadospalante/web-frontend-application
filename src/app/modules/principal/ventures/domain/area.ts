@@ -5,7 +5,7 @@
 //   DIGITAL_MARKETING = "Marketing Digital",
 // }
 
-import { VentureState } from "./state";
+import { VentureState } from './state';
 
 export interface QuoteAreaCreate {
   name: string;

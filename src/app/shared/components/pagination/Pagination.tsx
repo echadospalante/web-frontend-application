@@ -1,7 +1,7 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { Link } from "react-router-dom";
-import { Row } from "reactstrap";
+import { Link } from 'react-router-dom';
+import { Row } from 'reactstrap';
 
 type PaginationProps = {
   perPageData: number;
@@ -41,7 +41,7 @@ const Pagination = ({
       <Row className="justify-content-between align-items-center">
         <div className={paginationDiv}>
           <ul className={paginationClass}>
-            <li className={`page-item ${currentPage <= 1 ? "disabled" : ""}`}>
+            <li className={`page-item ${currentPage <= 1 ? 'disabled' : ''}`}>
               <Link
                 className="page-link"
                 to="#"
@@ -53,14 +53,14 @@ const Pagination = ({
             {(pageNumbers || []).map((item, index) => (
               <li
                 className={
-                  currentPage === item ? "page-item active " : "page-item"
+                  currentPage === item ? 'page-item active ' : 'page-item'
                 }
                 key={index}
               >
                 <Link
                   className="page-link"
                   to="#"
-                  id={item + ""}
+                  id={item + ''}
                   onClick={() => handleClick(item - 1)}
                 >
                   {item}
@@ -69,7 +69,7 @@ const Pagination = ({
             ))}
             <li
               className={`page-item ${
-                currentPage > length / perPageData ? "disabled" : ""
+                currentPage > length / perPageData ? 'disabled' : ''
               }`}
             >
               <Link

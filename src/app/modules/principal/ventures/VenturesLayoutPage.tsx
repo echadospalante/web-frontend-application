@@ -1,23 +1,23 @@
-import React from "react";
+import React from 'react';
 
-import { useSelector } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
-import { Container } from "reactstrap";
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
-import { selectAuthentication } from "../../../config/redux/reducers/auth/auth.reducer";
-import { selectLayout } from "../../../config/redux/reducers/shared/layout.reducer";
-import HorizontalLayout from "../../../shared/components/layout/HorizontalLayout";
-import VerticalLayout from "../../../shared/components/layout/VerticalLayout";
-import { LayoutType } from "../../common/domain/layout.interfaces";
+import { selectAuthentication } from '../../../config/redux/reducers/auth/auth.reducer';
+import { selectLayout } from '../../../config/redux/reducers/shared/layout.reducer';
+import HorizontalLayout from '../../../shared/components/layout/HorizontalLayout';
+import VerticalLayout from '../../../shared/components/layout/VerticalLayout';
+import { LayoutType } from '../../common/domain/layout.interfaces';
 
-const CommercialLayoutPage = () => {
+const VenturesLayoutPage = () => {
   const { layoutType } = useSelector(selectLayout);
   const { onboardingCompleted } = useSelector(selectAuthentication);
 
-  document.title = "Emprendimientos | Principal";
+  document.title = 'Emprendimientos | Principal';
 
   if (!onboardingCompleted) {
-    return <Navigate to={"/registro"} replace={true} />;
+    return <Navigate to={'/registro'} replace={true} />;
   }
 
   return (
@@ -46,4 +46,4 @@ export const Dashboard404Page = () => {
   return <h1>404 Not found</h1>;
 };
 
-export default CommercialLayoutPage;
+export default VenturesLayoutPage;

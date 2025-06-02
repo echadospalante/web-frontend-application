@@ -1,21 +1,21 @@
-import React from "react";
-import { Row, Col, Card, CardBody } from "reactstrap";
-import ReactApexChart from "react-apexcharts";
+import React from 'react';
+import { Row, Col, Card, CardBody } from 'reactstrap';
+import ReactApexChart from 'react-apexcharts';
 
-import { getChartColorsArray } from "./Earning";
+import { getChartColorsArray } from './Earning';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const SalesAnalytics = ({ dataColors }: any) => {
   const apexsaleschartColors = getChartColorsArray(dataColors);
   const series = [56, 38, 26];
   const options = {
-    labels: ["Series A", "Series B", "Series C"],
+    labels: ['Series A', 'Series B', 'Series C'],
     colors: apexsaleschartColors,
     legend: { show: !1 },
     plotOptions: {
       pie: {
         donut: {
-          size: "70%",
+          size: '70%',
         },
       },
     },

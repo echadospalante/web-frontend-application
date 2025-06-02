@@ -1,16 +1,21 @@
-import { faker } from "@faker-js/faker";
-import { ContentType, User, VentureSponsorship } from "echadospalante-core";
+import { faker, th } from '@faker-js/faker';
+import { User, VentureSponsorship } from 'echadospalante-domain';
+import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 
-import env from "../../../../../../environment/environment";
-import { VentureSponsorshipsFilter } from "../../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer";
-import { PaginatedBody } from "../../../../principal/ventures/domain/api";
+import env from '../../../../../../environment/environment';
+import { VentureSponsorshipsFilter } from '../../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer';
 
 export class VentureSponsorshipsApi {
   private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/sponsorships`;
 
   public static fetchVentureSponsorships(
-    ventureSponsorshipsFilter: VentureSponsorshipsFilter
+    ventureSponsorshipsFilter: VentureSponsorshipsFilter,
   ): Promise<PaginatedBody<VentureSponsorship>> {
+    console.log(
+      'ventureSponsorshipsFilter',
+      ventureSponsorshipsFilter,
+      this.API_BASE_URL,
+    );
     // const { page, size, ...rest } = ventureSponsorshipsFilter;
     // const otherPrams = filterFalsyValues(rest);
     // const params = new URLSearchParams(otherPrams as Record<string, string>);
@@ -32,36 +37,16 @@ export class VentureSponsorshipsApi {
   }
 
   private static generateRandomSponsorships(
-    length: number
+    length: number,
   ): VentureSponsorship[] {
-    const array = new Array(length).fill(null);
-
-    return array.map(() => {
-      return {
-        id: crypto.randomUUID(),
-        createdAt: faker.date.recent(),
-        monthlyAmount: Math.random() * 1000,
-      };
-    });
+    console.log(length);
+    return [];
   }
 
   public static fetchOwnerBySponsorshipId(
-    sponsorshipId: string
+    sponsorshipId: string,
   ): Promise<User> {
-    const user: User = {
-      id: crypto.randomUUID(),
-      picture: faker.image.avatar(),
-      email: faker.internet.email(),
-      firstName: faker.person.firstName(),
-      lastName: faker.person.lastName(),
-      active: true,
-      verified: false,
-      roles: [],
-      preferences: [],
-      createdAt: new Date(),
-      updatedAt: new Date(),
-      onboardingCompleted: false,
-    };
-    return Promise.resolve(user);
+    console.log('sponsorshipId', sponsorshipId);
+    throw new Error('Method not implemented.');
   }
 }

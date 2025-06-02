@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect } from "react";
-import L from "leaflet";
-import "leaflet.markercluster/dist/leaflet.markercluster";
-import "leaflet.markercluster/dist/MarkerCluster.css";
-import "leaflet.markercluster/dist/MarkerCluster.Default.css";
-import { useMap } from "react-leaflet";
+import { useEffect } from 'react';
+import L from 'leaflet';
+import 'leaflet.markercluster/dist/leaflet.markercluster';
+import 'leaflet.markercluster/dist/MarkerCluster.css';
+import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
+import { useMap } from 'react-leaflet';
 
 const markerClusters = L.markerClusterGroup();
 const customIcon = new L.Icon({
-  iconUrl: "https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png",
+  iconUrl: 'https://unpkg.com/leaflet@1.5.1/dist/images/marker-icon.png',
   iconSize: [25, 41],
 });
 
@@ -20,13 +20,13 @@ const MarkerCluster = ({ markers, addMarkers }: any) => {
     markers.forEach(({ position }: any) =>
       L.marker(new L.LatLng(position.lat, position.lng), {
         icon: customIcon,
-      }).addTo(markerClusters)
+      }).addTo(markerClusters),
     );
 
     map.addLayer(markerClusters);
   }, [markers, map]);
 
-  map.on("moveend", () => {
+  map.on('moveend', () => {
     const start = window.performance.now();
 
     addMarkers();

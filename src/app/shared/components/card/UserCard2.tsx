@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 import {
   Card,
@@ -9,7 +9,7 @@ import {
   DropdownMenu,
   DropdownToggle,
   Row,
-} from "reactstrap";
+} from 'reactstrap';
 
 const CardUser2 = () => {
   const [settingsMenu, setSettingsMenu] = useState(false);
@@ -34,10 +34,10 @@ const CardUser2 = () => {
                     Bienvenido al Dashboard de EchadosPa'lante
                   </p>
                   <h5 className="mb-2">
-                    {"{{Nombre_usuario}}"}
+                    {'{{Nombre_usuario}}'}
                     {/* <Link to="/registro/bienvenida">Registro</Link> */}
                   </h5>
-                  <p className="mb-0">{"{{list_of_roles}}"}</p>
+                  <p className="mb-0">{'{{list_of_roles}}'}</p>
                 </div>
               </div>
             </div>

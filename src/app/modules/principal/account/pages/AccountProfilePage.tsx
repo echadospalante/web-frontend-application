@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardBody,
@@ -10,13 +10,13 @@ import {
   Container,
   Row,
   Table,
-} from "reactstrap";
-import { selectAuthentication } from "../../../../config/redux/reducers/auth/auth.reducer";
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import VentureCategoryWidget from "../../../../shared/components/widgets/VentureCategoryWidget";
-import useUserContactInfo from "../hooks/useUserContactInfo";
-import AppSpinner from "../../../../shared/components/loader/Spinner";
-import UserContactCard from "../../../../shared/components/card/UserContactCard";
+} from 'reactstrap';
+import { selectAuthentication } from '../../../../config/redux/reducers/auth/auth.reducer';
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import VentureCategoryWidget from '../../../../shared/components/widgets/VentureCategoryWidget';
+import useUserContactInfo from '../hooks/useUserContactInfo';
+import AppSpinner from '../../../../shared/components/loader/Spinner';
+import UserContactCard from '../../../../shared/components/card/UserContactCard';
 
 const AccountProfilePage = () => {
   document.title = "Perfil de usuario | EchadosPa'lante";
@@ -38,17 +38,17 @@ const AccountProfilePage = () => {
       <div className="page-content">
         <Container fluid>
           {/* Render Breadcrumbs */}
-          <Breadcrumb title="Account" breadcrumbItem="Profile" />
+          <Breadcrumb title="Cuenta" breadcrumbItem="Perfil" />
 
           <Row>
-            <Col xl="12">
+            <Col xl="4">
               <Card className="overflow-hidden">
                 <div className="bg-primary-subtle">
                   <Row>
                     <Col xs="7">
                       <div className="text-primary p-3">
-                        <h5 className="text-primary">Welcome Back!</h5>
-                        <p>We're glad to see you again!</p>
+                        <h5 className="text-primary">Welcome Back !</h5>
+                        <p>It will seem like simplified</p>
                       </div>
                     </Col>
                     <Col xs="5" className="align-self-end">
@@ -72,8 +72,8 @@ const AccountProfilePage = () => {
                       <h6>{email}</h6>
 
                       <p className="text-muted mb-0 text-truncate">
-                        Desarrollador y estudiante de ingeniería de sistemas,
-                        apasionado por el emprendimiento y la tecnología.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Harum, magnam.
                       </p>
 
                       <section className="d-flex mt-3">
@@ -90,7 +90,7 @@ const AccountProfilePage = () => {
 
                     <Col sm={8}>
                       <div className="pt-4">
-                        {/* <Row>
+                        <Row>
                           <Col xs="6">
                             <h5 className="font-size-15">Test</h5>
                             <p className="text-muted mb-0">Projects</p>
@@ -99,10 +99,10 @@ const AccountProfilePage = () => {
                             <h5 className="font-size-15">$Test</h5>
                             <p className="text-muted mb-0">Test </p>
                           </Col>
-                        </Row> */}
+                        </Row>
                         <div className="mt-4">
                           <Link to="" className="btn btn-primary  btn-sm">
-                            Edit profile{" "}
+                            Editar perfil{' '}
                             <i className="mdi mdi-arrow-right ms-1" />
                           </Link>
                         </div>
@@ -112,34 +112,34 @@ const AccountProfilePage = () => {
                 </CardBody>
               </Card>
 
-              {/* <Card>
+              <Card>
                 <CardBody>
                   <CardTitle className="mb-5">Registro de Actividad</CardTitle>
                   <div>
                     <ul className="verti-timeline list-unstyled">
                       {[
-                        { id: 1, iconClass: "bx bx-user", link: "#" },
-                        { id: 2, iconClass: "bx bxs-news", link: "#" },
+                        { id: 1, iconClass: 'bx bx-user', link: '#' },
+                        { id: 2, iconClass: 'bx bxs-news', link: '#' },
                         {
                           id: 3,
-                          iconClass: "bx bxs-comment-add",
-                          link: "#",
+                          iconClass: 'bx bxs-comment-add',
+                          link: '#',
                         },
                       ]?.map((experience, i) => (
                         <li
                           className={
                             experience.id === 1
-                              ? "event-list active"
-                              : "event-list"
+                              ? 'event-list active'
+                              : 'event-list'
                           }
-                          key={"_exp_" + i}
+                          key={'_exp_' + i}
                         >
                           <div className="event-timeline-dot">
                             <i
                               className={
                                 experience.id === 1
-                                  ? "bx bx-right-arrow-circle bx-fade-right"
-                                  : "bx bx-right-arrow-circle"
+                                  ? 'bx bx-right-arrow-circle bx-fade-right'
+                                  : 'bx bx-right-arrow-circle'
                               }
                             />
                           </div>
@@ -147,9 +147,9 @@ const AccountProfilePage = () => {
                             <div className="me-3">
                               <i
                                 className={
-                                  "bx " +
+                                  'bx ' +
                                   experience.iconClass +
-                                  " h4 text-primary"
+                                  ' h4 text-primary'
                                 }
                               />
                             </div>
@@ -172,26 +172,26 @@ const AccountProfilePage = () => {
                     </ul>
                   </div>
                 </CardBody>
-              </Card> */}
+              </Card>
             </Col>
 
-            {/* <Col xl="8">
+            <Col xl="8">
               <UserContactCard />
-            </Col> */}
-            {/* <Col xl="8">
+            </Col>
+            <Col xl="8">
               <Row>
                 {[1, 2, 3]?.map((_card) => (
                   <VentureCategoryWidget
-                    name={""}
+                    name={''}
                     count={0}
                     percentageGrowth={0}
-                    icon={""}
-                    backgroundColor={""}
+                    icon={''}
+                    backgroundColor={''}
                     checked={false}
                   />
                 ))}
               </Row>
-            </Col> */}
+            </Col>
           </Row>
         </Container>
       </div>

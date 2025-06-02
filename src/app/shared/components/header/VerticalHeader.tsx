@@ -1,34 +1,30 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
-import Select from "react-select";
-import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from "reactstrap";
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
 
-import { useAppDispatch } from "../../../config/redux/store/store.config";
-import useAuthentication from "../../../modules/auth/hooks/useAuthentication";
-import LanguageDropdown from "../dropdown/LanguageDropdown";
-import NotificationDropdown from "../dropdown/NotificationDropdown";
-import ProfileMenu from "../menu/ProfileMenu";
-import { toggleSidebar } from "../../../config/redux/reducers/shared/layout.reducer";
+import { toggleRightSidebar } from '../../../config/redux/reducers/shared/layout.reducer';
+import { useAppDispatch } from '../../../config/redux/store/store.config';
+import LanguageDropdown from '../dropdown/LanguageDropdown';
+import NotificationDropdown from '../dropdown/NotificationDropdown';
+import ProfileMenu from '../menu/ProfileMenu';
 
 const Header = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
   const [search, setsearch] = useState(false);
   const [megaMenu, setmegaMenu] = useState(false);
   const [socialDrp, setsocialDrp] = useState(false);
-  const { t } = useTranslation();
-  const { activeRole, roles = [], setActiveRole } = useAuthentication();
 
   function tToggle() {
-    dispatch(toggleSidebar());
     const body = document.body;
     if (window.screen.width <= 998) {
-      body.classList.toggle("sidebar-enable");
+      body.classList.toggle('sidebar-enable');
     } else {
-      body.classList.toggle("vertical-collpsed");
-      body.classList.toggle("sidebar-enable");
+      body.classList.toggle('vertical-collpsed');
+      body.classList.toggle('sidebar-enable');
     }
   }
 
@@ -62,6 +58,17 @@ const Header = () => {
               <i className="fa fa-fw fa-bars" />
             </button>
 
+            <form className="app-search d-none d-lg-block">
+              <div className="position-relative">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder={t('Search') + '...'}
+                />
+                <span className="bx bx-search-alt" />
+              </div>
+            </form>
+
             <Dropdown
               className="dropdown-mega d-none d-lg-block ms-2"
               isOpen={megaMenu}
@@ -70,8 +77,8 @@ const Header = () => {
               }}
             >
               <DropdownToggle className="btn header-item " caret tag="button">
-                {" "}
-                {t("Mega Menu")} <i className="mdi mdi-chevron-down" />
+                {' '}
+                {t('Mega Menu')} <i className="mdi mdi-chevron-down" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-megamenu">
                 <Row>
@@ -79,84 +86,84 @@ const Header = () => {
                     <Row>
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {t("UI Components")}
+                          {t('UI Components')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Lightbox")}</Link>
+                            <Link to="#">{t('Lightbox')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Range Slider")}</Link>
+                            <Link to="#">{t('Range Slider')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Sweet Alert")}</Link>
+                            <Link to="#">{t('Sweet Alert')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Rating")}</Link>
+                            <Link to="#">{t('Rating')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Forms")}</Link>
+                            <Link to="#">{t('Forms')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tables")}</Link>
+                            <Link to="#">{t('Tables')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Charts")}</Link>
+                            <Link to="#">{t('Charts')}</Link>
                           </li>
                         </ul>
                       </Col>
 
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {t("Applications")}
+                          {t('Applications')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Ecommerce")}</Link>
+                            <Link to="#">{t('Ecommerce')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Calendar")}</Link>
+                            <Link to="#">{t('Calendar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Email")}</Link>
+                            <Link to="#">{t('Email')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Projects")}</Link>
+                            <Link to="#">{t('Projects')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tasks")}</Link>
+                            <Link to="#">{t('Tasks')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Contacts")}</Link>
+                            <Link to="#">{t('Contacts')}</Link>
                           </li>
                         </ul>
                       </Col>
 
                       <Col md={4}>
                         <h5 className="font-size-14 mt-0">
-                          {t("Extra Pages")}
+                          {t('Extra Pages')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Light Sidebar")}</Link>
+                            <Link to="#">{t('Light Sidebar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Compact Sidebar")}</Link>
+                            <Link to="#">{t('Compact Sidebar')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Horizontal layout")}</Link>
+                            <Link to="#">{t('Horizontal layout')}</Link>
                           </li>
                           <li>
-                            <Link to="#"> {t("Maintenance")}</Link>
+                            <Link to="#"> {t('Maintenance')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Coming Soon")}</Link>
+                            <Link to="#">{t('Coming Soon')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Timeline")}</Link>
+                            <Link to="#">{t('Timeline')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("FAQs")}</Link>
+                            <Link to="#">{t('FAQs')}</Link>
                           </li>
                         </ul>
                       </Col>
@@ -166,29 +173,29 @@ const Header = () => {
                     <Row>
                       <Col sm={6}>
                         <h5 className="font-size-14 mt-0">
-                          {t("UI Components")}
+                          {t('UI Components')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
                           <li>
-                            <Link to="#">{t("Lightbox")}</Link>
+                            <Link to="#">{t('Lightbox')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Range Slider")}</Link>
+                            <Link to="#">{t('Range Slider')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Sweet Alert")}</Link>
+                            <Link to="#">{t('Sweet Alert')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Rating")}</Link>
+                            <Link to="#">{t('Rating')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Forms")}</Link>
+                            <Link to="#">{t('Forms')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Tables")}</Link>
+                            <Link to="#">{t('Tables')}</Link>
                           </li>
                           <li>
-                            <Link to="#">{t("Charts")}</Link>
+                            <Link to="#">{t('Charts')}</Link>
                           </li>
                         </ul>
                       </Col>
@@ -223,8 +230,8 @@ const Header = () => {
               <div
                 className={
                   search
-                    ? "dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show"
-                    : "dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                    ? 'dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show'
+                    : 'dropdown-menu dropdown-menu-lg dropdown-menu-end p-0'
                 }
                 aria-labelledby="page-header-search-dropdown"
               >
@@ -248,52 +255,100 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="d-flex align-items-center">
-              {roles.length > 1 && activeRole && (
-                <div className="mx-3">
-                  <Select
-                    className=""
-                    isDisabled={false}
-                    value={{
-                      label: activeRole?.label,
-                      value: activeRole?.name,
-                    }}
-                    isMulti={false}
-                    isSearchable={false}
-                    onChange={(selected) => {
-                      if (!selected) return;
-                      setActiveRole(selected.value);
-                    }}
-                    options={roles.map((role) => ({
-                      label: role.label,
-                      value: role.name,
-                    }))}
-                    styles={{
-                      control: (styles) => ({
-                        ...styles,
-                        width: "130px",
-                      }),
-                      menu: (styles) => ({ ...styles, zIndex: 100000 }),
-                    }}
-                  ></Select>
+            <LanguageDropdown />
+
+            <Dropdown
+              className="d-none d-lg-inline-block ms-1"
+              isOpen={socialDrp}
+              toggle={() => {
+                setsocialDrp(!socialDrp);
+              }}
+            >
+              <DropdownToggle
+                className="btn header-item noti-icon "
+                tag="button"
+              >
+                <i className="bx bx-customize" />
+              </DropdownToggle>
+              <DropdownMenu className="dropdown-menu-lg dropdown-menu-end">
+                <div className="px-lg-2">
+                  <Row className="no-gutters">
+                    <Col>
+                      <Link className="dropdown-icon-item" to="#">
+                        <img src="/images/brands/github.png" alt="Github" />
+                        <span>GitHub</span>
+                      </Link>
+                    </Col>
+                    <Col>
+                      <Link className="dropdown-icon-item" to="#">
+                        <img
+                          src="/images/brands/bitbucket.png"
+                          alt="bitbucket"
+                        />
+                        <span>Bitbucket</span>
+                      </Link>
+                    </Col>
+                    <Col>
+                      <Link className="dropdown-icon-item" to="#">
+                        <img src="/images/brands/dribbble.png" alt="dribbble" />
+                        <span>Dribbble</span>
+                      </Link>
+                    </Col>
+                  </Row>
+
+                  <Row className="no-gutters">
+                    <Col>
+                      <Link className="dropdown-icon-item" to="#">
+                        <img src="/images/brands/dropbox.png" alt="dropbox" />
+                        <span>Dropbox</span>
+                      </Link>
+                    </Col>
+                    <Col>
+                      <Link className="dropdown-icon-item" to="#">
+                        <img
+                          src="/images/brands/mail_chimp.png"
+                          alt="mail_chimp"
+                        />
+                        <span>Mail Chimp</span>
+                      </Link>
+                    </Col>
+                    <Col>
+                      <Link className="dropdown-icon-item" to="#">
+                        <img src="/images/brands/slack.png" alt="slack" />
+                        <span>Slack</span>
+                      </Link>
+                    </Col>
+                  </Row>
                 </div>
-              )}
+              </DropdownMenu>
+            </Dropdown>
 
-              <LanguageDropdown />
-
-              <div className="dropdown d-none d-lg-inline-block ms-1">
-                {/* <button
+            <div className="dropdown d-none d-lg-inline-block ms-1">
+              <button
                 type="button"
-                onClick={() => console.log("Fullscreen")}
+                onClick={() => console.log('Fullscreen')}
                 className="btn header-item noti-icon "
                 data-toggle="fullscreen"
               >
                 <i className="bx bx-fullscreen" />
-              </button> */}
-              </div>
+              </button>
+            </div>
 
-              <NotificationDropdown />
-              <ProfileMenu />
+            <NotificationDropdown />
+            <ProfileMenu />
+
+            <div
+              onClick={() => {
+                dispatch(toggleRightSidebar());
+              }}
+              className="dropdown d-inline-block"
+            >
+              <button
+                type="button"
+                className="btn header-item noti-icon right-bar-toggle "
+              >
+                <i className="bx bx-cog bx-spin" />
+              </button>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import { Link } from "react-router-dom";
-import { CardBody, Collapse } from "reactstrap";
+import { Link } from 'react-router-dom';
+import { CardBody, Collapse } from 'reactstrap';
 
 type AccordionProps = {
   question1: string;
@@ -68,14 +68,14 @@ const Accordion = ({
               onClick={() => {
                 t_col1();
               }}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             >
               <div>{question1}</div>
               <i
                 className={
                   col1
-                    ? "mdi mdi-minus accor-plus-icon"
-                    : "mdi mdi-plus accor-plus-icon"
+                    ? 'mdi mdi-minus accor-plus-icon'
+                    : 'mdi mdi-plus accor-plus-icon'
                 }
               />
             </Link>
@@ -94,14 +94,14 @@ const Accordion = ({
               onClick={() => {
                 t_col2();
               }}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             >
               <div>{question2}</div>
               <i
                 className={
                   col2
-                    ? "mdi mdi-minus accor-plus-icon"
-                    : "mdi mdi-plus accor-plus-icon"
+                    ? 'mdi mdi-minus accor-plus-icon'
+                    : 'mdi mdi-plus accor-plus-icon'
                 }
               />
             </Link>
@@ -119,14 +119,14 @@ const Accordion = ({
               onClick={() => {
                 t_col3();
               }}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             >
               <div>{question3}</div>
               <i
                 className={
                   col3
-                    ? "mdi mdi-minus accor-plus-icon"
-                    : "mdi mdi-plus accor-plus-icon"
+                    ? 'mdi mdi-minus accor-plus-icon'
+                    : 'mdi mdi-plus accor-plus-icon'
                 }
               />
             </Link>
@@ -144,14 +144,14 @@ const Accordion = ({
               onClick={() => {
                 t_col4();
               }}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             >
               <div>{question4}</div>
               <i
                 className={
                   col4
-                    ? "mdi mdi-minus accor-plus-icon"
-                    : "mdi mdi-plus accor-plus-icon"
+                    ? 'mdi mdi-minus accor-plus-icon'
+                    : 'mdi mdi-plus accor-plus-icon'
                 }
               />
             </Link>

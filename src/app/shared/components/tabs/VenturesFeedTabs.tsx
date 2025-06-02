@@ -1,4 +1,4 @@
-import { NavItem, NavLink } from "reactstrap";
+import { NavItem, NavLink } from 'reactstrap';
 
 export type AdminVenturesTabsProps = {
   activeTab: string;
@@ -19,10 +19,10 @@ const AdminVenturesTabs = (props: AdminVenturesTabsProps) => {
       <NavItem>
         <div
           className={`nav-link cursor-pointer ${
-            activeTab === "1" ? "active" : ""
+            activeTab === '1' ? 'active' : ''
           }`}
           onClick={() => {
-            toggleCustom("1");
+            toggleCustom('1');
           }}
         >
           <i className="mdi mdi-grid fs-3"></i>
@@ -32,10 +32,10 @@ const AdminVenturesTabs = (props: AdminVenturesTabsProps) => {
       <NavItem>
         <div
           className={`nav-link cursor-pointer ${
-            activeTab === "2" ? "active" : ""
+            activeTab === '2' ? 'active' : ''
           }`}
           onClick={() => {
-            toggleCustom("2");
+            toggleCustom('2');
           }}
         >
           <i className="mdi mdi-map-outline fs-3"></i>

@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
-import Breadcrumb from "../../../../shared/components/breadcrumb/Breadcrumb";
-import { UncontrolledAlert } from "reactstrap";
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import { UncontrolledAlert } from 'reactstrap';
 
 const AdminPublicationsPage = () => {
-  document.title = "Gestión de Publicaciones | Administración";
+  document.title = 'Gestión de Publicaciones | Administración';
 
   return (
     <Fragment>

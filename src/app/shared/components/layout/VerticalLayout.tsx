@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 
-import { useSelector } from "react-redux";
+import { useSelector } from 'react-redux';
 
 import {
   changeLayout,
@@ -12,12 +12,12 @@ import {
   changeTopBarTheme,
   selectLayout,
   toggleRightSidebar,
-} from "../../../config/redux/reducers/shared/layout.reducer";
-import { useAppDispatch } from "../../../config/redux/store/store.config";
-import RightSidebar from "../rightbar/RightSidebar";
-import Footer from "../footer/VerticalFooter";
-import Header from "../header/VerticalHeader";
-import Sidebar from "../sidebar/Sidebar";
+} from '../../../config/redux/reducers/shared/layout.reducer';
+import { useAppDispatch } from '../../../config/redux/store/store.config';
+import RightSidebar from '../rightbar/RightSidebar';
+import Footer from '../footer/VerticalFooter';
+import Header from '../header/VerticalHeader';
+import Sidebar from '../sidebar/Sidebar';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -53,7 +53,7 @@ const VerticalLayout = ({ children }: LayoutProps) => {
 
   useEffect(() => {
     const hideRightbar = (event: MouseEvent) => {
-      const rightbar = document.getElementById("right-bar");
+      const rightbar = document.getElementById('right-bar');
       //if clicked in inside right bar, then do nothing
       if (rightbar && rightbar.contains(event.target as Node)) {
         return;
@@ -63,19 +63,19 @@ const VerticalLayout = ({ children }: LayoutProps) => {
     };
 
     //init body click event fot toggle rightbar
-    document.body.addEventListener("click", hideRightbar, true);
+    document.body.addEventListener('click', hideRightbar, true);
 
     if (isPreloader === true) {
-      document.getElementById("preloader")!.style.display = "block";
-      document.getElementById("status")!.style.display = "block";
+      document.getElementById('preloader')!.style.display = 'block';
+      document.getElementById('status')!.style.display = 'block';
 
       setTimeout(function () {
-        document.getElementById("preloader")!.style.display = "none";
-        document.getElementById("status")!.style.display = "none";
+        document.getElementById('preloader')!.style.display = 'none';
+        document.getElementById('status')!.style.display = 'none';
       }, 2500);
     } else {
-      document.getElementById("preloader")!.style.display = "none";
-      document.getElementById("status")!.style.display = "none";
+      document.getElementById('preloader')!.style.display = 'none';
+      document.getElementById('status')!.style.display = 'none';
     }
   }, [dispatch, isPreloader]);
 
@@ -145,6 +145,7 @@ const VerticalLayout = ({ children }: LayoutProps) => {
         <Footer />
       </div>
       {/* {showRightSidebar ? <RightSidebar /> : null} */}
+      <RightSidebar />
     </React.Fragment>
   );
 };

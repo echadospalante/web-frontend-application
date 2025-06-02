@@ -1,4 +1,4 @@
-import { QuoteCompany } from "./company";
+import { QuoteCompany } from './company';
 
 export interface QuoteClient {
   id: number;

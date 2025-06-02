@@ -1,5 +1,5 @@
-import React, { Fragment } from "react";
-import { Container, Row, Col } from "reactstrap";
+import React, { Fragment } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 
 type FeatureBoxProps = {
   desc: string;
@@ -21,7 +21,7 @@ const FeatureBox = ({ desc, features, num, title }: FeatureBoxProps) => {
         <p className="text-muted">{desc}</p>
         <div className="text-muted mt-4">
           {features.map((feature, key) => (
-            <p key={key} className={feature.id === 1 ? "mb-2" : ""}>
+            <p key={key} className={feature.id === 1 ? 'mb-2' : ''}>
               <i className="mdi mdi-circle-medium text-success me-1" />
               {feature.desc}
             </p>
@@ -34,12 +34,12 @@ const FeatureBox = ({ desc, features, num, title }: FeatureBoxProps) => {
 
 const LandingFeaturesHero = () => {
   const features1 = [
-    { id: 1, desc: "Donec pede justo vel aliquet" },
-    { id: 2, desc: "Aenean et nisl sagittis" },
+    { id: 1, desc: 'Donec pede justo vel aliquet' },
+    { id: 2, desc: 'Aenean et nisl sagittis' },
   ];
   const features2 = [
-    { id: 1, desc: "Donec pede justo vel aliquet" },
-    { id: 2, desc: "Aenean et nisl sagittis" },
+    { id: 1, desc: 'Donec pede justo vel aliquet' },
+    { id: 2, desc: 'Aenean et nisl sagittis' },
   ];
 
   return (
