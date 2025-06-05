@@ -34,6 +34,8 @@ import VenturesLayoutPage from '../../modules/principal/ventures/VenturesLayoutP
 import AppSpinner from '../../shared/components/loader/Spinner';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import VenturePublicationDetailPage from '../../modules/principal/ventures/pages/VenturePublicationDetailPage';
+import TermsAndConditionsPage from '../../modules/common/pages/TermsAndConditionsPage';
 
 const ALL_ROLES = [AppRole.ADMIN, AppRole.MODERATOR, AppRole.USER];
 
@@ -73,6 +75,10 @@ const AppRouter = () => {
               <Route
                 path="publicaciones"
                 element={<GeneralPublicationsFeedPage />}
+              />
+              <Route
+                path="publicaciones/:publicationId"
+                element={<VenturePublicationDetailPage />}
               />
               <Route
                 path=":ventureId/publicaciones"
@@ -131,6 +137,11 @@ const AppRouter = () => {
               />
             </Route>
           </Route>
+
+          <Route
+            path="/privacidad-y-tratamiento-datos"
+            element={<TermsAndConditionsPage />}
+          />
 
           <Route path="/*" element={<Navigate to="" />} />
         </Routes>

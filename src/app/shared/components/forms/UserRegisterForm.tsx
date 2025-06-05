@@ -174,7 +174,7 @@ const UserRegisterForm = () => {
               name="acceptedTerms"
             />
             Acepto los términos y condiciones expresados en
-            <a target="_blank" href="/politica-privacidad">
+            <a target="_blank" href="/privacidad-y-tratamiento-datos">
               {' '}
               la política de privacidad{' '}
             </a>

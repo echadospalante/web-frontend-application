@@ -279,56 +279,6 @@ const TermsAndConditionsPage = () => {
                         </li>
                         <li>web designing: 1 year (Preferred)</li>
                       </ul>
-
-                      <div className="mt-4">
-                        <span className="badge badge-soft-warning me-1">
-                          PHP
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Magento
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Marketing
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          WordPress
-                        </span>
-                        <span className="badge badge-soft-warning">
-                          Bootstrap
-                        </span>
-                      </div>
-
-                      <div className="mt-4">
-                        <ul className="list-inline mb-0">
-                          <li className="list-inline-item mt-1">
-                            Share this job:
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-primary btn-hover"
-                            >
-                              <i className="uil uil-facebook-f"></i> Facebook
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-danger btn-hover"
-                            >
-                              <i className="uil uil-google"></i> Google+
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-success btn-hover"
-                            >
-                              <i className="uil uil-linkedin-alt"></i> linkedin
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
                     </CardBody>
                   </TabPane>
 
@@ -423,24 +373,6 @@ const TermsAndConditionsPage = () => {
                         </li>
                         <li>web designing: 1 year (Preferred)</li>
                       </ul>
-
-                      <div className="mt-4">
-                        <span className="badge badge-soft-warning me-1">
-                          PHP
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Magento
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Marketing
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          WordPress
-                        </span>
-                        <span className="badge badge-soft-warning">
-                          Bootstrap
-                        </span>
-                      </div>
 
                       <div className="mt-4">
                         <ul className="list-inline mb-0">
@@ -569,24 +501,6 @@ const TermsAndConditionsPage = () => {
                       </ul>
 
                       <div className="mt-4">
-                        <span className="badge badge-soft-warning me-1">
-                          PHP
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Magento
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Marketing
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          WordPress
-                        </span>
-                        <span className="badge badge-soft-warning">
-                          Bootstrap
-                        </span>
-                      </div>
-
-                      <div className="mt-4">
                         <ul className="list-inline mb-0">
                           <li className="list-inline-item mt-1">
                             Share this job:
@@ -711,24 +625,6 @@ const TermsAndConditionsPage = () => {
                         </li>
                         <li>web designing: 1 year (Preferred)</li>
                       </ul>
-
-                      <div className="mt-4">
-                        <span className="badge badge-soft-warning me-1">
-                          PHP
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Magento
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Marketing
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          WordPress
-                        </span>
-                        <span className="badge badge-soft-warning">
-                          Bootstrap
-                        </span>
-                      </div>
 
                       <div className="mt-4">
                         <ul className="list-inline mb-0">
@@ -857,24 +753,6 @@ const TermsAndConditionsPage = () => {
                       </ul>
 
                       <div className="mt-4">
-                        <span className="badge badge-soft-warning me-1">
-                          PHP
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Magento
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Marketing
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          WordPress
-                        </span>
-                        <span className="badge badge-soft-warning">
-                          Bootstrap
-                        </span>
-                      </div>
-
-                      <div className="mt-4">
                         <ul className="list-inline mb-0">
                           <li className="list-inline-item mt-1">
                             Share this job:
@@ -1001,24 +879,6 @@ const TermsAndConditionsPage = () => {
                       </ul>
 
                       <div className="mt-4">
-                        <span className="badge badge-soft-warning me-1">
-                          PHP
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Magento
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Marketing
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          WordPress
-                        </span>
-                        <span className="badge badge-soft-warning">
-                          Bootstrap
-                        </span>
-                      </div>
-
-                      <div className="mt-4">
                         <ul className="list-inline mb-0">
                           <li className="list-inline-item mt-1">
                             Share this job:
@@ -1143,24 +1003,6 @@ const TermsAndConditionsPage = () => {
                         </li>
                         <li>web designing: 1 year (Preferred)</li>
                       </ul>
-
-                      <div className="mt-4">
-                        <span className="badge badge-soft-warning me-1">
-                          PHP
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Magento
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          Marketing
-                        </span>
-                        <span className="badge badge-soft-warning me-1">
-                          WordPress
-                        </span>
-                        <span className="badge badge-soft-warning">
-                          Bootstrap
-                        </span>
-                      </div>
 
                       <div className="mt-4">
                         <ul className="list-inline mb-0">
