@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 import { useParams } from 'react-router-dom';
-import PublicationsApi from '../api/http/publications.api';
+import PublicationsApi from '../api/publications.api';
 
 const useFetchPublicationDetail = () => {
   const { publicationId } = useParams();

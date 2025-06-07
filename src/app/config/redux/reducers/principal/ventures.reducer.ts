@@ -1,28 +1,33 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+import { PaginatedBody, Pagination, Venture } from 'echadospalante-domain';
 import { RootState } from '../../store/store.config';
 
-export interface VentureFilter {}
+export interface VentureFilter {
+  pagination: Pagination;
+  search: string;
+  categoriesIds: string[];
+  municipalitiesIds: number[];
+}
 
 export interface VenturesState {
   filters: VentureFilter;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  items: any[];
+  items: Venture[];
+  total: number;
 }
 
 const initialState: VenturesState = {
   filters: {
+    pagination: {
+      skip: 0,
+      take: 20,
+    },
     search: '',
-    dateRange: {},
-    areas: [],
-    advisors: [],
-    states: [],
-    include: [],
+    categoriesIds: [],
+    municipalitiesIds: [],
   },
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  // items: [] as any[],
-  // total: 0,
   items: [],
+  total: 0,
 };
 
 Object.freeze(initialState);
@@ -31,30 +36,9 @@ export const venturesSlice = createSlice({
   name: 'ventures',
   initialState,
   reducers: {
-    // changeFilterSearch: (state, action: PayloadAction<string>) => {
-    //   state.filters.search = action.payload;
-    // },
-    // changeFilterArea: (state, action: PayloadAction<ventureArea[]>) => {
-    //   state.filters.areas = action.payload;
-    // },
-    // changeFilterAdvisors: (state, action: PayloadAction<ventureAdvisor[]>) => {
-    //   state.filters.advisors = action.payload;
-    // },
-    // changeFilterState: (state, action: PayloadAction<venturestate[]>) => {
-    //   state.filters.states = action.payload;
-    // },
-    // changeFilterDateRange: (state, action: PayloadAction<DateRange>) => {
-    //   state.filters.dateRange = action.payload;
-    // },
-    // changeFilterIncludedFields: (
-    //   state,
-    //   action: PayloadAction<ventureInclude[]>
-    // ) => {
-    //   state.filters.include = action.payload;
-    // },
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    setVentures: (state, action: PayloadAction<any>) => {
-      state.items = action.payload;
+    setVentures: (state, action: PayloadAction<PaginatedBody<Venture>>) => {
+      state.items = action.payload.items;
+      state.total = action.payload.total;
     },
   },
 });

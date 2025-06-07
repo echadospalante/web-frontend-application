@@ -254,7 +254,7 @@ const PublicationCard: React.FC<PublicationCardProps> = ({ publication }) => {
           <div className="d-flex justify-content-between align-items-center">
             <div>
               <span className="text-muted me-3">
-                <i className="mdi mdi-hand-clap me-1"></i>
+                <i className="mdi mdi-party-popper me-1"></i>
                 {publication.clapsCount}{' '}
                 {publication.clapsCount === 1 ? 'Aplauso' : 'Aplausos'}
               </span>

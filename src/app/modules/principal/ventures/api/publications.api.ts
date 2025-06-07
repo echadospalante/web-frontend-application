@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { PaginatedBody, VenturePublication } from 'echadospalante-domain';
 
-import { PublicationFilter } from '../../../../../config/redux/reducers/principal/publications.reducer';
+import { PublicationFilter } from '../../../../config/redux/reducers/principal/publications.reducer';
 
 export default class PublicationsApi {
   private static readonly BASE_URL = `${

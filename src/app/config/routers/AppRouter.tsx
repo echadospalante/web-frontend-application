@@ -17,6 +17,7 @@ import CelebrationPage from '../../modules/auth/pages/CelebrationPage';
 import RegisterStepsPage from '../../modules/auth/pages/RegisterStepsPage';
 import SelectPreferencesPage from '../../modules/auth/pages/SelectPreferencesPage';
 import WelcomePage from '../../modules/auth/pages/WelcomePage';
+import TermsAndConditionsPage from '../../modules/common/pages/TermsAndConditionsPage';
 import LandingPage from '../../modules/landing/pages/LandingPage';
 import AccountLayoutPage from '../../modules/principal/account/AccountLayoutPage';
 import AccountEventCreatePage from '../../modules/principal/account/pages/AccountEventCreatePage';
@@ -28,14 +29,14 @@ import PreferencesNotificationsPage from '../../modules/principal/preferences/pa
 import PreferencesThemePage from '../../modules/principal/preferences/pages/PreferencesTheme';
 import PreferencesLayoutPage from '../../modules/principal/preferences/PreferencesLayoutPage';
 import Commercial404Page from '../../modules/principal/ventures/pages/Commercial404Page';
+import EventsCalenderPage from '../../modules/principal/ventures/pages/EventsCalendarPage';
 import GeneralPublicationsFeedPage from '../../modules/principal/ventures/pages/GeneralPublicationsFeedPage';
-import QuotesCalenderPage from '../../modules/principal/ventures/pages/QuotesCalendarPage';
+import VenturesFeedPage from '../../modules/principal/ventures/pages/GeneralVenturesPage';
+import VenturePublicationDetailPage from '../../modules/principal/ventures/pages/VenturePublicationDetailPage';
 import VenturesLayoutPage from '../../modules/principal/ventures/VenturesLayoutPage';
 import AppSpinner from '../../shared/components/loader/Spinner';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import VenturePublicationDetailPage from '../../modules/principal/ventures/pages/VenturePublicationDetailPage';
-import TermsAndConditionsPage from '../../modules/common/pages/TermsAndConditionsPage';
 
 const ALL_ROLES = [AppRole.ADMIN, AppRole.MODERATOR, AppRole.USER];
 
@@ -72,10 +73,13 @@ const AppRouter = () => {
             <Route path="" index element={<Navigate to="emprendimientos" />} />
 
             <Route path="emprendimientos" element={<VenturesLayoutPage />}>
+              <Route path="" element={<VenturesFeedPage />} />
               <Route
                 path="publicaciones"
                 element={<GeneralPublicationsFeedPage />}
               />
+
+              <Route path="eventos" element={<EventsCalenderPage />} />
               <Route
                 path="publicaciones/:publicationId"
                 element={<VenturePublicationDetailPage />}
@@ -84,7 +88,6 @@ const AppRouter = () => {
                 path=":ventureId/publicaciones"
                 element={<GeneralPublicationsFeedPage />}
               />
-              <Route path="calendario" element={<QuotesCalenderPage />} />
 
               <Route path="*" element={<Commercial404Page />} />
             </Route>
@@ -107,7 +110,6 @@ const AppRouter = () => {
             </Route>
 
             <Route path="preferencias" element={<PreferencesLayoutPage />}>
-              <Route path="tema" element={<PreferencesThemePage />} />
               <Route
                 path="alertas-notificaciones"
                 element={<PreferencesNotificationsPage />}

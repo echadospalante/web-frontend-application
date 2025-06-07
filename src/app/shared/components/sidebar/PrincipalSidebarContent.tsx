@@ -156,23 +156,9 @@ const UserSidebarContent = () => {
             </li>
 
             <li>
-              <Link to="/principal/eventos">
-                <i className="bx bx-id-card"></i>
-                <span>{t('Events')}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/mapa">
-                <i className="bx bx-carousel"></i>
-                <span>{t('Map')}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/calendario">
+              <Link to="/principal/emprendimientos/eventos">
                 <i className="bx bx-calendar"></i>
-                <span>{t('Calendar')}</span>
+                <span>{t('Events')}</span>
               </Link>
             </li>
           </ul>
@@ -184,13 +170,6 @@ const UserSidebarContent = () => {
               <Link to="/principal/preferencias/alertas-notificaciones">
                 <i className="bx bx-bell"></i>
                 <span>{t('Alerts And Notifications')}</span>
-              </Link>
-            </li>
-
-            <li>
-              <Link to="/principal/preferencias/tema">
-                <i className="bx bx-sun"></i>
-                <span>{t('Theme And Layout')}</span>
               </Link>
             </li>
           </ul>

@@ -1,0 +1,64 @@
+{
+  "id": "32b91d8e-1c63-432c-a825-cf141c9b6a8f",
+  "name": "Skiles, Conroy and Davis",
+  "slug": "skiles-conroy-and-davis",
+  "coverPhoto": "https://loremflickr.com/800/600/business?lock=3538505638011711",
+  "description": "Summa sed annus deleo vado quisquam tutamen. Vestrum vinitor vesper doloremque iure appono virgo cimentarius. Tepesco abstergo audentia circumvenio argumentum verecundia advoco.\nValeo claustrum pecco labore possimus crapula. Audacia canis sponte doloremque chirographum rerum suadeo spiritus debitis. Eveniet dolores arca vir delectatio cupiditas ut spargo amor.",
+  "active": true,
+  "verified": false,
+  "createdAt": "2025-06-02T23:10:24.146Z",
+  "updatedAt": "2025-06-02T23:10:24.146Z",
+  "location": {
+    "id": "053666e9-8915-48b2-b05a-94cd6d6d27f9",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        89.622,
+        -33.3349
+      ]
+    },
+    "description": "40233 Kessler Shoal",
+    "createdAt": "2025-06-02T23:10:24.146Z",
+    "updatedAt": "2025-06-02T23:10:24.146Z"
+  },
+  "owner": {
+    "id": "98c70782-7a41-42cd-ab41-d5b8855365cd",
+    "picture": "https://lh3.googleusercontent.com/a/ACg8ocLGFm5F3zf3Mmj5tRQ2-zZcItMGdMrvO0S7upkw-Fvn2lLz9hI_Yw=s96-c",
+    "email": "juancamilo19997814@gmail.com",
+    "firstName": "Juan Camilo",
+    "lastName": "Cardona",
+    "active": true,
+    "createdAt": "2025-05-04T15:49:54.321Z",
+    "updatedAt": "2025-05-05T00:30:35.947Z",
+    "onboardingCompleted": true,
+    "verified": false,
+    "gender": "M",
+    "birthDate": "1999-02-04T05:00:00.000Z"
+  },
+  "categories": [
+    {
+      "id": "0230b56b-d524-40b2-96a9-5d13e3c5cafe",
+      "name": "Tecnología",
+      "slug": "tecnologia",
+      "description": "Descripción de prueba",
+      "createdAt": "2024-09-17T16:58:28.519Z",
+      "updatedAt": "2024-09-17T16:58:28.519Z"
+    },
+    {
+      "id": "1ed8d67f-287b-4f5b-be23-470afc252cfa",
+      "name": "Turismo",
+      "slug": "turismo",
+      "description": "Descripción de prueba",
+      "createdAt": "2024-09-17T16:58:28.521Z",
+      "updatedAt": "2024-09-17T16:58:28.521Z"
+    },
+    {
+      "id": "ea372b1b-71ff-46df-a509-48b888411654",
+      "name": "Servicios de Entretenimiento",
+      "slug": "servicios_de_entretenimiento",
+      "description": "Descripción de prueba",
+      "createdAt": "2024-09-17T16:58:28.524Z",
+      "updatedAt": "2024-09-17T16:58:28.524Z"
+    }
+  ]
+}

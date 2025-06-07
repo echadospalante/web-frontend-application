@@ -179,7 +179,6 @@ const VenturePublicationDetailPage = () => {
                 </div>
               )}
 
-              {/* Interacciones */}
               <div className="d-flex align-items-center">
                 <Button
                   color="link"

@@ -8,7 +8,7 @@ import {
   setPublications,
 } from '../../../../config/redux/reducers/principal/publications.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
-import PublicationsApi from '../api/http/publications.api';
+import PublicationsApi from '../api/publications.api';
 
 const useFetchPublications = (ventureId?: string) => {
   const dispatch = useAppDispatch();

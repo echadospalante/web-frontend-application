@@ -14,6 +14,7 @@ import './app/styles/responsive.scss';
 import './app/styles/styles.scss';
 import './assets/scss/theme.scss';
 
+
 const App = () => {
   return (
     <Provider store={store}>

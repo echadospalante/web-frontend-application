@@ -194,9 +194,11 @@ const AccountVenturesPage = () => {
                   </div>
                 ) : (
                   <Row>
-                    {ventures.map((venture) => (
-                      <VentureCard key={venture.id} venture={venture} />
-                    ))}
+                    <Col xl={6} lg={6} md={6} sm={12}>
+                      {ventures.map((venture) => (
+                        <VentureCard key={venture.id} venture={venture} />
+                      ))}
+                    </Col>
                   </Row>
                 )}
 

@@ -13,242 +13,198 @@ import { formatDate } from '../../helpers/dates';
 
 export type VentureCardProps = {
   venture: Venture;
+  ownerButtons?: boolean;
 };
 
-const VentureCard = ({ venture }: VentureCardProps) => {
+const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
   return (
-    <Col xl={6} lg={6} md={6} sm={12}>
-      <a target="_blank" href={`/principal/emprendimientos/${venture.slug}`}>
-        <Card>
-          <CardBody>
-            <Row className="d-flex">
-              <Col lg={4} md={6} sm={12} className=" mx-auto">
-                <img
-                  src={venture.coverPhoto}
-                  className="w-100 bg-light text-danger font-size-16 rounded-2"
-                />
-              </Col>
-
-              <Col
-                lg={4}
-                md={6}
-                sm={12}
-                className="flex-grow-1 overflow-hidden"
-              >
-                <h5 className="text-truncate font-size-15">
-                  <p className="text-dark mt-0">{venture.name}</p>
-                </h5>
-                <p className="text-muted mb-2" id={`description-${venture.id}`}>
-                  {venture.description.substring(0, 100)}
-                  {venture.description.length >= 100 ? '...' : ''}
-                </p>
-
-                <UncontrolledTooltip
-                  placement="top"
-                  target={`description-${venture.id}`}
-                >
-                  <p>{venture.description}</p>
-                </UncontrolledTooltip>
-
-                <ul className="list-inline mb-0">
-                  {venture.categories.map((category) => (
-                    <li key={category.id} className="list-inline-item me-1">
-                      <UncontrolledTooltip
-                        placement="top"
-                        target={`category-${category.id}`}
-                      >
-                        <p>{category.description}</p>
-                      </UncontrolledTooltip>
-                      <small
-                        id={`category-${category.id}`}
-                        className="px-1 py-1"
-                        style={{
-                          backgroundColor: textToRGB(category.name),
-                          color: 'white',
-                          borderRadius: '5px',
-                        }}
-                      >
-                        {category.name}
-                      </small>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* <div className="avatar-group">
-                {venture.map((team, key) =>
-                  !team.img || team.img !== "Null" ? (
-                    <React.Fragment key={key}>
-                      <div className="avatar-group-item">
-                        <Link
-                          to="#"
-                          className="d-inline-block"
-                          id={"member" + team.id}
-                        >
-                          <img
-                            src={team.img}
-                            className="rounded-circle avatar-xs"
-                            alt=""
-                          />
-                          <UncontrolledTooltip
-                            placement="top"
-                            target={"member" + team.id}
-                          >
-                            {team.fullname}
-                          </UncontrolledTooltip>
-                        </Link>
-                      </div>
-                    </React.Fragment>
-                  ) : (
-                    <React.Fragment key={key}>
-                      <div className="avatar-group-item">
-                        <Link
-                          to="#"
-                          className="d-inline-block"
-                          id={"member" + team.id}
-                        >
-                          <div className="avatar-xs">
-                            <span
-                              className={
-                                "avatar-title rounded-circle bg-" +
-                                team.color +
-                                " text-white" +
-                                " font-size-16"
-                              }
-                            >
-                              {team.name}
-                            </span>
-                            <UncontrolledTooltip
-                              placement="top"
-                              target={"member" + team.id}
-                            >
-                              {team.name}
-                            </UncontrolledTooltip>
-                          </div>
-                        </Link>
-                      </div>
-                    </React.Fragment>
-                  )
-                )}
-              </div> */}
-              </Col>
-            </Row>
-          </CardBody>
-
-          <div className="px-4 py-1">
-            <ul className="list-inline mb-0">
-              <div className="mt-0 d-flex justify-content-between">
-                <Badge
-                  className={`py-1 px-2 bg-${
-                    venture.active ? 'success' : 'danger'
-                  }`}
-                >
-                  {venture.active ? 'Activo' : 'Inactivo'}
-                </Badge>
-                <Badge
-                  className={`py-1 px-2 bg-${
-                    venture.verified ? 'info' : 'secondary'
-                  }`}
-                >
-                  <i
-                    className={`bx ${
-                      venture.verified ? 'bx-badge-check' : 'bx bx-badge'
-                    } me-2`}
-                  ></i>
-                  {venture.verified ? 'Verificado' : 'No verificado'}
-                </Badge>
-              </div>
-            </ul>
-          </div>
-
-          <Row>
-            <Col lg={4} md={6} sm={12}>
-              <div className="px-4 py-2 border-top">
-                <ul className="list-inline mb-0">
-                  <li
-                    className="list-inline-item me-3 d-flex align-items-center"
-                    id={`creation-date-${venture.id}`}
-                  >
-                    <i className="bx bx-calendar me-1" />
-                    <small>{formatDate(venture.createdAt)}</small>
-                    <UncontrolledTooltip
-                      placement="top"
-                      target={`creation-date-${venture.id}`}
-                    >
-                      Fecha de creación
-                    </UncontrolledTooltip>
-                  </li>
-
-                  <li
-                    className="list-inline-item me-3 d-flex align-items-center"
-                    id={`comments-${venture.id}`}
-                  >
-                    <i className="bx bx-comment-dots me-1"></i>
-                    <small>10</small>
-                    <UncontrolledTooltip
-                      placement="top"
-                      target={`comments-${venture.id}`}
-                    >
-                      Número de comentarios
-                    </UncontrolledTooltip>
-                  </li>
-
-                  <li
-                    className="list-inline-item me-3 d-flex align-items-center"
-                    id={`reactions-${venture.id}`}
-                  >
-                    <i className="bx bx-like me-1"></i>
-                    <small>{Math.ceil(Math.random() * 100)}</small>
-                    <UncontrolledTooltip
-                      placement="top"
-                      target={`reactions-${venture.id}`}
-                    >
-                      Número de reacciones
-                    </UncontrolledTooltip>
-                  </li>
-
-                  <li
-                    className="list-inline-item me-3 d-flex align-items-center"
-                    id={`publications-${venture.id}`}
-                  >
-                    <UilMegaphone />
-                    <i className="uil uil-megaphone me-1"></i>
-                    <small>{Math.ceil(Math.random() * 100)}</small>
-                    <UncontrolledTooltip
-                      placement="top"
-                      target={`publications-${venture.id}`}
-                    >
-                      Cantidad de publicaciones
-                    </UncontrolledTooltip>
-                  </li>
-
-                  <li
-                    className="list-inline-item me-3 d-flex align-items-center"
-                    id={`events-${venture.id}`}
-                  >
-                    <i className="bx bx-calendar-event me-1"></i>
-                    <small>{Math.ceil(Math.random() * 100)}</small>
-                    <UncontrolledTooltip
-                      placement="top"
-                      target={`events-${venture.id}`}
-                    >
-                      Número de eventos
-                    </UncontrolledTooltip>
-                  </li>
-                </ul>
-              </div>
+    <a target="_blank" href={`/principal/emprendimientos/${venture.slug}`}>
+      <Card className="border overflow-hidden">
+        <CardBody>
+          <Row className="d-flex">
+            <Col lg={4} md={6} sm={12} className=" mx-auto">
+              <img
+                src={venture.coverPhoto}
+                className="w-100 bg-light text-danger font-size-16 rounded-2"
+              />
             </Col>
 
-            <Col lg={8} md={6} sm={12}>
-              <div className="px-4 py-2 border-top">
-                <div className="mt-0 d-flex justify-content-end">
-                  <Button className="mx-2 btn btn-info">
-                    <i className="bx bx-edit-alt me-1"></i> Editar
-                  </Button>
-                  <Button className="btn btn-danger">
-                    <i className="bx bx-trash me-1"></i> Eliminar
-                  </Button>
-                </div>
-              </div>
+            <Col lg={4} md={6} sm={12} className="flex-grow-1 overflow-hidden">
+              <h5 className="text-truncate font-size-15">
+                <p className="text-dark mt-0">{venture.name}</p>
+              </h5>
+              <p className="text-muted mb-2" id={`description-${venture.id}`}>
+                {venture.description.substring(0, 100)}
+                {venture.description.length >= 100 ? '...' : ''}
+              </p>
+
+              <UncontrolledTooltip
+                placement="top"
+                target={`description-${venture.id}`}
+              >
+                <p>{venture.description}</p>
+              </UncontrolledTooltip>
+            </Col>
+            <ul className="list-inline my-3">
+              {venture.categories.map((category) => (
+                <li key={category.id} className="list-inline-item me-1">
+                  <UncontrolledTooltip
+                    placement="top"
+                    target={`category-${category.id}`}
+                  >
+                    <p>{category.description}</p>
+                  </UncontrolledTooltip>
+                  <p
+                    id={`category-${category.id}`}
+                    className="px-1 py-1"
+                    style={{
+                      backgroundColor: textToRGB(category.name),
+                      color: 'white',
+                      fontSize: '12px',
+                      borderRadius: '5px',
+                      marginBottom: '5px',
+                    }}
+                  >
+                    {category.name}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </Row>
+        </CardBody>
+
+        <div className="px-4 py-1">
+          <ul className="list-inline mb-0">
+            <div className="mt-0 d-flex justify-content-between">
+              <Badge
+                className={`py-1 px-2 bg-${
+                  venture.active ? 'success' : 'danger'
+                }`}
+              >
+                {venture.active ? 'Activo' : 'Inactivo'}
+              </Badge>
+              <Badge
+                className={`py-1 px-2 bg-${
+                  venture.verified ? 'info' : 'secondary'
+                }`}
+              >
+                <i
+                  className={`bx ${
+                    venture.verified ? 'bx-badge-check' : 'bx bx-badge'
+                  } me-2`}
+                ></i>
+                {venture.verified ? 'Verificado' : 'No verificado'}
+              </Badge>
+            </div>
+          </ul>
+        </div>
+
+        <Row className="border-top">
+          <Col lg={ownerButtons ? 6 : 12} md={ownerButtons ? 6 : 12} sm={12}>
+            <div className="px-4 py-2">
+              <ul
+                className={`list-inline mb-0 ${ownerButtons ? 'd-flex justify-content-between' : 'd-flex justify-content-between'}`}
+              >
+                <li
+                  className="list-inline-item me-3 d-flex flex-column align-items-center"
+                  id={`creation-date-${venture.id}`}
+                >
+                  <div className="d-flex align-items-center">
+                    <i className="text-primary mdi mdi-calendar-star me-1 fs-4" />
+                    <small className="fw-medium font-size-13">
+                      {formatDate(venture.createdAt)}
+                    </small>
+                  </div>
+                  <span>Fecha de creación</span>
+
+                  <UncontrolledTooltip
+                    placement="top"
+                    target={`creation-date-${venture.id}`}
+                  >
+                    F. de creación
+                  </UncontrolledTooltip>
+                </li>
+
+                <li
+                  className="list-inline-item me-3 d-flex flex-column align-items-center"
+                  id={`publications-${venture.id}`}
+                >
+                  <div className="d-flex align-items-center">
+                    <i className="text-primary mdi mdi-bullhorn-outline me-1 fs-4" />
+                    <small className="fw-medium font-size-13">
+                      {Math.ceil(Math.random() * 100)}
+                    </small>
+                  </div>
+                  <span>Publicaciones</span>
+
+                  <UncontrolledTooltip
+                    placement="top"
+                    target={`publications-${venture.id}`}
+                  >
+                    Cantidad de publicaciones
+                  </UncontrolledTooltip>
+                </li>
+
+                <li
+                  className="list-inline-item me-3 d-flex flex-column align-items-center"
+                  id={`events-${venture.id}`}
+                >
+                  <div className="d-flex align-items-center">
+                    <i className="text-primary mdi mdi-calendar-multiselect me-1 fs-4"></i>
+                    <small className="fw-medium font-size-13">
+                      {Math.ceil(Math.random() * 100)}
+                    </small>
+                  </div>
+                  <span>Eventos</span>
+                  <UncontrolledTooltip
+                    placement="top"
+                    target={`events-${venture.id}`}
+                  >
+                    Número de eventos
+                  </UncontrolledTooltip>
+                </li>
+
+                <li
+                  className="list-inline-item me-3 d-flex flex-column align-items-center"
+                  id={`reactions-${venture.id}`}
+                >
+                  <div className="d-flex align-items-center">
+                    <i className="text-primary mdi mdi-thumb-up-outline me-1 fs-4"></i>
+                    <small className="fw-medium font-size-13">
+                      {Math.ceil(Math.random() * 100)}
+                    </small>
+                  </div>
+                  <span>Reacciones</span>
+                  <UncontrolledTooltip
+                    placement="top"
+                    target={`reactions-${venture.id}`}
+                  >
+                    Número de reacciones
+                  </UncontrolledTooltip>
+                </li>
+
+                <li
+                  className="list-inline-item me-3 d-flex flex-column align-items-center"
+                  id={`comments-${venture.id}`}
+                >
+                  <div className="d-flex align-items-center">
+                    <i className="text-primary mdi mdi-comment-outline me-1 fs-4"></i>
+                    <small className="fw-medium font-size-13">10</small>
+                  </div>
+                  <span>Comentarios</span>
+                  <UncontrolledTooltip
+                    placement="top"
+                    target={`comments-${venture.id}`}
+                  >
+                    Número de comentarios
+                  </UncontrolledTooltip>
+                </li>
+              </ul>
+            </div>
+          </Col>
+
+          {ownerButtons && (
+            <Col lg={6} md={6} sm={12}>
               <div className="px-4 py-2">
                 <div className="mt-0 d-flex justify-content-end">
                   <Link
@@ -266,11 +222,21 @@ const VentureCard = ({ venture }: VentureCardProps) => {
                   </Link>
                 </div>
               </div>
+              <div className="px-4 py-2">
+                <div className="mt-0 d-flex justify-content-end">
+                  <Button className="mx-2 btn btn-info">
+                    <i className="bx bx-edit-alt me-1"></i> Editar
+                  </Button>
+                  <Button className="btn btn-danger">
+                    <i className="bx bx-trash me-1"></i> Eliminar
+                  </Button>
+                </div>
+              </div>
             </Col>
-          </Row>
-        </Card>
-      </a>
-    </Col>
+          )}
+        </Row>
+      </Card>
+    </a>
   );
 };
 

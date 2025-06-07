@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 
-import VentureCategoriesApi from '../api/http/venture-categories.api';
+import VentureCategoriesApi from '../api/venture-categories.api';
 
 const useFetchVentureCategories = () => {
   const ventureCategoriesQuery = useQuery({
