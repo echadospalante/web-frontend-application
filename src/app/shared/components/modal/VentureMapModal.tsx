@@ -20,6 +20,7 @@ import {
 import FlyToLocation from '../map/FlyToLocation';
 
 type VentureMapModalProps = {
+  title: string;
   modal: boolean;
   toggle: () => void;
   coords: { lat: number; lng: number };
@@ -34,7 +35,7 @@ const VentureMapModal = (props: VentureMapModalProps) => {
     lat: number;
     lng: number;
   }>();
-  const { modal, toggle, coords, address } = props;
+  const { modal, toggle, coords, address, title } = props;
 
   const MapClickHandler = () => {
     useMapEvents({
@@ -77,7 +78,7 @@ const VentureMapModal = (props: VentureMapModalProps) => {
   return (
     <Modal size="lg" isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle} tag="h4">
-        Detalle de ubicación de la propiedad
+        {title}
       </ModalHeader>
       <ModalBody className="pt-0">
         <Row>
