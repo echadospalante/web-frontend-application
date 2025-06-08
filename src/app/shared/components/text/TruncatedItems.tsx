@@ -3,9 +3,14 @@ import React, { useState } from 'react';
 export interface TruncatedItemsProps {
   items: React.ReactNode[];
   maxItems: number;
+  all: 'todas' | 'todos';
 }
 
-const TruncatedItems: React.FC<TruncatedItemsProps> = ({ items, maxItems }) => {
+const TruncatedItems: React.FC<TruncatedItemsProps> = ({
+  items,
+  maxItems,
+  all,
+}) => {
   const [displayAll, setDisplayAll] = useState(false);
 
   if (items.length <= maxItems) {
@@ -21,6 +26,14 @@ const TruncatedItems: React.FC<TruncatedItemsProps> = ({ items, maxItems }) => {
   const truncatedItems = items.slice(0, maxItems);
   const remainingCount = items.length - maxItems;
 
+  const handleToggleDisplayAll = (
+    event: React.MouseEvent<HTMLSpanElement, MouseEvent>,
+  ): void => {
+    event.stopPropagation();
+    event.preventDefault();
+    setDisplayAll(!displayAll);
+  };
+
   return (
     <>
       {truncatedItems.map((item, index) => (
@@ -28,10 +41,7 @@ const TruncatedItems: React.FC<TruncatedItemsProps> = ({ items, maxItems }) => {
       ))}
 
       {remainingCount > 0 && !displayAll ? (
-        <span className="text-muted">
-          {' '}
-          +{remainingCount} más
-        </span>
+        <span className="text-muted"> +{remainingCount} más</span>
       ) : (
         <></>
       )}
@@ -41,15 +51,18 @@ const TruncatedItems: React.FC<TruncatedItemsProps> = ({ items, maxItems }) => {
           {items.slice(maxItems).map((item, index) => (
             <span key={index}>{item}</span>
           ))}
-          <span onClick={() => setDisplayAll(!displayAll)} className="text-muted">
+          <span
+            onClick={handleToggleDisplayAll}
+            className="text-muted fw-medium"
+          >
             {' '}
             (Ocultar)
           </span>
         </>
       ) : (
-        <span onClick={() => setDisplayAll(!displayAll)} className="text-muted">
+        <span onClick={handleToggleDisplayAll} className="text-muted fw-medium">
           {' '}
-          (Mostrar todos)
+          (Mostrar {all})
         </span>
       )}
     </>

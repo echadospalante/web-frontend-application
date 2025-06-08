@@ -1,3 +1,4 @@
+import { Venture } from 'echadospalante-domain';
 import {
   Badge,
   Button,
@@ -7,7 +8,7 @@ import {
   Row,
   UncontrolledTooltip,
 } from 'reactstrap';
-import { Venture } from 'echadospalante-domain';
+
 import { textToRGB } from '../../helpers/colors';
 import { formatDate } from '../../helpers/dates';
 
@@ -161,30 +162,36 @@ const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
                 />
               </Col>
               <ul className="list-inline my-3">
-                <TruncatedItems items={[]} maxItems={5} />
-                {venture.categories.map((category) => (
-                  <li key={category.id} className="list-inline-item me-1">
-                    <UncontrolledTooltip
-                      placement="top"
-                      target={`category-${category.id}`}
+                <TruncatedItems
+                  items={venture.categories.map((category) => (
+                    <li
+                      key={category.id}
+                      className="list-inline-item my-1"
+                      style={{ cursor: 'pointer', marginRight: '3px' }}
                     >
-                      <p>{category.description}</p>
-                    </UncontrolledTooltip>
-                    <span
-                      id={`category-${category.id}`}
-                      className="px-1 py-1"
-                      style={{
-                        backgroundColor: textToRGB(category.name),
-                        color: 'white',
-                        fontSize: '12px',
-                        borderRadius: '5px',
-                        marginBottom: '5px',
-                      }}
-                    >
-                      {category.name}
-                    </span>
-                  </li>
-                ))}
+                      <UncontrolledTooltip
+                        placement="top"
+                        target={`category-${category.id}`}
+                      >
+                        <p>{category.description}</p>
+                      </UncontrolledTooltip>
+                      <span
+                        id={`category-${category.id}`}
+                        className="p-1"
+                        style={{
+                          backgroundColor: textToRGB(category.name),
+                          color: 'white',
+                          fontSize: '12px',
+                          borderRadius: '5px',
+                        }}
+                      >
+                        {category.name}
+                      </span>
+                    </li>
+                  ))}
+                  maxItems={5}
+                  all={'todas'}
+                />
               </ul>
             </Row>
           </CardBody>
@@ -329,9 +336,9 @@ export default VentureCard;
 
 import { useState, type SVGProps } from 'react';
 import { Link } from 'react-router-dom';
-import TruncatedText from '../text/TruncatedText';
 import VentureMapModal from '../modal/VentureMapModal';
 import TruncatedItems from '../text/TruncatedItems';
+import TruncatedText from '../text/TruncatedText';
 
 export function UilMegaphone(props: SVGProps<SVGSVGElement>) {
   return (
