@@ -29,7 +29,7 @@ import PreferencesNotificationsPage from '../../modules/principal/preferences/pa
 import PreferencesThemePage from '../../modules/principal/preferences/pages/PreferencesTheme';
 import PreferencesLayoutPage from '../../modules/principal/preferences/PreferencesLayoutPage';
 import Commercial404Page from '../../modules/principal/ventures/pages/Commercial404Page';
-import EventsCalenderPage from '../../modules/principal/ventures/pages/EventsCalendarPage';
+import GeneralEventsPage from '../../modules/principal/ventures/pages/GeneralEventsPage';
 import GeneralPublicationsFeedPage from '../../modules/principal/ventures/pages/GeneralPublicationsFeedPage';
 import VenturesFeedPage from '../../modules/principal/ventures/pages/GeneralVenturesPage';
 import VenturePublicationDetailPage from '../../modules/principal/ventures/pages/VenturePublicationDetailPage';
@@ -37,6 +37,7 @@ import VenturesLayoutPage from '../../modules/principal/ventures/VenturesLayoutP
 import AppSpinner from '../../shared/components/loader/Spinner';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import VenturePublicationsFeedPage from '../../modules/principal/ventures/pages/VenturePublicationsFeedPage';
 
 const ALL_ROLES = [AppRole.ADMIN, AppRole.MODERATOR, AppRole.USER];
 
@@ -79,14 +80,18 @@ const AppRouter = () => {
                 element={<GeneralPublicationsFeedPage />}
               />
 
-              <Route path="eventos" element={<EventsCalenderPage />} />
+              <Route path="eventos" element={<GeneralEventsPage />} />
               <Route
                 path="publicaciones/:publicationId"
                 element={<VenturePublicationDetailPage />}
               />
               <Route
-                path=":ventureId/publicaciones"
-                element={<GeneralPublicationsFeedPage />}
+                path=":ventureSlug/publicaciones"
+                element={<VenturePublicationsFeedPage />}
+              />
+              <Route
+                path=":ventureSlug/publicaciones"
+                element={<GeneralEventsPage />}
               />
 
               <Route path="*" element={<Commercial404Page />} />

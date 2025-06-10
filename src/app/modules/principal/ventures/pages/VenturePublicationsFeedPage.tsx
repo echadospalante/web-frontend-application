@@ -9,7 +9,7 @@ import useFetchPublications from '../hooks/useFetchPublications';
 
 const GeneralPublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
-  const { ventureId } = useParams();
+  const { ventureSlug } = useParams();
   const { items, total, isLoading, isError } = useFetchPublications();
 
   return (
@@ -21,7 +21,7 @@ const GeneralPublicationsFeedPage = () => {
               <Card className="p-4">
                 <div className="d-flex justify-content-between align-items-center">
                   <h3 style={{ padding: 0, margin: 0 }}>
-                    Publicaciones del emprendimiento
+                    Publicaciones del emprendimiento con id: {ventureSlug}
                   </h3>
 
                   <Button color="primary" className="fs-5">

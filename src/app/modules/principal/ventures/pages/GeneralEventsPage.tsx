@@ -214,7 +214,7 @@ export enum EventsViewMode {
   map = 'map',
 }
 
-const EventsCalenderPage = () => {
+const GeneralEventsPage = () => {
   const [viewMode, setViewMode] = useState('calendar');
   const [event, setEvent] = useState<VentureEvent | null>(null);
   const [isEdit, setIsEdit] = useState(false);
@@ -1582,4 +1582,4 @@ const EventsCalenderPage = () => {
   );
 };
 
-export default EventsCalenderPage;
+export default GeneralEventsPage;
