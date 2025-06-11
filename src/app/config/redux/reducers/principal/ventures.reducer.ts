@@ -13,6 +13,7 @@ export interface VentureFilter {
   search: string;
   viewMode: VenturesViewMode;
   categoriesIds: string[];
+  activeDepartmentId: number;
   municipalitiesIds: number[];
 }
 
@@ -31,6 +32,7 @@ const initialState: VenturesState = {
     viewMode: VenturesViewMode.calendar,
     search: '',
     categoriesIds: [],
+    activeDepartmentId: 0,
     municipalitiesIds: [],
   },
   items: [],
@@ -69,6 +71,15 @@ export const venturesSlice = createSlice({
     setVenturesFilters: (state, action: PayloadAction<VentureFilter>) => {
       state.filters = action.payload;
     },
+    setVenturesActiveDepartmentId: (state, action: PayloadAction<number>) => {
+      state.filters.activeDepartmentId = action.payload;
+      state.filters.municipalitiesIds = [];
+      state.filters.pagination.skip = 0;
+    },
+    setVenturesMunicipalitiesIds: (state, action: PayloadAction<number[]>) => {
+      state.filters.municipalitiesIds = action.payload;
+      state.filters.pagination.skip = 0;
+    },
   },
 });
 
@@ -80,6 +91,8 @@ export const {
   setVenturesPage,
   setVenturesPageSize,
   setVenturesFilters,
+  setVenturesMunicipalitiesIds,
+  setVenturesActiveDepartmentId,
 } = venturesSlice.actions;
 
 export const selectVentures = (state: RootState) => state.principal.ventures;

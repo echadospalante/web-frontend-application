@@ -2,8 +2,10 @@ import { useSelector } from 'react-redux';
 
 import {
   selectVentures,
+  setVenturesActiveDepartmentId,
   setVenturesCategoriesIds,
   setVenturesFilters,
+  setVenturesMunicipalitiesIds,
   setVenturesPage,
   setVenturesPageSize,
   setVenturesSearch,
@@ -42,9 +44,19 @@ const useVenturesRightSidebar = () => {
     dispatch(setVenturesFilters(filters));
   };
 
+  const setMunicipalitiesIds = (municipalitiesIds: number[]) => {
+    dispatch(setVenturesMunicipalitiesIds(municipalitiesIds));
+  };
+
+  const setActiveDepartmentId = (departmentId: number) => {
+    dispatch(setVenturesActiveDepartmentId(departmentId));
+  };
+
   return {
     ...filters,
     setCategoriesIds,
+    setActiveDepartmentId,
+    setMunicipalitiesIds,
     setViewMode,
     setSearch,
     setPage,

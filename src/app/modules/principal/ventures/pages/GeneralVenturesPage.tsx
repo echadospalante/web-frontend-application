@@ -4,6 +4,7 @@ import {
   Button,
   Card,
   CardBody,
+  CardImg,
   CardText,
   CardTitle,
   Col,
@@ -16,6 +17,7 @@ import AppSpinner from '../../../../shared/components/loader/Spinner';
 import VenturesFeedRightSidebar from '../../../../shared/components/rightbar/VenturesFeedRightSidebar';
 import useFetchVentures from '../hooks/useFetchVentures';
 import VentureCard from '../../../../shared/components/card/VentureCard';
+import AppLoading from '../../../../shared/components/loader/AppLoading';
 
 const VenturesFeedPage = () => {
   document.title = "Feed de Emprendimientos | Echadospa'lante";
@@ -40,15 +42,24 @@ const VenturesFeedPage = () => {
                 </div>
               </Card>
 
-              <Card className="text-center mt-4 shadow-sm border-0">
-                <CardBody>
-                  <CardTitle tag="h5">Sin elementos disponibles</CardTitle>
-                  <CardText>
-                    No se encontraron resultados para mostrar. Por favor,
-                    intenta con otros filtros o vuelve más tarde.
-                  </CardText>
-                </CardBody>
-              </Card>
+              {isLoading ? (
+                <AppLoading
+                  iconPath={''}
+                  message="Buscando emprendimientos..."
+                />
+              ) : (
+                <Card className="text-center mt-4 shadow-sm border-0">
+                  <CardBody>
+                    <CardTitle tag="h5">Sin elementos disponibles</CardTitle>
+                    <CardText>
+                      No se encontraron resultados para mostrar. Por favor,
+                      intenta con otros filtros o vuelve más tarde.
+                    </CardText>
+
+                    <CardImg src="/empty.jpg" className="w-50 rounded-3 my-3" />
+                  </CardBody>
+                </Card>
+              )}
             </Col>
 
             <Col lg={3}>

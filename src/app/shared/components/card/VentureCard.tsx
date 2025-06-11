@@ -53,53 +53,8 @@ const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
 
       <a target="_blank" href={`/principal/emprendimientos/${venture.slug}`}>
         <Card className="border overflow-hidden">
-          <div className="px-4 py-3 border-bottom bg-light">
-            <div className="d-flex align-items-center justify-content-between">
-              <div className="d-flex align-items-center">
-                <img
-                  src={venture.owner!.picture}
-                  alt={`${venture.owner!.firstName} ${venture.owner!.lastName}`}
-                  className="rounded-circle me-3"
-                  style={{ width: '48px', height: '48px', objectFit: 'cover' }}
-                />
-                <div>
-                  <h6 className="mb-0 fw-semibold">
-                    {venture.owner!.firstName} {venture.owner!.lastName}
-                  </h6>
-                  <small className="text-muted d-flex align-items-center">
-                    <i className="mdi mdi-calendar-clock me-1 fs-5"></i>
-                    {formatDate(venture.createdAt)}
-                  </small>
-                </div>
-              </div>
+          <VentureCardHeader venture={venture} ownerIndicators={ownerButtons} />
 
-              <div className="d-flex gap-2">
-                {ownerButtons && (
-                  <Badge
-                    className={`py-1 px-2 ${
-                      venture.active ? 'bg-success' : 'bg-danger'
-                    }`}
-                  >
-                    {venture.active ? 'Activo' : 'Inactivo'}
-                  </Badge>
-                )}
-                <Badge
-                  className={`py-1 px-2 d-flex align-items-center ${
-                    venture.owner!.verified ? 'bg-success' : 'bg-secondary'
-                  }`}
-                >
-                  <i
-                    className={`bx ${
-                      venture.owner!.verified ? 'bx-badge-check' : 'bx-badge'
-                    } me-1 fs-5`}
-                  ></i>
-                  {venture.owner!.verified
-                    ? 'Usuario verificado'
-                    : 'Usuario no verificado'}
-                </Badge>
-              </div>
-            </div>
-          </div>
           <CardBody className="mb-0 pb-0">
             <Row className="d-flex">
               <Col lg={4} md={6} sm={12} className=" mx-auto">
@@ -234,13 +189,13 @@ const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
                         placement="top"
                         target={`publications-${venture.id}`}
                       >
-                        Cantidad de publicaciones
+                        Click para ver las publicaciones
                       </UncontrolledTooltip>
                     </div>
 
                     <div
                       className="flex-fill border-start border-end"
-                      id={`reactions-${venture.id}`}
+                      id={`comments-${venture.id}`}
                     >
                       <i className="text-primary mdi mdi-calendar-multiselect fs-4 d-block mb-1"></i>
                       <div className="fw-semibold text-dark">
@@ -249,9 +204,9 @@ const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
                       <small className="text-muted">Eventos</small>
                       <UncontrolledTooltip
                         placement="top"
-                        target={`reactions-${venture.id}`}
+                        target={`comments-${venture.id}`}
                       >
-                        Número de aplausos
+                        Click para ver los eventos
                       </UncontrolledTooltip>
                     </div>
 
@@ -268,7 +223,7 @@ const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
                         placement="top"
                         target={`events-${venture.id}`}
                       >
-                        Número de comentarios
+                        Número de aplausos
                       </UncontrolledTooltip>
                     </div>
 
@@ -339,6 +294,7 @@ import { Link } from 'react-router-dom';
 import VentureMapModal from '../modal/VentureMapModal';
 import TruncatedItems from '../text/TruncatedItems';
 import TruncatedText from '../text/TruncatedText';
+import VentureCardHeader from '../header/VentureCardHeader';
 
 export function UilMegaphone(props: SVGProps<SVGSVGElement>) {
   return (

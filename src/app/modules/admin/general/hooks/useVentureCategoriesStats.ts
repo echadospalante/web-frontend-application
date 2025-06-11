@@ -6,16 +6,17 @@ import { VentureCategoriesApi } from '../api/http/venture-categories-management.
 
 const useVentureCategoriesStats = () => {
   const ventureCategoriesStatsQuery = useQuery({
-    queryKey: ['ventureCategories'],
+    queryKey: ['ventures', 'categories', 'stats'],
     queryFn: () => VentureCategoriesApi.fetchVentureCategoriesStats(),
-  })
+  });
 
   return {
-    ventureCategoriesStats: ventureCategoriesStatsQuery.data || [],
+    items: ventureCategoriesStatsQuery.data?.items || [],
+    total: ventureCategoriesStatsQuery.data?.total || 0,
     isLoading: ventureCategoriesStatsQuery.isLoading,
     isError: ventureCategoriesStatsQuery.isError,
     refetch: ventureCategoriesStatsQuery.refetch,
-  }
+  };
 };
 
 export default useVentureCategoriesStats;
