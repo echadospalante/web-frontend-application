@@ -3,9 +3,15 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { PaginatedBody, Pagination, Venture } from 'echadospalante-domain';
 import { RootState } from '../../store/store.config';
 
+export enum VenturesViewMode {
+  calendar = 'calendar',
+  map = 'map',
+}
+
 export interface VentureFilter {
   pagination: Pagination;
   search: string;
+  viewMode: VenturesViewMode;
   categoriesIds: string[];
   municipalitiesIds: number[];
 }
@@ -22,6 +28,7 @@ const initialState: VenturesState = {
       skip: 0,
       take: 20,
     },
+    viewMode: VenturesViewMode.calendar,
     search: '',
     categoriesIds: [],
     municipalitiesIds: [],
@@ -33,26 +40,48 @@ const initialState: VenturesState = {
 Object.freeze(initialState);
 
 export const venturesSlice = createSlice({
-  name: 'ventures',
+  name: 'principal/ventures',
   initialState,
   reducers: {
     setVentures: (state, action: PayloadAction<PaginatedBody<Venture>>) => {
       state.items = action.payload.items;
       state.total = action.payload.total;
     },
+    setVenturesSearch: (state, action: PayloadAction<string>) => {
+      state.filters.search = action.payload;
+      state.filters.pagination.skip = 0;
+    },
+    setVenturesViewMode: (state, action: PayloadAction<VenturesViewMode>) => {
+      state.filters.viewMode = action.payload;
+    },
+    setVenturesCategoriesIds: (state, action: PayloadAction<string[]>) => {
+      state.filters.categoriesIds = action.payload;
+      state.filters.pagination.skip = 0;
+    },
+    setVenturesPage: (state, action: PayloadAction<number>) => {
+      state.filters.pagination.skip =
+        action.payload * state.filters.pagination.take;
+    },
+    setVenturesPageSize: (state, action: PayloadAction<number>) => {
+      state.filters.pagination.take = action.payload;
+      state.filters.pagination.skip = 0;
+    },
+    setVenturesFilters: (state, action: PayloadAction<VentureFilter>) => {
+      state.filters = action.payload;
+    },
   },
 });
 
 export const {
   setVentures,
-  // changeFilterArea,
-  // changeFilterState,
-  // changeFilterSearch,
-  // changeFilterAdvisors,
-  // changeFilterDateRange,
-  // changeFilterIncludedFields,
+  setVenturesSearch,
+  setVenturesViewMode,
+  setVenturesCategoriesIds,
+  setVenturesPage,
+  setVenturesPageSize,
+  setVenturesFilters,
 } = venturesSlice.actions;
 
-export const selectVentures = (state: RootState) => state.ventures;
+export const selectVentures = (state: RootState) => state.principal.ventures;
 
 export default venturesSlice.reducer;

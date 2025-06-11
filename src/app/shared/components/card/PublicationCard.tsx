@@ -66,6 +66,7 @@ import { PublicationContent, VenturePublication } from 'echadospalante-domain';
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Button, Card, CardBody } from 'reactstrap';
+import TruncatedItems from '../text/TruncatedItems';
 
 export interface PublicationCardProps {
   publication: VenturePublication;
@@ -180,17 +181,21 @@ const PublicationCard: React.FC<PublicationCardProps> = ({ publication }) => {
 
           {publication.categories.length > 0 && (
             <div className="mb-3">
-              {publication.categories.map((category) => (
-                <Badge
-                  key={category.id}
-                  color="primary"
-                  pill
-                  className="me-2 mb-1 p-2"
-                >
-                  <i className="bx bx-purchase-tag-alt me-1"></i>
-                  {category.name}
-                </Badge>
-              ))}
+              <TruncatedItems
+                items={publication.categories.map((category) => (
+                  <Badge
+                    key={category.id}
+                    color="primary"
+                    pill
+                    className="me-2 mb-1 p-2"
+                  >
+                    <i className="bx bx-purchase-tag-alt me-1"></i>
+                    {category.name}
+                  </Badge>
+                ))}
+                maxItems={5}
+                all={'todas'}
+              />
             </div>
           )}
 

@@ -3,8 +3,9 @@ import { Fragment } from 'react';
 import { Button, Card, Col, Container, Row } from 'reactstrap';
 
 import PublicationCard from '../../../../shared/components/card/PublicationCard';
-import FeedRightSidebar from '../../../../shared/components/rightbar/FeedRightSidebar';
+import VenturesFeedRightSidebar from '../../../../shared/components/rightbar/VenturesFeedRightSidebar';
 import useFetchPublications from '../hooks/useFetchPublications';
+import PublicationsFeedRightSidebar from '../../../../shared/components/rightbar/PublicationsFeedRightSidebar';
 
 const GeneralPublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
@@ -30,14 +31,14 @@ const GeneralPublicationsFeedPage = () => {
               </Card>
 
               {items.map((publication) => (
-                <Card className="p-3">
+                <Card key={publication.id} className="p-3">
                   <PublicationCard publication={publication} />
                 </Card>
               ))}
             </Col>
 
             <Col lg={3}>
-              <FeedRightSidebar />
+              <PublicationsFeedRightSidebar />
             </Col>
           </Row>
         </Container>

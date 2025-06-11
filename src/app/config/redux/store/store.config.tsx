@@ -51,7 +51,6 @@ export interface GlobalState {
     ownedVenturesManagement: OwnedVenturesState;
     publications: PublicationsState;
   };
-  ventures: VenturesState;
   layout: LayoutState;
   register: RegisterState;
 }
@@ -60,7 +59,6 @@ const reducer = combineReducers({
   authentication: authenticationReducer,
   userInterface: userInterfaceReducer,
   layout: layoutReducer,
-  ventures: venturesReducer,
   register: registerReducer,
   admin: combineReducers({
     usersManagement: UsersManagementReducer,

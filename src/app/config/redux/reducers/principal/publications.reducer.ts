@@ -2,6 +2,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import {
   PaginatedBody,
   Pagination,
+  PublicationClap,
+  PublicationComment,
   VenturePublication,
 } from 'echadospalante-domain';
 
@@ -21,6 +23,7 @@ export interface PublicationsState {
   filters: PublicationFilter;
   items: VenturePublication[];
   total: number;
+  detail: VenturePublication | null;
 }
 
 const initialState: PublicationsState = {
@@ -34,6 +37,7 @@ const initialState: PublicationsState = {
   },
   items: [],
   total: 0,
+  detail: null,
 };
 
 Object.freeze(initialState);
@@ -67,6 +71,49 @@ export const publicationsSlice = createSlice({
       state.items = action.payload.items;
       state.total = action.payload.total;
     },
+    setPublicationDetail: (
+      state,
+      action: PayloadAction<VenturePublication>,
+    ) => {
+      state.detail = action.payload;
+    },
+    resetPublicationDetail: (state) => {
+      state.detail = null;
+    },
+    addPublicationComment: (
+      state,
+      action: PayloadAction<PublicationComment>,
+    ) => {
+      if (state.detail) {
+        state.detail.comments = [
+          action.payload,
+          ...(state.detail.comments || []),
+        ];
+        state.detail.commentsCount += 1;
+      }
+    },
+    deletePublicationComment: (state, action: PayloadAction<string>) => {
+      if (state.detail) {
+        state.detail.comments = state.detail.comments?.filter(
+          (comment) => comment.id !== action.payload,
+        );
+        state.detail.commentsCount -= 1;
+      }
+    },
+    addPublicationClap: (state, action: PayloadAction<PublicationClap>) => {
+      if (state.detail) {
+        state.detail.claps = [action.payload, ...(state.detail.claps || [])];
+        state.detail.clapsCount += 1;
+      }
+    },
+    deletePublicationClap: (state, action: PayloadAction<string>) => {
+      if (state.detail) {
+        state.detail.claps = state.detail.claps?.filter(
+          (clap) => clap.id !== action.payload,
+        );
+        state.detail.clapsCount -= 1;
+      }
+    },
   },
 });
 
@@ -76,6 +123,12 @@ export const {
   setCategoriesIds,
   setDateRange,
   setSearch,
+  setPublicationDetail,
+  resetPublicationDetail,
+  addPublicationComment,
+  deletePublicationComment,
+  addPublicationClap,
+  deletePublicationClap,
 } = publicationsSlice.actions;
 
 export const selectPublications = (state: RootState) => state.principal.publications;

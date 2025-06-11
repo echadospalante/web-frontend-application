@@ -1,38 +1,53 @@
-import { PublicationContent, VenturePublication } from 'echadospalante-domain';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+
+import { PublicationContent } from 'echadospalante-domain';
+import { Navigate } from 'react-router-dom';
 import {
-  Container,
-  Row,
-  Col,
-  Card,
-  CardBody,
   Badge,
   Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ListGroup,
-  ListGroupItem,
+  Card,
+  CardBody,
+  Col,
+  Container,
   Form,
   FormGroup,
   Input,
   InputGroup,
   InputGroupText,
+  ListGroup,
+  ListGroupItem,
+  Modal,
+  ModalBody,
+  ModalHeader,
+  Row,
 } from 'reactstrap';
-import { Navigate } from 'react-router-dom';
 
-import useFetchPublicationDetail from '../hooks/useFetchPublicationDetail';
-import AppSpinner from '../../../../shared/components/loader/Spinner';
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
 import PublicationCommentCard from '../../../../shared/components/card/PublicationCommentCard';
+import AppSpinner from '../../../../shared/components/loader/Spinner';
+import useFetchPublicationDetail from '../hooks/useFetchPublicationDetail';
+import usePublicationInteractions from '../hooks/usePublicationInteractions';
 
-const VenturePublicationDetailPage = () => {
+const PublicationDetailPage = () => {
   const [showClapsModal, setShowClapsModal] = useState(false);
-  const [newComment, setNewComment] = useState('');
-  const { data, isError, isLoading, retryRequest } =
+  const { detail, isError, isLoading, retryRequest } =
     useFetchPublicationDetail();
 
-  // Función para formatear la fecha
+  const {
+    handlePublishComment,
+    handlePublishClap,
+    isCommentLoading,
+    isClapLoading,
+    isCommentError,
+    isClapError,
+    isCommentSuccess,
+    isClapSuccess,
+    retryComment,
+    retryClap,
+    newComment,
+    setNewComment,
+  } = usePublicationInteractions();
+
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('es-ES', {
@@ -118,13 +133,10 @@ const VenturePublicationDetailPage = () => {
     }
   };
 
-  // Función para manejar envío de comentario
   const handleSubmitComment = (e: React.FormEvent) => {
     e.preventDefault();
     if (newComment.trim()) {
-      // Aquí harías la llamada a la API para crear el comentario
-      console.log('Nuevo comentario:', newComment);
-      setNewComment('');
+      handlePublishComment(newComment.trim());
     }
   };
 
@@ -133,15 +145,17 @@ const VenturePublicationDetailPage = () => {
   }
 
   if (isError) {
-    <AlertWithReload
-      message={
-        'Error al cargar el detalle de la publicación, intente nuevamente'
-      }
-      onReload={retryRequest}
-    />;
+    return (
+      <AlertWithReload
+        message={
+          'Error al cargar el detalle de la publicación, intente nuevamente'
+        }
+        onReload={retryRequest}
+      />
+    );
   }
 
-  if (!data) {
+  if (!detail) {
     return <Navigate to={'/principal/emprendimientos/publicaciones'} />;
   }
 
@@ -154,18 +168,18 @@ const VenturePublicationDetailPage = () => {
             <CardBody>
               <div className="d-flex justify-content-between align-items-start mb-3">
                 <div>
-                  <h2 className="mb-2">{data.description}</h2>
+                  <h2 className="mb-2">{detail.description}</h2>
                   <p className="text-muted mb-0">
                     <i className="bx bx-calendar me-1"></i>
                     Publicado el{' '}
-                    {formatDate(new Date(data.createdAt).toISOString())}
+                    {formatDate(new Date(detail.createdAt).toISOString())}
                   </p>
                 </div>
               </div>
 
-              {data.categories.length > 0 && (
+              {detail.categories.length > 0 && (
                 <div className="mb-3">
-                  {data.categories.map((category) => (
+                  {detail.categories.map((category) => (
                     <Badge
                       key={category.id}
                       color="primary"
@@ -186,11 +200,11 @@ const VenturePublicationDetailPage = () => {
                   onClick={() => setShowClapsModal(true)}
                 >
                   <i className="bx bx-like me-1"></i>
-                  {data.clapsCount} Aplausos
+                  {detail.clapsCount} Aplausos
                 </Button>
                 <span className="text-muted">
                   <i className="bx bx-comment-dots me-1"></i>
-                  {data.commentsCount} Comentarios
+                  {detail.commentsCount} Comentarios
                 </span>
               </div>
             </CardBody>
@@ -199,7 +213,7 @@ const VenturePublicationDetailPage = () => {
           {/* Contenidos */}
           <Card className="mb-4 shadow-sm">
             <CardBody>
-              {data.contents.map((content) => renderContent(content))}
+              {detail.contents.map((content) => renderContent(content))}
             </CardBody>
           </Card>
 
@@ -208,7 +222,7 @@ const VenturePublicationDetailPage = () => {
             <CardBody>
               <h4 className="mb-4">
                 <i className="bx bx-comment-dots me-2"></i>
-                Comentarios ({data.comments.length})
+                Comentarios ({detail.comments.length})
               </h4>
 
               {/* Formulario para nuevo comentario */}
@@ -237,9 +251,9 @@ const VenturePublicationDetailPage = () => {
               </Form>
 
               {/* Lista de comentarios */}
-              {data.comments.length > 0 ? (
+              {detail.comments.length > 0 ? (
                 <div>
-                  {data.comments.map((comment) => (
+                  {detail.comments.map((comment) => (
                     <PublicationCommentCard comment={comment} />
                   ))}
                 </div>
@@ -266,12 +280,12 @@ const VenturePublicationDetailPage = () => {
       >
         <ModalHeader toggle={() => setShowClapsModal(false)}>
           <i className="bx bx-like me-2"></i>
-          Aplausos ({data.claps.length})
+          Aplausos ({detail.claps.length})
         </ModalHeader>
         <ModalBody className="p-0">
-          {data.claps.length > 0 ? (
+          {detail.claps.length > 0 ? (
             <ListGroup flush>
-              {data.claps.map((clap) => (
+              {detail.claps.map((clap) => (
                 <ListGroupItem
                   key={clap.id}
                   className="d-flex align-items-center py-3 border-0"
@@ -314,4 +328,4 @@ const VenturePublicationDetailPage = () => {
   );
 };
 
-export default VenturePublicationDetailPage;
+export default PublicationDetailPage;

@@ -14,7 +14,6 @@ import {
   toggleRightSidebar,
 } from '../../../config/redux/reducers/shared/layout.reducer';
 import { useAppDispatch } from '../../../config/redux/store/store.config';
-import RightSidebar from '../rightbar/RightSidebar';
 import Footer from '../footer/VerticalFooter';
 import Header from '../header/VerticalHeader';
 import Sidebar from '../sidebar/Sidebar';
@@ -32,29 +31,13 @@ const VerticalLayout = ({ children }: LayoutProps) => {
     layoutWidth,
     leftSideBarType,
     topBarTheme,
-    // showRightSidebar,
     leftSideBarTheme,
     layoutModeType,
   } = useSelector(selectLayout);
 
-  // const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-  // const toggleMenuCallback = () => {
-  //   if (leftSideBarType === "default") {
-  //     dispatch(changeSidebarType("condensed"));
-  //   } else if (leftSideBarType === "condensed") {
-  //     dispatch(changeSidebarType("default"));
-  //   }
-  // };
-
-  /*
-  layout  settings
-  */
-
   useEffect(() => {
     const hideRightbar = (event: MouseEvent) => {
       const rightbar = document.getElementById('right-bar');
-      //if clicked in inside right bar, then do nothing
       if (rightbar && rightbar.contains(event.target as Node)) {
         return;
       } else {
@@ -62,7 +45,6 @@ const VerticalLayout = ({ children }: LayoutProps) => {
       }
     };
 
-    //init body click event fot toggle rightbar
     document.body.addEventListener('click', hideRightbar, true);
 
     if (isPreloader === true) {
@@ -139,13 +121,11 @@ const VerticalLayout = ({ children }: LayoutProps) => {
       </div>
 
       <div id="layout-wrapper">
-        <Header /* toggleMenuCallback={toggleMenuCallback}*/ />
+        <Header />
         <Sidebar />
         <div className="main-content">{children}</div>
         <Footer />
       </div>
-      {/* {showRightSidebar ? <RightSidebar /> : null} */}
-      <RightSidebar />
     </React.Fragment>
   );
 };

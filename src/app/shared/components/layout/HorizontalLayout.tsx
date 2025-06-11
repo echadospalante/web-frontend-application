@@ -12,7 +12,6 @@ import {
 import { useAppDispatch } from '../../../config/redux/store/store.config';
 import Footer from '../footer/HorizontalFooter';
 import HorizontalHeader from '../header/HorizontalHeader';
-import RightSidebar from '../rightbar/RightSidebar';
 import Sidebar from '../sidebar/Sidebar';
 
 type LayoutProps = {
@@ -109,21 +108,12 @@ const HorizontalLayout = ({ children }: LayoutProps) => {
       </div>
 
       <div id="layout-wrapper">
-        <HorizontalHeader
-        // toggleLeftmenu={function (arg0: boolean): void {}}
-        // showRightSidebarAction={function (arg0: boolean): void {}}
-        // leftMenu={false}
-        // showRightSidebar={false}
-        />
-        {/* <Navbar menuOpen={isMenuOpened} /> */}
+        <HorizontalHeader />
         <Sidebar />
 
         <div className="main-content">{children}</div>
         <Footer />
       </div>
-      {/* {showRightSidebar ? <RightSidebar /> : null} */}
-
-      <RightSidebar />
     </React.Fragment>
   );
 };

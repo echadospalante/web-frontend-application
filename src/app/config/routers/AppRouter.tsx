@@ -26,18 +26,16 @@ import AccountPublicationCreatePage from '../../modules/principal/account/pages/
 import AccountVentureCreatePage from '../../modules/principal/account/pages/AccountVentureCreatePage';
 import AccountVenturesPage from '../../modules/principal/account/pages/AccountVenturesPage';
 import PreferencesNotificationsPage from '../../modules/principal/preferences/pages/PreferencesNotificationsPage';
-import PreferencesThemePage from '../../modules/principal/preferences/pages/PreferencesTheme';
 import PreferencesLayoutPage from '../../modules/principal/preferences/PreferencesLayoutPage';
 import Commercial404Page from '../../modules/principal/ventures/pages/Commercial404Page';
 import GeneralEventsPage from '../../modules/principal/ventures/pages/GeneralEventsPage';
 import GeneralPublicationsFeedPage from '../../modules/principal/ventures/pages/GeneralPublicationsFeedPage';
 import VenturesFeedPage from '../../modules/principal/ventures/pages/GeneralVenturesPage';
-import VenturePublicationDetailPage from '../../modules/principal/ventures/pages/VenturePublicationDetailPage';
+import PublicationDetailPage from '../../modules/principal/ventures/pages/PublicationDetailPage';
 import VenturesLayoutPage from '../../modules/principal/ventures/VenturesLayoutPage';
 import AppSpinner from '../../shared/components/loader/Spinner';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
-import VenturePublicationsFeedPage from '../../modules/principal/ventures/pages/VenturePublicationsFeedPage';
 
 const ALL_ROLES = [AppRole.ADMIN, AppRole.MODERATOR, AppRole.USER];
 
@@ -83,11 +81,11 @@ const AppRouter = () => {
               <Route path="eventos" element={<GeneralEventsPage />} />
               <Route
                 path="publicaciones/:publicationId"
-                element={<VenturePublicationDetailPage />}
+                element={<PublicationDetailPage />}
               />
               <Route
                 path=":ventureSlug/publicaciones"
-                element={<VenturePublicationsFeedPage />}
+                element={<GeneralPublicationsFeedPage />}
               />
               <Route
                 path=":ventureSlug/publicaciones"

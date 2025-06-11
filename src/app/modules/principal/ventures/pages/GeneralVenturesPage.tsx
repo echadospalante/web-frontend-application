@@ -13,7 +13,7 @@ import {
 
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
 import AppSpinner from '../../../../shared/components/loader/Spinner';
-import FeedRightSidebar from '../../../../shared/components/rightbar/FeedRightSidebar';
+import VenturesFeedRightSidebar from '../../../../shared/components/rightbar/VenturesFeedRightSidebar';
 import useFetchVentures from '../hooks/useFetchVentures';
 import VentureCard from '../../../../shared/components/card/VentureCard';
 
@@ -21,21 +21,6 @@ const VenturesFeedPage = () => {
   document.title = "Feed de Emprendimientos | Echadospa'lante";
 
   const { items, isLoading, isError, retryFetch } = useFetchVentures();
-
-  if (isLoading) {
-    return <AppSpinner />;
-  }
-
-  if (isError) {
-    return (
-      <AlertWithReload
-        message={
-          'Error al cargar los emprendimientos. Por favor, intente nuevamente.'
-        }
-        onReload={retryFetch}
-      />
-    );
-  }
 
   if (!items || items.length === 0) {
     return (
@@ -67,7 +52,7 @@ const VenturesFeedPage = () => {
             </Col>
 
             <Col lg={3}>
-              <FeedRightSidebar />
+              <VenturesFeedRightSidebar />
             </Col>
           </Row>
         </Container>
@@ -83,44 +68,57 @@ const VenturesFeedPage = () => {
       <div className="page-content">
         <Container fluid>
           <Row>
-            <Col lg={9}>
-              <Card className="p-4">
-                <div className="d-flex justify-content-between align-items-center">
-                  <h3 style={{ padding: 0, margin: 0 }}>
-                    Feed de Emprendimientos
-                  </h3>
+            {isLoading ? (
+              <AppSpinner />
+            ) : (
+              <Col lg={9}>
+                <Card className="p-4">
+                  <div className="d-flex justify-content-between align-items-center">
+                    <h3 style={{ padding: 0, margin: 0 }}>
+                      Feed de Emprendimientos
+                    </h3>
 
-                  <Button color="primary" className="fs-5">
-                    <i className="mdi mdi-refresh"></i>
-                  </Button>
-                </div>
-              </Card>
+                    <Button color="primary" className="fs-5">
+                      <i className="mdi mdi-refresh"></i>
+                    </Button>
+                  </div>
+                </Card>
 
-              <Row>
-                <Col md={6}>
-                  {leftColumn.map((venture, index) => (
-                    <VentureCard
-                      key={`left-${index}`}
-                      ownerButtons={false}
-                      venture={venture}
-                    />
-                  ))}
-                </Col>
+                <Row>
+                  <Col md={6}>
+                    {leftColumn.map((venture, index) => (
+                      <VentureCard
+                        key={`left-${index}`}
+                        ownerButtons={false}
+                        venture={venture}
+                      />
+                    ))}
+                  </Col>
 
-                <Col md={6}>
-                  {rightColumn.map((venture, index) => (
-                    <VentureCard
-                      key={`right-${index}`}
-                      ownerButtons={false}
-                      venture={venture}
-                    />
-                  ))}
-                </Col>
-              </Row>
-            </Col>
+                  <Col md={6}>
+                    {rightColumn.map((venture, index) => (
+                      <VentureCard
+                        key={`right-${index}`}
+                        ownerButtons={false}
+                        venture={venture}
+                      />
+                    ))}
+                  </Col>
+                </Row>
+              </Col>
+            )}
+
+            {isError && (
+              <AlertWithReload
+                message={
+                  'Error al cargar los emprendimientos. Por favor, intente nuevamente.'
+                }
+                onReload={retryFetch}
+              />
+            )}
 
             <Col lg={3}>
-              <FeedRightSidebar />
+              <VenturesFeedRightSidebar />
             </Col>
           </Row>
         </Container>

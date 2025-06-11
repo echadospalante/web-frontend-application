@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom';
-import { Card, CardBody } from 'reactstrap';
+import { Button, ButtonGroup, Card, CardBody } from 'reactstrap';
 import SimpleBar from 'simplebar-react';
 
+import { VenturesViewMode } from '../../../config/redux/reducers/principal/ventures.reducer';
+import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
 import { popularPosts, tagsData } from '../../data/feed/feed';
 import ventureCategories from '../../data/misc/venture-categories';
+import VentureCategoriesList from '../list/VentureCategoriesList';
 
-const FeedRightSidebar = () => {
+const VenturesFeedRightSidebar = () => {
+  const { setViewMode, setSearch, viewMode, search } = useVenturesRightSidebar();
+
   return (
     <div
       style={{
@@ -29,35 +34,44 @@ const FeedRightSidebar = () => {
                 <input
                   type="text"
                   className="form-control rounded bg-light border-light"
-                  placeholder="Buscar..."
+                  placeholder="Busca aquí..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                 />
                 <i className="mdi mdi-magnify search-icon"></i>
               </div>
+
+              <ButtonGroup className="mt-3 w-100">
+                <Button
+                  className="w-100"
+                  color={viewMode === 'calendar' ? 'primary' : 'secondary'}
+                  onClick={() => setViewMode(VenturesViewMode.calendar)}
+                  active={viewMode === 'calendar'}
+                >
+                  {viewMode === 'calendar' && (
+                    <i className="mdi mdi-check-circle-outline me-1" />
+                  )}
+                  Calendario
+                </Button>
+                <Button
+                  className="w-100"
+                  color={viewMode === 'map' ? 'primary' : 'secondary'}
+                  onClick={() => setViewMode(VenturesViewMode.map)}
+                  active={viewMode === 'map'}
+                >
+                  {viewMode === 'map' && (
+                    <i className="mdi mdi-check-circle-outline me-1" />
+                  )}
+                  Mapa
+                </Button>
+              </ButtonGroup>
             </div>
 
-            <hr className="my-4" />
+            <hr className="my-3" />
 
             <div>
               <p className="text-muted">Categorías</p>
-
-              <ul className="list-unstyled fw-medium">
-                {(ventureCategories || []).slice(0, 5).map((item, index) => (
-                  <li key={index}>
-                    <Link to="#" className="text-muted py-2 d-block">
-                      {/* <i className={`${item.icon} me-1`}></i>  */}
-                      <i className={`mdi mdi-chevron-right me-1`}></i>
-                      {item.name}
-                      {/* {item.badge && (
-                        <span
-                          className={`badge ${item.badge.color} rounded-pill float-end ms-1 font-size-12`}
-                        >
-                          {item.badge.text}
-                        </span>
-                      )} */}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              <VentureCategoriesList />
             </div>
 
             <hr className="my-4" />
@@ -133,4 +147,4 @@ const FeedRightSidebar = () => {
   );
 };
 
-export default FeedRightSidebar;
+export default VenturesFeedRightSidebar;
