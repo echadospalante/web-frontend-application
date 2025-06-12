@@ -97,7 +97,7 @@ const VenturesFeedRightSidebar = () => {
                   <input
                     id="ventures-search"
                     type="text"
-                    className="form-control rounded bg-light border-light"
+                    className="form-control rounded border-light"
                     placeholder="Busca aquí..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}

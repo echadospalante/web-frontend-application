@@ -133,7 +133,7 @@ const VenturesFeedPage = () => {
         <Container fluid>
           <Row>
             {isLoading ? (
-              <AppSpinner />
+              <AppLoading iconPath={''} message="Buscando emprendimientos..." />
             ) : (
               <>
                 <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
@@ -154,27 +154,46 @@ const VenturesFeedPage = () => {
 
                   {/* {JSON.stringify(venturesQuery.data, null, 3)} */}
 
-                  <Row>
-                    <Col md={6}>
-                      {leftColumn.map((venture, index) => (
-                        <VentureCard
-                          key={`left-${index}`}
-                          ownerButtons={false}
-                          venture={venture}
-                        />
-                      ))}
-                    </Col>
+                  {total === 0 ? (
+                    <Card className="text-center mt-4 shadow-sm border-0">
+                      <CardBody>
+                        <CardTitle tag="h5">
+                          Sin elementos disponibles
+                        </CardTitle>
+                        <CardText>
+                          No se encontraron resultados para mostrar. Por favor,
+                          intenta con otros filtros o vuelve más tarde.
+                        </CardText>
 
-                    <Col md={6}>
-                      {rightColumn.map((venture, index) => (
-                        <VentureCard
-                          key={`right-${index}`}
-                          ownerButtons={false}
-                          venture={venture}
+                        <CardImg
+                          src="/empty.jpg"
+                          className="w-50 rounded-3 my-3"
                         />
-                      ))}
-                    </Col>
-                  </Row>
+                      </CardBody>
+                    </Card>
+                  ) : (
+                    <Row>
+                      <Col md={6}>
+                        {leftColumn.map((venture, index) => (
+                          <VentureCard
+                            key={`left-${index}`}
+                            ownerButtons={false}
+                            venture={venture}
+                          />
+                        ))}
+                      </Col>
+
+                      <Col md={6}>
+                        {rightColumn.map((venture, index) => (
+                          <VentureCard
+                            key={`right-${index}`}
+                            ownerButtons={false}
+                            venture={venture}
+                          />
+                        ))}
+                      </Col>
+                    </Row>
+                  )}
                 </Col>
               </>
             )}
