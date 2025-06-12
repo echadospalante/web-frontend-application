@@ -16,9 +16,10 @@ const useFetchVentures = () => {
   const { pagination, search, categoriesIds, municipalitiesIds, viewMode } =
     filters;
 
-  const venturesQuery = useInfiniteQuery({
+  const venturesInfiniteQuery = useInfiniteQuery({
     queryKey: [
       'ventures',
+      'infinite',
       search,
       categoriesIds,
       // pagination,
@@ -46,32 +47,33 @@ const useFetchVentures = () => {
   });
 
   useEffect(() => {
-    const items = venturesQuery.data?.pages.flatMap((page) => page.items) || [];
-    const total = venturesQuery.data?.pages[0].total || 0;
+    const items =
+      venturesInfiniteQuery.data?.pages.flatMap((page) => page.items) || [];
+    const total = venturesInfiniteQuery.data?.pages[0].total || 0;
     dispatch(
       setVentures({
         items,
         total,
       }),
     );
-  }, [venturesQuery.data, dispatch]);
+  }, [venturesInfiniteQuery.data, dispatch]);
 
   const retryFetch = () => {
-    venturesQuery.refetch();
+    venturesInfiniteQuery.refetch();
   };
 
   return {
-    isLoading: venturesQuery.isLoading,
-    isError: venturesQuery.isError,
-    fetchNextPage: venturesQuery.fetchNextPage,
-    hasNextPage: venturesQuery.hasNextPage,
-    isFetchingNextPage: venturesQuery.isFetchingNextPage,
+    isLoading: venturesInfiniteQuery.isLoading,
+    isError: venturesInfiniteQuery.isError,
+    fetchNextPage: venturesInfiniteQuery.fetchNextPage,
+    hasNextPage: venturesInfiniteQuery.hasNextPage,
+    isFetchingNextPage: venturesInfiniteQuery.isFetchingNextPage,
     pagination,
     viewMode,
     items,
     total,
     retryFetch,
-    venturesQuery,
+    venturesQuery: venturesInfiniteQuery,
   };
 };
 

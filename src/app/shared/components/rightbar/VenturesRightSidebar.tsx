@@ -13,7 +13,7 @@ import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/u
 import VentureLocationFilters from '../filters/VentureLocationFilters';
 import VentureCategoriesList from '../list/VentureCategoriesList';
 
-const VenturesFeedRightSidebar = () => {
+const VenturesRightSidebar = () => {
   const {
     setViewMode,
     setSearch,
@@ -155,4 +155,4 @@ const VenturesFeedRightSidebar = () => {
   );
 };
 
-export default VenturesFeedRightSidebar;
+export default VenturesRightSidebar;

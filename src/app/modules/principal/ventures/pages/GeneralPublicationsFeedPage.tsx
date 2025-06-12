@@ -3,7 +3,7 @@ import { Fragment } from 'react';
 import { Button, Card, Col, Container, Row } from 'reactstrap';
 
 import PublicationCard from '../../../../shared/components/card/PublicationCard';
-import VenturesFeedRightSidebar from '../../../../shared/components/rightbar/VenturesFeedRightSidebar';
+import VenturesRightSidebar from '../../../../shared/components/rightbar/VenturesRightSidebar';
 import useFetchPublications from '../hooks/useFetchPublications';
 import PublicationsFeedRightSidebar from '../../../../shared/components/rightbar/PublicationsFeedRightSidebar';
 

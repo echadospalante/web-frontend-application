@@ -12,18 +12,20 @@ import {
   Row,
 } from 'reactstrap';
 
-import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
-import AppSpinner from '../../../../shared/components/loader/Spinner';
-import VenturesFeedRightSidebar from '../../../../shared/components/rightbar/VenturesFeedRightSidebar';
-import useFetchVentures from '../hooks/useFetchVentures';
-import VentureCard from '../../../../shared/components/card/VentureCard';
-import AppLoading from '../../../../shared/components/loader/AppLoading';
 import {
   setVenturesSkip,
   VenturesViewMode,
 } from '../../../../config/redux/reducers/principal/ventures.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
+import VentureCard from '../../../../shared/components/card/VentureCard';
+import AppLoading from '../../../../shared/components/loader/AppLoading';
+import VenturesRightSidebar from '../../../../shared/components/rightbar/VenturesRightSidebar';
+import useFetchVentures from '../hooks/useFetchVentures';
 import useVenturesRightSidebar from '../hooks/useVenturesRightSidebar';
+import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
+import VenturesList from '../../../../shared/components/list/VenturesList';
+import VenturesMap from '../../../../shared/components/map/VenturesMap';
 
 const VenturesFeedPage = () => {
   document.title = "Feed de Emprendimientos | Echadospa'lante";
@@ -40,7 +42,6 @@ const VenturesFeedPage = () => {
     pagination,
     total,
     viewMode,
-    venturesQuery,
   } = useFetchVentures();
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
@@ -77,56 +78,6 @@ const VenturesFeedPage = () => {
     };
   }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
-  if (!items || items.length === 0) {
-    return (
-      <div className="page-content">
-        <Container fluid>
-          <Row>
-            <Col lg={9}>
-              <Card className="p-4">
-                <div className="d-flex justify-content-between align-items-center">
-                  <h3 style={{ padding: 0, margin: 0 }}>
-                    Feed de Emprendimientos
-                  </h3>
-
-                  <Button color="primary" className="fs-5">
-                    <i className="mdi mdi-refresh"></i>
-                  </Button>
-                </div>
-              </Card>
-
-              {isLoading ? (
-                <AppLoading
-                  iconPath={''}
-                  message="Buscando emprendimientos..."
-                />
-              ) : (
-                <Card className="text-center mt-4 shadow-sm border-0">
-                  <CardBody>
-                    <CardTitle tag="h5">Sin elementos disponibles</CardTitle>
-                    <CardText>
-                      No se encontraron resultados para mostrar. Por favor,
-                      intenta con otros filtros o vuelve más tarde.
-                    </CardText>
-
-                    <CardImg src="/empty.jpg" className="w-50 rounded-3 my-3" />
-                  </CardBody>
-                </Card>
-              )}
-            </Col>
-
-            <Col lg={3}>
-              <VenturesFeedRightSidebar />
-            </Col>
-          </Row>
-        </Container>
-      </div>
-    );
-  }
-
-  const leftColumn = items.filter((_, index) => index % 2 === 0);
-  const rightColumn = items.filter((_, index) => index % 2 !== 0);
-
   return (
     <Fragment>
       <div className="page-content">
@@ -155,50 +106,20 @@ const VenturesFeedPage = () => {
                   {/* {JSON.stringify(venturesQuery.data, null, 3)} */}
 
                   {total === 0 ? (
-                    <Card className="text-center mt-4 shadow-sm border-0">
-                      <CardBody>
-                        <CardTitle tag="h5">
-                          Sin elementos disponibles
-                        </CardTitle>
-                        <CardText>
-                          No se encontraron resultados para mostrar. Por favor,
-                          intenta con otros filtros o vuelve más tarde.
-                        </CardText>
-
-                        <CardImg
-                          src="/empty.jpg"
-                          className="w-50 rounded-3 my-3"
-                        />
-                      </CardBody>
-                    </Card>
+                    <NoItemsFoundCard
+                      title="Sin elementos disponibles"
+                      message="No se encontraron emprendimientos para mostrar. Por favor, intenta con otros filtros o vuelve más tarde."
+                    />
+                  ) : viewMode === VenturesViewMode.feed ? (
+                    <VenturesList ventures={items} />
                   ) : (
-                    <Row>
-                      <Col md={6}>
-                        {leftColumn.map((venture, index) => (
-                          <VentureCard
-                            key={`left-${index}`}
-                            ownerButtons={false}
-                            venture={venture}
-                          />
-                        ))}
-                      </Col>
-
-                      <Col md={6}>
-                        {rightColumn.map((venture, index) => (
-                          <VentureCard
-                            key={`right-${index}`}
-                            ownerButtons={false}
-                            venture={venture}
-                          />
-                        ))}
-                      </Col>
-                    </Row>
+                    <VenturesMap />
                   )}
                 </Col>
               </>
             )}
             <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
-              {hasNextPage && (
+              {hasNextPage && viewMode === VenturesViewMode.feed ? (
                 <div
                   ref={loadMoreRef}
                   style={{ textAlign: 'center', padding: '50px' }}
@@ -212,6 +133,8 @@ const VenturesFeedPage = () => {
                     ''
                   )}
                 </div>
+              ) : (
+                <></>
               )}
             </Col>
 
@@ -225,7 +148,7 @@ const VenturesFeedPage = () => {
             )}
 
             <Col lg={3} md={0} sm={0}>
-              <VenturesFeedRightSidebar />
+              <VenturesRightSidebar />
             </Col>
           </Row>
         </Container>

@@ -9,9 +9,7 @@ export default class VenturesApi {
     import.meta.env.VITE_API_URL
   }/api/v1/ventures`;
 
-  public static fetchVentures(
-    filters: VentureFilter,
-  ) {
+  public static fetchVentures(filters: VentureFilter) {
     const { search, pagination, categoriesIds, municipalitiesIds } = filters;
     const params = new URLSearchParams();
     search && params.set('search', search);
@@ -26,13 +24,29 @@ export default class VenturesApi {
     params.set('take', pagination.take.toString());
 
     return axios
-      .get<PaginatedBody<Venture>>(
-        `${VenturesApi.BASE_URL}`,
-        {
-          withCredentials: true,
-          params,
-        },
-      )
+      .get<PaginatedBody<Venture>>(`${VenturesApi.BASE_URL}`, {
+        withCredentials: true,
+        params,
+      })
+      .then(({ data }) => data);
+  }
+
+  public static fetchVenturesForMap(filters: VentureFilter) {
+    const { search, categoriesIds, municipalitiesIds } = filters;
+    const params = new URLSearchParams();
+    search && params.set('search', search);
+    categoriesIds &&
+      categoriesIds.length > 0 &&
+      params.set('categoriesIds', categoriesIds.join(','));
+    municipalitiesIds &&
+      municipalitiesIds.length === 1 &&
+      params.set('municipalityId', municipalitiesIds[0].toString());
+
+    return axios
+      .get<Venture[]>(`${VenturesApi.BASE_URL}/map`, {
+        withCredentials: true,
+        params,
+      })
       .then(({ data }) => data);
   }
 }
