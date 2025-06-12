@@ -1,13 +1,17 @@
 import Select from 'react-select';
 import { Label } from 'reactstrap';
 
+import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
 import departments from '../../data/geo/departments';
 import municipalities from '../../data/geo/municipalities';
-import { useState } from 'react';
-import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
 
 const VentureLocationFilters = () => {
-  const { setMunicipalitiesIds, municipalitiesIds, activeDepartmentId, setActiveDepartmentId } = useVenturesRightSidebar()
+  const {
+    setMunicipalitiesIds,
+    municipalitiesIds,
+    activeDepartmentId,
+    setActiveDepartmentId,
+  } = useVenturesRightSidebar();
   return (
     <>
       <div className="mt-3">

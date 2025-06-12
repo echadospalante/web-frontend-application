@@ -6,10 +6,10 @@ import {
   setVenturesCategoriesIds,
   setVenturesFilters,
   setVenturesMunicipalitiesIds,
-  setVenturesPage,
-  setVenturesPageSize,
   setVenturesSearch,
+  setVenturesSkip,
   setVenturesViewMode,
+  toggleShowVentureFilters,
   VentureFilter,
   VenturesViewMode,
 } from '../../../../config/redux/reducers/principal/ventures.reducer';
@@ -17,7 +17,7 @@ import { useAppDispatch } from '../../../../config/redux/store/store.config';
 
 const useVenturesRightSidebar = () => {
   const dispatch = useAppDispatch();
-  const { filters } = useSelector(selectVentures);
+  const { filters, showFilters } = useSelector(selectVentures);
 
   const setCategoriesIds = (categoriesIds: string[]) => {
     dispatch(setVenturesCategoriesIds(categoriesIds));
@@ -28,16 +28,11 @@ const useVenturesRightSidebar = () => {
   };
 
   const setSearch = (search: string) => {
-    console.log('Setting search:', search);
     dispatch(setVenturesSearch(search));
   };
 
   const setPage = (page: number) => {
-    dispatch(setVenturesPage(page));
-  };
-
-  const setPageSize = (pageSize: number) => {
-    dispatch(setVenturesPageSize(pageSize));
+    dispatch(setVenturesSkip(page));
   };
 
   const setFilters = (filters: VentureFilter) => {
@@ -52,15 +47,20 @@ const useVenturesRightSidebar = () => {
     dispatch(setVenturesActiveDepartmentId(departmentId));
   };
 
+  const toggleShowFilters = () => {
+    dispatch(toggleShowVentureFilters());
+  }
+
   return {
+    showFilters,
     ...filters,
     setCategoriesIds,
     setActiveDepartmentId,
     setMunicipalitiesIds,
+    toggleShowFilters,
     setViewMode,
     setSearch,
     setPage,
-    setPageSize,
     setFilters,
   };
 };

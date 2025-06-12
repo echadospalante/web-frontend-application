@@ -4,7 +4,7 @@ import { PaginatedBody, Pagination, Venture } from 'echadospalante-domain';
 import { RootState } from '../../store/store.config';
 
 export enum VenturesViewMode {
-  calendar = 'calendar',
+  feed = 'feed',
   map = 'map',
 }
 
@@ -19,17 +19,19 @@ export interface VentureFilter {
 
 export interface VenturesState {
   filters: VentureFilter;
+  showFilters: boolean;
   items: Venture[];
   total: number;
 }
 
 const initialState: VenturesState = {
+  showFilters: true,
   filters: {
     pagination: {
       skip: 0,
       take: 20,
     },
-    viewMode: VenturesViewMode.calendar,
+    viewMode: VenturesViewMode.feed,
     search: '',
     categoriesIds: [],
     activeDepartmentId: 0,
@@ -60,13 +62,8 @@ export const venturesSlice = createSlice({
       state.filters.categoriesIds = action.payload;
       state.filters.pagination.skip = 0;
     },
-    setVenturesPage: (state, action: PayloadAction<number>) => {
-      state.filters.pagination.skip =
-        action.payload * state.filters.pagination.take;
-    },
-    setVenturesPageSize: (state, action: PayloadAction<number>) => {
-      state.filters.pagination.take = action.payload;
-      state.filters.pagination.skip = 0;
+    setVenturesSkip: (state, action: PayloadAction<number>) => {
+      state.filters.pagination.skip = action.payload;
     },
     setVenturesFilters: (state, action: PayloadAction<VentureFilter>) => {
       state.filters = action.payload;
@@ -80,6 +77,9 @@ export const venturesSlice = createSlice({
       state.filters.municipalitiesIds = action.payload;
       state.filters.pagination.skip = 0;
     },
+    toggleShowVentureFilters: (state) => {
+      state.showFilters = !state.showFilters;
+    },
   },
 });
 
@@ -88,11 +88,11 @@ export const {
   setVenturesSearch,
   setVenturesViewMode,
   setVenturesCategoriesIds,
-  setVenturesPage,
-  setVenturesPageSize,
+  setVenturesSkip,
   setVenturesFilters,
   setVenturesMunicipalitiesIds,
   setVenturesActiveDepartmentId,
+  toggleShowVentureFilters,
 } = venturesSlice.actions;
 
 export const selectVentures = (state: RootState) => state.principal.ventures;

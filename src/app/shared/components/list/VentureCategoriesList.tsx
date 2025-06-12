@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { Button, Label } from 'reactstrap';
+
 import useVentureCategoriesStats from '../../../modules/admin/general/hooks/useVentureCategoriesStats';
 import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
 import RemovableChip from '../chips/RemovableChip';

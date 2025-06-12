@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect, useRef } from 'react';
 
 import {
   Button,
@@ -18,11 +18,64 @@ import VenturesFeedRightSidebar from '../../../../shared/components/rightbar/Ven
 import useFetchVentures from '../hooks/useFetchVentures';
 import VentureCard from '../../../../shared/components/card/VentureCard';
 import AppLoading from '../../../../shared/components/loader/AppLoading';
+import {
+  setVenturesSkip,
+  VenturesViewMode,
+} from '../../../../config/redux/reducers/principal/ventures.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import useVenturesRightSidebar from '../hooks/useVenturesRightSidebar';
 
 const VenturesFeedPage = () => {
   document.title = "Feed de Emprendimientos | Echadospa'lante";
+  const dispatch = useAppDispatch();
 
-  const { items, isLoading, isError, retryFetch } = useFetchVentures();
+  const {
+    items,
+    isLoading,
+    isError,
+    retryFetch,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    pagination,
+    total,
+    viewMode,
+    venturesQuery,
+  } = useFetchVentures();
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const { showFilters } = useVenturesRightSidebar();
+
+  useEffect(() => {
+    if (!loadMoreRef.current) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        console.log({
+          entries,
+          hasNextPage,
+          isFetchingNextPage,
+          pagination,
+          isIntersecting: entries[0].isIntersecting,
+          loadMoreRef: loadMoreRef.current,
+        });
+        if (entries[0].isIntersecting && hasNextPage && !isFetchingNextPage) {
+          const { skip, take } = pagination;
+          dispatch(setVenturesSkip(skip + take));
+          fetchNextPage();
+        }
+      },
+      { threshold: 0.1 }, // Triggers when 10% of the target is visible
+    );
+
+    observer.observe(loadMoreRef.current);
+
+    return () => {
+      if (loadMoreRef.current) {
+        observer.unobserve(loadMoreRef.current);
+      }
+    };
+  }, [fetchNextPage, hasNextPage, isFetchingNextPage]);
 
   if (!items || items.length === 0) {
     return (
@@ -82,42 +135,66 @@ const VenturesFeedPage = () => {
             {isLoading ? (
               <AppSpinner />
             ) : (
-              <Col lg={9}>
-                <Card className="p-4">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <h3 style={{ padding: 0, margin: 0 }}>
-                      Feed de Emprendimientos
-                    </h3>
+              <>
+                <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
+                  <Card className="p-4">
+                    <div className="d-flex justify-content-between align-items-center">
+                      <h3 style={{ padding: 0, margin: 0 }}>
+                        {viewMode === VenturesViewMode.feed
+                          ? 'Listado'
+                          : 'Mapa'}{' '}
+                        de Emprendimientos
+                      </h3>
 
-                    <Button color="primary" className="fs-5">
-                      <i className="mdi mdi-refresh"></i>
-                    </Button>
-                  </div>
-                </Card>
+                      <Button color="primary" className="fs-5">
+                        <i className="mdi mdi-refresh"></i>
+                      </Button>
+                    </div>
+                  </Card>
 
-                <Row>
-                  <Col md={6}>
-                    {leftColumn.map((venture, index) => (
-                      <VentureCard
-                        key={`left-${index}`}
-                        ownerButtons={false}
-                        venture={venture}
-                      />
-                    ))}
-                  </Col>
+                  {/* {JSON.stringify(venturesQuery.data, null, 3)} */}
 
-                  <Col md={6}>
-                    {rightColumn.map((venture, index) => (
-                      <VentureCard
-                        key={`right-${index}`}
-                        ownerButtons={false}
-                        venture={venture}
-                      />
-                    ))}
-                  </Col>
-                </Row>
-              </Col>
+                  <Row>
+                    <Col md={6}>
+                      {leftColumn.map((venture, index) => (
+                        <VentureCard
+                          key={`left-${index}`}
+                          ownerButtons={false}
+                          venture={venture}
+                        />
+                      ))}
+                    </Col>
+
+                    <Col md={6}>
+                      {rightColumn.map((venture, index) => (
+                        <VentureCard
+                          key={`right-${index}`}
+                          ownerButtons={false}
+                          venture={venture}
+                        />
+                      ))}
+                    </Col>
+                  </Row>
+                </Col>
+              </>
             )}
+            <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
+              {hasNextPage && (
+                <div
+                  ref={loadMoreRef}
+                  style={{ textAlign: 'center', padding: '50px' }}
+                >
+                  {isFetchingNextPage ? (
+                    <AppLoading
+                      iconPath={''}
+                      message="Cargando más emprendimientos..."
+                    />
+                  ) : (
+                    ''
+                  )}
+                </div>
+              )}
+            </Col>
 
             {isError && (
               <AlertWithReload
@@ -128,7 +205,7 @@ const VenturesFeedPage = () => {
               />
             )}
 
-            <Col lg={3}>
+            <Col lg={3} md={0} sm={0}>
               <VenturesFeedRightSidebar />
             </Col>
           </Row>
