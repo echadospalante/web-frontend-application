@@ -20,7 +20,7 @@ const UserContactCard = () => {
 
         {error && (
           <AlertWithReload
-            message="Ha habido un error al consultar los usuarios, por favor intente nuevamente."
+            message="Ha habido un error al consultar tu información personal, por favor intenta nuevamente."
             onReload={fetchUserContactInfo}
           />
         )}

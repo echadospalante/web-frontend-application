@@ -25,7 +25,7 @@ const FAQs = () => {
             <Col lg="12">
               <div className="text-center mb-5">
                 <div className="small-title">FAQs</div>
-                <h4>Frequently asked questions</h4>
+                <h4>Preguntas Frecuentes</h4>
               </div>
             </Col>
           </Row>
