@@ -67,7 +67,8 @@ const WelcomePage = () => {
               <div className="mt-5 text-center">
                 <p>
                   © {new Date().getFullYear()} Echadospa'lante. Crafted with{' '}
-                  <i className="mdi mdi-heart text-danger"></i> by Themesbrand
+                  <i className="mdi mdi-heart text-danger"></i> by
+                  EchadosPa'Lante
                 </p>
               </div>
             </Col>

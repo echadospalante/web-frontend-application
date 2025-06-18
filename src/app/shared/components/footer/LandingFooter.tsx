@@ -14,7 +14,8 @@ const FooterLink = () => {
           </div>
 
           <p className="mb-2">
-            {new Date().getFullYear()} © echadospalante. Design by Themesbrand
+            {new Date().getFullYear()} © echadospalante. Design by
+            EchadosPa'Lante
           </p>
         </Col>
       </Row>
@@ -25,33 +26,33 @@ const FooterLink = () => {
 const LandingFooter = () => {
   const { t } = useTranslation();
   const footerLinks = [
-    {
-      title: 'Seccion',
-      links: [
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-      ],
-    },
-    {
-      title: 'Seccion',
-      links: [
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-      ],
-    },
-    {
-      title: 'Seccion',
-      links: [
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-        { title: 'Link prueba', to: '#' },
-      ],
-    },
+    // {
+    //   title: 'Seccion',
+    //   links: [
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //   ],
+    // },
+    // {
+    //   title: 'Seccion',
+    //   links: [
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //   ],
+    // },
+    // {
+    //   title: 'Seccion',
+    //   links: [
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //     { title: 'Link prueba', to: '#' },
+    //   ],
+    // },
   ];
 
   return (
@@ -59,7 +60,7 @@ const LandingFooter = () => {
       <footer className="landing-footer">
         <Container>
           <Row>
-            {footerLinks.map((footerLink, key) => (
+            {/* {footerLinks.map((footerLink, key) => (
               <Col lg="3" sm="6" key={key}>
                 <div className="mb-4 mb-lg-0">
                   <h5 className="mb-3 footer-list-title">{footerLink.title}</h5>
@@ -72,9 +73,9 @@ const LandingFooter = () => {
                   </ul>
                 </div>
               </Col>
-            ))}
+            ))} */}
 
-            <Col lg="3" sm="6">
+            {/* <Col lg="3" sm="6">
               <div className="mb-4 mb-lg-0">
                 <h5 className="mb-3 footer-list-title">{t('Latest News')}</h5>
                 <div className="blog-post">
@@ -98,7 +99,7 @@ const LandingFooter = () => {
                   </Link>
                 </div>
               </div>
-            </Col>
+            </Col> */}
           </Row>
 
           <hr className="footer-border my-5" />

@@ -1,16 +1,6 @@
 import { Fragment, useEffect, useRef } from 'react';
 
-import {
-  Button,
-  Card,
-  CardBody,
-  CardImg,
-  CardText,
-  CardTitle,
-  Col,
-  Container,
-  Row,
-} from 'reactstrap';
+import { Button, Card, Col, Container, Row } from 'reactstrap';
 
 import {
   setVenturesSkip,
@@ -18,14 +8,13 @@ import {
 } from '../../../../config/redux/reducers/principal/ventures.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
-import VentureCard from '../../../../shared/components/card/VentureCard';
+import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
+import VenturesList from '../../../../shared/components/list/VenturesList';
 import AppLoading from '../../../../shared/components/loader/AppLoading';
+import VenturesMap from '../../../../shared/components/map/VenturesMap';
 import VenturesRightSidebar from '../../../../shared/components/rightbar/VenturesRightSidebar';
 import useFetchVentures from '../hooks/useFetchVentures';
 import useVenturesRightSidebar from '../hooks/useVenturesRightSidebar';
-import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
-import VenturesList from '../../../../shared/components/list/VenturesList';
-import VenturesMap from '../../../../shared/components/map/VenturesMap';
 
 const VenturesFeedPage = () => {
   document.title = "Feed de Emprendimientos | Echadospa'lante";
@@ -83,41 +72,34 @@ const VenturesFeedPage = () => {
       <div className="page-content">
         <Container fluid>
           <Row>
-            {isLoading ? (
-              <AppLoading iconPath={''} message="Buscando emprendimientos..." />
-            ) : (
-              <>
-                <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
-                  <Card className="p-4">
-                    <div className="d-flex justify-content-between align-items-center">
-                      <h3 style={{ padding: 0, margin: 0 }}>
-                        {viewMode === VenturesViewMode.feed
-                          ? 'Listado'
-                          : 'Mapa'}{' '}
-                        de Emprendimientos
-                      </h3>
+            <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
+              <Card className="p-4">
+                <div className="d-flex justify-content-between align-items-center">
+                  <h3 style={{ padding: 0, margin: 0 }}>
+                    {viewMode === VenturesViewMode.feed ? 'Listado' : 'Mapa'} de
+                    Emprendimientos
+                  </h3>
 
-                      <Button color="primary" className="fs-5">
-                        <i className="mdi mdi-refresh"></i>
-                      </Button>
-                    </div>
-                  </Card>
+                  <Button color="primary" className="fs-5">
+                    <i className="mdi mdi-refresh"></i>
+                  </Button>
+                </div>
+              </Card>
 
-                  {/* {JSON.stringify(venturesQuery.data, null, 3)} */}
+              {/* {JSON.stringify(venturesQuery.data, null, 3)} */}
 
-                  {total === 0 ? (
-                    <NoItemsFoundCard
-                      title="Sin elementos disponibles"
-                      message="No se encontraron emprendimientos para mostrar. Por favor, intenta con otros filtros o vuelve más tarde."
-                    />
-                  ) : viewMode === VenturesViewMode.feed ? (
-                    <VenturesList ventures={items} />
-                  ) : (
-                    <VenturesMap />
-                  )}
-                </Col>
-              </>
-            )}
+              {!isLoading && total === 0 ? (
+                <NoItemsFoundCard
+                  title="Sin elementos disponibles"
+                  message="No se encontraron emprendimientos para mostrar. Por favor, intenta con otros filtros o vuelve más tarde."
+                />
+              ) : viewMode === VenturesViewMode.feed ? (
+                <VenturesList ventures={items} />
+              ) : (
+                <VenturesMap />
+              )}
+            </Col>
+
             <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
               {hasNextPage && viewMode === VenturesViewMode.feed ? (
                 <div
@@ -148,7 +130,9 @@ const VenturesFeedPage = () => {
             )}
 
             <Col lg={3} md={0} sm={0}>
-              <VenturesRightSidebar />
+              <VenturesRightSidebar
+                multipleMunicipalities={viewMode === VenturesViewMode.feed}
+              />
             </Col>
           </Row>
         </Container>

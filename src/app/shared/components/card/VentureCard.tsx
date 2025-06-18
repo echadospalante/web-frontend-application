@@ -1,3 +1,5 @@
+import { useState, type SVGProps } from 'react';
+
 import { Venture } from 'echadospalante-domain';
 import {
   Badge,
@@ -10,14 +12,23 @@ import {
 } from 'reactstrap';
 
 import { textToRGB } from '../../helpers/colors';
-import { formatDate } from '../../helpers/dates';
+import VentureCardFooter from '../footer/VentureCardFooter';
+import VentureCardHeader from '../header/VentureCardHeader';
+import VentureMapModal from '../modal/VentureMapModal';
+import TruncatedItems from '../text/TruncatedItems';
+import TruncatedText from '../text/TruncatedText';
 
 export type VentureCardProps = {
   venture: Venture;
   ownerButtons?: boolean;
+  showFooter?: boolean;
 };
 
-const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
+const VentureCard = ({
+  venture,
+  ownerButtons = true,
+  showFooter = true,
+}: VentureCardProps) => {
   const [showMapModal, setShowMapModal] = useState(false);
 
   const parseLocation = (locationDescription: string) => {
@@ -45,8 +56,8 @@ const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
           toggle={() => setShowMapModal(false)}
           address={venture.location?.description || 'Descripción no disponible'}
           coords={{
-            lat: venture.location?.location?.coordinates[0] || 0,
-            lng: venture.location?.location?.coordinates[1] || 0,
+            lat: venture.location?.location?.coordinates[1] || 0,
+            lng: venture.location?.location?.coordinates[0] || 0,
           }}
         />
       )}
@@ -167,120 +178,14 @@ const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
             </ul>
           </div>
 
-          <div className="border-top bg-light">
-            <Row className="g-0">
-              <Col
-                lg={ownerButtons ? 7 : 12}
-                md={ownerButtons ? 7 : 12}
-                sm={12}
-              >
-                <div className="px-4 py-3">
-                  <div className="d-flex justify-content-around text-center">
-                    <div
-                      className="flex-fill"
-                      id={`publications-${venture.id}`}
-                    >
-                      <i className="text-primary mdi mdi-bullhorn-outline fs-4 d-block mb-1" />
-                      <div className="fw-semibold text-dark">
-                        {Math.ceil(Math.random() * 100)}
-                      </div>
-                      <small className="text-muted">Publicaciones</small>
-                      <UncontrolledTooltip
-                        placement="top"
-                        target={`publications-${venture.id}`}
-                      >
-                        Click para ver las publicaciones
-                      </UncontrolledTooltip>
-                    </div>
-
-                    <div
-                      className="flex-fill border-start border-end"
-                      id={`comments-${venture.id}`}
-                    >
-                      <i className="text-primary mdi mdi-calendar-multiselect fs-4 d-block mb-1"></i>
-                      <div className="fw-semibold text-dark">
-                        {Math.ceil(Math.random() * 100)}
-                      </div>
-                      <small className="text-muted">Eventos</small>
-                      <UncontrolledTooltip
-                        placement="top"
-                        target={`comments-${venture.id}`}
-                      >
-                        Click para ver los eventos
-                      </UncontrolledTooltip>
-                    </div>
-
-                    <div
-                      className="flex-fill border-start border-end"
-                      id={`events-${venture.id}`}
-                    >
-                      <i className="text-primary mdi mdi-thumb-up-outline fs-4 d-block mb-1"></i>
-                      <div className="fw-semibold text-dark">
-                        {Math.ceil(Math.random() * 100)}
-                      </div>
-                      <small className="text-muted">Eventos</small>
-                      <UncontrolledTooltip
-                        placement="top"
-                        target={`events-${venture.id}`}
-                      >
-                        Número de aplausos
-                      </UncontrolledTooltip>
-                    </div>
-
-                    <div className="flex-fill" id={`reactions-${venture.id}`}>
-                      <i className="text-primary mdi mdi-comment-outline fs-4 d-block mb-1"></i>
-                      <div className="fw-semibold text-dark">
-                        {Math.ceil(Math.random() * 100)}
-                      </div>
-                      <small className="text-muted">Comentarios</small>
-                      <UncontrolledTooltip
-                        placement="top"
-                        target={`reactions-${venture.id}`}
-                      >
-                        Número de comentarios
-                      </UncontrolledTooltip>
-                    </div>
-                  </div>
-                </div>
-              </Col>
-
-              {/* Botones del propietario */}
-              {ownerButtons && (
-                <Col lg={5} md={5} sm={12}>
-                  <div className="px-4 py-3 border-start">
-                    <div className="d-flex flex-column gap-2">
-                      <div className="d-flex gap-2">
-                        <Link
-                          to={`/principal/cuenta/emprendimientos/${venture.id}/publicaciones/nueva`}
-                          className="btn btn-outline-primary btn-sm flex-fill"
-                        >
-                          <i className="bx bx-plus me-1"></i>
-                          Publicación
-                        </Link>
-                        <Link
-                          to={`/principal/cuenta/emprendimientos/${venture.id}/eventos/nuevo`}
-                          className="btn btn-outline-primary btn-sm flex-fill"
-                        >
-                          <i className="bx bx-plus me-1"></i>
-                          Evento
-                        </Link>
-                      </div>
-                      <div className="d-flex gap-2">
-                        <Button color="info" size="sm" className="flex-fill">
-                          <i className="bx bx-edit-alt me-1"></i>
-                          Editar
-                        </Button>
-                        <Button color="danger" size="sm" className="flex-fill">
-                          <i className="bx bx-trash me-1"></i>
-                          Eliminar
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </Col>
-              )}
-            </Row>
-          </div>
+          {showFooter && (
+            <div className="border-top bg-light">
+              <VentureCardFooter
+                venture={venture}
+                ownerButtons={ownerButtons}
+              />
+            </div>
+          )}
         </Card>
       </a>
     </>
@@ -288,13 +193,6 @@ const VentureCard = ({ venture, ownerButtons = true }: VentureCardProps) => {
 };
 
 export default VentureCard;
-
-import { useState, type SVGProps } from 'react';
-import { Link } from 'react-router-dom';
-import VentureMapModal from '../modal/VentureMapModal';
-import TruncatedItems from '../text/TruncatedItems';
-import TruncatedText from '../text/TruncatedText';
-import VentureCardHeader from '../header/VentureCardHeader';
 
 export function UilMegaphone(props: SVGProps<SVGSVGElement>) {
   return (

@@ -6,6 +6,15 @@ type AlertWithReloadProps = {
 };
 
 const AlertWithReload = ({ message, onReload }: AlertWithReloadProps) => {
+  
+  const handleClickOnReload = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ): void => {
+    event.preventDefault();
+    event.stopPropagation();
+    onReload();
+  };
+
   return (
     <Row className="alert alert-danger text-center">
       <Col
@@ -20,7 +29,7 @@ const AlertWithReload = ({ message, onReload }: AlertWithReloadProps) => {
       <Col lg={3} md={4} sm={12}>
         <Button
           type="button"
-          onClick={onReload}
+          onClick={handleClickOnReload}
           className="btn btn-light mx-2 float-end"
         >
           <i className="mdi mdi-refresh"></i>

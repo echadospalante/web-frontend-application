@@ -8,7 +8,7 @@ import { useAppDispatch } from '../../../config/redux/store/store.config';
 import { AppRole } from '../domain/Role';
 
 const useAuthentication = () => {
-  const { activeRole, roles, email } = useSelector(selectAuthentication);
+  const { id, activeRole, roles, email } = useSelector(selectAuthentication);
   const dispatch = useAppDispatch();
 
   const setActiveRole = (roleName: AppRole) => {
@@ -18,7 +18,7 @@ const useAuthentication = () => {
     dispatch(changeActiveRole(role));
   };
 
-  return { activeRole, setActiveRole, roles, email };
+  return { activeRole, setActiveRole, roles, email, id };
 };
 
 export default useAuthentication;

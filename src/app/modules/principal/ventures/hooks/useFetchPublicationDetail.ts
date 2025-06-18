@@ -18,11 +18,7 @@ const useFetchPublicationDetail = () => {
 
   const publicationDetailQuery = useQuery({
     queryKey: ['publications', publicationId],
-    queryFn: () => {
-      if (!publicationId) throw new Error('Falta el id de la publicación');
-
-      return PublicationsApi.getPublicationDetail(publicationId);
-    },
+    queryFn: () => PublicationsApi.getPublicationDetail(publicationId!),
     staleTime: 1000 * 60 * 60, // 1 hour
   });
 
@@ -36,7 +32,7 @@ const useFetchPublicationDetail = () => {
     isLoading: publicationDetailQuery.isLoading,
     isError: publicationDetailQuery.isError,
     retryRequest: publicationDetailQuery.refetch,
-    detail,
+    detail: detail || publicationDetailQuery.data,
   };
 };
 

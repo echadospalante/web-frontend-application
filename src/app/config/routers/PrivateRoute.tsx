@@ -5,6 +5,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { selectAuthentication } from '../redux/reducers/auth/auth.reducer';
 import { AppRole, Role } from '../../modules/auth/domain/Role';
+import ScrollToFragment from '../../shared/components/scroll/ScrollToFragment';
 
 export interface PrivateRouteProps {
   allRequiredRoles?: AppRole[];
@@ -73,6 +74,7 @@ const PrivateRoute = ({
   return (
     <React.Fragment>
       <Outlet />
+      <ScrollToFragment />
     </React.Fragment>
   );
 };

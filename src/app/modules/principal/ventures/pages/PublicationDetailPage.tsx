@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 
 import { PublicationContent } from 'echadospalante-domain';
-import { Navigate } from 'react-router-dom';
+import moment from 'moment';
+import { Link, Navigate } from 'react-router-dom';
 import {
   Badge,
   Button,
@@ -27,9 +28,12 @@ import PublicationCommentCard from '../../../../shared/components/card/Publicati
 import AppSpinner from '../../../../shared/components/loader/Spinner';
 import useFetchPublicationDetail from '../hooks/useFetchPublicationDetail';
 import usePublicationInteractions from '../hooks/usePublicationInteractions';
+import PublicationClapsModal from '../../../../shared/components/modal/PublicationClapsModal';
+import useAuthentication from '../../../auth/hooks/useAuthentication';
 
 const PublicationDetailPage = () => {
   const [showClapsModal, setShowClapsModal] = useState(false);
+  const { id: userId } = useAuthentication();
   const { detail, isError, isLoading, retryRequest } =
     useFetchPublicationDetail();
 
@@ -45,6 +49,8 @@ const PublicationDetailPage = () => {
     retryComment,
     retryClap,
     newComment,
+    handleDeleteComment,
+    handleDeleteClap,
     setNewComment,
   } = usePublicationInteractions();
 
@@ -62,22 +68,11 @@ const PublicationDetailPage = () => {
   const formatRelativeDate = (dateString: string) => {
     const date = new Date(dateString);
     const now = new Date();
-    const diffInHours = Math.floor(
-      (now.getTime() - date.getTime()) / (1000 * 60 * 60),
-    );
-
-    if (diffInHours < 1) return 'Hace unos minutos';
-    if (diffInHours < 24)
-      return `Hace ${diffInHours} hora${diffInHours > 1 ? 's' : ''}`;
-
-    const diffInDays = Math.floor(diffInHours / 24);
-    if (diffInDays < 7)
-      return `Hace ${diffInDays} día${diffInDays > 1 ? 's' : ''}`;
-
-    return formatDate(dateString);
+    const from = moment(date);
+    const to = moment(now);
+    return from.from(to);
   };
 
-  // Función para renderizar contenido
   const renderContent = (content: PublicationContent) => {
     switch (content.type) {
       case 'TEXT':
@@ -144,7 +139,7 @@ const PublicationDetailPage = () => {
     return <AppSpinner />;
   }
 
-  if (isError) {
+  if (isError || !detail) {
     return (
       <AlertWithReload
         message={
@@ -155,16 +150,11 @@ const PublicationDetailPage = () => {
     );
   }
 
-  if (!detail) {
-    return <Navigate to={'/principal/emprendimientos/publicaciones'} />;
-  }
-
   return (
     <Container fluid className="py-4 mt-5">
       <Row>
         <Col lg={10} md={12} sm={12} className="mx-auto">
-          {/* Header de la publicación */}
-          <Card className="mb-4 shadow-sm">
+          <Card className="mb-4 mt-3 shadow-sm">
             <CardBody>
               <div className="d-flex justify-content-between align-items-start mb-3">
                 <div>
@@ -194,13 +184,50 @@ const PublicationDetailPage = () => {
               )}
 
               <div className="d-flex align-items-center">
+                <div>
+                  {detail.claps.some(({ user }) => user.id === userId) ? (
+                    <Button
+                      onClick={() =>
+                        handleDeleteClap(
+                          detail.claps.find(({ user }) => user.id === userId)!
+                            .id,
+                        )
+                      }
+                      color="danger"
+                      outline
+                      className="me-2"
+                    >
+                      <i className="mdi mdi-thumb-up-outline me-1"></i>
+                      Eliminar aplauso
+                    </Button>
+                  ) : (
+                    <Button
+                      onClick={handlePublishClap}
+                      color="success"
+                      outline
+                      className="me-2"
+                    >
+                      <i className="mdi mdi-thumb-up me-1"></i>
+                      Aplaudir
+                    </Button>
+                  )}
+                  <Link
+                    color="primary"
+                    className="me-2 btn btn-outline-primary"
+                    to={`#nuevo-comentario`}
+                  >
+                    <i className="mdi mdi-comment-plus-outline me-1"></i>
+                    Comentar
+                  </Link>
+                </div>
                 <Button
                   color="link"
                   className="text-muted p-0 me-3"
                   onClick={() => setShowClapsModal(true)}
                 >
                   <i className="bx bx-like me-1"></i>
-                  {detail.clapsCount} Aplausos
+                  {detail.clapsCount}{' '}
+                  {detail.clapsCount === 1 ? 'Aplauso' : 'Aplausos'}
                 </Button>
                 <span className="text-muted">
                   <i className="bx bx-comment-dots me-1"></i>
@@ -210,14 +237,12 @@ const PublicationDetailPage = () => {
             </CardBody>
           </Card>
 
-          {/* Contenidos */}
           <Card className="mb-4 shadow-sm">
             <CardBody>
               {detail.contents.map((content) => renderContent(content))}
             </CardBody>
           </Card>
 
-          {/* Sección de comentarios */}
           <Card className="shadow-sm">
             <CardBody>
               <h4 className="mb-4">
@@ -225,7 +250,6 @@ const PublicationDetailPage = () => {
                 Comentarios ({detail.comments.length})
               </h4>
 
-              {/* Formulario para nuevo comentario */}
               <Form onSubmit={handleSubmitComment} className="mb-4">
                 <FormGroup>
                   <InputGroup>
@@ -233,6 +257,7 @@ const PublicationDetailPage = () => {
                       type="textarea"
                       placeholder="Escribe un comentario..."
                       value={newComment}
+                      id="nuevo-comentario"
                       onChange={(e) => setNewComment(e.target.value)}
                       rows={3}
                     />
@@ -250,11 +275,13 @@ const PublicationDetailPage = () => {
                 </FormGroup>
               </Form>
 
-              {/* Lista de comentarios */}
               {detail.comments.length > 0 ? (
                 <div>
-                  {detail.comments.map((comment) => (
-                    <PublicationCommentCard comment={comment} />
+                  {[...detail.comments].reverse().map((comment) => (
+                    <PublicationCommentCard
+                      comment={comment}
+                      onDelete={(commentId) => handleDeleteComment(commentId)}
+                    />
                   ))}
                 </div>
               ) : (
@@ -272,58 +299,13 @@ const PublicationDetailPage = () => {
         </Col>
       </Row>
 
-      {/* Modal de aplausos */}
-      <Modal
-        isOpen={showClapsModal}
-        toggle={() => setShowClapsModal(false)}
-        centered
-      >
-        <ModalHeader toggle={() => setShowClapsModal(false)}>
-          <i className="bx bx-like me-2"></i>
-          Aplausos ({detail.claps.length})
-        </ModalHeader>
-        <ModalBody className="p-0">
-          {detail.claps.length > 0 ? (
-            <ListGroup flush>
-              {detail.claps.map((clap) => (
-                <ListGroupItem
-                  key={clap.id}
-                  className="d-flex align-items-center py-3 border-0"
-                >
-                  <img
-                    src={clap.user.picture}
-                    alt={`${clap.user.firstName} ${clap.user.lastName}`}
-                    className="rounded-circle me-3"
-                    width="40"
-                    height="40"
-                  />
-                  <div className="flex-grow-1">
-                    <h6 className="mb-0 d-flex align-items-center">
-                      {clap.user.firstName} {clap.user.lastName}
-                      {clap.user.verified && (
-                        <i className="bx bx-badge-check text-primary ms-1"></i>
-                      )}
-                    </h6>
-                    <small className="text-muted">
-                      {formatRelativeDate(
-                        new Date(clap.createdAt).toISOString(),
-                      )}
-                    </small>
-                  </div>
-                </ListGroupItem>
-              ))}
-            </ListGroup>
-          ) : (
-            <div className="text-center py-4">
-              <i
-                className="bx bx-like text-muted"
-                style={{ fontSize: '3rem' }}
-              ></i>
-              <p className="text-muted mt-2 mb-0">Aún no hay aplausos</p>
-            </div>
-          )}
-        </ModalBody>
-      </Modal>
+      {showClapsModal && (
+        <PublicationClapsModal
+          showModal={showClapsModal}
+          setShowModal={setShowClapsModal}
+          detail={detail}
+        />
+      )}
     </Container>
   );
 };

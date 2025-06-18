@@ -8,20 +8,13 @@ import {
 import VenturesApi from '../api/ventures.api';
 
 const useFetchVenturesMap = () => {
-  const { filters, items, total } = useSelector(selectVentures);
+  const { filters } = useSelector(selectVentures);
   const { pagination, search, categoriesIds, municipalitiesIds, viewMode } =
     filters;
 
   const venturesMapQuery = useQuery({
-    queryKey: [
-      'ventures',
-      "map",
-      search,
-      categoriesIds,
-      municipalitiesIds,
-    ],
-    queryFn: () =>
-      VenturesApi.fetchVenturesForMap(filters),
+    queryKey: ['ventures', 'map', search, categoriesIds, municipalitiesIds],
+    queryFn: () => VenturesApi.fetchVenturesForMap(filters),
     staleTime: 1000 * 60 * 60,
   });
 
@@ -30,12 +23,13 @@ const useFetchVenturesMap = () => {
   };
 
   return {
+    municipalitiesIds,
     isLoading: venturesMapQuery.isLoading,
     isError: venturesMapQuery.isError,
     pagination,
     viewMode,
-    items,
-    total,
+    items: venturesMapQuery.data?.items || [],
+    total: venturesMapQuery.data?.total || 0,
     retryFetch,
     venturesQuery: venturesMapQuery,
   };

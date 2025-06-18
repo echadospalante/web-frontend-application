@@ -73,7 +73,7 @@ const VentureCardHeader: React.FC<VentureCardHeaderProps> = ({ venture, ownerInd
           <div className="d-flex gap-2">
             {ownerIndicators && (
               <Badge
-                className={`py-1 px-2 ${
+                className={`py-1 px-2 d-flex align-items-center ${
                   venture.active ? 'bg-success' : 'bg-danger'
                 }`}
               >

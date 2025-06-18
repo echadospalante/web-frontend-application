@@ -1,11 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { AppRole } from 'echadospalante-domain';
+import { AppRole, User } from 'echadospalante-domain';
 
-import { LoginResponse } from '../../../../modules/auth/domain/Login';
 import { Role } from '../../../../modules/auth/domain/Role';
 import { RootState } from '../../store/store.config';
 
-export interface AuthenticationState extends Partial<LoginResponse> {
+export interface AuthenticationState extends Partial<User> {
   activeRole?: Role;
 }
 
@@ -17,7 +16,7 @@ export const authenticationSlice = createSlice({
   name: 'authentication',
   initialState,
   reducers: {
-    loginUser: (state, action: PayloadAction<LoginResponse>) => {
+    loginUser: (state, action: PayloadAction<User>) => {
       const {
         id,
         email,
@@ -28,6 +27,10 @@ export const authenticationSlice = createSlice({
         active,
         createdAt,
         onboardingCompleted,
+        preferences,
+        municipality,
+        birthDate,
+        contact,
       } = action.payload;
 
       state.id = id;
@@ -39,6 +42,10 @@ export const authenticationSlice = createSlice({
       state.active = active;
       state.createdAt = createdAt;
       state.onboardingCompleted = onboardingCompleted;
+      state.preferences = preferences;
+      state.municipality = municipality;
+      state.birthDate = birthDate;
+      state.contact = contact;
 
       const activeRole = localStorage.getItem('auth_active_role') as AppRole;
       const includesRole = roles.find(({ name }) => name === activeRole);

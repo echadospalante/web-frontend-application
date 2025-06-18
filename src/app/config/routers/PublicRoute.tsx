@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
 import { selectAuthentication } from '../redux/reducers/auth/auth.reducer';
+import ScrollToFragment from '../../shared/components/scroll/ScrollToFragment';
 
 export interface PublicRouteProps {
   children: ReactNode;
@@ -19,6 +20,7 @@ const PublicRoute = (): JSX.Element => {
   return (
     <Fragment>
       <Outlet />
+      <ScrollToFragment />
     </Fragment>
   );
 };

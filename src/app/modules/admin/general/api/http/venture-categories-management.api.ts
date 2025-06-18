@@ -20,7 +20,7 @@ export class VentureCategoriesApi {
   > {
     return axios
       .get<PaginatedBody<VentureCategory>>(
-        `${VentureCategoriesApi.API_BASE_URL}`,
+        `${VentureCategoriesApi.API_BASE_URL}/all`,
         {
           withCredentials: true,
         },
@@ -32,7 +32,7 @@ export class VentureCategoriesApi {
     return axios
       .get<
         PaginatedBody<VentureCategoriesStats>
-      >(`${VentureCategoriesApi.API_BASE_URL}/stats`, { withCredentials: true })
+      >(`${VentureCategoriesApi.API_BASE_URL}/count-stats`, { withCredentials: true })
       .then(({ data }) => data);
   }
 

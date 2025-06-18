@@ -10,7 +10,7 @@ export default class VentureCategoriesApi {
   public static async getVentureCategories() {
     await new Promise((resolve) => setTimeout(resolve, 3000));
     return axios
-      .get<PaginatedBody<VentureCategory>>(`${this.BASE_URL}`, {
+      .get<PaginatedBody<VentureCategory>>(`${this.BASE_URL}/all`, {
         withCredentials: true,
       })
       .then(({ data }) => data);

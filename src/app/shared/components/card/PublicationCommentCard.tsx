@@ -1,16 +1,20 @@
 import { PublicationComment } from 'echadospalante-domain';
 import { getIconName, stringToColor } from '../../helpers/colors';
 import { useState } from 'react';
+import { Button } from 'reactstrap';
+import useAuthentication from '../../../modules/auth/hooks/useAuthentication';
 
 export interface PublicationCommentCardProps {
   comment: PublicationComment;
+  onDelete: (commentId: string) => void;
 }
 
 const PublicationCommentCard: React.FC<PublicationCommentCardProps> = ({
   comment,
+  onDelete,
 }) => {
   const [displayPicture, setDisplayPicture] = useState(true);
-
+  const { id: userId } = useAuthentication();
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('es-ES', {
@@ -85,6 +89,20 @@ const PublicationCommentCard: React.FC<PublicationCommentCardProps> = ({
         </p>
         <p className="mb-0">{comment.content}</p>
       </div>
+
+      {comment.author.id === userId && (
+        <div>
+          <Button
+            color="danger"
+            outline
+            size="sm"
+            onClick={() => onDelete(comment.id)}
+          >
+            <i className="mdi mdi-delete me-1"></i>
+            Eliminar
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

@@ -6,18 +6,21 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 
+import { useSelector } from 'react-redux';
+import { selectAuthentication } from '../../../../config/redux/reducers/auth/auth.reducer';
 import {
   setGlobalAlert,
   SeverityLevel,
 } from '../../../../config/redux/reducers/shared/user-interface.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
-import useAuthentication from '../../../auth/hooks/useAuthentication';
 import { OwnedVenturesApi } from '../api/http/owned-ventures-management.api';
 import useUploadImage from './useUploadImage';
+import municipalities from '../../../../shared/data/geo/municipalities';
+import { haversineDistance } from '../../../../shared/helpers/map-helpers';
 
 const useVentureCreate = () => {
-  const navigate = useNavigate()
-  const { email } = useAuthentication();
+  const navigate = useNavigate();
+  const { email, municipality } = useSelector(selectAuthentication);
   const dispatch = useAppDispatch();
   const { uploadVentureImage, ...rest } = useUploadImage();
   const { uploadResultUrl } = rest;
@@ -33,25 +36,25 @@ const useVentureCreate = () => {
           title: '¡Bien hecho!',
         }),
       );
-      navigate("/principal/cuenta/emprendimientos")
-    }
+      navigate('/principal/cuenta/emprendimientos');
+    },
   });
 
   const form = useFormik<VentureCreate>({
     initialValues: {
-      name: 'Nombre',
-      coverPhoto:
-        'https://storage.googleapis.com/echadospalante-ventures-bucket/Empanadas-San-Juanitas-Manizales-negocio-DIAN-4 (2).jpg',
-      description: 'Some description',
+      name: '',
+      coverPhoto: '',
+      description: '',
       categoriesIds: [],
       contact: {
         email: email,
-        phoneNumber: '3122555542',
+        phoneNumber: '',
       },
       location: {
-        lat: 6.031934076663449,
-        lng: -75.43083322366968,
-        description: 'Some description of location',
+        municipalityId: municipality!.id,
+        lat: municipality!.lat,
+        lng: municipality!.lng,
+        description: '',
       },
     },
     validationSchema: Yup.object({
@@ -118,6 +121,26 @@ const useVentureCreate = () => {
       form.setFieldValue('coverPhoto', uploadResultUrl);
     }
   }, [uploadResultUrl]);
+
+  const location = form.values.location;
+
+  useEffect(() => {
+    if (!location) return;
+    if (!location.lat || !location.lng) return;
+    const { lat, lng } = location;
+    const distancesToAllMunicipalities = municipalities
+      .map((m) => ({
+        id: m.id,
+        distance: haversineDistance({ lat, lng }, { lat: m.lat, lng: m.lng }),
+      }))
+      .sort(
+        ({ distance: aDistance }, { distance: dDistance }) =>
+          aDistance - dDistance,
+      );
+    const { id: closesMunicipalityId } = distancesToAllMunicipalities[0];
+
+    form.setFieldValue('location.municipalityId', closesMunicipalityId);
+  }, [location?.lat, location?.lng]);
 
   return {
     form,

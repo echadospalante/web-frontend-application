@@ -11,10 +11,20 @@ export default class ClapsApi {
     publicationId: string,
   ): Promise<PublicationClap> {
     return axios
-      .post<PublicationClap>(
-        `${this.BASE_URL}/${publicationId}/claps`,
-        { withCredentials: true },
-      )
+      .post<PublicationClap>(`${this.BASE_URL}/${publicationId}/claps`, null, {
+        withCredentials: true,
+      })
       .then(({ data }) => data);
+  }
+
+  public static deleteClap(
+    publicationId: string,
+    clapId: string,
+  ): Promise<void> {
+    return axios
+      .delete(`${this.BASE_URL}/${publicationId}/claps/${clapId}`, {
+        withCredentials: true,
+      })
+      .then(() => {});
   }
 }

@@ -1,11 +1,19 @@
-import Select from 'react-select';
+import React from 'react';
+
+import Select, { MultiValue } from 'react-select';
 import { Label } from 'reactstrap';
 
 import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
 import departments from '../../data/geo/departments';
 import municipalities from '../../data/geo/municipalities';
 
-const VentureLocationFilters = () => {
+export interface VentureLocationFiltersProps {
+  multipleMunicipalities?: boolean;
+}
+
+const VentureLocationFilters: React.FC<VentureLocationFiltersProps> = ({
+  multipleMunicipalities,
+}) => {
   const {
     setMunicipalitiesIds,
     municipalitiesIds,
@@ -19,6 +27,7 @@ const VentureLocationFilters = () => {
         <Select
           id="departmentId"
           name="departmentId"
+          isClearable={false}
           styles={{
             menuPortal: (base) => ({ ...base, zIndex: 9999 }),
             control: (base) => ({
@@ -56,6 +65,7 @@ const VentureLocationFilters = () => {
         <Label htmlFor="validationTooltip01">Municipios</Label>
         <Select
           id="municipalities"
+          isClearable={false}
           value={
             activeDepartmentId
               ? municipalitiesIds
@@ -78,12 +88,29 @@ const VentureLocationFilters = () => {
           }}
           menuPortalTarget={document.body}
           isDisabled={!activeDepartmentId}
-          placeholder={activeDepartmentId ? "Selecciona municipios" : "Selecciona un departamento primero"}
-          isMulti={true}
+          placeholder={
+            activeDepartmentId
+              ? 'Selecciona municipios'
+              : 'Selecciona un departamento primero'
+          }
+          isMulti={multipleMunicipalities}
           name="municipalities"
           onChange={(values) => {
-            const municipalityIds: number[] = values.map(({ value }) => value);
-            setMunicipalitiesIds(municipalityIds);
+            if (multipleMunicipalities) {
+              const municipalityIds: number[] = (
+                values as MultiValue<{
+                  value: number;
+                  label: string;
+                }>
+              ).map(({ value }) => value);
+              setMunicipalitiesIds(municipalityIds);
+            } else {
+              const selectedValue = values as {
+                value: number;
+                label: string;
+              };
+              setMunicipalitiesIds(selectedValue ? [selectedValue.value] : []);
+            }
           }}
           options={municipalities
             .filter(({ departmentId }) => departmentId === activeDepartmentId)

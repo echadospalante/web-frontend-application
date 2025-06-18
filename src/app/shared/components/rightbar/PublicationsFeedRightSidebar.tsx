@@ -2,10 +2,13 @@ import { Link } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
 import SimpleBar from 'simplebar-react';
 
-import { popularPosts, tagsData } from '../../data/feed/feed';
+import { popularPosts } from '../../data/feed/feed';
 import ventureCategories from '../../data/misc/venture-categories';
+import useFetchPublications from '../../../modules/principal/ventures/hooks/useFetchPublications';
+import { ContentType } from 'echadospalante-domain';
 
 const PublicationsFeedRightSidebar = () => {
+  const { isError, isLoading, items } = useFetchPublications();
   return (
     <div
       style={{
@@ -79,13 +82,11 @@ const PublicationsFeedRightSidebar = () => {
               </ul>
             </div> */}
 
-            <hr className="my-4" />
-
             <div>
               <p className="text-muted mb-2">Publicaciones Populares</p>
 
               <div className="list-group list-group-flush">
-                {(popularPosts || []).map((item, index) => (
+                {items.slice(0, 3).map((item, index) => (
                   <Link
                     to="#"
                     className="list-group-item text-muted py-3 px-2"
@@ -94,37 +95,30 @@ const PublicationsFeedRightSidebar = () => {
                     <div className="d-flex align-items-center">
                       <div className="me-3">
                         <img
-                          src={item.imageSrc}
+                          src={
+                            item.contents.find(
+                              (c) => c.type === ContentType.IMAGE,
+                            )?.content || '/epl.png'
+                          }
+                          style={{ width: '50px', height: '50px' }}
                           alt=""
-                          className="avatar-md h-auto d-block rounded"
+                          className="avatar-md d-block rounded"
                         />
                       </div>
                       <div className="flex-grow-1 overflow-hidden">
                         <h5 className="font-size-13 text-truncate">
-                          {item.title}
+                          {item.description.length > 50
+                            ? `${item.description.substring(0, 50)}...`
+                            : item.description}
                         </h5>
-                        <p className="mb-0 text-truncate">{item.date}</p>
+                        <p className="mb-0 text-truncate">
+                          {item.createdAt.split('T')[0]}
+                        </p>
                       </div>
                     </div>
                   </Link>
                 ))}
               </div>
-            </div>
-
-            <hr className="my-4" />
-
-            <div>
-              <p className="text-muted mb-1">Etiquetas</p>
-
-              <ul className="list-inline widget-tag">
-                {(tagsData || []).map((item) => (
-                  <li className="list-inline-item" key={item.id}>
-                    <Link to="#" className="badge bg-light font-size-12 mt-2">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </CardBody>
         </Card>

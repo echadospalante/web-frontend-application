@@ -78,6 +78,11 @@ const AppRouter = () => {
                 element={<GeneralPublicationsFeedPage />}
               />
 
+              <Route
+                path=":ventureId/publicaciones"
+                element={<GeneralPublicationsFeedPage />}
+              />
+
               <Route path="eventos" element={<GeneralEventsPage />} />
               <Route
                 path="publicaciones/:publicationId"

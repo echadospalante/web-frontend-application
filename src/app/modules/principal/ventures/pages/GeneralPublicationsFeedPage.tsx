@@ -1,16 +1,20 @@
 import { Fragment } from 'react';
 
+import { useParams } from 'react-router-dom';
 import { Button, Card, Col, Container, Row } from 'reactstrap';
 
 import PublicationCard from '../../../../shared/components/card/PublicationCard';
-import VenturesRightSidebar from '../../../../shared/components/rightbar/VenturesRightSidebar';
-import useFetchPublications from '../hooks/useFetchPublications';
 import PublicationsFeedRightSidebar from '../../../../shared/components/rightbar/PublicationsFeedRightSidebar';
+import useFetchPublications from '../hooks/useFetchPublications';
+import GeneralPublicationsHeader from '../../../../shared/components/header/GeneralPublicationsHeader';
+import VenturePublicationsHeader from '../../../../shared/components/header/VenturePublicationsHeader';
 
 const GeneralPublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
+  const { ventureId } = useParams();
 
-  const { items, total, isLoading, isError } = useFetchPublications();
+  const { items, total, isLoading, isError, refetch } =
+    useFetchPublications(ventureId);
 
   return (
     <Fragment>
@@ -18,17 +22,14 @@ const GeneralPublicationsFeedPage = () => {
         <Container fluid>
           <Row>
             <Col lg={9}>
-              <Card className="p-4">
-                <div className="d-flex justify-content-between align-items-center">
-                  <h3 style={{ padding: 0, margin: 0 }}>
-                    Publicaciones de emprendimientos
-                  </h3>
-
-                  <Button color="primary" className="fs-5">
-                    <i className="mdi mdi-refresh"></i>
-                  </Button>
-                </div>
-              </Card>
+              {ventureId ? (
+                <VenturePublicationsHeader
+                  ventureId={ventureId}
+                  onReload={refetch}
+                />
+              ) : (
+                <GeneralPublicationsHeader onReload={refetch} />
+              )}
 
               {items.map((publication) => (
                 <Card key={publication.id} className="p-3">

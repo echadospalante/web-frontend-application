@@ -176,7 +176,7 @@ const TermsAndConditionsPage = () => {
                       <ul className="list-unstyled hstack gap-2 mb-0">
                         <li>
                           <i className="bx bx-building-house"></i>{' '}
-                          <span className="text-muted">Themesbrand</span>
+                          <span className="text-muted">EchadosPa'Lante</span>
                         </li>
                         <li>
                           <i className="bx bx-map"></i>{' '}

@@ -39,6 +39,7 @@ const useFetchPublications = (ventureId?: string) => {
     isError: publicationsQuery.isError,
     items,
     total,
+    refetch: publicationsQuery.refetch,
   };
 };
 

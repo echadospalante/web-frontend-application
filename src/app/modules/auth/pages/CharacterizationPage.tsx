@@ -166,7 +166,8 @@ const CharacterizationPage = () => {
               <div className="mt-5 text-center">
                 <p>
                   © {new Date().getFullYear()} Echados Pa'lante. Powered with{' '}
-                  <i className="mdi mdi-heart text-danger"></i> by Themesbrand
+                  <i className="mdi mdi-heart text-danger"></i> by
+                  EchadosPa'Lante
                 </p>
               </div>
             </Col>

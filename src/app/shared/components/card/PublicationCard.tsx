@@ -67,6 +67,7 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Badge, Button, Card, CardBody } from 'reactstrap';
 import TruncatedItems from '../text/TruncatedItems';
+import PublicationCardFooter from '../footer/PublicationCardFooter';
 
 export interface PublicationCardProps {
   publication: VenturePublication;
@@ -256,20 +257,7 @@ const PublicationCard: React.FC<PublicationCardProps> = ({ publication }) => {
             )}
           </div>
 
-          <div className="d-flex justify-content-between align-items-center">
-            <div>
-              <span className="text-muted me-3">
-                <i className="mdi mdi-party-popper me-1"></i>
-                {publication.clapsCount}{' '}
-                {publication.clapsCount === 1 ? 'Aplauso' : 'Aplausos'}
-              </span>
-              <span className="text-muted">
-                <i className="bx bx-comment-dots me-1"></i>
-                {publication.commentsCount}{' '}
-                {publication.commentsCount === 1 ? 'Comentario' : 'Comentarios'}
-              </span>
-            </div>
-          </div>
+          <PublicationCardFooter publication={publication} />
         </CardBody>
       </Card>
     </Link>

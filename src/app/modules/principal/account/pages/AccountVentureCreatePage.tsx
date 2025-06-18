@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 import L from 'leaflet';
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -22,6 +22,8 @@ import {
 
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import departments from '../../../../shared/data/geo/departments';
+import municipalities from '../../../../shared/data/geo/municipalities';
 import useFetchAllVentureCategories from '../hooks/useAllVentureCategories';
 import useVentureCreate from '../hooks/useVentureCreate';
 
@@ -402,6 +404,67 @@ const AccountVentureCreatePage = () => {
                               Obtener mi ubicacion actual
                             </Button>
                           )}
+
+                          <div className="my-3">
+                            <Label htmlFor="validationTooltip01">
+                              Municipio
+                            </Label>
+                            <Select
+                              id="municipality"
+                              isClearable={false}
+                              value={
+                                form.values.location?.municipalityId
+                                  ? {
+                                      label: municipalities.find(
+                                        (m) =>
+                                          m.id ===
+                                          form.values.location?.municipalityId,
+                                      )?.name,
+                                      value:
+                                        form.values.location?.municipalityId,
+                                    }
+                                  : null
+                              }
+                              styles={{
+                                menuPortal: (base) => ({
+                                  ...base,
+                                  zIndex: 9999,
+                                }),
+                                control: (base) => ({
+                                  ...base,
+                                  zIndex: 9999,
+                                }),
+                              }}
+                              menuPortalTarget={document.body}
+                              placeholder="Selecciona el municipio"
+                              isMulti={false}
+                              name="municipalities"
+                              onChange={(value) => {
+                                form.setFieldValue(
+                                  'location.municipalityId',
+                                  value?.value || null,
+                                );
+                              }}
+                              options={departments.map(({ id, name }) => ({
+                                label: name,
+                                options: municipalities
+                                  .filter(
+                                    ({ departmentId }) => departmentId === id,
+                                  )
+                                  .map(
+                                    ({
+                                      id: municipalityId,
+                                      name: municipalityName,
+                                    }) => ({
+                                      label: municipalityName,
+                                      value: municipalityId,
+                                    }),
+                                  ),
+                              }))}
+                              className="select2-selection"
+                            />
+                          </div>
+
                           {locationMode === LocationMode.OTHER && (
                             <Row>
                               <Col lg={6}>

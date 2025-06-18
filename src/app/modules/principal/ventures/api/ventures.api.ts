@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Venture } from 'echadospalante-domain';
+import { Venture, VentureStats } from 'echadospalante-domain';
 
 import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 import { VentureFilter } from '../../../../config/redux/reducers/principal/ventures.reducer';
@@ -43,9 +43,25 @@ export default class VenturesApi {
       params.set('municipalityId', municipalitiesIds[0].toString());
 
     return axios
-      .get<Venture[]>(`${VenturesApi.BASE_URL}/map`, {
+      .get<PaginatedBody<Venture>>(`${VenturesApi.BASE_URL}/map`, {
         withCredentials: true,
         params,
+      })
+      .then(({ data }) => data);
+  }
+
+  static fetchVentureStats(ventureId: string) {
+    return axios
+      .get<VentureStats>(`${VenturesApi.BASE_URL}/${ventureId}/stats`, {
+        withCredentials: true,
+      })
+      .then(({ data }) => data);
+  }
+
+  static fetchVentureDetail(ventureId: string): Promise<Venture> {
+    return axios
+      .get<Venture>(`${VenturesApi.BASE_URL}/${ventureId}`, {
+        withCredentials: true,
       })
       .then(({ data }) => data);
   }

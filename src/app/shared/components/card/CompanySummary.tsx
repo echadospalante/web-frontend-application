@@ -69,7 +69,7 @@ const CompanySummary = () => {
                 <Link to="/job-details" className="text-body">
                   <h5 className="mt-4 mb-2 font-size-15">{item.title}</h5>
                 </Link>
-                <p className="mb-0 text-muted">Themesbrand</p>
+                <p className="mb-0 text-muted">EchadosPa'Lante</p>
               </div>
 
               <div className="d-flex">

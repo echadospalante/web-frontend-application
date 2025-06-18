@@ -11,15 +11,19 @@ type FlayToLocationProps = {
 const FlyToLocation = ({ lat, lng }: FlayToLocationProps) => {
   const map = useMap();
 
-  const handleFlyTo = () => {
-    map.flyTo([lat, lng], 15, { animate: true, duration: 2 });
-  };
-
   useEffect(() => {
     if (lat && lng) {
       map.flyTo([lat, lng], 16, { animate: true, duration: 2 });
     }
   }, [lat, lng, map]);
+
+  function handleFlyTo(
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ): void {
+    event.preventDefault();
+    event.stopPropagation();
+    map.flyTo([lat, lng], 15, { animate: true, duration: 2 });
+  }
 
   return (
     <Button

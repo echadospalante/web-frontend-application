@@ -19,4 +19,15 @@ export default class CommentsApi {
       )
       .then(({ data }) => data);
   }
+
+  public static deleteComment(
+    publicationId: string,
+    commentId: string,
+  ): Promise<void> {
+    return axios
+      .delete(`${this.BASE_URL}/${publicationId}/comments/${commentId}`, {
+        withCredentials: true,
+      })
+      .then(() => {});
+  }
 }

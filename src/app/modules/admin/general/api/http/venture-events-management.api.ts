@@ -1,8 +1,6 @@
-import { faker } from '@faker-js/faker';
 import { VentureEvent } from 'echadospalante-domain';
 
 import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
-import env from '../../../../../../environment/environment';
 import { VentureEventsFilter } from '../../../../../config/redux/reducers/admin/venture-events-management.reducer';
 
 export class VentureEventsApi {

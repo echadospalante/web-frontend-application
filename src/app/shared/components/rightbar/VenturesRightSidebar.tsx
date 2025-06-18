@@ -12,8 +12,15 @@ import { VenturesViewMode } from '../../../config/redux/reducers/principal/ventu
 import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
 import VentureLocationFilters from '../filters/VentureLocationFilters';
 import VentureCategoriesList from '../list/VentureCategoriesList';
+import React from 'react';
 
-const VenturesRightSidebar = () => {
+export interface VenturesRightSidebarProps {
+  multipleMunicipalities: boolean;
+}
+
+const VenturesRightSidebar: React.FC<VenturesRightSidebarProps> = ({
+  multipleMunicipalities,
+}) => {
   const {
     setViewMode,
     setSearch,
@@ -105,7 +112,9 @@ const VenturesRightSidebar = () => {
                   <i className="mdi mdi-magnify search-icon"></i>
                 </div>
 
-                <VentureLocationFilters />
+                <VentureLocationFilters
+                  multipleMunicipalities={multipleMunicipalities}
+                />
 
                 <div className="mt-3">
                   <Label htmlFor="ventures-search">Modo de vista</Label>

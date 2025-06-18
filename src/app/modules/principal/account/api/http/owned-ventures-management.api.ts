@@ -39,6 +39,7 @@ export class OwnedVenturesApi {
       description: venture.description,
       coverPhoto: venture.coverPhoto,
       categoriesIds: venture.categoriesIds,
+      municipalityId: venture.location?.municipalityId || '',
       contactEmail: venture.contact?.email || '',
       contactPhoneNumber: venture.contact?.phoneNumber || '',
       locationLat: `${venture.location?.lat || 0}`,
