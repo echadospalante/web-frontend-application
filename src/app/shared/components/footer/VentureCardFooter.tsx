@@ -100,6 +100,36 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
               className="flex-fill border-start border-end"
               id={`events-${venture.id}`}
             >
+              <i className="text-primary mdi mdi-account-group-outline fs-4 d-block mb-1"></i>
+              <div className="fw-semibold text-dark">{data.clapsCount}</div>
+              <small className="text-muted">
+                {data.clapsCount === 1 ? 'Suscriptor' : 'Suscriptores'}
+              </small>
+            </div>
+
+            {/*<div
+              className="flex-fill border-start border-end"
+              id={`events-${venture.id}`}
+            >
+              <i className="text-primary mdi mdi-hand-heart-outline fs-4 d-block mb-1"></i>
+              <div className="fw-semibold text-dark">{data.clapsCount}</div>
+              <small className="text-muted">
+                {data.clapsCount === 1 ? 'Patrocinio' : 'Patrocinios'}
+              </small>
+            </div>*/}
+
+            <div className="flex-fill" id={`sponsors-${venture.id}`}>
+              <i className="text-primary mdi mdi-hand-heart-outline fs-4 d-block mb-1"></i>
+              <div className="fw-semibold text-dark">{data.commentsCount}</div>
+              <small className="text-muted">
+                {data.clapsCount === 1 ? 'Patrocinio' : 'Patrocinios'}
+              </small>
+            </div>
+
+            {/*<div
+              className="flex-fill border-start border-end"
+              id={`events-${venture.id}`}
+            >
               <i className="text-primary mdi mdi-thumb-up-outline fs-4 d-block mb-1"></i>
               <div className="fw-semibold text-dark">{data.clapsCount}</div>
               <small className="text-muted">
@@ -111,7 +141,7 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
               <i className="text-primary mdi mdi-comment-outline fs-4 d-block mb-1"></i>
               <div className="fw-semibold text-dark">{data.commentsCount}</div>
               <small className="text-muted">Comentarios</small>
-            </div>
+            </div>*/}
           </div>
         </div>
       </Col>

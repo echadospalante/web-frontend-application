@@ -36,6 +36,7 @@ import VenturesLayoutPage from '../../modules/principal/ventures/VenturesLayoutP
 import AppSpinner from '../../shared/components/loader/Spinner';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
+import VentureDetailPage from '../../modules/principal/ventures/pages/VentureDetailPage';
 
 const ALL_ROLES = [AppRole.ADMIN, AppRole.MODERATOR, AppRole.USER];
 
@@ -93,9 +94,16 @@ const AppRouter = () => {
                 element={<GeneralPublicationsFeedPage />}
               />
               <Route
-                path=":ventureSlug/publicaciones"
+                path=":ventureSlug/eventos"
                 element={<GeneralEventsPage />}
               />
+
+              <Route
+                path=":ventureSlug"
+                element={<VentureDetailPage />}
+              />
+
+
 
               <Route path="*" element={<Commercial404Page />} />
             </Route>

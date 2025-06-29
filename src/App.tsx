@@ -1,4 +1,4 @@
-import AppRouter from './app/config/routers/AppRouter';
+import AppRouter from './app/config/routes/AppRouter';
 
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Provider } from 'react-redux';

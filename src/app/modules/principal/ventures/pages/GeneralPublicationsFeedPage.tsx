@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 
 import { useParams } from 'react-router-dom';
-import { Button, Card, Col, Container, Row } from 'reactstrap';
+import { Card, Col, Container, Row } from 'reactstrap';
 
 import PublicationCard from '../../../../shared/components/card/PublicationCard';
 import PublicationsFeedRightSidebar from '../../../../shared/components/rightbar/PublicationsFeedRightSidebar';
