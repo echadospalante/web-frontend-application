@@ -20,6 +20,9 @@ import AlertWithReload from '../../../../shared/components/alert/AlertWithReload
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 import useFetchAllPublicationCategories from '../hooks/useAllPublicationCategories';
 import useEventCreate from '../hooks/useEventCreate';
+import SetMapCenter from '../../../../shared/components/map/SetMapCenter.tsx';
+import municipalities from '../../../../shared/data/geo/municipalities.ts';
+import departments from '../../../../shared/data/geo/departments.ts';
 
 enum LocationMode {
   CURRENT = 'CURRENT',
@@ -459,6 +462,79 @@ const AccountEventCreatePage = () => {
                               </Button>
                             )}
 
+                            <div className="my-3">
+                              <Label htmlFor="validationTooltip01">
+                                Municipio
+                              </Label>
+                              <Select
+                                id="municipality"
+                                isClearable={false}
+                                value={
+                                  form.values.municipalityId
+                                    ? {
+                                      label: municipalities.find(
+                                        (m) =>
+                                          m.id ===
+                                          form.values.municipalityId,
+                                      )?.name,
+                                      value:
+                                      form.values.municipalityId,
+                                    }
+                                    : null
+                                }
+                                styles={{
+                                  menuPortal: (base) => ({
+                                    ...base,
+                                    zIndex: 9999,
+                                  }),
+                                  control: (base) => ({
+                                    ...base,
+                                    zIndex: 9999,
+                                  }),
+                                }}
+                                menuPortalTarget={document.body}
+                                placeholder="Selecciona el municipio"
+                                isMulti={false}
+                                name="municipalities"
+                                onChange={(value) => {
+                                  if(!value) return;
+                                  form.setFieldValue(
+                                    'municipalityId',
+                                    value.value || null,
+                                  );
+                                  // Change the center of the map to the selected municipality
+                                  const selectedMunicipality = municipalities.find(
+                                    (m) => m.id === value.value,
+                                  )!;
+                                  form.setFieldValue(
+                                    'locationLat',
+                                    `${selectedMunicipality.lat}`,
+                                  );
+                                  form.setFieldValue(
+                                    'locationLng',
+                                    `${selectedMunicipality.lng}`,
+                                  );
+                                }}
+                                options={departments.map(({ id, name }) => ({
+                                  label: name,
+                                  options: municipalities
+                                    .filter(
+                                      ({ departmentId }) => departmentId === id,
+                                    )
+                                    .map(
+                                      ({
+                                         id: municipalityId,
+                                         name: municipalityName,
+                                       }) => ({
+                                        label: municipalityName,
+                                        value: municipalityId,
+                                      }),
+                                    ),
+                                }))}
+                                className="select2-selection"
+                              />
+                            </div>
+
                             {locationMode === LocationMode.OTHER && (
                               <Row>
                                 <Col lg={6}>
@@ -501,7 +577,6 @@ const AccountEventCreatePage = () => {
                                 </Col>
                               </Row>
                             )}
-
                             {form.values.locationLat &&
                             form.values.locationLng ? (
                               <MapContainer
@@ -524,6 +599,13 @@ const AccountEventCreatePage = () => {
                                 >
                                   <Popup>La ubicación que elegiste</Popup>
                                 </Marker>
+
+                                <SetMapCenter
+                                  position={[
+                                    form.values.locationLat,
+                                    form.values.locationLng,
+                                  ]}
+                                />
                               </MapContainer>
                             ) : (
                               <></>

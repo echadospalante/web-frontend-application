@@ -11,6 +11,7 @@ export class OwnedEventsApi {
     ventureId: string,
     event: EventCreate,
   ): Promise<VentureEvent> {
+    console.log('Creating event for venture:', ventureId, JSON.stringify(event));
     return axios
       .post<VentureEvent>(
         `${OwnedEventsApi.API_BASE_URL}/${ventureId}/events`,

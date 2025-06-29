@@ -22,12 +22,14 @@ export type VentureCardProps = {
   venture: Venture;
   ownerButtons?: boolean;
   showFooter?: boolean;
+  showActive?: boolean;
 };
 
 const VentureCard = ({
   venture,
   ownerButtons = true,
   showFooter = true,
+  showActive = false
 }: VentureCardProps) => {
   const [showMapModal, setShowMapModal] = useState(false);
 
@@ -68,42 +70,43 @@ const VentureCard = ({
 
           <CardBody className="mb-0 pb-0">
             <Row className="d-flex">
-              <Col lg={4} md={6} sm={12} className=" mx-auto">
+              <Col lg={6} md={6} sm={12} className="mx-auto mb-4">
                 <img
                   src={venture.coverPhoto}
                   className="w-100 bg-light text-danger font-size-16 rounded-2"
+                 alt={venture.name}
                 />
               </Col>
 
               <Col
-                lg={4}
+                lg={6}
                 md={6}
                 sm={12}
                 className="flex-grow-1 overflow-hidden"
               >
-                <h5 className="text-truncate font-size-15 mb-0 pb-0">
-                  <p className="text-dark mt-0">{venture.name}</p>
-                </h5>
+                <p className="p-0 m-0">
+                  <p className="text-dark font-size-18 mb-1">{venture.name}</p>
+                  <Badge
+                    className={`py-1 px-2 mb-2  ${
+                      venture.verified ? 'bg-success' : 'bg-secondary'
+                    }`}
+                  >
+                    <i
+                      className={`bx ${
+                        venture.verified ? 'bx-badge-check' : 'bx bx-badge'
+                      } me-2`}
+                    ></i>
+                    {venture.verified
+                      ? 'Emprendimiento Verificado'
+                      : ' Emprendimiento no verificado'}
+                  </Badge>
+                </p>
 
-                <Badge
-                  className={`py-1 px-2 mb-2 ${
-                    venture.verified ? 'bg-success' : 'bg-secondary'
-                  }`}
-                >
-                  <i
-                    className={`bx ${
-                      venture.verified ? 'bx-badge-check' : 'bx bx-badge'
-                    } me-2`}
-                  ></i>
-                  {venture.verified
-                    ? 'Emprendimiento Verificado'
-                    : ' Emprendimiento no verificado'}
-                </Badge>
                 <div className="mb-3">
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center text-muted">
                       <i className="mdi mdi-map-marker me-2 text-primary"></i>
-                      <span className="me-2">
+                      <span className="me-1 font-size-10">
                         {parseLocation(
                           venture.location?.description ||
                             'Ubicación no disponible',
@@ -126,57 +129,60 @@ const VentureCard = ({
                   text={venture.description}
                   maxChars={150}
                 />
-              </Col>
-              <ul className="list-inline my-3">
-                <TruncatedItems
-                  items={venture.categories.map((category) => (
-                    <li
-                      key={category.id}
-                      className="list-inline-item my-1"
-                      style={{ cursor: 'pointer', marginRight: '3px' }}
-                    >
-                      <UncontrolledTooltip
-                        placement="top"
-                        target={`category-${category.id}`}
-                      >
-                        <p>{category.description}</p>
-                      </UncontrolledTooltip>
-                      <span
-                        id={`category-${category.id}`}
-                        className="p-1"
-                        style={{
-                          backgroundColor: textToRGB(category.name),
-                          color: 'white',
-                          fontSize: '12px',
-                          borderRadius: '5px',
-                        }}
-                      >
+                <ul className="list-inline my-2">
+                  <TruncatedItems
+                      items={venture.categories.map((category) => (
+                          <li
+                              key={category.id}
+                              className="list-inline-item my-1"
+                              style={{ cursor: 'pointer', marginRight: '3px' }}
+                          >
+                            <UncontrolledTooltip
+                                placement="top"
+                                target={`category-${category.id}`}
+                            >
+                              <p>{category.description}</p>
+                            </UncontrolledTooltip>
+                            <span
+                                id={`category-${category.id}`}
+                                className="p-1"
+                                style={{
+                                  backgroundColor: textToRGB(category.name),
+                                  color: 'white',
+                                  fontSize: '12px',
+                                  borderRadius: '5px',
+                                }}
+                            >
                         {category.name}
                       </span>
-                    </li>
-                  ))}
-                  maxItems={5}
-                  all={'todas'}
-                />
-              </ul>
+                          </li>
+                      ))}
+                      maxItems={5}
+                      all={'todas'}
+                  />
+                </ul>
+              </Col>
+
             </Row>
           </CardBody>
 
-          <div className="px-4 mb-2">
-            <ul className="list-inline mb-0">
-              <div className="mt-0 d-flex justify-content-between">
-                {ownerButtons && (
-                  <Badge
-                    className={`py-1 px-2 bg-${
-                      venture.active ? 'success' : 'danger'
-                    }`}
-                  >
-                    {venture.active ? 'Activo' : 'Inactivo'}
-                  </Badge>
-                )}
-              </div>
-            </ul>
-          </div>
+          {showActive &&
+            <div className="px-4 mb-2">
+              <ul className="list-inline mb-0">
+                <div className="mt-0 d-flex justify-content-between">
+                  {ownerButtons && (
+                    <Badge
+                      className={`py-1 px-2 bg-${
+                        venture.active ? 'success' : 'danger'
+                      }`}
+                    >
+                      {venture.active ? 'Activo' : 'Inactivo'}
+                    </Badge>
+                  )}
+                </div>
+              </ul>
+            </div>
+          }
 
           {showFooter && (
             <div className="border-top bg-light">

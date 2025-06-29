@@ -14,6 +14,8 @@ import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import useAuthentication from '../../../auth/hooks/useAuthentication';
 import { OwnedEventsApi } from '../api/http/owned-events-management.api';
 import useUploadImage from './useUploadImage';
+import municipalities from '../../../../shared/data/geo/municipalities.ts';
+import { haversineDistance } from '../../../../shared/helpers/map-helpers.ts';
 
 const useEventCreate = () => {
   const navigate = useNavigate();
@@ -30,6 +32,7 @@ const useEventCreate = () => {
       coverPhoto: '',
       locationLat: '',
       locationLng: '',
+      municipalityId: 0,
       locationDescription: '',
       datesAndHours: [],
       categoriesIds: [],
@@ -65,6 +68,8 @@ const useEventCreate = () => {
       handleFormSubmit(values);
     },
   });
+
+  const {locationLat, locationLng} = form.values
 
   const createEventMutation = useMutation({
     mutationKey: ['events', 'create'],
@@ -181,6 +186,7 @@ const useEventCreate = () => {
       categoriesIds: values.categoriesIds,
       contactEmail: values.contactEmail,
       contactPhoneNumber: values.contactPhoneNumber,
+      municipalityId: values.municipalityId,
     };
 
     createEventMutation.mutate(dataToSend);
@@ -285,6 +291,25 @@ const useEventCreate = () => {
       form.setFieldValue('coverPhoto', uploadResultUrl);
     }
   }, [uploadResultUrl]);
+
+
+  useEffect(() => {
+    if (!locationLat || !locationLng) return;
+    const distancesToAllMunicipalities = municipalities
+      .map((m) => ({
+        id: m.id,
+        distance: haversineDistance({ lat: +locationLat, lng: +locationLng }, { lat: m.lat, lng: m.lng }),
+      }))
+      .sort(
+        ({ distance: aDistance }, { distance: dDistance }) =>
+          aDistance - dDistance,
+      );
+    const { id: closesMunicipalityId } = distancesToAllMunicipalities[0];
+
+    form.setFieldValue('municipalityId', closesMunicipalityId);
+  }, [locationLat, locationLng]);
+
+
 
   return {
     form,

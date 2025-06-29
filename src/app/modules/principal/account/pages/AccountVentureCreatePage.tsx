@@ -26,18 +26,13 @@ import departments from '../../../../shared/data/geo/departments';
 import municipalities from '../../../../shared/data/geo/municipalities';
 import useFetchAllVentureCategories from '../hooks/useAllVentureCategories';
 import useVentureCreate from '../hooks/useVentureCreate';
+import SetMapCenter from '../../../../shared/components/map/SetMapCenter.tsx';
 
 enum LocationMode {
   CURRENT = 'CURRENT',
   OTHER = 'OTHER',
   NONE = 'NONE',
 }
-
-const SetMapCenter = ({ position }: { position: [number, number] }) => {
-  const map = useMap();
-  map.setView(position);
-  return null;
-};
 
 const AccountVentureCreatePage = () => {
   document.title = 'Nuevo emprendimiento | Echadospalante';
@@ -440,9 +435,21 @@ const AccountVentureCreatePage = () => {
                               isMulti={false}
                               name="municipalities"
                               onChange={(value) => {
+                                if(!value) return
                                 form.setFieldValue(
                                   'location.municipalityId',
-                                  value?.value || null,
+                                  value.value || null,
+                                );
+                                const selectedMunicipality = municipalities.find(
+                                  (m) => m.id === value.value,
+                                )!;
+                                form.setFieldValue(
+                                  'location.lat',
+                                    selectedMunicipality.lat
+                                );
+                                form.setFieldValue(
+                                  'location.lng',
+                                    selectedMunicipality.lng
                                 );
                               }}
                               options={departments.map(({ id, name }) => ({

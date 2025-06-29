@@ -19,7 +19,7 @@ export class OwnedVenturesApi {
     params.set('skip', page.toString());
     params.set('take', size.toString());
     return axios
-      .get<PaginatedBody<Venture>>(`${OwnedVenturesApi.API_BASE_URL}`, {
+      .get<PaginatedBody<Venture>>(`${OwnedVenturesApi.API_BASE_URL}/owned`, {
         withCredentials: true,
         params,
       })
