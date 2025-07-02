@@ -29,7 +29,7 @@ import {
   getMidpoint,
   haversineDistance,
 } from '../../helpers/map-helpers';
-import FlyToLocation from './FlyToLocation';
+import TopMapButtons from './TopMapButtons';
 import AppLoading from '../loader/AppLoading';
 
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -147,7 +147,7 @@ const VenturesMap: React.FC = () => {
           />
 
           <MapClickHandler />
-          <FlyToLocation lat={lat} lng={lng} />
+          <TopMapButtons lat={lat} lng={lng} />
 
           {isLoading && (
             <div

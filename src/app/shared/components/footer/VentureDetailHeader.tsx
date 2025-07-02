@@ -1,7 +1,23 @@
 import { Venture } from 'echadospalante-domain';
-import { Card, Row, Col, CardImg, CardBody, Badge, Button } from 'reactstrap';
+import {
+  Card,
+  Row,
+  Col,
+  CardImg,
+  CardBody,
+  Badge,
+  Button,
+  UncontrolledTooltip,
+} from 'reactstrap';
+import TinyMap from '../map/TinyMap';
+import TruncatedItems from '../text/TruncatedItems';
+import { textToRGB } from '../../helpers/colors';
 
-const VentureDetailHeader = ({ venture, subscriptionsCount, sponsorshipsCount }: {
+const VentureDetailHeader = ({
+  venture,
+  subscriptionsCount,
+  sponsorshipsCount,
+}: {
   venture: Venture;
   subscriptionsCount: number;
   sponsorshipsCount: number;
@@ -10,14 +26,14 @@ const VentureDetailHeader = ({ venture, subscriptionsCount, sponsorshipsCount }:
     return new Date(dateString).toLocaleDateString('es-CO', {
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
   const formatCurrency = (amount: number, currency: string) => {
     return new Intl.NumberFormat('es-CO', {
       style: 'currency',
-      currency
+      currency,
     }).format(amount);
   };
 
@@ -38,43 +54,71 @@ const VentureDetailHeader = ({ venture, subscriptionsCount, sponsorshipsCount }:
               <div>
                 <h2 className="h3 mb-2 fw-bold text-primary">{venture.name}</h2>
                 <div className="d-flex align-items-center gap-2 mb-2">
-                  <Badge color={venture.verified ? 'success' : 'warning'} pill>
+                  <Badge
+                    className="px-2 py-1"
+                    color={venture.verified ? 'success' : 'warning'}
+                    pill
+                  >
                     {venture.verified ? 'Verificado' : 'No Verificado'}
                   </Badge>
-                  <Badge color={venture.active ? 'success' : 'secondary'} pill>
+                  {/* <Badge color={venture.active ? 'success' : 'secondary'} pill>
                     {venture.active ? 'Activo' : 'Inactivo'}
-                  </Badge>
+                  </Badge> */}
                 </div>
               </div>
               <div className="d-flex gap-2">
-                <Button color="outline-primary" size="sm">
+                <Button color="outline-primary" size="md">
                   <i className="me-1 mdi mdi-share-outline" />
                   Compartir
                 </Button>
-                <Button color="primary" size="sm">
-                  <i className="me-1 mdi mdi-arrow-right" />
-                  Seguir
+                <Button color="primary" size="md">
+                  {/* <i className="me-1 mdi mdi-arrow-right" /> */}
+                  Suscribirme
                 </Button>
               </div>
             </div>
-
             <p className="text-muted mb-3">{venture.description}</p>
 
-            <div className="row g-3 mb-3">
-              <div className="col-md-6">
+            <Row className="g-3 mb-3">
+              <Col lg={4} md={12} sm={12}>
                 <div className="d-flex align-items-center text-muted">
-                  <i className="mdi mdi-map-marker me-2 text-primary" />
+                  <i className="mdi mdi-map-marker me-2 text-success font-size-20" />
                   <small>{venture.location?.description}</small>
                 </div>
-              </div>
-              <div className="col-md-6">
-                <div className="d-flex align-items-center text-muted">
-                  <i className="mdi mdi-calendar" />
+              </Col>
+              <Col lg={4} md={12} sm={12}>
+                <div className="d-flex align-items-center justify-content-center text-muted">
+                  <i className="mdi mdi-city me-1 text-success font-size-20" />
+                  <small>
+                    {venture.location?.municipality.name},{' '}
+                    {venture.location?.municipality.department.name}
+                  </small>
+                </div>
+              </Col>
+
+              <Col lg={4} md={12} sm={12}>
+                <div className="d-flex align-items-center justify-content-end text-muted">
+                  <i className="mdi mdi-calendar me-1 text-success font-size-20" />
                   <small>Creado el {formatDate(venture.createdAt)}</small>
                 </div>
-              </div>
-            </div>
+              </Col>
+            </Row>
 
+            {venture.location?.location?.coordinates[1] &&
+            venture.location?.location?.coordinates[0] ? (
+              <div className="my-3">
+                <TinyMap
+                  coords={{
+                    lat: venture.location?.location?.coordinates[1] || 0,
+                    lng: venture.location?.location?.coordinates[0] || 0,
+                  }}
+                  address={venture.location?.description || venture.name}
+                  height={'200px'}
+                />
+              </div>
+            ) : (
+              <></>
+            )}
             <div className="row g-3 mb-3">
               <div className="col-md-4">
                 <div className="text-center p-2 bg-light rounded">
@@ -87,44 +131,65 @@ const VentureDetailHeader = ({ venture, subscriptionsCount, sponsorshipsCount }:
               <div className="col-md-4">
                 <div className="text-center p-2 bg-light rounded">
                   <i className="mdi mdi-currency-usd me-1 fs-1" />
-                  <div className="fw-bold">
-                    {formatCurrency(
-                      1000,
-                      "USD",
-                    )}
-                  </div>
+                  <div className="fw-bold">{formatCurrency(1000, 'USD')}</div>
                   <small className="text-muted">Patrocinio Mensual</small>
                 </div>
               </div>
               <div className="col-md-4">
-                <div className="d-flex align-items-center justify-content-center">
+                <div className="d-flex flex-column align-items-center justify-content-center">
                   <img
                     src={venture.owner!.picture}
                     alt={`${venture.owner!.firstName} ${venture.owner!.lastName}`}
                     className="rounded-circle me-2"
-                    width="32"
-                    height="32"
+                    width="50"
+                    height="50"
                   />
                   <div>
                     <div
-                      className="fw-semibold"
+                      className="fw-semibold mt-1 text-center"
                       style={{ fontSize: '0.875rem' }}
                     >
                       {venture.owner!.firstName} {venture.owner!.lastName}
                     </div>
-                    <small className="text-muted">Propietario</small>
+                    <p className="text-muted text-xs text-center">
+                      Propietario
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
-
-            <div className="d-flex flex-wrap gap-2">
-              {venture.categories.map((category) => (
-                <Badge key={category.id} color="light" className="text-dark">
-                  {category.name}
-                </Badge>
-              ))}
-            </div>
+            <ul className="list-inline my-2">
+              <TruncatedItems
+                items={venture.categories.map((category) => (
+                  <li
+                    key={category.id}
+                    className="list-inline-item my-1"
+                    style={{ cursor: 'pointer', marginRight: '3px' }}
+                  >
+                    <UncontrolledTooltip
+                      placement="top"
+                      target={`category-${category.id}`}
+                    >
+                      <p>{category.description}</p>
+                    </UncontrolledTooltip>
+                    <span
+                      id={`category-${category.id}`}
+                      className="p-1"
+                      style={{
+                        backgroundColor: textToRGB(category.name),
+                        color: 'white',
+                        fontSize: '12px',
+                        borderRadius: '5px',
+                      }}
+                    >
+                      {category.name}
+                    </span>
+                  </li>
+                ))}
+                maxItems={5}
+                all={'todas'}
+              />
+            </ul>
           </CardBody>
         </Col>
       </Row>

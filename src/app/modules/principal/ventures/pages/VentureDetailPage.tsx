@@ -1,8 +1,9 @@
 
 import { useState } from 'react';
-import { VentureEvent } from "echadospalante-domain";
+import { Venture, VentureEvent } from 'echadospalante-domain';
 import {
-  Badge, Button,
+  Badge,
+  Button,
   Card,
   CardBody,
   CardImg,
@@ -13,94 +14,138 @@ import {
   NavLink,
   Row,
   TabContent,
-  TabPane
+  TabPane,
 } from 'reactstrap';
 import VentureDetailHeader from '../../../../shared/components/footer/VentureDetailHeader';
 import VentureDetailCard from '../../../../shared/components/card/VentureDetailcard.tsx';
 
 // Datos de ejemplo
-const mockVenture = {
-  id: "96ab7403-39d7-4979-a8cd-8dac7b36ea66",
-  name: "Mi nuevo emprendimiento",
-  slug: "mi-nuevo-emprendimiento",
-  coverPhoto: "https://storage.googleapis.com/echadospalante-ventures-bucket/7ad7063a-64c8-4a6e-a434-8bbc200da257.jpeg",
-  description: "llevamos la tradición a tu mesa con empanadas 100% colombianas, hechas con masa de maíz crocante y rellenos caseros llenos de sabor. Desde la clásica empanada de carne hasta opciones innovadoras como pollo con champiñones o queso con guayaba, cada empanada es una explosión de cultura y sazón.",
+const mockVenture: Venture = {
+  id: '96ab7403-39d7-4979-a8cd-8dac7b36ea66',
+  name: 'Mi nuevo emprendimiento',
+  slug: 'mi-nuevo-emprendimiento',
+  coverPhoto:
+    'https://storage.googleapis.com/echadospalante-ventures-bucket/7ad7063a-64c8-4a6e-a434-8bbc200da257.jpeg',
+  description:
+    'llevamos la tradición a tu mesa con empanadas 100% colombianas, hechas con masa de maíz crocante y rellenos caseros llenos de sabor. Desde la clásica empanada de carne hasta opciones innovadoras como pollo con champiñones o queso con guayaba, cada empanada es una explosión de cultura y sazón.',
   active: true,
   verified: false,
-  createdAt: "2025-06-28T23:09:38.687Z",
-  updatedAt: "2025-06-28T23:09:38.687Z",
+  createdAt: new Date('2025-06-28T23:09:38.687Z'),
+  updatedAt: new Date('2025-06-28T23:09:38.687Z'),
   location: {
-    id: "d47603d7-d895-483c-80b4-a269639acf8b",
+    id: 'd47603d7-d895-483c-80b4-a269639acf8b',
     location: {
-      type: "Point",
-      coordinates: [-75.43079544, 6.031959852]
+      type: 'Point',
+      coordinates: [-75.43079544, 6.031959852],
     },
-    description: "A una cuadra del parque de la Ceja",
-    createdAt: "2025-06-28T23:09:38.687Z",
-    updatedAt: "2025-06-28T23:09:38.687Z"
+    description: 'A una cuadra del parque de la Ceja',
+    createdAt: new Date('2025-06-28T23:09:38.687Z'),
+    updatedAt: new Date('2025-06-28T23:09:38.687Z'),
+    municipality: {
+      id: 1,
+      name: 'La Ceja',
+      department: {
+        id: 0,
+        name: 'Antioquia',
+        municipalities: [],
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      lat: 0,
+      lng: 0,
+      ventureLocations: [],
+      eventLocations: [],
+      users: [],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
   },
   owner: {
-    id: "81e45c81-dd7b-4314-999d-701710d5712d",
-    picture: "https://lh3.googleusercontent.com/a/ACg8ocLGFm5F3zf3Mmj5tRQ2-zZcItMGdMrvO0S7upkw-Fvn2lLz9hI_Yw=s96-c",
-    email: "juancamilo19997814@gmail.com",
-    firstName: "Juan Camilo",
-    lastName: "Cardona"
+    id: '81e45c81-dd7b-4314-999d-701710d5712d',
+    picture:
+      'https://lh3.googleusercontent.com/a/ACg8ocLGFm5F3zf3Mmj5tRQ2-zZcItMGdMrvO0S7upkw-Fvn2lLz9hI_Yw=s96-c',
+    email: 'juancamilo19997814@gmail.com',
+    firstName: 'Juan Camilo',
+    lastName: 'Cardona',
+    active: false,
+    verified: false,
+    onboardingCompleted: false,
+    roles: [],
+    preferences: [],
+    gender: 'M',
+    birthDate: new Date(),
+    comments: [],
+    donations: [],
+    notifications: [],
+    publicationClaps: [],
+    sponsorships: [],
+    subscriptions: [],
+    ventures: [],
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   categories: [
     {
-      id: "fdf91e64-9ed3-40a7-bb03-0710fd98e92f",
-      name: "Retail",
-      slug: "retail",
-      description: "Descripción de prueba",
-      createdAt: "2024-09-17T16:58:28.522Z",
-      updatedAt: "2024-09-17T16:58:28.522Z"
+      id: 'fdf91e64-9ed3-40a7-bb03-0710fd98e92f',
+      name: 'Retail',
+      slug: 'retail',
+      description: 'Descripción de prueba',
+      createdAt: new Date('2024-09-17T16:58:28.522Z'),
+      updatedAt: new Date('2024-09-17T16:58:28.522Z'),
     },
     {
-      id: "b7da29f0-8b30-4913-b2d8-99ba6e5b2c3f",
-      name: "Alimentación y Consumo",
-      slug: "alimentación_y_consumo",
-      description: "Descripción de prueba",
-      createdAt: "2024-09-17T16:58:28.525Z",
-      updatedAt: "2024-09-17T16:58:28.525Z"
-    }
-  ]
+      id: 'b7da29f0-8b30-4913-b2d8-99ba6e5b2c3f',
+      name: 'Alimentación y Consumo',
+      slug: 'alimentación_y_consumo',
+      description: 'Descripción de prueba',
+      createdAt: new Date('2024-09-17T16:58:28.525Z'),
+      updatedAt: new Date('2024-09-17T16:58:28.525Z'),
+    },
+  ],
+  events: [],
+  sponsorships: [],
+  subscriptions: [],
+  publications: [],
 };
 
 const mockPublications = [
   {
-    id: "ffee56a2-ebac-441d-95fe-0db4312e43a5",
-    description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    id: 'ffee56a2-ebac-441d-95fe-0db4312e43a5',
+    description:
+      'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
     active: true,
     clapsCount: 2,
     commentsCount: 3,
     contents: [
       {
-        id: "adcdfb62-94a5-486f-9bfb-2a8060736086",
-        type: "IMAGE",
-        content: "https://storage.googleapis.com/echadospalante-publications-bucket/motivacion-laboral.png",
-        createdAt: "2025-06-13T02:13:43.476Z",
-        updatedAt: "2025-06-13T02:13:43.476Z"
+        id: 'adcdfb62-94a5-486f-9bfb-2a8060736086',
+        type: 'IMAGE',
+        content:
+          'https://storage.googleapis.com/echadospalante-publications-bucket/motivacion-laboral.png',
+        createdAt: '2025-06-13T02:13:43.476Z',
+        updatedAt: '2025-06-13T02:13:43.476Z',
       },
       {
-        id: "79e5bd05-5ea3-463f-9c83-3fc6ae97b21f",
-        type: "TEXT",
-        content: "Contrary to popular belief, Lorem Ipsum is not simply random text...",
-        createdAt: "2025-06-13T02:13:43.476Z",
-        updatedAt: "2025-06-13T02:13:43.476Z"
-      }
+        id: '79e5bd05-5ea3-463f-9c83-3fc6ae97b21f',
+        type: 'TEXT',
+        content:
+          'Contrary to popular belief, Lorem Ipsum is not simply random text...',
+        createdAt: '2025-06-13T02:13:43.476Z',
+        updatedAt: '2025-06-13T02:13:43.476Z',
+      },
     ],
     categories: [
       {
-        id: "243c2655-5dba-4f17-8323-630b9c24a75b",
-        name: "Charla Motivacional",
-        slug: "charla-motivacional",
-        description: "Charlas inspiradoras para emprendedores.",
-        createdAt: "2025-06-03T16:34:13.029Z",
-        updatedAt: "2025-06-03T16:34:13.029Z"
-      }
+        id: '243c2655-5dba-4f17-8323-630b9c24a75b',
+        name: 'Charla Motivacional',
+        slug: 'charla-motivacional',
+        description: 'Charlas inspiradoras para emprendedores.',
+        createdAt: '2025-06-03T16:34:13.029Z',
+        updatedAt: '2025-06-03T16:34:13.029Z',
+      },
     ],
-    createdAt: "2025-06-13T02:13:43.467Z"
-  }
+    createdAt: '2025-06-13T02:13:43.467Z',
+  },
 ];
 
 const mockEvents: VentureEvent[] = [
@@ -127,6 +172,15 @@ const mockEvents: VentureEvent[] = [
         ventureLocations: [],
         eventLocations: [],
         users: [],
+        department: {
+          id: 0,
+          name: '',
+          municipalities: [],
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        createdAt: new Date(),
+        updatedAt: new Date(),
       },
     },
     categories: [],
@@ -143,6 +197,10 @@ const mockEvents: VentureEvent[] = [
     ],
     createdAt: new Date('2025-06-29T01:05:07.631Z'),
     updatedAt: new Date('2025-06-29T01:05:07.631Z'),
+    contact: {
+      id: '',
+    },
+    donations: [],
   },
 ];
 

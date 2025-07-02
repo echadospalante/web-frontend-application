@@ -17,7 +17,7 @@ import {
   getMidpoint,
   haversineDistance,
 } from '../../helpers/map-helpers';
-import FlyToLocation from '../map/FlyToLocation';
+import TopMapButtons from '../map/TopMapButtons';
 
 type VentureMapModalProps = {
   title: string;
@@ -100,7 +100,7 @@ const VentureMapModal = (props: VentureMapModalProps) => {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               />
               <MapClickHandler />
-              <FlyToLocation lat={coords.lat} lng={coords.lng} />
+              <TopMapButtons lat={coords.lat} lng={coords.lng} />
 
               <Marker position={{ lat: coords.lat, lng: coords.lng }}>
                 <Tooltip permanent direction="top" offset={[-15, -15]}>
