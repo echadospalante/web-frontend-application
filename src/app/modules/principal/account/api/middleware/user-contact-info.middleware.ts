@@ -14,6 +14,7 @@ export const fetchUserContactInfoMiddleware = () => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error al obtener información de contacto',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',

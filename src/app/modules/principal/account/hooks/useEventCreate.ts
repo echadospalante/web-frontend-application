@@ -78,6 +78,7 @@ const useEventCreate = () => {
     onSuccess: () => {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'Evento creado exitosamente',
           timeout: 0,
           severity: SeverityLevel.SUCCESS,
@@ -89,6 +90,7 @@ const useEventCreate = () => {
     onError: (error: any) => {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: error?.response?.data?.message || 'Error al crear el evento',
           timeout: 5000,
           severity: SeverityLevel.ERROR,
@@ -166,6 +168,7 @@ const useEventCreate = () => {
     if (!additionalValidation.isValid) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: additionalValidation.message,
           timeout: 3000,
           severity: SeverityLevel.ERROR,
@@ -257,6 +260,7 @@ const useEventCreate = () => {
     if (!file) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'No se ha seleccionado ninguna imagen',
           timeout: 0,
           severity: SeverityLevel.WARNING,
@@ -269,6 +273,7 @@ const useEventCreate = () => {
     if (!validFormats.includes(file?.type || '')) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'Formato de imagen no soportado',
           timeout: 0,
           severity: SeverityLevel.WARNING,

@@ -31,13 +31,21 @@ export interface GlobalAlert {
   active: boolean;
   timeout: number;
   title: string;
+  position:
+    | 'top-right'
+    | 'top-left'
+    | 'bottom-right'
+    | 'bottom-left'
+    | 'top-center'
+    | 'bottom-center'
+    | 'full-center';
   message: string;
   severity: SeverityLevel;
 }
 
 export type AlertInfo = Pick<
   GlobalAlert,
-  'message' | 'timeout' | 'severity' | 'title'
+  'message' | 'timeout' | 'severity' | 'title' | 'position'
 >;
 
 const initialState: UserInterfaceState = {
@@ -52,6 +60,7 @@ const initialState: UserInterfaceState = {
     message: '',
     timeout: 0,
     severity: SeverityLevel.NONE,
+    position: 'top-right',
   },
 };
 
@@ -83,6 +92,7 @@ export const userInterfaceSlice = createSlice({
       state.alert.active = true;
       state.alert.title = action.payload.title;
       state.alert.message = action.payload.message;
+      state.alert.position = action.payload.position || 'top-right';
       state.alert.timeout = action.payload.timeout;
       state.alert.severity = action.payload.severity;
     },

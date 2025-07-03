@@ -12,16 +12,36 @@ import {
 import TinyMap from '../map/TinyMap';
 import TruncatedItems from '../text/TruncatedItems';
 import { textToRGB } from '../../helpers/colors';
+import useAuthentication from '../../../modules/auth/hooks/useAuthentication';
+import useVentureSubscription from '../../../modules/principal/ventures/hooks/useVentureSubscription';
 
-const VentureDetailHeader = ({
-  venture,
-  subscriptionsCount,
-  sponsorshipsCount,
-}: {
+export interface VentureDetailHeaderProps {
   venture: Venture;
-  subscriptionsCount: number;
-  sponsorshipsCount: number;
+}
+
+const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
+  venture,
 }) => {
+  const { email: authenticatedEmail } = useAuthentication();
+
+  const {
+    isSubscribed,
+    // subscriptionStatus,
+    statusError,
+    statusLoading,
+
+    handleSubscribe,
+    handleUnsubscribe,
+
+    subscribeCompleted,
+    subscribeError,
+    subscribeLoading,
+
+    unsubscribeCompleted,
+    unsubscribeError,
+    unsubscribeLoading,
+  } = useVentureSubscription(venture.id);
+
   const formatDate = (dateString: Date) => {
     return new Date(dateString).toLocaleDateString('es-CO', {
       year: 'numeric',
@@ -67,14 +87,26 @@ const VentureDetailHeader = ({
                 </div>
               </div>
               <div className="d-flex gap-2">
-                <Button color="outline-primary" size="md">
-                  <i className="me-1 mdi mdi-share-outline" />
+                <Button color="outline-success" size="md">
+                  <i className="mdi mdi-share-outline me-2 font-size-15" />
                   Compartir
                 </Button>
-                <Button color="primary" size="md">
-                  {/* <i className="me-1 mdi mdi-arrow-right" /> */}
-                  Suscribirme
-                </Button>
+                {venture.owner?.email !== authenticatedEmail &&
+                  (isSubscribed ? (
+                    <Button
+                      onClick={handleUnsubscribe}
+                      color="danger"
+                      size="md"
+                    >
+                      <i className="mdi mdi-eye-minus-outline me-2 font-size-15" />
+                      Eliminar suscripción
+                    </Button>
+                  ) : (
+                    <Button onClick={handleSubscribe} color="success" size="md">
+                      <i className="mdi mdi-eye-plus-outline me-2 font-size-15" />
+                      Suscribirme
+                    </Button>
+                  ))}
               </div>
             </div>
             <p className="text-muted mb-3">{venture.description}</p>
@@ -124,7 +156,7 @@ const VentureDetailHeader = ({
                 <div className="text-center p-2 bg-light rounded">
                   {/*<Users size={20} className="text-primary mb-1" />*/}
                   <i className="mdi mdi-account-multiple-outline me-1 fs-1" />
-                  <div className="fw-bold">{subscriptionsCount}</div>
+                  <div className="fw-bold">{venture.subscriptionsCount}</div>
                   <small className="text-muted">Suscriptores</small>
                 </div>
               </div>

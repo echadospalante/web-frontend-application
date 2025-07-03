@@ -25,6 +25,7 @@ export const fetchVenturePublicationsMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al obtener la lista de publicaciones ⛔',
             title: 'Error',
             timeout: 5000,

@@ -44,6 +44,7 @@ const AccountPostCreatePage = () => {
     };
     dispatch(
       setGlobalAlert({
+        position: 'top-right',
         message:
           'Dirígete a al final de esta vista para editar el nuevo recurso',
         timeout: 0,

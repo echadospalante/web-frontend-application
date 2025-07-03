@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Venture, VentureEvent } from 'echadospalante-domain';
 import {
@@ -16,6 +15,7 @@ import {
   TabContent,
   TabPane,
 } from 'reactstrap';
+
 import VentureDetailHeader from '../../../../shared/components/footer/VentureDetailHeader';
 import VentureDetailCard from '../../../../shared/components/card/VentureDetailcard.tsx';
 
@@ -106,6 +106,7 @@ const mockVenture: Venture = {
   sponsorships: [],
   subscriptions: [],
   publications: [],
+  subscriptionsCount: 0,
 };
 
 const mockPublications = [
@@ -205,14 +206,14 @@ const mockEvents: VentureEvent[] = [
 ];
 
 const mockSubscription = {
-  id: "sub-1",
-  subscribersCount: 156
+  id: 'sub-1',
+  subscribersCount: 156,
 };
 
 const mockSponsorship = {
-  id: "spon-1",
+  id: 'spon-1',
   monthlyAmount: 250000,
-  currency: "COP"
+  currency: 'COP',
 };
 
 // Custom Hooks
@@ -221,7 +222,7 @@ const useVentureData = (ventureId: string) => {
   return {
     data: mockVenture,
     isLoading: false,
-    error: null
+    error: null,
   };
 };
 
@@ -229,7 +230,7 @@ const usePublications = (ventureId: string) => {
   return {
     data: mockPublications,
     isLoading: false,
-    error: null
+    error: null,
   };
 };
 
@@ -237,7 +238,7 @@ const useEvents = (ventureId: string) => {
   return {
     data: mockEvents,
     isLoading: false,
-    error: null
+    error: null,
   };
 };
 
@@ -245,7 +246,7 @@ const useSubscriptions = (ventureId: string) => {
   return {
     data: mockSubscription,
     isLoading: false,
-    error: null
+    error: null,
   };
 };
 
@@ -253,7 +254,7 @@ const useSponsorships = (ventureId: string) => {
   return {
     data: mockSponsorship,
     isLoading: false,
-    error: null
+    error: null,
   };
 };
 
@@ -273,7 +274,11 @@ const PublicationsTab = ({ publications }: { publications: any[] }) => {
                       src={content.content}
                       alt="Contenido de publicación"
                       className="img-fluid rounded"
-                      style={{ maxHeight: '300px', width: '100%', objectFit: 'cover' }}
+                      style={{
+                        maxHeight: '300px',
+                        width: '100%',
+                        objectFit: 'cover',
+                      }}
                     />
                   ) : (
                     <p className="text-muted">{content.content}</p>
@@ -316,7 +321,7 @@ const EventsTab = ({ events }: { events: VentureEvent[] }) => {
       weekday: 'long',
       year: 'numeric',
       month: 'long',
-      day: 'numeric'
+      day: 'numeric',
     });
   };
 
@@ -355,7 +360,11 @@ const EventsTab = ({ events }: { events: VentureEvent[] }) => {
                         <strong>{formatDate(dateHour.date)}</strong>
                         <div className="ms-3">
                           {dateHour.workingRanges.map((range, rangeIndex) => (
-                            <Badge key={rangeIndex} color="light" className="me-2">
+                            <Badge
+                              key={rangeIndex}
+                              color="light"
+                              className="me-2"
+                            >
                               {range.start} - {range.end}
                             </Badge>
                           ))}
@@ -391,12 +400,15 @@ const EventsTab = ({ events }: { events: VentureEvent[] }) => {
 const VentureDetailPage = () => {
   const [activeTab, setActiveTab] = useState('publications');
   const ventureId = mockVenture.id;
-  // Hooks de datos
-  const { data: venture, isLoading: ventureLoading } = useVentureData(ventureId);
-  const { data: publications, isLoading: publicationsLoading } = usePublications(ventureId);
+  const { data: venture, isLoading: ventureLoading } =
+    useVentureData(ventureId);
+  const { data: publications, isLoading: publicationsLoading } =
+    usePublications(ventureId);
   const { data: events, isLoading: eventsLoading } = useEvents(ventureId);
-  const { data: subscription, isLoading: subscriptionLoading } = useSubscriptions(ventureId);
-  const { data: sponsorship, isLoading: sponsorshipLoading } = useSponsorships(ventureId);
+  const { data: subscription, isLoading: subscriptionLoading } =
+    useSubscriptions(ventureId);
+  const { data: sponsorship, isLoading: sponsorshipLoading } =
+    useSponsorships(ventureId);
 
   if (ventureLoading || subscriptionLoading || sponsorshipLoading) {
     return (
@@ -421,98 +433,114 @@ const VentureDetailPage = () => {
   }
 
   return (
-      <div className="page-content">
-        <Container fluid>
+    <div className="page-content">
+      <Container fluid>
+        <VentureDetailHeader venture={venture} />
 
-      <VentureDetailHeader
-        venture={venture}
-        subscriptionsCount={10}
-        sponsorshipsCount={12}
-      />
+        <Card className="shadow-sm">
+          <CardBody className="p-0">
+            <Nav tabs className="border-bottom">
+              <NavItem>
+                <NavLink
+                  className={`cursor-pointer ${activeTab === 'publications' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('publications')}
+                >
+                  {/*<MessageCircle size={16} className="me-2" />*/}
+                  <i className="mdi mdi-bullhorn-outline me-2"></i>
+                  Publicaciones
+                  {publications && (
+                    <Badge color="secondary" className="ms-2">
+                      {publications.length}
+                    </Badge>
+                  )}
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={`cursor-pointer ${activeTab === 'events' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('events')}
+                >
+                  <i className="mdi mdi-calendar-outline me-2"></i>
+                  Eventos
+                  {events && (
+                    <Badge color="secondary" className="ms-2">
+                      {events.length}
+                    </Badge>
+                  )}
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={`cursor-pointer ${activeTab === 'about' ? 'active' : ''}`}
+                  onClick={() => setActiveTab('about')}
+                >
+                  {/*<Eye size={16} className="me-2" />*/}
+                  <i className="mdi mdi-information-outline me-2"></i>
+                  Acerca de
+                </NavLink>
+              </NavItem>
+            </Nav>
 
-      <Card className="shadow-sm">
-        <CardBody className="p-0">
-          <Nav tabs className="border-bottom">
-            <NavItem>
-              <NavLink
-                className={`cursor-pointer ${activeTab === 'publications' ? 'active' : ''}`}
-                onClick={() => setActiveTab('publications')}
-              >
-                {/*<MessageCircle size={16} className="me-2" />*/}
-                <i className="mdi mdi-bullhorn-outline me-2"></i>
-                Publicaciones
-                {publications && <Badge color="secondary" className="ms-2">{publications.length}</Badge>}
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={`cursor-pointer ${activeTab === 'events' ? 'active' : ''}`}
-                onClick={() => setActiveTab('events')}
-              >
-                <i className="mdi mdi-calendar-outline me-2"></i>
-                Eventos
-                {events && <Badge color="secondary" className="ms-2">{events.length}</Badge>}
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                className={`cursor-pointer ${activeTab === 'about' ? 'active' : ''}`}
-                onClick={() => setActiveTab('about')}
-              >
-                {/*<Eye size={16} className="me-2" />*/}
-                <i className="mdi mdi-information-outline me-2"></i>
-                Acerca de
-              </NavLink>
-            </NavItem>
-          </Nav>
-
-          <TabContent activeTab={activeTab} className="p-4">
-            <TabPane tabId="publications">
-              {publicationsLoading ? (
-                <div className="text-center py-4">
-                  <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Cargando publicaciones...</span>
+            <TabContent activeTab={activeTab} className="p-4">
+              <TabPane tabId="publications">
+                {publicationsLoading ? (
+                  <div className="text-center py-4">
+                    <div className="spinner-border text-primary" role="status">
+                      <span className="visually-hidden">
+                        Cargando publicaciones...
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ) : publications && publications.length > 0 ? (
-                <PublicationsTab publications={publications} />
-              ) : (
-                <div className="text-center py-5 text-muted">
-                  {/*<MessageCircle size={48} className="mb-3" />*/}
-                  <i className="mdi mdi-bullhorn-outline text-muted mb-3" style={{ fontSize: '48px' }}></i>
-                  <h5>No hay publicaciones disponibles</h5>
-                  <p>Este emprendimiento aún no ha publicado contenido.</p>
-                </div>
-              )}
-            </TabPane>
-
-            <TabPane tabId="events">
-              {eventsLoading ? (
-                <div className="text-center py-4">
-                  <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Cargando eventos...</span>
+                ) : publications && publications.length > 0 ? (
+                  <PublicationsTab publications={publications} />
+                ) : (
+                  <div className="text-center py-5 text-muted">
+                    {/*<MessageCircle size={48} className="mb-3" />*/}
+                    <i
+                      className="mdi mdi-bullhorn-outline text-muted mb-3"
+                      style={{ fontSize: '48px' }}
+                    ></i>
+                    <h5>No hay publicaciones disponibles</h5>
+                    <p>Este emprendimiento aún no ha publicado contenido.</p>
                   </div>
-                </div>
-              ) : events && events.length > 0 ? (
-                <EventsTab events={events} />
-              ) : (
-                <div className="text-center py-5 text-muted">
-                  {/*<Calendar size={48} className="mb-3" />*/}
-                  <i className="mdi mdi-calendar-multiselect text-muted mb-3" style={{ fontSize: '48px' }}></i>
-                  <h5>No hay eventos programados</h5>
-                  <p>Este emprendimiento no tiene eventos disponibles en este momento.</p>
-                </div>
-              )}
-            </TabPane>
+                )}
+              </TabPane>
 
-            <TabPane tabId="about">
-              <VentureDetailCard venture={venture} />
-            </TabPane>
-          </TabContent>
-        </CardBody>
-      </Card>
-        </Container>
-      </div>
+              <TabPane tabId="events">
+                {eventsLoading ? (
+                  <div className="text-center py-4">
+                    <div className="spinner-border text-primary" role="status">
+                      <span className="visually-hidden">
+                        Cargando eventos...
+                      </span>
+                    </div>
+                  </div>
+                ) : events && events.length > 0 ? (
+                  <EventsTab events={events} />
+                ) : (
+                  <div className="text-center py-5 text-muted">
+                    {/*<Calendar size={48} className="mb-3" />*/}
+                    <i
+                      className="mdi mdi-calendar-multiselect text-muted mb-3"
+                      style={{ fontSize: '48px' }}
+                    ></i>
+                    <h5>No hay eventos programados</h5>
+                    <p>
+                      Este emprendimiento no tiene eventos disponibles en este
+                      momento.
+                    </p>
+                  </div>
+                )}
+              </TabPane>
+
+              <TabPane tabId="about">
+                <VentureDetailCard venture={venture} />
+              </TabPane>
+            </TabContent>
+          </CardBody>
+        </Card>
+      </Container>
+    </div>
   );
 };
 

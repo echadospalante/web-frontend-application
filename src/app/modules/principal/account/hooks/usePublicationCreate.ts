@@ -46,6 +46,7 @@ const usePublicationCreate = () => {
     onSuccess: () => {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'Publicación creada exitosamente',
           timeout: 0,
           severity: SeverityLevel.SUCCESS,
@@ -57,7 +58,9 @@ const usePublicationCreate = () => {
     onError: (error: any) => {
       dispatch(
         setGlobalAlert({
-          message: error?.response?.data?.message || 'Error al crear la publicación',
+          position: 'top-right',
+          message:
+            error?.response?.data?.message || 'Error al crear la publicación',
           timeout: 5000,
           severity: SeverityLevel.ERROR,
           title: 'Error',
@@ -71,6 +74,7 @@ const usePublicationCreate = () => {
     if (!file) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'No se ha seleccionado ninguna imagen',
           timeout: 0,
           severity: SeverityLevel.WARNING,
@@ -83,6 +87,7 @@ const usePublicationCreate = () => {
     if (!validFormats.includes(file?.type || '')) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'Formato de imagen no soportado',
           timeout: 0,
           severity: SeverityLevel.WARNING,
@@ -112,6 +117,7 @@ const usePublicationCreate = () => {
     if (!formIsValid) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message:
             'Por favor, corrige los errores antes de enviar la publicación',
           timeout: 3000,

@@ -53,6 +53,7 @@ export const loginWithCredentialsMiddleware = (oauth2Token: string) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error en login',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',
@@ -84,6 +85,7 @@ export const createUserRegisterMiddleware = (
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Registro exitoso',
             message: 'Usuario registrado exitosamente.',
             timeout: 5000,
@@ -95,6 +97,7 @@ export const createUserRegisterMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error en registro',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',
@@ -123,6 +126,7 @@ export const logoutUserMiddleware = () => {
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Sesión cerrada',
             message: 'Sesión cerrada exitosamente.',
             timeout: 5000,
@@ -135,6 +139,7 @@ export const logoutUserMiddleware = () => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error en cierre de sesión',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',

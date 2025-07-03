@@ -26,6 +26,7 @@ export const fetchVentureSponsorshipsMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al obtener la lista de patrocinadores ⛔',
             title: 'Error',
             timeout: 5000,
@@ -47,6 +48,7 @@ export const fetchOwnerBySponsorshipIdMiddleware = (sponsorshipId: string) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al obtener el dueño del patrocinio ⛔',
             title: 'Error',
             timeout: 5000,

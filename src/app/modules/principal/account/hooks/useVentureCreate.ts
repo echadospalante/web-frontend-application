@@ -30,6 +30,7 @@ const useVentureCreate = () => {
     onSuccess: () => {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'Emprendimiento creado exitosamente',
           timeout: 0,
           severity: SeverityLevel.SUCCESS,
@@ -87,6 +88,7 @@ const useVentureCreate = () => {
     if (!file) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'No se ha seleccionado ninguna imagen',
           timeout: 0,
           severity: SeverityLevel.WARNING,
@@ -99,6 +101,7 @@ const useVentureCreate = () => {
     if (!validFormats.includes(file?.type || '')) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'Formato de imagen no soportado',
           timeout: 0,
           severity: SeverityLevel.WARNING,

@@ -35,7 +35,9 @@ const VentureDetailCard = ({ venture }: { venture: Venture }) => {
                 </ListGroupItem>
                 <ListGroupItem className="px-0 d-flex justify-content-between">
                   <span>Fecha de creación:</span>
-                  <span>{new Date(venture.createdAt).toLocaleDateString('es-CO')}</span>
+                  <span>
+                    {new Date(venture.createdAt).toLocaleDateString('es-CO')}
+                  </span>
                 </ListGroupItem>
               </ListGroup>
             </Col>
@@ -43,13 +45,14 @@ const VentureDetailCard = ({ venture }: { venture: Venture }) => {
               <h6 className="fw-semibold mb-3">Ubicación</h6>
               <p className="text-muted mb-2">{venture.location!.description}</p>
               <small className="text-muted">
-                Coordenadas: {venture.location!.location!.coordinates[1]}, {venture.location!.location!.coordinates[0]}
+                Coordenadas: {venture.location!.location!.coordinates[1]},{' '}
+                {venture.location!.location!.coordinates[0]}
               </small>
 
               <h6 className="fw-semibold mb-3 mt-4">Categorías</h6>
               <div className="d-flex flex-wrap gap-2">
                 {venture.categories.map((category) => (
-                  <Badge key={category.id} color="primary" pill>
+                  <Badge key={category.id} className="p-2" color="primary" pill>
                     {category.name}
                   </Badge>
                 ))}

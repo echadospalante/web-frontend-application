@@ -16,6 +16,7 @@ export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Roles actualizados',
             message:
               'Los roles del usuario han sido actualizados correctamente.',
@@ -28,6 +29,7 @@ export const updateUserRolesMiddleware = (email: string, roles: AppRole[]) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error al actualizar roles',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',
@@ -49,6 +51,7 @@ export const lockUserAccountMiddleware = (email: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Usuario desbloqueado correctamente ✅',
             title: 'Operación exitosa',
             timeout: 5000,
@@ -60,6 +63,7 @@ export const lockUserAccountMiddleware = (email: string) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al bloquear el usuario ⛔',
             title: 'Error',
             timeout: 5000,
@@ -77,6 +81,7 @@ export const unlockUserAccountMiddleware = (email: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Usuario desbloqueado correctamente ✅',
             title: 'Operación exitosa',
             timeout: 5000,
@@ -88,6 +93,7 @@ export const unlockUserAccountMiddleware = (email: string) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al desbloquear el usuario ⛔',
             title: 'Error',
             timeout: 5000,
@@ -105,6 +111,7 @@ export const verifyUserAccountMiddleware = (email: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Usuario verificado correctamente ✅',
             title: 'Operación exitosa',
             timeout: 5000,
@@ -116,6 +123,7 @@ export const verifyUserAccountMiddleware = (email: string) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al verificar el usuario ⛔',
             title: 'Error',
             timeout: 5000,
@@ -133,6 +141,7 @@ export const unverifyUserAccountMiddleware = (email: string) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Usuario desverificado correctamente ✅',
             title: 'Operación exitosa',
             timeout: 5000,
@@ -144,6 +153,7 @@ export const unverifyUserAccountMiddleware = (email: string) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al desverificar el usuario ⛔',
             title: 'Error',
             timeout: 5000,
@@ -162,6 +172,7 @@ export const fetchRolesMiddleware = () => {
       .catch((error) => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error al obtener roles',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',

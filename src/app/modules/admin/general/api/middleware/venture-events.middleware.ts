@@ -23,6 +23,7 @@ export const fetchVentureEventsMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al obtener la lista de eventos ⛔',
             title: 'Error',
             timeout: 5000,

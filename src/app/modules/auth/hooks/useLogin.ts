@@ -20,6 +20,7 @@ const useLogin = () => {
       if (!active) {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error en login',
             message: 'El usuario no se encuentra activo.',
             timeout: 5000,

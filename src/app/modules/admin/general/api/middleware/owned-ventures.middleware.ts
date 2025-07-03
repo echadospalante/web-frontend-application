@@ -24,6 +24,7 @@ export const updateOwnedVentureMiddleware = (
         dispatch(updateOwnedVenture(ownedVenture));
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Emprendimiento actualizada',
             message: 'El emprendimiento ha sido actualizado exitosamente.',
             timeout: 5000,
@@ -35,6 +36,7 @@ export const updateOwnedVentureMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',
@@ -56,6 +58,7 @@ export const createOwnedVentureMiddleware = (ownedVenture: VentureCreate) => {
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Emprendimiento creado',
             message: 'La categoría ha sido creada exitosamente.',
             timeout: 5000,
@@ -67,6 +70,7 @@ export const createOwnedVentureMiddleware = (ownedVenture: VentureCreate) => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',

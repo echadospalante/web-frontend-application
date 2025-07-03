@@ -53,6 +53,7 @@ export const useRegisterPreferences = () => {
     if (preferencesIds.length >= 10 && !preferencesIds.includes(preference)) {
       dispatch(
         setGlobalAlert({
+          position: 'top-right',
           message: 'No puedes seleccionar más de 10 categorías',
           severity: SeverityLevel.WARNING,
           timeout: 5000,

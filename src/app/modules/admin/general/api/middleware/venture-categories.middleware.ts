@@ -25,6 +25,7 @@ export const updateVentureCategoryMiddleware = (
         dispatch(updateVentureCategory(ventureCategory));
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Categoria actualizada',
             message: 'La categoría ha sido actualizada exitosamente.',
             timeout: 5000,
@@ -36,6 +37,7 @@ export const updateVentureCategoryMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',
@@ -59,6 +61,7 @@ export const createVentureCategoryMiddleware = (
       .then(() => {
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Categoria creada',
             message: 'La categoría ha sido creada exitosamente.',
             timeout: 5000,
@@ -70,6 +73,7 @@ export const createVentureCategoryMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             title: 'Error',
             message:
               'Por favor intente nuevamente, si el error persiste contacte al administrador.',
@@ -98,6 +102,7 @@ export const fetchVentureCategoriesMiddleware = (
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al obtener la lista de categorías ⛔',
             title: 'Error',
             timeout: 5000,
@@ -121,6 +126,7 @@ export const fetchAllVentureCategoriesMiddleware = () => {
         console.error(error);
         dispatch(
           setGlobalAlert({
+            position: 'top-right',
             message: 'Error al obtener la lista de categorías ⛔',
             title: 'Error',
             timeout: 5000,

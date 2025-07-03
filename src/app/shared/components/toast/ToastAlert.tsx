@@ -6,19 +6,10 @@ import { useSelector } from 'react-redux';
 import { Toast, ToastBody, ToastHeader } from 'reactstrap';
 
 import {
-  SeverityLevel,
   removeGlobalAlert,
   selectUserInterface,
 } from '../../../config/redux/reducers/shared/user-interface.reducer';
 import { useAppDispatch } from '../../../config/redux/store/store.config';
-
-export interface SnackbarAlertProps {
-  message: string;
-  timeout: number;
-  severity: SeverityLevel;
-  open: boolean;
-  time: number;
-}
 
 const ToastAlert = () => {
   const dispatch = useAppDispatch();
@@ -41,14 +32,40 @@ const ToastAlert = () => {
     dispatch<Action>(removeGlobalAlert());
   };
 
+  const getPositionStyle = () => {
+    switch (alert.position) {
+      case 'top-right':
+        return { top: '20px', right: '20px' };
+      case 'top-left':
+        return { top: '20px', left: '20px' };
+      case 'bottom-right':
+        return { bottom: '20px', right: '20px' };
+      case 'bottom-left':
+        return { bottom: '20px', left: '20px' };
+      case 'top-center':
+        return { top: '20px', left: '50%', transform: 'translateX(-50%)' };
+      case 'bottom-center':
+        return { bottom: '20px', left: '50%', transform: 'translateX(-50%)' };
+      case 'full-center':
+        return {
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+        };
+      default:
+        return { top: '20px', right: '20px' }; // Default to top-right
+    }
+  };
+
   return (
     <React.Fragment>
       <div
         style={{
           position: 'fixed',
-          bottom: '20px',
-          right: '20px',
+          // bottom: '20px',
+          // right: '20px',
           zIndex: 9999,
+          ...getPositionStyle(),
         }}
       >
         <div>
