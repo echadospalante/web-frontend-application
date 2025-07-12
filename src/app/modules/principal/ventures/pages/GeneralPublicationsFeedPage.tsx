@@ -11,20 +11,20 @@ import VenturePublicationsHeader from '../../../../shared/components/header/Vent
 
 const GeneralPublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
-  const { ventureId } = useParams();
+  const { ventureSlug } = useParams();
 
   const { items, total, isLoading, isError, refetch } =
-    useFetchPublications(ventureId);
+    useFetchPublications(ventureSlug);
 
   return (
     <Fragment>
-      <div className="page-content">
+      <div className="full-page-content">
         <Container fluid>
           <Row>
-            <Col lg={9}>
-              {ventureId ? (
+            <Col lg={ventureSlug ? 12 : 9}>
+              {ventureSlug ? (
                 <VenturePublicationsHeader
-                  ventureId={ventureId}
+                  ventureSlug={ventureSlug}
                   onReload={refetch}
                 />
               ) : (
@@ -38,9 +38,20 @@ const GeneralPublicationsFeedPage = () => {
               ))}
             </Col>
 
-            <Col lg={3}>
-              <PublicationsFeedRightSidebar />
-            </Col>
+            {items.length === 0 && (
+              <Col lg={ventureSlug ? 12 : 9}>
+                <Card className="p-4 text-center">
+                  <h5>No hay publicaciones disponibles</h5>
+                  <p>Intenta recargar la página o vuelve más tarde.</p>
+                </Card>
+              </Col>
+            )}
+
+            {!ventureSlug && (
+              <Col lg={3}>
+                <PublicationsFeedRightSidebar />
+              </Col>
+            )}
           </Row>
         </Container>
       </div>

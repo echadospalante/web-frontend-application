@@ -1,14 +1,20 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
-import { setGlobalAlert, SeverityLevel } from "../../../../config/redux/reducers/shared/user-interface.reducer";
-import { useAppDispatch } from "../../../../config/redux/store/store.config";
-import useAuthentication from "../../../auth/hooks/useAuthentication";
-import SubscriptionsApi from "../api/subscriptions.api";
+import { useParams } from 'react-router-dom';
+import {
+  setGlobalAlert,
+  SeverityLevel,
+} from '../../../../config/redux/reducers/shared/user-interface.reducer';
+import { useAppDispatch } from '../../../../config/redux/store/store.config';
+import useAuthentication from '../../../auth/hooks/useAuthentication';
+import SubscriptionsApi from '../api/subscriptions.api';
 
 const useVentureSubscription = (ventureId: string) => {
   const { email } = useAuthentication();
+  const { ventureSlug } = useParams();
+  const queryClient = useQueryClient();
   const [isSubscribed, setIsSubscribed] = useState(false);
   const dispatch = useAppDispatch();
 
@@ -23,22 +29,29 @@ const useVentureSubscription = (ventureId: string) => {
           severity: SeverityLevel.SUCCESS,
           title: 'Suscripción exitosa',
           position: 'top-right',
-        }
-      ));
+        }),
+      );
+      queryClient.invalidateQueries({
+        queryKey: ['ventures', 'slug', ventureSlug],
+      });
+      queryClient.refetchQueries({
+        queryKey: ['ventures', 'slug', ventureSlug],
+      });
     },
     onError: (error) => {
       console.error('Error subscribing to venture:', error);
       dispatch(
         setGlobalAlert({
-          message: 'No se pudo suscribir al emprendimiento. Por favor, inténtalo de nuevo más tarde.',
+          message:
+            'No se pudo suscribir al emprendimiento. Por favor, inténtalo de nuevo más tarde.',
           timeout: 5000,
           severity: SeverityLevel.ERROR,
           title: 'Error',
           position: 'top-right',
         }),
       );
-    }
-  })
+    },
+  });
 
   const unsubscribeMutation = useMutation({
     mutationFn: () => SubscriptionsApi.deleteSubscription(ventureId),
@@ -53,25 +66,32 @@ const useVentureSubscription = (ventureId: string) => {
           position: 'top-right',
         }),
       );
+      queryClient.invalidateQueries({
+        queryKey: ['ventures', 'slug', ventureSlug],
+      });
+      queryClient.refetchQueries({
+        queryKey: ['ventures', 'slug', ventureSlug],
+      });
     },
     onError: (error) => {
       console.error('Error unsubscribing from venture:', error);
       dispatch(
         setGlobalAlert({
-          message: 'No se pudo desuscribir del emprendimiento. Por favor, inténtalo de nuevo más tarde.',
+          message:
+            'No se pudo desuscribir del emprendimiento. Por favor, inténtalo de nuevo más tarde.',
           timeout: 5000,
           severity: SeverityLevel.ERROR,
-          title: 'Error', 
+          title: 'Error',
           position: 'top-right',
         }),
       );
-    }
+    },
   });
 
   const subscriptionStatusQuery = useQuery({
-    queryKey: ['ventures',ventureId, "subscription-status", email],
+    queryKey: ['ventures', ventureId, 'subscription-status', email],
     queryFn: () => SubscriptionsApi.getSubscriptionStatus(ventureId),
-  })
+  });
 
   const handleSubscribe = async () => {
     subscribeMutation.mutate();
@@ -91,11 +111,10 @@ const useVentureSubscription = (ventureId: string) => {
     isSubscribed,
     handleSubscribe,
     handleUnsubscribe,
-    
+
     statusLoading: subscriptionStatusQuery.isLoading,
     statusError: subscriptionStatusQuery.isError,
-    subscriptionStatus: subscriptionStatusQuery.data, 
-
+    subscriptionStatus: subscriptionStatusQuery.data,
 
     subscribeLoading: subscribeMutation.isPending,
     subscribeError: subscribeMutation.isError,
@@ -104,9 +123,7 @@ const useVentureSubscription = (ventureId: string) => {
     unsubscribeLoading: unsubscribeMutation.isPending,
     unsubscribeError: unsubscribeMutation.isError,
     unsubscribeCompleted: unsubscribeMutation.isSuccess,
-    
-
   };
-}
+};
 
 export default useVentureSubscription;

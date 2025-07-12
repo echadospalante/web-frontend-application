@@ -1,57 +1,55 @@
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import React from 'react';
 
-export type VentureDetailTabsProps = {
+import { NavLink, Nav, NavItem, Badge } from 'reactstrap';
+import { VentureDetailTab } from '../../../modules/principal/ventures/pages/VentureDetailPage';
+
+export interface VentureDetailTabsProps {
   activeTab: string;
-  toggleCustom: (tab: string) => void;
-};
+  setActiveTab: (tab: VentureDetailTab) => void;
+  publicationsCount: number;
+  eventsCount: number;
+}
 
-const VentureDetailTabs = (props: VentureDetailTabsProps) => {
-  const { activeTab, toggleCustom } = props;
-
+const VentureDetailTabs: React.FC<VentureDetailTabsProps> = ({
+  activeTab,
+  setActiveTab,
+  eventsCount,
+  publicationsCount,
+}) => {
   return (
-    <Nav tabs className="nav-tabs-custom nav-justified">
+    <Nav tabs className="border-bottom">
       <NavItem>
         <NavLink
-          style={{ cursor: 'pointer' }}
-          className={`${activeTab === '1' ? 'active' : ''}`}
-          onClick={() => {
-            toggleCustom('1');
-          }}
+          className={`cursor-pointer ${activeTab === 'publications' ? 'active' : ''}`}
+          onClick={() => setActiveTab('publications')}
         >
-          <span className="d-block d-sm-none">
-            <i className="fas fa-home"></i>
-          </span>
-          <span className="d-none d-sm-block">Publicaciones</span>
+          {/*<MessageCircle size={16} className="me-2" />*/}
+          <i className="mdi mdi-bullhorn-outline me-2"></i>
+          Publicaciones
+          <Badge color="secondary" className="ms-2">
+            {publicationsCount}
+          </Badge>
         </NavLink>
       </NavItem>
-
       <NavItem>
         <NavLink
-          style={{ cursor: 'pointer' }}
-          className={`${activeTab === '2' ? 'active' : ''}`}
-          onClick={() => {
-            toggleCustom('2');
-          }}
+          className={`cursor-pointer ${activeTab === 'events' ? 'active' : ''}`}
+          onClick={() => setActiveTab('events')}
         >
-          <span className="d-block d-sm-none">
-            <i className="far fa-user"></i>
-          </span>
-          <span className="d-none d-sm-block">Eventos</span>
+          <i className="mdi mdi-calendar-outline me-2"></i>
+          Eventos
+          <Badge color="secondary" className="ms-2">
+            {eventsCount}
+          </Badge>
         </NavLink>
       </NavItem>
-
       <NavItem>
         <NavLink
-          style={{ cursor: 'pointer' }}
-          className={`${activeTab === '3' ? 'active' : ''}`}
-          onClick={() => {
-            toggleCustom('3');
-          }}
+          className={`cursor-pointer ${activeTab === 'about' ? 'active' : ''}`}
+          onClick={() => setActiveTab('about')}
         >
-          <span className="d-block d-sm-none">
-            <i className="far fa-user"></i>
-          </span>
-          <span className="d-none d-sm-block">Patrocinadores</span>
+          <i className="mdi mdi-information-outline me-2"></i>
+          Acerca de
         </NavLink>
       </NavItem>
     </Nav>

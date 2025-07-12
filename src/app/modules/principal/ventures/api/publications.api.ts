@@ -21,7 +21,7 @@ export default class PublicationsApi {
 
   public static async getGeneralPublications(
     filters: PublicationFilter,
-    ventureId: string = '_', // "_" is used to indicate all ventures in the API call
+    ventureSlug: string = '_', // "_" is used to indicate all ventures in the API call
   ) {
     const { pagination, categoriesIds, dateRange, search } = filters;
     const params = new URLSearchParams();
@@ -36,7 +36,7 @@ export default class PublicationsApi {
 
     return axios
       .get<PaginatedBody<VenturePublication>>(
-        `${PublicationsApi.BASE_URL}/${ventureId}/publications`,
+        `${PublicationsApi.BASE_URL}/${ventureSlug}/publications`,
         {
           withCredentials: true,
           params,

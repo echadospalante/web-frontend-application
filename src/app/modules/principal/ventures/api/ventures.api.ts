@@ -50,7 +50,7 @@ export default class VenturesApi {
       .then(({ data }) => data);
   }
 
-  static fetchVentureStats(ventureId: string) {
+  public static fetchVentureStats(ventureId: string) {
     return axios
       .get<VentureStats>(`${VenturesApi.BASE_URL}/${ventureId}/stats`, {
         withCredentials: true,
@@ -58,9 +58,19 @@ export default class VenturesApi {
       .then(({ data }) => data);
   }
 
-  static fetchVentureDetail(ventureId: string): Promise<Venture> {
+  public static fetchVentureDetail(ventureId: string): Promise<Venture> {
     return axios
       .get<Venture>(`${VenturesApi.BASE_URL}/${ventureId}`, {
+        withCredentials: true,
+      })
+      .then(({ data }) => data);
+  }
+
+  public static fetchVentureDetailBySlug(
+    ventureSlug: string,
+  ): Promise<Venture> {
+    return axios
+      .get<Venture>(`${VenturesApi.BASE_URL}/slug/${ventureSlug}`, {
         withCredentials: true,
       })
       .then(({ data }) => data);

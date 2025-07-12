@@ -1,19 +1,34 @@
+import { useState } from 'react';
+
 import { Venture } from 'echadospalante-domain';
 import {
-  Card,
-  Row,
-  Col,
-  CardImg,
-  CardBody,
+  FacebookIcon,
+  FacebookShareButton,
+  RedditIcon,
+  RedditShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+} from 'react-share';
+import {
   Badge,
   Button,
+  Card,
+  CardBody,
+  CardImg,
+  Col,
+  Row,
   UncontrolledTooltip,
 } from 'reactstrap';
-import TinyMap from '../map/TinyMap';
-import TruncatedItems from '../text/TruncatedItems';
-import { textToRGB } from '../../helpers/colors';
+
 import useAuthentication from '../../../modules/auth/hooks/useAuthentication';
 import useVentureSubscription from '../../../modules/principal/ventures/hooks/useVentureSubscription';
+import { getIconName, stringToColor, textToRGB } from '../../helpers/colors';
+import TinyMap from '../map/TinyMap';
+import TruncatedItems from '../text/TruncatedItems';
 
 export interface VentureDetailHeaderProps {
   venture: Venture;
@@ -23,6 +38,7 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
   venture,
 }) => {
   const { email: authenticatedEmail } = useAuthentication();
+  const [displayPicture, setDisplayPicture] = useState<boolean>(true);
 
   const {
     isSubscribed,
@@ -87,10 +103,48 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                 </div>
               </div>
               <div className="d-flex gap-2">
-                <Button color="outline-success" size="md">
+                {/* <Button color="outline-success" size="md">
                   <i className="mdi mdi-share-outline me-2 font-size-15" />
                   Compartir
-                </Button>
+                </Button> */}
+
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <FacebookShareButton
+                    url={window.location.href}
+                    title={venture.name}
+                  >
+                    <FacebookIcon size={40} round />
+                  </FacebookShareButton>
+
+                  <RedditShareButton
+                    url={window.location.href}
+                    title={venture.name}
+                  >
+                    <RedditIcon size={40} round />
+                  </RedditShareButton>
+
+                  <WhatsappShareButton
+                    url={window.location.href}
+                    title={venture.name}
+                  >
+                    <WhatsappIcon size={40} round />
+                  </WhatsappShareButton>
+
+                  <TwitterShareButton
+                    url={window.location.href}
+                    title={venture.name}
+                  >
+                    <TwitterIcon size={40} round />
+                  </TwitterShareButton>
+
+                  <TelegramShareButton
+                    url={window.location.href}
+                    title={venture.name}
+                  >
+                    <TelegramIcon size={40} round />
+                  </TelegramShareButton>
+                </div>
+
                 {venture.owner?.email !== authenticatedEmail &&
                   (isSubscribed ? (
                     <Button
@@ -122,8 +176,8 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                 <div className="d-flex align-items-center justify-content-center text-muted">
                   <i className="mdi mdi-city me-1 text-success font-size-20" />
                   <small>
-                    {venture.location?.municipality.name},{' '}
-                    {venture.location?.municipality.department.name}
+                    {venture.location?.municipality.name}
+                    {/* {venture.location?.municipality.department.name} */}
                   </small>
                 </div>
               </Col>
@@ -169,13 +223,35 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
               </div>
               <div className="col-md-4">
                 <div className="d-flex flex-column align-items-center justify-content-center">
-                  <img
-                    src={venture.owner!.picture}
-                    alt={`${venture.owner!.firstName} ${venture.owner!.lastName}`}
-                    className="rounded-circle me-2"
-                    width="50"
-                    height="50"
-                  />
+                  {displayPicture ? (
+                    <img
+                      className="rounded-circle"
+                      src={venture.owner?.picture}
+                      alt="Profile picture"
+                      width={54}
+                      height={54}
+                      onError={() => setDisplayPicture(false)}
+                    />
+                  ) : (
+                    <div
+                      title={`${venture.owner!.firstName} ${venture.owner!.lastName}`}
+                      className="rounded-circle d-inline-flex btn-soft-primary"
+                      style={{
+                        width: '40px',
+                        backgroundColor: stringToColor(
+                          `${venture.owner!.firstName} ${venture.owner!.lastName}`,
+                        ),
+                        height: '40px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}
+                    >
+                      {getIconName(
+                        `${venture.owner!.firstName} ${venture.owner!.lastName}`,
+                      )}
+                    </div>
+                  )}
                   <div>
                     <div
                       className="fw-semibold mt-1 text-center"

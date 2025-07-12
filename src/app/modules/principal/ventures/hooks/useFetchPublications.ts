@@ -10,21 +10,21 @@ import {
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import PublicationsApi from '../api/publications.api';
 
-const useFetchPublications = (ventureId?: string) => {
+const useFetchPublications = (ventureSlug?: string) => {
   const dispatch = useAppDispatch();
   const { filters, items, total } = useSelector(selectPublications);
   const { categoriesIds, pagination, search, dateRange } = filters;
   const publicationsQuery = useQuery({
     queryKey: [
       'ventures',
-      ventureId || '_',
+      ventureSlug || '_',
       'publications',
       search,
       categoriesIds,
       pagination,
       dateRange,
     ],
-    queryFn: () => PublicationsApi.getGeneralPublications(filters, ventureId),
+    queryFn: () => PublicationsApi.getGeneralPublications(filters, ventureSlug),
     staleTime: 1000 * 60 * 60, // 1 hour
   });
 

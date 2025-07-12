@@ -22,25 +22,34 @@ const useFetchVentures = () => {
       'infinite',
       search,
       categoriesIds,
-      // pagination,
       municipalitiesIds,
     ],
-    queryFn: ({ pageParam = 0 }) =>
-      VenturesApi.fetchVentures({
+    queryFn: ({ pageParam = 0 }) => {
+      const skip = pageParam * pagination.take;
+
+      return VenturesApi.fetchVentures({
         ...filters,
-        pagination: { ...pagination, skip: pageParam + pagination.take },
-      }),
+        pagination: { ...pagination, skip },
+      });
+    },
     initialPageParam: 0,
-    getNextPageParam: (lastPage) => {
+    getNextPageParam: (lastPage, allPages) => {
+     
+      const currentItemsCount = allPages.length * pagination.take;
+
       console.log(
-        JSON.stringify({ lastPageTotal: lastPage.total, pagination }, null, 2),
+        JSON.stringify({
+          currentItemsCount,
+          lastPageTotal: lastPage.total,
+          nextPageParam: allPages.length,
+          hasMore: currentItemsCount < lastPage.total,
+        }),
       );
-      if (
-        pagination.skip + pagination.take <
-        lastPage.total + pagination.take
-      ) {
-        return pagination.skip + pagination.take;
+
+      if (currentItemsCount < lastPage.total) {
+        return allPages.length;
       }
+
       return undefined;
     },
     staleTime: 1000 * 60 * 60,
@@ -49,7 +58,7 @@ const useFetchVentures = () => {
   useEffect(() => {
     const items =
       venturesInfiniteQuery.data?.pages.flatMap((page) => page.items) || [];
-    const total = venturesInfiniteQuery.data?.pages[0].total || 0;
+    const total = venturesInfiniteQuery.data?.pages[0]?.total || 0;
     dispatch(
       setVentures({
         items,

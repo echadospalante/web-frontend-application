@@ -14,7 +14,7 @@ const VenturesList: React.FC<VenturesListProps> = ({ ventures }) => {
 
   return (
     <Row>
-      <Col md={6}>
+      <Col lg={6} md={12} sm={12}>
         {leftColumn.map((venture, index) => (
           <VentureCard
             key={`left-${index}`}
@@ -24,7 +24,7 @@ const VenturesList: React.FC<VenturesListProps> = ({ ventures }) => {
         ))}
       </Col>
 
-      <Col md={6}>
+      <Col lg={6} md={12} sm={12}>
         {rightColumn.map((venture, index) => (
           <VentureCard
             key={`right-${index}`}
