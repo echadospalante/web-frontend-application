@@ -14,7 +14,7 @@ const UserSidebarContent = () => {
     item.classList.add('active');
     const parent = item.parentElement;
     const parent2El = parent!.childNodes[1] as HTMLElement;
-    if (parent2El && parent2El.id !== 'side-menu') {
+    if (parent2El && parent2El.classList.contains('metismenu')) {
       parent2El.classList.add('mm-show');
     }
 
@@ -61,7 +61,7 @@ const UserSidebarContent = () => {
           parent.childNodes && parent.childNodes.length && parent.childNodes[1]
             ? (parent.childNodes[1] as HTMLElement)
             : null;
-        if (parent2El && parent2El.id !== 'side-menu') {
+        if (parent2El && parent2El.classList.contains('metismenu')) {
           parent2El.classList.remove('mm-show');
         }
 
@@ -96,16 +96,28 @@ const UserSidebarContent = () => {
 
   const activeMenu = useCallback(() => {
     let matchingMenuItem = null;
-    const ul = document.getElementById('side-menu');
-    const items = ul!.getElementsByTagName('a');
-    removeActivation(items);
+    // Buscar en todos los elementos con clase 'metismenu'
+    const menuContainers = document.querySelectorAll('.metismenu');
+    const allItems: HTMLAnchorElement[] = [];
+
+    // Recolectar todos los enlaces de todos los contenedores
+    menuContainers.forEach((container) => {
+      const items = container.getElementsByTagName('a');
+      for (let i = 0; i < items.length; i++) {
+        allItems.push(items[i] as HTMLAnchorElement);
+      }
+    });
+
+    removeActivation(allItems as any);
     const pathname = window.location.pathname;
-    for (let i = 0; i < items.length; ++i) {
-      if (pathname === items[i].pathname) {
-        matchingMenuItem = items[i];
+
+    for (let i = 0; i < allItems.length; ++i) {
+      if (pathname === allItems[i].pathname) {
+        matchingMenuItem = allItems[i];
         break;
       }
     }
+
     if (matchingMenuItem) {
       activateParentDropdown(matchingMenuItem);
     }
@@ -121,7 +133,13 @@ const UserSidebarContent = () => {
   }
 
   useEffect(() => {
-    new MetisMenu('#side-menu');
+    // Inicializar MetisMenu para cada contenedor por separado
+    const menuContainers = document.querySelectorAll('.metismenu');
+    menuContainers.forEach((container, index) => {
+      if (container.id) {
+        new MetisMenu(`#${container.id}`);
+      }
+    });
     activeMenu();
   }, [activeMenu]);
 
@@ -134,14 +152,13 @@ const UserSidebarContent = () => {
     <React.Fragment>
       <SimpleBar className="h-100" ref={ref}>
         <div id="sidebar-menu">
-          <ul className="metismenu list-unstyled" id="side-menu">
+          <ul className="metismenu list-unstyled" id="principal-menu">
             <Link to="/principal">
               <li className="menu-title">Principal</li>
             </Link>
 
             <li>
               <Link to="/principal/emprendimientos">
-                {/* <i className="bx bxs-cabinet"></i> */}
                 <i className="bx bx-rocket"></i>
                 <span>{t('Ventures')}</span>
               </Link>
@@ -149,7 +166,6 @@ const UserSidebarContent = () => {
 
             <li>
               <Link to="/principal/emprendimientos/publicaciones">
-                {/* <i className="bx bxs-cabinet"></i> */}
                 <i className="bx bx-news"></i>
                 <span>{t('Publications')}</span>
               </Link>
@@ -163,7 +179,7 @@ const UserSidebarContent = () => {
             </li>
           </ul>
 
-          <ul className="metismenu list-unstyled" id="side-menu">
+          <ul className="metismenu list-unstyled" id="preferences-menu">
             <li className="menu-title">Preferencias</li>
 
             <li>
@@ -174,7 +190,7 @@ const UserSidebarContent = () => {
             </li>
           </ul>
 
-          <ul className="metismenu list-unstyled" id="side-menu">
+          <ul className="metismenu list-unstyled" id="account-menu">
             <li className="menu-title">{t('Your Account')}</li>
 
             <li>
@@ -206,7 +222,7 @@ const UserSidebarContent = () => {
             </li>
           </ul>
 
-          <ul className="metismenu list-unstyled" id="side-menu">
+          <ul className="metismenu list-unstyled" id="help-menu">
             <li className="menu-title">Ayuda</li>
 
             <li>

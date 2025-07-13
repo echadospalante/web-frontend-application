@@ -90,7 +90,7 @@ const LandingNavbar = () => {
 
         <div className="d-flex align-items-center position-relative">
           <div className="position-absolute" style={{ left: '-50px' }}>
-            <LanguageDropdown />
+            {/* <LanguageDropdown /> */}
             <ThemeDropdown />
           </div>
 

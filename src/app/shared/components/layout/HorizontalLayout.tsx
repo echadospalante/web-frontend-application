@@ -13,6 +13,7 @@ import { useAppDispatch } from '../../../config/redux/store/store.config';
 import Footer from '../footer/HorizontalFooter';
 import HorizontalHeader from '../header/HorizontalHeader';
 import Sidebar from '../sidebar/Sidebar';
+import Header from '../header/VerticalHeader';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -108,7 +109,8 @@ const HorizontalLayout = ({ children }: LayoutProps) => {
       </div>
 
       <div id="layout-wrapper">
-        <HorizontalHeader />
+        {/* <HorizontalHeader /> */}
+        <Header />
         <Sidebar />
 
         <div className="main-content">{children}</div>

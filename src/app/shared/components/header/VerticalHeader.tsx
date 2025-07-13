@@ -64,7 +64,7 @@ const Header = () => {
                 <input
                   type="text"
                   className="form-control"
-                  placeholder={t('Search') + '...'}
+                  placeholder={t('Buscar') + '...'}
                 />
                 <span className="bx bx-search-alt" />
               </div>
@@ -79,7 +79,7 @@ const Header = () => {
             >
               <DropdownToggle className="btn header-item " caret tag="button">
                 {' '}
-                {t('Mega Menu')} <i className="mdi mdi-chevron-down" />
+                {t('Enlaces Directos')} <i className="mdi mdi-chevron-down" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-megamenu">
                 <Row>
@@ -256,85 +256,7 @@ const Header = () => {
               </div>
             </div>
 
-            <LanguageDropdown />
             <ThemeDropdown />
-
-            <Dropdown
-              className="d-none d-lg-inline-block ms-1"
-              isOpen={socialDrp}
-              toggle={() => {
-                setsocialDrp(!socialDrp);
-              }}
-            >
-              <DropdownToggle
-                className="btn header-item noti-icon "
-                tag="button"
-              >
-                <i className="bx bx-customize" />
-              </DropdownToggle>
-              <DropdownMenu className="dropdown-menu-lg dropdown-menu-end">
-                <div className="px-lg-2">
-                  <Row className="no-gutters">
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src="/images/brands/github.png" alt="Github" />
-                        <span>GitHub</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img
-                          src="/images/brands/bitbucket.png"
-                          alt="bitbucket"
-                        />
-                        <span>Bitbucket</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src="/images/brands/dribbble.png" alt="dribbble" />
-                        <span>Dribbble</span>
-                      </Link>
-                    </Col>
-                  </Row>
-
-                  <Row className="no-gutters">
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src="/images/brands/dropbox.png" alt="dropbox" />
-                        <span>Dropbox</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img
-                          src="/images/brands/mail_chimp.png"
-                          alt="mail_chimp"
-                        />
-                        <span>Mail Chimp</span>
-                      </Link>
-                    </Col>
-                    <Col>
-                      <Link className="dropdown-icon-item" to="#">
-                        <img src="/images/brands/slack.png" alt="slack" />
-                        <span>Slack</span>
-                      </Link>
-                    </Col>
-                  </Row>
-                </div>
-              </DropdownMenu>
-            </Dropdown>
-
-            <div className="dropdown d-none d-lg-inline-block ms-1">
-              <button
-                type="button"
-                onClick={() => console.log('Fullscreen')}
-                className="btn header-item noti-icon "
-                data-toggle="fullscreen"
-              >
-                <i className="bx bx-fullscreen" />
-              </button>
-            </div>
 
             <NotificationDropdown />
             <ProfileMenu />
@@ -345,12 +267,12 @@ const Header = () => {
               }}
               className="dropdown d-inline-block"
             >
-              <button
+              {/* <button
                 type="button"
                 className="btn header-item noti-icon right-bar-toggle "
               >
                 <i className="bx bx-cog bx-spin" />
-              </button>
+              </button> */}
             </div>
           </div>
         </div>

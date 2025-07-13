@@ -9,29 +9,24 @@ import {
 } from 'reactstrap';
 
 const ThemeDropdown = () => {
-  // Declare a new state variable, which we'll call "menu"
   const [selectedTheme, setSelectedTheme] = useState('');
   const [menu, setMenu] = useState(false);
 
   useEffect(() => {
-    // Obtener el tema guardado o usar 'light' por defecto
     const currentTheme = localStorage.getItem('APP_THEME') || 'light';
     setSelectedTheme(currentTheme);
 
-    // Aplicar el tema al cargar la página
     applyTheme(currentTheme);
   }, []);
 
   const applyTheme = (theme: string) => {
     if (theme === 'dark') {
-      // Habilitar dark mode con configuración personalizada
       DarkReader.enable({
         brightness: 100,
         contrast: 90,
         sepia: 10,
       });
     } else {
-      // Deshabilitar dark mode
       DarkReader.disable();
     }
   };
@@ -49,8 +44,8 @@ const ThemeDropdown = () => {
   return (
     <>
       <Dropdown isOpen={menu} toggle={toggle} className="d-inline-block">
-        <DropdownToggle className="btn header-item " tag="button">
-          <i className="mdi mdi-theme-light-dark"></i>
+        <DropdownToggle className="btn header-item" tag="button">
+          <i className="mdi mdi-theme-light-dark text-success fs-2"></i>
         </DropdownToggle>
         <DropdownMenu className="language-switch dropdown-menu-end">
           {[

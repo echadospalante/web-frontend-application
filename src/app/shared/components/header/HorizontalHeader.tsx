@@ -240,7 +240,7 @@ const Header = () => {
                 </form>
               </div>
             </div>
-            <LanguageDropdown />
+            {/* <LanguageDropdown /> */}
             <ThemeDropdown />
             <NotificationDropdown />
             <ProfileMenu />

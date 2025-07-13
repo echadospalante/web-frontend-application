@@ -1,15 +1,14 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-
-import { RootState } from '../../store/store.config';
 import {
-  LayoutType,
   LayoutModeType,
+  LayoutType,
   LayoutWidthType,
-  LeftSideBarThemeType,
   LeftBarThemeImageType,
+  LeftSideBarThemeType,
   LeftSidebarType,
   TopBarThemeType,
 } from '../../../../modules/common/domain/layout.interfaces';
+import { RootState } from '../../store/store.config';
 
 export interface LayoutState {
   layoutType: LayoutType;
@@ -84,7 +83,7 @@ export const layoutSlice = createSlice({
     toggleRightSidebar: (state) => {
       state.showRightSidebar = !state.showRightSidebar;
     },
-    showSidebar: (state) => {
+    toggleSidebar: (state) => {
       state.showSidebar = !state.showSidebar;
     },
     toggleLeftMenu: (state) => {
@@ -103,7 +102,7 @@ export const {
   changeSidebarType,
   changeTopBarTheme,
   toggleRightSidebar,
-  showSidebar,
+  toggleSidebar,
   toggleLeftMenu,
 } = layoutSlice.actions;
 
