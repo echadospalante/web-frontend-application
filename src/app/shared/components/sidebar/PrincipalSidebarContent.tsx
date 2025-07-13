@@ -203,7 +203,7 @@ const UserSidebarContent = () => {
             <li>
               <Link to="/principal/cuenta/suscripciones">
                 <i className="mdi mdi-account-group-outline"></i>
-                <span>{t('Subscriptions')}</span>
+                <span>{t('My Subscriptions')}</span>
               </Link>
             </li>
 

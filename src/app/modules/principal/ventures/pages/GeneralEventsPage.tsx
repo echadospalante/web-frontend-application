@@ -754,7 +754,7 @@ const GeneralEventsPage = () => {
       )}
       <div className="page-content">
         <Container fluid={true}>
-          <Breadcrumb title="Cotizaciones" breadcrumbItem="Calendario" />
+          <Breadcrumb title="Eventos" breadcrumbItem="Calendario" />
           {/* {error && (
             <div className="alert alert-danger text-center" role="alert">
               Error al cargar los eventos, por favor intente de nuevo

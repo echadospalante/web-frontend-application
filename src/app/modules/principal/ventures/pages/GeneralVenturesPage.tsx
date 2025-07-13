@@ -15,6 +15,7 @@ import VenturesMap from '../../../../shared/components/map/VenturesMap';
 import VenturesRightSidebar from '../../../../shared/components/rightbar/VenturesRightSidebar';
 import useFetchVentures from '../hooks/useFetchVentures';
 import useVenturesRightSidebar from '../hooks/useVenturesRightSidebar';
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 
 const VenturesFeedPage = () => {
   document.title = "Feed de Emprendimientos | Echadospa'lante";
@@ -72,6 +73,7 @@ const VenturesFeedPage = () => {
       <div className="page-content">
         <Container fluid>
           <Row>
+            <Breadcrumb title="Emprendimientos" breadcrumbItem="Listado" />
             <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
               <Card className="p-4">
                 <div className="d-flex justify-content-between align-items-center">

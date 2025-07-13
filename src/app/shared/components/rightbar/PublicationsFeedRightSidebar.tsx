@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Button, Card, CardBody, Collapse, Label } from 'reactstrap';
 import SimpleBar from 'simplebar-react';
@@ -14,6 +14,7 @@ import HighlightedPublicationsModal from '../modal/HighlightedPublicationsModal'
 const PublicationsFeedRightSidebar: React.FC = () => {
   const { setSearch, search, showFilters, toggleShowFilters } =
     usePublicationsRightSidebar();
+  const [scrollY, setScrollY] = useState(0);
   const {
     error,
     refetchHighlightedPublications,
@@ -25,6 +26,16 @@ const PublicationsFeedRightSidebar: React.FC = () => {
   const [showHighlighted, setShowHighlighted] = useState<
     'latest' | 'trending' | null
   >(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -42,7 +53,7 @@ const PublicationsFeedRightSidebar: React.FC = () => {
       <div
         style={{
           position: 'fixed',
-          top: '95px',
+          top: scrollY > 100 ? '95px' : '140px',
           right: '30px',
           zIndex: 1000,
         }}

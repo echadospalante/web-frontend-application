@@ -1,3 +1,5 @@
+import React, { useEffect, useState } from 'react';
+
 import {
   Button,
   ButtonGroup,
@@ -12,7 +14,6 @@ import { VenturesViewMode } from '../../../config/redux/reducers/principal/ventu
 import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
 import VentureLocationFilters from '../filters/VentureLocationFilters';
 import VentureCategoriesList from '../list/VentureCategoriesList';
-import React from 'react';
 
 export interface VenturesRightSidebarProps {
   multipleMunicipalities: boolean;
@@ -29,12 +30,23 @@ const VenturesRightSidebar: React.FC<VenturesRightSidebarProps> = ({
     showFilters,
     toggleShowFilters,
   } = useVenturesRightSidebar();
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <div
       style={{
         position: 'fixed',
-        top: '95px',
+        top: scrollY > 100 ? '95px' : '140px',
         right: '30px',
         zIndex: 1000,
       }}

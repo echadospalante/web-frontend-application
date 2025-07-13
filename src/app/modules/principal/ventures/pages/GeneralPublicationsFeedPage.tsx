@@ -8,6 +8,7 @@ import PublicationsFeedRightSidebar from '../../../../shared/components/rightbar
 import useFetchPublications from '../hooks/useFetchPublications';
 import GeneralPublicationsHeader from '../../../../shared/components/header/GeneralPublicationsHeader';
 import VenturePublicationsHeader from '../../../../shared/components/header/VenturePublicationsHeader';
+import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 
 const GeneralPublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
@@ -18,9 +19,10 @@ const GeneralPublicationsFeedPage = () => {
 
   return (
     <Fragment>
-      <div className="full-page-content">
+      <div className="page-content">
+        <Breadcrumb title="Emprendimientos" breadcrumbItem="Publicaciones" />
         <Container fluid>
-          <Row>
+          <Row className="mt-6">
             <Col lg={ventureSlug ? 12 : 9}>
               {ventureSlug ? (
                 <VenturePublicationsHeader
