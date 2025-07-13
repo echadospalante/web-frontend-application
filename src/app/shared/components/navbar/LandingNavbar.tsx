@@ -6,6 +6,7 @@ import LanguageDropdown from '../dropdown/LanguageDropdown';
 import { useTranslation } from 'react-i18next';
 import useLogin from '../../../modules/auth/hooks/useLogin';
 import { GoogleLogin } from '@react-oauth/google';
+import ThemeDropdown from '../dropdown/ThemeDropdown';
 
 const LandingNavbar = () => {
   const { loginWithCredentials } = useLogin();
@@ -90,6 +91,7 @@ const LandingNavbar = () => {
         <div className="d-flex align-items-center position-relative">
           <div className="position-absolute" style={{ left: '-50px' }}>
             <LanguageDropdown />
+            <ThemeDropdown />
           </div>
 
           <div>

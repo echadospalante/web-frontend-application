@@ -208,7 +208,7 @@ const PublicationCard: React.FC<PublicationCardProps> = ({ publication }) => {
                 <div className="text-center">
                   <Button
                     color="link"
-                    className="text-primary p-0"
+                    className="text-success p-0"
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();

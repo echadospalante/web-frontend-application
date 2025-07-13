@@ -62,9 +62,9 @@ const AdminVenturesTable = () => {
               </h5>
               <div className="flex-shrink-0 d-flex flex-row align-items-center">
                 <Button
-                  type="button"
+                  color="success"
                   onClick={fetchVentureCategories}
-                  className="btn btn-light mx-2 mb-2"
+                  className="mx-2 mb-2 btn btn-success"
                 >
                   <i className="mdi mdi-refresh"></i>
                 </Button>

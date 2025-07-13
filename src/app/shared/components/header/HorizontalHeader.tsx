@@ -10,6 +10,7 @@ import useAuthentication from '../../../modules/auth/hooks/useAuthentication';
 import LanguageDropdown from '../dropdown/LanguageDropdown';
 import NotificationDropdown from '../dropdown/NotificationDropdown';
 import ProfileMenu from '../menu/ProfileMenu';
+import ThemeDropdown from '../dropdown/ThemeDropdown';
 
 // type HeaderProps = {
 //   toggleLeftmenu: (arg0: boolean) => void;
@@ -239,13 +240,10 @@ const Header = () => {
                 </form>
               </div>
             </div>
-
             <LanguageDropdown />
-
+            <ThemeDropdown />
             <NotificationDropdown />
-
             <ProfileMenu />
-
             {/* <div className="dropdown d-inline-block">
               <button
                 onClick={() => {

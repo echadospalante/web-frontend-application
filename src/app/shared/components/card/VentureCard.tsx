@@ -74,7 +74,7 @@ const VentureCard = ({
                 <img
                   src={venture.coverPhoto}
                   className="w-100 bg-light text-danger font-size-16 rounded-2"
-                 alt={venture.name}
+                  alt={venture.name}
                 />
               </Col>
 
@@ -105,7 +105,7 @@ const VentureCard = ({
                 <div className="mb-3">
                   <div className="d-flex align-items-center justify-content-between">
                     <div className="d-flex align-items-center text-muted">
-                      <i className="mdi mdi-map-marker me-2 text-primary"></i>
+                      <i className="mdi mdi-map-marker me-2 text-success"></i>
                       <span className="me-1 font-size-10">
                         {parseLocation(
                           venture.location?.description ||
@@ -115,7 +115,7 @@ const VentureCard = ({
                     </div>
                     <Button
                       size="sm"
-                      color="outline-primary"
+                      color="outline-success"
                       className="d-flex align-items-center"
                       onClick={handleMapClick}
                     >
@@ -131,42 +131,41 @@ const VentureCard = ({
                 />
                 <ul className="list-inline my-2">
                   <TruncatedItems
-                      items={venture.categories.map((category) => (
-                          <li
-                              key={category.id}
-                              className="list-inline-item my-1"
-                              style={{ cursor: 'pointer', marginRight: '3px' }}
-                          >
-                            <UncontrolledTooltip
-                                placement="top"
-                                target={`category-${category.id}`}
-                            >
-                              <p>{category.description}</p>
-                            </UncontrolledTooltip>
-                            <span
-                                id={`category-${category.id}`}
-                                className="p-1"
-                                style={{
-                                  backgroundColor: textToRGB(category.name),
-                                  color: 'white',
-                                  fontSize: '12px',
-                                  borderRadius: '5px',
-                                }}
-                            >
-                        {category.name}
-                      </span>
-                          </li>
-                      ))}
-                      maxItems={5}
-                      all={'todas'}
+                    items={venture.categories.map((category) => (
+                      <li
+                        key={category.id}
+                        className="list-inline-item my-1"
+                        style={{ cursor: 'pointer', marginRight: '3px' }}
+                      >
+                        <UncontrolledTooltip
+                          placement="top"
+                          target={`category-${category.id}`}
+                        >
+                          <p>{category.description}</p>
+                        </UncontrolledTooltip>
+                        <span
+                          id={`category-${category.id}`}
+                          className="p-1"
+                          style={{
+                            backgroundColor: textToRGB(category.name),
+                            color: 'white',
+                            fontSize: '12px',
+                            borderRadius: '5px',
+                          }}
+                        >
+                          {category.name}
+                        </span>
+                      </li>
+                    ))}
+                    maxItems={5}
+                    all={'todas'}
                   />
                 </ul>
               </Col>
-
             </Row>
           </CardBody>
 
-          {showActive &&
+          {showActive && (
             <div className="px-4 mb-2">
               <ul className="list-inline mb-0">
                 <div className="mt-0 d-flex justify-content-between">
@@ -182,7 +181,7 @@ const VentureCard = ({
                 </div>
               </ul>
             </div>
-          }
+          )}
 
           {showFooter && (
             <div className="border-top bg-light">

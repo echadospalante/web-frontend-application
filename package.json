@@ -34,6 +34,7 @@
     "chart.js": "^4.4.3",
     "classnames": "^2.5.1",
     "d3": "^7.9.0",
+    "darkreader": "^4.9.109",
     "draft-js": "^0.11.7",
     "echadospalante-domain": "^20.26.0",
     "echarts": "^5.5.0",

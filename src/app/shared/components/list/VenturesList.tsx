@@ -1,11 +1,12 @@
-import React from "react";
-import useFetchVentures from "../../../modules/principal/ventures/hooks/useFetchVentures";
-import { Venture } from "echadospalante-domain";
-import { Col, Row } from "reactstrap";
-import VentureCard from "../card/VentureCard";
+import React from 'react';
+
+import { Venture } from 'echadospalante-domain';
+import { Col, Row } from 'reactstrap';
+
+import VentureCard from '../card/VentureCard';
 
 export interface VenturesListProps {
-  ventures: Venture[]
+  ventures: Venture[];
 }
 
 const VenturesList: React.FC<VenturesListProps> = ({ ventures }) => {
@@ -35,7 +36,6 @@ const VenturesList: React.FC<VenturesListProps> = ({ ventures }) => {
       </Col>
     </Row>
   );
-
 };
 
 export default VenturesList;

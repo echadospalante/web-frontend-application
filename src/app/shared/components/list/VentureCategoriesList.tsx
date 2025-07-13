@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button, Label } from 'reactstrap';
+import { Button, Input, Label } from 'reactstrap';
 
 import useVentureCategoriesStats from '../../../modules/admin/general/hooks/useVentureCategoriesStats';
 import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
@@ -72,7 +72,14 @@ const VentureCategoriesList: React.FC<VentureCategoriesListProps> = ({
           .map((item, index) => (
             <li key={index}>
               <span className="text-muted py-2 d-block">
-                <input
+                <Input
+                  style={{
+                    backgroundColor: 'green',
+                    borderColor: 'green',
+                    width: '16px',
+                    height: '16px',
+                  }}
+                  color="success"
                   type="checkbox"
                   name="venture-categories"
                   onChange={(e) => {
@@ -100,7 +107,7 @@ const VentureCategoriesList: React.FC<VentureCategoriesListProps> = ({
         <Button
           size="sm"
           className="btn btn-outline my-0"
-          color="primary"
+          color="success"
           onClick={() => setDisplayAll(!displayAll)}
         >
           {displayAll ? 'Mostrar menos' : 'Mostrar todas'}

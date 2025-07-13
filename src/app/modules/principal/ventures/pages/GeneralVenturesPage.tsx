@@ -80,7 +80,7 @@ const VenturesFeedPage = () => {
                     Emprendimientos
                   </h3>
 
-                  <Button color="primary" className="fs-5">
+                  <Button color="success" className="fs-5">
                     <i className="mdi mdi-refresh"></i>
                   </Button>
                 </div>
@@ -121,12 +121,14 @@ const VenturesFeedPage = () => {
             </Col>
 
             {isError && (
-              <AlertWithReload
-                message={
-                  'Error al cargar los emprendimientos. Por favor, intente nuevamente.'
-                }
-                onReload={retryFetch}
-              />
+              <Container>
+                <AlertWithReload
+                  message={
+                    'Error al cargar los emprendimientos. Por favor, intente nuevamente.'
+                  }
+                  onReload={retryFetch}
+                />
+              </Container>
             )}
 
             <Col lg={3} md={0} sm={0}>

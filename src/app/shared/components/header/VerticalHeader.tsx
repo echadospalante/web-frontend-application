@@ -9,6 +9,7 @@ import { useAppDispatch } from '../../../config/redux/store/store.config';
 import LanguageDropdown from '../dropdown/LanguageDropdown';
 import NotificationDropdown from '../dropdown/NotificationDropdown';
 import ProfileMenu from '../menu/ProfileMenu';
+import ThemeDropdown from '../dropdown/ThemeDropdown';
 
 const Header = () => {
   const { t } = useTranslation();
@@ -256,6 +257,7 @@ const Header = () => {
             </div>
 
             <LanguageDropdown />
+            <ThemeDropdown />
 
             <Dropdown
               className="d-none d-lg-inline-block ms-1"

@@ -1,7 +1,12 @@
 import axios from 'axios';
-import { PaginatedBody, VenturePublication } from 'echadospalante-domain';
+import {
+  PaginatedBody,
+  Venture,
+  VenturePublication,
+} from 'echadospalante-domain';
 
 import { PublicationFilter } from '../../../../config/redux/reducers/principal/publications.reducer';
+import { tr } from '@faker-js/faker';
 
 export default class PublicationsApi {
   private static readonly BASE_URL = `${
@@ -37,6 +42,29 @@ export default class PublicationsApi {
     return axios
       .get<PaginatedBody<VenturePublication>>(
         `${PublicationsApi.BASE_URL}/${ventureSlug}/publications`,
+        {
+          withCredentials: true,
+          params,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  public static async fetchHighlightedPublications(
+    filters: PublicationFilter,
+  ): Promise<{ trending: VenturePublication[]; latest: VenturePublication[] }> {
+    const { categoriesIds, search, dateRange } = filters;
+    const params = new URLSearchParams();
+    search && params.set('search', search);
+    categoriesIds &&
+      categoriesIds.length > 0 &&
+      params.set('categoriesIds', categoriesIds.join(','));
+    dateRange && dateRange.from && params.set('from', dateRange.from);
+    dateRange && dateRange.to && params.set('to', dateRange.to);
+
+    return axios
+      .get<{ trending: VenturePublication[]; latest: VenturePublication[] }>(
+        `${PublicationsApi.BASE_URL}/_/publications/highlighted`,
         {
           withCredentials: true,
           params,

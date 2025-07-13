@@ -1,129 +1,211 @@
-import { Link } from 'react-router-dom';
-import { Card, CardBody } from 'reactstrap';
+import React, { useState } from 'react';
+
+import { Button, Card, CardBody, Collapse, Label } from 'reactstrap';
 import SimpleBar from 'simplebar-react';
 
-import { popularPosts } from '../../data/feed/feed';
-import ventureCategories from '../../data/misc/venture-categories';
-import useFetchPublications from '../../../modules/principal/ventures/hooks/useFetchPublications';
-import { ContentType } from 'echadospalante-domain';
+import useHighlightedPublications from '../../../modules/principal/ventures/hooks/useHighlightedPublications';
+import usePublicationsRightSidebar from '../../../modules/principal/ventures/hooks/usePublicationsRightSidebar';
+import AlertWithReload from '../alert/AlertWithReload';
+import LatestPublicationCard from '../card/LatestPublicationCard';
+import TrendingPublicationCard from '../card/TrendingPublicationCard';
+import VentureCategoriesList from '../list/VentureCategoriesList';
+import HighlightedPublicationsModal from '../modal/HighlightedPublicationsModal';
 
-const PublicationsFeedRightSidebar = () => {
-  const { isError, isLoading, items } = useFetchPublications();
+const PublicationsFeedRightSidebar: React.FC = () => {
+  const { setSearch, search, showFilters, toggleShowFilters } =
+    usePublicationsRightSidebar();
+  const {
+    error,
+    refetchHighlightedPublications,
+    isLoading,
+    isError,
+    highlightedPublications,
+  } = useHighlightedPublications();
+
+  const [showHighlighted, setShowHighlighted] = useState<
+    'latest' | 'trending' | null
+  >(null);
+
   return (
-    <div
-      style={{
-        position: 'fixed',
-        top: '95px',
-        right: '30px',
-      }}
-    >
-      <SimpleBar
+    <>
+      {highlightedPublications && showHighlighted !== null ? (
+        <HighlightedPublicationsModal
+          items={highlightedPublications[showHighlighted]}
+          type={showHighlighted}
+          display={true}
+          toggle={() => setShowHighlighted(null)}
+        />
+      ) : (
+        <></>
+      )}
+
+      <div
         style={{
-          maxHeight: '90vh',
-          overflowY: 'auto',
-          width: '370px',
+          position: 'fixed',
+          top: '95px',
+          right: '30px',
+          zIndex: 1000,
         }}
       >
-        <Card>
-          <CardBody className="p-4">
-            <div className="search-box">
-              <p className="text-muted">Busca por coincidencias</p>
-              <div className="position-relative">
-                <input
-                  type="text"
-                  className="form-control rounded bg-light border-light"
-                  placeholder="Buscar..."
-                />
-                <i className="mdi mdi-magnify search-icon"></i>
-              </div>
-            </div>
+        {!showFilters && (
+          <Button
+            color="success"
+            size="sm"
+            onClick={toggleShowFilters}
+            style={{
+              borderRadius: '50%',
+              width: '50px',
+              height: '50px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+              marginLeft: 'auto',
+              marginBottom: '10px',
+            }}
+            title="Expandir filtros"
+          >
+            <i
+              className="mdi mdi-filter-variant"
+              style={{ fontSize: '20px' }}
+            ></i>
+          </Button>
+        )}
 
-            <hr className="my-4" />
-
-            <div>
-              <p className="text-muted">Categorías</p>
-
-              <ul className="list-unstyled fw-medium">
-                {(ventureCategories || []).slice(0, 5).map((item, index) => (
-                  <li key={index}>
-                    <Link to="#" className="text-muted py-2 d-block">
-                      {/* <i className={`${item.icon} me-1`}></i>  */}
-                      <i className={`mdi mdi-chevron-right me-1`}></i>
-                      {item.name}
-                      {/* {item.badge && (
-                        <span
-                          className={`badge ${item.badge.color} rounded-pill float-end ms-1 font-size-12`}
-                        >
-                          {item.badge.text}
-                        </span>
-                      )} */}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <hr className="my-4" />
-
-            {/* <div>
-              <p className="text-muted">Historiales</p>
-
-              <ul className="list-unstyled fw-medium">
-                {(archiveData || []).map((item, index) => (
-                  <li key={index}>
-                    <Link to="#" className="text-muted py-2 d-block">
-                      <i className="mdi mdi-chevron-right me-1"></i> {item.year}{" "}
-                      <span className="badge badge-soft-success rounded-pill float-end ms-1 font-size-12">
-                        {item.badgeCount}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div> */}
-
-            <div>
-              <p className="text-muted mb-2">Publicaciones Populares</p>
-
-              <div className="list-group list-group-flush">
-                {items.slice(0, 3).map((item, index) => (
-                  <Link
-                    to="#"
-                    className="list-group-item text-muted py-3 px-2"
-                    key={index}
+        <Collapse isOpen={showFilters}>
+          <SimpleBar
+            style={{
+              maxHeight: '90vh',
+              overflowY: 'auto',
+              width: '370px',
+            }}
+          >
+            <Card>
+              <CardBody className="p-4">
+                <div className="d-flex justify-content-between align-items-center mb-3">
+                  <h5 className="mb-0">Filtros de búsqueda</h5>
+                  {/* <Button
+                    color="light"
+                    size="sm"
+                    onClick={toggleShowFilters}
+                    style={{
+                      borderRadius: '50%',
+                      width: '32px',
+                      height: '32px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      padding: 0,
+                    }}
+                    title="Ocultar filtros"
                   >
-                    <div className="d-flex align-items-center">
-                      <div className="me-3">
-                        <img
-                          src={
-                            item.contents.find(
-                              (c) => c.type === ContentType.IMAGE,
-                            )?.content || '/epl.png'
-                          }
-                          style={{ width: '50px', height: '50px' }}
-                          alt=""
-                          className="avatar-md d-block rounded"
-                        />
-                      </div>
-                      <div className="flex-grow-1 overflow-hidden">
-                        <h5 className="font-size-13 text-truncate">
-                          {item.description.length > 50
-                            ? `${item.description.substring(0, 50)}...`
-                            : item.description}
-                        </h5>
-                        <p className="mb-0 text-truncate">
-                          {item.createdAt.split('T')[0]}
-                        </p>
+                    <i
+                      className="mdi mdi-chevron-right"
+                      style={{ fontSize: '16px' }}
+                    ></i>
+                  </Button> */}
+                </div>
+
+                <div className="search-box">
+                  <Label htmlFor="ventures-search">
+                    Busca por coincidencias
+                  </Label>
+                  <div className="position-relative">
+                    <input
+                      id="ventures-search"
+                      type="text"
+                      className="form-control rounded border-light"
+                      placeholder="Busca aquí..."
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                    />
+                    <i className="mdi mdi-magnify search-icon"></i>
+                  </div>
+                </div>
+
+                <hr className="my-3" />
+
+                <VentureCategoriesList maxDisplayed={5} />
+
+                <div>
+                  {isError && (
+                    <AlertWithReload
+                      message="Ha habido un error al consultar las publicaciones, por favor intente nuevamente."
+                      onReload={refetchHighlightedPublications}
+                    />
+                  )}
+
+                  {isLoading || !highlightedPublications ? (
+                    <div className="d-flex justify-content-center">
+                      <div
+                        className="spinner-border text-primary"
+                        role="status"
+                      >
+                        <span className="visually-hidden">Cargando...</span>
                       </div>
                     </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </CardBody>
-        </Card>
-      </SimpleBar>
-    </div>
+                  ) : (
+                    <div>
+                      <div>
+                        <Label htmlFor="categories" className="mt-3">
+                          Publicaciones Populares
+                        </Label>
+
+                        <div className="list-group list-group-flush">
+                          {highlightedPublications.trending
+                            .slice(0, 3)
+                            .map((item) => (
+                              <TrendingPublicationCard
+                                key={item.id}
+                                publication={item}
+                              />
+                            ))}
+                        </div>
+
+                        <Button
+                          color="success"
+                          size="sm"
+                          className="btn btn-outline my-0"
+                          onClick={() => setShowHighlighted('trending')}
+                        >
+                          Ver más
+                        </Button>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="categories" className="mt-3">
+                          Últimas Publicaciones
+                        </Label>
+
+                        <div className="list-group list-group-flush">
+                          {highlightedPublications.latest
+                            .slice(0, 3)
+                            .map((item) => (
+                              <LatestPublicationCard
+                                key={item.id}
+                                publication={item}
+                              />
+                            ))}
+                        </div>
+
+                        <Button
+                          color="success"
+                          size="sm"
+                          className="btn btn-outline my-0"
+                          onClick={() => setShowHighlighted('latest')}
+                        >
+                          Ver más
+                        </Button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </CardBody>
+            </Card>
+          </SimpleBar>
+        </Collapse>
+      </div>
+    </>
   );
 };
 

@@ -27,11 +27,11 @@ const TruncatedText: React.FC<TruncatedTextProps> = ({
     expanded || !isTruncated ? text : text.slice(0, maxChars) + '...';
 
   return (
-    <p  className={textClassName}>
+    <p className={textClassName}>
       {displayText}{' '}
       {isTruncated && (
         <span
-          className="text-primary fw-bold"
+          className="text-success fw-bold"
           role="button"
           onClick={toggleExpanded}
         >

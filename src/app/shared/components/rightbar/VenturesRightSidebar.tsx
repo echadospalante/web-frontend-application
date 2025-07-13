@@ -41,7 +41,7 @@ const VenturesRightSidebar: React.FC<VenturesRightSidebarProps> = ({
     >
       {!showFilters && (
         <Button
-          color="primary"
+          color="success"
           size="sm"
           onClick={toggleShowFilters}
           style={{
@@ -123,7 +123,7 @@ const VenturesRightSidebar: React.FC<VenturesRightSidebarProps> = ({
                       className="w-100"
                       color={
                         viewMode === VenturesViewMode.feed
-                          ? 'primary'
+                          ? 'success'
                           : 'secondary'
                       }
                       onClick={() => setViewMode(VenturesViewMode.feed)}
@@ -138,7 +138,7 @@ const VenturesRightSidebar: React.FC<VenturesRightSidebarProps> = ({
                       className="w-100"
                       color={
                         viewMode === VenturesViewMode.map
-                          ? 'primary'
+                          ? 'success'
                           : 'secondary'
                       }
                       onClick={() => setViewMode(VenturesViewMode.map)}

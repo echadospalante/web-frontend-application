@@ -32,6 +32,13 @@
   }
 }
 
+.highlighted-publication__card {
+  &:hover {
+    cursor: pointer;
+    background-color: #dbe4fa !important;
+  }
+}
+
 .cursor-pointer {
   cursor: pointer;
 }

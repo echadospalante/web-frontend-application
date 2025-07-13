@@ -6,6 +6,8 @@ import {
   FacebookShareButton,
   RedditIcon,
   RedditShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
   TelegramIcon,
   TelegramShareButton,
   TwitterIcon,
@@ -123,6 +125,13 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                     <RedditIcon size={40} round />
                   </RedditShareButton>
 
+                  <LinkedinShareButton
+                    url={window.location.href}
+                    title={venture.name}
+                  >
+                    <LinkedinIcon size={40} round />
+                  </LinkedinShareButton>
+
                   <WhatsappShareButton
                     url={window.location.href}
                     title={venture.name}
@@ -211,7 +220,11 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                   {/*<Users size={20} className="text-primary mb-1" />*/}
                   <i className="mdi mdi-account-multiple-outline me-1 fs-1" />
                   <div className="fw-bold">{venture.subscriptionsCount}</div>
-                  <small className="text-muted">Suscriptores</small>
+                  <small className="text-muted">
+                    {venture.subscriptionsCount === 1
+                      ? 'Suscriptor'
+                      : 'Suscriptores'}
+                  </small>
                 </div>
               </div>
               <div className="col-md-4">

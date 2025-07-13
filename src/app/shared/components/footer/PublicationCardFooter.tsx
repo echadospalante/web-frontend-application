@@ -14,22 +14,22 @@ const PublicationCardFooter: React.FC<PublicationCardFooterProps> = ({ publicati
     <div className="d-flex justify-content-between align-items-center">
       <div>
         <Link
-          color="primary"
-          className="me-2 btn btn-outline-primary"
+          color="info"
+          className="me-2 btn btn-outline-info"
           to={`/principal/emprendimientos/publicaciones/${publication.id}#nuevo-comentario`}
         >
           <i className="mdi mdi-comment-plus-outline me-1"></i>
           Comentar
         </Link>
       </div>
-      <div>
-        <span className="text-muted me-3">
-          <i className="mdi mdi-party-popper me-1"></i>
+      <div className="d-flex align-items-center gap-3">
+        <span className="text-muted me-3 d-flex align-items-center">
+          <i className="mdi mdi-party-popper text-primary fs-3 me-1"></i>
           {publication.clapsCount}{' '}
           {publication.clapsCount === 1 ? 'Aplauso' : 'Aplausos'}
         </span>
-        <span className="text-muted">
-          <i className="bx bx-comment-dots me-1"></i>
+        <span className="text-muted d-flex align-items-center">
+          <i className="bx bx-comment-dots text-info fs-3 me-1"></i>
           {publication.commentsCount}{' '}
           {publication.commentsCount === 1 ? 'Comentario' : 'Comentarios'}
         </span>

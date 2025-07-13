@@ -21,6 +21,7 @@ export interface PublicationFilter {
 
 export interface PublicationsState {
   filters: PublicationFilter;
+  showFilters: boolean;
   items: VenturePublication[];
   total: number;
   detail: VenturePublication | null;
@@ -36,6 +37,7 @@ const initialState: PublicationsState = {
     categoriesIds: [],
   },
   items: [],
+  showFilters: true,
   total: 0,
   detail: null,
 };
@@ -114,6 +116,26 @@ export const publicationsSlice = createSlice({
         state.detail.clapsCount -= 1;
       }
     },
+    toggleShowPublicationFilters: (state) => {
+      state.showFilters = !state.showFilters;
+    },
+    setPublicationsSkip: (state, action: PayloadAction<number>) => {
+      state.filters.pagination.skip = action.payload;
+    },
+    setPublicationsSearch: (state, action: PayloadAction<string>) => {
+      state.filters.search = action.payload;
+      state.filters.pagination.skip = 0;
+    },
+    setPublicationsCategoriesIds: (state, action: PayloadAction<string[]>) => {
+      state.filters.categoriesIds = action.payload;
+      state.filters.pagination.skip = 0;
+    },
+    setPublicationsFilters: (
+      state,
+      action: PayloadAction<PublicationFilter>,
+    ) => {
+      state.filters = action.payload;
+    },
   },
 });
 
@@ -129,8 +151,14 @@ export const {
   deletePublicationComment,
   addPublicationClap,
   deletePublicationClap,
+  toggleShowPublicationFilters,
+  setPublicationsFilters,
+  setPublicationsSkip,
+  setPublicationsSearch,
+  setPublicationsCategoriesIds,
 } = publicationsSlice.actions;
 
-export const selectPublications = (state: RootState) => state.principal.publications;
+export const selectPublications = (state: RootState) =>
+  state.principal.publications;
 
 export default publicationsSlice.reducer;

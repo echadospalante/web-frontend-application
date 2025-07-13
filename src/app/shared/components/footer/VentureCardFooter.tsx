@@ -52,7 +52,7 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
                 id={`publications-${venture.id}`}
                 to={`/principal/emprendimientos/${venture.id}/publicaciones`}
               >
-                <i className="text-primary mdi mdi-bullhorn-outline fs-4 d-block mb-1" />
+                <i className="text-success mdi mdi-bullhorn-outline fs-4 d-block mb-1" />
                 <div className="fw-semibold text-dark">
                   {data.publicationsCount}
                 </div>
@@ -78,7 +78,7 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
                 id={`comments-${venture.id}`}
                 to={`/principal/emprendimientos/${venture.id}/eventos`}
               >
-                <i className="text-primary mdi mdi-calendar-multiselect fs-4 d-block mb-1"></i>
+                <i className="text-success mdi mdi-calendar-multiselect fs-4 d-block mb-1"></i>
                 <div className="fw-semibold text-dark">{data.eventsCount}</div>
                 <small className="text-muted">Eventos</small>
                 <UncontrolledTooltip
@@ -100,8 +100,10 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
               className="flex-fill border-start border-end"
               id={`events-${venture.id}`}
             >
-              <i className="text-primary mdi mdi-account-group-outline fs-4 d-block mb-1"></i>
-              <div className="fw-semibold text-dark">{data.clapsCount}</div>
+              <i className="text-success mdi mdi-account-group-outline fs-4 d-block mb-1"></i>
+              <div className="fw-semibold text-dark">
+                {venture.subscriptionsCount}
+              </div>
               <small className="text-muted">
                 {data.clapsCount === 1 ? 'Suscriptor' : 'Suscriptores'}
               </small>
@@ -111,7 +113,7 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
               className="flex-fill border-start border-end"
               id={`events-${venture.id}`}
             >
-              <i className="text-primary mdi mdi-hand-heart-outline fs-4 d-block mb-1"></i>
+              <i className="text-success mdi mdi-hand-heart-outline fs-4 d-block mb-1"></i>
               <div className="fw-semibold text-dark">{data.clapsCount}</div>
               <small className="text-muted">
                 {data.clapsCount === 1 ? 'Patrocinio' : 'Patrocinios'}
@@ -119,7 +121,7 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
             </div>*/}
 
             <div className="flex-fill" id={`sponsors-${venture.id}`}>
-              <i className="text-primary mdi mdi-hand-heart-outline fs-4 d-block mb-1"></i>
+              <i className="text-success mdi mdi-hand-heart-outline fs-4 d-block mb-1"></i>
               <div className="fw-semibold text-dark">{data.commentsCount}</div>
               <small className="text-muted">
                 {data.clapsCount === 1 ? 'Patrocinio' : 'Patrocinios'}
@@ -130,7 +132,7 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
               className="flex-fill border-start border-end"
               id={`events-${venture.id}`}
             >
-              <i className="text-primary mdi mdi-thumb-up-outline fs-4 d-block mb-1"></i>
+              <i className="text-success mdi mdi-thumb-up-outline fs-4 d-block mb-1"></i>
               <div className="fw-semibold text-dark">{data.clapsCount}</div>
               <small className="text-muted">
                 {data.clapsCount === 1 ? 'Aplauso' : 'Aplausos'}
@@ -138,7 +140,7 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
             </div>
 
             <div className="flex-fill" id={`comments-${venture.id}`}>
-              <i className="text-primary mdi mdi-comment-outline fs-4 d-block mb-1"></i>
+              <i className="text-success mdi mdi-comment-outline fs-4 d-block mb-1"></i>
               <div className="fw-semibold text-dark">{data.commentsCount}</div>
               <small className="text-muted">Comentarios</small>
             </div>*/}
