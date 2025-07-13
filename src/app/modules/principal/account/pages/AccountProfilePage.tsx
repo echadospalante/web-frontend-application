@@ -2,21 +2,12 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import {
-  Card,
-  CardBody,
-  CardTitle,
-  Col,
-  Container,
-  Row,
-  Table,
-} from 'reactstrap';
+import { Card, CardBody, CardTitle, Col, Container, Row } from 'reactstrap';
+
 import { selectAuthentication } from '../../../../config/redux/reducers/auth/auth.reducer';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
-import VentureCategoryWidget from '../../../../shared/components/widgets/VentureCategoryWidget';
-import useUserContactInfo from '../hooks/useUserContactInfo';
-import AppSpinner from '../../../../shared/components/loader/Spinner';
 import UserContactCard from '../../../../shared/components/card/UserContactCard';
+import VentureCategoryWidget from '../../../../shared/components/widgets/VentureCategoryWidget';
 
 const AccountProfilePage = () => {
   document.title = "Perfil de usuario | EchadosPa'lante";

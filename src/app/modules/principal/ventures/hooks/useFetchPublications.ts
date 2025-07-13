@@ -14,6 +14,7 @@ const useFetchPublications = (ventureSlug?: string) => {
   const dispatch = useAppDispatch();
   const { filters, items, total } = useSelector(selectPublications);
   const { categoriesIds, pagination, search, dateRange } = filters;
+
   const publicationsQuery = useQuery({
     queryKey: [
       'ventures',

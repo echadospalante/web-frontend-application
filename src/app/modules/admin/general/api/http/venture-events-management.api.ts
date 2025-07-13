@@ -1,6 +1,6 @@
 import { VentureEvent } from 'echadospalante-domain';
 
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import { PaginatedBody } from 'echadospalante-domain';
 import { VentureEventsFilter } from '../../../../../config/redux/reducers/admin/venture-events-management.reducer';
 
 export class VentureEventsApi {

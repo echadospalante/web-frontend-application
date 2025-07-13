@@ -1,170 +1,170 @@
+import { VentureEvent } from 'echadospalante-domain';
+import 'leaflet/dist/leaflet.css';
 import {
+  Badge,
+  Button,
   Card,
   CardBody,
-  Col,
   Modal,
   ModalBody,
-  Row,
-  UncontrolledTooltip,
+  ModalFooter,
+  ModalHeader,
 } from 'reactstrap';
-
-import { CalendarEvent } from '../../../modules/admin/general/hooks/useVentureEvents';
-import { textToRGB } from '../../helpers/colors';
-
-import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
-import markerIcon from 'leaflet/dist/images/marker-icon.png';
-import markerShadow from 'leaflet/dist/images/marker-shadow.png';
-import 'leaflet/dist/leaflet.css';
-
-import L from 'leaflet';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
-import useVentureSponsorships from '../../../modules/admin/general/hooks/useVentureSponsorships';
-import SponsorCard from '../card/SponsorCard';
+import { formatDate } from '../../helpers/dates';
 
 type EventDetailModalProps = {
-  event: CalendarEvent;
-  onCloseClick: () => void;
+  event: VentureEvent;
+  toggleModal: () => void;
 };
 
-const SetMapCenter = ({ position }: { position: [number, number] }) => {
-  const map = useMap();
-  map.setView(position);
-  return null;
+const formatCurrency = (amount: number, currency: string) => {
+  return new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: currency,
+  }).format(amount);
 };
 
-const EventDetailModal = ({ event, onCloseClick }: EventDetailModalProps) => {
-  const markerIconInstance = new L.Icon({
-    iconUrl: markerIcon,
-    iconRetinaUrl: markerIcon2x,
-    shadowUrl: markerShadow,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41],
-    shadowAnchor: [12, 41],
-  });
-
-  const {
-    // loading,
-    // error,
-    // page,
-    // size,
-    // setPage,
-    items,
-    // total,
-    // fetchVentureSponsors,
-  } = useVentureSponsorships();
-
+const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
   return (
-    <Modal size="lg" isOpen={true} toggle={onCloseClick} centered={true}>
-      <div className="modal-content">
-        <ModalBody className="px-4 py-5 text-center">
-          <button
-            type="button"
-            onClick={onCloseClick}
-            className="btn-close position-absolute end-0 top-0 m-3"
-          ></button>
+    <Modal isOpen={true} toggle={toggleModal} size="lg">
+      <ModalHeader toggle={toggleModal}>{event.title}</ModalHeader>
+      <ModalBody>
+        {event && (
+          <div>
+            <div className="mb-3">
+              <img
+                src={event.coverPhoto}
+                alt={event.title}
+                className="img-fluid rounded"
+                style={{
+                  width: '100%',
+                  maxHeight: '200px',
+                  objectFit: 'cover',
+                }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src =
+                    'https://via.placeholder.com/400x200?text=Imagen+no+disponible';
+                }}
+              />
+            </div>
 
-          <div className="d-flex align-items-center">
-            <h5 className="mb-0 card-title flex-grow-1">Detalle del evento</h5>
-          </div>
-          <h2 className="mt-4">
-            <b>{event.title}</b>
-          </h2>
+            <Card className="mb-3">
+              <CardBody>
+                <h6>Descripción</h6>
+                <p>{event.description}</p>
+              </CardBody>
+            </Card>
 
-          <Card className="mt-0 pt-0 text-start">
-            <CardBody>
-              <p>{event.description}</p>
-
-              <ul className="list-inline mb-0">
-                {event.categories.map((category) => (
-                  <li key={category.id} className="list-inline-item me-1">
-                    <UncontrolledTooltip
-                      placement="top"
-                      target={`category-${category.id}`}
-                    >
-                      <p>{category.description}</p>
-                    </UncontrolledTooltip>
-                    <small
-                      id={`category-${category.id}`}
-                      className="px-2 py-1 fs-6"
-                      style={{
-                        backgroundColor: textToRGB(category.name),
-                        color: 'white',
-                        borderRadius: '5px',
-                      }}
-                    >
-                      {category.name}
-                    </small>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-4">
-                <p className="text-muted">
-                  Nota: Puedes hacer click en el marcador para ver el detalle de
-                  la ubicación.
+            <Card className="mb-3">
+              <CardBody>
+                <h6>Ubicación</h6>
+                <p>
+                  <strong>Lugar:</strong> {event.location.description}
                 </p>
-                {event.location.location?.coordinates[0] &&
-                  event.location.location.coordinates[1] && (
-                    <MapContainer
-                      center={[
-                        event.location.location?.coordinates[0],
-                        event.location.location.coordinates[1],
-                      ]}
-                      zoom={13}
-                      style={{ height: '400px', width: '100%' }}
-                    >
-                      <TileLayer
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" // OpenStreetMap tiles
-                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                      />
-                      <Marker
-                        position={[
-                          event.location.location?.coordinates[0],
-                          event.location.location.coordinates[1],
-                        ]}
-                        icon={markerIconInstance}
+                {event.location.location && (
+                  <p>
+                    <strong>Coordenadas:</strong>{' '}
+                    {event.location.location.coordinates[1].toFixed(4)},{' '}
+                    {event.location.location.coordinates[0].toFixed(4)}
+                  </p>
+                )}
+              </CardBody>
+            </Card>
+
+            <Card className="mb-3">
+              <CardBody>
+                <h6>Contacto</h6>
+                {event.contact.email && (
+                  <p>
+                    <strong>Email:</strong> {event.contact.email}
+                  </p>
+                )}
+                {event.contact.phoneNumber && (
+                  <p>
+                    <strong>Teléfono:</strong> {event.contact.phoneNumber}
+                  </p>
+                )}
+              </CardBody>
+            </Card>
+
+            {event.categories.length > 0 && (
+              <Card className="mb-3">
+                <CardBody>
+                  <h6>Categorías</h6>
+                  <div>
+                    {event.categories.map((category) => (
+                      <Badge
+                        key={category.id}
+                        color="primary"
+                        className="me-2 mb-1"
                       >
-                        <Popup offset={[0, -5]}>
-                          {event.location.description}
-                        </Popup>
-                      </Marker>
+                        {category.name}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardBody>
+              </Card>
+            )}
 
-                      <SetMapCenter
-                        position={[
-                          event.location.location?.coordinates[0],
-                          event.location.location.coordinates[1],
-                        ]}
-                      />
-                    </MapContainer>
-                  )}
-              </div>
-
-              <Row className="mt-4">
-                {items.map((sponsorship) => (
-                  <Col lg={3} md={6} sm={12}>
-                    <SponsorCard
-                      key={sponsorship.id}
-                      sponsorship={sponsorship}
-                    />
-                  </Col>
+            <Card className="mb-3">
+              <CardBody>
+                <h6>Fechas y Horarios</h6>
+                {event.datesAndHours.map((dateInfo, index) => (
+                  <div key={index} className="mb-2">
+                    <p className="mb-1">
+                      <strong>{formatDate(new Date(dateInfo.date))}</strong>
+                    </p>
+                    {dateInfo.workingRanges.map((range, rangeIndex) => (
+                      <Badge key={rangeIndex} color="info" className="me-2">
+                        {range.start} - {range.end}
+                      </Badge>
+                    ))}
+                  </div>
                 ))}
-              </Row>
-            </CardBody>
-          </Card>
+              </CardBody>
+            </Card>
 
-          <div className="d-flex justify-content-end mb-0">
-            <button
-              type="button"
-              className="btn btn-info"
-              onClick={onCloseClick}
-            >
-              Cerrar
-            </button>
+            {event.venture && (
+              <Card className="mb-3">
+                <CardBody>
+                  <h6>Organizado por</h6>
+                  <p>
+                    <strong>{event.venture.name}</strong>
+                  </p>
+                  <p>{event.venture.description}</p>
+                </CardBody>
+              </Card>
+            )}
+
+            {event.donations.length > 0 && (
+              <Card className="mb-3">
+                <CardBody>
+                  <h6>Donaciones Recibidas</h6>
+                  <p>
+                    <strong>Total: </strong>
+                    {formatCurrency(
+                      event.donations.reduce(
+                        (sum, donation) => sum + donation.amount,
+                        0,
+                      ),
+                      event.donations[0]?.currency || 'COP',
+                    )}
+                  </p>
+                  <p>
+                    <strong>Número de donaciones:</strong>{' '}
+                    {event.donations.length}
+                  </p>
+                </CardBody>
+              </Card>
+            )}
           </div>
-        </ModalBody>
-      </div>
+        )}
+      </ModalBody>
+      <ModalFooter>
+        <Button color="secondary" onClick={toggleModal}>
+          Cerrar
+        </Button>
+      </ModalFooter>
     </Modal>
   );
 };

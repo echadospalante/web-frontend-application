@@ -256,9 +256,10 @@ const AccountVentureCreatePage = () => {
                           className="select2-selection"
                         />
 
-                        {form.touched.description && form.errors.description ? (
+                        {form.touched.categoriesIds &&
+                        form.errors.categoriesIds ? (
                           <FormFeedback type="invalid" className="d-block">
-                            {form.errors.description}
+                            {form.errors.categoriesIds}
                           </FormFeedback>
                         ) : null}
                       </div>
@@ -435,21 +436,22 @@ const AccountVentureCreatePage = () => {
                               isMulti={false}
                               name="municipalities"
                               onChange={(value) => {
-                                if(!value) return
+                                if (!value) return;
                                 form.setFieldValue(
                                   'location.municipalityId',
                                   value.value || null,
                                 );
-                                const selectedMunicipality = municipalities.find(
-                                  (m) => m.id === value.value,
-                                )!;
+                                const selectedMunicipality =
+                                  municipalities.find(
+                                    (m) => m.id === value.value,
+                                  )!;
                                 form.setFieldValue(
                                   'location.lat',
-                                    selectedMunicipality.lat
+                                  selectedMunicipality.lat,
                                 );
                                 form.setFieldValue(
                                   'location.lng',
-                                    selectedMunicipality.lng
+                                  selectedMunicipality.lng,
                                 );
                               }}
                               options={departments.map(({ id, name }) => ({
@@ -582,13 +584,6 @@ const AccountVentureCreatePage = () => {
                                 value={form.values.location?.description || ''}
                               />
                             </div>
-
-                            {form.touched.description &&
-                            form.errors.description ? (
-                              <FormFeedback type="invalid" className="d-block">
-                                {form.errors.description}
-                              </FormFeedback>
-                            ) : null}
                           </div>
                         </CardBody>
                       </Card>

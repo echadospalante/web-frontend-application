@@ -22,6 +22,15 @@ import authenticationReducer, {
 import registerReducer, {
   RegisterState,
 } from '../reducers/auth/register.reducer';
+import eventsReducer, {
+  EventsState,
+} from '../reducers/principal/events.reducer';
+import ownedVenturesReducer, {
+  OwnedVenturesState,
+} from '../reducers/principal/owned-ventures.reducer';
+import publicationsReducer, {
+  PublicationsState,
+} from '../reducers/principal/publications.reducer';
 import venturesReducer, {
   VenturesState,
 } from '../reducers/principal/ventures.reducer';
@@ -29,12 +38,6 @@ import layoutReducer, { LayoutState } from '../reducers/shared/layout.reducer';
 import userInterfaceReducer, {
   UserInterfaceState,
 } from '../reducers/shared/user-interface.reducer';
-import ownedVenturesReducer, {
-  OwnedVenturesState,
-} from '../reducers/principal/owned-ventures.reducer';
-import publicationsReducer, {
-  PublicationsState,
-} from '../reducers/principal/publications.reducer';
 
 export interface GlobalState {
   authentication: AuthenticationState;
@@ -50,6 +53,7 @@ export interface GlobalState {
     ventures: VenturesState;
     ownedVenturesManagement: OwnedVenturesState;
     publications: PublicationsState;
+    events: EventsState;
   };
   layout: LayoutState;
   register: RegisterState;
@@ -71,6 +75,7 @@ const reducer = combineReducers({
     ventures: venturesReducer,
     ownedVentures: ownedVenturesReducer,
     publications: publicationsReducer,
+    events: eventsReducer,
   }),
 });
 

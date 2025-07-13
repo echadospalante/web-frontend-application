@@ -3,15 +3,15 @@ import React from 'react';
 import Select, { MultiValue } from 'react-select';
 import { Label } from 'reactstrap';
 
-import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
 import departments from '../../data/geo/departments';
 import municipalities from '../../data/geo/municipalities';
+import useEventsRightSidebar from '../../../modules/principal/ventures/hooks/useEventsRightSidebar';
 
-export interface VentureLocationFiltersProps {
+export interface EventLocationFiltersProps {
   multipleMunicipalities?: boolean;
 }
 
-const VentureLocationFilters: React.FC<VentureLocationFiltersProps> = ({
+const EventLocationFilters: React.FC<EventLocationFiltersProps> = ({
   multipleMunicipalities,
 }) => {
   const {
@@ -19,7 +19,7 @@ const VentureLocationFilters: React.FC<VentureLocationFiltersProps> = ({
     municipalitiesIds,
     activeDepartmentId,
     setActiveDepartmentId,
-  } = useVenturesRightSidebar();
+  } = useEventsRightSidebar();
   return (
     <>
       <div className="mt-3">
@@ -80,10 +80,10 @@ const VentureLocationFilters: React.FC<VentureLocationFiltersProps> = ({
               : null
           }
           styles={{
-            menuPortal: (base) => ({ ...base, zIndex: 99999999 }),
+            menuPortal: (base) => ({ ...base, zIndex: 9999 }),
             control: (base) => ({
               ...base,
-              zIndex: 999999999,
+              zIndex: 9999,
             }),
           }}
           menuPortalTarget={document.body}
@@ -125,4 +125,4 @@ const VentureLocationFilters: React.FC<VentureLocationFiltersProps> = ({
   );
 };
 
-export default VentureLocationFilters;
+export default EventLocationFilters;

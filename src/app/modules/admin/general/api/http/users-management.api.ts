@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { User } from 'echadospalante-domain';
 
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import { PaginatedBody } from 'echadospalante-domain';
 
 import env from '../../../../../../environment/environment';
 import { UsersFilter } from '../../../../../config/redux/reducers/admin/users-management.reducer';

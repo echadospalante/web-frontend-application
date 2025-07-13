@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { VentureCategory, VentureCategoryCreate } from 'echadospalante-domain';
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import { PaginatedBody } from 'echadospalante-domain';
 
 import env from '../../../../../../environment/environment';
 

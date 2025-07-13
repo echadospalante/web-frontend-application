@@ -1,6 +1,6 @@
 import { faker, th } from '@faker-js/faker';
 import { User, VentureSponsorship } from 'echadospalante-domain';
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import { PaginatedBody } from 'echadospalante-domain';
 
 import env from '../../../../../../environment/environment';
 import { VentureSponsorshipsFilter } from '../../../../../config/redux/reducers/admin/venture-sponsorships-management.reducer';

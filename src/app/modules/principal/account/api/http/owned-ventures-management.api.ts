@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { Venture, VentureCreate } from 'echadospalante-domain';
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import { PaginatedBody } from 'echadospalante-domain';
 
 import env from '../../../../../../environment/environment';
 import { OwnedVenturesFilter } from '../../../../../config/redux/reducers/principal/owned-ventures.reducer';

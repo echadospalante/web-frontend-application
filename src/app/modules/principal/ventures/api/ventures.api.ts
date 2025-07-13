@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { Venture, VentureStats } from 'echadospalante-domain';
+import { PaginatedBody, Venture, VentureStats } from 'echadospalante-domain';
 
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
 import { VentureFilter } from '../../../../config/redux/reducers/principal/ventures.reducer';
 
 export default class VenturesApi {

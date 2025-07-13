@@ -105,7 +105,9 @@ const VentureCardFooter: React.FC<VentureCardFooterProps> = ({
                 {venture.subscriptionsCount}
               </div>
               <small className="text-muted">
-                {data.clapsCount === 1 ? 'Suscriptor' : 'Suscriptores'}
+                {venture.subscriptionsCount === 1
+                  ? 'Suscriptor'
+                  : 'Suscriptores'}
               </small>
             </div>
 

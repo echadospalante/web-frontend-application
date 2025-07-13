@@ -1,7 +1,7 @@
 import { User } from 'echadospalante-domain';
 
 import { useQuery } from '@tanstack/react-query';
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import { PaginatedBody } from 'echadospalante-domain';
 import { useSelector } from 'react-redux';
 
 import {

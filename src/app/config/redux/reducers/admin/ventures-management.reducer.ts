@@ -3,7 +3,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { AppRole, User } from 'echadospalante-domain';
 
 import { RootState } from '../../store/store.config';
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import { PaginatedBody } from 'echadospalante-domain';
 
 export interface UsersFilter {
   search: string;

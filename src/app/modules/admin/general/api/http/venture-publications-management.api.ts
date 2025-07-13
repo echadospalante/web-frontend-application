@@ -7,7 +7,7 @@ import { faker } from '@faker-js/faker';
 
 import env from '../../../../../../environment/environment';
 import { VenturePublicationsFilter } from '../../../../../config/redux/reducers/admin/venture-publications-management.reducer';
-import { PaginatedBody } from 'echadospalante-domain/dist/app/modules/domain/common/pagination';
+import { PaginatedBody } from 'echadospalante-domain';
 
 export class VenturePublicationsApi {
   // private static readonly API_BASE_URL = `${env.API_URL}/api/v1/ventures/publications`;

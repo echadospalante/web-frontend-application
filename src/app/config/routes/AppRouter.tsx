@@ -37,6 +37,7 @@ import AppSpinner from '../../shared/components/loader/Spinner';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import VentureDetailPage from '../../modules/principal/ventures/pages/VentureDetailPage';
+import AccountSubscriptionsPage from '../../modules/principal/account/pages/AccountSubscriptionsPage';
 
 const ALL_ROLES = [AppRole.ADMIN, AppRole.MODERATOR, AppRole.USER];
 
@@ -98,12 +99,7 @@ const AppRouter = () => {
                 element={<GeneralEventsPage />}
               />
 
-              <Route
-                path=":ventureSlug"
-                element={<VentureDetailPage />}
-              />
-
-
+              <Route path=":ventureSlug" element={<VentureDetailPage />} />
 
               <Route path="*" element={<Commercial404Page />} />
             </Route>
@@ -122,6 +118,10 @@ const AppRouter = () => {
               <Route
                 path="emprendimientos/:ventureId/eventos/nuevo"
                 element={<AccountEventCreatePage />}
+              />
+              <Route
+                path="suscripciones"
+                element={<AccountSubscriptionsPage />}
               />
             </Route>
 
