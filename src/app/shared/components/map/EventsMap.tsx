@@ -225,7 +225,6 @@ const EventsMap: React.FC = () => {
         <ModalBody>
           {selectedEvent && (
             <div>
-              {/* Imagen de portada */}
               <div className="mb-3">
                 <img
                   src={selectedEvent.coverPhoto}
@@ -268,7 +267,6 @@ const EventsMap: React.FC = () => {
                 </CardBody>
               </Card>
 
-              {/* Información de contacto */}
               <Card className="mb-3">
                 <CardBody>
                   <h6>Contacto</h6>
@@ -345,6 +343,10 @@ const EventsMap: React.FC = () => {
                   </CardBody>
                 </Card>
               )} */}
+              <Button color="primary" className="d-flex align-items-center">
+                <span className="mx-1">Donar</span>
+                <i className="mdi mdi-heart-outline me-2 fs-4"></i>
+              </Button>
             </div>
           )}
         </ModalBody>

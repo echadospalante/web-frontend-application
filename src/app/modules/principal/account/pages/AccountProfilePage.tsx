@@ -1,13 +1,12 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Card, CardBody, CardTitle, Col, Container, Row } from 'reactstrap';
+import { Card, CardBody, Col, Container, Row } from 'reactstrap';
 
 import { selectAuthentication } from '../../../../config/redux/reducers/auth/auth.reducer';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 import UserContactCard from '../../../../shared/components/card/UserContactCard';
-import VentureCategoryWidget from '../../../../shared/components/widgets/VentureCategoryWidget';
 
 const AccountProfilePage = () => {
   document.title = "Perfil de usuario | EchadosPa'lante";
@@ -59,25 +58,87 @@ const AccountProfilePage = () => {
     return messages[randomIndex];
   }
 
-  // const miniCards = [
-  //   {
-  //     title: "Completed Projects",
-  //     iconClass: "bx-check-circle",
-  //     text: "125",
-  //   },
-  //   { title: "Pending Projects", iconClass: "bx-hourglass", text: "12" },
-  //   { title: "Total Revenue", iconClass: "bx-package", text: "$36,524" },
-  // ];
+  const statsData = [
+    {
+      title: 'Emprendimientos',
+      value: '1',
+      icon: 'mdi-lightbulb',
+      color: 'primary',
+      bgColor: 'bg-primary-subtle',
+    },
+    {
+      title: 'Publicaciones',
+      value: '3',
+      icon: 'mdi-post',
+      color: 'success',
+      bgColor: 'bg-success-subtle',
+    },
+    {
+      title: 'Eventos',
+      value: '10',
+      icon: 'mdi-calendar-multiple',
+      color: 'info',
+      bgColor: 'bg-info-subtle',
+    },
+    {
+      title: 'Suscripciones',
+      value: '1200',
+      icon: 'mdi-account-plus',
+      color: 'warning',
+      bgColor: 'bg-warning-subtle',
+    },
+    {
+      title: 'Suscriptores en General',
+      value: '1200',
+      icon: 'mdi-account-group',
+      color: 'secondary',
+      bgColor: 'bg-secondary-subtle',
+    },
+    {
+      title: 'Donaciones Realizadas',
+      value: '4',
+      icon: 'mdi-heart-outline',
+      color: 'danger',
+      bgColor: 'bg-danger-subtle',
+    },
+    {
+      title: 'Donaciones Recibidas',
+      value: '4',
+      icon: 'mdi-gift',
+      color: 'success',
+      bgColor: 'bg-success-subtle',
+    },
+    {
+      title: 'Patrocinios Brindados',
+      value: '4',
+      icon: 'mdi-handshake',
+      color: 'info',
+      bgColor: 'bg-info-subtle',
+    },
+    {
+      title: 'Patrocinios Recibidos',
+      value: '4',
+      icon: 'mdi-star',
+      color: 'warning',
+      bgColor: 'bg-warning-subtle',
+    },
+    {
+      title: 'Comentarios y Reacciones',
+      value: '4500, 120',
+      icon: 'mdi-comment',
+      color: 'primary',
+      bgColor: 'bg-primary-subtle',
+    },
+  ];
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="page-content">
         <Container fluid>
-          {/* Render Breadcrumbs */}
           <Breadcrumb title="Cuenta" breadcrumbItem="Perfil" />
 
           <Row>
-            <Col xl="4">
+            <Col lg={5} md={12} sm={12}>
               <Card className="overflow-hidden">
                 <div className="bg-primary-subtle">
                   <Row>
@@ -120,83 +181,79 @@ const AccountProfilePage = () => {
                         ))}
                       </section>
                     </Col>
-
-                    <Col>
-                      <div className="pt-4">
-                        <Row>
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">Emprendimientos</h6>
-                            <p className="text-muted mb-0">1</p>
-                          </Col>
-
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">Publicaciones</h6>
-                            <p className="text-muted mb-0">3</p>
-                          </Col>
-
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">Eventos</h6>
-                            <p className="text-muted mb-0">10</p>
-                          </Col>
-
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">Suscripciones</h6>
-                            <p className="text-muted mb-0">1200</p>
-                          </Col>
-
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">Suscriptores</h6>
-                            <p className="text-muted mb-0">1200</p>
-                          </Col>
-
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">
-                              Donaciones Realizadas
-                            </h6>
-                            <p className="text-muted mb-0">4</p>
-                          </Col>
-
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">
-                              Donaciones Recibidas
-                            </h6>
-                            <p className="text-muted mb-0">4</p>
-                          </Col>
-
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">
-                              Patrocinios Brindados (Activos)
-                            </h6>
-                            <p className="text-muted mb-0">4</p>
-                          </Col>
-
-                          <Col xs="6" className="mb-2">
-                            <h6 className="font-size-15">
-                              Patrocinios Recibidos (Activos)
-                            </h6>
-                            <p className="text-muted mb-0">4</p>
-                          </Col>
-                        </Row>
-                        <div className="mt-4">
-                          <Link to="" className="btn btn-primary  btn-sm">
-                            Editar perfil{' '}
-                            <i className="mdi mdi-arrow-right ms-1" />
-                          </Link>
-                        </div>
-                      </div>
-                    </Col>
                   </Row>
+                </CardBody>
+              </Card>
+
+              <Card>
+                <CardBody>
+                  <Col>
+                    <div className="pt-0">
+                      <Row className="g-1">
+                        {statsData.map((stat, index) => (
+                          <Col
+                            sm={4}
+                            md={6}
+                            lg={6}
+                            key={index}
+                            className="mb-0"
+                          >
+                            <div
+                              className={`${stat.bgColor} rounded-3 p-3 shadow-sm border-0`}
+                            >
+                              <div className="d-flex align-items-center">
+                                <div
+                                  className={`avatar-sm rounded-circle bg-${stat.color} d-flex align-items-center justify-content-center me-3`}
+                                  style={{
+                                    width: '50px',
+                                    height: '50px',
+                                  }}
+                                >
+                                  <i
+                                    className={`mdi ${stat.icon} text-white`}
+                                    style={{
+                                      fontSize: '1.5rem',
+                                    }}
+                                  ></i>
+                                </div>
+                                <div className="flex-1">
+                                  <h6
+                                    className={`text-${stat.color} mb-1 font-weight-bold`}
+                                    style={{ fontSize: '0.85rem' }}
+                                  >
+                                    {stat.title}
+                                  </h6>
+                                  <h4
+                                    className={`text-${stat.color} mb-0 font-weight-bold`}
+                                  >
+                                    {stat.value}
+                                  </h4>
+                                </div>
+                              </div>
+                            </div>
+                          </Col>
+                        ))}
+                      </Row>
+
+                      <div className="mt-4">
+                        <Link to="" className="btn btn-primary btn-sm w-100">
+                          <i className="mdi mdi-account-edit me-2"></i>
+                          Editar perfil
+                        </Link>
+                      </div>
+                    </div>
+                  </Col>
                 </CardBody>
               </Card>
             </Col>
 
-            <Col xl="8">
+            <Col xl={7} md={12} sm={12}>
               <UserContactCard />
             </Col>
           </Row>
         </Container>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 

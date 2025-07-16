@@ -53,7 +53,6 @@ const TinyMap = (props: TinyMapProps) => {
         setPoints((prev) => {
           const newPoints = [...prev, newPoint];
 
-          // Calculate total distance when we have more than one point
           if (newPoints.length === 2) {
             const distance = haversineDistance(newPoints[0], newPoints[1]);
             setTotalDistance(distance);
@@ -83,8 +82,8 @@ const TinyMap = (props: TinyMapProps) => {
             maxBoundsViscosity={1.0}
             zoom={10}
             minZoom={5}
-            zoomSnap={0.5} // Permitir zoom en fracciones de 0.5
-            zoomDelta={0.5} // Controla la sensibilidad del zoom
+            zoomSnap={0.5}
+            zoomDelta={0.5}
             style={{ height, width: '100%' }}
             maxZoom={18}
           >

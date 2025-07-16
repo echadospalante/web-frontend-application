@@ -332,7 +332,7 @@ const AccountVentureCreatePage = () => {
                               defaultChecked
                             />
                             <label
-                              className="btn btn-outline-primary"
+                              className="btn btn-outline-success"
                               htmlFor="btnradio4"
                             >
                               Mi ubicacion
@@ -349,7 +349,7 @@ const AccountVentureCreatePage = () => {
                               autoComplete="off"
                             />
                             <label
-                              className="btn btn-outline-primary"
+                              className="btn btn-outline-success"
                               htmlFor="btnradio5"
                             >
                               Otra ubicacion
@@ -368,7 +368,7 @@ const AccountVentureCreatePage = () => {
                               autoComplete="off"
                             />
                             <label
-                              className="btn btn-outline-primary"
+                              className="btn btn-outline-success"
                               htmlFor="btnradio6"
                             >
                               Ninguna
@@ -377,7 +377,7 @@ const AccountVentureCreatePage = () => {
                           {locationMode === LocationMode.CURRENT && (
                             <Button
                               type="button"
-                              className="btn btn-info w-100 my-2"
+                              className="btn btn-success w-100 my-2"
                               onClick={() => {
                                 navigator.geolocation.getCurrentPosition(
                                   (position) => {
@@ -598,7 +598,7 @@ const AccountVentureCreatePage = () => {
                       onClick={() => {
                         form.handleSubmit();
                       }}
-                      color="primary"
+                      color="success"
                     >
                       <i className="bx bx-rocket me-1"></i>
                       Crear emprendimiento

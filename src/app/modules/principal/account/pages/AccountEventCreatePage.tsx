@@ -392,7 +392,7 @@ const AccountEventCreatePage = () => {
                                 defaultChecked
                               />
                               <label
-                                className="btn btn-outline-primary"
+                                className="btn btn-outline-success"
                                 htmlFor="btnradio4"
                               >
                                 Mi ubicación
@@ -409,7 +409,7 @@ const AccountEventCreatePage = () => {
                                 autoComplete="off"
                               />
                               <label
-                                className="btn btn-outline-primary"
+                                className="btn btn-outline-success"
                                 htmlFor="btnradio5"
                               >
                                 Otra ubicación
@@ -428,7 +428,7 @@ const AccountEventCreatePage = () => {
                                 autoComplete="off"
                               />
                               <label
-                                className="btn btn-outline-primary"
+                                className="btn btn-outline-success"
                                 htmlFor="btnradio6"
                               >
                                 Ninguna
@@ -438,7 +438,7 @@ const AccountEventCreatePage = () => {
                             {locationMode === LocationMode.CURRENT && (
                               <Button
                                 type="button"
-                                className="btn btn-info w-100 my-2"
+                                className="btn btn-success w-100 my-2"
                                 onClick={() => {
                                   navigator.geolocation.getCurrentPosition(
                                     (position) => {
@@ -472,14 +472,12 @@ const AccountEventCreatePage = () => {
                                 value={
                                   form.values.municipalityId
                                     ? {
-                                      label: municipalities.find(
-                                        (m) =>
-                                          m.id ===
-                                          form.values.municipalityId,
-                                      )?.name,
-                                      value:
-                                      form.values.municipalityId,
-                                    }
+                                        label: municipalities.find(
+                                          (m) =>
+                                            m.id === form.values.municipalityId,
+                                        )?.name,
+                                        value: form.values.municipalityId,
+                                      }
                                     : null
                                 }
                                 styles={{
@@ -497,15 +495,16 @@ const AccountEventCreatePage = () => {
                                 isMulti={false}
                                 name="municipalities"
                                 onChange={(value) => {
-                                  if(!value) return;
+                                  if (!value) return;
                                   form.setFieldValue(
                                     'municipalityId',
                                     value.value || null,
                                   );
                                   // Change the center of the map to the selected municipality
-                                  const selectedMunicipality = municipalities.find(
-                                    (m) => m.id === value.value,
-                                  )!;
+                                  const selectedMunicipality =
+                                    municipalities.find(
+                                      (m) => m.id === value.value,
+                                    )!;
                                   form.setFieldValue(
                                     'locationLat',
                                     `${selectedMunicipality.lat}`,
@@ -523,9 +522,9 @@ const AccountEventCreatePage = () => {
                                     )
                                     .map(
                                       ({
-                                         id: municipalityId,
-                                         name: municipalityName,
-                                       }) => ({
+                                        id: municipalityId,
+                                        name: municipalityName,
+                                      }) => ({
                                         label: municipalityName,
                                         value: municipalityId,
                                       }),
@@ -602,8 +601,8 @@ const AccountEventCreatePage = () => {
 
                                 <SetMapCenter
                                   position={[
-                                    form.values.locationLat,
-                                    form.values.locationLng,
+                                    +form.values.locationLat,
+                                    +form.values.locationLng,
                                   ]}
                                 />
                               </MapContainer>
@@ -704,7 +703,7 @@ const AccountEventCreatePage = () => {
                     )}
                   </Row>
                   <div className="text-center">
-                    <Button type="submit" color="primary">
+                    <Button type="submit" color="success">
                       <i className="bx bx-send me-1 fs-6"></i>
                       Publicar
                     </Button>

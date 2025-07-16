@@ -75,6 +75,12 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
     }).format(amount);
   };
 
+  function handleCreateSponsorship(
+    event: MouseEvent<HTMLButtonElement, MouseEvent>,
+  ): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
     <Card className="shadow-lg border-0 mb-4">
       <Row className="g-0">
@@ -165,10 +171,26 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                       Eliminar suscripción
                     </Button>
                   ) : (
-                    <Button onClick={handleSubscribe} color="success" size="md">
-                      <i className="mdi mdi-eye-plus-outline me-2 font-size-15" />
-                      Suscribirme
-                    </Button>
+                    <>
+                      <Button
+                        onClick={handleSubscribe}
+                        color="success"
+                        size="md"
+                      >
+                        <i className="mdi mdi-eye-plus-outline me-2 font-size-15" />
+                        Suscribirme
+                      </Button>
+
+                      <Button
+                        onClick={handleCreateSponsorship}
+                        color="success"
+                        outline
+                        size="md"
+                      >
+                        <i className="mdi mdi-heart me-2 font-size-15" />
+                        Patrocinar
+                      </Button>
+                    </>
                   ))}
               </div>
             </div>
@@ -208,7 +230,7 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                     lng: venture.location?.location?.coordinates[0] || 0,
                   }}
                   address={venture.location?.description || venture.name}
-                  height={'200px'}
+                  height="200px"
                 />
               </div>
             ) : (

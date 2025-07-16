@@ -44,7 +44,7 @@ const UserContactCard = () => {
               lng: municipality!.lng,
             }}
             address={municipality!.name}
-            height={'200px'}
+            height={'300px'}
           />
         </div>
 
@@ -130,7 +130,7 @@ const UserContactCard = () => {
                               </span>
                             </li>
                           ))}
-                          maxItems={5}
+                          maxItems={3}
                           all={'todas'}
                         />
                       </ul>

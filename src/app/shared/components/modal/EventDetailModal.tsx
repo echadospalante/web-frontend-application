@@ -71,7 +71,7 @@ const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
               </CardBody>
             </Card>
 
-            <Card className="mb-3">
+            {/* <Card className="mb-3">
               <CardBody>
                 <h6>Contacto</h6>
                 {event.contact.email && (
@@ -85,7 +85,7 @@ const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
                   </p>
                 )}
               </CardBody>
-            </Card>
+            </Card> */}
 
             {event.categories.length > 0 && (
               <Card className="mb-3">
@@ -136,7 +136,7 @@ const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
               </Card>
             )}
 
-            {event.donations.length > 0 && (
+            {/* {event.donations.length > 0 && (
               <Card className="mb-3">
                 <CardBody>
                   <h6>Donaciones Recibidas</h6>
@@ -156,7 +156,12 @@ const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
                   </p>
                 </CardBody>
               </Card>
-            )}
+            )} */}
+
+            <Button color="primary" className="d-flex align-items-center">
+              <span className="mx-1">Donar</span>
+              <i className="mdi mdi-heart-outline me-2 fs-4"></i>
+            </Button>
           </div>
         )}
       </ModalBody>

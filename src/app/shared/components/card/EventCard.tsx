@@ -18,7 +18,7 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
   };
 
   return (
-    <Card key={event.id} className="mb-4 shadow-sm">
+    <Card key={event.id} className="mb-4 p-3 rounded-2 shadow-sm">
       <Row className="g-0">
         <Col md={4}>
           <CardImg
@@ -37,7 +37,10 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
               <div className="d-flex align-items-center text-muted mb-2">
                 {/*<MapPin size={16} className="me-2" />*/}
                 <i className="mdi mdi-map-marker me-2 text-primary" />
-                <span>HOLA</span>
+                <span>
+                  {event.location.location?.coordinates[1]},{' '}
+                  {event.location.location?.coordinates[0]}
+                </span>
               </div>
               <div className="d-flex align-items-center text-muted">
                 {/*<Calendar size={16} className="me-2" />*/}
@@ -50,7 +53,11 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
                     <strong>{formatDate(dateHour.date)}</strong>
                     <div className="ms-3">
                       {dateHour.workingRanges.map((range, rangeIndex) => (
-                        <Badge key={rangeIndex} color="light" className="me-2">
+                        <Badge
+                          key={rangeIndex}
+                          color="info"
+                          className="me-2 px-2 py-1"
+                        >
                           {range.start} - {range.end}
                         </Badge>
                       ))}
@@ -61,8 +68,9 @@ const EventCard: React.FC<EventCardProps> = ({ event }) => {
             </div>
 
             <div className="d-flex justify-content-between align-items-center">
-              <Button color="primary" size="sm">
-                Ver Detalles
+              <Button color="primary" className="d-flex align-items-center">
+                <span className="mx-1">Donar</span>
+                <i className="mdi mdi-heart-outline me-2 fs-4"></i>
               </Button>
               {event.categories.length > 0 && (
                 <div className="d-flex flex-wrap gap-1">

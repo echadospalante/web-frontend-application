@@ -23,14 +23,30 @@ const EventsCalendar: React.FC = () => {
   const [selectedEvent, setSelectedEvent] = useState<VentureEvent | null>(null);
 
   const handleEventClick = (clickedEvent: EventClickArg) => {
-    const eventId = clickedEvent.event._def.publicId;
+    console.log(clickedEvent);
 
-    const event = events.find((e) => e.id === eventId);
-    console.log('Clicked event:', event);
-    if (event) {
-      setSelectedEvent(event);
+    const event = clickedEvent.event._def.extendedProps.event as VentureEvent;
+
+    const foundEvent = events.find((e) => e.id === event.id);
+    console.log({ foundEvent });
+    console.log('Clicked event:', foundEvent);
+    if (foundEvent) {
+      setSelectedEvent(foundEvent);
     }
   };
+
+  const eventSlots = events.flatMap((ev) =>
+    ev.datesAndHours.flatMap((dah) =>
+      dah.workingRanges.map((range) => ({
+        id: ev.id,
+        event: ev,
+        title: ev.title,
+        className: 'bg-success',
+        start: new Date(dah.date + 'T' + range.start),
+        end: new Date(dah.date + 'T' + range.end),
+      })),
+    ),
+  );
 
   return (
     <>
@@ -43,25 +59,6 @@ const EventsCalendar: React.FC = () => {
 
       <Card>
         <CardBody>
-          {JSON.stringify(
-            events.flatMap((event) => {
-              event.datesAndHours.flatMap((dateAndHours) =>
-                dateAndHours.workingRanges.map((range) => ({
-                  id: event.id,
-                  title: event.title,
-                  start: new Date(dateAndHours.date + 'T' + range.start),
-                  end: new Date(dateAndHours.date + 'T' + range.end),
-                  className: 'bg-success text-white',
-                  description: event.description,
-                  coverPhoto: event.coverPhoto,
-                  location: event.location,
-                })),
-              );
-            }),
-            null,
-            2,
-          )}
-          
           <FullCalendar
             plugins={[
               BootstrapTheme,
@@ -78,38 +75,7 @@ const EventsCalendar: React.FC = () => {
               right: 'dayGridMonth,dayGridWeek,dayGridDay,listWeek',
             }}
             locale={esLocale}
-            events={[
-              events.flatMap((event) => {
-                event.datesAndHours.flatMap((dateAndHours) =>
-                  dateAndHours.workingRanges.map((range) => ({
-                    id: event.id,
-                    title: event.title,
-                    start: new Date(dateAndHours.date + 'T' + range.start),
-                    end: new Date(dateAndHours.date + 'T' + range.end),
-                    className: 'bg-success text-white',
-                    description: event.description,
-                    coverPhoto: event.coverPhoto,
-                    location: event.location,
-                  })),
-                );
-              }),
-              // {
-              //   id: '123',
-              //   title: 'Evento de Ejemplo',
-              //   start: new Date(),
-              //   end: new Date(),
-              //   className: 'bg-success text-white',
-              //   description: 'Descripción del evento de ejemplo',
-              //   coverPhoto:
-              //     'https://via.placeholder.com/400x200?text=Evento+de+Ejemplo',
-              //   location: {
-              //     description: 'Lugar del evento',
-              //     location: {
-              //       coordinates: [4.60971, -74.08175],
-              //     },
-              //   },
-              // },
-            ]}
+            events={eventSlots}
             editable={false}
             droppable={false}
             selectable={true}
