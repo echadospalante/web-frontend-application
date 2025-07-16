@@ -17,6 +17,7 @@ import OwnedVenturesFiltersForm from '../../../../shared/components/forms/OwnedV
 import AppSpinner from '../../../../shared/components/loader/Spinner';
 import EditUserModal from '../../../../shared/components/modal/EditUserModal';
 import useOwnedVentures from '../../../admin/general/hooks/useOwnedVentures';
+import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
 
 const AccountVenturesPage = () => {
   document.title = 'Tus emprendimientos | Echadospalante';
@@ -117,6 +118,13 @@ const AccountVenturesPage = () => {
                         <VentureCard key={venture.id} venture={venture} />
                       </Col>
                     ))}
+
+                    {ventures.length === 0 && (
+                      <NoItemsFoundCard
+                        title="Sin elementos disponibles"
+                        message="No se encontraron emprendimientos para mostrar. Por favor, intenta con otros filtros o crea uno nuevo."
+                      />
+                    )}
                   </Row>
                 )}
 
@@ -124,7 +132,7 @@ const AccountVenturesPage = () => {
                   <Col sm={12} md={5} lg={6}>
                     <div className="dataTables_info">
                       Página {page + 1} de {Math.ceil(total / size) || 1}, con
-                      un tatal de {total} emprendimientos
+                      un total de {total} emprendimientos
                     </div>
                   </Col>
                   <Col

@@ -57,7 +57,7 @@ const AdminVenturesTable = () => {
         <Card>
           <CardBody className="border-bottom">
             <div className="d-flex align-items-center">
-              <h5 className="mb-0 card-title flex-grow-1">
+              <h5 className="mb-0 card-title bg-danger flex-grow-1">
                 Listado de emprendimientos
               </h5>
               <div className="flex-shrink-0 d-flex flex-row align-items-center">
@@ -160,7 +160,7 @@ const AdminVenturesTable = () => {
                 <Col sm={12} md={5} lg={6}>
                   <div className="dataTables_info">
                     Página {page + 1} de {Math.ceil(total / size) || 1}, con un
-                    tatal de {total} usuarios
+                    total de {total} usuarios
                   </div>
                 </Col>
                 <Col

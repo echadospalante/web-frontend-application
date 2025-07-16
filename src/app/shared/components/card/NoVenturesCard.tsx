@@ -16,11 +16,9 @@ const NoItemsFoundCard: React.FC<NoItemsFoundCardProps> = ({
     <Card className="text-center mt-4 shadow-sm border-0">
       <CardBody>
         <CardTitle tag="h5">{title}</CardTitle>
-        <CardText>
-          {message}
-        </CardText>
+        <CardText>{message}</CardText>
 
-        <CardImg src={imageUrl} className="w-50 rounded-3 my-3" />
+        <CardImg src={imageUrl} className="w-25 rounded-3 my-3" />
       </CardBody>
     </Card>
   );

@@ -162,6 +162,7 @@ const PublicationsFeedRightSidebar: React.FC = () => {
                           Publicaciones Populares
                         </Label>
 
+                        <></>
                         <div className="list-group list-group-flush">
                           {highlightedPublications.trending
                             .slice(0, 3)

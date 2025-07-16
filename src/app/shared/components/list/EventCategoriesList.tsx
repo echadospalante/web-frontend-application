@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Button, Input, Label } from 'reactstrap';
 
 import useEventCategoriesStats from '../../../modules/admin/general/hooks/useEventCategoriesStats';
-import useEventsRightSidebar from '../../../modules/principal/ventures/hooks/useEventsRightSidebar';
+import useEventsFilters from '../../../modules/principal/ventures/hooks/useEventsFilters';
 import RemovableChip from '../chips/RemovableChip';
 import AppLoading from '../loader/AppLoading';
 
@@ -17,7 +17,7 @@ const EventCategoriesList: React.FC<EventCategoriesListProps> = ({
   const [displayAll, setDisplayAll] = useState(false);
   const { isError, isLoading, refetch, items, total } =
     useEventCategoriesStats();
-  const { setCategoriesIds, categoriesIds } = useEventsRightSidebar();
+  const { setCategoriesIds, categoriesIds } = useEventsFilters();
 
   if (isLoading) {
     return <AppLoading message="Cargando categorías" iconPath={''} />;

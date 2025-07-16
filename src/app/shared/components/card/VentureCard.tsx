@@ -65,7 +65,7 @@ const VentureCard = ({
       )}
 
       <a target="_blank" href={`/principal/emprendimientos/${venture.slug}`}>
-        <Card className="border overflow-hidden">
+        <Card className="border border-success overflow-hidden">
           <VentureCardHeader venture={venture} ownerIndicators={ownerButtons} />
 
           <CardBody className="mb-0 pb-0">

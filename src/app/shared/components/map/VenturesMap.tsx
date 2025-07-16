@@ -29,8 +29,8 @@ import {
   getMidpoint,
   haversineDistance,
 } from '../../helpers/map-helpers';
-import TopMapButtons from './TopMapButtons';
 import AppLoading from '../loader/AppLoading';
+import TopMapButtons from './TopMapButtons';
 
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 

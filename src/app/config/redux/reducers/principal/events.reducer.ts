@@ -17,6 +17,10 @@ export interface EventFilter {
   categoriesIds: string[];
   activeDepartmentId: number;
   municipalitiesIds: number[];
+  dateRange: {
+    from: Date;
+    to: Date;
+  };
 }
 
 export interface EventsState {
@@ -25,6 +29,10 @@ export interface EventsState {
   items: VentureEvent[];
   total: number;
 }
+
+const today = new Date();
+const nextWeek = new Date(today);
+nextWeek.setDate(today.getDate() + 7);
 
 const initialState: EventsState = {
   showFilters: true,
@@ -38,6 +46,10 @@ const initialState: EventsState = {
     categoriesIds: [],
     activeDepartmentId: 0,
     municipalitiesIds: [],
+    dateRange: {
+      from: today,
+      to: nextWeek,
+    },
   },
   items: [],
   total: 0,
@@ -82,6 +94,10 @@ export const eventsSlice = createSlice({
     toggleShowEventFilters: (state) => {
       state.showFilters = !state.showFilters;
     },
+    setDateRange: (state, action: PayloadAction<{ from: Date; to: Date }>) => {
+      state.filters.dateRange = action.payload;
+      state.filters.pagination.skip = 0;
+    },
   },
 });
 
@@ -95,6 +111,7 @@ export const {
   setEventsMunicipalitiesIds,
   setEventsActiveDepartmentId,
   toggleShowEventFilters,
+  setDateRange,
 } = eventsSlice.actions;
 
 export const selectEvents = (state: RootState) => state.principal.events;

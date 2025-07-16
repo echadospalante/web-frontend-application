@@ -5,7 +5,7 @@ import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
 import markerIcon from 'leaflet/dist/images/marker-icon.png';
 import markerShadow from 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet/dist/leaflet.css';
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import Select from 'react-select';
 import {
   Button,
@@ -22,11 +22,11 @@ import {
 
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import SetMapCenter from '../../../../shared/components/map/SetMapCenter.tsx';
 import departments from '../../../../shared/data/geo/departments';
 import municipalities from '../../../../shared/data/geo/municipalities';
 import useFetchAllVentureCategories from '../hooks/useAllVentureCategories';
 import useVentureCreate from '../hooks/useVentureCreate';
-import SetMapCenter from '../../../../shared/components/map/SetMapCenter.tsx';
 
 enum LocationMode {
   CURRENT = 'CURRENT',

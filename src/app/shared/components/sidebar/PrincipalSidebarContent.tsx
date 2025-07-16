@@ -215,9 +215,16 @@ const UserSidebarContent = () => {
             </li>
 
             <li>
-              <Link to="/principal/cuenta/suscripciones">
-                <i className="bx bx-heart"></i>
+              <Link to="/principal/cuenta/donaciones">
+                <i className="mdi mdi-gift-outline"></i>
                 <span>{t('My Donations')}</span>
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/principal/cuenta/patrocinios">
+                <i className="bx bx-heart"></i>
+                <span>{t('My Sponsorships')}</span>
               </Link>
             </li>
           </ul>
@@ -226,14 +233,14 @@ const UserSidebarContent = () => {
             <li className="menu-title">Ayuda</li>
 
             <li>
-              <Link to="soporte">
+              <Link to="/principal/soporte" target="_blank">
                 <i className="bx bx-support"></i>
                 <span>{t('Support')}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/terminos-condiciones">
+              <Link to="/principal/privacidad-y-tratamiento-datos">
                 <i className="bx bx-check-shield"></i>
                 <span>{t('Terms And Conditions')}</span>
               </Link>

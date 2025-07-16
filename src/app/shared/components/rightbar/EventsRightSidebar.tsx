@@ -18,13 +18,16 @@ import UpcomingEventCard from '../card/UpcomingEventCard';
 import EventLocationFilters from '../filters/EventLocationFilters';
 import EventCategoriesList from '../list/EventCategoriesList';
 import HighlightedEventsModal from '../modal/HighlightedEventsModal';
+import EventDateRangeFilters from '../filters/EventDateRangeFilters';
 
 export interface EventsRightSidebarProps {
   multipleMunicipalities: boolean;
+  dateRangeFilter: boolean;
 }
 
 const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
   multipleMunicipalities,
+  dateRangeFilter,
 }) => {
   const {
     setViewMode,
@@ -35,17 +38,17 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
     toggleShowFilters,
   } = useEventsRightSidebar();
   const [scrollY, setScrollY] = useState(0);
-const [showHighlighted, setShowHighlighted] = useState<
+  const [showHighlighted, setShowHighlighted] = useState<
     'upcoming' | 'current' | null
   >(null);
 
-    const {
-      error,
-      refetchHighlightedEvents,
-      isLoading,
-      isError,
-      highlightedEvents,
-    } = useHighlightedEvents();
+  const {
+    error,
+    refetchHighlightedEvents,
+    isLoading,
+    isError,
+    highlightedEvents,
+  } = useHighlightedEvents();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -88,6 +91,59 @@ const [showHighlighted, setShowHighlighted] = useState<
           >
             <Card>
               <CardBody className="p-4">
+                <div className="mb-3">
+                  <Label htmlFor="events-search">Modo de vista</Label>
+                  <ButtonGroup className="w-100">
+                    <Button
+                      className="w-100"
+                      color={
+                        viewMode === EventsViewMode.calendar
+                          ? 'success'
+                          : 'secondary'
+                      }
+                      onClick={() => setViewMode(EventsViewMode.calendar)}
+                      active={viewMode === EventsViewMode.calendar}
+                    >
+                      {viewMode === EventsViewMode.calendar && (
+                        <i className="mdi mdi-check-circle-outline me-1" />
+                      )}
+                      Agenda
+                    </Button>
+
+                    <Button
+                      className="w-100"
+                      color={
+                        viewMode === EventsViewMode.map
+                          ? 'success'
+                          : 'secondary'
+                      }
+                      onClick={() => setViewMode(EventsViewMode.map)}
+                      active={viewMode === EventsViewMode.map}
+                    >
+                      {viewMode === EventsViewMode.map && (
+                        <i className="mdi mdi-check-circle-outline me-1" />
+                      )}
+                      Mapa
+                    </Button>
+
+                    <Button
+                      className="w-100"
+                      color={
+                        viewMode === EventsViewMode.feed
+                          ? 'success'
+                          : 'secondary'
+                      }
+                      onClick={() => setViewMode(EventsViewMode.feed)}
+                      active={viewMode === EventsViewMode.feed}
+                    >
+                      {viewMode === EventsViewMode.feed && (
+                        <i className="mdi mdi-check-circle-outline me-1" />
+                      )}
+                      Lista
+                    </Button>
+                  </ButtonGroup>
+                </div>
+
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h5 className="mb-0">Filtros de búsqueda</h5>
                 </div>
@@ -110,58 +166,7 @@ const [showHighlighted, setShowHighlighted] = useState<
                     multipleMunicipalities={multipleMunicipalities}
                   />
 
-                  <div className="mt-3">
-                    <Label htmlFor="events-search">Modo de vista</Label>
-                    <ButtonGroup className="w-100">
-                      <Button
-                        className="w-100"
-                        color={
-                          viewMode === EventsViewMode.calendar
-                            ? 'success'
-                            : 'secondary'
-                        }
-                        onClick={() => setViewMode(EventsViewMode.calendar)}
-                        active={viewMode === EventsViewMode.calendar}
-                      >
-                        {viewMode === EventsViewMode.calendar && (
-                          <i className="mdi mdi-check-circle-outline me-1" />
-                        )}
-                        Agenda
-                      </Button>
-
-                      <Button
-                        className="w-100"
-                        color={
-                          viewMode === EventsViewMode.map
-                            ? 'success'
-                            : 'secondary'
-                        }
-                        onClick={() => setViewMode(EventsViewMode.map)}
-                        active={viewMode === EventsViewMode.map}
-                      >
-                        {viewMode === EventsViewMode.map && (
-                          <i className="mdi mdi-check-circle-outline me-1" />
-                        )}
-                        Mapa
-                      </Button>
-
-                      <Button
-                        className="w-100"
-                        color={
-                          viewMode === EventsViewMode.feed
-                            ? 'success'
-                            : 'secondary'
-                        }
-                        onClick={() => setViewMode(EventsViewMode.feed)}
-                        active={viewMode === EventsViewMode.feed}
-                      >
-                        {viewMode === EventsViewMode.feed && (
-                          <i className="mdi mdi-check-circle-outline me-1" />
-                        )}
-                        Lista
-                      </Button>
-                    </ButtonGroup>
-                  </div>
+                  {dateRangeFilter && <EventDateRangeFilters />}
                 </div>
 
                 <hr className="my-3" />
@@ -191,38 +196,12 @@ const [showHighlighted, setShowHighlighted] = useState<
                     <div>
                       <div>
                         <Label htmlFor="categories" className="mt-3">
-                          Publicaciones Populares
+                          Eventos en Curso
                         </Label>
 
                         <div className="list-group list-group-flush">
-                          {highlightedEvents.trending
-                            .slice(0, 3)
-                            .map((item) => (
-                              <UpcomingEventCard key={item.id} event={item} />
-                            ))}
-                        </div>
-
-                        <Button
-                          color="success"
-                          size="sm"
-                          className="btn btn-outline my-0"
-                          onClick={() => setShowHighlighted('trending')}
-                        >
-                          Ver más
-                        </Button>
-                      </div>
-
-                      <div>
-                        <Label htmlFor="categories" className="mt-3">
-                          Últimas Publicaciones
-                        </Label>
-
-                        <div className="list-group list-group-flush">
-                          {highlightedEvents.latest.slice(0, 3).map((item) => (
-                            <LatestPublicationCard
-                              key={item.id}
-                              publication={item}
-                            />
+                          {highlightedEvents.current.slice(0, 3).map((item) => (
+                            <UpcomingEventCard key={item.id} event={item} />
                           ))}
                         </div>
 
@@ -230,7 +209,28 @@ const [showHighlighted, setShowHighlighted] = useState<
                           color="success"
                           size="sm"
                           className="btn btn-outline my-0"
-                          onClick={() => setShowHighlighted('latest')}
+                          onClick={() => setShowHighlighted('current')}
+                        >
+                          Ver más
+                        </Button>
+                      </div>
+
+                      <div>
+                        <Label htmlFor="categories" className="mt-3">
+                          Próximos Eventos
+                        </Label>
+
+                        <div className="list-group list-group-flush">
+                          {highlightedEvents.current.slice(0, 3).map((item) => (
+                            <UpcomingEventCard key={item.id} event={item} />
+                          ))}
+                        </div>
+
+                        <Button
+                          color="success"
+                          size="sm"
+                          className="btn btn-outline my-0"
+                          onClick={() => setShowHighlighted('upcoming')}
                         >
                           Ver más
                         </Button>

@@ -3,9 +3,9 @@ import React from 'react';
 import Select, { MultiValue } from 'react-select';
 import { Label } from 'reactstrap';
 
+import useEventsFilters from '../../../modules/principal/ventures/hooks/useEventsFilters';
 import departments from '../../data/geo/departments';
 import municipalities from '../../data/geo/municipalities';
-import useEventsRightSidebar from '../../../modules/principal/ventures/hooks/useEventsRightSidebar';
 
 export interface EventLocationFiltersProps {
   multipleMunicipalities?: boolean;
@@ -19,7 +19,7 @@ const EventLocationFilters: React.FC<EventLocationFiltersProps> = ({
     municipalitiesIds,
     activeDepartmentId,
     setActiveDepartmentId,
-  } = useEventsRightSidebar();
+  } = useEventsFilters();
   return (
     <>
       <div className="mt-3">

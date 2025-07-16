@@ -17,12 +17,11 @@ import {
   haversineDistance,
 } from '../../helpers/map-helpers';
 import TopMapButtons from './TopMapButtons';
-import React from 'react';
 
 type TinyMapProps = {
   coords: { lat: number; lng: number };
   address: string;
-  height: string; // Optional height prop for custom height
+  height: string;
 };
 
 const TinyMap = (props: TinyMapProps) => {

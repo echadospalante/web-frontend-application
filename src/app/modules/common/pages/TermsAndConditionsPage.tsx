@@ -1,8 +1,9 @@
 import { Fragment, useState } from 'react';
 
 import classnames from 'classnames';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
+  Button,
   Card,
   CardBody,
   Col,
@@ -20,6 +21,7 @@ import LandingFooter from '../../../shared/components/footer/LandingFooter';
 const TermsAndConditionsPage = () => {
   document.title = "Terminos & Condiciones | EchadosPa'lante";
   const [activeTab, setactiveTab] = useState('1');
+  const navigate = useNavigate();
 
   return (
     <Fragment>
@@ -29,7 +31,18 @@ const TermsAndConditionsPage = () => {
             title="Información General"
             breadcrumbItem="Términos & Condiciones"
           />
-
+          <div className="d-flex justify-content-end my-2">
+            <Button
+              type="button"
+              color="success"
+              onClick={() =>
+                navigate('/principal/emprendimientos', { replace: true })
+              }
+            >
+              <i className="bx bx-arrow-back ms-1"></i>
+              Volver a la app
+            </Button>
+          </div>
           <Row>
             <Col xl={3}>
               <section className="section" id="faqs">
@@ -66,7 +79,7 @@ const TermsAndConditionsPage = () => {
                               >
                                 <i className="bx bx-help-circle nav-icon d-block mb-2" />
                                 <p className="font-weight-bold mb-0">
-                                  ¿Cómo usamos esta información?
+                                  Política de Privacidad
                                 </p>
                               </NavLink>
 
@@ -80,80 +93,7 @@ const TermsAndConditionsPage = () => {
                               >
                                 <i className="bx bx-receipt nav-icon d-block mb-2" />
                                 <p className="font-weight-bold mb-0">
-                                  ¿Cómo se comparte esta información?
-                                </p>
-                              </NavLink>
-
-                              <NavLink
-                                className={classnames({
-                                  active: activeTab === '3',
-                                })}
-                                onClick={() => {
-                                  setactiveTab('3');
-                                }}
-                              >
-                                <i className="bx bx-timer d-block nav-icon mb-2" />
-                                <p className="font-weight-bold mb-0">
-                                  ¿Cómo trabajan en conjunto las empresas de
-                                  Facebook?
-                                </p>
-                              </NavLink>
-
-                              <NavLink
-                                className={classnames({
-                                  active: activeTab === '4',
-                                })}
-                                onClick={() => {
-                                  setactiveTab('4');
-                                }}
-                              >
-                                <i className="bx bx-timer d-block nav-icon mb-2" />
-                                <p className="font-weight-bold mb-0">
-                                  ¿Cómo puedo administrar o eliminar la
-                                  información sobre mí?
-                                </p>
-                              </NavLink>
-
-                              <NavLink
-                                className={classnames({
-                                  active: activeTab === '5',
-                                })}
-                                onClick={() => {
-                                  setactiveTab('5');
-                                }}
-                              >
-                                <i className="bx bx-timer d-block nav-icon mb-2" />
-                                <p className="font-weight-bold mb-0">
-                                  ¿Cómo respondemos a solicitudes legales o
-                                  evitamos daños?
-                                </p>
-                              </NavLink>
-                              <NavLink
-                                className={classnames({
-                                  active: activeTab === '6',
-                                })}
-                                onClick={() => {
-                                  setactiveTab('6');
-                                }}
-                              >
-                                <i className="bx bx-timer d-block nav-icon mb-2" />
-                                <p className="font-weight-bold mb-0">
-                                  ¿Cómo operamos y transferimos datos como parte
-                                  de nuestros servicios internacionales?
-                                </p>
-                              </NavLink>
-                              <NavLink
-                                className={classnames({
-                                  active: activeTab === '7',
-                                })}
-                                onClick={() => {
-                                  setactiveTab('7');
-                                }}
-                              >
-                                <i className="bx bx-timer d-block nav-icon mb-2" />
-                                <p className="font-weight-bold mb-0">
-                                  ¿Cómo te notificaremos sobre los cambios que
-                                  se efectúen en esta política?
+                                  Derechos del Usuario y Seguridad
                                 </p>
                               </NavLink>
                             </Nav>
@@ -172,7 +112,10 @@ const TermsAndConditionsPage = () => {
                   <div className="d-flex">
                     <img src="/epl.png" alt="" height="50" />
                     <div className="flex-grow-1 ms-3">
-                      <h5 className="fw-semibold">Magento Developer</h5>
+                      <h5 className="fw-semibold">
+                        Proyecto Integrador II | Facultad de Ingeniería |
+                        Universidad de Antioquia
+                      </h5>
                       <ul className="list-unstyled hstack gap-2 mb-0">
                         <li>
                           <i className="bx bx-building-house"></i>{' '}
@@ -180,7 +123,7 @@ const TermsAndConditionsPage = () => {
                         </li>
                         <li>
                           <i className="bx bx-map"></i>{' '}
-                          <span className="text-muted">California</span>
+                          <span className="text-muted">Colombia</span>
                         </li>
                       </ul>
                     </div>
@@ -190,851 +133,295 @@ const TermsAndConditionsPage = () => {
                 <TabContent activeTab={activeTab}>
                   <TabPane tabId="1">
                     <CardBody>
-                      <h5 className="fw-semibold mb-3">Description 1</h5>
+                      <h5 className="fw-semibold mb-3">
+                        Política de Privacidad de Echados Pa' Lante
+                      </h5>
                       <p className="text-muted">
-                        We are looking to hire a skilled Magento developer to
-                        build and maintain eCommerce websites for our clients.
-                        As a Magento developer, you will be responsible for
-                        liaising with the design team, setting up Magento 1x and
-                        2x sites, building modules and customizing extensions,
-                        testing the performance of each site, and maintaining
-                        security and feature updates after the installation is
-                        complete.
+                        En "Echados Pa' Lante", nos comprometemos a proteger su
+                        privacidad y sus datos personales. Esta política
+                        describe cómo recopilamos, usamos, almacenamos y
+                        protegemos su información al utilizar nuestra
+                        plataforma. Al acceder o utilizar nuestra aplicación,
+                        usted acepta los términos de esta política de privacidad
+                        y tratamiento de datos, en cumplimiento con la Ley 1581
+                        de 2012 y sus decretos reglamentarios en Colombia.
                       </p>
 
-                      <h5 className="fw-semibold mb-3">Responsibilities:</h5>
+                      <h5 className="fw-semibold mb-3">
+                        1. Identificación del Responsable del Tratamiento:
+                      </h5>
                       <ul className="vstack gap-3 job-vstack">
                         <li>
-                          Meeting with the design team to discuss the needs of
-                          the company.
+                          <strong>Nombre del Responsable:</strong> Echados Pa'
+                          Lante
                         </li>
                         <li>
-                          Building and configuring Magento 1x and 2x eCommerce
-                          websites.
-                        </li>
-                        <li>Coding of the Magento templates.</li>
-                        <li>
-                          Developing Magento modules in PHP using best
-                          practices.
-                        </li>
-                        <li>Designing themes and interfaces.</li>
-                        <li>Setting performance tasks and goals.</li>
-                        <li>Updating website features and security patches.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Requirements:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Bachelor’s degree in computer science or related
-                          field.
-                        </li>
-                        <li>
-                          Advanced knowledge of Magento, JavaScript, HTML, PHP,
-                          CSS, and MySQL.
-                        </li>
-                        <li>
-                          Experience with complete eCommerce lifecycle
-                          development.
-                        </li>
-                        <li>Understanding of modern UI/UX trends.</li>
-                        <li>
-                          Knowledge of Google Tag Manager, SEO, Google
-                          Analytics, PPC, and A/B Testing.
-                        </li>
-                        <li>
-                          Good working knowledge of Adobe Photoshop and Adobe
-                          Illustrator.
-                        </li>
-                        <li>Strong attention to detail.</li>
-                        <li>
-                          Ability to project-manage and work to strict
-                          deadlines.
-                        </li>
-                        <li>Ability to work in a team environment.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Qualification:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          B.C.A / M.C.A under National University course
-                          complete.
-                        </li>
-                        <li>
-                          3 or more years of professional design experience
-                        </li>
-                        <li>
-                          Advanced degree or equivalent experience in graphic
-                          and web design
+                          <strong>Contacto:</strong> Se proporcionará un canal
+                          de comunicación específico para consultas de
+                          privacidad dentro de la plataforma.
                         </li>
                       </ul>
 
-                      <h5 className="fw-semibold mb-3">Skill & Experience:</h5>
-                      <ul className="vstack gap-3 mb-0 job-vstack">
-                        <li>Understanding of key Design Principal</li>
-                        <li>Proficiency With HTML, CSS, Bootstrap</li>
-                        <li>WordPress: 1 year (Required)</li>
+                      <h5 className="fw-semibold mb-3">
+                        2. Datos Recopilados:
+                      </h5>
+                      <p className="text-muted">
+                        Recopilamos información para proporcionar y mejorar
+                        nuestros servicios:
+                      </p>
+                      <ul className="vstack gap-3 job-vstack">
                         <li>
-                          Experience designing and developing responsive design
-                          websites
+                          <strong>Datos Personales de Registro:</strong> Nombre,
+                          correo electrónico, información de perfil
+                          (descripción, foto), datos de cuenta Google (si se usa
+                          para inicio de sesión).
                         </li>
-                        <li>web designing: 1 year (Preferred)</li>
+                        <li>
+                          <strong>Datos de Emprendimiento:</strong> Nombre del
+                          emprendimiento, descripción, categoría, ubicación,
+                          imágenes, videos y detalles de contacto.
+                        </li>
+                        <li>
+                          <strong>Datos de Interacción:</strong> Publicaciones
+                          creadas, comentarios, reacciones (likes),
+                          valoraciones, interacciones con otros perfiles.
+                        </li>
+                        <li>
+                          <strong>Datos de Eventos:</strong> Información sobre
+                          eventos creados o a los que se suscribe.
+                        </li>
+                        <li>
+                          <strong>Datos de Soporte Económico:</strong>{' '}
+                          Información sobre donaciones realizadas o recibidas, y
+                          patrocinios (nota: la información de donaciones y
+                          patrocinios es confidencial y visible solo para el
+                          creador del emprendimiento receptor).
+                        </li>
+                        <li>
+                          <strong>Datos de Preferencias:</strong> Preferencias
+                          de búsqueda, categorías seguidas, historial de
+                          interacción para personalizar el feed.
+                        </li>
+                        <li>
+                          <strong>Datos de Ubicación:</strong> Utilizados para
+                          búsquedas geolocalizadas de emprendimientos.
+                        </li>
+                        <li>
+                          <strong>Datos Técnicos:</strong> Métricas del sistema
+                          y datos de uso de la aplicación para optimización.
+                        </li>
+                      </ul>
+
+                      <h5 className="fw-semibold mb-3">
+                        3. Finalidad del Tratamiento de Datos:
+                      </h5>
+                      <p className="text-muted">
+                        Los datos recopilados se utilizan para los siguientes
+                        propósitos:
+                      </p>
+                      <ul className="vstack gap-3 job-vstack">
+                        <li>
+                          <strong>Gestión de Usuarios y Perfiles:</strong> Crear
+                          y administrar cuentas, personalizar la experiencia del
+                          usuario.
+                        </li>
+                        <li>
+                          <strong>Visibilidad y Promoción:</strong> Mostrar
+                          emprendimientos, productos y servicios a potenciales
+                          clientes.
+                        </li>
+                        <li>
+                          <strong>Conexión e Interacción:</strong> Facilitar la
+                          comunicación entre emprendedores y clientes, permitir
+                          comentarios, reacciones y calificaciones.
+                        </li>
+                        <li>
+                          <strong>Soporte Económico:</strong> Gestionar
+                          donaciones y patrocinios para el beneficio de los
+                          emprendedores.
+                        </li>
+                        <li>
+                          <strong>Personalización del Contenido:</strong>{' '}
+                          Ofrecer un feed dinámico y recomendaciones basadas en
+                          intereses y ubicación.
+                        </li>
+                        <li>
+                          <strong>Gestión de Eventos:</strong> Promocionar y
+                          administrar eventos relacionados con el ecosistema
+                          emprendedor.
+                        </li>
+                        <li>
+                          <strong>Notificaciones y Comunicaciones:</strong>{' '}
+                          Enviar alertas sobre eventos, nuevos contenidos,
+                          cambios de estado y comunicaciones relevantes.
+                        </li>
+                        <li>
+                          <strong>Mejora del Servicio:</strong> Analizar el uso
+                          de la aplicación para optimizar funcionalidades y la
+                          experiencia del usuario.
+                        </li>
+                      </ul>
+
+                      <h5 className="fw-semibold mb-3">
+                        4. Compartición y Visibilidad de la Información:
+                      </h5>
+                      <ul className="vstack gap-3 job-vstack">
+                        <li>
+                          <strong>Información Pública:</strong> Nombres de
+                          emprendimientos, descripciones, categorías, imágenes,
+                          publicaciones, comentarios y eventos son visibles para
+                          todos los usuarios de la plataforma.
+                        </li>
+                        <li>
+                          <strong>Información Semi-Pública:</strong> Los
+                          perfiles de usuario (nombre, foto) son visibles al
+                          interactuar (comentar, reaccionar).
+                        </li>
+                        <li>
+                          <strong>Información Confidencial:</strong> Detalles de
+                          donaciones y patrocinios son estrictamente
+                          confidenciales y solo son visibles para el emprendedor
+                          que recibe el apoyo.
+                        </li>
+                        <li>
+                          <strong>Compartir en Redes Sociales:</strong> La
+                          aplicación facilita la opción de compartir contenido
+                          de emprendimientos en plataformas de redes sociales.
+                          Al hacerlo, la compartición de datos se rige por las
+                          políticas de privacidad de esas plataformas externas.
+                        </li>
+                        <li>
+                          <strong>Terceros:</strong> No compartimos su
+                          información personal con terceros para fines de
+                          marketing sin su consentimiento explícito. Podríamos
+                          compartir datos anonimizados o agregados para análisis
+                          o mejoras del servicio.
+                        </li>
                       </ul>
                     </CardBody>
                   </TabPane>
 
                   <TabPane tabId="2">
                     <CardBody>
-                      <h5 className="fw-semibold mb-3">Description 2</h5>
+                      <h5 className="fw-semibold mb-3">
+                        5. Medidas de Seguridad:
+                      </h5>
                       <p className="text-muted">
-                        We are looking to hire a skilled Magento developer to
-                        build and maintain eCommerce websites for our clients.
-                        As a Magento developer, you will be responsible for
-                        liaising with the design team, setting up Magento 1x and
-                        2x sites, building modules and customizing extensions,
-                        testing the performance of each site, and maintaining
-                        security and feature updates after the installation is
-                        complete.
+                        Hemos implementado medidas de seguridad técnicas,
+                        humanas y administrativas para proteger sus datos
+                        personales contra el acceso no autorizado, la
+                        alteración, divulgación o destrucción.
+                      </p>
+                      <ul className="vstack gap-3 job-vstack">
+                        <li>
+                          <strong>Arquitectura de Microservicios:</strong>{' '}
+                          Divide el sistema en componentes pequeños y aislados,
+                          lo que mejora la resiliencia y la seguridad al limitar
+                          el impacto de posibles fallas.
+                        </li>
+                        <li>
+                          <strong>Control de Acceso:</strong> Acceso restringido
+                          a la información personal solo para el personal
+                          autorizado que necesita conocerla para operar,
+                          desarrollar o mejorar nuestros servicios.
+                        </li>
+                        <li>
+                          <strong>Cifrado de Comunicaciones:</strong>{' '}
+                          Utilización de protocolos seguros como HTTPS para
+                          cifrar la comunicación entre su dispositivo y nuestros
+                          servidores.
+                        </li>
+                        <li>
+                          <strong>Gestión de Contenido y Moderación:</strong>{' '}
+                          Implementación de procesos para moderar contenido,
+                          ayudando a mantener un entorno seguro y adecuado.
+                        </li>
+                        <li>
+                          <strong>Bases de Datos Seguras:</strong> El uso de
+                          PostgreSQL implica características de seguridad
+                          robustas a nivel de base de datos.
+                        </li>
+                        <li>
+                          <strong>Entornos Contenerizados:</strong> Docker y
+                          Docker Compose proporcionan aislamiento para los
+                          servicios, reduciendo la superficie de ataque.
+                        </li>
+                        <li>
+                          <strong>Prácticas de Desarrollo Seguro:</strong>{' '}
+                          Integración de seguridad en el ciclo de vida del
+                          desarrollo.
+                        </li>
+                      </ul>
+
+                      <h5 className="fw-semibold mb-3">
+                        6. Derechos del Titular de los Datos (Ley 1581 de 2012):
+                      </h5>
+                      <p className="text-muted">
+                        Como titular de sus datos personales, usted tiene los
+                        siguientes derechos:
+                      </p>
+                      <ul className="vstack gap-3 job-vstack">
+                        <li>
+                          <strong>Acceso:</strong> Conocer la información
+                          personal que tenemos sobre usted.
+                        </li>
+                        <li>
+                          <strong>Actualización:</strong> Rectificar y
+                          actualizar sus datos inexactos o incompletos a través
+                          de su perfil de usuario.
+                        </li>
+                        <li>
+                          <strong>Rectificación:</strong> Solicitar la
+                          corrección de errores en su información.
+                        </li>
+                        <li>
+                          <strong>Supresión (Eliminación):</strong> Solicitar la
+                          eliminación de sus datos personales cuando lo permita
+                          la ley (ej. cuando la finalidad del tratamiento haya
+                          cesado).
+                        </li>
+                        <li>
+                          <strong>Revocación de la Autorización:</strong>{' '}
+                          Revocar el consentimiento para el tratamiento de sus
+                          datos en cualquier momento, sujeto a limitaciones
+                          legales.
+                        </li>
+                        <li>
+                          <strong>Oposición:</strong> Oponerse al tratamiento de
+                          sus datos por motivos legítimos y fundados.
+                        </li>
+                        <li>
+                          <strong>Consulta y Reclamo:</strong> Presentar
+                          consultas o reclamos ante el Responsable del
+                          Tratamiento o ante la Superintendencia de Industria y
+                          Comercio (SIC).
+                        </li>
+                      </ul>
+
+                      <h5 className="fw-semibold mb-3">
+                        7. Vigencia y Modificaciones de la Política:
+                      </h5>
+                      <p className="text-muted">
+                        La presente política de privacidad entra en vigor desde
+                        su publicación y permanecerá vigente mientras "Echados
+                        Pa' Lante" opere. Nos reservamos el derecho de modificar
+                        esta política en cualquier momento para adaptarnos a
+                        nuevas legislaciones, mejores prácticas o cambios en
+                        nuestros servicios. Cualquier modificación será
+                        publicada en esta misma sección de la aplicación y
+                        notificada a los usuarios de manera oportuna.
                       </p>
 
-                      <h5 className="fw-semibold mb-3">Responsibilities:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Meeting with the design team to discuss the needs of
-                          the company.
-                        </li>
-                        <li>
-                          Building and configuring Magento 1x and 2x eCommerce
-                          websites.
-                        </li>
-                        <li>Coding of the Magento templates.</li>
-                        <li>
-                          Developing Magento modules in PHP using best
-                          practices.
-                        </li>
-                        <li>Designing themes and interfaces.</li>
-                        <li>Setting performance tasks and goals.</li>
-                        <li>Updating website features and security patches.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Requirements:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Bachelor’s degree in computer science or related
-                          field.
-                        </li>
-                        <li>
-                          Advanced knowledge of Magento, JavaScript, HTML, PHP,
-                          CSS, and MySQL.
-                        </li>
-                        <li>
-                          Experience with complete eCommerce lifecycle
-                          development.
-                        </li>
-                        <li>Understanding of modern UI/UX trends.</li>
-                        <li>
-                          Knowledge of Google Tag Manager, SEO, Google
-                          Analytics, PPC, and A/B Testing.
-                        </li>
-                        <li>
-                          Good working knowledge of Adobe Photoshop and Adobe
-                          Illustrator.
-                        </li>
-                        <li>Strong attention to detail.</li>
-                        <li>
-                          Ability to project-manage and work to strict
-                          deadlines.
-                        </li>
-                        <li>Ability to work in a team environment.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Qualification:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          B.C.A / M.C.A under National University course
-                          complete.
-                        </li>
-                        <li>
-                          3 or more years of professional design experience
-                        </li>
-                        <li>
-                          Advanced degree or equivalent experience in graphic
-                          and web design
-                        </li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Skill & Experience:</h5>
-                      <ul className="vstack gap-3 mb-0 job-vstack">
-                        <li>Understanding of key Design Principal</li>
-                        <li>Proficiency With HTML, CSS, Bootstrap</li>
-                        <li>WordPress: 1 year (Required)</li>
-                        <li>
-                          Experience designing and developing responsive design
-                          websites
-                        </li>
-                        <li>web designing: 1 year (Preferred)</li>
-                      </ul>
-
-                      <div className="mt-4">
-                        <ul className="list-inline mb-0">
-                          <li className="list-inline-item mt-1">
-                            Share this job:
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-primary btn-hover"
-                            >
-                              <i className="uil uil-facebook-f"></i> Facebook
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-danger btn-hover"
-                            >
-                              <i className="uil uil-google"></i> Google+
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-success btn-hover"
-                            >
-                              <i className="uil uil-linkedin-alt"></i> linkedin
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </CardBody>
-                  </TabPane>
-
-                  <TabPane tabId="3">
-                    <CardBody>
-                      <h5 className="fw-semibold mb-3">Description 3</h5>
+                      <h5 className="fw-semibold mb-3">8. Contacto:</h5>
                       <p className="text-muted">
-                        We are looking to hire a skilled Magento developer to
-                        build and maintain eCommerce websites for our clients.
-                        As a Magento developer, you will be responsible for
-                        liaising with the design team, setting up Magento 1x and
-                        2x sites, building modules and customizing extensions,
-                        testing the performance of each site, and maintaining
-                        security and feature updates after the installation is
-                        complete.
+                        Para ejercer sus derechos como titular de datos o si
+                        tiene alguna pregunta o inquietud sobre nuestra política
+                        de privacidad, puede contactarnos a través de los
+                        canales de soporte indicados en la aplicación o mediante
+                        el correo electrónico que se proporcione para tal fin.
+                        Responderemos a sus solicitudes de acuerdo con la
+                        legislación vigente.
                       </p>
-
-                      <h5 className="fw-semibold mb-3">Responsibilities:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Meeting with the design team to discuss the needs of
-                          the company.
-                        </li>
-                        <li>
-                          Building and configuring Magento 1x and 2x eCommerce
-                          websites.
-                        </li>
-                        <li>Coding of the Magento templates.</li>
-                        <li>
-                          Developing Magento modules in PHP using best
-                          practices.
-                        </li>
-                        <li>Designing themes and interfaces.</li>
-                        <li>Setting performance tasks and goals.</li>
-                        <li>Updating website features and security patches.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Requirements:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Bachelor’s degree in computer science or related
-                          field.
-                        </li>
-                        <li>
-                          Advanced knowledge of Magento, JavaScript, HTML, PHP,
-                          CSS, and MySQL.
-                        </li>
-                        <li>
-                          Experience with complete eCommerce lifecycle
-                          development.
-                        </li>
-                        <li>Understanding of modern UI/UX trends.</li>
-                        <li>
-                          Knowledge of Google Tag Manager, SEO, Google
-                          Analytics, PPC, and A/B Testing.
-                        </li>
-                        <li>
-                          Good working knowledge of Adobe Photoshop and Adobe
-                          Illustrator.
-                        </li>
-                        <li>Strong attention to detail.</li>
-                        <li>
-                          Ability to project-manage and work to strict
-                          deadlines.
-                        </li>
-                        <li>Ability to work in a team environment.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Qualification:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          B.C.A / M.C.A under National University course
-                          complete.
-                        </li>
-                        <li>
-                          3 or more years of professional design experience
-                        </li>
-                        <li>
-                          Advanced degree or equivalent experience in graphic
-                          and web design
-                        </li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Skill & Experience:</h5>
-                      <ul className="vstack gap-3 mb-0 job-vstack">
-                        <li>Understanding of key Design Principal</li>
-                        <li>Proficiency With HTML, CSS, Bootstrap</li>
-                        <li>WordPress: 1 year (Required)</li>
-                        <li>
-                          Experience designing and developing responsive design
-                          websites
-                        </li>
-                        <li>web designing: 1 year (Preferred)</li>
-                      </ul>
-
-                      <div className="mt-4">
-                        <ul className="list-inline mb-0">
-                          <li className="list-inline-item mt-1">
-                            Share this job:
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-primary btn-hover"
-                            >
-                              <i className="uil uil-facebook-f"></i> Facebook
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-danger btn-hover"
-                            >
-                              <i className="uil uil-google"></i> Google+
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-success btn-hover"
-                            >
-                              <i className="uil uil-linkedin-alt"></i> linkedin
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </CardBody>
-                  </TabPane>
-
-                  <TabPane tabId="4">
-                    <CardBody>
-                      <h5 className="fw-semibold mb-3">Description 4</h5>
-                      <p className="text-muted">
-                        We are looking to hire a skilled Magento developer to
-                        build and maintain eCommerce websites for our clients.
-                        As a Magento developer, you will be responsible for
-                        liaising with the design team, setting up Magento 1x and
-                        2x sites, building modules and customizing extensions,
-                        testing the performance of each site, and maintaining
-                        security and feature updates after the installation is
-                        complete.
-                      </p>
-
-                      <h5 className="fw-semibold mb-3">Responsibilities:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Meeting with the design team to discuss the needs of
-                          the company.
-                        </li>
-                        <li>
-                          Building and configuring Magento 1x and 2x eCommerce
-                          websites.
-                        </li>
-                        <li>Coding of the Magento templates.</li>
-                        <li>
-                          Developing Magento modules in PHP using best
-                          practices.
-                        </li>
-                        <li>Designing themes and interfaces.</li>
-                        <li>Setting performance tasks and goals.</li>
-                        <li>Updating website features and security patches.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Requirements:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Bachelor’s degree in computer science or related
-                          field.
-                        </li>
-                        <li>
-                          Advanced knowledge of Magento, JavaScript, HTML, PHP,
-                          CSS, and MySQL.
-                        </li>
-                        <li>
-                          Experience with complete eCommerce lifecycle
-                          development.
-                        </li>
-                        <li>Understanding of modern UI/UX trends.</li>
-                        <li>
-                          Knowledge of Google Tag Manager, SEO, Google
-                          Analytics, PPC, and A/B Testing.
-                        </li>
-                        <li>
-                          Good working knowledge of Adobe Photoshop and Adobe
-                          Illustrator.
-                        </li>
-                        <li>Strong attention to detail.</li>
-                        <li>
-                          Ability to project-manage and work to strict
-                          deadlines.
-                        </li>
-                        <li>Ability to work in a team environment.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Qualification:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          B.C.A / M.C.A under National University course
-                          complete.
-                        </li>
-                        <li>
-                          3 or more years of professional design experience
-                        </li>
-                        <li>
-                          Advanced degree or equivalent experience in graphic
-                          and web design
-                        </li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Skill & Experience:</h5>
-                      <ul className="vstack gap-3 mb-0 job-vstack">
-                        <li>Understanding of key Design Principal</li>
-                        <li>Proficiency With HTML, CSS, Bootstrap</li>
-                        <li>WordPress: 1 year (Required)</li>
-                        <li>
-                          Experience designing and developing responsive design
-                          websites
-                        </li>
-                        <li>web designing: 1 year (Preferred)</li>
-                      </ul>
-
-                      <div className="mt-4">
-                        <ul className="list-inline mb-0">
-                          <li className="list-inline-item mt-1">
-                            Share this job:
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-primary btn-hover"
-                            >
-                              <i className="uil uil-facebook-f"></i> Facebook
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-danger btn-hover"
-                            >
-                              <i className="uil uil-google"></i> Google+
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-success btn-hover"
-                            >
-                              <i className="uil uil-linkedin-alt"></i> linkedin
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </CardBody>
-                  </TabPane>
-
-                  <TabPane tabId="5">
-                    <CardBody>
-                      <h5 className="fw-semibold mb-3">Description 5</h5>
-                      <p className="text-muted">
-                        We are looking to hire a skilled Magento developer to
-                        build and maintain eCommerce websites for our clients.
-                        As a Magento developer, you will be responsible for
-                        liaising with the design team, setting up Magento 1x and
-                        2x sites, building modules and customizing extensions,
-                        testing the performance of each site, and maintaining
-                        security and feature updates after the installation is
-                        complete.
-                      </p>
-
-                      <h5 className="fw-semibold mb-3">Responsibilities:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Meeting with the design team to discuss the needs of
-                          the company.
-                        </li>
-                        <li>
-                          Building and configuring Magento 1x and 2x eCommerce
-                          websites.
-                        </li>
-                        <li>Coding of the Magento templates.</li>
-                        <li>
-                          Developing Magento modules in PHP using best
-                          practices.
-                        </li>
-                        <li>Designing themes and interfaces.</li>
-                        <li>Setting performance tasks and goals.</li>
-                        <li>Updating website features and security patches.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Requirements:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Bachelor’s degree in computer science or related
-                          field.
-                        </li>
-                        <li>
-                          Advanced knowledge of Magento, JavaScript, HTML, PHP,
-                          CSS, and MySQL.
-                        </li>
-                        <li>
-                          Experience with complete eCommerce lifecycle
-                          development.
-                        </li>
-                        <li>Understanding of modern UI/UX trends.</li>
-                        <li>
-                          Knowledge of Google Tag Manager, SEO, Google
-                          Analytics, PPC, and A/B Testing.
-                        </li>
-                        <li>
-                          Good working knowledge of Adobe Photoshop and Adobe
-                          Illustrator.
-                        </li>
-                        <li>Strong attention to detail.</li>
-                        <li>
-                          Ability to project-manage and work to strict
-                          deadlines.
-                        </li>
-                        <li>Ability to work in a team environment.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Qualification:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          B.C.A / M.C.A under National University course
-                          complete.
-                        </li>
-                        <li>
-                          3 or more years of professional design experience
-                        </li>
-                        <li>
-                          Advanced degree or equivalent experience in graphic
-                          and web design
-                        </li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Skill & Experience:</h5>
-                      <ul className="vstack gap-3 mb-0 job-vstack">
-                        <li>Understanding of key Design Principal</li>
-                        <li>Proficiency With HTML, CSS, Bootstrap</li>
-                        <li>WordPress: 1 year (Required)</li>
-                        <li>
-                          Experience designing and developing responsive design
-                          websites
-                        </li>
-                        <li>web designing: 1 year (Preferred)</li>
-                      </ul>
-
-                      <div className="mt-4">
-                        <ul className="list-inline mb-0">
-                          <li className="list-inline-item mt-1">
-                            Share this job:
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-primary btn-hover"
-                            >
-                              <i className="uil uil-facebook-f"></i> Facebook
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-danger btn-hover"
-                            >
-                              <i className="uil uil-google"></i> Google+
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-success btn-hover"
-                            >
-                              <i className="uil uil-linkedin-alt"></i> linkedin
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </CardBody>
-                  </TabPane>
-
-                  <TabPane tabId="6">
-                    <CardBody>
-                      <h5 className="fw-semibold mb-3">Description 6</h5>
-                      <p className="text-muted">
-                        We are looking to hire a skilled Magento developer to
-                        build and maintain eCommerce websites for our clients.
-                        As a Magento developer, you will be responsible for
-                        liaising with the design team, setting up Magento 1x and
-                        2x sites, building modules and customizing extensions,
-                        testing the performance of each site, and maintaining
-                        security and feature updates after the installation is
-                        complete.
-                      </p>
-
-                      <h5 className="fw-semibold mb-3">Responsibilities:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Meeting with the design team to discuss the needs of
-                          the company.
-                        </li>
-                        <li>
-                          Building and configuring Magento 1x and 2x eCommerce
-                          websites.
-                        </li>
-                        <li>Coding of the Magento templates.</li>
-                        <li>
-                          Developing Magento modules in PHP using best
-                          practices.
-                        </li>
-                        <li>Designing themes and interfaces.</li>
-                        <li>Setting performance tasks and goals.</li>
-                        <li>Updating website features and security patches.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Requirements:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Bachelor’s degree in computer science or related
-                          field.
-                        </li>
-                        <li>
-                          Advanced knowledge of Magento, JavaScript, HTML, PHP,
-                          CSS, and MySQL.
-                        </li>
-                        <li>
-                          Experience with complete eCommerce lifecycle
-                          development.
-                        </li>
-                        <li>Understanding of modern UI/UX trends.</li>
-                        <li>
-                          Knowledge of Google Tag Manager, SEO, Google
-                          Analytics, PPC, and A/B Testing.
-                        </li>
-                        <li>
-                          Good working knowledge of Adobe Photoshop and Adobe
-                          Illustrator.
-                        </li>
-                        <li>Strong attention to detail.</li>
-                        <li>
-                          Ability to project-manage and work to strict
-                          deadlines.
-                        </li>
-                        <li>Ability to work in a team environment.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Qualification:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          B.C.A / M.C.A under National University course
-                          complete.
-                        </li>
-                        <li>
-                          3 or more years of professional design experience
-                        </li>
-                        <li>
-                          Advanced degree or equivalent experience in graphic
-                          and web design
-                        </li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Skill & Experience:</h5>
-                      <ul className="vstack gap-3 mb-0 job-vstack">
-                        <li>Understanding of key Design Principal</li>
-                        <li>Proficiency With HTML, CSS, Bootstrap</li>
-                        <li>WordPress: 1 year (Required)</li>
-                        <li>
-                          Experience designing and developing responsive design
-                          websites
-                        </li>
-                        <li>web designing: 1 year (Preferred)</li>
-                      </ul>
-
-                      <div className="mt-4">
-                        <ul className="list-inline mb-0">
-                          <li className="list-inline-item mt-1">
-                            Share this job:
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-primary btn-hover"
-                            >
-                              <i className="uil uil-facebook-f"></i> Facebook
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-danger btn-hover"
-                            >
-                              <i className="uil uil-google"></i> Google+
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-success btn-hover"
-                            >
-                              <i className="uil uil-linkedin-alt"></i> linkedin
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
-                    </CardBody>
-                  </TabPane>
-
-                  <TabPane tabId="7">
-                    <CardBody>
-                      <h5 className="fw-semibold mb-3">Description 7</h5>
-                      <p className="text-muted">
-                        We are looking to hire a skilled Magento developer to
-                        build and maintain eCommerce websites for our clients.
-                        As a Magento developer, you will be responsible for
-                        liaising with the design team, setting up Magento 1x and
-                        2x sites, building modules and customizing extensions,
-                        testing the performance of each site, and maintaining
-                        security and feature updates after the installation is
-                        complete.
-                      </p>
-
-                      <h5 className="fw-semibold mb-3">Responsibilities:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Meeting with the design team to discuss the needs of
-                          the company.
-                        </li>
-                        <li>
-                          Building and configuring Magento 1x and 2x eCommerce
-                          websites.
-                        </li>
-                        <li>Coding of the Magento templates.</li>
-                        <li>
-                          Developing Magento modules in PHP using best
-                          practices.
-                        </li>
-                        <li>Designing themes and interfaces.</li>
-                        <li>Setting performance tasks and goals.</li>
-                        <li>Updating website features and security patches.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Requirements:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          Bachelor’s degree in computer science or related
-                          field.
-                        </li>
-                        <li>
-                          Advanced knowledge of Magento, JavaScript, HTML, PHP,
-                          CSS, and MySQL.
-                        </li>
-                        <li>
-                          Experience with complete eCommerce lifecycle
-                          development.
-                        </li>
-                        <li>Understanding of modern UI/UX trends.</li>
-                        <li>
-                          Knowledge of Google Tag Manager, SEO, Google
-                          Analytics, PPC, and A/B Testing.
-                        </li>
-                        <li>
-                          Good working knowledge of Adobe Photoshop and Adobe
-                          Illustrator.
-                        </li>
-                        <li>Strong attention to detail.</li>
-                        <li>
-                          Ability to project-manage and work to strict
-                          deadlines.
-                        </li>
-                        <li>Ability to work in a team environment.</li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Qualification:</h5>
-                      <ul className="vstack gap-3 job-vstack">
-                        <li>
-                          B.C.A / M.C.A under National University course
-                          complete.
-                        </li>
-                        <li>
-                          3 or more years of professional design experience
-                        </li>
-                        <li>
-                          Advanced degree or equivalent experience in graphic
-                          and web design
-                        </li>
-                      </ul>
-
-                      <h5 className="fw-semibold mb-3">Skill & Experience:</h5>
-                      <ul className="vstack gap-3 mb-0 job-vstack">
-                        <li>Understanding of key Design Principal</li>
-                        <li>Proficiency With HTML, CSS, Bootstrap</li>
-                        <li>WordPress: 1 year (Required)</li>
-                        <li>
-                          Experience designing and developing responsive design
-                          websites
-                        </li>
-                        <li>web designing: 1 year (Preferred)</li>
-                      </ul>
-
-                      <div className="mt-4">
-                        <ul className="list-inline mb-0">
-                          <li className="list-inline-item mt-1">
-                            Share this job:
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-primary btn-hover"
-                            >
-                              <i className="uil uil-facebook-f"></i> Facebook
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-danger btn-hover"
-                            >
-                              <i className="uil uil-google"></i> Google+
-                            </Link>
-                          </li>
-                          <li className="list-inline-item mt-1">
-                            <Link
-                              to="#"
-                              className="btn btn-outline-success btn-hover"
-                            >
-                              <i className="uil uil-linkedin-alt"></i> linkedin
-                            </Link>
-                          </li>
-                        </ul>
-                      </div>
                     </CardBody>
                   </TabPane>
                 </TabContent>

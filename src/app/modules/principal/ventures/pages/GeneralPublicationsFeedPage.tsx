@@ -9,8 +9,9 @@ import useFetchPublications from '../hooks/useFetchPublications';
 import GeneralPublicationsHeader from '../../../../shared/components/header/GeneralPublicationsHeader';
 import VenturePublicationsHeader from '../../../../shared/components/header/VenturePublicationsHeader';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
 
-const GeneralPublicationsFeedPage = () => {
+const PublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";
   const { ventureSlug } = useParams();
 
@@ -21,6 +22,7 @@ const GeneralPublicationsFeedPage = () => {
     <Fragment>
       <div className="page-content">
         <Breadcrumb title="Emprendimientos" breadcrumbItem="Publicaciones" />
+
         <Container fluid>
           <Row className="mt-6">
             <Col lg={ventureSlug ? 12 : 9}>
@@ -42,10 +44,10 @@ const GeneralPublicationsFeedPage = () => {
 
             {items.length === 0 && (
               <Col lg={ventureSlug ? 12 : 9}>
-                <Card className="p-4 text-center">
-                  <h5>No hay publicaciones disponibles</h5>
-                  <p>Intenta recargar la página o vuelve más tarde.</p>
-                </Card>
+                <NoItemsFoundCard
+                  title="Sin publicaciones disponibles"
+                  message="No se encontraron publicaciones para mostrar. Por favor, intenta con otros filtros o vuelve más tarde."
+                />
               </Col>
             )}
 
@@ -61,4 +63,4 @@ const GeneralPublicationsFeedPage = () => {
   );
 };
 
-export default GeneralPublicationsFeedPage;
+export default PublicationsFeedPage;

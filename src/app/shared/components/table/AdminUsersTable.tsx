@@ -158,7 +158,7 @@ const AdminUsersTable = () => {
                   <Col sm={12} md={5} lg={6}>
                     <div className="dataTables_info">
                       Página {page + 1} de {Math.ceil(users.total / size) || 1},
-                      con un tatal de {users.total} usuarios
+                      con un total de {users.total} usuarios
                     </div>
                   </Col>
                   <Col

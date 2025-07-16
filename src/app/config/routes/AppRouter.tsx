@@ -29,7 +29,7 @@ import PreferencesNotificationsPage from '../../modules/principal/preferences/pa
 import PreferencesLayoutPage from '../../modules/principal/preferences/PreferencesLayoutPage';
 import Commercial404Page from '../../modules/principal/ventures/pages/Commercial404Page';
 import GeneralEventsPage from '../../modules/principal/ventures/pages/GeneralEventsPage';
-import GeneralPublicationsFeedPage from '../../modules/principal/ventures/pages/GeneralPublicationsFeedPage';
+import PublicationsFeedPage from '../../modules/principal/ventures/pages/GeneralPublicationsFeedPage';
 import VenturesFeedPage from '../../modules/principal/ventures/pages/GeneralVenturesPage';
 import PublicationDetailPage from '../../modules/principal/ventures/pages/PublicationDetailPage';
 import VenturesLayoutPage from '../../modules/principal/ventures/VenturesLayoutPage';
@@ -38,6 +38,9 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import VentureDetailPage from '../../modules/principal/ventures/pages/VentureDetailPage';
 import AccountSubscriptionsPage from '../../modules/principal/account/pages/AccountSubscriptionsPage';
+import AccountSponsorshipsPage from '../../modules/principal/account/pages/AccountSponsorshipsPage';
+import AccountDonationsPage from '../../modules/principal/account/pages/AccountDonationsPage';
+import SupportPage from '../../modules/common/pages/SupportPage';
 
 const ALL_ROLES = [AppRole.ADMIN, AppRole.MODERATOR, AppRole.USER];
 
@@ -75,14 +78,11 @@ const AppRouter = () => {
 
             <Route path="emprendimientos" element={<VenturesLayoutPage />}>
               <Route path="" element={<VenturesFeedPage />} />
-              <Route
-                path="publicaciones"
-                element={<GeneralPublicationsFeedPage />}
-              />
+              <Route path="publicaciones" element={<PublicationsFeedPage />} />
 
               <Route
                 path=":ventureId/publicaciones"
-                element={<GeneralPublicationsFeedPage />}
+                element={<PublicationsFeedPage />}
               />
 
               <Route path="eventos" element={<GeneralEventsPage />} />
@@ -92,7 +92,7 @@ const AppRouter = () => {
               />
               <Route
                 path=":ventureSlug/publicaciones"
-                element={<GeneralPublicationsFeedPage />}
+                element={<PublicationsFeedPage />}
               />
               <Route
                 path=":ventureSlug/eventos"
@@ -123,6 +123,8 @@ const AppRouter = () => {
                 path="suscripciones"
                 element={<AccountSubscriptionsPage />}
               />
+              <Route path="donaciones" element={<AccountDonationsPage />} />
+              <Route path="patrocinios" element={<AccountSponsorshipsPage />} />
             </Route>
 
             <Route path="preferencias" element={<PreferencesLayoutPage />}>
@@ -131,6 +133,13 @@ const AppRouter = () => {
                 element={<PreferencesNotificationsPage />}
               />
             </Route>
+
+            <Route
+              path="privacidad-y-tratamiento-datos"
+              element={<TermsAndConditionsPage />}
+            />
+
+            <Route path="soporte" element={<SupportPage />} />
           </Route>
 
           <Route

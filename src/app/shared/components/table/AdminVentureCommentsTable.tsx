@@ -186,7 +186,7 @@ const AdminVentureCommentsTable = ({
                 <Col sm={12} md={5} lg={6}>
                   <div className="dataTables_info">
                     Página {page + 1} de {Math.ceil(total / size) || 1}, con un
-                    tatal de {total} usuarios
+                    total de {total} usuarios
                   </div>
                 </Col>
                 <Col

@@ -59,7 +59,7 @@ const Header = () => {
               <i className="fa fa-fw fa-bars" />
             </button>
 
-            <form className="app-search d-none d-lg-block">
+            {/* <form className="app-search d-none d-lg-block">
               <div className="position-relative">
                 <input
                   type="text"
@@ -68,9 +68,9 @@ const Header = () => {
                 />
                 <span className="bx bx-search-alt" />
               </div>
-            </form>
+            </form> */}
 
-            <Dropdown
+            {/* <Dropdown
               className="dropdown-mega d-none d-lg-block ms-2"
               isOpen={megaMenu}
               toggle={() => {
@@ -79,7 +79,7 @@ const Header = () => {
             >
               <DropdownToggle className="btn header-item " caret tag="button">
                 {' '}
-                {t('Enlaces Directos')} <i className="mdi mdi-chevron-down" />
+                {t('Direct Links')} <i className="mdi mdi-chevron-down" />
               </DropdownToggle>
               <DropdownMenu className="dropdown-megamenu">
                 <Row>
@@ -214,7 +214,7 @@ const Header = () => {
                   </Col>
                 </Row>
               </DropdownMenu>
-            </Dropdown>
+            </Dropdown> */}
           </div>
           <div className="d-flex">
             <div className="dropdown d-inline-block d-lg-none ms-2">
