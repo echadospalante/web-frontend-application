@@ -17,12 +17,12 @@ type EventDetailModalProps = {
   toggleModal: () => void;
 };
 
-const formatCurrency = (amount: number, currency: string) => {
-  return new Intl.NumberFormat('es-CO', {
-    style: 'currency',
-    currency: currency,
-  }).format(amount);
-};
+// const formatCurrency = (amount: number, currency: string) => {
+//   return new Intl.NumberFormat('es-CO', {
+//     style: 'currency',
+//     currency: currency,
+//   }).format(amount);
+// };
 
 const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
   return (
@@ -38,7 +38,6 @@ const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
                 className="img-fluid rounded"
                 style={{
                   width: '100%',
-                  maxHeight: '200px',
                   objectFit: 'cover',
                 }}
                 onError={(e) => {

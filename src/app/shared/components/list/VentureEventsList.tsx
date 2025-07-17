@@ -47,11 +47,11 @@ const VentureEventsList = () => {
         lg={6}
         md={6}
         sm={12}
-        className="d-flex justify-content-end px-4 d-flex align-items-center"
+        className="d-flex  w-100 justify-content-center px-4 d-flex align-items-center"
       >
         <p>
-          Página {Math.floor(skip / take) + 1} de{' '}
-          {Math.ceil(total / take)} ({total} eventos)
+          Página {Math.floor(skip / take) + 1} de {Math.ceil(total / take)} (
+          {total} eventos)
         </p>
 
         <SearchablePagination
@@ -71,17 +71,29 @@ const VentureEventsList = () => {
         <EventCard key={event.id} event={event} />
       ))}
 
-      <SearchablePagination
-        perPageData={take}
-        length={total}
-        currentPage={Math.floor(skip / take) + 1}
-        setCurrentPage={() => setSkip(Math.floor(skip / take) + 1)}
-        isShowingPageLength={false}
-        paginationDiv="col-lg-12"
-        showPageNumbers={false}
-        showInputText
-        paginationClass="pagination pagination-rounded align-items-center justify-content-center mt-3 mb-4 pb-1 px-3"
-      />
+      <Col
+        lg={6}
+        md={6}
+        sm={12}
+        className="d-flex  w-100 justify-content-center px-4 d-flex align-items-center"
+      >
+        <p>
+          Página {Math.floor(skip / take) + 1} de {Math.ceil(total / take)} (
+          {total} eventos)
+        </p>
+
+        <SearchablePagination
+          perPageData={take}
+          length={total}
+          currentPage={Math.floor(skip / take) + 1}
+          setCurrentPage={() => setSkip(Math.floor(skip / take) + 1)}
+          isShowingPageLength={false}
+          paginationDiv="col-lg-12"
+          showPageNumbers={false}
+          showInputText
+          paginationClass="pagination pagination-rounded align-items-center justify-content-center mt-3 mb-4 pb-1 px-3"
+        />
+      </Col>
     </Row>
   );
 };

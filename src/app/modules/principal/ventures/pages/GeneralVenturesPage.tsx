@@ -8,7 +8,7 @@ import {
 } from '../../../../config/redux/reducers/principal/ventures.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
-import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
+import NoItemsFoundCard from '../../../../shared/components/card/NoItemsFoundCard';
 import VenturesList from '../../../../shared/components/list/VenturesList';
 import AppLoading from '../../../../shared/components/loader/AppLoading';
 import VenturesMap from '../../../../shared/components/map/VenturesMap';

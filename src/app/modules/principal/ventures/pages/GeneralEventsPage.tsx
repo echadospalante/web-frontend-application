@@ -22,7 +22,16 @@ const GeneralEventsPage = () => {
     <Fragment>
       <div className="page-content">
         <Container fluid={true}>
-          <Breadcrumb title="Eventos" breadcrumbItem="Calendario" />
+          <Breadcrumb
+            title="Eventos"
+            breadcrumbItem={
+              viewMode === EventsViewMode.calendar
+                ? 'Calendario'
+                : viewMode === EventsViewMode.map
+                  ? 'Mapa'
+                  : 'Lista'
+            }
+          />
 
           <Row>
             {viewMode === EventsViewMode.calendar && (

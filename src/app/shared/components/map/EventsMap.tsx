@@ -32,6 +32,7 @@ import AppLoading from '../loader/AppLoading';
 import TopMapButtons from './TopMapButtons';
 import useFetchEvents from '../../../modules/principal/ventures/hooks/useFetchEvents';
 import useEventsFilters from '../../../modules/principal/ventures/hooks/useEventsFilters';
+import EventDetailModal from '../modal/EventDetailModal';
 
 delete (L.Icon.Default.prototype as any)._getIconUrl;
 
@@ -94,7 +95,6 @@ const EventsMap: React.FC = () => {
         setPoints((prev) => {
           const newPoints = [...prev, newPoint];
 
-          // Calculate total distance when we have more than one point
           if (newPoints.length === 2) {
             const distance = haversineDistance(newPoints[0], newPoints[1]);
             setTotalDistance(distance);
@@ -220,142 +220,12 @@ const EventsMap: React.FC = () => {
         </MapContainer>
       </div>
 
-      <Modal isOpen={modalOpen} toggle={toggleModal} size="lg">
-        <ModalHeader toggle={toggleModal}>{selectedEvent?.title}</ModalHeader>
-        <ModalBody>
-          {selectedEvent && (
-            <div>
-              <div className="mb-3">
-                <img
-                  src={selectedEvent.coverPhoto}
-                  alt={selectedEvent.title}
-                  className="img-fluid rounded"
-                  style={{
-                    width: '100%',
-                    objectFit: 'cover',
-                  }}
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      'https://via.placeholder.com/400x200?text=Imagen+no+disponible';
-                  }}
-                />
-              </div>
-
-              {/* Descripción */}
-              <Card className="mb-3">
-                <CardBody>
-                  <h6>Descripción</h6>
-                  <p>{selectedEvent.description}</p>
-                </CardBody>
-              </Card>
-
-              {/* Información de ubicación */}
-              <Card className="mb-3">
-                <CardBody>
-                  <h6>Ubicación</h6>
-                  <p>
-                    <strong>Lugar:</strong>{' '}
-                    {selectedEvent.location?.description}
-                  </p>
-                  {selectedEvent.location?.location && (
-                    <p>
-                      <strong>Coordenadas:</strong>{' '}
-                      {selectedEvent.location.location.coordinates[1]},{' '}
-                      {selectedEvent.location.location.coordinates[0]}
-                    </p>
-                  )}
-                </CardBody>
-              </Card>
-
-              <Card className="mb-3">
-                <CardBody>
-                  <h6>Contacto</h6>
-                  {selectedEvent.contact?.email && (
-                    <p>
-                      <strong>Email:</strong> {selectedEvent.contact.email}
-                    </p>
-                  )}
-                  {selectedEvent.contact?.phoneNumber && (
-                    <p>
-                      <strong>Teléfono:</strong>{' '}
-                      {selectedEvent.contact.phoneNumber}
-                    </p>
-                  )}
-                </CardBody>
-              </Card>
-
-              {/* Categorías */}
-              {selectedEvent.categories.length > 0 && (
-                <Card className="mb-3">
-                  <CardBody>
-                    <h6>Categorías</h6>
-                    <div>
-                      {selectedEvent.categories.map((category) => (
-                        <Badge
-                          key={category.id}
-                          color="primary"
-                          className="me-2 mb-1"
-                        >
-                          {category.name}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardBody>
-                </Card>
-              )}
-
-              {/* {selectedEvent.owner && (
-                <Card className="mb-3">
-                  <CardBody>
-                    <h6>Creado por</h6>
-                    <img
-                      className="rounded-circle mb-2"
-                      src={selectedEvent.owner.picture}
-                    />
-                    <p>
-                      <strong>
-                        {selectedEvent.owner.firstName}{' '}
-                        {selectedEvent.owner.lastName}
-                      </strong>
-                    </p>
-                  </CardBody>
-                </Card>
-              )} */}
-
-              {/* {selectedEvent.length > 0 && (
-                <Card className="mb-3">
-                  <CardBody>
-                    <h6>Donaciones Recibidas</h6>
-                    <p>
-                      <strong>Total: </strong>
-                      {formatCurrency(
-                        selectedEvent.donations.reduce(
-                          (sum, donation) => sum + donation.amount,
-                          0,
-                        ),
-                        selectedEvent.donations[0]?.currency || 'COP',
-                      )}
-                    </p>
-                    <p>
-                      <strong>Número de donaciones:</strong>{' '}
-                      {selectedEvent.donations.length}
-                    </p>
-                  </CardBody>
-                </Card>
-              )} */}
-              <Button color="primary" className="d-flex align-items-center">
-                <span className="mx-1">Donar</span>
-                <i className="mdi mdi-heart-outline me-2 fs-4"></i>
-              </Button>
-            </div>
-          )}
-        </ModalBody>
-        <ModalFooter>
-          <Button color="secondary" onClick={toggleModal}>
-            Cerrar
-          </Button>
-        </ModalFooter>
-      </Modal>
+      {selectedEvent && (
+        <EventDetailModal
+          event={selectedEvent}
+          toggleModal={() => setSelectedEvent(null)}
+        />
+      )}
     </div>
   );
 };

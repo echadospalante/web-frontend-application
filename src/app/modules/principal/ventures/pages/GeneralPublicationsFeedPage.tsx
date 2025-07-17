@@ -9,7 +9,7 @@ import useFetchPublications from '../hooks/useFetchPublications';
 import GeneralPublicationsHeader from '../../../../shared/components/header/GeneralPublicationsHeader';
 import VenturePublicationsHeader from '../../../../shared/components/header/VenturePublicationsHeader';
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
-import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
+import NoItemsFoundCard from '../../../../shared/components/card/NoItemsFoundCard';
 
 const PublicationsFeedPage = () => {
   document.title = "Feed de Publicaciones | Echadospa'lante";

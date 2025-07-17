@@ -17,7 +17,7 @@ import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 import VentureSubscriptionsCategoryTabs from '../../../../shared/components/tabs/VentureSubscriptionsCategoryTabs';
 import { SubscriptionStats } from '../domain/subscription';
 import SubscriptionsList from '../../../../shared/components/list/SubscriptionsList';
-import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
+import NoItemsFoundCard from '../../../../shared/components/card/NoItemsFoundCard';
 
 const fetchSubscriptionStats = async (): Promise<SubscriptionStats[]> => {
   const response = await axios.get<SubscriptionStats[]>(

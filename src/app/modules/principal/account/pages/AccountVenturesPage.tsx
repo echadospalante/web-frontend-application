@@ -17,7 +17,7 @@ import OwnedVenturesFiltersForm from '../../../../shared/components/forms/OwnedV
 import AppSpinner from '../../../../shared/components/loader/Spinner';
 import EditUserModal from '../../../../shared/components/modal/EditUserModal';
 import useOwnedVentures from '../../../admin/general/hooks/useOwnedVentures';
-import NoItemsFoundCard from '../../../../shared/components/card/NoVenturesCard';
+import NoItemsFoundCard from '../../../../shared/components/card/NoItemsFoundCard';
 
 const AccountVenturesPage = () => {
   document.title = 'Tus emprendimientos | Echadospalante';

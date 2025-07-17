@@ -39,7 +39,7 @@ const TermsAndConditionsPage = () => {
                 navigate('/principal/emprendimientos', { replace: true })
               }
             >
-              <i className="bx bx-arrow-back ms-1"></i>
+              <i className="bx bx-arrow-back me-2"></i>
               Volver a la app
             </Button>
           </div>
