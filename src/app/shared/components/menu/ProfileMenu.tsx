@@ -10,6 +10,7 @@ import { selectAuthentication } from '../../../config/redux/reducers/auth/auth.r
 import { useAppDispatch } from '../../../config/redux/store/store.config';
 import { logoutUserMiddleware } from '../../../modules/auth/api/middleware/authentication.middleware';
 import { getIconName, stringToColor } from '../../helpers/colors';
+import { useQueryClient } from '@tanstack/react-query';
 
 export const ProfileMenu = () => {
   const { t } = useTranslation();
@@ -19,6 +20,7 @@ export const ProfileMenu = () => {
   const { picture, email, firstName, lastName } =
     useSelector(selectAuthentication);
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const handleLogout = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -26,7 +28,7 @@ export const ProfileMenu = () => {
     event.preventDefault();
     dispatch(logoutUserMiddleware()).then(() => {
       navigate('/', { replace: true });
-
+      queryClient.clear();
       googleLogout();
     });
   };

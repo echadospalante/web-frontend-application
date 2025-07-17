@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { selectAuthentication } from '../../../../config/redux/reducers/auth/auth.reducer';
 import {
   PublicationFilter,
   selectPublications,
@@ -17,9 +16,7 @@ import { useAppDispatch } from '../../../../config/redux/store/store.config';
 const usePublicationsRightSidebar = () => {
   const dispatch = useAppDispatch();
   const { filters, showFilters } = useSelector(selectPublications);
-  const { search, categoriesIds } =
-    filters;
-  const authentication = useSelector(selectAuthentication);
+  const { search, categoriesIds } = filters;
 
   const setCategoriesIds = (categoriesIds: string[]) => {
     dispatch(setPublicationsCategoriesIds(categoriesIds));

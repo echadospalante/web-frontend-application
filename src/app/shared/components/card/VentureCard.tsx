@@ -17,6 +17,7 @@ import VentureCardHeader from '../header/VentureCardHeader';
 import VentureMapModal from '../modal/VentureMapModal';
 import TruncatedItems from '../text/TruncatedItems';
 import TruncatedText from '../text/TruncatedText';
+import { Link } from 'react-router-dom';
 
 export type VentureCardProps = {
   venture: Venture;
@@ -29,7 +30,7 @@ const VentureCard = ({
   venture,
   ownerButtons = true,
   showFooter = true,
-  showActive = false
+  showActive = false,
 }: VentureCardProps) => {
   const [showMapModal, setShowMapModal] = useState(false);
 
@@ -64,7 +65,7 @@ const VentureCard = ({
         />
       )}
 
-      <a target="_blank" href={`/principal/emprendimientos/${venture.slug}`}>
+      <Link to={`/principal/emprendimientos/${venture.slug}`}>
         <Card className="border border-success overflow-hidden">
           <VentureCardHeader venture={venture} ownerIndicators={ownerButtons} />
 
@@ -192,7 +193,7 @@ const VentureCard = ({
             </div>
           )}
         </Card>
-      </a>
+      </Link>
     </>
   );
 };

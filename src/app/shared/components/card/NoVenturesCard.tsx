@@ -13,7 +13,7 @@ const NoItemsFoundCard: React.FC<NoItemsFoundCardProps> = ({
   imageUrl = '/empty.jpg',
 }) => {
   return (
-    <Card className="text-center mt-4 shadow-sm border-0">
+    <Card className="text-center shadow-sm border-0">
       <CardBody>
         <CardTitle tag="h5">{title}</CardTitle>
         <CardText>{message}</CardText>

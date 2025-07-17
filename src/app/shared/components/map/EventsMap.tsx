@@ -118,8 +118,8 @@ const EventsMap: React.FC = () => {
       <div style={{ height: '75vh', width: '100%' }}>
         <MapContainer
           ref={mapRef}
-          maxBounds={buildPointBounds(lat, lng, 20)}
-          maxBoundsViscosity={1.0}
+          // maxBounds={buildPointBounds(lat, lng, 20)}
+          // maxBoundsViscosity={1.0}
           // dragging={!isLoading}
           // touchZoom={!isLoading}
           // doubleClickZoom={!isLoading}

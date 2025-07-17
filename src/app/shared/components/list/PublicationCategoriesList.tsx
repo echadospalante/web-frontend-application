@@ -2,22 +2,22 @@ import { useState } from 'react';
 
 import { Button, Input, Label } from 'reactstrap';
 
-import useVentureCategoriesStats from '../../../modules/admin/general/hooks/useVentureCategoriesStats';
-import useVenturesRightSidebar from '../../../modules/principal/ventures/hooks/useVenturesRightSidebar';
+import usePublicationCategoriesStats from '../../../modules/admin/general/hooks/usePublicationCategoriesStats';
+import usePublicationsRightSidebar from '../../../modules/principal/ventures/hooks/usePublicationsRightSidebar';
 import RemovableChip from '../chips/RemovableChip';
 import AppLoading from '../loader/AppLoading';
 
-export interface VentureCategoriesListProps {
+export interface PublicationCategoriesListProps {
   maxDisplayed: number;
 }
 
-const VentureCategoriesList: React.FC<VentureCategoriesListProps> = ({
+const PublicationCategoriesList: React.FC<PublicationCategoriesListProps> = ({
   maxDisplayed,
 }) => {
   const [displayAll, setDisplayAll] = useState(false);
   const { isError, isLoading, refetch, items, total } =
-    useVentureCategoriesStats();
-  const { setCategoriesIds, categoriesIds } = useVenturesRightSidebar();
+    usePublicationCategoriesStats();
+  const { setCategoriesIds, categoriesIds } = usePublicationsRightSidebar();
 
   if (isLoading) {
     return <AppLoading message="Cargando categorías" iconPath={''} />;
@@ -119,4 +119,4 @@ const VentureCategoriesList: React.FC<VentureCategoriesListProps> = ({
   );
 };
 
-export default VentureCategoriesList;
+export default PublicationCategoriesList;

@@ -68,9 +68,7 @@ const useEventsRightSidebar = () => {
       dispatch(
         setEventsFilters({
           ...filters,
-          categoriesIds:
-            authentication.preferences?.map((preference) => preference.id) ||
-            [],
+          categoriesIds: [],
           municipalitiesIds: authentication.municipality?.id
             ? [authentication.municipality.id]
             : [],

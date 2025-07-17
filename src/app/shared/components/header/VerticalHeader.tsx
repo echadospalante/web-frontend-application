@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Col, Dropdown, DropdownMenu, DropdownToggle, Row } from 'reactstrap';
+import Select from 'react-select';
 
 import { toggleRightSidebar } from '../../../config/redux/reducers/shared/layout.reducer';
 import { useAppDispatch } from '../../../config/redux/store/store.config';
-import LanguageDropdown from '../dropdown/LanguageDropdown';
+import useAuthentication from '../../../modules/auth/hooks/useAuthentication';
 import NotificationDropdown from '../dropdown/NotificationDropdown';
-import ProfileMenu from '../menu/ProfileMenu';
 import ThemeDropdown from '../dropdown/ThemeDropdown';
+import ProfileMenu from '../menu/ProfileMenu';
 
 const Header = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
-
+  const { roles, activeRole, setActiveRole } = useAuthentication();
   const [search, setsearch] = useState(false);
   const [megaMenu, setmegaMenu] = useState(false);
   const [socialDrp, setsocialDrp] = useState(false);
@@ -216,7 +216,31 @@ const Header = () => {
               </DropdownMenu>
             </Dropdown> */}
           </div>
-          <div className="d-flex">
+
+          <div className="d-flex align-items-center">
+            {roles!.length > 1 && activeRole && (
+              <div className="mx-3">
+                <Select
+                  className=""
+                  isDisabled={false}
+                  value={{
+                    label: activeRole?.label,
+                    value: activeRole?.name,
+                  }}
+                  isMulti={false}
+                  isSearchable={false}
+                  onChange={(selected) => {
+                    if (!selected) return;
+                    setActiveRole(selected.value);
+                  }}
+                  options={roles?.map((role) => ({
+                    label: role.label,
+                    value: role.name,
+                  }))}
+                ></Select>
+              </div>
+            )}
+
             <div className="dropdown d-inline-block d-lg-none ms-2">
               <button
                 onClick={() => {

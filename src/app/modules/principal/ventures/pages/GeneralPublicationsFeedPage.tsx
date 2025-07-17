@@ -24,16 +24,16 @@ const PublicationsFeedPage = () => {
         <Breadcrumb title="Emprendimientos" breadcrumbItem="Publicaciones" />
 
         <Container fluid>
-          <Row className="mt-6">
+          <Row>
             <Col lg={ventureSlug ? 12 : 9}>
-              {ventureSlug ? (
+              {/* {ventureSlug ? (
                 <VenturePublicationsHeader
                   ventureSlug={ventureSlug}
                   onReload={refetch}
                 />
               ) : (
                 <GeneralPublicationsHeader onReload={refetch} />
-              )}
+              )} */}
 
               {items.map((publication) => (
                 <Card key={publication.id} className="p-3">

@@ -4,11 +4,11 @@ import {
   setGlobalAlert,
   SeverityLevel,
 } from '../../../../../config/redux/reducers/shared/user-interface.reducer';
-import UserContactInfoApi from '../http/contact-info.api';
+import UserProfileInfoApi from '../http/user-profile-info.api';
 
 export const fetchUserContactInfoMiddleware = () => {
   return async (dispatch: Dispatch<Action>) => {
-    return UserContactInfoApi.fetchUserContactInfo()
+    return UserProfileInfoApi.fetchUserContactInfo()
       .then((response) => response)
       .catch((error) => {
         console.error(error);

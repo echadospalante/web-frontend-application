@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { Button, Card, CardBody, Collapse, Label } from 'reactstrap';
+import { Alert, Button, Card, CardBody, Collapse, Label } from 'reactstrap';
 import SimpleBar from 'simplebar-react';
 
 import useHighlightedPublications from '../../../modules/principal/ventures/hooks/useHighlightedPublications';
@@ -174,14 +174,21 @@ const PublicationsFeedRightSidebar: React.FC = () => {
                             ))}
                         </div>
 
-                        <Button
-                          color="success"
-                          size="sm"
-                          className="btn btn-outline my-0"
-                          onClick={() => setShowHighlighted('trending')}
-                        >
-                          Ver más
-                        </Button>
+                        {highlightedPublications.trending.length === 0 ? (
+                          <Alert color="info" className="text-muted my-3">
+                            Lo sentimos, no hay publicaciones populares en este
+                            momento.
+                          </Alert>
+                        ) : (
+                          <Button
+                            color="success"
+                            size="sm"
+                            className="btn btn-outline my-0"
+                            onClick={() => setShowHighlighted('trending')}
+                          >
+                            Ver más
+                          </Button>
+                        )}
                       </div>
 
                       <div>
@@ -200,14 +207,21 @@ const PublicationsFeedRightSidebar: React.FC = () => {
                             ))}
                         </div>
 
-                        <Button
-                          color="success"
-                          size="sm"
-                          className="btn btn-outline my-0"
-                          onClick={() => setShowHighlighted('latest')}
-                        >
-                          Ver más
-                        </Button>
+                        {highlightedPublications.latest.length === 0 ? (
+                          <Alert color="info" className="text-muted my-3">
+                            Lo sentimos, no hay publicaciones recientes en este
+                            momento.
+                          </Alert>
+                        ) : (
+                          <Button
+                            color="success"
+                            size="sm"
+                            className="btn btn-outline my-0"
+                            onClick={() => setShowHighlighted('latest')}
+                          >
+                            Ver más
+                          </Button>
+                        )}
                       </div>
                     </div>
                   )}

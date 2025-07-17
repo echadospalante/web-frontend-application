@@ -46,7 +46,7 @@ const Header = () => {
             </form> */}
           </div>
 
-          <div className="d-flex align-items-center">
+          <div className="bg-danger">
             {roles.length > 1 && activeRole && (
               <div className="mx-3">
                 <Select

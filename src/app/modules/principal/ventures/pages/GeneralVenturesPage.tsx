@@ -78,7 +78,7 @@ const VenturesFeedPage = () => {
               breadcrumbItem={VenturesViewMode.feed ? 'Listado' : 'Mapa'}
             />
             <Col lg={showFilters ? 9 : 12} md={12} sm={12}>
-              <Card className="p-2">
+              {/* <Card className="p-2">
                 <div className="d-flex justify-content-between align-items-center">
                   <h3 className="py-0 m-0 px-2">
                     {viewMode === VenturesViewMode.feed ? 'Listado' : 'Mapa'} de
@@ -89,7 +89,7 @@ const VenturesFeedPage = () => {
                     <i className="mdi mdi-refresh"></i>
                   </Button>
                 </div>
-              </Card>
+              </Card> */}
 
               {/* {JSON.stringify(venturesQuery.data, null, 3)} */}
 

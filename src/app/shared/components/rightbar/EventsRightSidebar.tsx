@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
+  Alert,
   Button,
   ButtonGroup,
   Card,
@@ -205,14 +206,21 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
                           ))}
                         </div>
 
-                        <Button
-                          color="success"
-                          size="sm"
-                          className="btn btn-outline my-0"
-                          onClick={() => setShowHighlighted('current')}
-                        >
-                          Ver más
-                        </Button>
+                        {highlightedEvents.current.length === 0 ? (
+                          <Alert color="info" className="text-muted my-3">
+                            Lo sentimos, para los filtros aplicados no hay
+                            eventos en curso en este momento.
+                          </Alert>
+                        ) : (
+                          <Button
+                            color="success"
+                            size="sm"
+                            className="btn btn-outline my-0"
+                            onClick={() => setShowHighlighted('current')}
+                          >
+                            Ver más
+                          </Button>
+                        )}
                       </div>
 
                       <div>
@@ -221,19 +229,28 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
                         </Label>
 
                         <div className="list-group list-group-flush">
-                          {highlightedEvents.current.slice(0, 3).map((item) => (
-                            <UpcomingEventCard key={item.id} event={item} />
-                          ))}
+                          {highlightedEvents.upcoming
+                            .slice(0, 3)
+                            .map((item) => (
+                              <UpcomingEventCard key={item.id} event={item} />
+                            ))}
                         </div>
 
-                        <Button
-                          color="success"
-                          size="sm"
-                          className="btn btn-outline my-0"
-                          onClick={() => setShowHighlighted('upcoming')}
-                        >
-                          Ver más
-                        </Button>
+                        {highlightedEvents.upcoming.length === 0 ? (
+                          <Alert color="info" className="text-muted my-3">
+                            Lo sentimos, para los filtros aplicados no hay
+                            eventos próximos en este momento.
+                          </Alert>
+                        ) : (
+                          <Button
+                            color="success"
+                            size="sm"
+                            className="btn btn-outline my-0"
+                            onClick={() => setShowHighlighted('upcoming')}
+                          >
+                            Ver más
+                          </Button>
+                        )}
                       </div>
                     </div>
                   )}
