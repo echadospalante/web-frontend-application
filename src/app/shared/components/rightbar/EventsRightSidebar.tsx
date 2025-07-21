@@ -91,7 +91,7 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
             }}
           >
             <Card>
-              <CardBody className="p-4">
+              <CardBody className="border-success border rounded-2 p-4">
                 <div className="mb-3">
                   <Label htmlFor="events-search">Modo de vista</Label>
                   <ButtonGroup className="w-100">

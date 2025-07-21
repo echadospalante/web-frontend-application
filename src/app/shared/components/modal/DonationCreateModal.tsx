@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { VentureEvent } from 'echadospalante-domain';
 import { Form } from 'formik';
@@ -43,6 +43,7 @@ const DonationCreateModal = (props: DonationCreateModalProps) => {
   const handleAmountSelect = (amount: number) => {
     setSelectedAmount(amount);
     setIsCustom(false);
+    form.setFieldValue('amount', amount);
     setCustomAmount('');
   };
 
@@ -65,13 +66,23 @@ const DonationCreateModal = (props: DonationCreateModalProps) => {
     }).format(amount);
   };
 
-  const handleDonate = () => {
+  const handleDonate = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
+  ): void => {
     if (selectedAmount && selectedAmount > 0) {
-      console.log(
-        `Donando ${formatCurrency(selectedAmount)} para el evento ${event.title}`,
-      );
+      event.preventDefault();
+      form.handleSubmit();
     }
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      toggle();
+      setSelectedAmount(null);
+      setCustomAmount('');
+      setIsCustom(false);
+    }
+  }, [isSuccess, toggle]);
 
   return (
     <Modal size="md" isOpen={modal} toggle={toggle}>
@@ -229,16 +240,16 @@ const DonationCreateModal = (props: DonationCreateModalProps) => {
 
         <Row className="my-0 py-0">
           <Col>
-            <div className="text-end">
+            <div className="d-flex justify-content-end">
               <Button
                 onClick={handleDonate}
                 color="success"
                 type="submit"
-                className="me-2"
+                className="me-2 d-flex align-items-center"
                 disabled={!selectedAmount || selectedAmount <= 0 || isLoading}
               >
-                <i className="bx bx-heart me-1"></i>
-                {isLoading ? 'Procesando...' : 'Donar'}
+                <i className="bx bxs-heart me-1"></i>
+                {isLoading ? 'Procesando...' : 'Enviar Donación'}
               </Button>
               <Button onClick={toggle} color="danger" className="save-user">
                 <i className="bx bx-x me-1"></i>

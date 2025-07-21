@@ -23,8 +23,6 @@ const SponsorsBubbleChart: React.FC<SponsorsBubbleChartProps> = ({ items }) => {
   );
   const [data, setData] = useState<BubbleData[]>([]);
 
-  console.log(fetchAllSponsorshipsOwners);
-
   useEffect(() => {
     if (loading) return;
 

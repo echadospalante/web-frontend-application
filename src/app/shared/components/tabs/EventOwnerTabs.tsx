@@ -1,47 +1,47 @@
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
+export type EventTabs = 'details' | 'donations';
+
 export type DonationsTabProps = {
-  activeTab: string;
-  toggle: (tab: string) => void;
+  activeTab: EventTabs;
+  toggle: (tab: EventTabs) => void;
 };
 
-// Set active color success, instead of primary
-
-const DonationsTabs = (props: DonationsTabProps) => {
+const EventOwnerTabs = (props: DonationsTabProps) => {
   const { activeTab, toggle } = props;
   return (
     <Nav tabs className="nav-tabs-custom nav-justified">
       <NavItem>
         <NavLink
           style={{ cursor: 'pointer' }}
-          className={`${activeTab === '1' ? 'active' : ''}`}
+          className={`${activeTab === 'details' ? 'active' : ''}`}
           onClick={() => {
-            toggle('1');
+            toggle('details');
           }}
         >
           <span className="d-block d-sm-none">
             <i className="fas fa-home"></i>
           </span>
-          <span className="d-none d-sm-block">Enviadas</span>
+          <span className="d-none d-sm-block">Información del evento</span>
         </NavLink>
       </NavItem>
 
       <NavItem>
         <NavLink
           style={{ cursor: 'pointer' }}
-          className={`${activeTab === '2' ? 'active' : ''}`}
+          className={`${activeTab === 'donations' ? 'active' : ''}`}
           onClick={() => {
-            toggle('2');
+            toggle('donations');
           }}
         >
           <span className="d-block d-sm-none">
             <i className="far fa-user"></i>
           </span>
-          <span className="d-none d-sm-block">Recibidas</span>
+          <span className="d-none d-sm-block">Donaciones</span>
         </NavLink>
       </NavItem>
     </Nav>
   );
 };
 
-export default DonationsTabs;
+export default EventOwnerTabs;

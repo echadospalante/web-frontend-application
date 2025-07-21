@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { PaginatedBody, VentureEvent } from 'echadospalante-domain';
+import {
+  EventDonation,
+  PaginatedBody,
+  VentureEvent,
+} from 'echadospalante-domain';
 
 import { EventFilter } from '../../../../config/redux/reducers/principal/events.reducer';
 

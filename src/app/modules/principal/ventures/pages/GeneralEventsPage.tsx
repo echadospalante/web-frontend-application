@@ -2,8 +2,9 @@
 import { Fragment } from 'react';
 
 import { Col, Container, Row } from 'reactstrap';
-
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import {
   EventsViewMode,
   selectEvents,
@@ -17,6 +18,7 @@ import EventsRightSidebar from '../../../../shared/components/rightbar/EventsRig
 const GeneralEventsPage = () => {
   const { filters } = useSelector(selectEvents);
   const { viewMode } = filters;
+  const { ventureSlug } = useParams();
 
   return (
     <Fragment>
@@ -36,44 +38,51 @@ const GeneralEventsPage = () => {
           <Row>
             {viewMode === EventsViewMode.calendar && (
               <Row>
-                <Col lg={9}>
+                <Col lg={ventureSlug ? 12 : 9}>
                   <EventsCalendar />
                 </Col>
 
-                <Col lg={3}>
-                  <EventsRightSidebar
-                    multipleMunicipalities={false}
-                    dateRangeFilter={false}
-                  />
-                </Col>
+                {!ventureSlug && (
+                  <Col lg={3}>
+                    <EventsRightSidebar
+                      multipleMunicipalities={false}
+                      dateRangeFilter={false}
+                    />
+                  </Col>
+                )}
               </Row>
             )}
 
             {viewMode === EventsViewMode.map && (
               <Row>
-                <Col lg={9}>
+                <Col lg={ventureSlug ? 12 : 9}>
                   <VentureEventsMap />
                 </Col>
-                <Col lg={3}>
-                  <EventsRightSidebar
-                    multipleMunicipalities={false}
-                    dateRangeFilter
-                  />
-                </Col>
+
+                {!ventureSlug && (
+                  <Col lg={3}>
+                    <EventsRightSidebar
+                      multipleMunicipalities={false}
+                      dateRangeFilter
+                    />
+                  </Col>
+                )}
               </Row>
             )}
 
             {viewMode === EventsViewMode.feed && (
               <Row>
-                <Col lg={9}>
+                <Col lg={ventureSlug ? 12 : 9}>
                   <VentureEventsList />
                 </Col>
-                <Col lg={3}>
-                  <EventsRightSidebar
-                    multipleMunicipalities={false}
-                    dateRangeFilter
-                  />
-                </Col>
+                {!ventureSlug && (
+                  <Col lg={3}>
+                    <EventsRightSidebar
+                      multipleMunicipalities={false}
+                      dateRangeFilter
+                    />
+                  </Col>
+                )}
               </Row>
             )}
           </Row>

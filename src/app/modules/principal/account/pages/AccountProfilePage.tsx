@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 
 import { useSelector } from 'react-redux';
 import { Card, CardBody, Col, Container, Row } from 'reactstrap';
@@ -7,11 +7,13 @@ import { selectAuthentication } from '../../../../config/redux/reducers/auth/aut
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 import UserContactCard from '../../../../shared/components/card/UserContactCard';
 import UserStatsWidget from '../../../../shared/components/widgets/UserStatsWidget';
+import { getIconName, stringToColor } from '../../../../shared/helpers/colors';
 
 const AccountProfilePage = () => {
   document.title = "Perfil de usuario | EchadosPa'lante";
   const { firstName, lastName, email, picture, roles } =
     useSelector(selectAuthentication);
+  const [displayPicture, setDisplayPicture] = useState<boolean>(true);
 
   function getGreeting(): string {
     const hour = new Date().getHours();
@@ -35,7 +37,7 @@ const AccountProfilePage = () => {
       'Confía en tu proceso.',
       'La acción vence al miedo.',
       'Hoy es un buen día para crecer.',
-      'Lo mejor está por lanzar.',
+      'Lo mejor está por llegar.',
       'Emprender es crear futuro.',
       '¡Tu red es tu poder!',
       'Sigue mostrando tu visión.',
@@ -86,11 +88,37 @@ const AccountProfilePage = () => {
                   <Row>
                     <Col>
                       <div className="avatar-md profile-user-wid mb-4">
-                        <img
+                        {/* <img
                           src={picture}
                           alt=""
                           className="img-thumbnail rounded-circle"
-                        />
+                        /> */}
+
+                        {!displayPicture ? (
+                          <img
+                            className="rounded-circle avatar-md header-profile-user"
+                            src={picture}
+                            alt="Profile picture"
+                            onError={() => setDisplayPicture(false)}
+                          />
+                        ) : (
+                          <div
+                            title={`${firstName} ${lastName}`}
+                            className="img-thumbnail rounded-circle"
+                            style={{
+                              backgroundColor: stringToColor(
+                                `${firstName} ${lastName}`,
+                              ),
+                              width: '60px',
+                              height: '60px',
+                              display: 'flex',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}
+                          >
+                            {getIconName(`${firstName} ${lastName}`)}
+                          </div>
+                        )}
                       </div>
                       <h5 className="font-size-15 text-truncate">
                         {firstName} {lastName}
@@ -101,7 +129,7 @@ const AccountProfilePage = () => {
                         {(roles || []).map((role) => (
                           <span
                             key={role.id}
-                            className={`badge bg-secondary rounded-3 p-1 px-2 m-1`}
+                            className={`badge bg-success rounded-3 p-2 m-1`}
                           >
                             {role.label}
                           </span>

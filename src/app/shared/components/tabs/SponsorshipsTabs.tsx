@@ -5,9 +5,7 @@ export type DonationsTabProps = {
   toggle: (tab: string) => void;
 };
 
-// Set active color success, instead of primary
-
-const DonationsTabs = (props: DonationsTabProps) => {
+const SponsorshipsTabs = (props: DonationsTabProps) => {
   const { activeTab, toggle } = props;
   return (
     <Nav tabs className="nav-tabs-custom nav-justified">
@@ -22,7 +20,7 @@ const DonationsTabs = (props: DonationsTabProps) => {
           <span className="d-block d-sm-none">
             <i className="fas fa-home"></i>
           </span>
-          <span className="d-none d-sm-block">Enviadas</span>
+          <span className="d-none d-sm-block">Míos hacia otros emprendimientos</span>
         </NavLink>
       </NavItem>
 
@@ -37,11 +35,11 @@ const DonationsTabs = (props: DonationsTabProps) => {
           <span className="d-block d-sm-none">
             <i className="far fa-user"></i>
           </span>
-          <span className="d-none d-sm-block">Recibidas</span>
+          <span className="d-none d-sm-block">De otros hacia mis emprendimientos</span>
         </NavLink>
       </NavItem>
     </Nav>
   );
 };
 
-export default DonationsTabs;
+export default SponsorshipsTabs;

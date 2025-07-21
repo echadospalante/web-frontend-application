@@ -64,8 +64,16 @@ const UserContactCard = () => {
         ) : (
           !error && (
             <div className="table-responsive">
-              <Table className="table-nowrap mb-0">
+              <Table striped color="success" className="table-nowrap mb-0">
                 <tbody>
+                  <tr>
+                    <th scope="row">Fecha de Nacimiento :</th>
+                    <td>{formatDate(userInfo.birthDate!)} </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Municipio de Residencia:</th>
+                    <td>{userInfo.municipality!.name} </td>
+                  </tr>
                   <tr>
                     <th scope="row">Fecha de Registro :</th>
                     <td>{formatDate(userInfo.createdAt!)} </td>

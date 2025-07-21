@@ -85,7 +85,7 @@ const VenturesRightSidebar: React.FC<VenturesRightSidebarProps> = ({
           }}
         >
           <Card>
-            <CardBody className="p-4">
+            <CardBody className="border-success border rounded-2 p-4">
               <div className="d-flex justify-content-between align-items-center mb-3">
                 <h5 className="mb-0">Filtros de búsqueda</h5>
                 <Button

@@ -20,70 +20,49 @@ import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 const PreferencesNotificationsPage = () => {
   document.title = 'Idioma y Localización | Preferencias';
 
-  const jobCategories1 = [
-    { id: 1, name: 'Test Nombre Notificación', category: 52 },
-    { id: 2, name: 'Test Nombre Notificación', category: 10 },
-    { id: 3, name: 'Test Nombre Notificación', category: 64 },
-    { id: 4, name: 'Test Nombre Notificación', category: 105 },
-    { id: 5, name: 'Test Nombre Notificación', category: 142 },
-    { id: 6, name: 'Test Nombre Notificación', category: 11 },
-    { id: 7, name: 'Test Nombre Notificación', category: 254 },
-    { id: 8, name: 'Test Nombre Notificación', category: 79 },
+  const notificationsGroup1 = [
+    { id: 1, name: 'Nuevo inicio de sesión', category: 52 },
+    { id: 2, name: 'Actualización de perfil', category: 10 },
   ];
 
-  const jobCategories2 = [
-    { id: 1, name: 'Test Nombre Notificación', category: 85 },
-    { id: 2, name: 'Test Nombre Notificación', category: 19 },
-    { id: 3, name: 'Test Nombre Notificación', category: 48 },
-    { id: 4, name: 'Test Nombre Notificación', category: 34 },
-    { id: 5, name: 'Test Nombre Notificación', category: 33 },
-    { id: 6, name: 'Test Nombre Notificación', category: 748 },
-    { id: 7, name: 'Test Nombre Notificación', category: 16 },
-    { id: 8, name: 'Test Nombre Notificación', category: 94 },
+  const notificationsGroup2 = [
+    { id: 1, name: 'Emprendimiento creado', category: 85 },
+    { id: 2, name: 'Emprendimiento actualizado', category: 19 },
+    { id: 3, name: 'Emprendimiento eliminado', category: 48 },
+    { id: 4, name: 'Nueva suscripción', category: 34 },
+    { id: 5, name: 'Nuevo patrocinio', category: 33 },
   ];
 
-  const jobCategories3 = [
-    { id: 1, name: 'Test Nombre Notificación', category: 17 },
-    { id: 2, name: 'Test Nombre Notificación', category: 64 },
-    { id: 3, name: 'Test Nombre Notificación', category: 72 },
-    { id: 4, name: 'Test Nombre Notificación', category: 19 },
-    { id: 5, name: 'Test Nombre Notificación', category: 305 },
-    { id: 6, name: 'Test Nombre Notificación', category: 64 },
-    { id: 7, name: 'Test Nombre Notificación', category: 112 },
-    { id: 8, name: 'Test Nombre Notificación', category: 31 },
+  const notificationsGroup3 = [
+    { id: 1, name: 'Evento creado', category: 17 },
+    { id: 2, name: 'Evento actualizado', category: 64 },
+    { id: 3, name: 'Evento eliminado', category: 72 },
+    { id: 4, name: 'Nueva donación', category: 19 },
   ];
 
-  const jobCategories4 = [
-    { id: 1, name: 'Test Nombre Notificación', category: 85 },
-    { id: 2, name: 'Test Nombre Notificación', category: 19 },
-    { id: 3, name: 'Test Nombre Notificación', category: 48 },
-    { id: 4, name: 'Test Nombre Notificación', category: 34 },
-    { id: 5, name: 'Test Nombre Notificación', category: 33 },
-    { id: 6, name: 'Test Nombre Notificación', category: 748 },
-    { id: 7, name: 'Test Nombre Notificación', category: 16 },
-    { id: 8, name: 'Test Nombre Notificación', category: 94 },
+  const notificationsGroup4 = [
+    { id: 1, name: 'Publicación creada', category: 85 },
+    { id: 2, name: 'Publicación actualizada', category: 19 },
+    { id: 3, name: 'Publicación eliminada', category: 48 },
+    { id: 4, name: 'Nuevo aplauso', category: 34 },
+    { id: 5, name: 'Nuevo comentario', category: 33 },
   ];
 
-  const jobCategories5 = [
-    { id: 1, name: 'Test Nombre Notificación', category: 85 },
-    { id: 2, name: 'Test Nombre Notificación', category: 19 },
-    { id: 3, name: 'Test Nombre Notificación', category: 48 },
-    { id: 4, name: 'Test Nombre Notificación', category: 34 },
-    { id: 5, name: 'Test Nombre Notificación', category: 33 },
-    { id: 6, name: 'Test Nombre Notificación', category: 748 },
-    { id: 7, name: 'Test Nombre Notificación', category: 16 },
-    { id: 8, name: 'Test Nombre Notificación', category: 94 },
+  const notificationsGroup5 = [
+    { id: 1, name: 'Top Emprendimientos de la semana', category: 85 },
+    { id: 2, name: 'Top publicaciones', category: 19 },
+    { id: 3, name: 'Top eventos más donados', category: 48 },
+    { id: 4, name: 'Top emprendedores más influyentes', category: 34 },
+    { id: 8, name: 'Top categorías más populares', category: 94 },
   ];
 
-  const jobCategories6 = [
-    { id: 1, name: 'Test Nombre Notificación', category: 85 },
-    { id: 2, name: 'Test Nombre Notificación', category: 19 },
-    { id: 3, name: 'Test Nombre Notificación', category: 48 },
-    { id: 4, name: 'Test Nombre Notificación', category: 34 },
-    { id: 5, name: 'Test Nombre Notificación', category: 33 },
-    { id: 6, name: 'Test Nombre Notificación', category: 748 },
-    { id: 7, name: 'Test Nombre Notificación', category: 16 },
-    { id: 8, name: 'Test Nombre Notificación', category: 94 },
+  const notificationsGroup6 = [
+    { id: 1, name: 'Boletin semanal de noticias', category: 85 },
+    { id: 2, name: 'Estado del sistema', category: 19 },
+    { id: 3, name: 'Informe de actividad', category: 48 },
+    { id: 5, name: 'Mantenimientos programados', category: 33 },
+    { id: 6, name: 'Cambios en Términos y Condiciones', category: 748 },
+    { id: 7, name: 'Estado de la aplicaicón móvil', category: 16 },
   ];
 
   return (
@@ -92,7 +71,7 @@ const PreferencesNotificationsPage = () => {
         <div className="container-fluid">
           <Breadcrumb
             title="Preferencias"
-            breadcrumbItem="Tema y Personalización"
+            breadcrumbItem="Gestión de Notificaciones"
           />
 
           <Container>
@@ -119,9 +98,10 @@ const PreferencesNotificationsPage = () => {
                   <div className="px-3 mt-2 mx-2 pt-3 fw-normal">
                     <UncontrolledAlert color="info" role="alert">
                       <i className="mdi mdi-bullseye-arrow me-2"></i>
-                      <b>Tenga en cuenta:</b> Estas preferencias serán guardadas
-                      y se sincronizarán automáticamente en todos los
-                      dispositivos que use para acceder.
+                      <b>Tenga en cuenta:</b> Aquí podrá habilitar/deshabilitar
+                      múltiples notificaciones relacionadas con su cuenta. Todas
+                      las notificaciones se envían desde las 6am hasta las 10pm
+                      hora COL.
                     </UncontrolledAlert>
                   </div>
                 </CardTitle>
@@ -144,10 +124,10 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Test
+                            Usuario
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
-                          {(jobCategories1 || []).map((item, key) => (
+                          {(notificationsGroup1 || []).map((item, key) => (
                             <Link
                               key={key}
                               to="#!"
@@ -170,37 +150,10 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Test
+                            Emprendimientos
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
-                          {(jobCategories2 || []).map((item, key) => (
-                            <Link
-                              key={key}
-                              to="#!"
-                              className="px-3 py-2 rounded bg-light bg-opacity-50 d-block mb-2"
-                            >
-                              {item.name}
-                              <input
-                                type="checkbox"
-                                name="not-name"
-                                value=""
-                                className="float-end mt-1"
-                                checked={Math.random() > 0.3}
-                              />
-                            </Link>
-                          ))}
-                        </div>
-                      </div>
-                    </Col>
-
-                    <Col xl={4} md={6}>
-                      <div className="card jobs-categories">
-                        <div className="card-body">
-                          <h5>
-                            Test
-                            <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
-                          </h5>
-                          {(jobCategories3 || []).map((item, key) => (
+                          {(notificationsGroup2 || []).map((item, key) => (
                             <Link
                               key={key}
                               to="#!"
@@ -224,10 +177,10 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Test
+                            Eventos
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
-                          {(jobCategories4 || []).map((item, key) => (
+                          {(notificationsGroup3 || []).map((item, key) => (
                             <Link
                               key={key}
                               to="#!"
@@ -251,10 +204,10 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Test
+                            Publicaciones
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
-                          {(jobCategories5 || []).map((item, key) => (
+                          {(notificationsGroup4 || []).map((item, key) => (
                             <Link
                               key={key}
                               to="#!"
@@ -278,10 +231,37 @@ const PreferencesNotificationsPage = () => {
                       <div className="card jobs-categories">
                         <div className="card-body">
                           <h5>
-                            Test
+                            Top semanales
                             <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
                           </h5>
-                          {(jobCategories6 || []).map((item, key) => (
+                          {(notificationsGroup5 || []).map((item, key) => (
+                            <Link
+                              key={key}
+                              to="#!"
+                              className="px-3 py-2 rounded bg-light bg-opacity-50 d-block mb-2"
+                            >
+                              {item.name}
+                              <input
+                                type="checkbox"
+                                name="not-name"
+                                value=""
+                                className="float-end mt-1"
+                                checked={Math.random() > 0.3}
+                              />
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </Col>
+
+                    <Col xl={4} md={6}>
+                      <div className="card jobs-categories">
+                        <div className="card-body">
+                          <h5>
+                            Aplicación
+                            <i className="bx bx-info-circle text-primary mx-1 pt-2 fs-5 cursor-pointer"></i>
+                          </h5>
+                          {(notificationsGroup6 || []).map((item, key) => (
                             <Link
                               key={key}
                               to="#!"

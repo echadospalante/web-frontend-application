@@ -38,7 +38,7 @@ const LanguageDropdown = () => {
           <img
             // src={get(languages, `${selectedLang}.flag`)}
             src={languages[selectedLang as keyof typeof languages]?.flag}
-            alt="echadospalante Admin"
+            alt="EchadosPa'Lante"
             height="16"
             className="me-1"
           />
@@ -54,7 +54,7 @@ const LanguageDropdown = () => {
             >
               <img
                 src={languages[key as keyof typeof languages]?.flag}
-                alt="echadospalante Admin"
+                alt="EchadosPa'Lante"
                 className="me-1"
                 height="12"
               />

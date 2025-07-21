@@ -1,30 +1,30 @@
 import { Fragment } from 'react/jsx-runtime';
 import { Alert, Breadcrumb, Col, Container, Row, Spinner } from 'reactstrap';
 
-import useEventDonations from '../../../modules/principal/ventures/hooks/useDonations';
-import AlertWithReload from '../alert/AlertWithReload';
-import DonationCard from '../card/DonationCard';
 import NoItemsFoundCard from '../card/NoItemsFoundCard';
+import AlertWithReload from '../alert/AlertWithReload';
 import SearchablePagination from '../pagination/SearchablePagination';
+import SponsorshipCard from '../card/SponsorshipCard';
+import useFetchSponsorships from '../../../modules/principal/ventures/hooks/useVentureSponsorships';
 
-export interface DonationsListProps {
+export interface SponsorshipsListProps {
   type: 'sent' | 'received';
 }
 
-const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
+const SponsorshipsList: React.FC<SponsorshipsListProps> = ({ type }) => {
   const { items, total, isLoading, isError, setSkip, retryFetch, skip, take } =
-    useEventDonations(type);
+    useFetchSponsorships(type);
 
   if (isLoading) {
     return (
       <Fragment>
         <div className="page-content">
           <Container fluid>
-            <Breadcrumb title="Cuenta" breadcrumbItem="Donaciones" />
+            <Breadcrumb title="Cuenta" breadcrumbItem="Patrocinios" />
             <div className="text-center py-5">
               <Spinner color="primary" />
               <div className="mt-2">
-                Cargando donaciones {type === 'sent' ? 'enviadas' : 'recibidas'}
+                Cargando patrocinios {type === 'sent' ? 'enviadas' : 'recibidas'}
                 ...
               </div>
             </div>
@@ -39,9 +39,9 @@ const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
       <Fragment>
         <div className="page-content">
           <Container fluid>
-            <Breadcrumb title="Cuenta" breadcrumbItem="Donaciones" />
+            <Breadcrumb title="Cuenta" breadcrumbItem="Patrocinios" />
             <AlertWithReload
-              message={`Error al cargar las donaciones ${
+              message={`Error al cargar las patrocinios ${
                 type === 'sent' ? 'enviadas' : 'recibidas'
               }. Por favor, intenta de nuevo.`}
               onReload={retryFetch}
@@ -57,16 +57,16 @@ const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
       <Fragment>
         <div className="page-content">
           <Container fluid>
-            <Breadcrumb title="Cuenta" breadcrumbItem="Donaciones" />
+            <Breadcrumb title="Cuenta" breadcrumbItem="Patrocinios" />
             <Alert className="text-center" color="info">
               {type === 'sent'
-                ? 'Oops! No has realizado donaciones hasta el momento.'
-                : 'Aún no has recibido donaciones.'}
+                ? 'Oops! No has realizado patrocinios hasta el momento.'
+                : 'Aún no has recibido patrocinios.'}
             </Alert>
 
             <NoItemsFoundCard
-              title={`Sin donaciones ${type === 'sent' ? 'enviadas' : 'recibidas'}`}
-              message="No tienes donaciones aún. Explora nuestros eventos y échales una mano a los emprendedores, ellos también podrían colaborarte!."
+              title={`Sin patrocinios ${type === 'sent' ? 'enviadas' : 'recibidas'}`}
+              message="No tienes patrocinios aún. Explora nuestros ventureos y échales una mano a los emprendedores, ellos también podrían colaborarte!."
             />
           </Container>
         </div>
@@ -84,7 +84,7 @@ const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
       >
         <p>
           Página {Math.floor(skip / take) + 1} de {Math.ceil(total / take)} (
-          {total} donaciones)
+          {total} patrocinios)
         </p>
 
         <SearchablePagination
@@ -100,9 +100,9 @@ const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
         />
       </Col>
 
-      {items.map((donation) => (
-        <Col key={donation.id} sm={12} md={6} lg={4} className="mb-4">
-          <DonationCard donation={donation} type={type} />
+      {items.map((sponsorship) => (
+        <Col key={sponsorship.id} sm={12} md={6} lg={4} className="mb-4">
+          <SponsorshipCard sponsorship={sponsorship} type={type} />
         </Col>
       ))}
 
@@ -114,7 +114,7 @@ const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
       >
         <p>
           Página {Math.floor(skip / take) + 1} de {Math.ceil(total / take)} (
-          {total} donaciones)
+          {total} patrocinios)
         </p>
 
         <SearchablePagination
@@ -133,4 +133,4 @@ const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
   );
 };
 
-export default DonationsList;
+export default SponsorshipsList;

@@ -22,7 +22,9 @@ const TopMapButtons = ({ lat, lng }: FlayToLocationProps) => {
   ): void {
     event.preventDefault();
     event.stopPropagation();
-    map.flyTo([lat, lng], 15, { animate: true, duration: 2 });
+    if (lat && lng) {
+      map.flyTo([lat, lng], 15, { animate: true, duration: 2 });
+    }
   }
 
   function handleOpenGoogleMaps(event: React.MouseEvent<HTMLButtonElement, MouseEvent>): void {

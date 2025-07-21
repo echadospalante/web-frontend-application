@@ -32,8 +32,6 @@ const useEventDonate = (eventId: string) => {
     mutationFn: (amount: number) =>
       DonationsApi.createDonation(eventId, amount),
     onSuccess: (data) => {
-      // Handle success, e.g., show a success message or update the UI
-      window.alert('Donation successful');
       dispatch(
         setGlobalAlert({
           message:

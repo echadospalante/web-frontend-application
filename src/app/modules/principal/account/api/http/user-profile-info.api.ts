@@ -13,8 +13,10 @@ export interface UserUsageStatistics {
   donationsReceivedCount: number;
   sponsorshipsGivenCount: number;
   sponsorshipsReceivedCount: number;
-  commentsAndReactionsCount: string;
+  commentsCount: number;
+  clapsCount: number;
 }
+
 
 export default class UserProfileInfoApi {
   private static readonly BASE_URL = `${env.API_URL}/api/v1/users`;
@@ -39,10 +41,29 @@ export default class UserProfileInfoApi {
     return Promise.resolve(res);
   }
 
-  public static fetchUserUsageStatistics(): Promise<UserUsageStatistics> {
-    return axios.get<UserUsageStatistics>(
-      `${this.BASE_URL}/usage/statistics`,
-      { withCredentials: true },
-    ).then(({ data }) => data);
+  public static async fetchUserUsageStatistics(): Promise<UserUsageStatistics> {
+    return axios
+      .get<UserUsageStatistics>(`${this.BASE_URL}/usage/statistics`, {
+        withCredentials: true,
+      })
+      .then(({ data }) => data);
+
+    // // Wait 1 second
+
+    // await new Promise((res) => setTimeout(res, 1000));
+
+    // const res: UserUsageStatistics = {
+    //   venturesCount: 3,
+    //   publicationsCount: 4,
+    //   eventsCount: 3,
+    //   subscriptionsCount: 1,
+    //   generalSubscribersCount: 2,
+    //   donationsGivenCount: 1,
+    //   donationsReceivedCount: 0,
+    //   sponsorshipsGivenCount: 1,
+    //   sponsorshipsReceivedCount: 0,
+    //   commentsAndReactionsCount: '2, 4',
+    // };
+    // return Promise.resolve(res);
   }
 }

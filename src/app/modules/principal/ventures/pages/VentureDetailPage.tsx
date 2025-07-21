@@ -22,10 +22,7 @@ import VentureDetailTabs from '../../../../shared/components/tabs/VentureDetailT
 import useFetchVentureBySlug from '../hooks/useFetchVentureBySlug.ts';
 import PublicationsFeedPage from './GeneralPublicationsFeedPage.tsx';
 import EventCard from '../../../../shared/components/card/EventCard.tsx';
-
-const EventsTab = ({ events }: { events: VentureEvent[] }) => {
-  return events.map((event) => <EventCard key={event.id} event={event} />);
-};
+import GeneralEventsPage from './GeneralEventsPage.tsx';
 
 export type VentureDetailTab = 'publications' | 'events' | 'about';
 
@@ -95,74 +92,7 @@ const VentureDetailPage = () => {
               </TabPane>
 
               <TabPane tabId="events">
-                <EventsTab
-                  events={[
-                    {
-                      id: '123',
-                      title: 'Hola',
-                      slug: 'hola',
-                      description: 'lorem ipsum dolor sit amet',
-                      coverPhoto:
-                        'https://placehold.co/600x400?text=Foto%20del%20evento',
-                      location: {
-                        id: '123',
-                        municipality: {
-                          id: 1,
-                          name: 'La Ceja',
-                          department: {
-                            id: 1,
-                            name: 'Antioquia',
-                            municipalities: [],
-                            createdAt: new Date(),
-                            updatedAt: new Date(),
-                          },
-                          lat: 6.123,
-                          lng: -75.432,
-                          ventureLocations: [],
-                          eventLocations: [],
-                          users: [],
-                          createdAt: new Date(),
-                          updatedAt: new Date(),
-                        },
-                      },
-                      contact: {
-                        id: '123',
-                      },
-                      categories: [],
-                      donations: [],
-                      datesAndHours: [
-                        {
-                          date: '2025-07-10',
-                          workingRanges: [
-                            {
-                              start: '08:00',
-                              end: '10:00',
-                            },
-                            {
-                              start: '13:00',
-                              end: '15:00',
-                            },
-                          ],
-                        },
-                        {
-                          date: '2025-07-11',
-                          workingRanges: [
-                            {
-                              start: '08:00',
-                              end: '10:00',
-                            },
-                            {
-                              start: '13:00',
-                              end: '15:00',
-                            },
-                          ],
-                        },
-                      ],
-                      createdAt: new Date(),
-                      updatedAt: new Date(),
-                    },
-                  ]}
-                />
+                <GeneralEventsPage />
               </TabPane>
 
               <TabPane tabId="about">

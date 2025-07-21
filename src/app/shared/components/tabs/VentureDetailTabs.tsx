@@ -26,9 +26,6 @@ const VentureDetailTabs: React.FC<VentureDetailTabsProps> = ({
           {/*<MessageCircle size={16} className="me-2" />*/}
           <i className="mdi mdi-bullhorn-outline me-2"></i>
           Publicaciones
-          <Badge color="secondary" className="ms-2">
-            {publicationsCount}
-          </Badge>
         </NavLink>
       </NavItem>
       <NavItem>
@@ -38,9 +35,6 @@ const VentureDetailTabs: React.FC<VentureDetailTabsProps> = ({
         >
           <i className="mdi mdi-calendar-outline me-2"></i>
           Eventos
-          <Badge color="secondary" className="ms-2">
-            {eventsCount}
-          </Badge>
         </NavLink>
       </NavItem>
       <NavItem>
