@@ -56,6 +56,14 @@ const useEventsRightSidebar = () => {
   };
 
   useEffect(() => {
+    console.log({
+      FIRST: 'TIME',
+      search,
+      categoriesIds,
+      municipalitiesIds,
+      activeDepartmentId,
+      viewMode: filters.viewMode,
+    });
     if (
       !search &&
       categoriesIds.length === 0 &&
@@ -116,7 +124,7 @@ const useEventsRightSidebar = () => {
     } = filters;
 
     console.log({
-      filters,
+      filters: JSON.stringify(filters),
     });
 
     search && newSearchParams.set('search', search);
