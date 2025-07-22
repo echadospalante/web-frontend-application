@@ -40,19 +40,18 @@ export class ContributionsApi {
     type: 'sent' | 'received',
     pagination: Pagination,
   ): Promise<PaginatedBody<VentureSponsorship>> {
-    // return axios
-    //   .get<PaginatedBody<VentureSponsorship>>(
-    //     `${ContributionsApi.SPONSORSHIPS_API_BASE_URL}/owned-sponsorships`,
-    //     {
-    //       withCredentials: true,
-    //       params: {
-    //         type,
-    //         ...pagination,
-    //       },
-    //     },
-    //   )
-    //   .then(({ data }) => data);
+    return axios
+      .get<PaginatedBody<VentureSponsorship>>(
+        `${ContributionsApi.SPONSORSHIPS_API_BASE_URL}/_/sponsorships/${type}`,
+        {
+          withCredentials: true,
+          params: pagination,
+        },
+      )
+      .then(({ data }) => data);
 
+    /*
+    
     const yesterday = new Date();
     yesterday.setDate(yesterday.getDate() - 1);
 
@@ -334,5 +333,7 @@ export class ContributionsApi {
     };
 
     return Promise.resolve(res);
+
+    */
   }
 }

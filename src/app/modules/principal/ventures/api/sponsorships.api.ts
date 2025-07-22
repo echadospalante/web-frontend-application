@@ -8,12 +8,12 @@ export default class SponsorShipsApi {
 
   public static async createSponsorship(
     ventureId: string,
-    amount: number,
+    monthlyAmount: number,
   ): Promise<VentureSponsorship> {
     return axios
       .post<VentureSponsorship>(
         `${this.BASE_URL}/${ventureId}/sponsorships`,
-        { amount },
+        { monthlyAmount },
         { withCredentials: true },
       )
       .then(({ data }) => data);

@@ -3,7 +3,7 @@ import React from 'react';
 import { formatDistanceToNow } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { EventDonation } from 'echadospalante-domain';
-import { Badge, Card, CardBody, Col, Row, Progress } from 'reactstrap';
+import { Badge, Card, CardBody, Col, Progress, Row } from 'reactstrap';
 
 interface DonationCardProps {
   donation: EventDonation;
@@ -92,7 +92,6 @@ const DonationCard: React.FC<DonationCardProps> = ({ donation, type }) => {
 
   const eventStatus = getEventStatus();
 
-  // Calcular porcentaje de contribución del donante
   const contributionPercentage =
     donation.event.totalDonations > 0
       ? (donation.amount / donation.event.totalDonations) * 100
@@ -293,7 +292,6 @@ const DonationCard: React.FC<DonationCardProps> = ({ donation, type }) => {
                             )}
                           </div>
 
-                          {/* Estado del donante */}
                           <div className="d-flex align-items-center">
                             <Badge
                               color={

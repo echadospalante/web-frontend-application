@@ -1,13 +1,11 @@
 import { Fragment } from 'react';
-import LandingFooter from '../../../shared/components/footer/LandingFooter';
-import LandingHero from '../../../shared/components/hero/LandingHero';
-import LandingNavbar from '../../../shared/components/navbar/LandingNavbar';
-import SuccessCaseList from '../../../shared/components/list/SuccessCaseList';
-import FeatureList from '../../../shared/components/list/FeatureList';
-import LandingCarousel from '../../../shared/components/carousel/LandingCarousel';
-import LandingFeaturesHero from '../../../shared/components/hero/LandingFeaturesHero';
 import FAQs from '../../../shared/components/faqs/Faqs';
+import LandingFooter from '../../../shared/components/footer/LandingFooter';
 import ContactForm from '../../../shared/components/forms/ContactForm';
+import LandingHero from '../../../shared/components/hero/LandingHero';
+import FeatureList from '../../../shared/components/list/FeatureList';
+import SuccessCaseList from '../../../shared/components/list/SuccessCaseList';
+import LandingNavbar from '../../../shared/components/navbar/LandingNavbar';
 
 const LandingPage = () => {
   document.title = "Principal | EchadosPa'lante";

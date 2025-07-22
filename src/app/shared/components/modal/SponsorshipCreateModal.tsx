@@ -42,6 +42,7 @@ const SponsorshipCreateModal = (props: SponsorshipCreateModalProps) => {
   const handleAmountSelect = (monthlyAmount: number) => {
     setSelectedAmount(monthlyAmount);
     setIsCustom(false);
+    form.setFieldValue('monthlyAmount', monthlyAmount);
     setCustomAmount('');
   };
 
@@ -64,11 +65,10 @@ const SponsorshipCreateModal = (props: SponsorshipCreateModalProps) => {
     }).format(monthlyAmount);
   };
 
-  const handleDonate = () => {
+  const handleSponsor = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (selectedAmount && selectedAmount > 0) {
-      console.log(
-        `Donando ${formatCurrency(selectedAmount)} para el evento ${venture.name}`,
-      );
+      event.preventDefault();
+      form.handleSubmit();
     }
   };
 
@@ -231,7 +231,7 @@ const SponsorshipCreateModal = (props: SponsorshipCreateModalProps) => {
           <Col>
             <div className="text-end">
               <Button
-                onClick={handleDonate}
+                onClick={handleSponsor}
                 color="success"
                 type="submit"
                 className="me-2"

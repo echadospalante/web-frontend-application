@@ -41,8 +41,8 @@ const SponsorshipsList: React.FC<SponsorshipsListProps> = ({ type }) => {
           <Container fluid>
             <Breadcrumb title="Cuenta" breadcrumbItem="Patrocinios" />
             <AlertWithReload
-              message={`Error al cargar las patrocinios ${
-                type === 'sent' ? 'enviadas' : 'recibidas'
+              message={`Error al cargar los patrocinios ${
+                type === 'sent' ? 'enviados' : 'recibidos'
               }. Por favor, intenta de nuevo.`}
               onReload={retryFetch}
             />
@@ -61,7 +61,7 @@ const SponsorshipsList: React.FC<SponsorshipsListProps> = ({ type }) => {
             <Alert className="text-center" color="info">
               {type === 'sent'
                 ? 'Oops! No has realizado patrocinios hasta el momento.'
-                : 'Aún no has recibido patrocinios.'}
+                : 'Oops! Aún no has recibido patrocinios.'}
             </Alert>
 
             <NoItemsFoundCard

@@ -94,7 +94,7 @@ const AccountProfilePage = () => {
                           className="img-thumbnail rounded-circle"
                         /> */}
 
-                        {!displayPicture ? (
+                        {displayPicture ? (
                           <img
                             className="rounded-circle avatar-md header-profile-user"
                             src={picture}

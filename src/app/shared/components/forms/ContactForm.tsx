@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
+
 import { useForm, ValidationError } from '@formspree/react';
 import {
-  Container,
-  Row,
-  Col,
+  Alert,
+  Button,
   Card,
   CardBody,
   CardHeader,
-  Form,
+  Col,
+  Container,
   FormGroup,
-  Label,
   Input,
-  Button,
-  Alert,
+  Label,
+  Row,
   Spinner,
 } from 'reactstrap';
+
 import departments from '../../data/geo/departments';
 
 interface FormData {
@@ -128,13 +129,10 @@ const ContactForm: React.FC = () => {
       <Container className="py-5">
         <Row className="justify-content-center">
           <Col md={8} lg={6}>
-            <Card className="shadow-lg border-0">
+            <Card className="border-0">
               <CardBody className="text-center p-5">
                 <div className="mb-4">
-                  <div
-                    className="bg-success rounded-circle d-inline-flex align-items-center justify-content-center"
-                    style={{ width: '80px', height: '80px' }}
-                  >
+                  <div className="bg-success rounded-circle d-inline-flex align-items-center justify-content-center">
                     <span className="text-white" style={{ fontSize: '2rem' }}>
                       ✓
                     </span>
@@ -170,10 +168,10 @@ const ContactForm: React.FC = () => {
   }
 
   return (
-    <Container fluid className="py-5">
+    <Container className="py-5">
       <Row className="justify-content-center">
         <Col sm={12} md={12} lg={10}>
-          <Card className="shadow-lg border-0">
+          <Card className="border-0">
             <CardHeader className="bg-primary text-white text-center py-4">
               <h2 className="mb-0">Formulario de Contacto</h2>
               <p className="mb-0 mt-2 opacity-75">Nos encantaría saber de ti</p>

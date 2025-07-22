@@ -1,4 +1,5 @@
-import { Fragment } from 'react/jsx-runtime';
+import { Fragment } from 'react';
+
 import { Alert, Breadcrumb, Col, Container, Row, Spinner } from 'reactstrap';
 
 import useEventDonations from '../../../modules/principal/ventures/hooks/useDonations';

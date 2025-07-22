@@ -77,11 +77,12 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
     }).format(amount);
   };
 
-  function handleCreateSponsorship(
+  const handleCreateSponsorship = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-  ): void {
+  ): void => {
+    event.preventDefault();
     setShowSponsorshipModal(true);
-  }
+  };
 
   return (
     <>
@@ -192,18 +193,17 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                           <i className="mdi mdi-eye-plus-outline me-2 font-size-15" />
                           Suscribirme
                         </Button>
-
-                        <Button
-                          onClick={handleCreateSponsorship}
-                          color="success"
-                          outline
-                          size="md"
-                        >
-                          <i className="mdi mdi-heart me-2 font-size-15" />
-                          Patrocinar
-                        </Button>
                       </>
                     ))}
+                  <Button
+                    onClick={handleCreateSponsorship}
+                    color="success"
+                    outline
+                    size="md"
+                  >
+                    <i className="mdi mdi-heart me-2 font-size-15" />
+                    Patrocinar
+                  </Button>
                 </div>
               </div>
               <p className="text-muted mb-3">{venture.description}</p>

@@ -34,11 +34,9 @@ const useVentureSponsorship = (ventureId: string) => {
     mutationFn: (monthlyAmount: number) =>
       SponsorShipsApi.createSponsorship(ventureId, monthlyAmount),
     onSuccess: (data, input) => {
-      window.alert('Sponsorship successful');
       dispatch(
         setGlobalAlert({
-          message:
-            `Tu patrocinio ha sido recibido y será utilizado para apoyar el emprendimiento, se te harán cobros mensuales de ${formatCurrency(input)}.`,
+          message: `Tu patrocinio ha sido recibido y será utilizado para apoyar el emprendimiento, se te harán cobros mensuales de ${formatCurrency(input)}.`,
           timeout: 5000,
           severity: SeverityLevel.SUCCESS,
           title: '¡Muchas Gracias por el apoyo!',
