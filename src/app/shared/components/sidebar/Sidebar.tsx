@@ -38,19 +38,23 @@ const Sidebar = () => {
         <div className="navbar-brand-box">
           <Link to="/" className="logo logo-dark">
             <span className="logo-sm">
-              <img src="/epl2.jpeg" alt="" height="45" />
+              <img src="/favicon.ico" alt="EPL Logo" height="30" />
             </span>
             <span className="logo-lg">
-              <img src="/epl2.jpeg" alt="" height="45" />
+              <img src="/epl2.jpeg" alt="EPL Logo" height="50" />
             </span>
           </Link>
 
           <Link to="/" className="logo logo-light">
             <span className="logo-sm">
-              <img src="/images/logos/logo-amt.png" alt="" height="22" />
+              <img src="/favicon.ico" alt="EPL Logo" height="30" />
             </span>
             <span className="logo-lg">
-              <img src="/images/logos/logo-amt.png" alt="" height="19" />
+              <img
+                src="/images/logos/logo-amt.png"
+                alt="EPL Logo"
+                height="50"
+              />
             </span>
           </Link>
         </div>

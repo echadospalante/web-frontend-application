@@ -23,20 +23,20 @@ const UserSidebarContent = () => {
       const parent2 = parent.parentElement;
 
       if (parent2) {
-        parent2.classList.add('mm-show'); // ul tag
+        parent2.classList.add('mm-show');
 
-        const parent3 = parent2.parentElement; // li tag
+        const parent3 = parent2.parentElement;
 
         if (parent3) {
-          parent3.classList.add('mm-active'); // li
+          parent3.classList.add('mm-active');
           (parent3.childNodes[0] as HTMLElement).classList.add('mm-active'); //a
-          const parent4 = parent3.parentElement; // ul
+          const parent4 = parent3.parentElement;
           if (parent4) {
-            parent4.classList.add('mm-show'); // ul
+            parent4.classList.add('mm-show');
             const parent5 = parent4.parentElement;
             if (parent5) {
-              parent5.classList.add('mm-show'); // li
-              (parent5.childNodes[0] as HTMLElement).classList.add('mm-active'); // a tag
+              parent5.classList.add('mm-show');
+              (parent5.childNodes[0] as HTMLElement).classList.add('mm-active');
             }
           }
         }
@@ -73,19 +73,19 @@ const UserSidebarContent = () => {
 
           const parent3 = parent2.parentElement;
           if (parent3) {
-            parent3.classList.remove('mm-active'); // li
+            parent3.classList.remove('mm-active');
             (parent3.childNodes[0] as HTMLElement).classList.remove(
               'mm-active',
             );
-            const parent4 = parent3.parentElement; // ul
+            const parent4 = parent3.parentElement;
             if (parent4) {
-              parent4.classList.remove('mm-show'); // ul
+              parent4.classList.remove('mm-show');
               const parent5 = parent4.parentElement;
               if (parent5) {
-                parent5.classList.remove('mm-show'); // li
+                parent5.classList.remove('mm-show');
                 (parent5.childNodes[0] as HTMLElement).classList.remove(
                   'mm-active',
-                ); // a tag
+                );
               }
             }
           }
@@ -96,11 +96,11 @@ const UserSidebarContent = () => {
 
   const activeMenu = useCallback(() => {
     let matchingMenuItem = null;
-    // Buscar en todos los elementos con clase 'metismenu'
+    
     const menuContainers = document.querySelectorAll('.metismenu');
     const allItems: HTMLAnchorElement[] = [];
 
-    // Recolectar todos los enlaces de todos los contenedores
+    
     menuContainers.forEach((container) => {
       const items = container.getElementsByTagName('a');
       for (let i = 0; i < items.length; i++) {
@@ -127,13 +127,11 @@ const UserSidebarContent = () => {
     if (item) {
       const currentPosition = item.offsetTop;
       if (currentPosition > window.innerHeight) {
-        // ref.current!.getScrollElement().scrollTop = currentPosition - 300;
       }
     }
   }
 
   useEffect(() => {
-    // Inicializar MetisMenu para cada contenedor por separado
     const menuContainers = document.querySelectorAll('.metismenu');
     menuContainers.forEach((container, index) => {
       if (container.id) {

@@ -453,3 +453,28 @@
   color: #fff !important;
   border-color: #198754 #198754 #fff !important;
 }
+
+// Sidebar
+
+#sidebar-menu .metismenu a {
+  color: black !important;
+  font-size: 14px !important;
+}
+
+#sidebar-menu .metismenu a.active,
+#sidebar-menu .metismenu .mm-active > a {
+  color: #28a745 !important;
+}
+
+#sidebar-menu .metismenu .has-arrow:after {
+  border-left-color: #28a745 !important;
+}
+
+#sidebar-menu .metismenu a.active i,
+#sidebar-menu .metismenu .mm-active > a i {
+  color: #28a745 !important;
+}
+
+#sidebar-menu .metismenu a:hover i {
+  color: #1e7e34 !important;
+}
