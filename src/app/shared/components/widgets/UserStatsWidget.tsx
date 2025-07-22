@@ -186,12 +186,12 @@ const UserStatsWidget = () => {
               })}
             </Row>
 
-            <div className="mt-4">
+            {/* <div className="mt-4">
               <Link to="" className="btn btn-primary btn-md w-100">
                 <i className="mdi mdi-account-edit me-2"></i>
                 Editar perfil
               </Link>
-            </div>
+            </div> */}
           </div>
         </Col>
       </CardBody>

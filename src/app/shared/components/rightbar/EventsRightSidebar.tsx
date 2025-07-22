@@ -30,13 +30,8 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
   multipleMunicipalities,
   dateRangeFilter,
 }) => {
-  const {
-    setViewMode,
-    setSearch,
-    viewMode,
-    search,
-    showFilters,
-  } = useEventsRightSidebar();
+  const { setViewMode, setSearch, viewMode, search, showFilters } =
+    useEventsRightSidebar();
   const [scrollY, setScrollY] = useState(0);
   const [showHighlighted, setShowHighlighted] = useState<
     'upcoming' | 'current' | null
@@ -101,7 +96,10 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
                           ? 'success'
                           : 'secondary'
                       }
-                      onClick={() => setViewMode(EventsViewMode.calendar)}
+                      onClick={() => {
+                        console.log('LLAMANDO CON CALENDAR');
+                        setViewMode(EventsViewMode.calendar);
+                      }}
                       active={viewMode === EventsViewMode.calendar}
                     >
                       {viewMode === EventsViewMode.calendar && (
@@ -117,7 +115,10 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
                           ? 'success'
                           : 'secondary'
                       }
-                      onClick={() => setViewMode(EventsViewMode.map)}
+                      onClick={() => {
+                        console.log('LLAMANDO CON MAP');
+                        setViewMode(EventsViewMode.map);
+                      }}
                       active={viewMode === EventsViewMode.map}
                     >
                       {viewMode === EventsViewMode.map && (
@@ -133,7 +134,10 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
                           ? 'success'
                           : 'secondary'
                       }
-                      onClick={() => setViewMode(EventsViewMode.feed)}
+                      onClick={() => {
+                        console.log('LLAMANDO CON FEED');
+                        setViewMode(EventsViewMode.feed);
+                      }}
                       active={viewMode === EventsViewMode.feed}
                     >
                       {viewMode === EventsViewMode.feed && (

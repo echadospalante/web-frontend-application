@@ -70,6 +70,7 @@ export const eventsSlice = createSlice({
       state.filters.pagination.skip = 0;
     },
     setEventsViewMode: (state, action: PayloadAction<EventsViewMode>) => {
+      console.log('setEventsViewMode', action.payload);
       state.filters.viewMode = action.payload;
     },
     setEventsCategoriesIds: (state, action: PayloadAction<string[]>) => {
