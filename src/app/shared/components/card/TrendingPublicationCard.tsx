@@ -21,7 +21,7 @@ const PopularPublicationCard: React.FC<PopularPublicationCardProps> = ({
   return (
     <Link
       to={`/principal/emprendimientos/publications/${publication.id}`}
-      className="list-group-item text-muted py-3 px-2 bg-light-subtle border rounded mb-1 highlighted-publication__card"
+      className="list-group-item text-muted py-3 px-2 bg-light-subtle border border-success rounded mb-1 highlighted-publication__card"
       style={{ textDecoration: 'none' }}
     >
       <div className="d-flex align-items-start">

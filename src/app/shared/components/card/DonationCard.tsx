@@ -67,78 +67,97 @@ const DonationCard: React.FC<DonationCardProps> = ({ donation, type }) => {
             <div className="p-3">
               <Row>
                 <Col md={7}>
-                  {/* Título del evento */}
                   <h6 className="card-title mb-1 text-truncate">
                     {donation.event.title}
                   </h6>
-                  
-                  {/* Descripción del evento */}
-                  <p className="card-text text-muted mb-2" style={{ fontSize: '0.85rem' }}>
+
+                  <p
+                    className="card-text text-muted mb-2"
+                    style={{ fontSize: '0.85rem' }}
+                  >
                     {donation.event.description.length > 100
                       ? `${donation.event.description.substring(0, 100)}...`
                       : donation.event.description}
                   </p>
 
-                  {/* Ubicación */}
                   <div className="d-flex align-items-center mb-2">
-                    <i className="mdi mdi-map-marker text-muted me-1" style={{ fontSize: '0.9rem' }}></i>
+                    <i
+                      className="mdi mdi-map-marker text-muted me-1"
+                      style={{ fontSize: '0.9rem' }}
+                    ></i>
                     <small className="text-muted">
-                      {donation.event.location.description}
+                      {donation.event.location?.description}
                     </small>
                   </div>
 
-                  {/* Fecha de donación */}
                   <div className="d-flex align-items-center">
-                    <i className="mdi mdi-clock-outline text-muted me-1" style={{ fontSize: '0.9rem' }}></i>
+                    <i
+                      className="mdi mdi-clock-outline text-muted me-1"
+                      style={{ fontSize: '0.9rem' }}
+                    ></i>
                     <small className="text-muted">
-                      {
-                        type === "sent" ? "Donado" : "Recibido"
-                      } {formatDate(donation.createdAt)}
+                      {type === 'sent' ? 'Donado' : 'Recibido'}{' '}
+                      {formatDate(donation.createdAt)}
                     </small>
                   </div>
                 </Col>
 
-               {type === "received" && <Col md={5}>
-                  {/* Información del donante */}
-                  <div className="d-flex align-items-center">
-                    <div className="flex-shrink-0 me-2">
-                      {donation.donor.picture ? (
-                        <img
-                          src={donation.donor.picture}
-                          alt={`${donation.donor.firstName} ${donation.donor.lastName}`}
-                          className="rounded-circle"
-                          style={{ width: '40px', height: '40px', objectFit: 'cover' }}
-                        />
-                      ) : (
-                        <div
-                          className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
-                          style={{ width: '40px', height: '40px', fontSize: '0.8rem' }}
-                        >
-                          {getInitials(donation.donor.firstName, donation.donor.lastName)}
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex-grow-1">
-                      <div className="d-flex align-items-center">
-                        <span className="fw-medium" style={{ fontSize: '0.9rem' }}>
-                          {donation.donor.firstName} {donation.donor.lastName}
-                        </span>
-                        {donation.donor.verified && (
-                          <i
-                            className="mdi mdi-check-decagram text-primary ms-1"
-                            style={{ fontSize: '0.8rem' }}
-                            title="Usuario verificado"
-                          ></i>
+                {type === 'received' && (
+                  <Col md={5}>
+                    <div className="d-flex align-items-center">
+                      <div className="flex-shrink-0 me-2">
+                        {donation.donor.picture ? (
+                          <img
+                            src={donation.donor.picture}
+                            alt={`${donation.donor.firstName} ${donation.donor.lastName}`}
+                            className="rounded-circle"
+                            style={{
+                              width: '40px',
+                              height: '40px',
+                              objectFit: 'cover',
+                            }}
+                          />
+                        ) : (
+                          <div
+                            className="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                            style={{
+                              width: '40px',
+                              height: '40px',
+                              fontSize: '0.8rem',
+                            }}
+                          >
+                            {getInitials(
+                              donation.donor.firstName,
+                              donation.donor.lastName,
+                            )}
+                          </div>
                         )}
                       </div>
-                      {donation.donor.municipality && (
-                        <small className="text-muted">
-                          {donation.donor.municipality.name}
-                        </small>
-                      )}
+                      <div className="flex-grow-1">
+                        <div className="d-flex align-items-center">
+                          <span
+                            className="fw-medium"
+                            style={{ fontSize: '0.9rem' }}
+                          >
+                            {donation.donor.firstName} {donation.donor.lastName}
+                          </span>
+                          {donation.donor.verified && (
+                            <i
+                              className="mdi mdi-check-decagram text-primary ms-1"
+                              style={{ fontSize: '0.8rem' }}
+                              title="Usuario verificado"
+                            ></i>
+                          )}
+                        </div>
+                        {donation.donor.municipality && (
+                          <small className="text-muted">
+                            {donation.donor.municipality.name}
+                          </small>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </Col>}
+                  </Col>
+                )}
               </Row>
             </div>
           </Col>

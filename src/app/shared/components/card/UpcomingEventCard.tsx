@@ -39,7 +39,7 @@ const UpcomingEventCard: React.FC<UpcomingEventCardProps> = ({
   return (
     <Link
       to={`/principal/emprendimientos/events/${event.id}`}
-      className="list-group-item text-muted py-3 px-2 bg-light-subtle border rounded mb-1 highlighted-event__card"
+      className="list-group-item text-muted py-3 px-2 bg-light-subtle border border-success rounded mb-1 highlighted-event__card"
       style={{ textDecoration: 'none' }}
     >
       <div className="d-flex align-items-start">
