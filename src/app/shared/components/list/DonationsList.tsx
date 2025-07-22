@@ -101,7 +101,7 @@ const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
       </Col>
 
       {items.map((donation) => (
-        <Col key={donation.id} sm={12} md={6} lg={4} className="mb-4">
+        <Col key={donation.id} sm={12} md={12} lg={6} className="mb-4">
           <DonationCard donation={donation} type={type} />
         </Col>
       ))}
