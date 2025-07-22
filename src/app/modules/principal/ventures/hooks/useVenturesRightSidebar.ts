@@ -18,10 +18,12 @@ import {
 } from '../../../../config/redux/reducers/principal/ventures.reducer';
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import municipalities from '../../../../shared/data/geo/municipalities';
+import { useSearchParams } from 'react-router-dom';
 
 const useVenturesRightSidebar = () => {
   const dispatch = useAppDispatch();
   const { filters, showFilters } = useSelector(selectVentures);
+  const [searchParams, setSearchParams] = useSearchParams();
   const { search, categoriesIds, municipalitiesIds, activeDepartmentId } =
     filters;
   const authentication = useSelector(selectAuthentication);
@@ -82,8 +84,48 @@ const useVenturesRightSidebar = () => {
           search: '',
         }),
       );
+    } else {
+      const search = searchParams.get('search') || '';
+      const municipalitiesIdsParam = searchParams.get('municipalities_ids');
+      const categoriesIdsParam = searchParams.get('categories_ids');
+      const viewMode = searchParams.get('view_mode') as VenturesViewMode | null;
+      const skip = searchParams.get('skip');
+
+      if (municipalitiesIdsParam) {
+        const ids = municipalitiesIdsParam.split(',').map(Number);
+        setMunicipalitiesIds(ids);
+      }
+
+      if (categoriesIdsParam) {
+        const ids = categoriesIdsParam.split(',').map(String);
+        setCategoriesIds(ids);
+      }
+      if (viewMode) {
+        setViewMode(viewMode);
+      }
+      if (skip) {
+        setPage(Number(skip));
+      }
+      setSearch(search);
     }
   }, []);
+
+  useEffect(() => {
+    const newSearchParams = new URLSearchParams(searchParams);
+    const { search, municipalitiesIds, pagination, categoriesIds, viewMode } =
+      filters;
+
+    search && newSearchParams.set('search', search);
+    pagination && newSearchParams.set('skip', pagination.skip.toString());
+    pagination && newSearchParams.set('take', pagination.take.toString());
+    viewMode && newSearchParams.set('view_mode', viewMode);
+    municipalitiesIds &&
+      newSearchParams.set('municipalities_ids', municipalitiesIds.join(','));
+    categoriesIds &&
+      newSearchParams.set('categories_ids', categoriesIds.join(','));
+
+    setSearchParams(newSearchParams);
+  }, [filters]);
 
   return {
     showFilters,

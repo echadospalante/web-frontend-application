@@ -57,6 +57,13 @@ export const venturesSlice = createSlice({
     },
     setVenturesViewMode: (state, action: PayloadAction<VenturesViewMode>) => {
       state.filters.viewMode = action.payload;
+      // Keep only the first municipality if view mode map is active
+      if (action.payload === VenturesViewMode.map) {
+        state.filters.municipalitiesIds = state.filters.municipalitiesIds.slice(
+          0,
+          1,
+        );
+      }
     },
     setVenturesCategoriesIds: (state, action: PayloadAction<string[]>) => {
       state.filters.categoriesIds = action.payload;
