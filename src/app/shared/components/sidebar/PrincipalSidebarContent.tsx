@@ -1,19 +1,18 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-
 import MetisMenu from 'metismenujs';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import SimpleBar from 'simplebar-react';
 
 const UserSidebarContent = () => {
   const { t } = useTranslation();
-
   const ref = useRef(null);
+  const location = useLocation(); // Get the current location
 
-  const activateParentDropdown = useCallback((item: HTMLAnchorElement) => {
+  const activateParentDropdown = useCallback((item: any) => {
     item.classList.add('active');
     const parent = item.parentElement;
-    const parent2El = parent!.childNodes[1] as HTMLElement;
+    const parent2El = parent?.childNodes[1] as HTMLElement;
     if (parent2El && parent2El.classList.contains('metismenu')) {
       parent2El.classList.add('mm-show');
     }
@@ -29,7 +28,7 @@ const UserSidebarContent = () => {
 
         if (parent3) {
           parent3.classList.add('mm-active');
-          (parent3.childNodes[0] as HTMLElement).classList.add('mm-active'); //a
+          (parent3.childNodes[0] as HTMLElement).classList.add('mm-active');
           const parent4 = parent3.parentElement;
           if (parent4) {
             parent4.classList.add('mm-show');
@@ -48,10 +47,10 @@ const UserSidebarContent = () => {
     return false;
   }, []);
 
-  const removeActivation = (items: HTMLCollectionOf<HTMLAnchorElement>) => {
+  const removeActivation = (items: any[]) => {
     for (let i = 0; i < items.length; ++i) {
       const item = items[i];
-      const parent = items[i].parentElement;
+      const parent = item.parentElement;
 
       if (item && item.classList.contains('active')) {
         item.classList.remove('active');
@@ -96,23 +95,23 @@ const UserSidebarContent = () => {
 
   const activeMenu = useCallback(() => {
     let matchingMenuItem = null;
-    
-    const menuContainers = document.querySelectorAll('.metismenu');
-    const allItems: HTMLAnchorElement[] = [];
 
-    
+    const menuContainers = document.querySelectorAll('.metismenu');
+    const allItems: any[] = [];
+
     menuContainers.forEach((container) => {
       const items = container.getElementsByTagName('a');
       for (let i = 0; i < items.length; i++) {
-        allItems.push(items[i] as HTMLAnchorElement);
+        allItems.push(items[i]);
       }
     });
 
-    removeActivation(allItems as any);
-    const pathname = window.location.pathname;
+    removeActivation(allItems);
+    const pathname = location.pathname; // Use current location
 
     for (let i = 0; i < allItems.length; ++i) {
-      if (pathname === allItems[i].pathname) {
+      const linkPath = allItems[i].getAttribute('href') || allItems[i].pathname;
+      if (pathname === linkPath) {
         matchingMenuItem = allItems[i];
         break;
       }
@@ -121,12 +120,13 @@ const UserSidebarContent = () => {
     if (matchingMenuItem) {
       activateParentDropdown(matchingMenuItem);
     }
-  }, [activateParentDropdown]);
+  }, [activateParentDropdown, location.pathname]);
 
-  function scrollElement(item: HTMLAnchorElement) {
+  function scrollElement(item: any) {
     if (item) {
       const currentPosition = item.offsetTop;
       if (currentPosition > window.innerHeight) {
+        // Add scroll logic if needed
       }
     }
   }
@@ -144,7 +144,7 @@ const UserSidebarContent = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     activeMenu();
-  }, [activeMenu]);
+  }, [activeMenu, location.pathname]); // Re-run when location changes
 
   return (
     <React.Fragment>
@@ -156,21 +156,43 @@ const UserSidebarContent = () => {
             </Link>
 
             <li>
-              <Link to="/principal/emprendimientos">
+              <Link
+                to="/principal/emprendimientos"
+                className={
+                  location.pathname === '/principal/emprendimientos'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="bx bx-rocket"></i>
                 <span>{t('Ventures')}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/emprendimientos/publicaciones">
+              <Link
+                to="/principal/emprendimientos/publicaciones"
+                className={
+                  location.pathname ===
+                  '/principal/emprendimientos/publicaciones'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="bx bx-news"></i>
                 <span>{t('Publications')}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/emprendimientos/eventos">
+              <Link
+                to="/principal/emprendimientos/eventos"
+                className={
+                  location.pathname === '/principal/emprendimientos/eventos'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="bx bx-calendar"></i>
                 <span>{t('Events')}</span>
               </Link>
@@ -181,7 +203,15 @@ const UserSidebarContent = () => {
             <li className="menu-title">Preferencias</li>
 
             <li>
-              <Link to="/principal/preferencias/alertas-notificaciones">
+              <Link
+                to="/principal/preferencias/alertas-notificaciones"
+                className={
+                  location.pathname ===
+                  '/principal/preferencias/alertas-notificaciones'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="bx bx-bell"></i>
                 <span>{t('Alerts And Notifications')}</span>
               </Link>
@@ -192,35 +222,70 @@ const UserSidebarContent = () => {
             <li className="menu-title">{t('Your Account')}</li>
 
             <li>
-              <Link to="/principal/cuenta/perfil">
+              <Link
+                to="/principal/cuenta/perfil"
+                className={
+                  location.pathname === '/principal/cuenta/perfil'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="bx bx-id-card"></i>
                 <span>{t('Profile')}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/cuenta/suscripciones">
+              <Link
+                to="/principal/cuenta/suscripciones"
+                className={
+                  location.pathname === '/principal/cuenta/suscripciones'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="mdi mdi-account-group-outline"></i>
                 <span>{t('My Subscriptions')}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/cuenta/emprendimientos">
+              <Link
+                to="/principal/cuenta/emprendimientos"
+                className={
+                  location.pathname === '/principal/cuenta/emprendimientos'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="bx bx-rocket"></i>
                 <span>{t('My Ventures')}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/cuenta/donaciones">
+              <Link
+                to="/principal/cuenta/donaciones"
+                className={
+                  location.pathname === '/principal/cuenta/donaciones'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="mdi mdi-gift-outline"></i>
                 <span>{t('My Donations')}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/cuenta/patrocinios">
+              <Link
+                to="/principal/cuenta/patrocinios"
+                className={
+                  location.pathname === '/principal/cuenta/patrocinios'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="bx bx-heart"></i>
                 <span>{t('My Sponsorships')}</span>
               </Link>
@@ -231,14 +296,28 @@ const UserSidebarContent = () => {
             <li className="menu-title">Ayuda</li>
 
             <li>
-              <Link to="/principal/soporte" target="_blank">
+              <Link
+                to="/principal/soporte"
+                target="_blank"
+                className={
+                  location.pathname === '/principal/soporte' ? 'active' : ''
+                }
+              >
                 <i className="bx bx-support"></i>
                 <span>{t('Support')}</span>
               </Link>
             </li>
 
             <li>
-              <Link to="/principal/privacidad-y-tratamiento-datos">
+              <Link
+                to="/principal/privacidad-y-tratamiento-datos"
+                className={
+                  location.pathname ===
+                  '/principal/privacidad-y-tratamiento-datos'
+                    ? 'active'
+                    : ''
+                }
+              >
                 <i className="bx bx-check-shield"></i>
                 <span>{t('Terms And Conditions')}</span>
               </Link>
