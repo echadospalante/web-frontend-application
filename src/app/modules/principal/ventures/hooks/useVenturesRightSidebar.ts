@@ -61,6 +61,13 @@ const useVenturesRightSidebar = () => {
   };
 
   useEffect(() => {
+    console.log({
+      search,
+      categoriesIds,
+      municipalitiesIds,
+      activeDepartmentId,
+    });
+
     if (
       !search &&
       categoriesIds.length === 0 &&
@@ -106,6 +113,7 @@ const useVenturesRightSidebar = () => {
       if (skip) {
         setPage(Number(skip));
       }
+
       setSearch(search);
     }
   }, []);
