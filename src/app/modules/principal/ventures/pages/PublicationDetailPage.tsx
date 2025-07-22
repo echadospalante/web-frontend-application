@@ -21,6 +21,7 @@ import {
   ModalBody,
   ModalHeader,
   Row,
+  UncontrolledTooltip,
 } from 'reactstrap';
 
 import AlertWithReload from '../../../../shared/components/alert/AlertWithReload';
@@ -30,6 +31,8 @@ import useFetchPublicationDetail from '../hooks/useFetchPublicationDetail';
 import usePublicationInteractions from '../hooks/usePublicationInteractions';
 import PublicationClapsModal from '../../../../shared/components/modal/PublicationClapsModal';
 import useAuthentication from '../../../auth/hooks/useAuthentication';
+import TruncatedItems from '../../../../shared/components/text/TruncatedItems';
+import { textToRGB } from '../../../../shared/helpers/colors';
 
 const PublicationDetailPage = () => {
   const [showClapsModal, setShowClapsModal] = useState(false);
@@ -169,17 +172,36 @@ const PublicationDetailPage = () => {
 
               {detail.categories.length > 0 && (
                 <div className="mb-3">
-                  {detail.categories.map((category) => (
-                    <Badge
-                      key={category.id}
-                      color="primary"
-                      pill
-                      className="me-2 mb-1 p-2"
-                    >
-                      <i className="bx bx-purchase-tag-alt me-1"></i>
-                      {category.name}
-                    </Badge>
-                  ))}
+                  <TruncatedItems
+                    items={detail.categories.map((category) => (
+                      <li
+                        key={category.id}
+                        className="list-inline-item my-1"
+                        style={{ cursor: 'pointer', marginRight: '3px' }}
+                      >
+                        <UncontrolledTooltip
+                          placement="top"
+                          target={`category-${category.id}`}
+                        >
+                          <p>{category.description}</p>
+                        </UncontrolledTooltip>
+                        <span
+                          id={`category-${category.id}`}
+                          className="p-1"
+                          style={{
+                            backgroundColor: textToRGB(category.name),
+                            color: 'white',
+                            fontSize: '12px',
+                            borderRadius: '5px',
+                          }}
+                        >
+                          {category.name}
+                        </span>
+                      </li>
+                    ))}
+                    maxItems={5}
+                    all={'todas'}
+                  />
                 </div>
               )}
 

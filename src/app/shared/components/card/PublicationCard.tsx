@@ -65,9 +65,10 @@ export default PublicationCard;
 import { PublicationContent, VenturePublication } from 'echadospalante-domain';
 import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Badge, Button, Card, CardBody } from 'reactstrap';
+import { Badge, Button, Card, CardBody, UncontrolledTooltip } from 'reactstrap';
 import TruncatedItems from '../text/TruncatedItems';
 import PublicationCardFooter from '../footer/PublicationCardFooter';
+import { textToRGB } from '../../helpers/colors';
 
 export interface PublicationCardProps {
   publication: VenturePublication;
@@ -184,15 +185,30 @@ const PublicationCard: React.FC<PublicationCardProps> = ({ publication }) => {
             <div className="mb-3">
               <TruncatedItems
                 items={publication.categories.map((category) => (
-                  <Badge
+                  <li
                     key={category.id}
-                    color="primary"
-                    pill
-                    className="me-2 mb-1 p-2"
+                    className="list-inline-item my-1"
+                    style={{ cursor: 'pointer', marginRight: '3px' }}
                   >
-                    <i className="bx bx-purchase-tag-alt me-1"></i>
-                    {category.name}
-                  </Badge>
+                    <UncontrolledTooltip
+                      placement="top"
+                      target={`category-${category.id}`}
+                    >
+                      <p>{category.description}</p>
+                    </UncontrolledTooltip>
+                    <span
+                      id={`category-${category.id}`}
+                      className="p-1"
+                      style={{
+                        backgroundColor: textToRGB(category.name),
+                        color: 'white',
+                        fontSize: '12px',
+                        borderRadius: '5px',
+                      }}
+                    >
+                      {category.name}
+                    </span>
+                  </li>
                 ))}
                 maxItems={5}
                 all={'todas'}

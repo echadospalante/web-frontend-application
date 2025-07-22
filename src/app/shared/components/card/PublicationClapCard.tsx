@@ -1,19 +1,19 @@
-import { PublicationClap } from "echadospalante-domain";
-import moment from "moment";
+import { PublicationClap } from 'echadospalante-domain';
+import moment from 'moment';
+import 'moment/locale/es';
+
+moment.locale('es');
 
 export interface PublicationClapCardProps {
-  clap: PublicationClap
+  clap: PublicationClap;
 }
 
 const PublicationClapCard: React.FC<PublicationClapCardProps> = ({ clap }) => {
-  const formatRelativeDate = (dateString: string) => {
+  const formatRelativeDate = (dateString: Date) => {
     const date = new Date(dateString);
-    const now = new Date();
-    const from = moment(date);
-    const to = moment(now);
-    return from.from(to);
+    return moment(date).fromNow();
   };
-  
+
   return (
     <div className="d-flex align-items-center py-3 border-0">
       <img
@@ -31,11 +31,10 @@ const PublicationClapCard: React.FC<PublicationClapCardProps> = ({ clap }) => {
           )}
         </h6>
         <small className="text-muted">
-          {formatRelativeDate(new Date(clap.createdAt).toISOString())}
+          {formatRelativeDate(clap.createdAt)}
         </small>
       </div>
     </div>
   );
-}
-
+};
 export default PublicationClapCard;
