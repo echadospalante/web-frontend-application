@@ -378,7 +378,7 @@ const AccountPostCreatePage = () => {
 
                   {/* Botón de envío */}
                   <div className="text-center">
-                    <Button type="submit" color="primary">
+                    <Button type="submit" color="success">
                       <i className="bx bx-send me-1 fs-6"></i>
                       Publicar
                     </Button>

@@ -16,10 +16,10 @@ import useEventsRightSidebar from '../../../modules/principal/ventures/hooks/use
 import useHighlightedEvents from '../../../modules/principal/ventures/hooks/useHighlightedEvents';
 import AlertWithReload from '../alert/AlertWithReload';
 import UpcomingEventCard from '../card/UpcomingEventCard';
+import EventDateRangeFilters from '../filters/EventDateRangeFilters';
 import EventLocationFilters from '../filters/EventLocationFilters';
 import EventCategoriesList from '../list/EventCategoriesList';
 import HighlightedEventsModal from '../modal/HighlightedEventsModal';
-import EventDateRangeFilters from '../filters/EventDateRangeFilters';
 
 export interface EventsRightSidebarProps {
   multipleMunicipalities: boolean;
@@ -36,7 +36,6 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
     viewMode,
     search,
     showFilters,
-    toggleShowFilters,
   } = useEventsRightSidebar();
   const [scrollY, setScrollY] = useState(0);
   const [showHighlighted, setShowHighlighted] = useState<
@@ -187,7 +186,7 @@ const EventsRightSidebar: React.FC<EventsRightSidebarProps> = ({
                   {isLoading || !highlightedEvents ? (
                     <div className="d-flex justify-content-center">
                       <div
-                        className="spinner-border text-primary"
+                        className="spinner-border text-success"
                         role="status"
                       >
                         <span className="visually-hidden">Cargando...</span>

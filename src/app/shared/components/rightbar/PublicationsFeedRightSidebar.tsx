@@ -95,26 +95,6 @@ const PublicationsFeedRightSidebar: React.FC = () => {
               <CardBody className="border-success border rounded-2 p-4">
                 <div className="d-flex justify-content-between align-items-center mb-3">
                   <h5 className="mb-0">Filtros de búsqueda</h5>
-                  {/* <Button
-                    color="light"
-                    size="sm"
-                    onClick={toggleShowFilters}
-                    style={{
-                      borderRadius: '50%',
-                      width: '32px',
-                      height: '32px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: 0,
-                    }}
-                    title="Ocultar filtros"
-                  >
-                    <i
-                      className="mdi mdi-chevron-right"
-                      style={{ fontSize: '16px' }}
-                    ></i>
-                  </Button> */}
                 </div>
 
                 <div className="search-box">
@@ -149,7 +129,7 @@ const PublicationsFeedRightSidebar: React.FC = () => {
                   {isLoading || !highlightedPublications ? (
                     <div className="d-flex justify-content-center">
                       <div
-                        className="spinner-border text-primary"
+                        className="spinner-border text-success"
                         role="status"
                       >
                         <span className="visually-hidden">Cargando...</span>

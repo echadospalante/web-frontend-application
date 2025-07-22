@@ -93,7 +93,7 @@ const RegisterStepsPage = () => {
                         {/* button triggers modal */}
                         <Button
                           type="button"
-                          color="primary"
+                          color="success"
                           onClick={togglemodal}
                         >
                           Click here for Verification

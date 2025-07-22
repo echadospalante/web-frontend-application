@@ -121,7 +121,7 @@ const EcommerceOrdersModal = ({
           <Button type="button" color="secondary" onClick={onCloseClick}>
             <i className="bx bx-printer"></i> Imprimir
           </Button>
-          <Button type="button" color="primary" onClick={onCloseClick}>
+          <Button type="button" color="success" onClick={onCloseClick}>
             Cerrar
           </Button>
         </ModalFooter>

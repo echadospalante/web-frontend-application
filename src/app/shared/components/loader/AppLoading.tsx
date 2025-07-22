@@ -15,7 +15,7 @@ const AppLoading: React.FC<AppLoadingProps> = ({
       <span className="mb-1">{message}</span>
       {/* <img width={100} src={iconPath} alt="loading-icon" /> */}
       {/* <i className="bx bx-loader bx-spin fs-4"></i> */}
-      <Spinner color="primary" />
+      <Spinner color="success" />
     </div>
   );
 };

@@ -23,7 +23,7 @@ const DonationsList: React.FC<DonationsListProps> = ({ type }) => {
           <Container fluid>
             <Breadcrumb title="Cuenta" breadcrumbItem="Donaciones" />
             <div className="text-center py-5">
-              <Spinner color="primary" />
+              <Spinner color="success" />
               <div className="mt-2">
                 Cargando donaciones {type === 'sent' ? 'enviadas' : 'recibidas'}
                 ...

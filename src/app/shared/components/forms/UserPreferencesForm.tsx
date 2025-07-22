@@ -26,7 +26,7 @@ const UserPreferencesForm = () => {
   if (isLoading) {
     return (
       <div className="d-flex justify-content-center align-items-center">
-        <div className="spinner-border" role="status">
+        <div className="spinner-border text-success" role="status">
           <span className="visually-hidden">Cargando...</span>
         </div>
       </div>

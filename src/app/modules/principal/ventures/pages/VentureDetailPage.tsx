@@ -1,17 +1,12 @@
 import { useState } from 'react';
 
-import { VentureEvent } from 'echadospalante-domain';
 import {
-  Badge,
   Button,
   Card,
   CardBody,
-  CardImg,
-  Col,
   Container,
-  Row,
   TabContent,
-  TabPane,
+  TabPane
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
@@ -20,9 +15,8 @@ import VentureDetailCard from '../../../../shared/components/card/VentureDetailc
 import VentureDetailHeader from '../../../../shared/components/footer/VentureDetailHeader';
 import VentureDetailTabs from '../../../../shared/components/tabs/VentureDetailTabs.tsx';
 import useFetchVentureBySlug from '../hooks/useFetchVentureBySlug.ts';
-import PublicationsFeedPage from './GeneralPublicationsFeedPage.tsx';
-import EventCard from '../../../../shared/components/card/EventCard.tsx';
 import GeneralEventsPage from './GeneralEventsPage.tsx';
+import PublicationsFeedPage from './GeneralPublicationsFeedPage.tsx';
 
 export type VentureDetailTab = 'publications' | 'events' | 'about';
 
@@ -40,7 +34,7 @@ const VentureDetailPage = () => {
     return (
       <Container className="page-content mt-5">
         <div className="d-flex justify-content-center">
-          <div className="spinner-border text-primary" role="status">
+          <div className="spinner-border text-success" role="status">
             <span className="visually-hidden">
               Cargando información del emprendimiento...
             </span>
@@ -55,7 +49,7 @@ const VentureDetailPage = () => {
       <Container className="page-content mt-5">
         <div className="text-center">
           <h3>No se encontró el emprendimiento</h3>
-          <Button outline className="m-1" color="primary" onClick={retryFetch}>
+          <Button outline className="m-1" color="success" onClick={retryFetch}>
             <i className="mdi mdi-refresh me-1"></i>
             Reintentar
           </Button>

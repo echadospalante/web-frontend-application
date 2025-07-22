@@ -394,7 +394,7 @@ const getColumns = () => {
               <section className="d-flex m-1 flex-column">
                 <Button
                   // onClick={() => setActivePublicationToEdit(venturePublication)}
-                  color="primary"
+                  color="success"
                   className="px-3 py-1 mx-1 w-100"
                 >
                   <IconTooltip

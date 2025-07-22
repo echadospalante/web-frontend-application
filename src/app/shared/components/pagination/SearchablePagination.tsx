@@ -95,7 +95,7 @@ const SearchablePagination = ({
               <Button
                 className="page-link pointer"
                 disabled={disable}
-                color="primary"
+                color="success"
                 onClick={() => {
                   setDisable(true);
                   handlePrevPage();
@@ -169,7 +169,7 @@ const SearchablePagination = ({
               <Button
                 className="page-link pointer"
                 disabled={disable}
-                color="primary"
+                color="success"
                 onClick={() => {
                   setDisable(true);
                   handleNextPage();

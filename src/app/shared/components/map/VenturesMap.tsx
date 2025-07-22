@@ -301,7 +301,7 @@ const VenturesMap: React.FC = () => {
                       {selectedVenture.categories.map((category) => (
                         <Badge
                           key={category.id}
-                          color="primary"
+                          color="success"
                           className="me-2 mb-1"
                         >
                           {category.name}

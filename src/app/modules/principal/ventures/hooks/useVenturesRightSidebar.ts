@@ -102,7 +102,6 @@ const useVenturesRightSidebar = () => {
         const ids = municipalitiesIdsParam.split(',').map(Number);
         setMunicipalitiesIds(ids);
       }
-
       if (categoriesIdsParam) {
         const ids = categoriesIdsParam.split(',').map(String);
         setCategoriesIds(ids);

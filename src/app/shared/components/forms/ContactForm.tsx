@@ -144,7 +144,7 @@ const ContactForm: React.FC = () => {
                   responderemos pronto.
                 </p>
                 <Button
-                  color="primary"
+                  color="success"
                   onClick={() => {
                     setFormData({
                       fullName: '',
@@ -329,14 +329,14 @@ const ContactForm: React.FC = () => {
                 <div className="text-center mt-4">
                   <Button
                     type="submit"
-                    color="primary"
+                    color="success"
                     size="lg"
                     disabled={state.submitting}
                     className="px-5 py-2"
                   >
                     {state.submitting ? (
                       <>
-                        <Spinner size="sm" className="me-2" />
+                        <Spinner color="success" size="sm" className="me-2" />
                         Enviando...
                       </>
                     ) : (

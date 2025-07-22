@@ -52,7 +52,7 @@ const VentureDetailCard = ({ venture }: { venture: Venture }) => {
               <h6 className="fw-semibold mb-3 mt-4">Categorías</h6>
               <div className="d-flex flex-wrap gap-2">
                 {venture.categories.map((category) => (
-                  <Badge key={category.id} className="p-2" color="primary" pill>
+                  <Badge key={category.id} className="p-2" color="success" pill>
                     {category.name}
                   </Badge>
                 ))}

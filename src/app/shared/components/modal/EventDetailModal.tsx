@@ -144,7 +144,7 @@ const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
                         {event.categories.map((category) => (
                           <Badge
                             key={category.id}
-                            color="primary"
+                            color="success"
                             className="me-2 mb-1"
                           >
                             {category.name}
@@ -199,7 +199,7 @@ const EventDetailModal = ({ event, toggleModal }: EventDetailModalProps) => {
                   </CardBody>
                 </Card>
 
-                <Button color="primary" className="d-flex align-items-center">
+                <Button color="success" className="d-flex align-items-center">
                   <span className="mx-1">Donar</span>
                   <i className="mdi mdi-heart-outline me-2 fs-4"></i>
                 </Button>

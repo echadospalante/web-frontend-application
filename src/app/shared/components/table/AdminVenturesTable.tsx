@@ -248,7 +248,7 @@ const getColumns = (
                     return venture;
                   });
                 }}
-                color="primary"
+                color="success"
                 className="px-3 py-1 mx-1 w-100"
               >
                 <IconTooltip

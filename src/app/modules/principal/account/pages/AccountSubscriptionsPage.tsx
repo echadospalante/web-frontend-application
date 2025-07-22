@@ -67,7 +67,7 @@ const AccountSubscriptionsPage = () => {
           <Container fluid>
             <Breadcrumb title="Cuenta" breadcrumbItem="Suscripciones" />
             <div className="text-center py-5">
-              <Spinner color="primary" />
+              <Spinner color="success" />
               <div className="mt-2">Cargando categorías...</div>
             </div>
           </Container>

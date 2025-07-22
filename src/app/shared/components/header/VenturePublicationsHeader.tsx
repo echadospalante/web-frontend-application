@@ -53,7 +53,7 @@ const VenturePublicationsHeader: React.FC<VenturePublicationsHeaderProps> = ({
         <h3 className="mb-3">
           Feed de Publicaciones del emprendimiento {data.name}
         </h3>
-        <Button onClick={handleReload} color="primary" className="fs-5">
+        <Button onClick={handleReload} color="success" className="fs-5">
           <i className="mdi mdi-refresh"></i>
         </Button>
       </div>

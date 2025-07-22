@@ -49,7 +49,7 @@ const UploadImageButton: React.FC<UploadImageButtonProps> = ({
   }, [uploadResultUrl, onUpload]);
 
   return (
-    // <Button className="btn btn-primary" color="primary" onClick={() => {}}>
+    // <Button className="btn btn-primary" color="success" onClick={() => {}}>
     //   <i className="bx bx-upload me-1" />
     //   {btnText}
     //   <input
@@ -69,16 +69,19 @@ const UploadImageButton: React.FC<UploadImageButtonProps> = ({
         id="projectImageInput"
       >
         <div className="m-1">
-          <div className="d-flex bg-primary py-2 justify-content-center cursor-pointer shadow font-size-16" style={{ borderRadius: '3px' }}>
+          <div
+            className="d-flex bg-primary py-2 justify-content-center cursor-pointer shadow font-size-16"
+            style={{ borderRadius: '3px' }}
+          >
             <i className="bx bxs-image-alt me-1"></i>
             <small>
               {isLoading
                 ? 'Subiendo imagen...'
                 : isError
-                ? 'Error al subir la imagen. Inténtalo de nuevo.'
-                : isSuccess
-                ? 'Imagen subida correctamente (Haz click para cambiarla)'
-                : btnText}
+                  ? 'Error al subir la imagen. Inténtalo de nuevo.'
+                  : isSuccess
+                    ? 'Imagen subida correctamente (Haz click para cambiarla)'
+                    : btnText}
             </small>
           </div>
         </div>

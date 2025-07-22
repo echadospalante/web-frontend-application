@@ -5,7 +5,7 @@ import { Spinner } from 'reactstrap';
 const AppSpinner = () => {
   return (
     <Fragment>
-      <Spinner color="primary" className="position-absolute top-50 start-50" />
+      <Spinner color="success" className="position-absolute top-50 start-50" />
     </Fragment>
   );
 };

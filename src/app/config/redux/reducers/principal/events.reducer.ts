@@ -39,7 +39,7 @@ const initialState: EventsState = {
   filters: {
     pagination: {
       skip: 0,
-      take: 20,
+      take: 100,
     },
     viewMode: EventsViewMode.calendar,
     search: '',

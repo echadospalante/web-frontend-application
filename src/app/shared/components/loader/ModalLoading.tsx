@@ -19,7 +19,7 @@ const ModalLoading = ({ message }: ModalLoadingProps) => {
       <ModalBody>
         <div className="text-center mb-3">
           <div className="avatar-md mx-auto mb-0">
-            <Spinner color="primary" />
+            <Spinner color="success" />
           </div>
 
           <p className="text-muted font-size-14 mt-0 mb-1">{message}</p>

@@ -160,7 +160,11 @@ const SubscriptionCard = ({
               onClick={() => setShowDeleteModal(true)}
               disabled={isDeleting}
             >
-              {isDeleting ? <Spinner size="sm" /> : 'Cancelar suscripción'}
+              {isDeleting ? (
+                <Spinner color="success" size="sm" />
+              ) : (
+                'Cancelar suscripción'
+              )}
             </Button>
           </div>
         </CardBody>

@@ -188,7 +188,7 @@ const EventDonationsChart: React.FC<SponsorsBubbleChartProps> = ({
         className="d-flex justify-content-center align-items-center"
         style={{ height: '400px' }}
       >
-        <div className="spinner-border text-primary" role="status">
+        <div className="spinner-border text-success" role="status">
           <span className="visually-hidden">Cargando...</span>
         </div>
       </div>

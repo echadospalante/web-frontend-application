@@ -38,7 +38,7 @@ const YouTubeEmbedLinkInput: React.FC<YouTubeEmbedLinkInputProps> = ({
             onChange={(e) => setUrl(e.target.value)}
           />
         </FormGroup>
-        <Button type="submit" color="primary">
+        <Button type="submit" color="success">
           Ver Video
         </Button>
       </Form>

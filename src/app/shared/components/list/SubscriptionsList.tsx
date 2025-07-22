@@ -17,7 +17,7 @@ const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
   if (isLoading) {
     return (
       <div className="text-center py-5">
-        <Spinner color="primary" />
+        <Spinner color="success" />
         <div className="mt-2">Cargando suscripciones...</div>
       </div>
     );

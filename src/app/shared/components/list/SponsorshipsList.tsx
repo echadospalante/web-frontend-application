@@ -22,9 +22,10 @@ const SponsorshipsList: React.FC<SponsorshipsListProps> = ({ type }) => {
           <Container fluid>
             <Breadcrumb title="Cuenta" breadcrumbItem="Patrocinios" />
             <div className="text-center py-5">
-              <Spinner color="primary" />
+              <Spinner color="success" />
               <div className="mt-2">
-                Cargando patrocinios {type === 'sent' ? 'enviadas' : 'recibidas'}
+                Cargando patrocinios{' '}
+                {type === 'sent' ? 'enviadas' : 'recibidas'}
                 ...
               </div>
             </div>

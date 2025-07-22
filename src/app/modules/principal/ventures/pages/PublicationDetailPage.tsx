@@ -234,7 +234,7 @@ const PublicationDetailPage = () => {
                     </Button>
                   )}
                   <Link
-                    color="primary"
+                    color="success"
                     className="me-2 btn btn-outline-primary"
                     to={`#nuevo-comentario`}
                   >
@@ -285,7 +285,7 @@ const PublicationDetailPage = () => {
                     />
                     <InputGroupText>
                       <Button
-                        color="primary"
+                        color="success"
                         size="sm"
                         type="submit"
                         disabled={!newComment.trim()}

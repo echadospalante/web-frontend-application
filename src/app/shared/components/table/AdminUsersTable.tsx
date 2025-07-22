@@ -413,7 +413,7 @@ const getColumns = (
 
             <Button
               onClick={() => setActiveUserToEdit(value.row.original as User)}
-              color="primary"
+              color="success"
               className="px-3 py-1 mt-1 mx-1 w-100"
             >
               <IconTooltip

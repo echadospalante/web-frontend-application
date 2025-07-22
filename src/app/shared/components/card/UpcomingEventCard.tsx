@@ -7,38 +7,11 @@ interface UpcomingEventCardProps {
   event: VentureEvent;
 }
 
-const UpcomingEventCard: React.FC<UpcomingEventCardProps> = ({
-  event,
-}) => {
-  const formatDate = (dateString: Date): string => {
-    const date = new Date(dateString);
-    const now = new Date();
-    const diffInHours = Math.floor(
-      (now.getTime() - date.getTime()) / (1000 * 60 * 60),
-    );
-
-    if (diffInHours < 1) {
-      return 'Hace pocos minutos';
-    } else if (diffInHours < 24) {
-      return `Hace ${diffInHours}h`;
-    } else if (diffInHours < 48) {
-      return 'Ayer';
-    } else {
-      const diffInDays = Math.floor(diffInHours / 24);
-      if (diffInDays < 7) {
-        return `Hace ${diffInDays} días`;
-      } else {
-        return date.toLocaleDateString('es-ES', {
-          day: 'numeric',
-          month: 'short',
-        });
-      }
-    }
-  };
-
+const UpcomingEventCard: React.FC<UpcomingEventCardProps> = ({ event }) => {
   return (
     <Link
       to={`/principal/emprendimientos/events/${event.id}`}
+      title={event.description}
       className="list-group-item text-muted py-3 px-2 bg-light-subtle border border-success rounded mb-1 highlighted-event__card"
       style={{ textDecoration: 'none' }}
     >
@@ -61,14 +34,38 @@ const UpcomingEventCard: React.FC<UpcomingEventCardProps> = ({
               : event.description}
           </h6>
 
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex flex-column justify-content-between align-items-start mb-2">
             <div className="d-flex align-items-center">
               <i
                 className="mdi mdi-clock-outline text-success me-1"
                 style={{ fontSize: '14px' }}
               ></i>
               <span className="font-size-12 text-success fw-bold">
-                {formatDate(event.createdAt)}
+                Desde:{' '}
+                {new Date(event.datesAndHours[0].date).toLocaleDateString(
+                  'es-CO',
+                  {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                  },
+                )}{' '}
+              </span>
+            </div>
+            <div className="d-flex align-items-center">
+              <i
+                className="mdi mdi-clock-outline text-success me-1"
+                style={{ fontSize: '14px' }}
+              ></i>
+              <span className="font-size-12 text-success fw-bold">
+                Hasta:{' '}
+                {new Date(
+                  event.datesAndHours[event.datesAndHours.length - 1].date,
+                ).toLocaleDateString('es-CO', {
+                  year: 'numeric',
+                  month: '2-digit',
+                  day: '2-digit',
+                })}{' '}
               </span>
             </div>
           </div>
