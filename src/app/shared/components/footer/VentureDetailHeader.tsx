@@ -265,9 +265,11 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                   <div className="text-center p-2 bg-light rounded">
                     <i className="mdi mdi-currency-usd me-1 fs-1" />
                     <div className="fw-bold">
-                      COP {formatCurrency(150000, 'COP')}
+                      COP {formatCurrency(venture.totalSponsorships, 'COP')}
                     </div>
-                    <small className="text-muted">Patrocinio Mensual</small>
+                    <small className="text-muted">
+                      Total Recaudado en Patrocinios
+                    </small>
                   </div>
                 </div>
                 <div className="col-md-4">

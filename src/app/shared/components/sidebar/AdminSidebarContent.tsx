@@ -141,7 +141,7 @@ const AdminSidebarContent = () => {
             <li>
               <Link to="/administracion/general/usuarios">
                 <i className="mdi mdi-account-group-outline"></i>
-                <span>{t('Users')}</span>
+                <span>Usuarios</span>
               </Link>
             </li>
 
@@ -152,7 +152,7 @@ const AdminSidebarContent = () => {
               </Link>
             </li>
 
-            <li>
+            {/* <li>
               <Link to="/administracion/general/eventos">
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Eventos</span>
@@ -164,9 +164,9 @@ const AdminSidebarContent = () => {
                 <i className="bx bx-bar-chart-square"></i>
                 <span>Publicaciones</span>
               </Link>
-            </li>
+            </li> */}
 
-            <hr className="w-75 mx-auto" />
+            {/* <hr className="w-75 mx-auto" />
 
             <Link to="/administracion/general">
               <li className="menu-title">Métricas</li>
@@ -191,7 +191,7 @@ const AdminSidebarContent = () => {
                 <i className="bx bx-bar-chart-square"></i>
                 <span>{t('Availability Metrics')}</span>
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </SimpleBar>

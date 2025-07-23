@@ -162,7 +162,7 @@ const LandingHero = () => {
                   {currentHero.description}
                 </p>
 
-                <div className="d-flex flex-wrap gap-3 mt-4">
+                {/* <div className="d-flex flex-wrap gap-3 mt-4">
                   <Link
                     to="#"
                     className={`btn ${currentHero.buttonPrimary.class} btn-lg px-4 py-3 rounded-pill`}
@@ -189,7 +189,7 @@ const LandingHero = () => {
                     )}
                     {currentHero.buttonSecondary.text}
                   </Link>
-                </div>
+                </div> */}
 
                 {/* Progress indicators */}
                 <div className="d-flex gap-2 mt-5">

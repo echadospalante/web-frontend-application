@@ -94,8 +94,11 @@ const LandingNavbar = () => {
             <ThemeDropdown />
           </div>
 
-          <div>
+          <div className="p-0 m-0">
             <GoogleLogin
+              useOneTap
+              ux_mode="popup"
+              theme={'filled_blue'}
               onSuccess={(credentialResponse) => {
                 if (!credentialResponse.credential) return;
                 loginWithCredentials(credentialResponse.credential);

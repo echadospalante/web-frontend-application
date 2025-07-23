@@ -1,8 +1,7 @@
 import { Fragment, useState } from 'react';
 
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
-import { PaginatedBody, VentureSubscription } from 'echadospalante-domain';
 import {
   Alert,
   Card,
@@ -14,10 +13,11 @@ import {
 } from 'reactstrap';
 
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
+import NoItemsFoundCard from '../../../../shared/components/card/NoItemsFoundCard';
+import SubscriptionsList from '../../../../shared/components/list/SubscriptionsList';
+import SearchablePagination from '../../../../shared/components/pagination/SearchablePagination';
 import VentureSubscriptionsCategoryTabs from '../../../../shared/components/tabs/VentureSubscriptionsCategoryTabs';
 import { SubscriptionStats } from '../domain/subscription';
-import SubscriptionsList from '../../../../shared/components/list/SubscriptionsList';
-import NoItemsFoundCard from '../../../../shared/components/card/NoItemsFoundCard';
 
 const fetchSubscriptionStats = async (): Promise<SubscriptionStats[]> => {
   const response = await axios.get<SubscriptionStats[]>(

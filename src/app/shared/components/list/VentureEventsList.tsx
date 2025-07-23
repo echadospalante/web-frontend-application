@@ -39,8 +39,6 @@ const VentureEventsList = () => {
     )
   }
 
-
-
   return (
     <Row>
       <Col

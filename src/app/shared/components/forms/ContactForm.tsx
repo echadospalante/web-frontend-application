@@ -172,7 +172,7 @@ const ContactForm: React.FC = () => {
       <Row className="justify-content-center">
         <Col sm={12} md={12} lg={10}>
           <Card className="border-0">
-            <CardHeader className="bg-primary text-white text-center py-4">
+            <CardHeader className="bg-success text-white text-center py-4">
               <h2 className="mb-0">Formulario de Contacto</h2>
               <p className="mb-0 mt-2 opacity-75">Nos encantaría saber de ti</p>
             </CardHeader>
