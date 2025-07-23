@@ -62,17 +62,4 @@ export default class SubscriptionsApi {
       )
       .then(({ data }) => data);
   }
-
-  // const fetchSubscriptionsByCategory = async (
-  //     categoryId: string,
-  //     skip: number = 0,
-  //     take: number = 10,
-  //   ): Promise<PaginatedBody<VentureSubscription>> => {
-  //     const response = await axios.get<PaginatedBody<VentureSubscription>>(
-  //       `http://localhost:5000/api/v1/ventures/owned/subscriptions/${categoryId}?skip=${skip}&take=${take}`,
-  //       { withCredentials: true },
-  //     );
-
-  //     return response.data;
-  //   };
 }

@@ -32,6 +32,8 @@ import { getIconName, stringToColor, textToRGB } from '../../helpers/colors';
 import TinyMap from '../map/TinyMap';
 import TruncatedItems from '../text/TruncatedItems';
 import SponsorshipCreateModal from '../modal/SponsorshipCreateModal';
+import useSponsorshipStatus from '../../../modules/principal/ventures/hooks/useSponsorshipStatus';
+import useCancelSponsorship from '../../../modules/principal/ventures/hooks/useCancelSponsorship';
 
 export interface VentureDetailHeaderProps {
   venture: Venture;
@@ -41,6 +43,9 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
   venture,
 }) => {
   const { email: authenticatedEmail } = useAuthentication();
+  const { status, subscriptionId, loading, error } = useSponsorshipStatus(
+    venture.id,
+  );
   const [displayPicture, setDisplayPicture] = useState<boolean>(true);
   const [showSponsorshipModal, setShowSponsorshipModal] =
     useState<boolean>(false);
@@ -61,6 +66,9 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
     unsubscribeError,
     unsubscribeLoading,
   } = useVentureSubscription(venture.id);
+
+  const { isCancelling, cancelError, handleCancelSponsorship } =
+    useCancelSponsorship(venture.id, venture.slug);
 
   const formatDate = (dateString: Date) => {
     return new Date(dateString).toLocaleDateString('es-CO', {
@@ -195,15 +203,32 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                         </Button>
                       </>
                     ))}
-                  <Button
-                    onClick={handleCreateSponsorship}
-                    color="success"
-                    outline
-                    size="md"
-                  >
-                    <i className="mdi mdi-heart me-2 font-size-15" />
-                    Patrocinar
-                  </Button>
+                  {venture.owner?.email !== authenticatedEmail && !loading && (
+                    <>
+                      {status ? (
+                        <Button
+                          color="danger"
+                          size="md"
+                          onClick={() =>
+                            handleCancelSponsorship(subscriptionId)
+                          }
+                        >
+                          <i className="mdi mdi-heart-off-outline me-2 font-size-15" />
+                          Cancelar patrocinio
+                        </Button>
+                      ) : (
+                        <Button
+                          onClick={handleCreateSponsorship}
+                          color="success"
+                          outline
+                          size="md"
+                        >
+                          <i className="mdi mdi-heart me-2 font-size-15" />
+                          Patrocinar
+                        </Button>
+                      )}
+                    </>
+                  )}
                 </div>
               </div>
               <p className="text-muted mb-3">{venture.description}</p>
@@ -249,7 +274,7 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                 <></>
               )}
               <div className="row g-3 mb-3">
-                <div className="col-md-4">
+                <div className="col-md-3 col-sm-12">
                   <div className="text-center p-2 bg-light rounded">
                     {/*<Users size={20} className="text-primary mb-1" />*/}
                     <i className="mdi mdi-account-multiple-outline me-1 fs-1" />
@@ -261,7 +286,18 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                     </small>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3 col-sm-12">
+                  <div className="text-center p-2 bg-light rounded">
+                    <i className="mdi mdi-handshake me-1 fs-1" />
+                    <div className="fw-bold">{venture.sponsorshipsCount}</div>
+                    <small className="text-muted">
+                      {venture.sponsorshipsCount === 1
+                        ? 'Patrocinador'
+                        : 'Patrocinadores'}
+                    </small>
+                  </div>
+                </div>
+                <div className="col-md-3 col-sm-12">
                   <div className="text-center p-2 bg-light rounded">
                     <i className="mdi mdi-currency-usd me-1 fs-1" />
                     <div className="fw-bold">
@@ -272,7 +308,7 @@ const VentureDetailHeader: React.FC<VentureDetailHeaderProps> = ({
                     </small>
                   </div>
                 </div>
-                <div className="col-md-4">
+                <div className="col-md-3 col-sm-12">
                   <div className="d-flex flex-column align-items-center justify-content-center">
                     {displayPicture ? (
                       <img

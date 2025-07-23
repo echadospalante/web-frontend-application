@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
@@ -31,7 +31,7 @@ const usePublicationCreate = () => {
   const { uploadResultUrl } = rest;
   const { ventureId } = useParams();
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
+  const queryClient = useQueryClient();
   const [postData, setPublicationCreate] = useState<PublicationCreate>({
     description: '',
     type: 'STANDARD',
@@ -44,6 +44,10 @@ const usePublicationCreate = () => {
     mutationFn: (data: PublicationCreate) =>
       OwnedPublicationsApi.createPublication(ventureId!, data),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['ventures', 'owned'],
+        exact: false,
+      });
       dispatch(
         setGlobalAlert({
           position: 'top-right',
@@ -66,7 +70,7 @@ const usePublicationCreate = () => {
           title: 'Error',
         }),
       );
-    }
+    },
   });
 
   const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {

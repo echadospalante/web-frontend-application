@@ -1,7 +1,5 @@
 import React, { Fragment } from 'react';
-import { useTranslation } from 'react-i18next';
 
-import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 
 const FooterLink = () => {
@@ -24,7 +22,6 @@ const FooterLink = () => {
 };
 
 const LandingFooter = () => {
-  const { t } = useTranslation();
   const footerLinks = [
     // {
     //   title: 'Seccion',
@@ -57,7 +54,7 @@ const LandingFooter = () => {
 
   return (
     <React.Fragment>
-      <footer className="landing-footer">
+      <footer className="landing-footer py-0 my-0">
         <Container>
           <Row>
             {/* {footerLinks.map((footerLink, key) => (

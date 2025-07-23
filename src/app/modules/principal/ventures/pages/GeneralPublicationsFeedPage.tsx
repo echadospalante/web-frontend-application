@@ -25,7 +25,7 @@ const PublicationsFeedPage = () => {
 
         <Container fluid>
           <Row>
-            <Col lg={ventureSlug ? 12 : 9}>
+            <Col lg={9}>
               {/* {ventureSlug ? (
                 <VenturePublicationsHeader
                   ventureSlug={ventureSlug}
@@ -43,6 +43,19 @@ const PublicationsFeedPage = () => {
             </Col>
 
             {items.length === 0 && (
+              <Col lg={9}>
+                <NoItemsFoundCard
+                  title="Sin publicaciones disponibles"
+                  message="No se encontraron publicaciones para mostrar. Por favor, intenta con otros filtros o vuelve más tarde."
+                />
+              </Col>
+            )}
+
+            <Col lg={3}>
+              <PublicationsFeedRightSidebar />
+            </Col>
+
+            {/* {items.length === 0 && (
               <Col lg={ventureSlug ? 12 : 9}>
                 <NoItemsFoundCard
                   title="Sin publicaciones disponibles"
@@ -55,7 +68,7 @@ const PublicationsFeedPage = () => {
               <Col lg={3}>
                 <PublicationsFeedRightSidebar />
               </Col>
-            )}
+            )} */}
           </Row>
         </Container>
       </div>

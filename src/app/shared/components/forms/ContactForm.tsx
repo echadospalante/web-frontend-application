@@ -126,7 +126,7 @@ const ContactForm: React.FC = () => {
 
   if (state.succeeded) {
     return (
-      <Container className="py-5">
+      <Container id="contact-form" className="py-5">
         <Row className="justify-content-center">
           <Col md={8} lg={6}>
             <Card className="border-0">
@@ -168,7 +168,7 @@ const ContactForm: React.FC = () => {
   }
 
   return (
-    <Container className="py-5">
+    <Container id="contact-form" className="py-5">
       <Row className="justify-content-center">
         <Col sm={12} md={12} lg={10}>
           <Card className="border-0">

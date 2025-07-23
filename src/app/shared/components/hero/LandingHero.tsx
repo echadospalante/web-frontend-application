@@ -106,7 +106,7 @@ const LandingHero = () => {
     <Fragment>
       <section
         className="section hero-section position-relative overflow-hidden"
-        id="home"
+        id="principal"
         style={{
           background: currentHero.bgGradient,
           minHeight: '100vh',

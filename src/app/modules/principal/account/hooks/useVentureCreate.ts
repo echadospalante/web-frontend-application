@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { VentureCreate } from 'echadospalante-domain';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -22,12 +22,17 @@ const useVentureCreate = () => {
   const navigate = useNavigate();
   const { email, municipality } = useSelector(selectAuthentication);
   const dispatch = useAppDispatch();
+  const queryClient = useQueryClient();
   const { uploadVentureImage, ...rest } = useUploadImage();
   const { uploadResultUrl } = rest;
 
   const createVentureMutation = useMutation({
     mutationFn: (data: VentureCreate) => OwnedVenturesApi.createVenture(data),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['ventures', 'owned'],
+        exact: false,
+      });
       dispatch(
         setGlobalAlert({
           position: 'top-right',

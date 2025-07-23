@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
@@ -9,9 +9,9 @@ import {
 import { useAppDispatch } from '../../../../config/redux/store/store.config';
 import SponsorShipsApi from '../api/sponsorships.api';
 
-const useVentureSponsorship = (ventureId: string) => {
+const useVentureSponsorship = (ventureId: string, ventureSlug: string) => {
   const dispatch = useAppDispatch();
-
+  const queryClient = useQueryClient();
   const form = useFormik({
     initialValues: {
       monthlyAmount: 0,
@@ -27,17 +27,32 @@ const useVentureSponsorship = (ventureId: string) => {
     }),
   });
 
-
-
   const sponsorMutation = useMutation({
     mutationKey: ['ventures', ventureId, 'sponsorship'],
     mutationFn: (monthlyAmount: number) =>
       SponsorShipsApi.createSponsorship(ventureId, monthlyAmount),
     onSuccess: (data, input) => {
+      queryClient.invalidateQueries({
+        queryKey: ['ventures', ventureId, 'sponsorships'],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['ventures', 'slug', ventureSlug],
+      });
+      queryClient.refetchQueries({
+        queryKey: ['ventures', ventureId, 'sponsorships'],
+      });
+      queryClient.refetchQueries({
+        queryKey: ['ventures', 'slug', ventureSlug],
+      });
+      queryClient.invalidateQueries({
+        queryKey: ['ventures', 'sponsorships', 'sent'],
+        exact: false,
+      });
+
       dispatch(
         setGlobalAlert({
           message: `Tu patrocinio ha sido recibido y será utilizado para apoyar el emprendimiento, se te harán cobros mensuales de ${formatCurrency(input)}.`,
-          timeout: 5000,
+          timeout: 10000,
           severity: SeverityLevel.SUCCESS,
           title: '¡Muchas Gracias por el apoyo!',
           position: 'top-right',
@@ -46,13 +61,13 @@ const useVentureSponsorship = (ventureId: string) => {
     },
   });
 
-    const formatCurrency = (amount: number) => {
-      return new Intl.NumberFormat('es-CO', {
-        style: 'currency',
-        currency: 'COP',
-        minimumFractionDigits: 0,
-      }).format(amount);
-    };
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('es-CO', {
+      style: 'currency',
+      currency: 'COP',
+      minimumFractionDigits: 0,
+    }).format(amount);
+  };
 
   return {
     form,
@@ -60,7 +75,7 @@ const useVentureSponsorship = (ventureId: string) => {
     isError: sponsorMutation.isError,
     error: sponsorMutation.error,
     isSuccess: sponsorMutation.isSuccess,
-  }
+  };
 };
 
 export default useVentureSponsorship;

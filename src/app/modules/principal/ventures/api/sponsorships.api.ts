@@ -1,5 +1,9 @@
 import axios from 'axios';
-import { VentureSponsorship, PaginatedBody, Pagination } from 'echadospalante-domain';
+import {
+  VentureSponsorship,
+  PaginatedBody,
+  Pagination,
+} from 'echadospalante-domain';
 
 export default class SponsorShipsApi {
   private static readonly BASE_URL = `${
@@ -28,6 +32,28 @@ export default class SponsorShipsApi {
         `${this.BASE_URL}/${ventureId}/sponsorships`,
         {
           params: pagination,
+          withCredentials: true,
+        },
+      )
+      .then(({ data }) => data);
+  }
+
+  public static getSponsorshipStatus(ventureId: string) {
+    return axios
+      .get<{
+        status: boolean;
+        subscriptionId: string;
+      }>(`${this.BASE_URL}/${ventureId}/sponsorships/status`, {
+        withCredentials: true,
+      })
+      .then(({ data }) => data);
+  }
+
+  public static cancelSponsorship(ventureId: string, sponsorshipId: string) {
+    return axios
+      .delete<boolean>(
+        `${this.BASE_URL}/${ventureId}/sponsorships/${sponsorshipId}`,
+        {
           withCredentials: true,
         },
       )

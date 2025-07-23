@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Venture } from 'echadospalante-domain';
 import { useSelector } from 'react-redux';
@@ -31,6 +31,7 @@ const SponsorshipCreateModal = (props: SponsorshipCreateModalProps) => {
   const { firstName, lastName } = useSelector(selectAuthentication);
   const { error, form, isError, isLoading, isSuccess } = useVentureSponsorship(
     venture.id,
+    venture.slug,
   );
 
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
@@ -72,8 +73,14 @@ const SponsorshipCreateModal = (props: SponsorshipCreateModalProps) => {
     }
   };
 
+  useEffect(() => {
+    if (isSuccess) {
+      toggle();
+    }
+  }, [isSuccess, toggle]);
+
   return (
-    <Modal size="md" isOpen={modal} toggle={toggle}>
+    <Modal zIndex={100000} size="md" isOpen={modal} toggle={toggle}>
       <ModalHeader toggle={toggle} tag="h4">
         Patrocinio para el emprendimiento <b>{venture.name}</b>
       </ModalHeader>

@@ -44,7 +44,7 @@ const FAQs = () => {
                       >
                         <i className="bx bx-help-circle nav-icon d-block mb-2" />
                         <p className="font-weight-bold mb-0">
-                          General Questions
+                          Preguntas Generales
                         </p>
                       </NavLink>
 
@@ -54,8 +54,8 @@ const FAQs = () => {
                           setactiveTab('2');
                         }}
                       >
-                        <i className="bx bx-receipt nav-icon d-block mb-2" />
-                        <p className="font-weight-bold mb-0">Token sale</p>
+                        <i className="bx bx-heart nav-icon d-block mb-2" />
+                        <p className="font-weight-bold mb-0">Contribuciones</p>
                       </NavLink>
 
                       <NavLink
@@ -65,7 +65,7 @@ const FAQs = () => {
                         }}
                       >
                         <i className="bx bx-timer d-block nav-icon mb-2" />
-                        <p className="font-weight-bold mb-0">Roadmap</p>
+                        <p className="font-weight-bold mb-0">Beneficios</p>
                       </NavLink>
                     </Nav>
                   </Col>
@@ -75,49 +75,48 @@ const FAQs = () => {
                         <TabContent activeTab={activeTab}>
                           <TabPane tabId="1" id="buy">
                             <h4 className="card-title mb-4">
-                              General Questions
+                              Preguntas Generales
                             </h4>
 
-                            {/* accoridan */}
                             <Accordion
-                              question1="What is Lorem Ipsum ?"
-                              answer1="Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words."
-                              question2="Why do we use it ?"
-                              answer2="If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages."
-                              question3="Where does it come from ?"
-                              answer3="It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental."
-                              question4="Where can I get some ?"
-                              answer4="To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth."
+                              question1="¿De qué se trata esta plataforma?"
+                              answer1="Es un espacio digital donde cualquier persona puede crear y dar visibilidad a sus emprendimientos, conectar con una comunidad solidaria y recibir apoyo en forma de donaciones o patrocinios."
+                              question2="¿Quién puede crear un emprendimiento?"
+                              answer2="¡Todos! Si tienes una idea, proyecto o negocio en marcha, puedes registrarte y crear tu perfil de emprendimiento en pocos pasos."
+                              question3="¿Puedo publicar contenido sobre mi emprendimiento?"
+                              answer3="Sí. Puedes crear publicaciones para contar tu historia, mostrar avances, lanzar nuevos eventos y agradecer a quienes te apoyan."
+                              question4="¿Puedo ver emprendimientos cercanos a mí?"
+                              answer4="Sí, puedes explorar emprendimientos por ubicación geográfica. La plataforma te permite descubrir proyectos locales y apoyar a emprendedores de tu comunidad."
                             />
                           </TabPane>
 
                           <TabPane tabId="2">
-                            <h4 className="card-title mb-4">Token sale</h4>
+                            <h4 className="card-title mb-4">Contribuciones</h4>
 
                             <Accordion
-                              question1="Why do we use it ?"
-                              answer1="If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages."
-                              question2="What is Lorem Ipsum ?"
-                              answer2="It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental."
-                              question3="Where can I get some ?"
-                              answer3="Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words."
-                              question4="Where does it come from ?"
-                              answer4="To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth."
+                              question1="¿Cómo puedo apoyar un emprendimiento?"
+                              answer1="Puedes hacerlo a través de donaciones voluntarias, patrocinios o participando en sus eventos. También puedes compartir sus publicaciones para ayudarles a ganar visibilidad."
+                              question2="¿Hay algún costo por usar la plataforma?"
+                              answer2="No, el registro y uso básico de la plataforma es completamente gratuito. Solo se aplican tarifas mínimas en caso de donaciones y patrocinios."
+                              question3="¿Cuál es la diferencia entre donación y patrocinio?"
+                              answer3="Una donación es un aporte voluntario sin esperar nada a cambio, mientras que un patrocinio implica una colaboración más formal, donde el patrocinador puede recibir beneficios como visibilidad de marca o reconocimiento público."
+                              question4="¿Puedo patrocinar varios emprendimientos?"
+                              answer4="Sí, puedes patrocinar tantos emprendimientos como desees. La plataforma te permite gestionar tus patrocinios y ver el impacto de tu apoyo en cada proyecto."
                             />
                           </TabPane>
 
                           <TabPane tabId="3">
-                            <h4 className="card-title mb-4">Roadmap</h4>
+                            <h4 className="card-title mb-4">Beneficios</h4>
 
                             <Accordion
-                              question1="Why do we use it ?"
-                              answer1="Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words."
-                              question2="What is Lorem Ipsum ?"
-                              answer2="It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental."
-                              question3="Where can I get some ?"
-                              answer3="To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is. The European languages are members of the same family. Their separate existence is a myth."
-                              question4="Where does it come from ?"
-                              answer4="If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages."
+                              question1="¿Qué beneficios pueden obtener mis emprendimientos?"
+                              answer1="Los emprendimientos pueden recibir apoyo financiero, visibilidad en la plataforma, acceso a una comunidad solidaria y oportunidades de colaboración con otros emprendedores."
+                              question2="¿Cómo puedo medir el impacto de mi emprendimiento?"
+                              answer2="La plataforma ofrece herramientas para rastrear donaciones, patrocinios y el crecimiento de tu comunidad. También puedes recibir retroalimentación directa de tus seguidores."
+                              question3="¿Puedo colaborar con otros emprendedores?"
+                              answer3="Sí, puedes conectar con otros emprendedores para colaborar en proyectos conjuntos, compartir recursos o co-organizar eventos. La plataforma fomenta la colaboración entre emprendedores."
+                              question4="¿Qué pasa si tengo más preguntas?"
+                              answer4="Si tienes más preguntas, puedes contactarnos a través de nuestro formulario de contacto o enviarnos un correo electrónico. Estamos aquí para ayudarte a aprovechar al máximo la plataforma."
                             />
                           </TabPane>
                         </TabContent>

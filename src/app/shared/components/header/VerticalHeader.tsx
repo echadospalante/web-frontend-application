@@ -282,7 +282,7 @@ const Header = () => {
 
             <ThemeDropdown />
 
-            <NotificationDropdown />
+            {/* <NotificationDropdown /> */}
             <ProfileMenu />
 
             <div

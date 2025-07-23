@@ -4,18 +4,21 @@ import {
   Button,
   Card,
   CardBody,
+  Col,
   Container,
+  Row,
   TabContent,
-  TabPane
+  TabPane,
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
 
 import VentureDetailCard from '../../../../shared/components/card/VentureDetailcard.tsx';
 import VentureDetailHeader from '../../../../shared/components/footer/VentureDetailHeader';
+import VentureEventsList from '../../../../shared/components/list/VentureEventsList.tsx';
+import EventsRightSidebar from '../../../../shared/components/rightbar/EventsRightSidebar.tsx';
 import VentureDetailTabs from '../../../../shared/components/tabs/VentureDetailTabs.tsx';
 import useFetchVentureBySlug from '../hooks/useFetchVentureBySlug.ts';
-import GeneralEventsPage from './GeneralEventsPage.tsx';
 import PublicationsFeedPage from './GeneralPublicationsFeedPage.tsx';
 
 export type VentureDetailTab = 'publications' | 'events' | 'about';
@@ -65,7 +68,9 @@ const VentureDetailPage = () => {
   return (
     <div className="page-content">
       <Container fluid>
-        <VentureDetailHeader venture={venture} />
+        <div style={{ position: 'relative', zIndex: 3000 }}>
+          <VentureDetailHeader venture={venture} />
+        </div>
 
         <Card className="shadow-sm">
           <CardBody className="p-0">
@@ -79,14 +84,25 @@ const VentureDetailPage = () => {
             <TabContent
               activeTab={activeTab}
               className="p-4"
-              style={{ zIndex: 100, position: 'relative' }}
+              style={{ zIndex: 2000, position: 'relative' }}
             >
               <TabPane tabId="publications">
                 <PublicationsFeedPage />
               </TabPane>
 
-              <TabPane tabId="events">
-                <GeneralEventsPage />
+              <TabPane tabId="events" className="position-relative">
+                <Row>
+                  <Col lg={9}>
+                    <VentureEventsList />
+                  </Col>
+
+                  <Col lg={3}>
+                    <EventsRightSidebar
+                      multipleMunicipalities={false}
+                      dateRangeFilter
+                    />
+                  </Col>
+                </Row>
               </TabPane>
 
               <TabPane tabId="about">

@@ -4,6 +4,7 @@ import { formatDistanceToNow, addMonths, format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { VentureSponsorship } from 'echadospalante-domain';
 import { Badge, Button, Card, CardBody, Col, Row, Progress } from 'reactstrap';
+import useCancelSponsorship from '../../../modules/principal/ventures/hooks/useCancelSponsorship';
 
 interface SponsorshipCardProps {
   sponsorship: VentureSponsorship;
@@ -14,6 +15,9 @@ const SponsorshipCard: React.FC<SponsorshipCardProps> = ({
   sponsorship,
   type,
 }) => {
+  const { isCancelling, cancelError, handleCancelSponsorship, isSuccess } =
+    useCancelSponsorship(sponsorship.venture!.id, sponsorship.venture!.slug);
+
   const formatAmount = (amount: number) => {
     return new Intl.NumberFormat('es-CO', {
       style: 'currency',
@@ -89,6 +93,9 @@ const SponsorshipCard: React.FC<SponsorshipCardProps> = ({
         100
       : 0;
 
+  if (isSuccess) {
+    return <></>;
+  }
   return (
     <Card className="border border-success h-100">
       <CardBody className="p-0">
@@ -288,7 +295,13 @@ const SponsorshipCard: React.FC<SponsorshipCardProps> = ({
 
                   {type === 'sent' && (
                     <div className="mt-auto pt-2">
-                      <Button color="danger" size="sm" outline className="px-3">
+                      <Button
+                        onClick={() => handleCancelSponsorship(sponsorship.id)}
+                        color="danger"
+                        size="sm"
+                        outline
+                        className="px-3"
+                      >
                         <i className="mdi mdi-close me-1"></i>
                         Cancelar patrocinio
                       </Button>

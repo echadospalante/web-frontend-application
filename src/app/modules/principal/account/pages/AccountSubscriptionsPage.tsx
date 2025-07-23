@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import {
   Alert,
   Card,
@@ -15,34 +14,13 @@ import {
 import Breadcrumb from '../../../../shared/components/breadcrumb/Breadcrumb';
 import NoItemsFoundCard from '../../../../shared/components/card/NoItemsFoundCard';
 import SubscriptionsList from '../../../../shared/components/list/SubscriptionsList';
-import SearchablePagination from '../../../../shared/components/pagination/SearchablePagination';
 import VentureSubscriptionsCategoryTabs from '../../../../shared/components/tabs/VentureSubscriptionsCategoryTabs';
-import { SubscriptionStats } from '../domain/subscription';
-
-const fetchSubscriptionStats = async (): Promise<SubscriptionStats[]> => {
-  const response = await axios.get<SubscriptionStats[]>(
-    'http://localhost:5000/api/v1/ventures/owned/subscriptions/stats',
-    { withCredentials: true },
-  );
-  return response.data;
-};
-
-const deleteSubscription = async (subscriptionId: string): Promise<void> => {
-  const response = await fetch(
-    `http://localhost:5000/api/v1/ventures/owned/subscriptions/${subscriptionId}`,
-    {
-      method: 'DELETE',
-    },
-  );
-  if (!response.ok) {
-    throw new Error('Failed to delete subscription');
-  }
-};
+import { SubscriptionsApi } from '../api/http/subscriptions.api';
 
 const useSubscriptionStats = () => {
   return useQuery({
     queryKey: ['subscriptions', 'stats'],
-    queryFn: fetchSubscriptionStats,
+    queryFn: SubscriptionsApi.fetchSubscriptionStats,
   });
 };
 

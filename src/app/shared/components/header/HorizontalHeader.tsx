@@ -107,7 +107,7 @@ const Header = () => {
             </div>
             {/* <LanguageDropdown /> */}
             <ThemeDropdown />
-            <NotificationDropdown />
+            {/* <NotificationDropdown /> */}
             <ProfileMenu />
             {/* <div className="dropdown d-inline-block">
               <button

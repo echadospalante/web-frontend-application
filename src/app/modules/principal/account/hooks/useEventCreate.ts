@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { EventCreate } from 'echadospalante-domain';
 import { useFormik } from 'formik';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,6 +20,7 @@ import { haversineDistance } from '../../../../shared/helpers/map-helpers.ts';
 const useEventCreate = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const queryClient = useQueryClient();
   const { ventureId } = useParams();
   const { email } = useAuthentication();
   const { uploadPublicationImage, ...rest } = useUploadImage();
@@ -69,13 +70,17 @@ const useEventCreate = () => {
     },
   });
 
-  const {locationLat, locationLng} = form.values
+  const { locationLat, locationLng } = form.values;
 
   const createEventMutation = useMutation({
     mutationKey: ['events', 'create'],
     mutationFn: (data: Omit<EventCreate, 'startDate' | 'endDate'>) =>
       OwnedEventsApi.createEvent(ventureId!, data),
     onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['ventures', 'owned'],
+        exact: false,
+      });
       dispatch(
         setGlobalAlert({
           position: 'top-right',
@@ -297,13 +302,15 @@ const useEventCreate = () => {
     }
   }, [uploadResultUrl]);
 
-
   useEffect(() => {
     if (!locationLat || !locationLng) return;
     const distancesToAllMunicipalities = municipalities
       .map((m) => ({
         id: m.id,
-        distance: haversineDistance({ lat: +locationLat, lng: +locationLng }, { lat: m.lat, lng: m.lng }),
+        distance: haversineDistance(
+          { lat: +locationLat, lng: +locationLng },
+          { lat: m.lat, lng: m.lng },
+        ),
       }))
       .sort(
         ({ distance: aDistance }, { distance: dDistance }) =>
@@ -313,8 +320,6 @@ const useEventCreate = () => {
 
     form.setFieldValue('municipalityId', closesMunicipalityId);
   }, [locationLat, locationLng]);
-
-
 
   return {
     form,

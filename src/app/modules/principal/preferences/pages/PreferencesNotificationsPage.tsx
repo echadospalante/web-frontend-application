@@ -139,7 +139,7 @@ const PreferencesNotificationsPage = () => {
                                 name="not-name"
                                 value=""
                                 className="float-end mt-1"
-                                checked={Math.random() > 0.3}
+                                checked
                               />
                             </Link>
                           ))}
@@ -165,7 +165,7 @@ const PreferencesNotificationsPage = () => {
                                 name="not-name"
                                 value=""
                                 className="float-end mt-1"
-                                checked={Math.random() > 0.3}
+                                checked
                               />
                             </Link>
                           ))}
@@ -192,7 +192,7 @@ const PreferencesNotificationsPage = () => {
                                 name="not-name"
                                 value=""
                                 className="float-end mt-1"
-                                checked={Math.random() > 0.3}
+                                checked
                               />
                             </Link>
                           ))}
@@ -219,7 +219,7 @@ const PreferencesNotificationsPage = () => {
                                 name="not-name"
                                 value=""
                                 className="float-end mt-1"
-                                checked={Math.random() > 0.3}
+                                checked
                               />
                             </Link>
                           ))}
@@ -246,7 +246,7 @@ const PreferencesNotificationsPage = () => {
                                 name="not-name"
                                 value=""
                                 className="float-end mt-1"
-                                checked={Math.random() > 0.3}
+                                checked
                               />
                             </Link>
                           ))}
@@ -273,7 +273,7 @@ const PreferencesNotificationsPage = () => {
                                 name="not-name"
                                 value=""
                                 className="float-end mt-1"
-                                checked={Math.random() > 0.3}
+                                checked
                               />
                             </Link>
                           ))}

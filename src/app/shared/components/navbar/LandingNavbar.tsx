@@ -71,19 +71,19 @@ const LandingNavbar = () => {
         <div className="d-lg-block d-none fw-medium">
           <ul className="d-flex flex-row align-items-center justify-content-center w-100 px-2 mt-3 list-unstyled">
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#">{t('Principal')}</a>
+              <a href="#principal">{t('Principal')}</a>
             </li>
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#nosotros">{t('About Us')}</a>
+              <a href="#features">{t('Features')}</a>
             </li>
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#caracteristicas">{t('Features')}</a>
-            </li>
-            <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
-              <a href="#precios">{t('Success Cases')}</a>
+              <a href="#success-cases">{t('Success Cases')}</a>
             </li>
             <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
               <a href="#faqs">{t('FAQs')}</a>
+            </li>
+            <li ref={(el) => (ref.current[0] = el!)} className="nav-item px-3">
+              <a href="#contact-form">{t('Contact')}</a>
             </li>
           </ul>
         </div>

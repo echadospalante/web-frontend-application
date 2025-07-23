@@ -49,98 +49,92 @@ const features: AppFeature[] = [
 
 const FeatureList: React.FC = () => {
   return (
-    <Container
-    className='px-5 mb-4'
-    >
-        <h2
-          style={{
-            color: '#333',
-            textAlign: 'center',
-            fontSize: '2.2rem',
-            marginBottom: '3rem',
-            fontWeight: 600,
-          }}
-        >
-          Características
-        </h2>
-        <Row className='g-4 justify-content-center'>
-          {features.map((feature) => (
-            <Col
-              lg={3}
-              md={6}
-              sm={12}
-              xs={12}
-              key={feature.id}
-              style={{ marginBottom: '1.5rem' }}
+    <Container className="px-5 mb-4" id="features">
+      <h2
+        style={{
+          color: '#333',
+          textAlign: 'center',
+          fontSize: '2.2rem',
+          marginBottom: '3rem',
+          fontWeight: 600,
+        }}
+      >
+        Características
+      </h2>
+      <Row className="g-4 justify-content-center">
+        {features.map((feature) => (
+          <Col
+            lg={3}
+            md={6}
+            sm={12}
+            xs={12}
+            key={feature.id}
+            style={{ marginBottom: '1.5rem' }}
+          >
+            <Card
+              style={{
+                backgroundColor: '#fff',
+                border: '1px solid #e9ecef',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                height: '100%',
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+              }}
             >
-              <Card
+              <img
+                src={feature.src}
+                style={{
+                  backgroundColor: '#f1f3f4',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: '#6c757d',
+                  fontSize: '0.9rem',
+                  borderBottom: '1px solid #e9ecef',
+                  borderRadius: '8px 8px 0 0',
+                }}
+              ></img>
+              <CardBody
                 style={{
                   backgroundColor: '#fff',
-                  border: '1px solid #e9ecef',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-                  transition: 'transform 0.2s ease, box-shadow 0.2s ease',
-                  height: '100%',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow =
-                    '0 4px 12px rgba(0,0,0,0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 2px 4px rgba(0,0,0,0.1)';
+                  color: '#333',
+                  padding: '1.5rem',
                 }}
               >
-                <img
-                src={feature.src}
+                <CardTitle
+                  tag="h5"
                   style={{
-                    backgroundColor: '#f1f3f4',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    color: '#495057',
+                    fontSize: '1.1rem',
+                    marginBottom: '1rem',
+                    textAlign: 'center',
+                    fontWeight: 500,
+                  }}
+                >
+                  {feature.name}
+                </CardTitle>
+                <CardText
+                  style={{
                     color: '#6c757d',
                     fontSize: '0.9rem',
-                    borderBottom: '1px solid #e9ecef',
-                    borderRadius: '8px 8px 0 0',
+                    lineHeight: 1.5,
+                    textAlign: 'center',
                   }}
                 >
-                  
-                </img>
-                <CardBody
-                  style={{
-                    backgroundColor: '#fff',
-                    color: '#333',
-                    padding: '1.5rem',
-                  }}
-                >
-                  <CardTitle
-                    tag="h5"
-                    style={{
-                      color: '#495057',
-                      fontSize: '1.1rem',
-                      marginBottom: '1rem',
-                      textAlign: 'center',
-                      fontWeight: 500,
-                    }}
-                  >
-                    {feature.name}
-                  </CardTitle>
-                  <CardText
-                    style={{
-                      color: '#6c757d',
-                      fontSize: '0.9rem',
-                      lineHeight: 1.5,
-                      textAlign: 'center',
-                    }}
-                  >
-                    {feature.description}
-                  </CardText>
-                </CardBody>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      
+                  {feature.description}
+                </CardText>
+              </CardBody>
+            </Card>
+          </Col>
+        ))}
+      </Row>
     </Container>
   );
 };
