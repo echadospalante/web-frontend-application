@@ -219,7 +219,7 @@ const UserSidebarContent = () => {
           </ul>
 
           <ul className="metismenu list-unstyled" id="account-menu">
-            <li className="menu-title">{t('Your Account')}</li>
+            <li className="menu-title">TU CUENTA</li>
 
             <li>
               <Link
