@@ -299,7 +299,6 @@ const SuccessCaseList: React.FC = () => {
                       '0 4px 12px rgba(0,0,0,0.08)';
                   }}
                 >
-                  {/* Header con imagen y badges */}
                   <div style={{ position: 'relative' }}>
                     <img
                       src={caso.coverPhoto}
@@ -312,7 +311,6 @@ const SuccessCaseList: React.FC = () => {
                       }}
                     />
 
-                    {/* Badges de estado */}
                     <div
                       style={{
                         position: 'absolute',
@@ -352,7 +350,6 @@ const SuccessCaseList: React.FC = () => {
                       )}
                     </div>
 
-                    {/* Badge de ubicación */}
                     <div
                       style={{
                         position: 'absolute',
@@ -391,7 +388,6 @@ const SuccessCaseList: React.FC = () => {
                       height: 'calc(100% - 200px)',
                     }}
                   >
-                    {/* Título y categorías */}
                     <div style={{ marginBottom: '1rem' }}>
                       <CardTitle
                         tag="h4"
@@ -406,7 +402,6 @@ const SuccessCaseList: React.FC = () => {
                         {caso.name}
                       </CardTitle>
 
-                      {/* Categorías */}
                       <div
                         style={{
                           display: 'flex',
@@ -445,7 +440,6 @@ const SuccessCaseList: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Descripción */}
                     <CardText
                       style={{
                         color: '#6c757d',
@@ -458,7 +452,6 @@ const SuccessCaseList: React.FC = () => {
                       {truncateDescription(caso.description)}
                     </CardText>
 
-                    {/* Estadísticas */}
                     <div
                       style={{
                         display: 'flex',
@@ -513,7 +506,6 @@ const SuccessCaseList: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Footer con owner y botón */}
                     <div
                       style={{
                         display: 'flex',
